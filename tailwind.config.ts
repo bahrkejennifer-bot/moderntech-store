@@ -56,15 +56,22 @@ export default {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
-  			}
+  			},
+  			'christmas-red': 'hsl(var(--christmas-red))',
+  			'christmas-green': 'hsl(var(--christmas-green))',
+  			'christmas-gold': 'hsl(var(--christmas-gold))',
+  			'christmas-snow': 'hsl(var(--christmas-snow))'
   		},
   		backgroundImage: {
   			'gradient-hero': 'var(--gradient-hero)',
-  			'gradient-accent': 'var(--gradient-accent)'
+  			'gradient-accent': 'var(--gradient-accent)',
+  			'gradient-christmas': 'var(--gradient-christmas)',
+  			'gradient-gold': 'var(--gradient-gold)'
   		},
   		boxShadow: {
   			elegant: 'var(--shadow-elegant)',
   			card: 'var(--shadow-card)',
+  			gold: 'var(--shadow-gold)',
   			'2xs': 'var(--shadow-2xs)',
   			xs: 'var(--shadow-xs)',
   			sm: 'var(--shadow-sm)',
@@ -94,15 +101,37 @@ export default {
   				to: {
   					height: '0'
   				}
+  			},
+  			'fade-in': {
+  				from: {
+  					opacity: '0',
+  					transform: 'translateY(10px)'
+  				},
+  				to: {
+  					opacity: '1',
+  					transform: 'translateY(0)'
+  				}
+  			},
+  			'sparkle': {
+  				'0%, 100%': {
+  					opacity: '1',
+  					transform: 'scale(1)'
+  				},
+  				'50%': {
+  					opacity: '0.5',
+  					transform: 'scale(1.1)'
+  				}
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			'fade-in': 'fade-in 0.5s ease-out',
+  			'sparkle': 'sparkle 2s ease-in-out infinite'
   		},
   		fontFamily: {
   			sans: [
-  				'Montserrat',
+  				'Inter',
   				'ui-sans-serif',
   				'system-ui',
   				'-apple-system',
@@ -114,25 +143,21 @@ export default {
   				'Noto Sans',
   				'sans-serif'
   			],
-  			serif: [
-  				'Cormorant Garamond',
-  				'ui-serif',
+  			display: [
+  				'Playfair Display',
   				'Georgia',
   				'Cambria',
   				'Times New Roman',
   				'Times',
   				'serif'
   			],
-  			mono: [
-  				'IBM Plex Mono',
-  				'ui-monospace',
-  				'SFMono-Regular',
-  				'Menlo',
-  				'Monaco',
-  				'Consolas',
-  				'Liberation Mono',
-  				'Courier New',
-  				'monospace'
+  			serif: [
+  				'Playfair Display',
+  				'Georgia',
+  				'Cambria',
+  				'Times New Roman',
+  				'Times',
+  				'serif'
   			]
   		}
   	}

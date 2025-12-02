@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap } from "lucide-react";
+import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Snowflake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
-import heroImage from "@/assets/hero-tech.jpg";
+import ChristmasCountdown from "@/components/ChristmasCountdown";
+import heroImage from "@/assets/christmas-hero.jpg";
 
 const categories = [
   {
@@ -55,7 +56,7 @@ const Index = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[700px] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -64,36 +65,70 @@ const Index = () => {
             backgroundPosition: "center",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/70" />
+          <div className="absolute inset-0">
+            {[...Array(20)].map((_, i) => (
+              <Snowflake
+                key={i}
+                className="absolute text-white/30 animate-sparkle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 2}s`,
+                  fontSize: `${Math.random() * 20 + 10}px`,
+                }}
+              />
+            ))}
+          </div>
         </div>
         
         <div className="container relative z-10 mx-auto px-4 text-center">
-          <h1 className="mb-6 text-5xl md:text-6xl lg:text-7xl font-bold">
+          <div className="mb-6 inline-block">
+            <span className="text-christmas-gold text-sm font-semibold uppercase tracking-wider bg-christmas-gold/10 px-4 py-2 rounded-full border border-christmas-gold/30">
+              🎄 Holiday Tech Gifts 2024
+            </span>
+          </div>
+          <h1 className="mb-6 text-5xl md:text-6xl lg:text-7xl font-bold font-display animate-fade-in">
             Discover the Best
-            <span className="block bg-gradient-hero bg-clip-text text-transparent">
-              Tech on Amazon
+            <span className="block bg-gradient-christmas bg-clip-text text-transparent mt-2">
+              Tech for Christmas
             </span>
           </h1>
-          <p className="mb-8 text-xl text-muted-foreground max-w-2xl mx-auto">
-            Curated collection of top-rated tech products for every aspect of your life
+          <p className="mb-10 text-xl text-foreground/80 max-w-2xl mx-auto leading-relaxed">
+            Curated collection of top-rated tech products to make this holiday season magical
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="lg" asChild>
-              <Link to="/home-safety">Shop Now</Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <Button 
+              className="bg-gradient-christmas hover:shadow-elegant transition-all duration-300 text-lg px-8 py-6 rounded-xl font-semibold" 
+              size="lg" 
+              asChild
+            >
+              <Link to="/home-safety">Shop Holiday Deals</Link>
             </Button>
-            <Button variant="outline" size="lg" asChild>
-              <Link to="/digital-products">Free Resources</Link>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-2 border-christmas-green text-christmas-green hover:bg-christmas-green hover:text-white transition-all duration-300 text-lg px-8 py-6 rounded-xl font-semibold"
+              asChild
+            >
+              <Link to="/digital-products">Free Gift Guides</Link>
             </Button>
           </div>
         </div>
       </section>
 
+      {/* Christmas Countdown */}
+      <ChristmasCountdown />
+
       {/* Categories Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20 bg-gradient-to-b from-christmas-snow/30 to-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold font-display text-center mb-4">
             Shop by Category
           </h2>
+          <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
+            Find the perfect tech gifts for everyone on your list
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((category) => {
               const Icon = category.icon;
@@ -101,13 +136,14 @@ const Index = () => {
                 <Link
                   key={category.link}
                   to={category.link}
-                  className="group p-6 bg-card rounded-lg border border-border hover:shadow-card transition-all duration-300"
+                  className="group relative p-8 bg-card rounded-2xl border-2 border-border hover:border-christmas-gold hover:shadow-gold transition-all duration-300 overflow-hidden"
                 >
-                  <Icon className={`h-12 w-12 mb-4 ${category.color}`} />
-                  <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-gold opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-300" />
+                  <Icon className={`h-14 w-14 mb-4 ${category.color} transition-transform duration-300 group-hover:scale-110`} />
+                  <h3 className="text-2xl font-bold font-display mb-2 group-hover:text-christmas-red transition-colors">
                     {category.title}
                   </h3>
-                  <p className="text-muted-foreground">{category.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">{category.description}</p>
                 </Link>
               );
             })}
@@ -116,16 +152,22 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-christmas-red/5 via-christmas-green/5 to-christmas-gold/5" />
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <Snowflake className="h-16 w-16 mx-auto mb-6 text-christmas-gold animate-sparkle" />
+          <h2 className="text-4xl md:text-5xl font-bold font-display mb-6">
             Stay Updated with Tech Insights
           </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Read our blog for reviews, comparisons, and tech tips
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+            Read our blog for holiday gift guides, reviews, comparisons, and tech tips
           </p>
-          <Button variant="cta" size="lg" asChild>
-            <Link to="/blog">Visit Blog</Link>
+          <Button 
+            className="bg-gradient-to-r from-christmas-green to-secondary hover:shadow-elegant transition-all duration-300 text-lg px-10 py-6 rounded-xl font-semibold"
+            size="lg" 
+            asChild
+          >
+            <Link to="/blog">Visit Our Blog</Link>
           </Button>
         </div>
       </section>
