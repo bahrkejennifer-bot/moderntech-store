@@ -8,40 +8,49 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 240 4% 95%;
-    --foreground: 240 5% 10%;
+    --background: 0 0% 98%;
+    --foreground: 140 8% 15%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 240 5% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 140 8% 15%;
 
-    --popover: 240 5% 90%;
-    --popover-foreground: 240 5% 10%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 140 8% 15%;
 
-    --primary: 258 89% 66%;
-    --primary-foreground: 250 100% 97%;
+    --primary: 355 78% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 5% 33%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 145 65% 35%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 4% 83%;
-    --muted-foreground: 240 5% 10%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 140 8% 40%;
 
-    --accent: 269 100% 98%;
-    --accent-foreground: 270 91% 65%;
+    --accent: 42 95% 55%;
+    --accent-foreground: 30 20% 15%;
 
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 85% 97%;
 
-    --border: 240 4% 83%;
-    --input: 240 4% 83%;
-    --ring: 258 89% 66%;
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 355 78% 45%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --gradient-hero: linear-gradient(135deg, hsl(195 85% 45%), hsl(195 85% 60%));
-    --gradient-accent: linear-gradient(135deg, hsl(25 95% 55%), hsl(35 95% 60%));
-    --shadow-elegant: 0 10px 40px -10px hsl(195 85% 45% / 0.2);
-    --shadow-card: 0 4px 20px hsl(195 85% 45% / 0.08);
+    --christmas-red: 355 78% 45%;
+    --christmas-green: 145 65% 35%;
+    --christmas-gold: 42 95% 55%;
+    --christmas-snow: 200 25% 95%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(355 78% 45%), hsl(355 78% 55%));
+    --gradient-accent: linear-gradient(135deg, hsl(145 65% 35%), hsl(145 65% 45%));
+    --gradient-christmas: linear-gradient(135deg, hsl(355 78% 45%), hsl(355 68% 35%));
+    --gradient-gold: linear-gradient(135deg, hsl(42 95% 55%), hsl(45 100% 65%));
+    
+    --shadow-elegant: 0 20px 60px -15px hsl(355 78% 45% / 0.4);
+    --shadow-card: 0 8px 30px hsl(355 78% 45% / 0.15);
+    --shadow-gold: 0 10px 40px hsl(42 95% 55% / 0.3);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5% 10%;
@@ -73,38 +82,47 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 240 5% 10%;
+    --background: 140 15% 8%;
     --foreground: 0 0% 98%;
 
-    --card: 240 3% 15%;
+    --card: 140 12% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 5% 26%;
+    --popover: 140 12% 15%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 255 91% 76%;
-    --primary-foreground: 261 72% 22%;
+    --primary: 355 85% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 3% 46%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 145 70% 40%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 3% 46%;
-    --muted-foreground: 0 0% 98%;
+    --muted: 140 10% 25%;
+    --muted-foreground: 0 0% 75%;
 
-    --accent: 273 86% 20%;
-    --accent-foreground: 270 95% 75%;
+    --accent: 42 100% 60%;
+    --accent-foreground: 0 0% 10%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 85% 97%;
 
-    --border: 240 5% 33%;
-    --input: 240 5% 33%;
-    --ring: 255 91% 76%;
+    --border: 140 10% 20%;
+    --input: 140 10% 20%;
+    --ring: 355 85% 55%;
 
-    --gradient-hero: linear-gradient(135deg, hsl(195 85% 45%), hsl(195 85% 65%));
-    --gradient-accent: linear-gradient(135deg, hsl(25 95% 55%), hsl(35 95% 65%));
-    --shadow-elegant: 0 10px 40px -10px hsl(195 85% 55% / 0.3);
-    --shadow-card: 0 4px 20px hsl(195 85% 55% / 0.12);
+    --christmas-red: 355 85% 55%;
+    --christmas-green: 145 70% 40%;
+    --christmas-gold: 42 100% 60%;
+    --christmas-snow: 200 20% 20%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(355 85% 55%), hsl(355 75% 45%));
+    --gradient-accent: linear-gradient(135deg, hsl(145 70% 40%), hsl(145 70% 50%));
+    --gradient-christmas: linear-gradient(135deg, hsl(355 85% 55%), hsl(355 75% 40%));
+    --gradient-gold: linear-gradient(135deg, hsl(42 100% 60%), hsl(45 100% 70%));
+    
+    --shadow-elegant: 0 20px 60px -15px hsl(355 85% 55% / 0.5);
+    --shadow-card: 0 8px 30px hsl(355 85% 55% / 0.2);
+    --shadow-gold: 0 10px 40px hsl(42 100% 60% / 0.4);
 
     --sidebar-background: 215 30% 10%;
     --sidebar-foreground: 0 0% 98%;
@@ -139,29 +157,13 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-weight: 700;
   }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
-
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
