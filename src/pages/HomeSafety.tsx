@@ -36,7 +36,7 @@ const products = [
     price: "$199.99",
     rating: 4.4,
     imageUrl: arloPro4Image,
-    affiliateLink: "https://www.amazon.com/dp/B08NCC47JT?tag=moderntechs0c-20",
+    affiliateLink: "https://www.amazon.com/dp/B09G6211RW?tag=moderntechs0c-20",
   },
   {
     title: "August Smart Lock Pro",
