@@ -3,6 +3,7 @@ import ProductCard from "@/components/ProductCard";
 import fireHd10KidsPro from "@/assets/products/fire-hd-10-kids-pro.jpg";
 import vtechKidizoomDx3 from "@/assets/products/vtech-kidizoom-dx3.jpg";
 import osmoGeniusKit from "@/assets/products/osmo-genius-kit.jpg";
+import leapfrogLearningFriends from "@/assets/products/leapfrog-learning-friends.jpg";
 
 const products = [
   {
@@ -34,8 +35,8 @@ const products = [
     description: "Interactive 100-word book for early learning with sound effects",
     price: "$24.99",
     rating: 4.7,
-    imageUrl: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B07F93DJ3G?tag=moderntechs0c-20",
+    imageUrl: leapfrogLearningFriends,
+    affiliateLink: "https://amzn.to/4alI6CT",
   },
   {
     title: "Sphero BOLT Robot",
