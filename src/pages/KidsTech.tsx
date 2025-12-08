@@ -9,7 +9,7 @@ const products = [
     price: "$149.99",
     rating: 4.6,
     imageUrl: fireHd10KidsPro,
-    affiliateLink: "https://amzn.to/4gNz8mJ",
+    affiliateLink: "https://amzn.to/48WrDDI",
   },
   {
     title: "VTech KidiZoom Smartwatch DX3",
