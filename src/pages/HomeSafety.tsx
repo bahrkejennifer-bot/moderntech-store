@@ -1,14 +1,15 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
+import ringDoorbellImage from "@/assets/products/ring-doorbell-pro2.jpg";
 
 const products = [
   {
     title: "Ring Video Doorbell Pro 2",
     description: "1536p HD video with 3D motion detection and radar-powered advanced alerts",
-    price: "$249.99",
+    price: "$129.99",
     rating: 4.5,
-    imageUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B086Q8D6VZ?tag=moderntechs0c-20",
+    imageUrl: ringDoorbellImage,
+    affiliateLink: "https://www.amazon.com/dp/B086Q54K53?tag=moderntechs0c-20",
   },
   {
     title: "Wyze Cam v3 Security Camera",
