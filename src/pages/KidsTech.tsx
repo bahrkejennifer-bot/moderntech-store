@@ -27,7 +27,7 @@ const products = [
     price: "$99.99",
     rating: 4.8,
     imageUrl: osmoGeniusKit,
-    affiliateLink: "https://amzn.to/48GWJhm",
+    affiliateLink: "https://amzn.to/48TFCKB",
   },
   {
     title: "LeapFrog Learning Friends Play & Learn",
