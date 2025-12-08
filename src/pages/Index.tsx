@@ -99,7 +99,7 @@ const Index = () => {
               Tech for Christmas
             </span>
           </h1>
-          <p className="mb-10 text-xl text-background font-semibold max-w-2xl mx-auto leading-relaxed drop-shadow-lg bg-foreground/80 px-6 py-3 rounded-lg inline-block">
+          <p className="mb-10 text-xl text-foreground font-semibold max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
             Curated collection of top-rated tech products to make this holiday season magical
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
