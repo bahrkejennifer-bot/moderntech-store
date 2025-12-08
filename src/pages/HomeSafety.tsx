@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import ringDoorbellImage from "@/assets/products/ring-doorbell-pro2.jpg";
+import wyzeCamImage from "@/assets/products/wyze-cam-v3.jpg";
 
 const products = [
   {
@@ -16,8 +17,8 @@ const products = [
     description: "1080p HD indoor/outdoor camera with color night vision and two-way audio",
     price: "$35.99",
     rating: 4.6,
-    imageUrl: "https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B08R59YH7W?tag=moderntechs0c-20",
+    imageUrl: wyzeCamImage,
+    affiliateLink: "https://www.amazon.com/dp/B0F8QLK5BH?tag=moderntechs0c-20",
   },
   {
     title: "Amazon Echo Show 8 (2nd Gen)",
