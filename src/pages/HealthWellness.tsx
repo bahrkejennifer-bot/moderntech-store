@@ -7,7 +7,7 @@ const products = [
     description: "Advanced health monitoring with ECG, blood oxygen, and fitness tracking",
     price: "$399.00",
     rating: 4.9,
-    imageUrl: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=500&auto=format",
+    imageUrl: "https://m.media-amazon.com/images/I/71z0dVxhDCL._AC_SL1500_.jpg",
     affiliateLink: "https://www.amazon.com/dp/B0CHX9CY7W?tag=moderntechs0c-20",
   },
   {
@@ -15,15 +15,15 @@ const products = [
     description: "Health and fitness tracker with built-in GPS and heart rate monitoring",
     price: "$159.95",
     rating: 4.6,
-    imageUrl: "https://images.unsplash.com/photo-1575390260582-cf5f64c2a6e4?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0CCQQ5M7V?tag=moderntechs0c-20",
+    imageUrl: "https://m.media-amazon.com/images/I/71N2HCFt7pL._AC_SL1500_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0CC62ZG1M?tag=moderntechs0c-20",
   },
   {
     title: "Theragun Prime Massage Gun",
     description: "Percussive therapy device for deep muscle treatment and recovery",
     price: "$299.00",
     rating: 4.7,
-    imageUrl: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&auto=format",
+    imageUrl: "https://m.media-amazon.com/images/I/61oDsZrDZ4L._AC_SL1500_.jpg",
     affiliateLink: "https://www.amazon.com/dp/B083JZWLYX?tag=moderntechs0c-20",
   },
   {
@@ -31,7 +31,7 @@ const products = [
     description: "WiFi body composition scale with multi-user recognition",
     price: "$99.95",
     rating: 4.5,
-    imageUrl: "https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?w=500&auto=format",
+    imageUrl: "https://m.media-amazon.com/images/I/51Qv1f1vBRL._AC_SL1000_.jpg",
     affiliateLink: "https://www.amazon.com/dp/B071XHZQ7J?tag=moderntechs0c-20",
   },
   {
@@ -39,7 +39,7 @@ const products = [
     description: "Sunrise alarm clock with colored light simulation and FM radio",
     price: "$109.99",
     rating: 4.4,
-    imageUrl: "https://images.unsplash.com/photo-1595232457020-d87c3efb0c13?w=500&auto=format",
+    imageUrl: "https://m.media-amazon.com/images/I/71M51pCLRXL._AC_SL1500_.jpg",
     affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs0c-20",
   },
   {
@@ -47,7 +47,7 @@ const products = [
     description: "Sleep technology with noise-masking and relaxation sounds",
     price: "$249.95",
     rating: 4.3,
-    imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&auto=format",
+    imageUrl: "https://m.media-amazon.com/images/I/51H3hNUvI2L._AC_SL1500_.jpg",
     affiliateLink: "https://www.amazon.com/dp/B08G8XBGVK?tag=moderntechs0c-20",
   },
 ];
