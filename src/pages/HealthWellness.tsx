@@ -3,6 +3,7 @@ import ProductCard from "@/components/ProductCard";
 import ekrinBantamImage from "@/assets/products/ekrin-bantam.jpg";
 import withingsScaleImage from "@/assets/products/withings-scale.jpg";
 import philipsWakeupImage from "@/assets/products/philips-wakeup-light.jpg";
+import fitbitCharge6Image from "@/assets/products/fitbit-charge-6.jpg";
 
 const products = [
   {
@@ -18,7 +19,7 @@ const products = [
     description: "Health and fitness tracker with built-in GPS and heart rate monitoring",
     price: "$159.95",
     rating: 4.6,
-    imageUrl: "https://images.unsplash.com/photo-1557438159-51eec7a6c9e8?w=500&auto=format",
+    imageUrl: fitbitCharge6Image,
     affiliateLink: "https://www.amazon.com/dp/B0CC62ZG1M?tag=moderntechs0c-20",
   },
   {
