@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import ekrinBantamImage from "@/assets/products/ekrin-bantam.jpg";
 import withingsScaleImage from "@/assets/products/withings-scale.jpg";
+import philipsWakeupImage from "@/assets/products/philips-wakeup-light.jpg";
 
 const products = [
   {
@@ -41,7 +42,7 @@ const products = [
     description: "Sunrise alarm clock with colored light simulation and FM radio",
     price: "$109.99",
     rating: 4.4,
-    imageUrl: "https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=500&auto=format",
+    imageUrl: philipsWakeupImage,
     affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs0c-20",
   },
   {
