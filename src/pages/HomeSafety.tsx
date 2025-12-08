@@ -5,6 +5,7 @@ import wyzeCamImage from "@/assets/products/wyze-cam-v3.jpg";
 import echoShow8Image from "@/assets/products/echo-show-8.jpg";
 import arloPro4Image from "@/assets/products/arlo-pro-4.jpg";
 import augustLockImage from "@/assets/products/august-smart-lock.jpg";
+import nestProtectImage from "@/assets/products/nest-protect.jpg";
 
 const products = [
   {
@@ -48,11 +49,11 @@ const products = [
     affiliateLink: "https://amzn.to/48Y3n44",
   },
   {
-    title: "Nest Protect Smoke Detector",
+    title: "Google Nest Protect",
     description: "Smart smoke and carbon monoxide alarm with app notifications",
     price: "$119.00",
     rating: 4.8,
-    imageUrl: "https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=500&auto=format",
+    imageUrl: nestProtectImage,
     affiliateLink: "https://www.amazon.com/dp/B00XV1RCRY?tag=moderntechs0c-20",
   },
 ];
