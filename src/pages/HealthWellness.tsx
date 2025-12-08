@@ -4,6 +4,7 @@ import ekrinBantamImage from "@/assets/products/ekrin-bantam.jpg";
 import withingsScaleImage from "@/assets/products/withings-scale.jpg";
 import philipsWakeupImage from "@/assets/products/philips-wakeup-light.jpg";
 import fitbitCharge6Image from "@/assets/products/fitbit-charge-6.jpg";
+import boseSleepbudsImage from "@/assets/products/bose-sleepbuds.jpg";
 
 const products = [
   {
@@ -51,8 +52,8 @@ const products = [
     description: "Sleep technology with noise-masking and relaxation sounds",
     price: "$249.95",
     rating: 4.3,
-    imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B08G8XBGVK?tag=moderntechs0c-20",
+    imageUrl: boseSleepbudsImage,
+    affiliateLink: "https://www.amazon.com/dp/B08FRR6Z1N?tag=moderntechs0c-20",
   },
 ];
 
