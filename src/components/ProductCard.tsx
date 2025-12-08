@@ -5,13 +5,13 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 interface ProductCardProps {
   title: string;
   description: string;
-  price: string;
+  price?: string;
   rating: number;
   imageUrl: string;
   affiliateLink: string;
 }
 
-const ProductCard = ({ title, description, price, rating, imageUrl, affiliateLink }: ProductCardProps) => {
+const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: ProductCardProps) => {
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-card group">
       <div className="aspect-square overflow-hidden bg-muted">
@@ -26,8 +26,7 @@ const ProductCard = ({ title, description, price, rating, imageUrl, affiliateLin
         <CardDescription className="line-clamp-2">{description}</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex items-center justify-between">
-          <span className="text-2xl font-bold text-primary">{price}</span>
+        <div className="flex items-center justify-end">
           <div className="flex items-center space-x-1">
             <span className="text-yellow-500">★</span>
             <span className="text-sm font-medium">{rating}/5</span>
