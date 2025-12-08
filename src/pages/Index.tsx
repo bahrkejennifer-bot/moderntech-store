@@ -67,10 +67,10 @@ const Index = () => {
             backgroundImage: `url(${heroImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            filter: "saturate(1.4) contrast(1.1) brightness(1.05)",
+            filter: "saturate(1.5) contrast(1.15) brightness(1.1)",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/40 to-transparent" />
           <div className="absolute inset-0">
             {[...Array(20)].map((_, i) => (
               <Snowflake
@@ -89,8 +89,8 @@ const Index = () => {
         
         <div className="container relative z-10 mx-auto px-4 text-center">
           <div className="mb-6 inline-block">
-            <span className="text-christmas-gold text-sm font-semibold uppercase tracking-wider bg-christmas-gold/10 px-4 py-2 rounded-full border border-christmas-gold/30">
-              🎄 Holiday Tech Gifts 2024
+            <span className="text-christmas-snow text-sm font-semibold uppercase tracking-wider bg-christmas-red/90 px-4 py-2 rounded-full border border-christmas-gold/50 shadow-lg">
+              🎄 Holiday Tech Gifts 2025
             </span>
           </div>
           <h1 className="mb-6 text-5xl md:text-6xl lg:text-7xl font-bold font-display animate-fade-in">
