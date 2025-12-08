@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
-import theragunImage from "@/assets/products/theragun-prime.jpg";
+import ekrinBantamImage from "@/assets/products/ekrin-bantam.jpg";
 
 const products = [
   {
@@ -20,12 +20,12 @@ const products = [
     affiliateLink: "https://www.amazon.com/dp/B0CC62ZG1M?tag=moderntechs0c-20",
   },
   {
-    title: "Theragun Prime Massage Gun",
-    description: "Percussive therapy device for deep muscle treatment and recovery",
-    price: "$299.00",
-    rating: 4.7,
-    imageUrl: theragunImage,
-    affiliateLink: "https://www.amazon.com/dp/B083JZWLYX?tag=moderntechs0c-20",
+    title: "Ekrin Bantam Mini Massage Gun",
+    description: "Compact deep tissue percussion massager with long battery life and 4 attachments",
+    price: "$79.99",
+    rating: 4.6,
+    imageUrl: ekrinBantamImage,
+    affiliateLink: "https://www.amazon.com/dp/B08M8P7ZVD?tag=moderntechs0c-20",
   },
   {
     title: "Withings Body+ Smart Scale",
