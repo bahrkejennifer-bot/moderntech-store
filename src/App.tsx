@@ -11,6 +11,7 @@ import Gaming from "./pages/Gaming";
 import Connectivity from "./pages/Connectivity";
 import College from "./pages/College";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import DigitalProducts from "./pages/DigitalProducts";
 import NotFound from "./pages/NotFound";
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/connectivity" element={<Connectivity />} />
           <Route path="/college" element={<College />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/digital-products" element={<DigitalProducts />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
