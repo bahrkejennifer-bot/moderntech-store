@@ -23,7 +23,7 @@ const products = [
     description: "Percussive therapy device for deep muscle treatment and recovery",
     price: "$299.00",
     rating: 4.7,
-    imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&auto=format",
+    imageUrl: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&auto=format",
     affiliateLink: "https://www.amazon.com/dp/B083JZWLYX?tag=moderntechs0c-20",
   },
   {
