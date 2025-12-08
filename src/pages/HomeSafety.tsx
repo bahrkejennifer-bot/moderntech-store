@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import ringDoorbellImage from "@/assets/products/ring-doorbell-pro2.jpg";
 import wyzeCamImage from "@/assets/products/wyze-cam-v3.jpg";
+import echoShow8Image from "@/assets/products/echo-show-8.jpg";
 
 const products = [
   {
@@ -23,10 +24,10 @@ const products = [
   {
     title: "Amazon Echo Show 8 (2nd Gen)",
     description: "Smart display with Alexa for video calls, home control, and entertainment",
-    price: "$129.99",
+    price: "$99.99",
     rating: 4.7,
-    imageUrl: "https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B084TNP2B4?tag=moderntechs0c-20",
+    imageUrl: echoShow8Image,
+    affiliateLink: "https://www.amazon.com/dp/B0CDJFCVDD?tag=moderntechs0c-20",
   },
   {
     title: "Arlo Pro 4 Spotlight Camera",
