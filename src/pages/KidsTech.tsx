@@ -8,7 +8,7 @@ const products = [
     price: "$149.99",
     rating: 4.6,
     imageUrl: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B09BG5W3LN?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B09BG5W3LN?tag=moderntechs0c-20",
   },
   {
     title: "VTech KidiZoom Smartwatch DX3",
@@ -16,7 +16,7 @@ const products = [
     price: "$59.99",
     rating: 4.5,
     imageUrl: "https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B09NNBZB1V?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B09NNBZB1V?tag=moderntechs0c-20",
   },
   {
     title: "Osmo Genius Starter Kit",
@@ -24,7 +24,7 @@ const products = [
     price: "$99.99",
     rating: 4.8,
     imageUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B01MCSIPV9?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B01MCSIPV9?tag=moderntechs0c-20",
   },
   {
     title: "LeapFrog Learning Friends Play & Learn",
@@ -32,7 +32,7 @@ const products = [
     price: "$24.99",
     rating: 4.7,
     imageUrl: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B07F93DJ3G?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B07F93DJ3G?tag=moderntechs0c-20",
   },
   {
     title: "Sphero BOLT Robot",
@@ -40,7 +40,7 @@ const products = [
     price: "$149.99",
     rating: 4.6,
     imageUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B07FYLW8MT?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B07FYLW8MT?tag=moderntechs0c-20",
   },
   {
     title: "JBL JR310BT Kids Headphones",
@@ -48,7 +48,7 @@ const products = [
     price: "$39.95",
     rating: 4.5,
     imageUrl: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B07W5BK1X3?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B07W5BK1X3?tag=moderntechs0c-20",
   },
 ];
 

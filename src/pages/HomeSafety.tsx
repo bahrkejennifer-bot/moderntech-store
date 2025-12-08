@@ -8,7 +8,7 @@ const products = [
     price: "$249.99",
     rating: 4.5,
     imageUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B086Q8D6VZ?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B086Q8D6VZ?tag=moderntechs0c-20",
   },
   {
     title: "Wyze Cam v3 Security Camera",
@@ -16,7 +16,7 @@ const products = [
     price: "$35.99",
     rating: 4.6,
     imageUrl: "https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B08R59YH7W?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B08R59YH7W?tag=moderntechs0c-20",
   },
   {
     title: "Amazon Echo Show 8 (2nd Gen)",
@@ -24,7 +24,7 @@ const products = [
     price: "$129.99",
     rating: 4.7,
     imageUrl: "https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B084TNP2B4?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B084TNP2B4?tag=moderntechs0c-20",
   },
   {
     title: "Arlo Pro 4 Spotlight Camera",
@@ -32,7 +32,7 @@ const products = [
     price: "$199.99",
     rating: 4.4,
     imageUrl: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B08NCC47JT?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B08NCC47JT?tag=moderntechs0c-20",
   },
   {
     title: "August Smart Lock Pro",
@@ -40,7 +40,7 @@ const products = [
     price: "$229.99",
     rating: 4.3,
     imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0752V8D8D?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B0752V8D8D?tag=moderntechs0c-20",
   },
   {
     title: "Nest Protect Smoke Detector",
@@ -48,7 +48,7 @@ const products = [
     price: "$119.00",
     rating: 4.8,
     imageUrl: "https://images.unsplash.com/photo-1577705998148-6da4f3963bc8?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B00XV1RCRY?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B00XV1RCRY?tag=moderntechs0c-20",
   },
 ];
 

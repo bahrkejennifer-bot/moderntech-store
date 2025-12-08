@@ -8,7 +8,7 @@ const products = [
     price: "$1,099.00",
     rating: 4.9,
     imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0B3C2R8MP?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B0B3C2R8MP?tag=moderntechs0c-20",
   },
   {
     title: "iPad (10th Generation)",
@@ -16,7 +16,7 @@ const products = [
     price: "$349.00",
     rating: 4.8,
     imageUrl: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B0BJLXMVMV?tag=moderntechs0c-20",
   },
   {
     title: "Logitech MX Keys Wireless Keyboard",
@@ -24,7 +24,7 @@ const products = [
     price: "$119.99",
     rating: 4.7,
     imageUrl: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B07S92QBCJ?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B07S92QBCJ?tag=moderntechs0c-20",
   },
   {
     title: "Rocketbook Smart Reusable Notebook",
@@ -32,7 +32,7 @@ const products = [
     price: "$34.99",
     rating: 4.5,
     imageUrl: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B071Y3MSRK?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B071Y3MSRK?tag=moderntechs0c-20",
   },
   {
     title: "Anker PowerCore Portable Charger",
@@ -40,7 +40,7 @@ const products = [
     price: "$49.99",
     rating: 4.8,
     imageUrl: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B07SQ5MQ6K?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B07SQ5MQ6K?tag=moderntechs0c-20",
   },
   {
     title: "Bose QuietComfort 45 Headphones",
@@ -48,7 +48,7 @@ const products = [
     price: "$329.00",
     rating: 4.7,
     imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B098FKXT8L?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B098FKXT8L?tag=moderntechs0c-20",
   },
 ];
 

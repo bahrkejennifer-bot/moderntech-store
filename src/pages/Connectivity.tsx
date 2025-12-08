@@ -8,7 +8,7 @@ const products = [
     price: "$249.00",
     rating: 4.8,
     imageUrl: "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0CHWRXH8B?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B0CHWRXH8B?tag=moderntechs0c-20",
   },
   {
     title: "Samsung Galaxy Buds2 Pro",
@@ -16,7 +16,7 @@ const products = [
     price: "$229.99",
     rating: 4.6,
     imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0B2SH57T1?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B0B2SH57T1?tag=moderntechs0c-20",
   },
   {
     title: "TP-Link WiFi 6 Router AX3000",
@@ -24,7 +24,7 @@ const products = [
     price: "$89.99",
     rating: 4.7,
     imageUrl: "https://images.unsplash.com/photo-1606904825846-647eb07f5be2?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B08H8ZLKKK?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B08H8ZLKKK?tag=moderntechs0c-20",
   },
   {
     title: "Anker 525 Charging Station",
@@ -32,7 +32,7 @@ const products = [
     price: "$65.99",
     rating: 4.5,
     imageUrl: "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B09SG31NPT?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B09SG31NPT?tag=moderntechs0c-20",
   },
   {
     title: "Google Nest WiFi Pro 6E",
@@ -40,7 +40,7 @@ const products = [
     price: "$399.99",
     rating: 4.6,
     imageUrl: "https://images.unsplash.com/photo-1517059224940-d4af9eec41b7?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0BCQGMJ5M?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B0BCQGMJ5M?tag=moderntechs0c-20",
   },
   {
     title: "Tile Pro Bluetooth Tracker",
@@ -48,7 +48,7 @@ const products = [
     price: "$34.99",
     rating: 4.4,
     imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B09B2WPZP7?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B09B2WPZP7?tag=moderntechs0c-20",
   },
 ];
 
