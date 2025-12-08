@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import fireHd10KidsPro from "@/assets/products/fire-hd-10-kids-pro.jpg";
+import vtechKidizoomDx3 from "@/assets/products/vtech-kidizoom-dx3.jpg";
 
 const products = [
   {
@@ -16,8 +17,8 @@ const products = [
     description: "Kids smartwatch with dual cameras, games, and activity tracking",
     price: "$59.99",
     rating: 4.5,
-    imageUrl: "https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B09NNBZB1V?tag=moderntechs0c-20",
+    imageUrl: vtechKidizoomDx3,
+    affiliateLink: "https://amzn.to/4rOjTva",
   },
   {
     title: "Osmo Genius Starter Kit",
