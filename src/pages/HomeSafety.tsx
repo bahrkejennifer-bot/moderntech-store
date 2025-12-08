@@ -4,6 +4,7 @@ import ringDoorbellImage from "@/assets/products/ring-doorbell-pro2.jpg";
 import wyzeCamImage from "@/assets/products/wyze-cam-v3.jpg";
 import echoShow8Image from "@/assets/products/echo-show-8.jpg";
 import arloPro4Image from "@/assets/products/arlo-pro-4.jpg";
+import augustLockImage from "@/assets/products/august-smart-lock.jpg";
 
 const products = [
   {
@@ -43,7 +44,7 @@ const products = [
     description: "Smart lock with built-in WiFi, auto-lock and unlock capabilities",
     price: "$229.99",
     rating: 4.3,
-    imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format",
+    imageUrl: augustLockImage,
     affiliateLink: "https://www.amazon.com/dp/B0752V8D8D?tag=moderntechs0c-20",
   },
   {
