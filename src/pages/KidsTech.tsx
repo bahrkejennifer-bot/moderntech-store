@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
+import fireHd10KidsPro from "@/assets/products/fire-hd-10-kids-pro.jpg";
 
 const products = [
   {
@@ -7,8 +8,8 @@ const products = [
     description: "10.1-inch tablet for kids with parental controls and kid-friendly content",
     price: "$149.99",
     rating: 4.6,
-    imageUrl: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B09BG5W3LN?tag=moderntechs0c-20",
+    imageUrl: fireHd10KidsPro,
+    affiliateLink: "https://amzn.to/4gNz8mJ",
   },
   {
     title: "VTech KidiZoom Smartwatch DX3",
