@@ -54,7 +54,7 @@ const products = [
     price: "$119.00",
     rating: 4.8,
     imageUrl: nestProtectImage,
-    affiliateLink: "https://www.amazon.com/dp/B00XV1RCRY?tag=moderntechs0c-20",
+    affiliateLink: "https://amzn.to/4a4vCiQ",
   },
 ];
 
