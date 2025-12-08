@@ -3,6 +3,8 @@ import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Snowflake
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import ChristmasCountdown from "@/components/ChristmasCountdown";
+import FallingSnow from "@/components/FallingSnow";
+import ChristmasMusic from "@/components/ChristmasMusic";
 import heroImage from "@/assets/christmas-hero.jpg";
 
 const categories = [
@@ -53,6 +55,8 @@ const categories = [
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <FallingSnow />
+      <ChristmasMusic />
       <Navigation />
       
       {/* Hero Section */}
@@ -63,9 +67,10 @@ const Index = () => {
             backgroundImage: `url(${heroImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
+            filter: "saturate(1.4) contrast(1.1) brightness(1.05)",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/60 to-transparent" />
           <div className="absolute inset-0">
             {[...Array(20)].map((_, i) => (
               <Snowflake
