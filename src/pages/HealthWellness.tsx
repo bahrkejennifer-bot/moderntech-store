@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
+import theragunImage from "@/assets/products/theragun-prime.jpg";
 
 const products = [
   {
@@ -23,7 +24,7 @@ const products = [
     description: "Percussive therapy device for deep muscle treatment and recovery",
     price: "$299.00",
     rating: 4.7,
-    imageUrl: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&auto=format",
+    imageUrl: theragunImage,
     affiliateLink: "https://www.amazon.com/dp/B083JZWLYX?tag=moderntechs0c-20",
   },
   {
