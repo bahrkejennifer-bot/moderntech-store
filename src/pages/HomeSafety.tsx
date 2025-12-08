@@ -40,12 +40,12 @@ const products = [
     affiliateLink: "https://www.amazon.com/dp/B09G6211RW?tag=moderntechs0c-20",
   },
   {
-    title: "August Smart Lock Pro",
+    title: "August WiFi Smart Lock (4th Gen)",
     description: "Smart lock with built-in WiFi, auto-lock and unlock capabilities",
     price: "$229.99",
     rating: 4.3,
     imageUrl: augustLockImage,
-    affiliateLink: "https://www.amazon.com/dp/B0752V8D8D?tag=moderntechs0c-20",
+    affiliateLink: "https://www.amazon.com/dp/B082VXRND2?tag=moderntechs0c-20",
   },
   {
     title: "Nest Protect Smoke Detector",
