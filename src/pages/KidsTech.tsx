@@ -5,6 +5,7 @@ import vtechKidizoomDx3 from "@/assets/products/vtech-kidizoom-dx3.jpg";
 import osmoGeniusKit from "@/assets/products/osmo-genius-kit.jpg";
 import leapfrogLearningFriends from "@/assets/products/leapfrog-learning-friends.jpg";
 import ruko1088Robot from "@/assets/products/ruko-1088-robot.jpg";
+import jblJr310btHeadphones from "@/assets/products/jbl-jr310bt-headphones.jpg";
 
 const products = [
   {
@@ -52,8 +53,8 @@ const products = [
     description: "Wireless Bluetooth headphones with volume limiting for safe listening",
     price: "$39.95",
     rating: 4.5,
-    imageUrl: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B07W5BK1X3?tag=moderntechs0c-20",
+    imageUrl: jblJr310btHeadphones,
+    affiliateLink: "https://amzn.to/4rH799l",
   },
 ];
 
