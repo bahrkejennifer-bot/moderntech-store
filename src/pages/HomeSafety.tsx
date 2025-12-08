@@ -3,6 +3,7 @@ import ProductCard from "@/components/ProductCard";
 import ringDoorbellImage from "@/assets/products/ring-doorbell-pro2.jpg";
 import wyzeCamImage from "@/assets/products/wyze-cam-v3.jpg";
 import echoShow8Image from "@/assets/products/echo-show-8.jpg";
+import arloPro4Image from "@/assets/products/arlo-pro-4.jpg";
 
 const products = [
   {
@@ -34,7 +35,7 @@ const products = [
     description: "Wire-free security camera with 2K video, color night vision, and integrated spotlight",
     price: "$199.99",
     rating: 4.4,
-    imageUrl: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=500&auto=format",
+    imageUrl: arloPro4Image,
     affiliateLink: "https://www.amazon.com/dp/B08NCC47JT?tag=moderntechs0c-20",
   },
   {
