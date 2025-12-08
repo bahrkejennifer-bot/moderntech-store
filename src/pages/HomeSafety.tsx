@@ -45,7 +45,7 @@ const products = [
     price: "$229.99",
     rating: 4.3,
     imageUrl: augustLockImage,
-    affiliateLink: "https://www.amazon.com/dp/B082VXRND2?tag=moderntechs0c-20",
+    affiliateLink: "https://amzn.to/48Y3n44",
   },
   {
     title: "Nest Protect Smoke Detector",
