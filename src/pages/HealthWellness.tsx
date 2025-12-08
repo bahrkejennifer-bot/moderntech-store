@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import ekrinBantamImage from "@/assets/products/ekrin-bantam.jpg";
+import withingsScaleImage from "@/assets/products/withings-scale.jpg";
 
 const products = [
   {
@@ -32,8 +33,8 @@ const products = [
     description: "WiFi body composition scale with multi-user recognition",
     price: "$99.95",
     rating: 4.5,
-    imageUrl: "https://images.unsplash.com/photo-1576678927484-cc907957088c?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B071XHZQ7J?tag=moderntechs0c-20",
+    imageUrl: withingsScaleImage,
+    affiliateLink: "https://www.amazon.com/dp/B071XW4C5Q?tag=moderntechs0c-20",
   },
   {
     title: "Philips SmartSleep Wake-Up Light",
