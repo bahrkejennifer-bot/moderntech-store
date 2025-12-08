@@ -5,7 +5,7 @@ import wyzeCamImage from "@/assets/products/wyze-cam-v3.jpg";
 import echoShow8Image from "@/assets/products/echo-show-8.jpg";
 import arloPro4Image from "@/assets/products/arlo-pro-4.jpg";
 import augustLockImage from "@/assets/products/august-smart-lock.jpg";
-import nestProtectImage from "@/assets/products/nest-protect.jpg";
+import kiddeDetectorImage from "@/assets/products/kidde-smoke-detector.jpg";
 
 const products = [
   {
@@ -49,12 +49,12 @@ const products = [
     affiliateLink: "https://amzn.to/48Y3n44",
   },
   {
-    title: "Google Nest Protect",
-    description: "Smart smoke and carbon monoxide alarm with app notifications",
-    price: "$119.00",
-    rating: 4.8,
-    imageUrl: nestProtectImage,
-    affiliateLink: "https://amzn.to/4a4vCiQ",
+    title: "Kidde Smoke & Carbon Monoxide Detector (2 Pack)",
+    description: "Hardwired with AA battery backup, voice alerts, and LED warning indicators",
+    price: "$97.97",
+    rating: 4.5,
+    imageUrl: kiddeDetectorImage,
+    affiliateLink: "https://amzn.to/4iIzXuj",
   },
 ];
 
