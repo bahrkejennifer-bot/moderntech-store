@@ -4,6 +4,7 @@ import fireHd10KidsPro from "@/assets/products/fire-hd-10-kids-pro.jpg";
 import vtechKidizoomDx3 from "@/assets/products/vtech-kidizoom-dx3.jpg";
 import osmoGeniusKit from "@/assets/products/osmo-genius-kit.jpg";
 import leapfrogLearningFriends from "@/assets/products/leapfrog-learning-friends.jpg";
+import ruko1088Robot from "@/assets/products/ruko-1088-robot.jpg";
 
 const products = [
   {
@@ -39,12 +40,12 @@ const products = [
     affiliateLink: "https://amzn.to/4alI6CT",
   },
   {
-    title: "Sphero BOLT Robot",
-    description: "App-enabled coding robot with LED matrix and advanced sensors",
-    price: "$149.99",
+    title: "Ruko 1088 Smart Robot for Kids",
+    description: "Large programmable interactive RC robot with voice control and APP control for ages 4-9",
+    price: "$89.99",
     rating: 4.6,
-    imageUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B07FYLW8MT?tag=moderntechs0c-20",
+    imageUrl: ruko1088Robot,
+    affiliateLink: "https://amzn.to/48vyfre",
   },
   {
     title: "JBL JR310BT Kids Headphones",
