@@ -8,7 +8,7 @@ const products = [
     price: "$499.99",
     rating: 4.9,
     imageUrl: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0CL5KNB9M?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B0CL5KNB9M?tag=moderntechs0c-20",
   },
   {
     title: "Razer DeathAdder V3 Gaming Mouse",
@@ -16,7 +16,7 @@ const products = [
     price: "$69.99",
     rating: 4.7,
     imageUrl: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0B5Q5Q7PX?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B0B5Q5Q7PX?tag=moderntechs0c-20",
   },
   {
     title: "SteelSeries Arctis Nova Pro Wireless",
@@ -24,7 +24,7 @@ const products = [
     price: "$349.99",
     rating: 4.6,
     imageUrl: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B09ZV77TYN?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B09ZV77TYN?tag=moderntechs0c-20",
   },
   {
     title: "Logitech G Pro X Superlight 2",
@@ -32,7 +32,7 @@ const products = [
     price: "$159.99",
     rating: 4.8,
     imageUrl: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0CL5FB87M?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B0CL5FB87M?tag=moderntechs0c-20",
   },
   {
     title: "ASUS ROG Swift OLED Gaming Monitor",
@@ -40,7 +40,7 @@ const products = [
     price: "$899.99",
     rating: 4.9,
     imageUrl: "https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0BXCFWKS7?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B0BXCFWKS7?tag=moderntechs0c-20",
   },
   {
     title: "Xbox Series X",
@@ -48,7 +48,7 @@ const products = [
     price: "$499.99",
     rating: 4.8,
     imageUrl: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B08H75RTZ8?tag=YOUR-AFFILIATE-ID",
+    affiliateLink: "https://www.amazon.com/dp/B08H75RTZ8?tag=moderntechs0c-20",
   },
 ];
 

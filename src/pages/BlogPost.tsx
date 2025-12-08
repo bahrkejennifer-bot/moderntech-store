@@ -38,28 +38,28 @@ const blogPostsData: Record<string, {
         price: "$49.99",
         rating: 4.7,
         imageUrl: "https://images.unsplash.com/photo-1543512214-318c7553f230?w=400&auto=format",
-        affiliateLink: "https://www.amazon.com/dp/B09B8V1LZ3?tag=YOUR-AFFILIATE-ID"
+        affiliateLink: "https://www.amazon.com/dp/B09B8V1LZ3?tag=moderntechs0c-20"
       },
       {
         title: "Ring Video Doorbell 4 - Smart Wireless Doorbell Camera",
         price: "$199.99",
         rating: 4.5,
         imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&auto=format",
-        affiliateLink: "https://www.amazon.com/dp/B08JNR77QY?tag=YOUR-AFFILIATE-ID"
+        affiliateLink: "https://www.amazon.com/dp/B08JNR77QY?tag=moderntechs0c-20"
       },
       {
         title: "Nest Learning Thermostat - Programmable Smart Thermostat",
         price: "$249.00",
         rating: 4.6,
         imageUrl: "https://images.unsplash.com/photo-1567925086983-a5752763a6e2?w=400&auto=format",
-        affiliateLink: "https://www.amazon.com/dp/B0131RG6VK?tag=YOUR-AFFILIATE-ID"
+        affiliateLink: "https://www.amazon.com/dp/B0131RG6VK?tag=moderntechs0c-20"
       },
       {
         title: "Philips Hue Smart Bulb Starter Kit",
         price: "$179.99",
         rating: 4.8,
         imageUrl: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&auto=format",
-        affiliateLink: "https://www.amazon.com/dp/B07QV9XB87?tag=YOUR-AFFILIATE-ID"
+        affiliateLink: "https://www.amazon.com/dp/B07QV9XB87?tag=moderntechs0c-20"
       }
     ]
   },
@@ -79,21 +79,21 @@ const blogPostsData: Record<string, {
         price: "$299.00",
         rating: 4.7,
         imageUrl: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&auto=format",
-        affiliateLink: "https://www.amazon.com/dp/B088HM74VD?tag=YOUR-AFFILIATE-ID"
+        affiliateLink: "https://www.amazon.com/dp/B088HM74VD?tag=moderntechs0c-20"
       },
       {
         title: "LG 27GP850-B UltraGear Gaming Monitor",
         price: "$449.99",
         rating: 4.6,
         imageUrl: "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=400&auto=format",
-        affiliateLink: "https://www.amazon.com/dp/B093MTSTKD?tag=YOUR-AFFILIATE-ID"
+        affiliateLink: "https://www.amazon.com/dp/B093MTSTKD?tag=moderntechs0c-20"
       },
       {
         title: "Samsung Odyssey G5 34\" Curved Gaming Monitor",
         price: "$399.99",
         rating: 4.5,
         imageUrl: "https://images.unsplash.com/photo-1616763355548-1b606f439f86?w=400&auto=format",
-        affiliateLink: "https://www.amazon.com/dp/B08FF3HDW5?tag=YOUR-AFFILIATE-ID"
+        affiliateLink: "https://www.amazon.com/dp/B08FF3HDW5?tag=moderntechs0c-20"
       }
     ]
   }
