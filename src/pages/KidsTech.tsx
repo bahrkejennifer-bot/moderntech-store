@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import fireHd10KidsPro from "@/assets/products/fire-hd-10-kids-pro.jpg";
 import vtechKidizoomDx3 from "@/assets/products/vtech-kidizoom-dx3.jpg";
+import osmoGeniusKit from "@/assets/products/osmo-genius-kit.jpg";
 
 const products = [
   {
@@ -25,8 +26,8 @@ const products = [
     description: "Educational learning games for iPad with hands-on play pieces",
     price: "$99.99",
     rating: 4.8,
-    imageUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B01MCSIPV9?tag=moderntechs0c-20",
+    imageUrl: osmoGeniusKit,
+    affiliateLink: "https://amzn.to/48GWJhm",
   },
   {
     title: "LeapFrog Learning Friends Play & Learn",
