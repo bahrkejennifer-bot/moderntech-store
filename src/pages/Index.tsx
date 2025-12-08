@@ -60,17 +60,17 @@ const Index = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative min-h-[700px] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[700px] flex items-start pt-24 justify-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: `url(${heroImage})`,
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "center bottom",
             filter: "saturate(1.5) contrast(1.15) brightness(1.1)",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/40 to-transparent" />
           <div className="absolute inset-0">
             {[...Array(20)].map((_, i) => (
               <Snowflake
