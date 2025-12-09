@@ -12,6 +12,7 @@ import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
 import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
 import samsungMonitorImage from "@/assets/products/samsung-odyssey-g9.jpg";
+import sonyHeadphonesImage from "@/assets/products/sony-wh-1000xm5.jpg";
 
 const featuredProducts = [
   {
@@ -43,11 +44,11 @@ const featuredProducts = [
     affiliateLink: "https://amzn.to/4iIOFS5",
   },
   {
-    title: "Sony WH-1000XM5",
-    description: "Industry-leading noise canceling headphones with 30-hour battery life.",
+    title: "Sony WH-1000XM5 Premium Noise Canceling Headphones",
+    description: "Auto NC Optimizer, 30-Hour Battery, Alexa Voice Control, Silver.",
     rating: 4.7,
-    imageUrl: "https://m.media-amazon.com/images/I/61vJtKbAssL._AC_SX679_.jpg",
-    affiliateLink: "https://amzn.to/3F9xRqN",
+    imageUrl: sonyHeadphonesImage,
+    affiliateLink: "https://amzn.to/4oIrN6r",
   },
 ];
 
