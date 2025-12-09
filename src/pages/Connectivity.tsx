@@ -4,6 +4,7 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import airpodsProImage from "@/assets/products/airpods-pro-2.jpg";
 import samsungBudsImage from "@/assets/products/samsung-galaxy-buds2-pro.jpg";
 import tplinkRouterImage from "@/assets/products/tplink-ax3000-router.jpg";
+import acerChargingImage from "@/assets/products/acer-s2-charging-station.jpg";
 
 const products = [
   {
@@ -31,12 +32,12 @@ const products = [
     affiliateLink: "https://amzn.to/4iLc1Gp",
   },
   {
-    title: "Anker 525 Charging Station",
-    description: "7-in-1 USB charging station with wireless charging pad",
-    price: "$65.99",
-    rating: 4.5,
-    imageUrl: "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B09SG31NPT?tag=moderntechs0c-20",
+    title: "Acer S2 3-in-1 Charging Station",
+    description: "Qi2 15W MagSafe charger stand for iPhone, Apple Watch & AirPods",
+    price: "$49.99",
+    rating: 4.6,
+    imageUrl: acerChargingImage,
+    affiliateLink: "https://amzn.to/3Y2jhVb",
   },
   {
     title: "Google Nest WiFi Pro 6E",
