@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
+import AffiliateFooter from "@/components/AffiliateFooter";
 import fireHd10KidsPro from "@/assets/products/fire-hd-10-kids-pro.jpg";
 import vtechKidizoomDx3 from "@/assets/products/vtech-kidizoom-dx3.jpg";
 import osmoGeniusKit from "@/assets/products/osmo-genius-kit.jpg";
@@ -78,6 +79,7 @@ const KidsTech = () => {
           ))}
         </div>
       </div>
+      <AffiliateFooter />
     </div>
   );
 };

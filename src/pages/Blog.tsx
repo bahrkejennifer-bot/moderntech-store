@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Calendar, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import AffiliateFooter from "@/components/AffiliateFooter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -99,6 +100,7 @@ const Blog = () => {
           ))}
         </div>
       </div>
+      <AffiliateFooter />
     </div>
   );
 };

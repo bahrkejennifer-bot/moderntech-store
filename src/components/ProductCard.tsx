@@ -39,7 +39,7 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
           className="w-full"
           asChild
         >
-          <a href={affiliateLink} target="_blank" rel="noopener noreferrer">
+          <a href={affiliateLink} target="_blank" rel="noopener noreferrer nofollow">
             View on Amazon <ExternalLink className="ml-2 h-4 w-4" />
           </a>
         </Button>

@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
+import AffiliateFooter from "@/components/AffiliateFooter";
 import ekrinBantamImage from "@/assets/products/ekrin-bantam.jpg";
 import withingsScaleImage from "@/assets/products/withings-scale.jpg";
 import philipsWakeupImage from "@/assets/products/philips-wakeup-light.jpg";
@@ -77,6 +78,7 @@ const HealthWellness = () => {
           ))}
         </div>
       </div>
+      <AffiliateFooter />
     </div>
   );
 };
