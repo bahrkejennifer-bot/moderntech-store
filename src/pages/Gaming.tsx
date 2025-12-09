@@ -3,6 +3,7 @@ import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import razerBasiliskImage from "@/assets/products/razer-basilisk-v3.jpg";
 import steelseriesImage from "@/assets/products/steelseries-arctis-nova-pro.jpg";
+import logitechMouseImage from "@/assets/products/logitech-g-pro-x-superlight.jpg";
 
 const products = [
   {
@@ -30,12 +31,12 @@ const products = [
     affiliateLink: "https://amzn.to/3XL3ppN",
   },
   {
-    title: "Logitech G Pro X Superlight 2",
-    description: "Ultra-lightweight wireless gaming mouse with HERO 2 sensor",
+    title: "Logitech G Pro X Superlight Wireless Gaming Mouse",
+    description: "Ultra-lightweight wireless gaming mouse with HERO 25K sensor, 70hr battery life",
     price: "$159.99",
     rating: 4.8,
-    imageUrl: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0CL5FB87M?tag=moderntechs0c-20",
+    imageUrl: logitechMouseImage,
+    affiliateLink: "https://amzn.to/4pqjhtU",
   },
   {
     title: "ASUS ROG Swift OLED Gaming Monitor",
