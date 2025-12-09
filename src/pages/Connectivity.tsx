@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import airpodsProImage from "@/assets/products/airpods-pro-2.jpg";
 
 const products = [
   {
@@ -8,8 +9,8 @@ const products = [
     description: "Active noise cancellation with adaptive transparency and spatial audio",
     price: "$249.00",
     rating: 4.8,
-    imageUrl: "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0CHWRXH8B?tag=moderntechs0c-20",
+    imageUrl: airpodsProImage,
+    affiliateLink: "https://amzn.to/4aF9xY9",
   },
   {
     title: "Samsung Galaxy Buds2 Pro",
