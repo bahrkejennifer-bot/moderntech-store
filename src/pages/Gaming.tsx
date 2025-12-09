@@ -4,6 +4,7 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import razerBasiliskImage from "@/assets/products/razer-basilisk-v3.jpg";
 import steelseriesImage from "@/assets/products/steelseries-arctis-nova-pro.jpg";
 import logitechMouseImage from "@/assets/products/logitech-g-pro-x-superlight.jpg";
+import asusMonitorImage from "@/assets/products/asus-rog-swift-oled.jpg";
 
 const products = [
   {
@@ -43,8 +44,8 @@ const products = [
     description: "27-inch 1440p OLED gaming monitor with 240Hz refresh rate",
     price: "$899.99",
     rating: 4.9,
-    imageUrl: "https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0BXCFWKS7?tag=moderntechs0c-20",
+    imageUrl: asusMonitorImage,
+    affiliateLink: "https://amzn.to/3KKueHL",
   },
   {
     title: "Xbox Series X",
