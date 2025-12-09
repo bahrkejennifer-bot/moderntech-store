@@ -5,6 +5,7 @@ import razerBasiliskImage from "@/assets/products/razer-basilisk-v3.jpg";
 import steelseriesImage from "@/assets/products/steelseries-arctis-nova-pro.jpg";
 import logitechMouseImage from "@/assets/products/logitech-g-pro-x-superlight.jpg";
 import asusMonitorImage from "@/assets/products/asus-rog-swift-oled.jpg";
+import xboxImage from "@/assets/products/xbox-series-x.jpg";
 
 const products = [
   {
@@ -48,12 +49,12 @@ const products = [
     affiliateLink: "https://amzn.to/3KKueHL",
   },
   {
-    title: "Xbox Series X",
-    description: "Most powerful Xbox console with 4K gaming at 60-120 FPS",
+    title: "Xbox Series X Gaming Console Bundle - 1TB SSD",
+    description: "Black Xbox Console with Two Wireless Controllers (Black & White) and HDMI Cable",
     price: "$499.99",
     rating: 4.8,
-    imageUrl: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B08H75RTZ8?tag=moderntechs0c-20",
+    imageUrl: xboxImage,
+    affiliateLink: "https://amzn.to/4rQkaOi",
   },
 ];
 
