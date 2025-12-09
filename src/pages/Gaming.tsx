@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import razerBasiliskImage from "@/assets/products/razer-basilisk-v3.jpg";
 
 const products = [
   {
@@ -12,12 +13,12 @@ const products = [
     affiliateLink: "https://amzn.to/3Mnd7MI",
   },
   {
-    title: "Razer DeathAdder V3 Gaming Mouse",
-    description: "Ergonomic wired gaming mouse with 30,000 DPI optical sensor",
-    price: "$69.99",
+    title: "Razer Basilisk V3 35K Wired Ergonomic Gaming Mouse",
+    description: "HyperScroll Tilt Wheel, 35K DPI Optical Sensor Gen 2, 13 Customizable Controls, Chroma RGB",
+    price: "$89.99",
     rating: 4.7,
-    imageUrl: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0B5Q5Q7PX?tag=moderntechs0c-20",
+    imageUrl: razerBasiliskImage,
+    affiliateLink: "https://amzn.to/3Yh5JoC",
   },
   {
     title: "SteelSeries Arctis Nova Pro Wireless",
