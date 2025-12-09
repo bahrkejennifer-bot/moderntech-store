@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import razerBasiliskImage from "@/assets/products/razer-basilisk-v3.jpg";
+import steelseriesImage from "@/assets/products/steelseries-arctis-nova-pro.jpg";
 
 const products = [
   {
@@ -21,12 +22,12 @@ const products = [
     affiliateLink: "https://amzn.to/3Yh5JoC",
   },
   {
-    title: "SteelSeries Arctis Nova Pro Wireless",
-    description: "Premium wireless gaming headset with active noise cancellation",
+    title: "SteelSeries Arctis Nova Pro Wireless Multi-System Gaming Headset",
+    description: "Premium Hi-Fi Drivers, Active Noise Cancellation, Infinity Power System, ClearCast Gen 2 Mic",
     price: "$349.99",
     rating: 4.6,
-    imageUrl: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B09ZV77TYN?tag=moderntechs0c-20",
+    imageUrl: steelseriesImage,
+    affiliateLink: "https://amzn.to/3XL3ppN",
   },
   {
     title: "Logitech G Pro X Superlight 2",
