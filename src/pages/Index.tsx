@@ -61,7 +61,7 @@ const Index = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative min-h-[700px] flex items-start pt-24 justify-center overflow-hidden">
+      <section className="relative min-h-[700px] flex items-start pt-8 justify-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -71,7 +71,7 @@ const Index = () => {
             filter: "saturate(1.5) contrast(1.15) brightness(1.1)",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/60 to-transparent" />
           <div className="absolute inset-0">
             {[...Array(20)].map((_, i) => (
               <Snowflake
@@ -89,21 +89,21 @@ const Index = () => {
         </div>
         
         <div className="container relative z-10 mx-auto px-4 text-center">
-          <div className="mb-6 inline-block">
+          <div className="mb-4 inline-block">
             <span className="text-christmas-snow text-sm font-semibold uppercase tracking-wider bg-christmas-red/90 px-4 py-2 rounded-full border border-christmas-gold/50 shadow-lg">
               🎄 Holiday Tech Gifts 2025
             </span>
           </div>
-          <h1 className="mb-6 text-5xl md:text-6xl lg:text-7xl font-bold font-display animate-fade-in">
+          <h1 className="mb-4 text-5xl md:text-6xl lg:text-7xl font-bold font-display animate-fade-in">
             Discover the Best
             <span className="block bg-gradient-christmas bg-clip-text text-transparent mt-2">
               Tech for Christmas
             </span>
           </h1>
-          <p className="mb-10 text-xl text-foreground font-semibold max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+          <p className="mb-6 text-xl text-foreground font-semibold max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
             Curated collection of top-rated tech products to make this holiday season magical
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               className="bg-gradient-christmas hover:shadow-elegant transition-all duration-300 text-lg px-8 py-6 rounded-xl font-semibold" 
               size="lg" 
