@@ -8,13 +8,14 @@ import FallingSnow from "@/components/FallingSnow";
 import ChristmasMusic from "@/components/ChristmasMusic";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import heroImage from "@/assets/christmas-hero.jpg";
+import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 
 const featuredProducts = [
   {
     title: "Meta Quest 3 512GB Bundle",
     description: "Virtual Reality Headset with 24 Months Meta Horizon+ Games Subscription & Enhanced Protection.",
     rating: 4.8,
-    imageUrl: "https://m.media-amazon.com/images/I/61nqNxOdGOL._AC_SX679_.jpg",
+    imageUrl: metaQuestImage,
     affiliateLink: "https://amzn.to/48oAttS",
   },
   {
