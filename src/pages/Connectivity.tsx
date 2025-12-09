@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import airpodsProImage from "@/assets/products/airpods-pro-2.jpg";
+import samsungBudsImage from "@/assets/products/samsung-galaxy-buds2-pro.jpg";
 
 const products = [
   {
@@ -17,8 +18,8 @@ const products = [
     description: "Premium wireless earbuds with intelligent ANC and Hi-Fi sound",
     price: "$229.99",
     rating: 4.6,
-    imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0B2SH57T1?tag=moderntechs0c-20",
+    imageUrl: samsungBudsImage,
+    affiliateLink: "https://amzn.to/44eXP2B",
   },
   {
     title: "TP-Link WiFi 6 Router AX3000",
