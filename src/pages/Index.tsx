@@ -10,6 +10,7 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import heroImage from "@/assets/christmas-hero.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
+import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
 
 const featuredProducts = [
   {
@@ -27,11 +28,11 @@ const featuredProducts = [
     affiliateLink: "https://amzn.to/44Oulc1",
   },
   {
-    title: "Roborock S8 Pro Ultra",
-    description: "Complete hands-free cleaning with auto-drying, emptying, and washing dock.",
+    title: "Roborock Saros 10R Robot Vacuum and Mop",
+    description: "22,000 Pa Suction, Zero-Tangling, FlexiArm Riser Technology, Self-Emptying, Hot Air Drying.",
     rating: 4.6,
-    imageUrl: "https://m.media-amazon.com/images/I/61YTrOH+kkL._AC_SX679_.jpg",
-    affiliateLink: "https://amzn.to/3F7xYQm",
+    imageUrl: roborockImage,
+    affiliateLink: "https://amzn.to/4oLq6Fk",
   },
   {
     title: "Samsung Odyssey OLED G9",
