@@ -15,7 +15,7 @@ const featuredProducts = [
     description: "The ultimate mixed reality experience with 4K+ Infinite Display.",
     rating: 4.8,
     imageUrl: "https://m.media-amazon.com/images/I/61nqNxOdGOL._AC_SX679_.jpg",
-    affiliateLink: "https://amzn.to/4jRhqXZ",
+    affiliateLink: "https://amzn.to/48p5wps",
   },
   {
     title: "DJI Mini 4 Pro Drone",
