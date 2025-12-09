@@ -3,6 +3,7 @@ import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import airpodsProImage from "@/assets/products/airpods-pro-2.jpg";
 import samsungBudsImage from "@/assets/products/samsung-galaxy-buds2-pro.jpg";
+import tplinkRouterImage from "@/assets/products/tplink-ax3000-router.jpg";
 
 const products = [
   {
@@ -26,8 +27,8 @@ const products = [
     description: "Fast wireless router with dual-band and advanced security features",
     price: "$89.99",
     rating: 4.7,
-    imageUrl: "https://images.unsplash.com/photo-1606904825846-647eb07f5be2?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B08H8ZLKKK?tag=moderntechs0c-20",
+    imageUrl: tplinkRouterImage,
+    affiliateLink: "https://amzn.to/4iLc1Gp",
   },
   {
     title: "Anker 525 Charging Station",
