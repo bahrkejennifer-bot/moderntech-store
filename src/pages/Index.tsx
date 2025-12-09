@@ -9,6 +9,7 @@ import ChristmasMusic from "@/components/ChristmasMusic";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import heroImage from "@/assets/christmas-hero.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
+import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
 
 const featuredProducts = [
   {
@@ -19,11 +20,11 @@ const featuredProducts = [
     affiliateLink: "https://amzn.to/48oAttS",
   },
   {
-    title: "DJI Mini 4 Pro Drone",
-    description: "Lightweight 4K HDR video drone with omnidirectional sensing. No license required.",
+    title: "DJI Mini 4 Pro Folding Drone with RC 2 Remote Fly More Combo",
+    description: "4K HDR Video Camera, Under 249g, Omnidirectional Sensing, 3 Batteries Bundle with 128GB SD Card & Strobe Lights.",
     rating: 4.7,
-    imageUrl: "https://m.media-amazon.com/images/I/61Iyff2rKIL._AC_SX679_.jpg",
-    affiliateLink: "https://amzn.to/4jPcKQh",
+    imageUrl: djiDroneImage,
+    affiliateLink: "https://amzn.to/44Oulc1",
   },
   {
     title: "Roborock S8 Pro Ultra",
