@@ -11,6 +11,7 @@ import heroImage from "@/assets/christmas-hero.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
 import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
+import samsungMonitorImage from "@/assets/products/samsung-odyssey-g9.jpg";
 
 const featuredProducts = [
   {
@@ -38,8 +39,8 @@ const featuredProducts = [
     title: "Samsung Odyssey OLED G9",
     description: "49-inch curved smart gaming monitor with 240Hz refresh rate and 0.03ms response.",
     rating: 4.5,
-    imageUrl: "https://m.media-amazon.com/images/I/81P3YvmYQML._AC_SX679_.jpg",
-    affiliateLink: "https://amzn.to/4jMnKPd",
+    imageUrl: samsungMonitorImage,
+    affiliateLink: "https://amzn.to/4iIOFS5",
   },
   {
     title: "Sony WH-1000XM5",
