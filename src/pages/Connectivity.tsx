@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
+import AffiliateFooter from "@/components/AffiliateFooter";
 
 const products = [
   {
@@ -72,6 +73,7 @@ const Connectivity = () => {
           ))}
         </div>
       </div>
+      <AffiliateFooter />
     </div>
   );
 };

@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import ChristmasCountdown from "@/components/ChristmasCountdown";
 import FallingSnow from "@/components/FallingSnow";
 import ChristmasMusic from "@/components/ChristmasMusic";
+import AffiliateFooter from "@/components/AffiliateFooter";
 import heroImage from "@/assets/christmas-hero.jpg";
 
 const categories = [
@@ -177,17 +178,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border py-8">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>
-            TechFinds is a participant in the Amazon Services LLC Associates Program, an affiliate
-            advertising program designed to provide a means for sites to earn advertising fees by
-            advertising and linking to Amazon.com
-          </p>
-          <p className="mt-4">&copy; 2025 TechFinds. All rights reserved.</p>
-        </div>
-      </footer>
+      <AffiliateFooter />
     </div>
   );
 };

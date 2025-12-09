@@ -1,5 +1,6 @@
 import { Download, CheckCircle } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -264,6 +265,7 @@ Visit us at [your-domain.com] for more resources
           </div>
         </div>
       </div>
+      <AffiliateFooter />
     </div>
   );
 };

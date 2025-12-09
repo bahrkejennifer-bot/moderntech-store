@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
+import AffiliateFooter from "@/components/AffiliateFooter";
 import ringDoorbellImage from "@/assets/products/ring-doorbell-pro2.jpg";
 import wyzeCamImage from "@/assets/products/wyze-cam-v3.jpg";
 import echoShow8Image from "@/assets/products/echo-show-8.jpg";
@@ -78,6 +79,7 @@ const HomeSafety = () => {
           ))}
         </div>
       </div>
+      <AffiliateFooter />
     </div>
   );
 };

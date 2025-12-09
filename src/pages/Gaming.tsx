@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
+import AffiliateFooter from "@/components/AffiliateFooter";
 
 const products = [
   {
@@ -7,8 +8,8 @@ const products = [
     description: "Next-gen gaming console with 4K graphics and ultra-high speed SSD",
     price: "$499.99",
     rating: 4.9,
-    imageUrl: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0CL5KNB9M?tag=moderntechs0c-20",
+    imageUrl: "https://m.media-amazon.com/images/I/51051FiD9UL._AC_SX679_.jpg",
+    affiliateLink: "https://amzn.to/3Mnd7MI",
   },
   {
     title: "Razer DeathAdder V3 Gaming Mouse",
@@ -72,6 +73,7 @@ const Gaming = () => {
           ))}
         </div>
       </div>
+      <AffiliateFooter />
     </div>
   );
 };
