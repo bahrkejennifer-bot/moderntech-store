@@ -11,11 +11,11 @@ import heroImage from "@/assets/christmas-hero.jpg";
 
 const featuredProducts = [
   {
-    title: "Meta Quest 3",
-    description: "The ultimate mixed reality experience with 4K+ Infinite Display.",
+    title: "Meta Quest 3 512GB Bundle",
+    description: "Virtual Reality Headset with 24 Months Meta Horizon+ Games Subscription & Enhanced Protection.",
     rating: 4.8,
     imageUrl: "https://m.media-amazon.com/images/I/61nqNxOdGOL._AC_SX679_.jpg",
-    affiliateLink: "https://amzn.to/48p5wps",
+    affiliateLink: "https://amzn.to/48oAttS",
   },
   {
     title: "DJI Mini 4 Pro Drone",
