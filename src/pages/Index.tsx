@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Snowflake } from "lucide-react";
+import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Snowflake, Star, ExternalLink } from "lucide-react";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import ChristmasCountdown from "@/components/ChristmasCountdown";
@@ -7,6 +8,44 @@ import FallingSnow from "@/components/FallingSnow";
 import ChristmasMusic from "@/components/ChristmasMusic";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import heroImage from "@/assets/christmas-hero.jpg";
+
+const featuredProducts = [
+  {
+    title: "Meta Quest 3",
+    description: "The ultimate mixed reality experience with 4K+ Infinite Display.",
+    rating: 4.8,
+    imageUrl: "https://m.media-amazon.com/images/I/61nqNxOdGOL._AC_SX679_.jpg",
+    affiliateLink: "https://amzn.to/4jRhqXZ",
+  },
+  {
+    title: "DJI Mini 4 Pro Drone",
+    description: "Lightweight 4K HDR video drone with omnidirectional sensing. No license required.",
+    rating: 4.7,
+    imageUrl: "https://m.media-amazon.com/images/I/61Iyff2rKIL._AC_SX679_.jpg",
+    affiliateLink: "https://amzn.to/4jPcKQh",
+  },
+  {
+    title: "Roborock S8 Pro Ultra",
+    description: "Complete hands-free cleaning with auto-drying, emptying, and washing dock.",
+    rating: 4.6,
+    imageUrl: "https://m.media-amazon.com/images/I/61YTrOH+kkL._AC_SX679_.jpg",
+    affiliateLink: "https://amzn.to/3F7xYQm",
+  },
+  {
+    title: "Samsung Odyssey OLED G9",
+    description: "49-inch curved smart gaming monitor with 240Hz refresh rate and 0.03ms response.",
+    rating: 4.5,
+    imageUrl: "https://m.media-amazon.com/images/I/81P3YvmYQML._AC_SX679_.jpg",
+    affiliateLink: "https://amzn.to/4jMnKPd",
+  },
+  {
+    title: "Sony WH-1000XM5",
+    description: "Industry-leading noise canceling headphones with 30-hour battery life.",
+    rating: 4.7,
+    imageUrl: "https://m.media-amazon.com/images/I/61vJtKbAssL._AC_SX679_.jpg",
+    affiliateLink: "https://amzn.to/3F9xRqN",
+  },
+];
 
 const categories = [
   {
@@ -54,6 +93,10 @@ const categories = [
 ];
 
 const Index = () => {
+  const scrollToFeatured = () => {
+    document.getElementById('featured-products')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <FallingSnow />
@@ -107,9 +150,9 @@ const Index = () => {
             <Button 
               className="bg-gradient-christmas hover:shadow-elegant transition-all duration-300 text-lg px-8 py-6 rounded-xl font-semibold" 
               size="lg" 
-              asChild
+              onClick={scrollToFeatured}
             >
-              <Link to="/home-safety">Shop Holiday Deals</Link>
+              Shop Holiday Deals
             </Button>
             <Button 
               variant="outline" 
@@ -119,6 +162,54 @@ const Index = () => {
             >
               <Link to="/digital-products">Free Gift Guides</Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products Section */}
+      <section id="featured-products" className="py-20 bg-gradient-to-b from-background to-christmas-snow/20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-bold font-display text-center mb-4">
+            Top Tech Gifts Under the Tree
+          </h2>
+          <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
+            Our handpicked selection of the hottest tech gifts this holiday season
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            {featuredProducts.map((product) => (
+              <Card key={product.title} className="overflow-hidden transition-all duration-300 hover:shadow-card group bg-card">
+                <div className="aspect-square overflow-hidden bg-muted">
+                  <img
+                    src={product.imageUrl}
+                    alt={product.title}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                </div>
+                <CardHeader>
+                  <CardTitle className="text-lg line-clamp-2">{product.title}</CardTitle>
+                  <CardDescription className="line-clamp-3">{product.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-end">
+                    <div className="flex items-center space-x-1">
+                      <Star className="h-4 w-4 fill-yellow-500 text-yellow-500" />
+                      <span className="text-sm font-medium">{product.rating}/5</span>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Button
+                    variant="cta"
+                    className="w-full"
+                    asChild
+                  >
+                    <a href={product.affiliateLink} target="_blank" rel="noopener noreferrer nofollow">
+                      View on Amazon <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
