@@ -43,6 +43,7 @@ import osmoImg from "@/assets/products/osmo-genius-kit.jpg";
 import leapfrogImg from "@/assets/products/leapfrog-learning-friends.jpg";
 import vtechImg from "@/assets/products/vtech-kidizoom-dx3.jpg";
 import rukoRobotImg from "@/assets/products/ruko-1088-robot.jpg";
+import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
 
 // Product type for blog posts
 interface BlogProduct {
@@ -183,6 +184,14 @@ const blogPostsData: Record<string, {
         rating: 4.8,
         imageUrl: nestProtectImg,
         affiliateLink: "https://www.amazon.com/dp/B00XV1RCRY?tag=moderntechs0c-20"
+      },
+      {
+        title: "Philips Hue White & Color Starter Kit",
+        description: "Millions of colors, voice control, schedules, smart hub included",
+        badge: "Smart Lighting",
+        rating: 4.8,
+        imageUrl: philipsHueImg,
+        affiliateLink: "https://www.amazon.com/dp/B09QZFVCL6?tag=moderntechs0c-20"
       },
       {
         title: "Philips SmartSleep Wake-Up Light",
