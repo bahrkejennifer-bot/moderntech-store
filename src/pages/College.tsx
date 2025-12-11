@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import macbookAirImage from "@/assets/products/macbook-air-m4.jpg";
+import ipadImage from "@/assets/products/ipad-10th-gen.jpg";
 
 const products = [
   {
@@ -13,12 +14,12 @@ const products = [
     affiliateLink: "https://amzn.to/4iMb7JO",
   },
   {
-    title: "iPad (10th Generation)",
-    description: "Versatile tablet perfect for notes, studying, and creative projects",
+    title: "Apple iPad (10th Generation)",
+    description: "A14 Bionic chip, 10.9-inch Liquid Retina Display, 256GB, Wi-Fi 6, Touch ID",
     price: "$349.00",
     rating: 4.8,
-    imageUrl: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0BJLXMVMV?tag=moderntechs0c-20",
+    imageUrl: ipadImage,
+    affiliateLink: "https://amzn.to/494ltBE",
   },
   {
     title: "Logitech MX Keys Wireless Keyboard",
