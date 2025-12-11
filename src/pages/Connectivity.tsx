@@ -5,6 +5,7 @@ import airpodsProImage from "@/assets/products/airpods-pro-2.jpg";
 import samsungBudsImage from "@/assets/products/samsung-galaxy-buds2-pro.jpg";
 import tplinkRouterImage from "@/assets/products/tplink-ax3000-router.jpg";
 import acerChargingImage from "@/assets/products/acer-s2-charging-station.jpg";
+import googleNestWifiImage from "@/assets/products/google-nest-wifi-pro.jpg";
 
 const products = [
   {
@@ -40,12 +41,12 @@ const products = [
     affiliateLink: "https://amzn.to/3Y2jhVb",
   },
   {
-    title: "Google Nest WiFi Pro 6E",
-    description: "Mesh WiFi system with tri-band connectivity for whole home coverage",
+    title: "Google Nest WiFi Pro 6E - 3 Pack",
+    description: "Reliable mesh WiFi system with fast speed and whole home coverage",
     price: "$399.99",
     rating: 4.6,
-    imageUrl: "https://images.unsplash.com/photo-1517059224940-d4af9eec41b7?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0BCQGMJ5M?tag=moderntechs0c-20",
+    imageUrl: googleNestWifiImage,
+    affiliateLink: "https://amzn.to/48J9F6y",
   },
   {
     title: "Tile Pro Bluetooth Tracker",
