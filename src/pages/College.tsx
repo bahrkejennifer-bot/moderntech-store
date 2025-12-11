@@ -4,6 +4,7 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import macbookAirImage from "@/assets/products/macbook-air-m4.jpg";
 import ipadImage from "@/assets/products/ipad-10th-gen.jpg";
 import logitechKeyboardImage from "@/assets/products/logitech-mx-keys-combo.jpg";
+import rocketbookImage from "@/assets/products/rocketbook-flex-planner.jpg";
 
 const products = [
   {
@@ -31,12 +32,12 @@ const products = [
     affiliateLink: "https://amzn.to/4q873WZ",
   },
   {
-    title: "Rocketbook Smart Reusable Notebook",
-    description: "Digitize handwritten notes to the cloud and reuse pages endlessly",
+    title: "Rocketbook Flex Reusable Planner",
+    description: "Smart undated planner with daily, weekly, monthly templates - write, scan, erase, reuse",
     price: "$34.99",
     rating: 4.5,
-    imageUrl: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B071Y3MSRK?tag=moderntechs0c-20",
+    imageUrl: rocketbookImage,
+    affiliateLink: "https://amzn.to/4iOqXE1",
   },
   {
     title: "Anker PowerCore Portable Charger",
