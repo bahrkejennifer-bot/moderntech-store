@@ -3,6 +3,7 @@ import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import macbookAirImage from "@/assets/products/macbook-air-m4.jpg";
 import ipadImage from "@/assets/products/ipad-10th-gen.jpg";
+import logitechKeyboardImage from "@/assets/products/logitech-mx-keys-combo.jpg";
 
 const products = [
   {
@@ -22,12 +23,12 @@ const products = [
     affiliateLink: "https://amzn.to/494ltBE",
   },
   {
-    title: "Logitech MX Keys Wireless Keyboard",
-    description: "Illuminated wireless keyboard with smart typing experience",
-    price: "$119.99",
+    title: "Logitech MX Keys Combo for Business Gen 2",
+    description: "Wireless keyboard and mouse combo with palm rest and Logi Bolt receiver",
+    price: "$199.99",
     rating: 4.7,
-    imageUrl: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B07S92QBCJ?tag=moderntechs0c-20",
+    imageUrl: logitechKeyboardImage,
+    affiliateLink: "https://amzn.to/4q873WZ",
   },
   {
     title: "Rocketbook Smart Reusable Notebook",
