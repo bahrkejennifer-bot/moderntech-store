@@ -1,15 +1,16 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import macbookAirImage from "@/assets/products/macbook-air-m4.jpg";
 
 const products = [
   {
-    title: "Apple MacBook Air M2",
-    description: "Lightweight laptop with M2 chip, all-day battery, and stunning Retina display",
-    price: "$1,099.00",
+    title: "Apple 2025 MacBook Air 13-inch M4",
+    description: "Built for Apple Intelligence with 13.6-inch Liquid Retina Display, 24GB RAM, 512GB SSD",
+    price: "$1,299.00",
     rating: 4.9,
-    imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0B3C2R8MP?tag=moderntechs0c-20",
+    imageUrl: macbookAirImage,
+    affiliateLink: "https://amzn.to/4iMb7JO",
   },
   {
     title: "iPad (10th Generation)",
