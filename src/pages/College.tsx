@@ -6,6 +6,7 @@ import ipadImage from "@/assets/products/ipad-10th-gen.jpg";
 import logitechKeyboardImage from "@/assets/products/logitech-mx-keys-combo.jpg";
 import rocketbookImage from "@/assets/products/rocketbook-flex-planner.jpg";
 import ankerPowerBankImage from "@/assets/products/anker-power-bank.jpg";
+import boseHeadphonesImage from "@/assets/products/bose-qc45-headphones.jpg";
 
 const products = [
   {
@@ -50,11 +51,11 @@ const products = [
   },
   {
     title: "Bose QuietComfort 45 Headphones",
-    description: "Noise-canceling wireless headphones perfect for studying",
+    description: "Noise canceling Bluetooth headphones in White Smoke - perfect for studying",
     price: "$329.00",
     rating: 4.7,
-    imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B098FKXT8L?tag=moderntechs0c-20",
+    imageUrl: boseHeadphonesImage,
+    affiliateLink: "https://amzn.to/48LajAn",
   },
 ];
 
