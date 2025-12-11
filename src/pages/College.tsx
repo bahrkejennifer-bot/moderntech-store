@@ -5,6 +5,7 @@ import macbookAirImage from "@/assets/products/macbook-air-m4.jpg";
 import ipadImage from "@/assets/products/ipad-10th-gen.jpg";
 import logitechKeyboardImage from "@/assets/products/logitech-mx-keys-combo.jpg";
 import rocketbookImage from "@/assets/products/rocketbook-flex-planner.jpg";
+import ankerPowerBankImage from "@/assets/products/anker-power-bank.jpg";
 
 const products = [
   {
@@ -40,12 +41,12 @@ const products = [
     affiliateLink: "https://amzn.to/4iOqXE1",
   },
   {
-    title: "Anker PowerCore Portable Charger",
-    description: "High-capacity 20,000mAh power bank for all-day charging on the go",
+    title: "Anker Power Bank 20,000mAh",
+    description: "22.5W fast charging with 2 USB-A and 1 USB-C - charge 3 devices at once",
     price: "$49.99",
-    rating: 4.8,
-    imageUrl: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B07SQ5MQ6K?tag=moderntechs0c-20",
+    rating: 4.5,
+    imageUrl: ankerPowerBankImage,
+    affiliateLink: "https://amzn.to/4iO2COq",
   },
   {
     title: "Bose QuietComfort 45 Headphones",
