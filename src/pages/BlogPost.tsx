@@ -44,6 +44,7 @@ import leapfrogImg from "@/assets/products/leapfrog-learning-friends.jpg";
 import vtechImg from "@/assets/products/vtech-kidizoom-dx3.jpg";
 import rukoRobotImg from "@/assets/products/ruko-1088-robot.jpg";
 import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
+import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
 
 // Product type for blog posts
 interface BlogProduct {
@@ -527,7 +528,7 @@ const blogPostsData: Record<string, {
     title: "Best Fitness Trackers for Every Budget",
     date: "2024-12-19",
     category: "Health & Wellness",
-    imageUrl: "https://images.unsplash.com/photo-1575390260582-cf5f64c2a6e4?w=1200&auto=format",
+    imageUrl: fitnessTrackersHeroImg,
     intro: "You've been \"getting serious about fitness\" for years—but you have zero verifiable data to prove it. You work out when you remember, and you guess at your progress. Without data, you're flying blind—and your fitness goals stay permanently out of reach. The difference between fitness goals and fitness results is data. This guide will help you navigate the vast landscape of fitness technology, from $50 to premium smartwatches, ensuring you find the perfect companion for your health journey.",
     sections: [
       {
