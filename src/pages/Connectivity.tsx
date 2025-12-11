@@ -6,6 +6,7 @@ import samsungBudsImage from "@/assets/products/samsung-galaxy-buds2-pro.jpg";
 import tplinkRouterImage from "@/assets/products/tplink-ax3000-router.jpg";
 import acerChargingImage from "@/assets/products/acer-s2-charging-station.jpg";
 import googleNestWifiImage from "@/assets/products/google-nest-wifi-pro.jpg";
+import tileProImage from "@/assets/products/tile-pro-tracker.jpg";
 
 const products = [
   {
@@ -50,11 +51,11 @@ const products = [
   },
   {
     title: "Tile Pro Bluetooth Tracker",
-    description: "Item finder with replaceable battery and 400ft range",
+    description: "Attach to keys, bags or anything that needs finding with 400ft range",
     price: "$34.99",
     rating: 4.4,
-    imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B09B2WPZP7?tag=moderntechs0c-20",
+    imageUrl: tileProImage,
+    affiliateLink: "https://amzn.to/4oRoKc1",
   },
 ];
 
