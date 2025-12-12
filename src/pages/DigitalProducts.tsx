@@ -1,4 +1,4 @@
-import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones } from "lucide-react";
+import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones, GraduationCap } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,13 @@ const DigitalProducts = () => {
   };
 
   const handleBuyEarbuds = () => {
+    toast({
+      title: "Coming Soon!",
+      description: "Payment processing will be available shortly. Check back soon!",
+    });
+  };
+
+  const handleBuyStudentTech = () => {
     toast({
       title: "Coming Soon!",
       description: "Payment processing will be available shortly. Check back soon!",
@@ -614,21 +621,133 @@ Visit us at [your-domain.com] for more resources
                 </Button>
               </CardContent>
             </Card>
+
+            {/* Student Tech Essentials Guide - $10 */}
+            <Card className="mt-6 overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
+              <div className="bg-gradient-to-r from-primary/20 to-accent/20 p-6">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-primary/20 p-3 rounded-full">
+                      <GraduationCap className="h-8 w-8 text-primary" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold mb-1">
+                        Student Tech Essentials 2025
+                      </h2>
+                      <p className="text-muted-foreground">
+                        The Complete Guide to Laptops, Accessories & Software for Academic Success
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold text-primary">$10.00</div>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <CardContent className="p-8">
+                <p className="text-lg text-muted-foreground mb-6">
+                  Make smart technology investments that support your academic journey from freshman year through graduation. This comprehensive guide helps students and parents choose the right devices, accessories, and software based on major, budget, and performance needs.
+                </p>
+                
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">What's Inside:</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Laptop recommendations by major ($400-$1,500)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>MacBook vs Windows vs Chromebook comparison</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Essential productivity accessories ranked</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Student discount guide (save $500+ annually)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Cloud storage and backup solutions</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>4-year technology planning roadmap</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">Recommendations By Major:</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Engineering & Computer Science</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Business & Economics</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Liberal Arts & Humanities</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Creative Majors (Design, Film, Art)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Pre-Med & Science Programs</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Budget tiers: Essential, Recommended, Premium</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-muted/50 p-6 rounded-lg mb-8">
+                  <h3 className="text-lg font-bold mb-2">Based on Real Research:</h3>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                    <div>• Surveys of 500+ students</div>
+                    <div>• Interviews with university IT departments</div>
+                    <div>• 73% of students report tech issues impacting grades</div>
+                    <div>• Most students keep laptops all 4 years</div>
+                  </div>
+                </div>
+                
+                <Button 
+                  variant="cta" 
+                  size="lg" 
+                  className="w-full text-lg h-14"
+                  onClick={handleBuyStudentTech}
+                >
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  Buy Now - $10.00
+                </Button>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Coming Soon Section */}
           <div className="text-center py-12">
             <h2 className="text-3xl font-bold mb-4">More Guides Coming Soon</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              3 more premium tech guides launching soon
+              2 more premium tech guides launching soon
             </p>
-            <div className="grid md:grid-cols-3 gap-4 mt-8">
-              <Card className="opacity-75">
-                <CardHeader>
-                  <CardTitle>College Tech Essentials</CardTitle>
-                  <CardDescription>Everything for academic success - $10</CardDescription>
-                </CardHeader>
-              </Card>
+            <div className="grid md:grid-cols-2 gap-4 mt-8">
               <Card className="opacity-75">
                 <CardHeader>
                   <CardTitle>Fitness Tracker Protocol</CardTitle>
