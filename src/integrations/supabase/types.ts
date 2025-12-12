@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      digital_products: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          is_free: boolean | null
+          pdf_path: string | null
+          price: number | null
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_free?: boolean | null
+          pdf_path?: string | null
+          price?: number | null
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_free?: boolean | null
+          pdf_path?: string | null
+          price?: number | null
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

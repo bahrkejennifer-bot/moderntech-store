@@ -1,0 +1,260 @@
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
+import { Upload, Check, FileText, LogIn, LogOut } from "lucide-react";
+import Navigation from "@/components/Navigation";
+import AffiliateFooter from "@/components/AffiliateFooter";
+
+interface DigitalProduct {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  price: number;
+  is_free: boolean;
+  pdf_path: string | null;
+}
+
+const AdminUpload = () => {
+  const [products, setProducts] = useState<DigitalProduct[]>([]);
+  const [uploading, setUploading] = useState<string | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    checkAuth();
+    fetchProducts();
+  }, []);
+
+  const checkAuth = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    setIsAuthenticated(!!session);
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoggingIn(true);
+    
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      toast({
+        title: "Login Failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      setIsAuthenticated(true);
+      toast({
+        title: "Logged In",
+        description: "You can now upload PDFs",
+      });
+    }
+    setIsLoggingIn(false);
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setIsAuthenticated(false);
+    toast({
+      title: "Logged Out",
+      description: "You have been logged out",
+    });
+  };
+
+  const fetchProducts = async () => {
+    const { data, error } = await supabase
+      .from("digital_products")
+      .select("*")
+      .order("is_free", { ascending: false });
+
+    if (error) {
+      console.error("Error fetching products:", error);
+      return;
+    }
+
+    setProducts(data || []);
+  };
+
+  const handleFileUpload = async (productId: string, slug: string, file: File) => {
+    if (!file.type.includes("pdf")) {
+      toast({
+        title: "Invalid File",
+        description: "Please upload a PDF file",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setUploading(productId);
+
+    try {
+      const filePath = `${slug}.pdf`;
+
+      // Upload to storage
+      const { error: uploadError } = await supabase.storage
+        .from("digital-products")
+        .upload(filePath, file, { upsert: true });
+
+      if (uploadError) throw uploadError;
+
+      // Update product with pdf path
+      const { error: updateError } = await supabase
+        .from("digital_products")
+        .update({ pdf_path: filePath })
+        .eq("id", productId);
+
+      if (updateError) throw updateError;
+
+      toast({
+        title: "Upload Successful",
+        description: `PDF uploaded for ${slug}`,
+      });
+
+      fetchProducts();
+    } catch (error: any) {
+      console.error("Upload error:", error);
+      toast({
+        title: "Upload Failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setUploading(null);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      
+      <main className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold text-foreground mb-2">Admin: Upload PDFs</h1>
+          <p className="text-muted-foreground mb-8">
+            Upload your PDF guides for each digital product
+          </p>
+
+          {!isAuthenticated ? (
+            <Card className="max-w-md mx-auto">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <LogIn className="h-5 w-5" />
+                  Admin Login
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleLogin} className="space-y-4">
+                  <div>
+                    <label className="text-sm font-medium">Email</label>
+                    <Input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="admin@example.com"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium">Password</label>
+                    <Input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                      required
+                    />
+                  </div>
+                  <Button type="submit" className="w-full" disabled={isLoggingIn}>
+                    {isLoggingIn ? "Logging in..." : "Login"}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          ) : (
+            <>
+              <div className="flex justify-end mb-6">
+                <Button variant="outline" onClick={handleLogout}>
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Logout
+                </Button>
+              </div>
+
+              <div className="grid gap-4">
+                {products.map((product) => (
+                  <Card key={product.id} className="border-border">
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4">
+                          <div className={`p-3 rounded-lg ${product.is_free ? 'bg-green-500/10' : 'bg-primary/10'}`}>
+                            <FileText className={`h-6 w-6 ${product.is_free ? 'text-green-500' : 'text-primary'}`} />
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-foreground">{product.title}</h3>
+                            <p className="text-sm text-muted-foreground">
+                              {product.is_free ? "Free Download" : `$${product.price}`}
+                            </p>
+                            {product.pdf_path && (
+                              <p className="text-xs text-green-500 flex items-center gap-1 mt-1">
+                                <Check className="h-3 w-3" />
+                                PDF uploaded: {product.pdf_path}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <label className="cursor-pointer">
+                            <input
+                              type="file"
+                              accept=".pdf"
+                              className="hidden"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file) {
+                                  handleFileUpload(product.id, product.slug, file);
+                                }
+                              }}
+                              disabled={uploading === product.id}
+                            />
+                            <Button
+                              variant={product.pdf_path ? "outline" : "default"}
+                              className="pointer-events-none"
+                              disabled={uploading === product.id}
+                            >
+                              {uploading === product.id ? (
+                                <>Uploading...</>
+                              ) : (
+                                <>
+                                  <Upload className="h-4 w-4 mr-2" />
+                                  {product.pdf_path ? "Replace PDF" : "Upload PDF"}
+                                </>
+                              )}
+                            </Button>
+                          </label>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </main>
+
+      <AffiliateFooter />
+    </div>
+  );
+};
+
+export default AdminUpload;
