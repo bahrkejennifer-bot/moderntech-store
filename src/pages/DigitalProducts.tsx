@@ -1,10 +1,17 @@
-import { Download, CheckCircle } from "lucide-react";
+import { Download, CheckCircle, ShoppingCart, Home, Star } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { toast } from "@/hooks/use-toast";
 
 const DigitalProducts = () => {
+  const handleBuySmartHome = () => {
+    toast({
+      title: "Coming Soon!",
+      description: "Payment processing will be available shortly. Check back soon!",
+    });
+  };
   const handleDownload = () => {
     // Create the SEO checklist content
     const checklistContent = `
@@ -236,29 +243,152 @@ Visit us at [your-domain.com] for more resources
             </CardContent>
           </Card>
 
+          {/* Premium PDF Products */}
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold mb-6 text-center">Premium Tech Guides</h2>
+            
+            {/* Smart Home Guide - $10 */}
+            <Card className="overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
+              <div className="bg-gradient-to-r from-accent/20 to-primary/20 p-6">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-accent/20 p-3 rounded-full">
+                      <Home className="h-8 w-8 text-accent" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold mb-1">
+                        Top 10 Smart Home Devices for 2025
+                      </h2>
+                      <p className="text-muted-foreground">
+                        Your Complete Guide to Building an Intelligent, Secure Home
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold text-primary">$10.00</div>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <CardContent className="p-8">
+                <p className="text-lg text-muted-foreground mb-6">
+                  Transform your house into an intelligent home with our expertly curated selection of the best smart home devices for 2025. This comprehensive guide includes detailed product reviews, compatibility charts, installation tips, and budget breakdowns to help you make confident purchasing decisions.
+                </p>
+                
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">What's Inside:</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Top 10 device reviews with pros, cons, and pricing</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Ecosystem compatibility guide (Alexa, Google, HomeKit)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Room-by-room setup recommendations</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Security and privacy best practices</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Installation and troubleshooting tips</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Budget planning worksheets</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">Featured Devices:</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Amazon Echo (4th Gen) - Best Voice Hub</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Google Nest Learning Thermostat</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Ring Video Doorbell Pro 2</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Philips Hue Starter Kit</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Arlo Pro 4 Wireless Camera</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>+ 5 more essential devices</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-muted/50 p-6 rounded-lg mb-8">
+                  <h3 className="text-lg font-bold mb-2">Why Smart Home Technology Matters in 2025:</h3>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                    <div>• Energy savings of 20-30% through automation</div>
+                    <div>• Enhanced security with real-time monitoring</div>
+                    <div>• Smart homes sell 5% faster on average</div>
+                    <div>• Accessibility features for aging in place</div>
+                  </div>
+                </div>
+                
+                <Button 
+                  variant="cta" 
+                  size="lg" 
+                  className="w-full text-lg h-14"
+                  onClick={handleBuySmartHome}
+                >
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  Buy Now - $10.00
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
           {/* Coming Soon Section */}
           <div className="text-center py-12">
-            <h2 className="text-3xl font-bold mb-4">More Resources Coming Soon</h2>
+            <h2 className="text-3xl font-bold mb-4">More Guides Coming Soon</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              We're creating more guides, templates, and tools to help you succeed
+              5 more premium tech guides launching soon
             </p>
             <div className="grid md:grid-cols-3 gap-4 mt-8">
-              <Card>
+              <Card className="opacity-75">
                 <CardHeader>
-                  <CardTitle>Product Review Template</CardTitle>
-                  <CardDescription>Write converting reviews faster</CardDescription>
+                  <CardTitle>Gaming Setup Guide</CardTitle>
+                  <CardDescription>Optimize your gaming experience - $10</CardDescription>
                 </CardHeader>
               </Card>
-              <Card>
+              <Card className="opacity-75">
                 <CardHeader>
-                  <CardTitle>Email Swipe Files</CardTitle>
-                  <CardDescription>Proven email sequences for affiliates</CardDescription>
+                  <CardTitle>Earbuds Selection Guide</CardTitle>
+                  <CardDescription>Find your perfect wireless earbuds - $10</CardDescription>
                 </CardHeader>
               </Card>
-              <Card>
+              <Card className="opacity-75">
                 <CardHeader>
-                  <CardTitle>Social Media Kit</CardTitle>
-                  <CardDescription>Templates for all major platforms</CardDescription>
+                  <CardTitle>College Tech Essentials</CardTitle>
+                  <CardDescription>Everything for academic success - $10</CardDescription>
                 </CardHeader>
               </Card>
             </div>
