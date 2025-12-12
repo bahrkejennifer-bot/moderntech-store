@@ -1,4 +1,4 @@
-import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor } from "lucide-react";
+import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,13 @@ const DigitalProducts = () => {
   };
 
   const handleBuyGamingMonitors = () => {
+    toast({
+      title: "Coming Soon!",
+      description: "Payment processing will be available shortly. Check back soon!",
+    });
+  };
+
+  const handleBuyEarbuds = () => {
     toast({
       title: "Coming Soon!",
       description: "Payment processing will be available shortly. Check back soon!",
@@ -489,21 +496,133 @@ Visit us at [your-domain.com] for more resources
                 </Button>
               </CardContent>
             </Card>
+
+            {/* Wireless Earbuds Guide - $10 */}
+            <Card className="mt-6 overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
+              <div className="bg-gradient-to-r from-accent/20 to-primary/20 p-6">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-accent/20 p-3 rounded-full">
+                      <Headphones className="h-8 w-8 text-accent" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold mb-1">
+                        Wireless Earbuds Comparison 2025
+                      </h2>
+                      <p className="text-muted-foreground">
+                        AirPods vs Galaxy Buds vs Nothing Ear - The Complete Buyer's Guide
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold text-primary">$10.00</div>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <CardContent className="p-8">
+                <p className="text-lg text-muted-foreground mb-6">
+                  Cut through the marketing hype and discover which wireless earbuds truly deliver the best value for your needs. This in-depth comparison covers sound quality, battery life, ecosystem integration, and real-world performance across the top three brands.
+                </p>
+                
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">What's Inside:</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Side-by-side feature comparison charts</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Sound quality and ANC performance tests</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Battery life real-world testing results</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Ecosystem integration (iOS vs Android)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Fit and comfort analysis for different ears</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Value-for-money rankings at each price point</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">Brands Compared:</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Apple AirPods Pro 2 - iOS Gold Standard</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Samsung Galaxy Buds - Android's Best</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Nothing Ear - The Value Disruptor</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>ANC performance comparison charts</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Spatial audio & premium features explained</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Warranty & customer support comparison</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-muted/50 p-6 rounded-lg mb-8">
+                  <h3 className="text-lg font-bold mb-2">90-Day Real-World Testing Across:</h3>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                    <div>• Daily commutes (subway, bus, walking)</div>
+                    <div>• Gym workouts and running</div>
+                    <div>• Video calls and conference meetings</div>
+                    <div>• Music across all genres</div>
+                  </div>
+                </div>
+                
+                <Button 
+                  variant="cta" 
+                  size="lg" 
+                  className="w-full text-lg h-14"
+                  onClick={handleBuyEarbuds}
+                >
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  Buy Now - $10.00
+                </Button>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Coming Soon Section */}
           <div className="text-center py-12">
             <h2 className="text-3xl font-bold mb-4">More Guides Coming Soon</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              4 more premium tech guides launching soon
+              3 more premium tech guides launching soon
             </p>
-            <div className="grid md:grid-cols-2 gap-4 mt-8">
-              <Card className="opacity-75">
-                <CardHeader>
-                  <CardTitle>Earbuds Selection Guide</CardTitle>
-                  <CardDescription>Find your perfect wireless earbuds - $10</CardDescription>
-                </CardHeader>
-              </Card>
+            <div className="grid md:grid-cols-3 gap-4 mt-8">
               <Card className="opacity-75">
                 <CardHeader>
                   <CardTitle>College Tech Essentials</CardTitle>
