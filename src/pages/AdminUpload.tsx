@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Upload, Check, FileText, LogIn, LogOut } from "lucide-react";
+import { Upload, Check, FileText, LogOut, Shield } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 
@@ -21,54 +21,51 @@ interface DigitalProduct {
 const AdminUpload = () => {
   const [products, setProducts] = useState<DigitalProduct[]>([]);
   const [uploading, setUploading] = useState<string | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState(true);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    checkAuth();
-    fetchProducts();
-  }, []);
-
-  const checkAuth = async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    setIsAuthenticated(!!session);
-  };
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoggingIn(true);
-    
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (!session) {
+        navigate("/admin/auth");
+        return;
+      }
+      // Defer role check to avoid deadlock
+      setTimeout(() => checkAdminRole(session.user.id), 0);
     });
 
-    if (error) {
-      toast({
-        title: "Login Failed",
-        description: error.message,
-        variant: "destructive",
-      });
-    } else {
-      setIsAuthenticated(true);
-      toast({
-        title: "Logged In",
-        description: "You can now upload PDFs",
-      });
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) {
+        navigate("/admin/auth");
+        return;
+      }
+      checkAdminRole(session.user.id);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
+
+  const checkAdminRole = async (userId: string) => {
+    const { data } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId)
+      .eq("role", "admin")
+      .maybeSingle();
+
+    setIsAdmin(!!data);
+    setLoading(false);
+    
+    if (data) {
+      fetchProducts();
     }
-    setIsLoggingIn(false);
   };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    setIsAuthenticated(false);
-    toast({
-      title: "Logged Out",
-      description: "You have been logged out",
-    });
+    navigate("/admin/auth");
   };
 
   const fetchProducts = async () => {
@@ -144,40 +141,21 @@ const AdminUpload = () => {
             Upload your PDF guides for each digital product
           </p>
 
-          {!isAuthenticated ? (
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">Loading...</p>
+            </div>
+          ) : !isAdmin ? (
             <Card className="max-w-md mx-auto">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <LogIn className="h-5 w-5" />
-                  Admin Login
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleLogin} className="space-y-4">
-                  <div>
-                    <label className="text-sm font-medium">Email</label>
-                    <Input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="admin@example.com"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium">Password</label>
-                    <Input
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="••••••••"
-                      required
-                    />
-                  </div>
-                  <Button type="submit" className="w-full" disabled={isLoggingIn}>
-                    {isLoggingIn ? "Logging in..." : "Login"}
-                  </Button>
-                </form>
+              <CardContent className="p-8 text-center">
+                <Shield className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                <h3 className="text-lg font-semibold mb-2">Access Denied</h3>
+                <p className="text-muted-foreground mb-4">
+                  You don't have admin privileges to access this page.
+                </p>
+                <Button variant="outline" onClick={handleLogout}>
+                  Sign Out
+                </Button>
               </CardContent>
             </Card>
           ) : (
