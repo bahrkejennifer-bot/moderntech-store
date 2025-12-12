@@ -1,4 +1,4 @@
-import { Download, CheckCircle, ShoppingCart, Home, Star } from "lucide-react";
+import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,13 @@ import { toast } from "@/hooks/use-toast";
 
 const DigitalProducts = () => {
   const handleBuySmartHome = () => {
+    toast({
+      title: "Coming Soon!",
+      description: "Payment processing will be available shortly. Check back soon!",
+    });
+  };
+
+  const handleBuyGamingMonitors = () => {
     toast({
       title: "Coming Soon!",
       description: "Payment processing will be available shortly. Check back soon!",
@@ -364,21 +371,133 @@ Visit us at [your-domain.com] for more resources
                 </Button>
               </CardContent>
             </Card>
+
+            {/* Gaming Monitors Guide - $10 */}
+            <Card className="mt-6 overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
+              <div className="bg-gradient-to-r from-primary/20 to-accent/20 p-6">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-primary/20 p-3 rounded-full">
+                      <Monitor className="h-8 w-8 text-primary" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold mb-1">
+                        Best Gaming Monitors Under $500
+                      </h2>
+                      <p className="text-muted-foreground">
+                        The Ultimate 2025 Buyer's Guide for Competitive & Casual Gamers
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold text-primary">$10.00</div>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <CardContent className="p-8">
+                <p className="text-lg text-muted-foreground mb-6">
+                  Maximize your gaming performance without breaking the bank. This expert guide reviews dozens of monitors across all refresh rates, panel types, and resolutions to help you find the perfect display for your gaming style and budget.
+                </p>
+                
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">What's Inside:</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Detailed reviews of 15+ top gaming monitors</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Refresh rate comparison (144Hz, 165Hz, 240Hz)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Panel technology explained (IPS vs VA vs TN)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Response time and input lag benchmarks</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Genre-specific recommendations (FPS, RPG, Racing)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Buying decision flowchart</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">Top Picks Featured:</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>ASUS TUF VG27AQ - Best Overall Value</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>AOC 24G2 - Best Budget Champion ($179)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>LG 27GP850-B - Best for Speed (180Hz)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Samsung Odyssey G5 - Best Curved</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>ViewSonic XG2431 - Best for Esports (240Hz)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>+ 3 more top recommendations</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-muted/50 p-6 rounded-lg mb-8">
+                  <h3 className="text-lg font-bold mb-2">Why Your Monitor Matters More Than You Think:</h3>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                    <div>• Refresh Rate: Higher Hz = smoother motion</div>
+                    <div>• Response Time: Lower ms = less ghosting</div>
+                    <div>• PS5/Xbox Series X compatibility guides</div>
+                    <div>• Setup, calibration & optimization tips</div>
+                  </div>
+                </div>
+                
+                <Button 
+                  variant="cta" 
+                  size="lg" 
+                  className="w-full text-lg h-14"
+                  onClick={handleBuyGamingMonitors}
+                >
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  Buy Now - $10.00
+                </Button>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Coming Soon Section */}
           <div className="text-center py-12">
             <h2 className="text-3xl font-bold mb-4">More Guides Coming Soon</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              5 more premium tech guides launching soon
+              4 more premium tech guides launching soon
             </p>
-            <div className="grid md:grid-cols-3 gap-4 mt-8">
-              <Card className="opacity-75">
-                <CardHeader>
-                  <CardTitle>Gaming Setup Guide</CardTitle>
-                  <CardDescription>Optimize your gaming experience - $10</CardDescription>
-                </CardHeader>
-              </Card>
+            <div className="grid md:grid-cols-2 gap-4 mt-8">
               <Card className="opacity-75">
                 <CardHeader>
                   <CardTitle>Earbuds Selection Guide</CardTitle>
@@ -389,6 +508,18 @@ Visit us at [your-domain.com] for more resources
                 <CardHeader>
                   <CardTitle>College Tech Essentials</CardTitle>
                   <CardDescription>Everything for academic success - $10</CardDescription>
+                </CardHeader>
+              </Card>
+              <Card className="opacity-75">
+                <CardHeader>
+                  <CardTitle>Fitness Tracker Protocol</CardTitle>
+                  <CardDescription>Optimize your health tracking - $10</CardDescription>
+                </CardHeader>
+              </Card>
+              <Card className="opacity-75">
+                <CardHeader>
+                  <CardTitle>Kids Tech Selection Guide</CardTitle>
+                  <CardDescription>Age-appropriate tech choices - $10</CardDescription>
                 </CardHeader>
               </Card>
             </div>
