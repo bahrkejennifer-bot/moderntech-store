@@ -1,9 +1,17 @@
-import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones, GraduationCap, Activity, Baby } from "lucide-react";
+import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones, GraduationCap, Activity, Baby, BookOpen } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
+
+// Import cover images
+import kidsTechCover from "@/assets/pdf-covers/kids-tech-guide-cover.jpg";
+import smartHomeCover from "@/assets/pdf-covers/smart-home-guide-cover.jpg";
+import gamingMonitorsCover from "@/assets/pdf-covers/gaming-monitors-guide-cover.jpg";
+import earbudsCover from "@/assets/pdf-covers/earbuds-guide-cover.jpg";
+import studentTechCover from "@/assets/pdf-covers/student-tech-guide-cover.jpg";
+import fitnessTrackersCover from "@/assets/pdf-covers/fitness-trackers-guide-cover.jpg";
 
 const DigitalProducts = () => {
   const handleBuySmartHome = () => {
@@ -53,36 +61,88 @@ const DigitalProducts = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="mb-12 text-center">
           <h1 className="text-5xl font-bold mb-4">
-            Digital Products
+            Your Tech Buying Guide Collection
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Free resources to help you succeed in affiliate marketing and tech entrepreneurship
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            Navigate your next tech purchase with confidence using our curated digital guides
           </p>
+        </div>
+
+        {/* Introduction Section */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <Card className="bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
+            <CardContent className="p-8">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="bg-primary/10 p-3 rounded-full">
+                  <BookOpen className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold mb-2">My Vision for These Guides</h2>
+                  <p className="text-muted-foreground">
+                    I'm building a collection of in-depth tech buying guides to help you make informed purchasing decisions. Each guide is carefully researched and designed to cut through the marketing noise, giving you the real information you need.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-background/50 p-4 rounded-lg">
+                  <h3 className="font-bold mb-2 flex items-center gap-2">
+                    <Download className="h-5 w-5 text-primary" />
+                    Free Guide Available
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Start with our free <strong>Kids & Parents Tech Guide</strong> – perfect for parents navigating age-appropriate technology decisions.
+                  </p>
+                </div>
+                <div className="bg-background/50 p-4 rounded-lg">
+                  <h3 className="font-bold mb-2 flex items-center gap-2">
+                    <ShoppingCart className="h-5 w-5 text-accent" />
+                    Premium Guides Coming Soon
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    I'm planning to sell the remaining 5 premium guides at <strong>$10 each</strong> – packed with detailed reviews, comparison charts, and buying recommendations.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
         
         <div className="max-w-4xl mx-auto">
           {/* Free Product - Kids Tech Guide */}
           <Card className="mb-8 overflow-hidden border-2 border-primary">
-            <div className="bg-gradient-hero p-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="bg-white/20 p-3 rounded-full">
-                    <Baby className="h-8 w-8 text-white" />
-                  </div>
-                  <div>
-                    <h2 className="text-3xl font-bold text-white mb-2">
-                      Age-Appropriate Technology for Kids & Teens
-                    </h2>
-                    <p className="text-white/90 text-lg">
-                      The Parent's Guide to Safe, Educational Tech from Ages 3-18
-                    </p>
-                  </div>
-                </div>
-                <div className="text-4xl font-bold text-white">
-                  FREE
-                </div>
+            <div className="grid md:grid-cols-3 gap-0">
+              {/* Cover Image */}
+              <div className="md:col-span-1">
+                <img 
+                  src={kidsTechCover} 
+                  alt="Kids Tech Guide Cover" 
+                  className="w-full h-full object-cover min-h-[200px]"
+                />
               </div>
-            </div>
+              
+              {/* Content */}
+              <div className="md:col-span-2">
+                <div className="bg-gradient-hero p-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-white/20 p-3 rounded-full">
+                        <Baby className="h-8 w-8 text-white" />
+                      </div>
+                      <div>
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                          Age-Appropriate Technology for Kids & Teens
+                        </h2>
+                        <p className="text-white/90 text-lg">
+                          The Parent's Guide to Safe, Educational Tech from Ages 3-18
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-3xl md:text-4xl font-bold text-white">
+                      FREE
+                    </div>
+                  </div>
+                </div>
             
             <CardContent className="p-8">
               <p className="text-lg text-muted-foreground mb-6">
@@ -167,9 +227,11 @@ const DigitalProducts = () => {
                 onClick={handleDownloadKidsTech}
               >
                 <Download className="mr-2 h-5 w-5" />
-                Download Free Guide
+                Download Free Guide for Parents
               </Button>
             </CardContent>
+              </div>
+            </div>
           </Card>
 
           {/* Premium PDF Products */}
@@ -178,33 +240,45 @@ const DigitalProducts = () => {
             
             {/* Smart Home Guide - $10 */}
             <Card className="overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
-              <div className="bg-gradient-to-r from-accent/20 to-primary/20 p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-accent/20 p-3 rounded-full">
-                      <Home className="h-8 w-8 text-accent" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-bold mb-1">
-                        Top 10 Smart Home Devices for 2025
-                      </h2>
-                      <p className="text-muted-foreground">
-                        Your Complete Guide to Building an Intelligent, Secure Home
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold text-primary">$10.00</div>
-                    <div className="flex items-center gap-1 text-yellow-500">
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                    </div>
-                  </div>
+              <div className="grid md:grid-cols-4 gap-0">
+                {/* Cover Image */}
+                <div className="md:col-span-1">
+                  <img 
+                    src={smartHomeCover} 
+                    alt="Smart Home Guide Cover" 
+                    className="w-full h-full object-cover min-h-[150px]"
+                  />
                 </div>
-              </div>
+                
+                {/* Content */}
+                <div className="md:col-span-3">
+                  <div className="bg-gradient-to-r from-accent/20 to-primary/20 p-6">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-accent/20 p-3 rounded-full">
+                          <Home className="h-8 w-8 text-accent" />
+                        </div>
+                        <div>
+                          <h2 className="text-2xl font-bold mb-1">
+                            Top 10 Smart Home Devices for 2025
+                          </h2>
+                          <p className="text-muted-foreground">
+                            Your Complete Guide to Building an Intelligent, Secure Home
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-3xl font-bold text-primary">$10.00</div>
+                        <div className="flex items-center gap-1 text-yellow-500">
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               
               <CardContent className="p-8">
                 <p className="text-lg text-muted-foreground mb-6">
@@ -292,37 +366,51 @@ const DigitalProducts = () => {
                   Buy Now - $10.00
                 </Button>
               </CardContent>
+                </div>
+              </div>
             </Card>
 
             {/* Gaming Monitors Guide - $10 */}
             <Card className="mt-6 overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
-              <div className="bg-gradient-to-r from-primary/20 to-accent/20 p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/20 p-3 rounded-full">
-                      <Monitor className="h-8 w-8 text-primary" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-bold mb-1">
-                        Best Gaming Monitors Under $500
-                      </h2>
-                      <p className="text-muted-foreground">
-                        The Ultimate 2025 Buyer's Guide for Competitive & Casual Gamers
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold text-primary">$10.00</div>
-                    <div className="flex items-center gap-1 text-yellow-500">
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                    </div>
-                  </div>
+              <div className="grid md:grid-cols-4 gap-0">
+                {/* Cover Image */}
+                <div className="md:col-span-1">
+                  <img 
+                    src={gamingMonitorsCover} 
+                    alt="Gaming Monitors Guide Cover" 
+                    className="w-full h-full object-cover min-h-[150px]"
+                  />
                 </div>
-              </div>
+                
+                {/* Content */}
+                <div className="md:col-span-3">
+                  <div className="bg-gradient-to-r from-primary/20 to-accent/20 p-6">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-primary/20 p-3 rounded-full">
+                          <Monitor className="h-8 w-8 text-primary" />
+                        </div>
+                        <div>
+                          <h2 className="text-2xl font-bold mb-1">
+                            Best Gaming Monitors Under $500
+                          </h2>
+                          <p className="text-muted-foreground">
+                            The Ultimate 2025 Buyer's Guide for Competitive & Casual Gamers
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-3xl font-bold text-primary">$10.00</div>
+                        <div className="flex items-center gap-1 text-yellow-500">
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               
               <CardContent className="p-8">
                 <p className="text-lg text-muted-foreground mb-6">
@@ -410,37 +498,51 @@ const DigitalProducts = () => {
                   Buy Now - $10.00
                 </Button>
               </CardContent>
+                </div>
+              </div>
             </Card>
 
             {/* Wireless Earbuds Guide - $10 */}
             <Card className="mt-6 overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
-              <div className="bg-gradient-to-r from-accent/20 to-primary/20 p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-accent/20 p-3 rounded-full">
-                      <Headphones className="h-8 w-8 text-accent" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-bold mb-1">
-                        Wireless Earbuds Comparison 2025
-                      </h2>
-                      <p className="text-muted-foreground">
-                        AirPods vs Galaxy Buds vs Nothing Ear - The Complete Buyer's Guide
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold text-primary">$10.00</div>
-                    <div className="flex items-center gap-1 text-yellow-500">
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                    </div>
-                  </div>
+              <div className="grid md:grid-cols-4 gap-0">
+                {/* Cover Image */}
+                <div className="md:col-span-1">
+                  <img 
+                    src={earbudsCover} 
+                    alt="Wireless Earbuds Guide Cover" 
+                    className="w-full h-full object-cover min-h-[150px]"
+                  />
                 </div>
-              </div>
+                
+                {/* Content */}
+                <div className="md:col-span-3">
+                  <div className="bg-gradient-to-r from-accent/20 to-primary/20 p-6">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-accent/20 p-3 rounded-full">
+                          <Headphones className="h-8 w-8 text-accent" />
+                        </div>
+                        <div>
+                          <h2 className="text-2xl font-bold mb-1">
+                            Wireless Earbuds Comparison 2025
+                          </h2>
+                          <p className="text-muted-foreground">
+                            AirPods vs Galaxy Buds vs Nothing Ear - The Complete Buyer's Guide
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-3xl font-bold text-primary">$10.00</div>
+                        <div className="flex items-center gap-1 text-yellow-500">
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               
               <CardContent className="p-8">
                 <p className="text-lg text-muted-foreground mb-6">
@@ -528,37 +630,51 @@ const DigitalProducts = () => {
                   Buy Now - $10.00
                 </Button>
               </CardContent>
+                </div>
+              </div>
             </Card>
 
             {/* Student Tech Essentials Guide - $10 */}
             <Card className="mt-6 overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
-              <div className="bg-gradient-to-r from-primary/20 to-accent/20 p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/20 p-3 rounded-full">
-                      <GraduationCap className="h-8 w-8 text-primary" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-bold mb-1">
-                        Student Tech Essentials 2025
-                      </h2>
-                      <p className="text-muted-foreground">
-                        The Complete Guide to Laptops, Accessories & Software for Academic Success
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold text-primary">$10.00</div>
-                    <div className="flex items-center gap-1 text-yellow-500">
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                    </div>
-                  </div>
+              <div className="grid md:grid-cols-4 gap-0">
+                {/* Cover Image */}
+                <div className="md:col-span-1">
+                  <img 
+                    src={studentTechCover} 
+                    alt="Student Tech Guide Cover" 
+                    className="w-full h-full object-cover min-h-[150px]"
+                  />
                 </div>
-              </div>
+                
+                {/* Content */}
+                <div className="md:col-span-3">
+                  <div className="bg-gradient-to-r from-primary/20 to-accent/20 p-6">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-primary/20 p-3 rounded-full">
+                          <GraduationCap className="h-8 w-8 text-primary" />
+                        </div>
+                        <div>
+                          <h2 className="text-2xl font-bold mb-1">
+                            Student Tech Essentials 2025
+                          </h2>
+                          <p className="text-muted-foreground">
+                            The Complete Guide to Laptops, Accessories & Software for Academic Success
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-3xl font-bold text-primary">$10.00</div>
+                        <div className="flex items-center gap-1 text-yellow-500">
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               
               <CardContent className="p-8">
                 <p className="text-lg text-muted-foreground mb-6">
@@ -646,37 +762,51 @@ const DigitalProducts = () => {
                   Buy Now - $10.00
                 </Button>
               </CardContent>
+                </div>
+              </div>
             </Card>
 
             {/* Fitness Trackers Guide - $10 */}
             <Card className="mt-6 overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
-              <div className="bg-gradient-to-r from-accent/20 to-primary/20 p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-accent/20 p-3 rounded-full">
-                      <Activity className="h-8 w-8 text-accent" />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-bold mb-1">
-                        Fitness Trackers for Every Budget
-                      </h2>
-                      <p className="text-muted-foreground">
-                        From $50 Basics to $500 Premium - Find Your Perfect Health Companion
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold text-primary">$10.00</div>
-                    <div className="flex items-center gap-1 text-yellow-500">
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                      <Star className="h-4 w-4 fill-current" />
-                    </div>
-                  </div>
+              <div className="grid md:grid-cols-4 gap-0">
+                {/* Cover Image */}
+                <div className="md:col-span-1">
+                  <img 
+                    src={fitnessTrackersCover} 
+                    alt="Fitness Trackers Guide Cover" 
+                    className="w-full h-full object-cover min-h-[150px]"
+                  />
                 </div>
-              </div>
+                
+                {/* Content */}
+                <div className="md:col-span-3">
+                  <div className="bg-gradient-to-r from-accent/20 to-primary/20 p-6">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-accent/20 p-3 rounded-full">
+                          <Activity className="h-8 w-8 text-accent" />
+                        </div>
+                        <div>
+                          <h2 className="text-2xl font-bold mb-1">
+                            Fitness Trackers for Every Budget
+                          </h2>
+                          <p className="text-muted-foreground">
+                            From $50 Basics to $500 Premium - Find Your Perfect Health Companion
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-3xl font-bold text-primary">$10.00</div>
+                        <div className="flex items-center gap-1 text-yellow-500">
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                          <Star className="h-4 w-4 fill-current" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               
               <CardContent className="p-8">
                 <p className="text-lg text-muted-foreground mb-6">
@@ -764,6 +894,8 @@ const DigitalProducts = () => {
                   Buy Now - $10.00
                 </Button>
               </CardContent>
+                </div>
+              </div>
             </Card>
           </div>
 
