@@ -1,4 +1,4 @@
-import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones, GraduationCap } from "lucide-react";
+import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones, GraduationCap, Activity } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
@@ -28,6 +28,13 @@ const DigitalProducts = () => {
   };
 
   const handleBuyStudentTech = () => {
+    toast({
+      title: "Coming Soon!",
+      description: "Payment processing will be available shortly. Check back soon!",
+    });
+  };
+
+  const handleBuyFitnessTrackers = () => {
     toast({
       title: "Coming Soon!",
       description: "Payment processing will be available shortly. Check back soon!",
@@ -739,21 +746,133 @@ Visit us at [your-domain.com] for more resources
                 </Button>
               </CardContent>
             </Card>
+
+            {/* Fitness Trackers Guide - $10 */}
+            <Card className="mt-6 overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
+              <div className="bg-gradient-to-r from-accent/20 to-primary/20 p-6">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-accent/20 p-3 rounded-full">
+                      <Activity className="h-8 w-8 text-accent" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold mb-1">
+                        Fitness Trackers for Every Budget
+                      </h2>
+                      <p className="text-muted-foreground">
+                        From $50 Basics to $500 Premium - Find Your Perfect Health Companion
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold text-primary">$10.00</div>
+                    <div className="flex items-center gap-1 text-yellow-500">
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                      <Star className="h-4 w-4 fill-current" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <CardContent className="p-8">
+                <p className="text-lg text-muted-foreground mb-6">
+                  Whether you're a casual walker or serious athlete, discover the fitness tracker that matches your goals, lifestyle, and budget. This comprehensive guide breaks down features, accuracy, and value across every price range with real-world testing data.
+                </p>
+                
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">What's Inside:</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>20+ device reviews across all price ranges</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Heart rate accuracy testing results</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>GPS precision comparisons for runners/cyclists</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Battery life real-world performance</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Water resistance & swim tracking ratings</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Feature comparison matrices by price tier</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">Budget Tiers Covered:</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Budget Tier: $50-$150 (Casual fitness)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Mid-Range: $150-$300 (Serious hobbyists)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Premium: $300-$500 (Athletes & data lovers)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Garmin Forerunner 255 - Best for Runners</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Apple Watch SE - Best Smartwatch Hybrid</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Garmin Fenix 7 - Best Multi-Sport</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-muted/50 p-6 rounded-lg mb-8">
+                  <h3 className="text-lg font-bold mb-2">6 Months of Real-World Testing:</h3>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+                    <div>• Tested against medical-grade equipment</div>
+                    <div>• Runs, swims, bike rides, gym sessions</div>
+                    <div>• Sleep tracking accuracy verified</div>
+                    <div>• Sport-specific recommendations included</div>
+                  </div>
+                </div>
+                
+                <Button 
+                  variant="cta" 
+                  size="lg" 
+                  className="w-full text-lg h-14"
+                  onClick={handleBuyFitnessTrackers}
+                >
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  Buy Now - $10.00
+                </Button>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Coming Soon Section */}
           <div className="text-center py-12">
             <h2 className="text-3xl font-bold mb-4">More Guides Coming Soon</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              2 more premium tech guides launching soon
+              1 more premium tech guide launching soon
             </p>
-            <div className="grid md:grid-cols-2 gap-4 mt-8">
-              <Card className="opacity-75">
-                <CardHeader>
-                  <CardTitle>Fitness Tracker Protocol</CardTitle>
-                  <CardDescription>Optimize your health tracking - $10</CardDescription>
-                </CardHeader>
-              </Card>
+            <div className="grid md:grid-cols-1 gap-4 mt-8 max-w-md mx-auto">
               <Card className="opacity-75">
                 <CardHeader>
                   <CardTitle>Kids Tech Selection Guide</CardTitle>
