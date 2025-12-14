@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones, GraduationCap, Activity, Baby, BookOpen, Loader2 } from "lucide-react";
+import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones, GraduationCap, Activity, Baby, BookOpen, Loader2, Briefcase } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ import gamingMonitorsCover from "@/assets/pdf-covers/gaming-monitors-guide-cover
 import earbudsCover from "@/assets/pdf-covers/earbuds-guide-cover.jpg";
 import studentTechCover from "@/assets/pdf-covers/student-tech-guide-cover.jpg";
 import fitnessTrackersCover from "@/assets/pdf-covers/fitness-trackers-guide-cover.jpg";
+import remoteWorkspaceCover from "@/assets/pdf-covers/remote-workspace-guide-cover.jpg";
 
 interface DigitalProduct {
   id: string;
@@ -33,6 +34,7 @@ const productMeta: Record<string, { cover: string; icon: React.ReactNode; gradie
   "earbuds-guide": { cover: earbudsCover, icon: <Headphones className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-accent/20 to-primary/20" },
   "student-tech-guide": { cover: studentTechCover, icon: <GraduationCap className="h-8 w-8 text-primary" />, gradient: "bg-gradient-to-r from-primary/20 to-accent/20" },
   "fitness-trackers-guide": { cover: fitnessTrackersCover, icon: <Activity className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-accent/20 to-primary/20" },
+  "remote-workspace-guide": { cover: remoteWorkspaceCover, icon: <Briefcase className="h-8 w-8 text-primary" />, gradient: "bg-gradient-to-r from-primary/20 to-accent/20" },
 };
 
 const DigitalProducts = () => {
