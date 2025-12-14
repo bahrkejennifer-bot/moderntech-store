@@ -153,9 +153,9 @@ const DigitalProducts = () => {
                   <BookOpen className="h-8 w-8 text-primary" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold mb-2">My Vision for These Guides</h2>
+                  <h2 className="text-2xl font-bold mb-2">Welcome to Modern Tech LLC</h2>
                   <p className="text-muted-foreground">
-                    I'm building a collection of in-depth tech buying guides to help you make informed purchasing decisions. Each guide is carefully researched and designed to cut through the marketing noise, giving you the real information you need.
+                    Hello and welcome to Modern Tech LLC, an Amazon affiliate store. First, we'd like to wish all our customers a happy holiday! Our mission is simple: to build a collection of in-depth tech buying guides and blogs that help families make affordable, informed decisions. Each guide is carefully researched and designed to cut through the marketing noise, giving you and your loved ones the connection and safety you deserve. If you have any suggestions, please email us at <a href="mailto:moderntech.store" className="text-primary hover:underline">moderntech.store</a>, and we'll look into it.
                   </p>
                 </div>
               </div>
@@ -176,7 +176,7 @@ const DigitalProducts = () => {
                     Premium Guides Coming Soon
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    I'm planning to sell the remaining 5 premium guides at <strong>$10 each</strong> – packed with detailed reviews, comparison charts, and buying recommendations.
+                    Premium guides at <strong>$10 each</strong> – packed with detailed reviews, comparison charts, and buying recommendations.
                   </p>
                 </div>
               </div>
