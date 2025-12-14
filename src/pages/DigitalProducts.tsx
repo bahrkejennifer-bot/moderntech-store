@@ -173,10 +173,10 @@ const DigitalProducts = () => {
                 <div className="bg-background/50 p-4 rounded-lg">
                   <h3 className="font-bold mb-2 flex items-center gap-2">
                     <ShoppingCart className="h-5 w-5 text-accent" />
-                    Premium Guides Coming Soon
+                    Premium Guides for Sale
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    Premium guides at <strong>$10 each</strong> – packed with detailed reviews, comparison charts, and buying recommendations.
+                    Our premium guides are available for <strong>$10 each</strong> – packed with detailed reviews, comparison charts, and expert buying recommendations.
                   </p>
                 </div>
               </div>
