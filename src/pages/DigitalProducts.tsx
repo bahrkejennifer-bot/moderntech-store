@@ -155,7 +155,7 @@ const DigitalProducts = () => {
                 <div>
                   <h2 className="text-2xl font-bold mb-2">Welcome to Modern Tech LLC</h2>
                   <p className="text-muted-foreground mb-4">
-                    Hello and welcome to Modern Tech LLC, an Amazon affiliate store. We'd like to wish all our customers a happy holiday! Our mission is simple: to build a collection of in-depth tech buying guides and blogs that help families make affordable, informed decisions. Each guide is carefully researched and designed to cut through the marketing noise, giving you and your loved ones the connection and safety you deserve. If you have any suggestions, please email us at <a href="mailto:moderntech.store" className="text-primary hover:underline">moderntech.store</a>, and we'll look into it.
+                    Hello and welcome to Modern Tech LLC, an Amazon affiliate store. We'd like to wish all our customers a happy holiday! Our mission is simple: to build a collection of in-depth tech buying guides and blogs that help families make affordable, informed decisions. Each guide is carefully researched and designed to cut through the marketing noise, giving you and your loved ones the connection and safety you deserve. If you have any suggestions, please email us at <a href="mailto:info@moderntech.store" className="text-primary hover:underline">info@moderntech.store</a>, and we'll look into it.
                   </p>
                   <p className="text-sm text-muted-foreground/80 italic">
                     As an Amazon Associate, we earn from qualifying purchases. This means we may receive a small commission at no extra cost to you when you purchase through our affiliate links.
