@@ -188,109 +188,105 @@ const DigitalProducts = () => {
           {/* Free Product */}
           {freeProduct && (
             <Card className="mb-8 overflow-hidden border-2 border-primary">
-              <div className="grid md:grid-cols-3 gap-0">
-                <div className="md:col-span-1">
+              {/* Ribbon Header with Image and Title */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-hero opacity-90" />
+                <div className="relative flex items-center gap-6 p-4">
                   <img 
                     src={productMeta[freeProduct.slug]?.cover || kidsTechCover} 
                     alt={`${freeProduct.title} Cover`} 
-                    className="w-full h-full object-cover min-h-[200px]"
+                    className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-lg shadow-lg border-2 border-white/30"
                   />
-                </div>
-                
-                <div className="md:col-span-2">
-                  <div className={`${productMeta[freeProduct.slug]?.gradient || "bg-gradient-hero"} p-6`}>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="bg-white/20 p-3 rounded-full">
-                          {productMeta[freeProduct.slug]?.icon || <Baby className="h-8 w-8 text-white" />}
-                        </div>
-                        <div>
-                          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                            {freeProduct.title}
-                          </h2>
-                          <p className="text-white/90 text-lg">
-                            {freeProduct.description || "Your comprehensive guide"}
-                          </p>
-                        </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="bg-white/20 p-2 rounded-full">
+                        {productMeta[freeProduct.slug]?.icon || <Baby className="h-6 w-6 text-white" />}
                       </div>
-                      <div className="text-3xl md:text-4xl font-bold text-white">
-                        FREE
-                      </div>
+                      <span className="bg-white/20 text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide">
+                        Free Guide
+                      </span>
                     </div>
-                  </div>
-              
-                  <CardContent className="p-8">
-                    <p className="text-lg text-muted-foreground mb-6">
-                      Navigate the complex world of kids' technology with confidence. This comprehensive guide helps parents choose devices, apps, and services that balance education, entertainment, and safety at every developmental stage.
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-1">
+                      {freeProduct.title}
+                    </h2>
+                    <p className="text-white/90 text-lg">
+                      {freeProduct.description || "Your comprehensive guide"}
                     </p>
-                    
-                    <div className="grid md:grid-cols-2 gap-6 mb-8">
-                      <div>
-                        <h3 className="text-xl font-bold mb-4">What's Inside:</h3>
-                        <ul className="space-y-2">
-                          <li className="flex items-start gap-2">
-                            <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span>Age-by-age device recommendations (3-6, 7-10, 11-14, 15-18)</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span>Parental control setup guides for all platforms</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span>Screen time management strategies that work</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span>Educational app reviews by subject and age</span>
-                          </li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold mb-4">Age Groups Covered:</h3>
-                        <ul className="space-y-2">
-                          <li className="flex items-start gap-2">
-                            <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                            <span>Ages 3-6: Tablets, educational apps, screen limits</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                            <span>Ages 7-10: First devices, learning tools, gaming</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                            <span>Ages 11-14: Smartphone readiness, social media</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                            <span>Ages 15-18: Independence, college prep, career skills</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    
-                    <Button 
-                      variant="cta" 
-                      size="lg" 
-                      className="w-full text-lg h-14"
-                      onClick={() => handleDownload(freeProduct)}
-                      disabled={downloadingId === freeProduct.id || !freeProduct.pdf_path}
-                    >
-                      {downloadingId === freeProduct.id ? (
-                        <>
-                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                          Downloading...
-                        </>
-                      ) : (
-                        <>
-                          <Download className="mr-2 h-5 w-5" />
-                          {freeProduct.pdf_path ? "Download Free Guide for Parents" : "Coming Soon"}
-                        </>
-                      )}
-                    </Button>
-                  </CardContent>
+                  </div>
                 </div>
               </div>
+              
+              {/* Content Below Ribbon */}
+              <CardContent className="p-8">
+                <p className="text-lg text-muted-foreground mb-6">
+                  Navigate the complex world of kids' technology with confidence. This comprehensive guide helps parents choose devices, apps, and services that balance education, entertainment, and safety at every developmental stage.
+                </p>
+                
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">What's Inside:</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Age-by-age device recommendations (3-6, 7-10, 11-14, 15-18)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Parental control setup guides for all platforms</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Screen time management strategies that work</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Educational app reviews by subject and age</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">Age Groups Covered:</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Ages 3-6: Tablets, educational apps, screen limits</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Ages 7-10: First devices, learning tools, gaming</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Ages 11-14: Smartphone readiness, social media</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
+                        <span>Ages 15-18: Independence, college prep, career skills</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <Button 
+                  variant="cta" 
+                  size="lg" 
+                  className="w-full text-lg h-14"
+                  onClick={() => handleDownload(freeProduct)}
+                  disabled={downloadingId === freeProduct.id || !freeProduct.pdf_path}
+                >
+                  {downloadingId === freeProduct.id ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Downloading...
+                    </>
+                  ) : (
+                    <>
+                      <Download className="mr-2 h-5 w-5" />
+                      {freeProduct.pdf_path ? "Download Free Guide for Parents" : "Coming Soon"}
+                    </>
+                  )}
+                </Button>
+              </CardContent>
             </Card>
           )}
 
