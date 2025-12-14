@@ -116,10 +116,10 @@ const Index = () => {
             backgroundImage: `url(${heroImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center bottom",
-            filter: "saturate(1.5) contrast(1.15) brightness(1.1)",
+            filter: "saturate(1.3) contrast(1.1) brightness(1.15)",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/30 to-transparent" />
           <div className="absolute inset-0">
             {[...Array(20)].map((_, i) => (
               <Snowflake
