@@ -48,7 +48,7 @@ const DigitalProducts = () => {
     const { data, error } = await supabase
       .from("digital_products")
       .select("*")
-      .order("is_free", { ascending: false });
+      .order("display_order", { ascending: true });
 
     if (error) {
       console.error("Error fetching products:", error);
