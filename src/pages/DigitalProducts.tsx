@@ -28,7 +28,7 @@ interface DigitalProduct {
 
 // Map slugs to cover images and icons
 const productMeta: Record<string, { cover: string; icon: React.ReactNode; gradient: string }> = {
-  "kids-tech-guide": { cover: kidsTechCover, icon: <Baby className="h-8 w-8 text-white" />, gradient: "bg-gradient-hero" },
+  "kids-tech-guide": { cover: kidsTechCover, icon: <Baby className="h-8 w-8 text-white" />, gradient: "bg-gradient-gold" },
   "smart-home-guide": { cover: smartHomeCover, icon: <Home className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-accent/20 to-primary/20" },
   "gaming-monitors-guide": { cover: gamingMonitorsCover, icon: <Monitor className="h-8 w-8 text-primary" />, gradient: "bg-gradient-to-r from-primary/20 to-accent/20" },
   "earbuds-guide": { cover: earbudsCover, icon: <Headphones className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-accent/20 to-primary/20" },
@@ -192,10 +192,10 @@ const DigitalProducts = () => {
         <div className="max-w-4xl mx-auto">
           {/* Free Product */}
           {freeProduct && (
-            <Card className="mb-8 overflow-hidden border-2 border-primary">
+            <Card className="mb-8 overflow-hidden border-2 border-accent">
               {/* Ribbon Header with Image and Title */}
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-hero opacity-90" />
+                <div className="absolute inset-0 bg-gradient-gold opacity-90" />
                 <div className="relative flex items-center gap-6 p-4">
                   <img 
                     src={productMeta[freeProduct.slug]?.cover || kidsTechCover} 
