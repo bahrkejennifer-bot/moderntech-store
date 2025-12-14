@@ -191,34 +191,34 @@ const AdminUpload = () => {
                         </div>
 
                         <div className="flex items-center gap-3">
-                          <label className="cursor-pointer">
-                            <input
-                              type="file"
-                              accept=".pdf"
-                              className="hidden"
-                              onChange={(e) => {
-                                const file = e.target.files?.[0];
-                                if (file) {
-                                  handleFileUpload(product.id, product.slug, file);
-                                }
-                              }}
-                              disabled={uploading === product.id}
-                            />
-                            <Button
-                              variant={product.pdf_path ? "outline" : "default"}
-                              className="pointer-events-none"
-                              disabled={uploading === product.id}
-                            >
-                              {uploading === product.id ? (
-                                <>Uploading...</>
-                              ) : (
-                                <>
-                                  <Upload className="h-4 w-4 mr-2" />
-                                  {product.pdf_path ? "Replace PDF" : "Upload PDF"}
-                                </>
-                              )}
-                            </Button>
-                          </label>
+                          <input
+                            type="file"
+                            accept=".pdf"
+                            id={`file-${product.id}`}
+                            className="hidden"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) {
+                                handleFileUpload(product.id, product.slug, file);
+                              }
+                              e.target.value = '';
+                            }}
+                            disabled={uploading === product.id}
+                          />
+                          <Button
+                            variant={product.pdf_path ? "outline" : "default"}
+                            disabled={uploading === product.id}
+                            onClick={() => document.getElementById(`file-${product.id}`)?.click()}
+                          >
+                            {uploading === product.id ? (
+                              <>Uploading...</>
+                            ) : (
+                              <>
+                                <Upload className="h-4 w-4 mr-2" />
+                                {product.pdf_path ? "Replace PDF" : "Upload PDF"}
+                              </>
+                            )}
+                          </Button>
                         </div>
                       </div>
                     </CardContent>
