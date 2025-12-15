@@ -272,25 +272,14 @@ const DigitalProducts = () => {
                   </div>
                 </div>
                 
-                <Button 
-                  variant="cta" 
-                  size="lg" 
-                  className="w-full text-lg h-14"
-                  onClick={() => handleDownload(freeProduct)}
-                  disabled={downloadingId === freeProduct.id || !freeProduct.pdf_path}
-                >
-                  {downloadingId === freeProduct.id ? (
-                    <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      Downloading...
-                    </>
-                  ) : (
-                    <>
-                      <Download className="mr-2 h-5 w-5" />
-                      {freeProduct.pdf_path ? "Download Free Guide for Parents" : "Coming Soon"}
-                    </>
-                  )}
-                </Button>
+                {/* ConvertKit Email Capture Form */}
+                <div className="bg-primary/5 p-6 rounded-lg border border-primary/20">
+                  <h3 className="text-xl font-bold mb-2 text-center">Get Your Free Guide Instantly</h3>
+                  <p className="text-muted-foreground text-center mb-4">
+                    Enter your email below and we'll send the guide straight to your inbox!
+                  </p>
+                  <script async data-uid="cae0cce437" src="https://moderntech.kit.com/cae0cce437/index.js"></script>
+                </div>
               </CardContent>
             </Card>
           )}
