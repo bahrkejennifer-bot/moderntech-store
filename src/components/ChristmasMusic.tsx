@@ -28,7 +28,7 @@ const ChristmasMusic = () => {
     <>
       <audio
         ref={audioRef}
-        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
+        src="https://cdn.pixabay.com/download/audio/2022/12/13/audio_5c3c7e6f7e.mp3"
         preload="none"
       />
       <Button
