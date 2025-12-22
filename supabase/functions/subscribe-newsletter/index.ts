@@ -19,11 +19,15 @@ serve(async (req) => {
 
     const { email, name, campaignId } = await req.json();
 
+    // Default campaign ID for the newsletter
+    const DEFAULT_CAMPAIGN_ID = "CIFHU";
+    const finalCampaignId = campaignId || DEFAULT_CAMPAIGN_ID;
+
     if (!email) {
       throw new Error("Email is required");
     }
 
-    console.log("Subscribing to newsletter:", { email, name, campaignId });
+    console.log("Subscribing to newsletter:", { email, name, campaignId: finalCampaignId });
 
     // GetResponse API endpoint for adding contacts
     const response = await fetch("https://api.getresponse.com/v3/contacts", {
@@ -36,7 +40,7 @@ serve(async (req) => {
         email: email,
         name: name || undefined,
         campaign: {
-          campaignId: campaignId || undefined,
+          campaignId: finalCampaignId,
         },
       }),
     });
