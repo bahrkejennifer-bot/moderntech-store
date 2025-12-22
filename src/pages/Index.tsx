@@ -7,6 +7,7 @@ import ChristmasCountdown from "@/components/ChristmasCountdown";
 import FallingSnow from "@/components/FallingSnow";
 import ChristmasMusic from "@/components/ChristmasMusic";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import heroImage from "@/assets/christmas-hero.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
@@ -253,24 +254,30 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Newsletter CTA Section */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-christmas-red/5 via-christmas-green/5 to-christmas-gold/5" />
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <Snowflake className="h-16 w-16 mx-auto mb-6 text-christmas-gold animate-sparkle" />
-          <h2 className="text-4xl md:text-5xl font-bold font-display mb-6">
-            Stay Updated with Tech Insights
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            Read our blog for holiday gift guides, reviews, comparisons, and tech tips
-          </p>
-          <Button 
-            className="bg-gradient-to-r from-christmas-green to-secondary hover:shadow-elegant transition-all duration-300 text-lg px-10 py-6 rounded-xl font-semibold"
-            size="lg" 
-            asChild
-          >
-            <Link to="/blog">Visit Our Blog</Link>
-          </Button>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-2xl mx-auto text-center mb-8">
+            <Snowflake className="h-16 w-16 mx-auto mb-6 text-christmas-gold animate-sparkle" />
+            <h2 className="text-4xl md:text-5xl font-bold font-display mb-6">
+              Stay Updated with Tech Insights
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              Get exclusive deals, gift guides, and tech tips delivered to your inbox
+            </p>
+          </div>
+          <NewsletterSignup className="max-w-xl mx-auto" />
+          <div className="text-center mt-8">
+            <Button 
+              variant="outline"
+              size="lg" 
+              asChild
+              className="border-christmas-green text-christmas-green hover:bg-christmas-green hover:text-white"
+            >
+              <Link to="/blog">Visit Our Blog</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
