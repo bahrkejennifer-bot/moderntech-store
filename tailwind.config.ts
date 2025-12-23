@@ -57,21 +57,21 @@ export default {
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
   			},
-  			'christmas-red': 'hsl(var(--christmas-red))',
-  			'christmas-green': 'hsl(var(--christmas-green))',
-  			'christmas-gold': 'hsl(var(--christmas-gold))',
-  			'christmas-snow': 'hsl(var(--christmas-snow))'
+  			'newyear-blue': 'hsl(var(--newyear-blue))',
+  			'newyear-silver': 'hsl(var(--newyear-silver))',
+  			'newyear-ice': 'hsl(var(--newyear-ice))',
+  			'newyear-frost': 'hsl(var(--newyear-frost))'
   		},
   		backgroundImage: {
   			'gradient-hero': 'var(--gradient-hero)',
   			'gradient-accent': 'var(--gradient-accent)',
-  			'gradient-christmas': 'var(--gradient-christmas)',
-  			'gradient-gold': 'var(--gradient-gold)'
+  			'gradient-newyear': 'var(--gradient-newyear)',
+  			'gradient-silver': 'var(--gradient-silver)'
   		},
   		boxShadow: {
   			elegant: 'var(--shadow-elegant)',
   			card: 'var(--shadow-card)',
-  			gold: 'var(--shadow-gold)',
+  			silver: 'var(--shadow-silver)',
   			'2xs': 'var(--shadow-2xs)',
   			xs: 'var(--shadow-xs)',
   			sm: 'var(--shadow-sm)',
@@ -98,23 +98,21 @@ export default {
   				from: { opacity: '0', transform: 'translateY(10px)' },
   				to: { opacity: '1', transform: 'translateY(0)' }
   			},
-  			'sparkle': {
-  				'0%, 100%': { opacity: '1', transform: 'scale(1)' },
-  				'50%': { opacity: '0.5', transform: 'scale(1.1)' }
+  			'pulse-glow': {
+  				'0%, 100%': { opacity: '1', boxShadow: '0 0 20px hsl(215 80% 50% / 0.3)' },
+  				'50%': { opacity: '0.8', boxShadow: '0 0 40px hsl(215 80% 50% / 0.5)' }
   			},
-  			'snowfall': {
-  				'0%': { transform: 'translateY(-10vh) rotate(0deg)', opacity: '0' },
-  				'10%': { opacity: '1' },
-  				'90%': { opacity: '1' },
-  				'100%': { transform: 'translateY(110vh) rotate(360deg)', opacity: '0' }
+  			'shimmer': {
+  				'0%': { backgroundPosition: '-200% 0' },
+  				'100%': { backgroundPosition: '200% 0' }
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			'fade-in': 'fade-in 0.5s ease-out',
-  			'sparkle': 'sparkle 2s ease-in-out infinite',
-  			'snowfall': 'snowfall linear infinite'
+  			'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
+  			'shimmer': 'shimmer 2s linear infinite'
   		},
   		fontFamily: {
   			sans: [

@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Snowflake, Star, ExternalLink } from "lucide-react";
+import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Sparkles, Star, ExternalLink, Zap } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
-import ChristmasCountdown from "@/components/ChristmasCountdown";
-import FallingSnow from "@/components/FallingSnow";
-import ChristmasMusic from "@/components/ChristmasMusic";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
-import heroImage from "@/assets/christmas-hero.jpg";
+import heroImage from "@/assets/new-year-hero.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
 import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
@@ -59,42 +56,36 @@ const categories = [
     description: "Smart devices to protect and secure your home",
     icon: ShieldCheck,
     link: "/home-safety",
-    color: "text-primary",
   },
   {
     title: "Health & Wellness",
     description: "Tech to track and improve your wellbeing",
     icon: HeartPulse,
     link: "/health-wellness",
-    color: "text-accent",
   },
   {
     title: "Kids Tech",
     description: "Educational and fun gadgets for children",
     icon: Baby,
     link: "/kids-tech",
-    color: "text-primary",
   },
   {
     title: "Gaming",
     description: "Latest gaming gear and accessories",
     icon: Gamepad2,
     link: "/gaming",
-    color: "text-accent",
   },
   {
     title: "Connectivity",
     description: "Stay connected with cutting-edge devices",
     icon: Wifi,
     link: "/connectivity",
-    color: "text-primary",
   },
   {
     title: "College & School",
     description: "Essential tech for students and educators",
     icon: GraduationCap,
     link: "/college",
-    color: "text-accent",
   },
 ];
 
@@ -105,8 +96,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <FallingSnow />
-      <ChristmasMusic />
       <Navigation />
       
       {/* Hero Section */}
@@ -116,70 +105,59 @@ const Index = () => {
           style={{
             backgroundImage: `url(${heroImage})`,
             backgroundSize: "cover",
-            backgroundPosition: "center bottom",
-            filter: "saturate(1.3) contrast(1.1) brightness(1.15)",
+            backgroundPosition: "center",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/30 to-transparent" />
-          <div className="absolute inset-0">
-            {[...Array(20)].map((_, i) => (
-              <Snowflake
-                key={i}
-                className="absolute text-white/30 animate-sparkle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 2}s`,
-                  fontSize: `${Math.random() * 20 + 10}px`,
-                }}
-              />
-            ))}
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent" />
         </div>
         
-        <div className="container relative z-10 mx-auto px-4 text-center">
-          <div className="mb-4 inline-block">
-            <span className="text-christmas-snow text-sm font-semibold uppercase tracking-wider bg-christmas-red/90 px-4 py-2 rounded-full border border-christmas-gold/50 shadow-lg">
-              🎄 Holiday Tech Gifts 2025
-            </span>
-          </div>
-          <h1 className="mb-4 text-5xl md:text-6xl lg:text-7xl font-bold font-display animate-fade-in">
-            Discover the Best
-            <span className="block bg-gradient-christmas bg-clip-text text-transparent mt-2">
-              Tech for Christmas
-            </span>
-          </h1>
-          <p className="mb-6 text-xl text-foreground font-semibold max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-            Curated collection of top-rated tech products to make this holiday season magical
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              className="bg-gradient-christmas hover:shadow-elegant transition-all duration-300 text-lg px-8 py-6 rounded-xl font-semibold" 
-              size="lg" 
-              onClick={scrollToFeatured}
-            >
-              Shop Holiday Deals
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="border-2 border-christmas-green text-christmas-green hover:bg-christmas-green hover:text-white transition-all duration-300 text-lg px-8 py-6 rounded-xl font-semibold"
-              asChild
-            >
-              <Link to="/digital-products">Free Gift Guides</Link>
-            </Button>
+        <div className="container relative z-10 mx-auto px-4 pt-12">
+          <div className="max-w-2xl">
+            <div className="mb-4 inline-block">
+              <span className="text-primary-foreground text-sm font-semibold uppercase tracking-wider bg-primary px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+                <Sparkles className="h-4 w-4" />
+                New Year, New Tech 2026
+              </span>
+            </div>
+            <h1 className="mb-4 text-5xl md:text-6xl lg:text-7xl font-bold font-display animate-fade-in">
+              Level Up Your Life
+              <span className="block bg-gradient-hero bg-clip-text text-transparent mt-2">
+                Tech for a Smarter 2026
+              </span>
+            </h1>
+            <p className="mb-6 text-xl text-foreground/90 font-medium max-w-xl leading-relaxed">
+              The future of you starts here. Nurse-curated wellness tech and productivity essentials for your best year yet.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                className="bg-gradient-hero hover:shadow-elegant transition-all duration-300 text-lg px-8 py-6 rounded-xl font-semibold" 
+                size="lg" 
+                onClick={scrollToFeatured}
+              >
+                <Zap className="mr-2 h-5 w-5" />
+                Shop 2026 Picks
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-lg px-8 py-6 rounded-xl font-semibold"
+                asChild
+              >
+                <Link to="/digital-products">Free Tech Guides</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Featured Products Section */}
-      <section id="featured-products" className="py-20 bg-gradient-to-b from-background to-christmas-snow/20">
+      <section id="featured-products" className="py-20 bg-gradient-to-b from-background to-secondary/30">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold font-display text-center mb-4">
-            Top Tech Gifts Under the Tree
+            Start 2026 with the Best Tech
           </h2>
           <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
-            Our handpicked selection of the hottest tech gifts this holiday season
+            Got a gift card? Invest it in yourself. Our handpicked selection to power your New Year goals.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {featuredProducts.map((product) => (
@@ -198,7 +176,7 @@ const Index = () => {
                 <CardContent>
                   <div className="flex items-center justify-end">
                     <div className="flex items-center space-x-1">
-                      <Star className="h-4 w-4 fill-yellow-500 text-yellow-500" />
+                      <Star className="h-4 w-4 fill-accent text-accent" />
                       <span className="text-sm font-medium">{product.rating}/5</span>
                     </div>
                   </div>
@@ -220,17 +198,14 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Christmas Countdown */}
-      <ChristmasCountdown />
-
       {/* Categories Section */}
-      <section className="py-20 bg-gradient-to-b from-christmas-snow/30 to-background">
+      <section className="py-20 bg-gradient-to-b from-secondary/30 to-background">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold font-display text-center mb-4">
-            Shop by Category
+            Explore by Category
           </h2>
           <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
-            Find the perfect tech gifts for everyone on your list
+            Find the perfect tech to power your 2026 resolutions
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((category) => {
@@ -239,11 +214,11 @@ const Index = () => {
                 <Link
                   key={category.link}
                   to={category.link}
-                  className="group relative p-8 bg-card rounded-2xl border-2 border-border hover:border-christmas-gold hover:shadow-gold transition-all duration-300 overflow-hidden"
+                  className="group relative p-8 bg-card rounded-2xl border-2 border-border hover:border-primary hover:shadow-elegant transition-all duration-300 overflow-hidden"
                 >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-gold opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-300" />
-                  <Icon className={`h-14 w-14 mb-4 ${category.color} transition-transform duration-300 group-hover:scale-110`} />
-                  <h3 className="text-2xl font-bold font-display mb-2 group-hover:text-christmas-red transition-colors">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-hero opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-300" />
+                  <Icon className="h-14 w-14 mb-4 text-primary transition-transform duration-300 group-hover:scale-110" />
+                  <h3 className="text-2xl font-bold font-display mb-2 group-hover:text-primary transition-colors">
                     {category.title}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">{category.description}</p>
@@ -256,15 +231,15 @@ const Index = () => {
 
       {/* Newsletter CTA Section */}
       <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-christmas-red/5 via-christmas-green/5 to-christmas-gold/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/10" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl mx-auto text-center mb-8">
-            <Snowflake className="h-16 w-16 mx-auto mb-6 text-christmas-gold animate-sparkle" />
+            <Sparkles className="h-16 w-16 mx-auto mb-6 text-primary animate-pulse-glow" />
             <h2 className="text-4xl md:text-5xl font-bold font-display mb-6">
-              Stay Updated with Tech Insights
+              Stay Ahead of the Curve
             </h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Get exclusive deals, gift guides, and tech tips delivered to your inbox
+              Get exclusive deals, wellness tech insights, and productivity tips delivered to your inbox
             </p>
           </div>
           <NewsletterSignup className="max-w-xl mx-auto" />
@@ -273,7 +248,7 @@ const Index = () => {
               variant="outline"
               size="lg" 
               asChild
-              className="border-christmas-green text-christmas-green hover:bg-christmas-green hover:text-white"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
             >
               <Link to="/blog">Visit Our Blog</Link>
             </Button>
