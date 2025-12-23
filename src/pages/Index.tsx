@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Sparkles, Star, ExternalLink, ArrowRight, ChevronRight } from "lucide-react";
+import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Sparkles, Star, ExternalLink, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
@@ -103,96 +103,80 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section - Bold & Clean */}
+      {/* Hero Section - Elementor Inspired */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Subtle gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
-        <div className="absolute inset-0 spotlight" />
+        {/* Vibrant gradient background */}
+        <div className="absolute inset-0 bg-gradient-hero" />
         
-        {/* Background image with light overlay */}
-        <div
-          className="absolute inset-0 z-0 opacity-20"
+        {/* Subtle pattern overlay */}
+        <div 
+          className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `url(${heroImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
-        </div>
+        />
         
-        {/* Subtle decorative elements */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[80px]" />
+        {/* Floating decorative elements */}
+        <div className="absolute top-20 right-[20%] w-72 h-72 bg-vibrant-purple/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-32 left-[15%] w-96 h-96 bg-vibrant-pink/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
         
         <div className="container relative z-10 mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            {/* Small tag */}
-            <div className="mb-8 animate-fade-in">
-              <span className="inline-flex items-center gap-3 text-primary text-sm font-semibold tracking-widest uppercase">
-                <span className="w-10 h-px bg-primary" />
-                New Year 2026
-                <span className="w-10 h-px bg-primary" />
-              </span>
-            </div>
-            
-            {/* Main headline - Bold Apple style */}
-            <h1 className="mb-6 text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              <span className="text-foreground">Level Up</span>
+            {/* Main headline - Bold Elementor style */}
+            <h1 className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground animate-fade-in">
+              Level Up Your Life
               <br />
-              <span className="bg-gradient-hero bg-clip-text text-transparent">Your Life.</span>
+              <span className="text-foreground">Create Your Future</span>
             </h1>
             
             {/* Subheadline */}
-            <p className="mb-10 text-xl md:text-2xl text-muted-foreground font-normal max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              Nurse-curated wellness tech and productivity essentials for your best year yet.
+            <p className="mb-10 text-xl md:text-2xl text-foreground/70 max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.15s' }}>
+              Curated wellness tech and productivity essentials for your best year yet.
             </p>
             
-            {/* CTA Buttons */}
+            {/* CTA Button - Bold black like Elementor */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button 
-                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all duration-300 text-lg px-10 py-7 rounded-full font-medium group shadow-lg hover:shadow-xl" 
+                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold shadow-xl hover:shadow-2xl hover:-translate-y-1" 
                 size="lg" 
                 onClick={scrollToFeatured}
               >
-                Shop Now
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-2 border-border text-foreground hover:bg-muted transition-all duration-300 text-lg px-10 py-7 rounded-full font-medium"
-                asChild
-              >
-                <Link to="/digital-products">Free Guides</Link>
+                Get Started
               </Button>
             </div>
-          </div>
-          
-          {/* Scroll indicator */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-            <button 
-              onClick={scrollToFeatured}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <div className="flex flex-col items-center gap-2">
-                <span className="text-xs tracking-widest uppercase font-medium">Explore</span>
-                <ChevronRight className="h-5 w-5 rotate-90" />
+            
+            {/* Feature cards row */}
+            <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in" style={{ animationDelay: '0.45s' }}>
+              <div className="bg-card/80 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:shadow-lg transition-all hover:-translate-y-1">
+                <div className="text-3xl mb-3">🛡️</div>
+                <h3 className="font-bold text-lg mb-2 text-foreground">Curated Tech</h3>
+                <p className="text-muted-foreground text-sm">Handpicked essentials for modern living.</p>
               </div>
-            </button>
+              <div className="bg-card/80 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:shadow-lg transition-all hover:-translate-y-1">
+                <div className="text-3xl mb-3">⚡</div>
+                <h3 className="font-bold text-lg mb-2 text-foreground">Top Rated</h3>
+                <p className="text-muted-foreground text-sm">Only the best reviewed products make our list.</p>
+              </div>
+              <div className="bg-card/80 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:shadow-lg transition-all hover:-translate-y-1">
+                <div className="text-3xl mb-3">🎯</div>
+                <h3 className="font-bold text-lg mb-2 text-foreground">Goal Focused</h3>
+                <p className="text-muted-foreground text-sm">Tech to help you achieve your 2026 goals.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Featured Products Section */}
-      <section id="featured-products" className="py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-muted/30" />
+      <section id="featured-products" className="py-28 relative overflow-hidden bg-card">
         <div className="absolute top-0 left-0 right-0 h-px glow-line" />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <span className="inline-block text-primary font-semibold text-sm tracking-widest uppercase mb-4">Featured</span>
-            <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-6 text-foreground">
+            <span className="inline-block text-primary font-semibold text-sm tracking-widest uppercase mb-4">Featured Products</span>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-foreground">
               Start 2026 Strong
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
@@ -202,28 +186,28 @@ const Index = () => {
           
           {/* Product Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {featuredProducts.map((product, index) => (
+            {featuredProducts.map((product) => (
               <Card 
                 key={product.title} 
-                className="group overflow-hidden bg-card border-border hover:border-primary/40 transition-all duration-500 hover:shadow-elegant"
+                className="group overflow-hidden bg-background border-border hover:border-primary/40 transition-all duration-300 hover:shadow-elegant hover:-translate-y-2"
               >
                 {/* Product Image */}
                 <div className="aspect-square overflow-hidden bg-muted relative">
                   <img
                     src={product.imageUrl}
                     alt={product.title}
-                    className="h-full w-full object-cover transition-all duration-700 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
                   />
                   
                   {/* Rating badge */}
-                  <div className="absolute top-3 right-3 flex items-center gap-1 bg-background/90 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm">
-                    <Star className="h-3.5 w-3.5 fill-primary text-primary" />
-                    <span className="text-xs font-semibold text-foreground">{product.rating}</span>
+                  <div className="absolute top-3 right-3 flex items-center gap-1 bg-background/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm">
+                    <Star className="h-3.5 w-3.5 fill-vibrant-orange text-vibrant-orange" />
+                    <span className="text-xs font-bold text-foreground">{product.rating}</span>
                   </div>
                 </div>
                 
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                  <CardTitle className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
                     {product.title}
                   </CardTitle>
                   <span className="text-sm text-muted-foreground font-medium">{product.subtitle}</span>
@@ -237,7 +221,7 @@ const Index = () => {
                 
                 <CardFooter>
                   <Button
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 rounded-full font-medium"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 rounded-full font-semibold"
                     asChild
                   >
                     <a href={product.affiliateLink} target="_blank" rel="noopener noreferrer nofollow">
@@ -253,14 +237,13 @@ const Index = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-background" />
+      <section className="py-28 relative overflow-hidden bg-background">
         <div className="absolute top-0 left-0 right-0 h-px glow-line" />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <span className="inline-block text-accent font-semibold text-sm tracking-widest uppercase mb-4">Categories</span>
-            <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-6 text-foreground">
+            <span className="inline-block text-accent font-semibold text-sm tracking-widest uppercase mb-4">Browse Categories</span>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-foreground">
               Explore by Interest
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
@@ -275,16 +258,13 @@ const Index = () => {
                 <Link
                   key={category.link}
                   to={category.link}
-                  className="group relative p-8 bg-card hover:bg-muted/50 rounded-2xl border border-border hover:border-primary/40 transition-all duration-400 overflow-hidden hover:shadow-lg"
+                  className="group relative p-8 bg-card hover:bg-muted/30 rounded-2xl border border-border hover:border-primary/40 transition-all duration-300 overflow-hidden hover:shadow-lg hover:-translate-y-1"
                 >
-                  {/* Hover glow effect */}
-                  <div className="absolute inset-0 bg-gradient-spotlight opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
                   <div className="relative z-10">
-                    <div className="inline-flex p-4 rounded-2xl bg-primary/10 mb-5 group-hover:bg-primary/15 transition-colors">
-                      <Icon className="h-8 w-8 text-primary transition-transform duration-300 group-hover:scale-110" />
+                    <div className="inline-flex p-4 rounded-2xl bg-gradient-accent mb-5">
+                      <Icon className="h-8 w-8 text-white transition-transform duration-300 group-hover:scale-110" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
                       {category.title}
                     </h3>
                     <p className="text-muted-foreground">{category.description}</p>
@@ -304,20 +284,23 @@ const Index = () => {
 
       {/* Newsletter Section */}
       <section className="py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-muted/40" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 bg-gradient-hero" />
         <div className="absolute top-0 left-0 right-0 h-px glow-line" />
+        
+        {/* Floating elements */}
+        <div className="absolute top-20 left-[10%] w-64 h-64 bg-vibrant-purple/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-[10%] w-80 h-80 bg-vibrant-pink/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '2.5s' }} />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="inline-flex p-4 rounded-2xl bg-primary/10 mb-8">
-              <Sparkles className="h-10 w-10 text-primary" />
+            <div className="inline-flex p-4 rounded-2xl bg-secondary/10 backdrop-blur-sm mb-8">
+              <Sparkles className="h-10 w-10 text-foreground" />
             </div>
-            <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-6 text-foreground">
-              Stay Ahead
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-foreground">
+              Stay Ahead of the Curve
             </h2>
-            <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-              Get exclusive deals, wellness tech insights, and productivity tips delivered to your inbox.
+            <p className="text-xl text-foreground/70 mb-10 leading-relaxed">
+              Get exclusive deals, tech insights, and productivity tips delivered to your inbox.
             </p>
             
             <NewsletterSignup className="max-w-md mx-auto" />
@@ -327,7 +310,7 @@ const Index = () => {
                 variant="ghost"
                 size="lg" 
                 asChild
-                className="text-muted-foreground hover:text-foreground hover:bg-transparent transition-colors"
+                className="text-foreground/70 hover:text-foreground hover:bg-secondary/10 transition-colors"
               >
                 <Link to="/blog" className="flex items-center gap-2">
                   Visit Our Blog

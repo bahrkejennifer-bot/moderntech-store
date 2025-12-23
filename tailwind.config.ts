@@ -57,23 +57,24 @@ export default {
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
   			},
-  			'electric-blue': 'hsl(var(--electric-blue))',
-  			'electric-cyan': 'hsl(var(--electric-cyan))',
-  			'neon-purple': 'hsl(var(--neon-purple))',
-  			'premium-silver': 'hsl(var(--premium-silver))',
-  			'premium-charcoal': 'hsl(var(--premium-charcoal))'
+  			'vibrant-pink': 'hsl(var(--vibrant-pink))',
+  			'vibrant-magenta': 'hsl(var(--vibrant-magenta))',
+  			'vibrant-purple': 'hsl(var(--vibrant-purple))',
+  			'vibrant-coral': 'hsl(var(--vibrant-coral))',
+  			'vibrant-orange': 'hsl(var(--vibrant-orange))'
   		},
   		backgroundImage: {
   			'gradient-hero': 'var(--gradient-hero)',
   			'gradient-accent': 'var(--gradient-accent)',
-  			'gradient-dark': 'var(--gradient-dark)',
+  			'gradient-warm': 'var(--gradient-warm)',
+  			'gradient-vibrant': 'var(--gradient-vibrant)',
   			'gradient-spotlight': 'var(--gradient-spotlight)'
   		},
   		boxShadow: {
   			elegant: 'var(--shadow-elegant)',
   			card: 'var(--shadow-card)',
   			glow: 'var(--shadow-glow)',
-  			neon: 'var(--shadow-neon)',
+  			soft: 'var(--shadow-soft)',
   			'2xs': 'var(--shadow-2xs)',
   			xs: 'var(--shadow-xs)',
   			sm: 'var(--shadow-sm)',
@@ -101,39 +102,33 @@ export default {
   				to: { opacity: '1', transform: 'translateY(0)' }
   			},
   			'fade-in-up': {
-  				from: { opacity: '0', transform: 'translateY(40px)' },
+  				from: { opacity: '0', transform: 'translateY(30px)' },
   				to: { opacity: '1', transform: 'translateY(0)' }
   			},
-  			'glow-pulse': {
-  				'0%, 100%': { boxShadow: '0 0 20px hsl(210 100% 55% / 0.3)' },
-  				'50%': { boxShadow: '0 0 40px hsl(210 100% 55% / 0.6)' }
-  			},
-  			'spotlight-move': {
-  				'0%, 100%': { transform: 'translateX(-50%) translateY(-50%) scale(1)' },
-  				'50%': { transform: 'translateX(-50%) translateY(-50%) scale(1.1)' }
-  			},
-  			'slide-up': {
-  				from: { opacity: '0', transform: 'translateY(100px)' },
-  				to: { opacity: '1', transform: 'translateY(0)' }
+  			'scale-in': {
+  				from: { opacity: '0', transform: 'scale(0.95)' },
+  				to: { opacity: '1', transform: 'scale(1)' }
   			},
   			'float': {
   				'0%, 100%': { transform: 'translateY(0)' },
-  				'50%': { transform: 'translateY(-20px)' }
+  				'50%': { transform: 'translateY(-15px)' }
+  			},
+  			'pulse-soft': {
+  				'0%, 100%': { opacity: '1' },
+  				'50%': { opacity: '0.7' }
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
-  			'fade-in': 'fade-in 0.6s ease-out',
-  			'fade-in-up': 'fade-in-up 0.8s ease-out',
-  			'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
-  			'spotlight': 'spotlight-move 8s ease-in-out infinite',
-  			'slide-up': 'slide-up 0.8s ease-out',
-  			'float': 'float 6s ease-in-out infinite'
+  			'fade-in': 'fade-in 0.5s ease-out',
+  			'fade-in-up': 'fade-in-up 0.6s ease-out',
+  			'scale-in': 'scale-in 0.4s ease-out',
+  			'float': 'float 5s ease-in-out infinite',
+  			'pulse-soft': 'pulse-soft 3s ease-in-out infinite'
   		},
   		fontFamily: {
   			sans: [
-  				'SF Pro Display',
   				'Inter',
   				'-apple-system',
   				'BlinkMacSystemFont',
@@ -144,7 +139,6 @@ export default {
   				'sans-serif'
   			],
   			display: [
-  				'SF Pro Display',
   				'Inter',
   				'-apple-system',
   				'BlinkMacSystemFont',
