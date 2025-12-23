@@ -108,20 +108,23 @@ const Index = () => {
             backgroundPosition: "center",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
+          {/* Decorative gradient orbs */}
+          <div className="absolute top-20 right-1/4 w-96 h-96 bg-vibrant-purple/20 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-20 right-1/3 w-72 h-72 bg-vibrant-teal/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
         </div>
         
         <div className="container relative z-10 mx-auto px-4 pt-12">
           <div className="max-w-2xl">
             <div className="mb-4 inline-block">
-              <span className="text-primary-foreground text-sm font-semibold uppercase tracking-wider bg-primary px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+              <span className="text-primary-foreground text-sm font-semibold uppercase tracking-wider bg-gradient-hero px-5 py-2.5 rounded-full shadow-glow flex items-center gap-2">
                 <Sparkles className="h-4 w-4" />
                 New Year, New Tech 2026
               </span>
             </div>
             <h1 className="mb-4 text-5xl md:text-6xl lg:text-7xl font-bold font-display animate-fade-in">
               Level Up Your Life
-              <span className="block bg-gradient-hero bg-clip-text text-transparent mt-2">
+              <span className="block bg-gradient-hero bg-clip-text text-transparent mt-2 drop-shadow-sm">
                 Tech for a Smarter 2026
               </span>
             </h1>
@@ -130,7 +133,7 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
-                className="bg-gradient-hero hover:shadow-elegant transition-all duration-300 text-lg px-8 py-6 rounded-xl font-semibold" 
+                className="bg-gradient-hero hover:shadow-glow transition-all duration-300 text-lg px-8 py-6 rounded-xl font-semibold hover:scale-105" 
                 size="lg" 
                 onClick={scrollToFeatured}
               >
@@ -140,7 +143,7 @@ const Index = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-lg px-8 py-6 rounded-xl font-semibold"
+                className="border-2 border-vibrant-teal text-vibrant-teal hover:bg-vibrant-teal hover:text-white transition-all duration-300 text-lg px-8 py-6 rounded-xl font-semibold backdrop-blur-sm"
                 asChild
               >
                 <Link to="/digital-products">Free Tech Guides</Link>
@@ -151,40 +154,44 @@ const Index = () => {
       </section>
 
       {/* Featured Products Section */}
-      <section id="featured-products" className="py-20 bg-gradient-to-b from-background to-secondary/30">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold font-display text-center mb-4">
-            Start 2026 with the Best Tech
-          </h2>
-          <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
-            Got a gift card? Invest it in yourself. Our handpicked selection to power your New Year goals.
-          </p>
+      <section id="featured-products" className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-vibrant-purple/5 to-vibrant-teal/5" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-12">
+            <span className="inline-block text-vibrant-coral font-semibold text-sm uppercase tracking-wider mb-2">Top Picks</span>
+            <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">
+              Start 2026 with the <span className="bg-gradient-hero bg-clip-text text-transparent">Best Tech</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Got a gift card? Invest it in yourself. Our handpicked selection to power your New Year goals.
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {featuredProducts.map((product) => (
-              <Card key={product.title} className="overflow-hidden transition-all duration-300 hover:shadow-card group bg-card">
-                <div className="aspect-square overflow-hidden bg-muted">
+            {featuredProducts.map((product, index) => (
+              <Card key={product.title} className="overflow-hidden transition-all duration-300 hover:shadow-elegant hover:-translate-y-2 group bg-card border-border/50 hover:border-primary/30">
+                <div className="aspect-square overflow-hidden bg-muted relative">
                   <img
                     src={product.imageUrl}
                     alt={product.title}
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-lg line-clamp-2">{product.title}</CardTitle>
+                  <CardTitle className="text-lg line-clamp-2 group-hover:text-primary transition-colors">{product.title}</CardTitle>
                   <CardDescription className="line-clamp-3">{product.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center justify-end">
-                    <div className="flex items-center space-x-1">
-                      <Star className="h-4 w-4 fill-accent text-accent" />
-                      <span className="text-sm font-medium">{product.rating}/5</span>
+                    <div className="flex items-center space-x-1 bg-vibrant-coral/10 px-2 py-1 rounded-full">
+                      <Star className="h-4 w-4 fill-vibrant-coral text-vibrant-coral" />
+                      <span className="text-sm font-semibold text-vibrant-coral">{product.rating}</span>
                     </div>
                   </div>
                 </CardContent>
                 <CardFooter>
                   <Button
-                    variant="cta"
-                    className="w-full"
+                    className="w-full bg-gradient-cool hover:shadow-glow transition-all duration-300 text-white"
                     asChild
                   >
                     <a href={product.affiliateLink} target="_blank" rel="noopener noreferrer nofollow">
@@ -199,25 +206,33 @@ const Index = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-20 bg-gradient-to-b from-secondary/30 to-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold font-display text-center mb-4">
-            Explore by Category
-          </h2>
-          <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
-            Find the perfect tech to power your 2026 resolutions
-          </p>
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-vibrant-teal/5 via-background to-vibrant-purple/5" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-12">
+            <span className="inline-block text-vibrant-teal font-semibold text-sm uppercase tracking-wider mb-2">Browse</span>
+            <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">
+              Explore by <span className="bg-gradient-accent bg-clip-text text-transparent">Category</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Find the perfect tech to power your 2026 resolutions
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category) => {
+            {categories.map((category, index) => {
               const Icon = category.icon;
+              const colors = ['vibrant-blue', 'vibrant-teal', 'vibrant-coral', 'vibrant-purple', 'vibrant-mint', 'vibrant-blue'];
               return (
                 <Link
                   key={category.link}
                   to={category.link}
-                  className="group relative p-8 bg-card rounded-2xl border-2 border-border hover:border-primary hover:shadow-elegant transition-all duration-300 overflow-hidden"
+                  className="group relative p-8 bg-card rounded-2xl border-2 border-border/50 hover:border-primary/50 hover:shadow-elegant transition-all duration-300 overflow-hidden hover:-translate-y-1"
                 >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-hero opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-300" />
-                  <Icon className="h-14 w-14 mb-4 text-primary transition-transform duration-300 group-hover:scale-110" />
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-hero opacity-0 group-hover:opacity-15 blur-3xl transition-opacity duration-500" />
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-accent opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500" />
+                  <div className={`inline-flex p-3 rounded-xl bg-primary/10 mb-4`}>
+                    <Icon className="h-10 w-10 text-primary transition-transform duration-300 group-hover:scale-110" />
+                  </div>
                   <h3 className="text-2xl font-bold font-display mb-2 group-hover:text-primary transition-colors">
                     {category.title}
                   </h3>
@@ -231,12 +246,16 @@ const Index = () => {
 
       {/* Newsletter CTA Section */}
       <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-vibrant-purple/10 via-vibrant-blue/5 to-vibrant-teal/10" />
+        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-vibrant-coral/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-vibrant-teal/15 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl mx-auto text-center mb-8">
-            <Sparkles className="h-16 w-16 mx-auto mb-6 text-primary animate-pulse-glow" />
+            <div className="inline-flex p-4 rounded-2xl bg-gradient-hero mb-6 shadow-glow">
+              <Sparkles className="h-12 w-12 text-white" />
+            </div>
             <h2 className="text-4xl md:text-5xl font-bold font-display mb-6">
-              Stay Ahead of the Curve
+              Stay Ahead of the <span className="bg-gradient-hero bg-clip-text text-transparent">Curve</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
               Get exclusive deals, wellness tech insights, and productivity tips delivered to your inbox
@@ -248,7 +267,7 @@ const Index = () => {
               variant="outline"
               size="lg" 
               asChild
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              className="border-2 border-vibrant-purple text-vibrant-purple hover:bg-vibrant-purple hover:text-white transition-all duration-300"
             >
               <Link to="/blog">Visit Our Blog</Link>
             </Button>
