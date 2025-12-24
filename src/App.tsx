@@ -17,6 +17,7 @@ import TechGiftCheatsheet from "./pages/TechGiftCheatsheet";
 import AdminUpload from "./pages/AdminUpload";
 import AdminAuth from "./pages/AdminAuth";
 import NotFound from "./pages/NotFound";
+import { NewsletterPopup } from "./components/NewsletterPopup";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <NewsletterPopup />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
