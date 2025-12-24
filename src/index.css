@@ -22,19 +22,19 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 240 20% 15%;
 
-    /* Deep purple-blue - Elementor primary */
-    --primary: 250 85% 55%;
+    /* Vibrant teal green - Primary */
+    --primary: 160 85% 40%;
     --primary-foreground: 0 0% 100%;
 
-    /* Hot pink for bold accents */
-    --secondary: 330 90% 55%;
+    /* Light sky blue for accents */
+    --secondary: 195 95% 50%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 15% 96%;
-    --muted-foreground: 240 10% 45%;
+    --muted: 200 20% 96%;
+    --muted-foreground: 200 10% 45%;
 
-    /* Vibrant orange accent */
-    --accent: 25 100% 55%;
+    /* Coral orange accent */
+    --accent: 15 100% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 50%;
@@ -42,33 +42,36 @@ All colors MUST be HSL.
 
     --border: 240 10% 90%;
     --input: 240 10% 92%;
-    --ring: 250 85% 55%;
+    --ring: 160 85% 40%;
 
     --radius: 0.75rem;
 
-    /* Elementor vibrant brand colors */
-    --vibrant-purple: 250 85% 55%;
-    --vibrant-pink: 330 90% 55%;
-    --vibrant-orange: 25 100% 55%;
-    --vibrant-green: 155 80% 45%;
-    --vibrant-blue: 215 95% 55%;
+    /* Vibrant brand colors - Green & Blue focused */
+    --vibrant-green: 160 85% 40%;
+    --vibrant-teal: 175 80% 45%;
+    --vibrant-blue: 195 95% 50%;
+    --vibrant-sky: 200 90% 55%;
+    --vibrant-pink: 330 85% 55%;
+    --vibrant-orange: 15 100% 55%;
     --vibrant-coral: 10 90% 60%;
 
-    /* Bold gradients - Elementor style */
-    --gradient-hero: linear-gradient(135deg, hsl(250 85% 55%), hsl(280 80% 50%));
-    --gradient-accent: linear-gradient(135deg, hsl(250 85% 55%), hsl(330 90% 55%));
-    --gradient-warm: linear-gradient(135deg, hsl(330 90% 55%), hsl(25 100% 55%));
-    --gradient-vibrant: linear-gradient(135deg, hsl(250 85% 55%), hsl(215 95% 55%));
-    --gradient-success: linear-gradient(135deg, hsl(155 80% 45%), hsl(175 75% 45%));
-    --gradient-spotlight: radial-gradient(ellipse at center, hsl(250 85% 55% / 0.08), transparent 70%);
+    /* Bold gradients - Green & Blue focused */
+    --gradient-hero: linear-gradient(135deg, hsl(160 85% 35%), hsl(195 95% 45%));
+    --gradient-accent: linear-gradient(135deg, hsl(160 85% 40%), hsl(195 95% 50%));
+    --gradient-warm: linear-gradient(135deg, hsl(15 100% 55%), hsl(330 85% 55%));
+    --gradient-vibrant: linear-gradient(135deg, hsl(175 80% 45%), hsl(200 90% 55%));
+    --gradient-success: linear-gradient(135deg, hsl(160 85% 40%), hsl(175 80% 45%));
+    --gradient-spotlight: radial-gradient(ellipse at center, hsl(160 85% 40% / 0.08), transparent 70%);
     
     /* Elegant shadows */
-    --shadow-elegant: 0 20px 50px -15px hsl(250 85% 55% / 0.25);
-    --shadow-card: 0 4px 20px hsl(240 20% 15% / 0.08);
-    --shadow-glow: 0 0 40px hsl(250 85% 55% / 0.25);
-    --shadow-soft: 0 8px 30px hsl(250 50% 50% / 0.1);
-    --shadow-pink: 0 10px 40px hsl(330 90% 55% / 0.25);
-    --shadow-orange: 0 10px 40px hsl(25 100% 55% / 0.25);
+    --shadow-elegant: 0 20px 50px -15px hsl(160 85% 40% / 0.25);
+    --shadow-card: 0 4px 20px hsl(200 20% 15% / 0.08);
+    --shadow-glow: 0 0 40px hsl(195 95% 50% / 0.25);
+    --shadow-soft: 0 8px 30px hsl(180 50% 50% / 0.1);
+    --shadow-pink: 0 10px 40px hsl(330 85% 55% / 0.25);
+    --shadow-orange: 0 10px 40px hsl(15 100% 55% / 0.25);
+    --shadow-green: 0 10px 40px hsl(160 85% 40% / 0.25);
+    --shadow-blue: 0 10px 40px hsl(195 95% 50% / 0.25);
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 240 20% 15%;

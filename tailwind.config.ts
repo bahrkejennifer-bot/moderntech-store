@@ -57,12 +57,13 @@ export default {
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
   			},
-  			'vibrant-purple': 'hsl(var(--vibrant-purple))',
-  			'vibrant-pink': 'hsl(var(--vibrant-pink))',
-  			'vibrant-orange': 'hsl(var(--vibrant-orange))',
-  			'vibrant-green': 'hsl(var(--vibrant-green))',
-  			'vibrant-blue': 'hsl(var(--vibrant-blue))',
-  			'vibrant-coral': 'hsl(var(--vibrant-coral))'
+			'vibrant-green': 'hsl(var(--vibrant-green))',
+			'vibrant-teal': 'hsl(var(--vibrant-teal))',
+			'vibrant-blue': 'hsl(var(--vibrant-blue))',
+			'vibrant-sky': 'hsl(var(--vibrant-sky))',
+			'vibrant-pink': 'hsl(var(--vibrant-pink))',
+			'vibrant-orange': 'hsl(var(--vibrant-orange))',
+			'vibrant-coral': 'hsl(var(--vibrant-coral))'
   		},
   		backgroundImage: {
   			'gradient-hero': 'var(--gradient-hero)',
