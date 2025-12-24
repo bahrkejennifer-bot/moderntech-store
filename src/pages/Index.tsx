@@ -103,64 +103,71 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section - Elementor Inspired */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Vibrant gradient background */}
-        <div className="absolute inset-0 bg-gradient-hero" />
+      {/* Hero Section - Clean Modern */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background">
+        {/* Subtle geometric background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(220_90%_50%/0.08),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(175_85%_40%/0.06),transparent_50%)]" />
+        </div>
         
-        {/* Subtle pattern overlay */}
-        <div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-        
-        {/* Floating decorative elements */}
-        <div className="absolute top-20 right-[20%] w-72 h-72 bg-vibrant-purple/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-32 left-[15%] w-96 h-96 bg-vibrant-pink/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+        {/* Floating decorative elements - blue/teal tones */}
+        <div className="absolute top-20 right-[20%] w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-32 left-[15%] w-96 h-96 bg-accent/8 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
         
         <div className="container relative z-10 mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            {/* Main headline - Bold Elementor style */}
+            {/* Main headline - Bold modern style */}
             <h1 className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground animate-fade-in">
               Level Up Your Life
               <br />
-              <span className="text-foreground">Create Your Future</span>
+              <span className="gradient-text">Create Your Future</span>
             </h1>
             
             {/* Subheadline */}
-            <p className="mb-10 text-xl md:text-2xl text-foreground/70 max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.15s' }}>
+            <p className="mb-10 text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.15s' }}>
               Curated wellness tech and productivity essentials for your best year yet.
             </p>
             
-            {/* CTA Button - Bold black like Elementor */}
+            {/* CTA Button */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button 
-                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold shadow-xl hover:shadow-2xl hover:-translate-y-1" 
+                className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold shadow-xl hover:shadow-2xl hover:-translate-y-1" 
                 size="lg" 
                 onClick={scrollToFeatured}
               >
                 Get Started
               </Button>
+              <Button 
+                variant="outline"
+                className="border-2 border-foreground/20 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold" 
+                size="lg" 
+                asChild
+              >
+                <Link to="/blog">Read Our Blog</Link>
+              </Button>
             </div>
             
             {/* Feature cards row */}
             <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in" style={{ animationDelay: '0.45s' }}>
-              <div className="bg-card/80 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:shadow-lg transition-all hover:-translate-y-1">
-                <div className="text-3xl mb-3">🛡️</div>
+              <div className="bg-card p-6 rounded-2xl border border-border shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto">
+                  <ShieldCheck className="h-6 w-6 text-primary" />
+                </div>
                 <h3 className="font-bold text-lg mb-2 text-foreground">Curated Tech</h3>
                 <p className="text-muted-foreground text-sm">Handpicked essentials for modern living.</p>
               </div>
-              <div className="bg-card/80 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:shadow-lg transition-all hover:-translate-y-1">
-                <div className="text-3xl mb-3">⚡</div>
+              <div className="bg-card p-6 rounded-2xl border border-border shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4 mx-auto">
+                  <Star className="h-6 w-6 text-accent" />
+                </div>
                 <h3 className="font-bold text-lg mb-2 text-foreground">Top Rated</h3>
                 <p className="text-muted-foreground text-sm">Only the best reviewed products make our list.</p>
               </div>
-              <div className="bg-card/80 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:shadow-lg transition-all hover:-translate-y-1">
-                <div className="text-3xl mb-3">🎯</div>
+              <div className="bg-card p-6 rounded-2xl border border-border shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto">
+                  <Sparkles className="h-6 w-6 text-primary" />
+                </div>
                 <h3 className="font-bold text-lg mb-2 text-foreground">Goal Focused</h3>
                 <p className="text-muted-foreground text-sm">Tech to help you achieve your 2026 goals.</p>
               </div>
@@ -170,7 +177,7 @@ const Index = () => {
       </section>
 
       {/* Featured Products Section */}
-      <section id="featured-products" className="py-28 relative overflow-hidden bg-card">
+      <section id="featured-products" className="py-28 relative overflow-hidden bg-muted/30">
         <div className="absolute top-0 left-0 right-0 h-px glow-line" />
         
         <div className="container mx-auto px-4 relative z-10">
@@ -258,7 +265,7 @@ const Index = () => {
                 <Link
                   key={category.link}
                   to={category.link}
-                  className="group relative p-8 bg-card hover:bg-muted/30 rounded-2xl border border-border hover:border-primary/40 transition-all duration-300 overflow-hidden hover:shadow-lg hover:-translate-y-1"
+                  className="group relative p-8 bg-card hover:bg-muted/50 rounded-2xl border border-border hover:border-primary/40 transition-all duration-300 overflow-hidden hover:shadow-lg hover:-translate-y-1"
                 >
                   <div className="relative z-10">
                     <div className="inline-flex p-4 rounded-2xl bg-gradient-accent mb-5">
@@ -283,23 +290,24 @@ const Index = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-hero" />
+      <section className="py-28 relative overflow-hidden bg-secondary">
         <div className="absolute top-0 left-0 right-0 h-px glow-line" />
         
-        {/* Floating elements */}
-        <div className="absolute top-20 left-[10%] w-64 h-64 bg-vibrant-purple/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-[10%] w-80 h-80 bg-vibrant-pink/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '2.5s' }} />
+        {/* Subtle background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(220_90%_50%/0.15),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(175_85%_40%/0.1),transparent_50%)]" />
+        </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="inline-flex p-4 rounded-2xl bg-secondary/10 backdrop-blur-sm mb-8">
-              <Sparkles className="h-10 w-10 text-foreground" />
+            <div className="inline-flex p-4 rounded-2xl bg-primary/20 backdrop-blur-sm mb-8">
+              <Sparkles className="h-10 w-10 text-primary-foreground" />
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-foreground">
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-secondary-foreground">
               Stay Ahead of the Curve
             </h2>
-            <p className="text-xl text-foreground/70 mb-10 leading-relaxed">
+            <p className="text-xl text-secondary-foreground/70 mb-10 leading-relaxed">
               Get exclusive deals, tech insights, and productivity tips delivered to your inbox.
             </p>
             
@@ -310,7 +318,7 @@ const Index = () => {
                 variant="ghost"
                 size="lg" 
                 asChild
-                className="text-foreground/70 hover:text-foreground hover:bg-secondary/10 transition-colors"
+                className="text-secondary-foreground/70 hover:text-secondary-foreground hover:bg-primary/10 transition-colors"
               >
                 <Link to="/blog" className="flex items-center gap-2">
                   Visit Our Blog
