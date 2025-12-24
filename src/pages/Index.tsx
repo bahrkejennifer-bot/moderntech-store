@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
+import { NewsletterPopup } from "@/components/NewsletterPopup";
+import { TechChatbot } from "@/components/TechChatbot";
 import fireworksHero from "@/assets/new-year-fireworks-hero.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
@@ -389,6 +391,12 @@ const Index = () => {
       </section>
 
       <AffiliateFooter />
+      
+      {/* Newsletter Popup */}
+      <NewsletterPopup />
+      
+      {/* Tech Finder Chatbot */}
+      <TechChatbot />
     </div>
   );
 };
