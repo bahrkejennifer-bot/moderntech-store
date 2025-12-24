@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
-import heroImage from "@/assets/new-year-hero.jpg";
+import fireworksHero from "@/assets/new-year-fireworks-hero.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
 import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
@@ -61,7 +61,7 @@ const categories = [
     description: "Smart protection for your space",
     icon: ShieldCheck,
     link: "/home-safety",
-    color: "bg-vibrant-purple",
+    color: "bg-vibrant-green",
   },
   {
     title: "Health & Wellness",
@@ -82,14 +82,14 @@ const categories = [
     description: "Next-level gaming gear",
     icon: Gamepad2,
     link: "/gaming",
-    color: "bg-vibrant-green",
+    color: "bg-vibrant-teal",
   },
   {
     title: "Connectivity",
     description: "Stay connected everywhere",
     icon: Wifi,
     link: "/connectivity",
-    color: "bg-vibrant-blue",
+    color: "bg-vibrant-sky",
   },
   {
     title: "College & School",
@@ -109,37 +109,45 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section - Elementor Inspired with Vibrant Colors */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-hero">
-        {/* Decorative shapes */}
-        <div className="absolute top-20 right-[10%] w-80 h-80 bg-vibrant-pink/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 left-[5%] w-96 h-96 bg-vibrant-orange/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-vibrant-blue/10 rounded-full blur-3xl" />
+      {/* Hero Section - New Year Fireworks with Green/Blue accent */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        {/* Fireworks background image */}
+        <div className="absolute inset-0">
+          <img 
+            src={fireworksHero} 
+            alt="New Year celebration with fireworks" 
+            className="w-full h-full object-cover"
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
+          {/* Colorful accent overlays */}
+          <div className="absolute inset-0 bg-gradient-to-br from-vibrant-green/20 via-transparent to-vibrant-blue/25" />
+        </div>
         
         <div className="container relative z-10 mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-8 animate-fade-in">
-              <Sparkles className="h-4 w-4" />
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-8 animate-fade-in border border-white/20">
+              <Sparkles className="h-4 w-4 text-vibrant-orange" />
               <span className="text-sm font-medium">New Year, New Tech</span>
             </div>
             
             {/* Main headline - Bold style */}
-            <h1 className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white animate-fade-in">
+            <h1 className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white animate-fade-in drop-shadow-lg">
               Level Up Your Life
               <br />
-              <span className="text-vibrant-orange">Create Your Future</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-vibrant-green via-vibrant-blue to-vibrant-sky">Create Your Future</span>
             </h1>
             
             {/* Subheadline */}
-            <p className="mb-10 text-xl md:text-2xl text-white/80 max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.15s' }}>
+            <p className="mb-10 text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed animate-fade-in drop-shadow" style={{ animationDelay: '0.15s' }}>
               Curated wellness tech and productivity essentials for your best year yet.
             </p>
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button 
-                className="bg-vibrant-pink hover:bg-vibrant-pink/90 text-white transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold shadow-pink hover:shadow-2xl hover:-translate-y-1" 
+                className="bg-vibrant-green hover:bg-vibrant-green/90 text-white transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold shadow-green hover:shadow-2xl hover:-translate-y-1" 
                 size="lg" 
                 onClick={scrollToFeatured}
               >
@@ -147,7 +155,7 @@ const Index = () => {
               </Button>
               <Button 
                 variant="outline"
-                className="border-2 border-white/30 text-white hover:bg-white hover:text-primary transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold backdrop-blur-sm" 
+                className="border-2 border-vibrant-blue/60 text-white hover:bg-vibrant-blue hover:text-white transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold backdrop-blur-sm" 
                 size="lg" 
                 asChild
               >
@@ -157,17 +165,17 @@ const Index = () => {
             
             {/* Stats row */}
             <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in" style={{ animationDelay: '0.45s' }}>
-              <div className="text-center">
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2">100+</div>
-                <p className="text-white/70">Curated Products</p>
+                <p className="text-white/80">Curated Products</p>
               </div>
-              <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-vibrant-orange mb-2">4.8★</div>
-                <p className="text-white/70">Average Rating</p>
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <div className="text-4xl md:text-5xl font-bold text-vibrant-green mb-2">4.8★</div>
+                <p className="text-white/80">Average Rating</p>
               </div>
-              <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-vibrant-green mb-2">50K+</div>
-                <p className="text-white/70">Happy Readers</p>
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <div className="text-4xl md:text-5xl font-bold text-vibrant-blue mb-2">50K+</div>
+                <p className="text-white/80">Happy Readers</p>
               </div>
             </div>
           </div>
@@ -194,7 +202,7 @@ const Index = () => {
             {featuredProducts.map((product) => (
               <Card 
                 key={product.title} 
-                className="group overflow-hidden bg-card border-border hover:border-vibrant-purple/40 transition-all duration-300 hover:shadow-elegant hover:-translate-y-2"
+                className="group overflow-hidden bg-card border-border hover:border-vibrant-green/40 transition-all duration-300 hover:shadow-elegant hover:-translate-y-2"
               >
                 {/* Product Image */}
                 <div className="aspect-square overflow-hidden bg-muted relative">
@@ -212,7 +220,7 @@ const Index = () => {
                 </div>
                 
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-bold text-foreground group-hover:text-vibrant-purple transition-colors">
+                  <CardTitle className="text-lg font-bold text-foreground group-hover:text-vibrant-green transition-colors">
                     {product.title}
                   </CardTitle>
                   <span className="text-sm text-muted-foreground font-medium">{product.subtitle}</span>
@@ -226,7 +234,7 @@ const Index = () => {
                 
                 <CardFooter>
                   <Button
-                    className="w-full bg-vibrant-purple hover:bg-vibrant-purple/90 text-white transition-all duration-300 rounded-full font-semibold"
+                    className="w-full bg-vibrant-green hover:bg-vibrant-green/90 text-white transition-all duration-300 rounded-full font-semibold"
                     asChild
                   >
                     <a href={product.affiliateLink} target="_blank" rel="noopener noreferrer nofollow">
@@ -274,8 +282,8 @@ const Index = () => {
                     </h3>
                     <p className="text-muted-foreground">{category.description}</p>
                     
-                    {/* Arrow indicator */}
-                    <div className="mt-5 flex items-center text-vibrant-purple opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-10px] group-hover:translate-x-0">
+                    <div className="mt-5 flex items-center text-vibrant-blue opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-10px] group-hover:translate-x-0">
+                      <span className="text-sm font-semibold">Explore</span>
                       <span className="text-sm font-semibold">Explore</span>
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </div>
