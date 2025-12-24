@@ -4,81 +4,81 @@
 
 /* 
 ============================================
-ELEMENTOR-INSPIRED DESIGN SYSTEM
-Bold, Elegant, Vibrant, Modern
+MODERN BOLD DESIGN SYSTEM
+Clean, Sophisticated, High Contrast
 ============================================
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* Clean warm base */
-    --background: 330 30% 98%;
-    --foreground: 0 0% 8%;
+    /* Clean white base */
+    --background: 0 0% 100%;
+    --foreground: 220 15% 12%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 8%;
+    --card: 220 15% 98%;
+    --card-foreground: 220 15% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
+    --popover-foreground: 220 15% 12%;
 
-    /* Vibrant magenta/pink - Elementor signature */
-    --primary: 330 85% 60%;
+    /* Bold electric blue - primary */
+    --primary: 220 90% 50%;
     --primary-foreground: 0 0% 100%;
 
-    /* Bold black for contrast */
-    --secondary: 0 0% 8%;
+    /* Deep charcoal for contrast */
+    --secondary: 220 15% 12%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 330 20% 95%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 220 15% 95%;
+    --muted-foreground: 220 10% 45%;
 
-    /* Electric purple accent */
-    --accent: 270 80% 60%;
+    /* Vibrant teal accent */
+    --accent: 175 85% 40%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 85% 97%;
 
-    --border: 330 15% 90%;
-    --input: 330 15% 92%;
-    --ring: 330 85% 60%;
+    --border: 220 15% 90%;
+    --input: 220 15% 92%;
+    --ring: 220 90% 50%;
 
     --radius: 0.75rem;
 
-    /* Vibrant brand colors */
-    --vibrant-pink: 330 85% 60%;
-    --vibrant-magenta: 320 90% 55%;
-    --vibrant-purple: 270 80% 60%;
-    --vibrant-coral: 10 90% 65%;
+    /* Bold brand colors */
+    --vibrant-blue: 220 90% 50%;
+    --vibrant-teal: 175 85% 40%;
+    --vibrant-indigo: 240 80% 55%;
+    --vibrant-emerald: 160 85% 40%;
     --vibrant-orange: 25 95% 55%;
 
-    /* Bold gradients - Elementor style */
-    --gradient-hero: linear-gradient(135deg, hsl(340 90% 75%), hsl(320 85% 85%));
-    --gradient-accent: linear-gradient(135deg, hsl(330 85% 60%), hsl(270 80% 60%));
-    --gradient-warm: linear-gradient(135deg, hsl(330 85% 60%), hsl(10 90% 65%));
-    --gradient-vibrant: linear-gradient(135deg, hsl(320 90% 55%), hsl(270 80% 60%));
-    --gradient-spotlight: radial-gradient(ellipse at center, hsl(330 85% 60% / 0.1), transparent 70%);
+    /* Clean gradients - sophisticated */
+    --gradient-hero: linear-gradient(135deg, hsl(220 30% 97%), hsl(220 40% 94%));
+    --gradient-accent: linear-gradient(135deg, hsl(220 90% 50%), hsl(175 85% 40%));
+    --gradient-warm: linear-gradient(135deg, hsl(220 90% 50%), hsl(240 80% 55%));
+    --gradient-vibrant: linear-gradient(135deg, hsl(175 85% 40%), hsl(160 85% 40%));
+    --gradient-spotlight: radial-gradient(ellipse at center, hsl(220 90% 50% / 0.08), transparent 70%);
     
     /* Elegant shadows */
-    --shadow-elegant: 0 20px 50px -15px hsl(330 85% 60% / 0.2);
-    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.06);
-    --shadow-glow: 0 0 40px hsl(330 85% 60% / 0.25);
-    --shadow-soft: 0 8px 30px hsl(330 50% 50% / 0.1);
+    --shadow-elegant: 0 20px 50px -15px hsl(220 90% 50% / 0.2);
+    --shadow-card: 0 4px 20px hsl(220 15% 12% / 0.06);
+    --shadow-glow: 0 0 40px hsl(220 90% 50% / 0.2);
+    --shadow-soft: 0 8px 30px hsl(220 50% 50% / 0.08);
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 0 0% 8%;
-    --sidebar-primary: 330 85% 60%;
+    --sidebar-foreground: 220 15% 12%;
+    --sidebar-primary: 220 90% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 270 80% 60%;
+    --sidebar-accent: 175 85% 40%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 330 15% 90%;
-    --sidebar-ring: 330 85% 60%;
-    --chart-1: 330 85% 60%;
-    --chart-2: 270 80% 60%;
-    --chart-3: 10 90% 65%;
+    --sidebar-border: 220 15% 90%;
+    --sidebar-ring: 220 90% 50%;
+    --chart-1: 220 90% 50%;
+    --chart-2: 175 85% 40%;
+    --chart-3: 160 85% 40%;
     --chart-4: 25 95% 55%;
-    --chart-5: 320 90% 55%;
+    --chart-5: 240 80% 55%;
     --sidebar: 0 0% 100%;
     
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -97,62 +97,62 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 260 20% 8%;
+    --background: 220 20% 8%;
     --foreground: 0 0% 98%;
 
-    --card: 260 15% 12%;
+    --card: 220 18% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 260 15% 10%;
+    --popover: 220 18% 10%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 330 90% 65%;
+    --primary: 220 95% 60%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 8%;
+    --secondary-foreground: 220 15% 12%;
 
-    --muted: 260 15% 18%;
+    --muted: 220 15% 18%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 270 85% 65%;
+    --accent: 175 90% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 85% 97%;
 
-    --border: 260 15% 20%;
-    --input: 260 15% 18%;
-    --ring: 330 90% 65%;
+    --border: 220 15% 20%;
+    --input: 220 15% 18%;
+    --ring: 220 95% 60%;
 
-    --vibrant-pink: 330 90% 65%;
-    --vibrant-magenta: 320 95% 60%;
-    --vibrant-purple: 270 85% 65%;
-    --vibrant-coral: 10 95% 70%;
+    --vibrant-blue: 220 95% 60%;
+    --vibrant-teal: 175 90% 45%;
+    --vibrant-indigo: 240 85% 60%;
+    --vibrant-emerald: 160 90% 45%;
     --vibrant-orange: 25 100% 60%;
 
-    --gradient-hero: linear-gradient(135deg, hsl(340 95% 70%), hsl(320 90% 80%));
-    --gradient-accent: linear-gradient(135deg, hsl(330 90% 65%), hsl(270 85% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 25% 12%), hsl(220 20% 15%));
+    --gradient-accent: linear-gradient(135deg, hsl(220 95% 60%), hsl(175 90% 45%));
     
-    --shadow-elegant: 0 20px 50px -15px hsl(330 90% 65% / 0.3);
+    --shadow-elegant: 0 20px 50px -15px hsl(220 95% 60% / 0.3);
     --shadow-card: 0 4px 30px hsl(0 0% 0% / 0.4);
-    --shadow-glow: 0 0 50px hsl(330 90% 65% / 0.4);
-    --shadow-soft: 0 8px 30px hsl(330 50% 50% / 0.2);
+    --shadow-glow: 0 0 50px hsl(220 95% 60% / 0.3);
+    --shadow-soft: 0 8px 30px hsl(220 50% 50% / 0.15);
 
-    --sidebar-background: 260 15% 10%;
+    --sidebar-background: 220 18% 10%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 330 90% 65%;
+    --sidebar-primary: 220 95% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 270 85% 65%;
+    --sidebar-accent: 175 90% 45%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 260 15% 18%;
-    --sidebar-ring: 330 90% 65%;
-    --chart-1: 330 90% 70%;
-    --chart-2: 270 85% 70%;
-    --chart-3: 10 95% 75%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 220 95% 60%;
+    --chart-1: 220 95% 65%;
+    --chart-2: 175 90% 50%;
+    --chart-3: 160 90% 50%;
     --chart-4: 25 100% 65%;
-    --chart-5: 320 95% 65%;
-    --sidebar: 260 15% 12%;
+    --chart-5: 240 85% 65%;
+    --sidebar: 220 18% 12%;
     --radius: 0.75rem;
   }
 }
@@ -194,7 +194,7 @@ All colors MUST be HSL.
   }
 
   .glow-line {
-    background: linear-gradient(90deg, transparent, hsl(330 85% 60% / 0.4), transparent);
+    background: linear-gradient(90deg, transparent, hsl(220 90% 50% / 0.3), transparent);
     height: 1px;
   }
 
