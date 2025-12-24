@@ -348,24 +348,24 @@ const Index = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-28 relative overflow-hidden bg-foreground">
+      <section className="py-28 relative overflow-hidden bg-muted">
         <div className="absolute top-0 left-0 right-0 h-px glow-line" />
         
         {/* Subtle background elements */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(250_85%_55%/0.2),transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(330_90%_55%/0.15),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(160_85%_40%/0.1),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(195_95%_50%/0.1),transparent_50%)]" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="inline-flex p-4 rounded-2xl bg-vibrant-pink/20 backdrop-blur-sm mb-8">
-              <Sparkles className="h-10 w-10 text-vibrant-pink" />
+            <div className="inline-flex p-4 rounded-2xl bg-vibrant-green/10 mb-8">
+              <Sparkles className="h-10 w-10 text-vibrant-green" />
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-background">
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-foreground">
               Stay Ahead of the Curve
             </h2>
-            <p className="text-xl text-background/70 mb-10 leading-relaxed">
+            <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
               Get exclusive deals, tech insights, and productivity tips delivered to your inbox.
             </p>
             
@@ -376,7 +376,7 @@ const Index = () => {
                 variant="ghost"
                 size="lg" 
                 asChild
-                className="text-background/70 hover:text-background hover:bg-white/10 transition-colors"
+                className="text-muted-foreground hover:text-foreground hover:bg-vibrant-green/10 transition-colors"
               >
                 <Link to="/blog" className="flex items-center gap-2">
                   Visit Our Blog
