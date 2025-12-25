@@ -19,8 +19,8 @@ serve(async (req) => {
 
     const { email, name, campaignId } = await req.json();
 
-    // Default campaign ID for the newsletter
-    const DEFAULT_CAMPAIGN_ID = "478200904";
+    // Default campaign ID for the newsletter (using list token)
+    const DEFAULT_CAMPAIGN_ID = "CiFHU";
     const finalCampaignId = campaignId || DEFAULT_CAMPAIGN_ID;
 
     if (!email) {
