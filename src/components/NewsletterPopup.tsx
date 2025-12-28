@@ -93,10 +93,10 @@ export const NewsletterPopup = () => {
             <Sparkles className="w-8 h-8 text-vibrant-green" />
           </div>
           <DialogTitle className="text-2xl font-bold text-foreground">
-            Get Weekly Tech Picks!
+            Get Monthly Tech Picks!
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
-            Join 50,000+ readers getting the best tech deals and guides every week.
+            Join 50,000+ readers getting the best tech deals and guides every month.
           </DialogDescription>
         </DialogHeader>
 
