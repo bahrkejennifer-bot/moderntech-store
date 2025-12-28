@@ -159,7 +159,8 @@ const DigitalProducts = () => {
 
       const { url } = response.data;
       if (url) {
-        window.location.href = url;
+        // Open in new tab to avoid iframe redirect issues
+        window.open(url, "_blank");
       } else {
         throw new Error("No checkout URL returned");
       }
