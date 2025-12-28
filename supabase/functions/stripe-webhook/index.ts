@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@14.21.0";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 
 const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
   apiVersion: "2023-10-16",
@@ -8,6 +9,9 @@ const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 const webhookSecret = Deno.env.get("STRIPE_WEBHOOK_SECRET") || "";
+
+const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
+const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -51,16 +55,65 @@ serve(async (req) => {
       const session = event.data.object as Stripe.Checkout.Session;
       const customerEmail = session.customer_details?.email;
       const productName = session.metadata?.productName || "your guide";
+      const productSlug = session.metadata?.productSlug;
 
-      console.log("Processing checkout completion for:", customerEmail);
+      console.log("Processing checkout completion for:", customerEmail, "Product:", productName, "Slug:", productSlug);
 
       if (customerEmail) {
-        // Send confirmation email with Resend
+        // Generate a signed download URL for the PDF
+        let downloadUrl = "";
+        let downloadButtonHtml = "";
+        
+        if (productSlug) {
+          try {
+            const supabase = createClient(supabaseUrl, supabaseServiceKey);
+            
+            // Look up the product to get the PDF path
+            const { data: product, error: productError } = await supabase
+              .from("digital_products")
+              .select("pdf_path")
+              .eq("slug", productSlug)
+              .single();
+            
+            if (productError) {
+              console.error("Error fetching product:", productError);
+            } else if (product?.pdf_path) {
+              // Generate a signed URL that expires in 7 days (604800 seconds)
+              const { data: signedUrlData, error: signedUrlError } = await supabase
+                .storage
+                .from("digital-products")
+                .createSignedUrl(product.pdf_path, 604800);
+              
+              if (signedUrlError) {
+                console.error("Error creating signed URL:", signedUrlError);
+              } else if (signedUrlData?.signedUrl) {
+                downloadUrl = signedUrlData.signedUrl;
+                console.log("Generated signed download URL for:", product.pdf_path);
+                
+                downloadButtonHtml = `
+                  <div style="text-align: center; margin: 30px 0;">
+                    <a href="${downloadUrl}" 
+                       style="display: inline-block; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 18px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);">
+                      📥 Download Your Guide Now
+                    </a>
+                    <p style="margin-top: 12px; color: #64748b; font-size: 14px;">
+                      This link expires in 7 days. Save your guide to keep it forever!
+                    </p>
+                  </div>
+                `;
+              }
+            }
+          } catch (storageError) {
+            console.error("Error generating download URL:", storageError);
+          }
+        }
+        
+        // Send confirmation email with download link
         try {
           const emailResponse = await resend.emails.send({
             from: "Modern Tech LLC <onboarding@resend.dev>",
             to: [customerEmail],
-            subject: `Your ${productName} is Ready!`,
+            subject: `Your ${productName} is Ready to Download!`,
             html: `
               <!DOCTYPE html>
               <html>
@@ -76,12 +129,15 @@ serve(async (req) => {
                 <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 12px; padding: 30px; margin-bottom: 30px;">
                   <h2 style="margin-top: 0; color: #1e40af;">Your ${productName} is Ready</h2>
                   <p>We're thrilled to have you as a customer! Your purchase has been confirmed and your digital guide is ready for download.</p>
-                  <p><strong>What's next?</strong></p>
-                  <ul>
-                    <li>Check your email for the download link</li>
-                    <li>Save your guide to your favorite device</li>
-                    <li>Start exploring the expert recommendations inside</li>
-                  </ul>
+                  
+                  ${downloadButtonHtml || `
+                    <p><strong>What's next?</strong></p>
+                    <ul>
+                      <li>Your download link will be available shortly</li>
+                      <li>Save your guide to your favorite device</li>
+                      <li>Start exploring the expert recommendations inside</li>
+                    </ul>
+                  `}
                 </div>
                 
                 <div style="background: #f8fafc; border-radius: 8px; padding: 20px; margin-bottom: 30px;">

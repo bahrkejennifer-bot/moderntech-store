@@ -22,9 +22,9 @@ serve(async (req) => {
       apiVersion: "2023-10-16",
     });
 
-    const { priceId, productName, amount, successUrl, cancelUrl } = await req.json();
+    const { priceId, productName, productSlug, amount, successUrl, cancelUrl } = await req.json();
 
-    console.log("Creating checkout session for:", { productName, amount, priceId });
+    console.log("Creating checkout session for:", { productName, productSlug, amount, priceId });
 
     let sessionConfig: Stripe.Checkout.SessionCreateParams = {
       mode: "payment",
@@ -32,6 +32,7 @@ serve(async (req) => {
       cancel_url: cancelUrl || `${req.headers.get("origin")}/cancel`,
       metadata: {
         productName: productName || "Digital Product",
+        productSlug: productSlug || "",
       },
     };
 
