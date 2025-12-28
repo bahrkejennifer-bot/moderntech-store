@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones, GraduationCap, Activity, Baby, BookOpen, Loader2, Briefcase } from "lucide-react";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
@@ -272,13 +273,13 @@ const DigitalProducts = () => {
                   </div>
                 </div>
                 
-                {/* ConvertKit Email Capture Form */}
+                {/* GetResponse Email Capture Form */}
                 <div className="bg-primary/5 p-6 rounded-lg border border-primary/20">
                   <h3 className="text-xl font-bold mb-2 text-center">Get Your Free Guide Instantly</h3>
                   <p className="text-muted-foreground text-center mb-4">
                     Enter your email below and we'll send the guide straight to your inbox!
                   </p>
-                  <script async data-uid="cae0cce437" src="https://moderntech.kit.com/cae0cce437/index.js"></script>
+                  <NewsletterSignup campaignId="CiFHU" className="max-w-md mx-auto" />
                 </div>
               </CardContent>
             </Card>
