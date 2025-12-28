@@ -147,6 +147,7 @@ const DigitalProducts = () => {
       const response = await supabase.functions.invoke("create-checkout", {
         body: {
           productName: product.title,
+          productSlug: product.slug,
           amount: Math.round((product.price || 10) * 100), // Convert to cents
           successUrl: `${window.location.origin}/digital-products?success=true&product=${product.slug}`,
           cancelUrl: `${window.location.origin}/digital-products?canceled=true`,
