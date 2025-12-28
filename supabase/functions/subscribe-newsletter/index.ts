@@ -45,35 +45,34 @@ serve(async (req) => {
       }),
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error("GetResponse API error:", errorData);
-      
-      // Handle specific error cases
-      if (response.status === 409) {
-        // Contact already exists - this is not really an error for the user
-        return new Response(
-          JSON.stringify({ success: true, message: "You're already subscribed!" }),
-          {
-            headers: { ...corsHeaders, "Content-Type": "application/json" },
-            status: 200,
-          }
-        );
-      }
-      
-      throw new Error(errorData.message || "Failed to subscribe");
+    // GetResponse returns 202 Accepted on success with no body, or 409 if contact exists
+    if (response.status === 202 || response.status === 201) {
+      console.log("Successfully subscribed:", email);
+      return new Response(
+        JSON.stringify({ success: true, message: "Successfully subscribed!" }),
+        {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 200,
+        }
+      );
     }
 
-    const data = await response.json();
-    console.log("Successfully subscribed:", data);
+    if (response.status === 409) {
+      // Contact already exists - this is not really an error for the user
+      console.log("Contact already exists:", email);
+      return new Response(
+        JSON.stringify({ success: true, message: "You're already subscribed!" }),
+        {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 200,
+        }
+      );
+    }
 
-    return new Response(
-      JSON.stringify({ success: true, message: "Successfully subscribed!" }),
-      {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-        status: 200,
-      }
-    );
+    // Handle error responses
+    const errorData = await response.json().catch(() => ({ message: "Unknown error" }));
+    console.error("GetResponse API error:", response.status, errorData);
+    throw new Error(errorData.message || `Failed to subscribe (status: ${response.status})`);
   } catch (error: unknown) {
     console.error("Error subscribing to newsletter:", error);
     const errorMessage = error instanceof Error ? error.message : "An error occurred";
