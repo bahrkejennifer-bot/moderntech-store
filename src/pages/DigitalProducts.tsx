@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones, GraduationCap, Activity, Baby, BookOpen, Loader2, Briefcase } from "lucide-react";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import Navigation from "@/components/Navigation";
@@ -42,10 +43,34 @@ const DigitalProducts = () => {
   const [products, setProducts] = useState<DigitalProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  // Handle success/cancel from Stripe checkout
+  useEffect(() => {
+    const success = searchParams.get("success");
+    const canceled = searchParams.get("canceled");
+    const productSlug = searchParams.get("product");
+
+    if (success === "true") {
+      toast({
+        title: "Purchase Successful!",
+        description: `Thank you for your purchase! You will receive an email with your ${productSlug?.replace(/-/g, " ") || "guide"} shortly.`,
+      });
+      // Clear the URL params
+      setSearchParams({});
+    } else if (canceled === "true") {
+      toast({
+        title: "Purchase Canceled",
+        description: "Your purchase was canceled. Feel free to try again when you're ready.",
+        variant: "destructive",
+      });
+      setSearchParams({});
+    }
+  }, [searchParams, setSearchParams]);
 
   const fetchProducts = async () => {
     const { data, error } = await supabase
@@ -113,11 +138,41 @@ const DigitalProducts = () => {
     }
   };
 
-  const handleBuy = (product: DigitalProduct) => {
-    toast({
-      title: "Coming Soon!",
-      description: "Payment processing will be available shortly. Check back soon!",
-    });
+  const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
+
+  const handleBuy = async (product: DigitalProduct) => {
+    setCheckoutLoading(product.id);
+    
+    try {
+      const response = await supabase.functions.invoke("create-checkout", {
+        body: {
+          productName: product.title,
+          amount: Math.round((product.price || 10) * 100), // Convert to cents
+          successUrl: `${window.location.origin}/digital-products?success=true&product=${product.slug}`,
+          cancelUrl: `${window.location.origin}/digital-products?canceled=true`,
+        },
+      });
+
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+
+      const { url } = response.data;
+      if (url) {
+        window.location.href = url;
+      } else {
+        throw new Error("No checkout URL returned");
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      toast({
+        title: "Checkout Error",
+        description: "There was an error starting checkout. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setCheckoutLoading(null);
+    }
   };
 
   const freeProduct = products.find((p) => p.is_free);
@@ -339,9 +394,19 @@ const DigitalProducts = () => {
                             size="lg" 
                             className="w-full text-lg h-12"
                             onClick={() => handleBuy(product)}
+                            disabled={checkoutLoading === product.id}
                           >
-                            <ShoppingCart className="mr-2 h-5 w-5" />
-                            Buy Now - ${(product.price || 10).toFixed(2)}
+                            {checkoutLoading === product.id ? (
+                              <>
+                                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                                Processing...
+                              </>
+                            ) : (
+                              <>
+                                <ShoppingCart className="mr-2 h-5 w-5" />
+                                Buy Now - ${(product.price || 10).toFixed(2)}
+                              </>
+                            )}
                           </Button>
                         </CardContent>
                       </div>
