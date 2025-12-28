@@ -9,5 +9,5 @@ verify_jwt = false
 [functions.tech-chat]
 verify_jwt = false
 
-[functions.create-checkout]
+[functions.stripe-webhook]
 verify_jwt = false

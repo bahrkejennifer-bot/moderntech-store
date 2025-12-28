@@ -30,6 +30,9 @@ serve(async (req) => {
       mode: "payment",
       success_url: successUrl || `${req.headers.get("origin")}/success`,
       cancel_url: cancelUrl || `${req.headers.get("origin")}/cancel`,
+      metadata: {
+        productName: productName || "Digital Product",
+      },
     };
 
     // If a price ID is provided, use it directly
