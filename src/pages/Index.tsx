@@ -163,22 +163,24 @@ const Index = () => {
               </Button>
             </div>
           </div>
-          
-          {/* Stats row - positioned at bottom */}
-          <div className="absolute bottom-8 left-0 right-0 px-4">
-            <div className="max-w-4xl mx-auto grid grid-cols-3 gap-4 animate-fade-in" style={{ animationDelay: '0.45s' }}>
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
-                <div className="text-2xl md:text-3xl font-bold text-white mb-1">100+</div>
-                <p className="text-white/70 text-xs">Curated Products</p>
-              </div>
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
-                <div className="text-2xl md:text-3xl font-bold text-cyan-400 mb-1">4.8★</div>
-                <p className="text-white/70 text-xs">Average Rating</p>
-              </div>
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
-                <div className="text-2xl md:text-3xl font-bold text-sky-300 mb-1">50K+</div>
-                <p className="text-white/70 text-xs">Happy Readers</p>
-              </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-12 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-y border-white/10">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto grid grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-1">100+</div>
+              <p className="text-white/60 text-sm">Curated Products</p>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-1">4.8★</div>
+              <p className="text-white/60 text-sm">Average Rating</p>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-sky-300 mb-1">50K+</div>
+              <p className="text-white/60 text-sm">Happy Readers</p>
             </div>
           </div>
         </div>
