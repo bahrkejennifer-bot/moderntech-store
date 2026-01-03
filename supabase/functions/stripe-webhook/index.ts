@@ -60,51 +60,90 @@ serve(async (req) => {
       console.log("Processing checkout completion for:", customerEmail, "Product:", productName, "Slug:", productSlug);
 
       if (customerEmail) {
+        const supabase = createClient(supabaseUrl, supabaseServiceKey);
+        
         // Generate a signed download URL for the PDF
         let downloadUrl = "";
         let downloadButtonHtml = "";
+        let productId: string | null = null;
         
         if (productSlug) {
           try {
-            const supabase = createClient(supabaseUrl, supabaseServiceKey);
-            
-            // Look up the product to get the PDF path
+            // Look up the product to get the PDF path and id
             const { data: product, error: productError } = await supabase
               .from("digital_products")
-              .select("pdf_path")
+              .select("id, pdf_path")
               .eq("slug", productSlug)
               .single();
             
             if (productError) {
               console.error("Error fetching product:", productError);
-            } else if (product?.pdf_path) {
-              // Generate a signed URL that expires in 7 days (604800 seconds)
-              const { data: signedUrlData, error: signedUrlError } = await supabase
-                .storage
-                .from("digital-products")
-                .createSignedUrl(product.pdf_path, 604800);
+            } else if (product) {
+              productId = product.id;
               
-              if (signedUrlError) {
-                console.error("Error creating signed URL:", signedUrlError);
-              } else if (signedUrlData?.signedUrl) {
-                downloadUrl = signedUrlData.signedUrl;
-                console.log("Generated signed download URL for:", product.pdf_path);
+              if (product.pdf_path) {
+                // Generate a signed URL that expires in 7 days (604800 seconds)
+                const { data: signedUrlData, error: signedUrlError } = await supabase
+                  .storage
+                  .from("digital-products")
+                  .createSignedUrl(product.pdf_path, 604800);
                 
-                downloadButtonHtml = `
-                  <div style="text-align: center; margin: 30px 0;">
-                    <a href="${downloadUrl}" 
-                       style="display: inline-block; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 18px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);">
-                      📥 Download Your Guide Now
-                    </a>
-                    <p style="margin-top: 12px; color: #64748b; font-size: 14px;">
-                      This link expires in 7 days. Save your guide to keep it forever!
-                    </p>
-                  </div>
-                `;
+                if (signedUrlError) {
+                  console.error("Error creating signed URL:", signedUrlError);
+                } else if (signedUrlData?.signedUrl) {
+                  downloadUrl = signedUrlData.signedUrl;
+                  console.log("Generated signed download URL for:", product.pdf_path);
+                  
+                  downloadButtonHtml = `
+                    <div style="text-align: center; margin: 30px 0;">
+                      <a href="${downloadUrl}" 
+                         style="display: inline-block; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 18px; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);">
+                        📥 Download Your Guide Now
+                      </a>
+                      <p style="margin-top: 12px; color: #64748b; font-size: 14px;">
+                        This link expires in 7 days. Save your guide to keep it forever!
+                      </p>
+                    </div>
+                  `;
+                }
               }
             }
           } catch (storageError) {
             console.error("Error generating download URL:", storageError);
+          }
+        }
+        
+        // Record the purchase in the database
+        if (productId) {
+          try {
+            // Try to find user by email to link purchase
+            const { data: userData } = await supabase
+              .from("user_roles")
+              .select("user_id")
+              .limit(1);
+            
+            // Look up the user by email from auth.users
+            const { data: authUser } = await supabase.auth.admin.listUsers();
+            const matchingUser = authUser?.users?.find(u => u.email === customerEmail);
+            const userId = matchingUser?.id || "00000000-0000-0000-0000-000000000000";
+            
+            const { error: purchaseError } = await supabase
+              .from("purchases")
+              .insert({
+                user_id: userId,
+                product_id: productId,
+                customer_email: customerEmail,
+                stripe_session_id: session.id,
+              });
+            
+            if (purchaseError) {
+              console.error("Error recording purchase:", purchaseError);
+            } else {
+              console.log("Purchase recorded successfully for:", customerEmail);
+            }
+          } catch (purchaseRecordError) {
+            console.error("Error recording purchase:", purchaseRecordError);
+            // Don't fail the webhook if purchase recording fails
           }
         }
         

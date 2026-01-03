@@ -53,6 +53,41 @@ export type Database = {
         }
         Relationships: []
       }
+      purchases: {
+        Row: {
+          customer_email: string
+          id: string
+          product_id: string
+          purchased_at: string
+          stripe_session_id: string | null
+          user_id: string
+        }
+        Insert: {
+          customer_email: string
+          id?: string
+          product_id: string
+          purchased_at?: string
+          stripe_session_id?: string | null
+          user_id: string
+        }
+        Update: {
+          customer_email?: string
+          id?: string
+          product_id?: string
+          purchased_at?: string
+          stripe_session_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchases_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "digital_products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
