@@ -154,8 +154,7 @@ const Index = () => {
                 Explore Now
               </Button>
               <Button 
-                variant="outline"
-                className="border border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold backdrop-blur-sm" 
+                className="bg-white/90 text-slate-900 hover:bg-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
                 size="sm" 
                 asChild
               >
