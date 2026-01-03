@@ -122,8 +122,16 @@ const MyDownloads = () => {
       }
 
       if (data?.signedUrl) {
-        // Open in new tab to trigger download
-        window.open(data.signedUrl, "_blank");
+        // Use anchor element to trigger download without popup blocker issues
+        const link = document.createElement("a");
+        link.href = data.signedUrl;
+        link.download = purchase.product.title + ".pdf";
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
         toast({
           title: "Download Started",
           description: "Your file is downloading.",
