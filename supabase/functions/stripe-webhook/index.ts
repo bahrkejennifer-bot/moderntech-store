@@ -109,10 +109,14 @@ serve(async (req) => {
         }
         
         // Send confirmation email with download link
+        // Use verified email for testing (Resend requires verified domain for other recipients)
+        const isTestMode = !session.livemode;
+        const recipientEmail = isTestMode ? "info@moderntech.store" : customerEmail;
+        
         try {
           const emailResponse = await resend.emails.send({
             from: "Modern Tech LLC <onboarding@resend.dev>",
-            to: [customerEmail],
+            to: [recipientEmail],
             subject: `Your ${productName} is Ready to Download!`,
             html: `
               <!DOCTYPE html>
