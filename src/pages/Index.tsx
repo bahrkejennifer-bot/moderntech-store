@@ -7,7 +7,7 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { TechChatbot } from "@/components/TechChatbot";
-import heroImage from "@/assets/hero-tech-leather.jpg";
+import heroImage from "@/assets/hero-beach-lifestyle.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
 import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
@@ -117,39 +117,39 @@ const Index = () => {
         <div className="absolute inset-0">
           <img 
             src={heroImage} 
-            alt="Premium tech devices on dark marble surface" 
+            alt="Man with headphones in convertible at the beach" 
             className="w-full h-full object-cover"
           />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
-          {/* Subtle gold accent overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-amber-600/5" />
+          {/* Soft overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50" />
+          {/* Warm beige accent overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-900/10 via-transparent to-stone-900/20" />
         </div>
         
         <div className="container relative z-10 mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-8 animate-fade-in border border-white/20">
-              <Sparkles className="h-4 w-4 text-amber-400" />
-              <span className="text-sm font-medium">Premium Tech, Curated For You</span>
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-8 animate-fade-in border border-white/30">
+              <Sparkles className="h-4 w-4 text-amber-300" />
+              <span className="text-sm font-medium">Tech Today, Trend Tomorrow</span>
             </div>
             
             {/* Main headline - Bold style */}
             <h1 className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white animate-fade-in drop-shadow-lg">
-              Discover Tech
+              Live Your
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500">That Inspires</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-300 to-orange-300">Best Life</span>
             </h1>
             
             {/* Subheadline */}
-            <p className="mb-10 text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed animate-fade-in drop-shadow" style={{ animationDelay: '0.15s' }}>
-              Expert-curated gadgets and gear to elevate your lifestyle, productivity, and creativity.
+            <p className="mb-10 text-xl md:text-2xl text-white/95 max-w-2xl mx-auto leading-relaxed animate-fade-in drop-shadow-md" style={{ animationDelay: '0.15s' }}>
+              Premium tech and lifestyle essentials curated for the modern adventurer.
             </p>
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button 
-                className="bg-amber-500 hover:bg-amber-400 text-black transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold shadow-lg hover:shadow-2xl hover:-translate-y-1" 
+                className="bg-amber-500 hover:bg-amber-400 text-stone-900 transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold shadow-lg hover:shadow-2xl hover:-translate-y-1" 
                 size="lg" 
                 onClick={scrollToFeatured}
               >
