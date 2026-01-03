@@ -19,6 +19,7 @@ const Navigation = () => {
     { to: "/college", label: "College & School" },
     { to: "/blog", label: "Blog" },
     { to: "/digital-products", label: "Digital Products" },
+    { to: "/my-downloads", label: "My Downloads" },
   ];
 
   return (

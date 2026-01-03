@@ -16,6 +16,7 @@ import DigitalProducts from "./pages/DigitalProducts";
 import TechGiftCheatsheet from "./pages/TechGiftCheatsheet";
 import AdminUpload from "./pages/AdminUpload";
 import AdminAuth from "./pages/AdminAuth";
+import MyDownloads from "./pages/MyDownloads";
 import NotFound from "./pages/NotFound";
 import { NewsletterPopup } from "./components/NewsletterPopup";
 
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/digital-products" element={<DigitalProducts />} />
           <Route path="/tech-gift-cheatsheet" element={<TechGiftCheatsheet />} />
+          <Route path="/my-downloads" element={<MyDownloads />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin/upload" element={<AdminUpload />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
