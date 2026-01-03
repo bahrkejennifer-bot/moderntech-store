@@ -7,7 +7,7 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { TechChatbot } from "@/components/TechChatbot";
-import heroImage from "@/assets/hero-family-mountain.jpg";
+import heroImage from "@/assets/hero-family-complete.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
 import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
@@ -117,7 +117,7 @@ const Index = () => {
         <div className="absolute inset-0">
           <img 
             src={heroImage} 
-            alt="Happy family driving down coastal mountain road towards ocean" 
+            alt="Family of four driving down coastal mountain road towards ocean" 
             className="w-full h-full object-cover"
           />
           {/* Soft overlay for text readability */}
