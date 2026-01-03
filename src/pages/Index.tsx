@@ -112,7 +112,7 @@ const Index = () => {
       <Navigation />
       
       {/* Hero Section - Dark Luxurious Tech */}
-      <section className="relative min-h-[90vh] flex items-start justify-center overflow-hidden pt-24">
+      <section className="relative min-h-[90vh] flex items-start justify-center overflow-hidden pt-20">
         {/* Premium tech background image */}
         <div className="absolute inset-0">
           <img 
@@ -121,42 +121,42 @@ const Index = () => {
             className="w-full h-full object-cover"
           />
           {/* Soft overlay for text readability - stronger at top */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/40" />
           {/* Tropical blue accent overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 via-transparent to-sky-600/10" />
         </div>
         
         <div className="container relative z-10 mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-3 py-1.5 rounded-full mb-4 animate-fade-in border border-white/30">
-              <Sparkles className="h-3 w-3 text-cyan-300" />
-              <span className="text-xs font-medium">Tech Today, Trend Tomorrow</span>
+            <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white px-2.5 py-1 rounded-full mb-2 animate-fade-in border border-white/30">
+              <Sparkles className="h-2.5 w-2.5 text-cyan-300" />
+              <span className="text-[10px] font-medium">Tech Today, Trend Tomorrow</span>
             </div>
             
-            {/* Main headline - Smaller and at top */}
-            <h1 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white animate-fade-in drop-shadow-lg">
+            {/* Main headline - Compact */}
+            <h1 className="mb-2 text-2xl md:text-3xl font-bold tracking-tight text-white animate-fade-in drop-shadow-lg">
               Live Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-400">Best Life</span>
             </h1>
             
             {/* Subheadline */}
-            <p className="mb-6 text-base md:text-lg text-white/95 max-w-xl mx-auto leading-relaxed animate-fade-in drop-shadow-md" style={{ animationDelay: '0.15s' }}>
+            <p className="mb-4 text-sm md:text-base text-white/95 max-w-md mx-auto leading-relaxed animate-fade-in drop-shadow-md" style={{ animationDelay: '0.15s' }}>
               Premium tech and lifestyle essentials curated for the modern family.
             </p>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="flex flex-row gap-2 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button 
-                className="bg-cyan-500 hover:bg-cyan-400 text-white transition-all duration-300 text-sm px-6 py-5 rounded-full font-semibold shadow-lg hover:shadow-2xl hover:-translate-y-1" 
-                size="default" 
+                className="bg-cyan-500 hover:bg-cyan-400 text-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
+                size="sm" 
                 onClick={scrollToFeatured}
               >
                 Explore Now
               </Button>
               <Button 
                 variant="outline"
-                className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300 text-sm px-6 py-5 rounded-full font-semibold backdrop-blur-sm" 
-                size="default" 
+                className="border border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold backdrop-blur-sm" 
+                size="sm" 
                 asChild
               >
                 <Link to="/blog">Read Our Blog</Link>
