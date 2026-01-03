@@ -112,7 +112,7 @@ const Index = () => {
       <Navigation />
       
       {/* Hero Section - Dark Luxurious Tech */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-start justify-center overflow-hidden pt-24">
         {/* Premium tech background image */}
         <div className="absolute inset-0">
           <img 
@@ -120,8 +120,8 @@ const Index = () => {
             alt="Family of four driving down coastal mountain road towards ocean" 
             className="w-full h-full object-cover"
           />
-          {/* Soft overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/50" />
+          {/* Soft overlay for text readability - stronger at top */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/40" />
           {/* Tropical blue accent overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 via-transparent to-sky-600/10" />
         </div>
@@ -129,55 +129,55 @@ const Index = () => {
         <div className="container relative z-10 mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-8 animate-fade-in border border-white/30">
-              <Sparkles className="h-4 w-4 text-cyan-300" />
-              <span className="text-sm font-medium">Tech Today, Trend Tomorrow</span>
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-3 py-1.5 rounded-full mb-4 animate-fade-in border border-white/30">
+              <Sparkles className="h-3 w-3 text-cyan-300" />
+              <span className="text-xs font-medium">Tech Today, Trend Tomorrow</span>
             </div>
             
-            {/* Main headline - Bold style */}
-            <h1 className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white animate-fade-in drop-shadow-lg">
-              Live Your
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-400">Best Life</span>
+            {/* Main headline - Smaller and at top */}
+            <h1 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white animate-fade-in drop-shadow-lg">
+              Live Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-400">Best Life</span>
             </h1>
             
             {/* Subheadline */}
-            <p className="mb-10 text-xl md:text-2xl text-white/95 max-w-2xl mx-auto leading-relaxed animate-fade-in drop-shadow-md" style={{ animationDelay: '0.15s' }}>
+            <p className="mb-6 text-base md:text-lg text-white/95 max-w-xl mx-auto leading-relaxed animate-fade-in drop-shadow-md" style={{ animationDelay: '0.15s' }}>
               Premium tech and lifestyle essentials curated for the modern family.
             </p>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button 
-                className="bg-cyan-500 hover:bg-cyan-400 text-white transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold shadow-lg hover:shadow-2xl hover:-translate-y-1" 
-                size="lg" 
+                className="bg-cyan-500 hover:bg-cyan-400 text-white transition-all duration-300 text-sm px-6 py-5 rounded-full font-semibold shadow-lg hover:shadow-2xl hover:-translate-y-1" 
+                size="default" 
                 onClick={scrollToFeatured}
               >
                 Explore Now
               </Button>
               <Button 
                 variant="outline"
-                className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold backdrop-blur-sm" 
-                size="lg" 
+                className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300 text-sm px-6 py-5 rounded-full font-semibold backdrop-blur-sm" 
+                size="default" 
                 asChild
               >
                 <Link to="/blog">Read Our Blog</Link>
               </Button>
             </div>
-            
-            {/* Stats row */}
-            <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in" style={{ animationDelay: '0.45s' }}>
-              <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">100+</div>
-                <p className="text-white/70">Curated Products</p>
+          </div>
+          
+          {/* Stats row - positioned at bottom */}
+          <div className="absolute bottom-8 left-0 right-0 px-4">
+            <div className="max-w-4xl mx-auto grid grid-cols-3 gap-4 animate-fade-in" style={{ animationDelay: '0.45s' }}>
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
+                <div className="text-2xl md:text-3xl font-bold text-white mb-1">100+</div>
+                <p className="text-white/70 text-xs">Curated Products</p>
               </div>
-              <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <div className="text-4xl md:text-5xl font-bold text-cyan-400 mb-2">4.8★</div>
-                <p className="text-white/70">Average Rating</p>
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
+                <div className="text-2xl md:text-3xl font-bold text-cyan-400 mb-1">4.8★</div>
+                <p className="text-white/70 text-xs">Average Rating</p>
               </div>
-              <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <div className="text-4xl md:text-5xl font-bold text-sky-300 mb-2">50K+</div>
-                <p className="text-white/70">Happy Readers</p>
+              <div className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
+                <div className="text-2xl md:text-3xl font-bold text-sky-300 mb-1">50K+</div>
+                <p className="text-white/70 text-xs">Happy Readers</p>
               </div>
             </div>
           </div>
