@@ -143,9 +143,11 @@ const Index = () => {
             <p className="mb-4 text-sm md:text-base text-white/95 max-w-md mx-auto leading-relaxed animate-fade-in drop-shadow-md" style={{ animationDelay: '0.15s' }}>
               Premium tech and lifestyle essentials curated for the modern family.
             </p>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-row gap-2 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          </div>
+          
+          {/* CTA Buttons - positioned lower */}
+          <div className="absolute bottom-12 left-0 right-0 px-4">
+            <div className="flex flex-row gap-3 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button 
                 className="bg-cyan-500 hover:bg-cyan-400 text-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
                 size="sm" 
@@ -158,8 +160,8 @@ const Index = () => {
                 size="sm" 
                 asChild
               >
-                <Link to="/blog">Read Our Blog</Link>
-              </Button>
+              <Link to="/blog">Read Our Blog</Link>
+            </Button>
             </div>
           </div>
         </div>
