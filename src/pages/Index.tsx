@@ -7,7 +7,7 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { TechChatbot } from "@/components/TechChatbot";
-import fireworksHero from "@/assets/new-year-fireworks-hero.jpg";
+import heroImage from "@/assets/hero-tech-luxury.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
 import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
@@ -111,53 +111,53 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Hero Section - New Year Fireworks with Green/Blue accent */}
+      {/* Hero Section - Dark Luxurious Tech */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Fireworks background image */}
+        {/* Premium tech background image */}
         <div className="absolute inset-0">
           <img 
-            src={fireworksHero} 
-            alt="New Year celebration with fireworks" 
+            src={heroImage} 
+            alt="Premium tech devices on dark marble surface" 
             className="w-full h-full object-cover"
           />
           {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
-          {/* Colorful accent overlays */}
-          <div className="absolute inset-0 bg-gradient-to-br from-vibrant-green/20 via-transparent to-vibrant-blue/25" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
+          {/* Subtle gold accent overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-amber-600/5" />
         </div>
         
         <div className="container relative z-10 mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-8 animate-fade-in border border-white/20">
-              <Sparkles className="h-4 w-4 text-vibrant-orange" />
-              <span className="text-sm font-medium">New Year, New Tech</span>
+              <Sparkles className="h-4 w-4 text-amber-400" />
+              <span className="text-sm font-medium">Premium Tech, Curated For You</span>
             </div>
             
             {/* Main headline - Bold style */}
             <h1 className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white animate-fade-in drop-shadow-lg">
-              Level Up Your Life
+              Discover Tech
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-vibrant-green via-vibrant-blue to-vibrant-sky">Create Your Future</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500">That Inspires</span>
             </h1>
             
             {/* Subheadline */}
             <p className="mb-10 text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed animate-fade-in drop-shadow" style={{ animationDelay: '0.15s' }}>
-              Curated wellness tech and productivity essentials for your best year yet.
+              Expert-curated gadgets and gear to elevate your lifestyle, productivity, and creativity.
             </p>
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button 
-                className="bg-vibrant-green hover:bg-vibrant-green/90 text-white transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold shadow-green hover:shadow-2xl hover:-translate-y-1" 
+                className="bg-amber-500 hover:bg-amber-400 text-black transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold shadow-lg hover:shadow-2xl hover:-translate-y-1" 
                 size="lg" 
                 onClick={scrollToFeatured}
               >
-                Get Started
+                Explore Now
               </Button>
               <Button 
                 variant="outline"
-                className="border-2 border-vibrant-blue/60 text-white hover:bg-vibrant-blue hover:text-white transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold backdrop-blur-sm" 
+                className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300 text-lg px-10 py-7 rounded-full font-semibold backdrop-blur-sm" 
                 size="lg" 
                 asChild
               >
@@ -167,17 +167,17 @@ const Index = () => {
             
             {/* Stats row */}
             <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in" style={{ animationDelay: '0.45s' }}>
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+              <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2">100+</div>
-                <p className="text-white/80">Curated Products</p>
+                <p className="text-white/70">Curated Products</p>
               </div>
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <div className="text-4xl md:text-5xl font-bold text-vibrant-green mb-2">4.8★</div>
-                <p className="text-white/80">Average Rating</p>
+              <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <div className="text-4xl md:text-5xl font-bold text-amber-400 mb-2">4.8★</div>
+                <p className="text-white/70">Average Rating</p>
               </div>
-              <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <div className="text-4xl md:text-5xl font-bold text-vibrant-blue mb-2">50K+</div>
-                <p className="text-white/80">Happy Readers</p>
+              <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <div className="text-4xl md:text-5xl font-bold text-amber-300 mb-2">50K+</div>
+                <p className="text-white/70">Happy Readers</p>
               </div>
             </div>
           </div>
@@ -192,10 +192,10 @@ const Index = () => {
           <div className="text-center mb-16">
             <span className="inline-block text-vibrant-pink font-semibold text-sm tracking-widest uppercase mb-4">Featured Products</span>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-foreground">
-              Start 2026 Strong
+              Top Picks for You
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Our handpicked selection to power your New Year goals.
+              Our handpicked selection of premium tech essentials.
             </p>
           </div>
           
@@ -262,7 +262,7 @@ const Index = () => {
               Explore by Interest
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Find the perfect tech for your 2026 resolutions
+              Find the perfect tech for every lifestyle
             </p>
           </div>
           
