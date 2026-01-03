@@ -116,24 +116,22 @@ serve(async (req) => {
         // Record the purchase in the database
         if (productId) {
           try {
-            // Try to find user by email to link purchase
-            const { data: userData } = await supabase
-              .from("user_roles")
-              .select("user_id")
-              .limit(1);
-            
             // Look up the user by email from auth.users
             const { data: authUser } = await supabase.auth.admin.listUsers();
             const matchingUser = authUser?.users?.find(u => u.email === customerEmail);
             const userId = matchingUser?.id || "00000000-0000-0000-0000-000000000000";
             
+            // Use upsert to handle webhook retries gracefully
             const { error: purchaseError } = await supabase
               .from("purchases")
-              .insert({
+              .upsert({
                 user_id: userId,
                 product_id: productId,
                 customer_email: customerEmail,
                 stripe_session_id: session.id,
+              }, {
+                onConflict: "stripe_session_id",
+                ignoreDuplicates: true,
               });
             
             if (purchaseError) {
