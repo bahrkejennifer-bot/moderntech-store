@@ -142,7 +142,7 @@ serve(async (req) => {
                 
                 <div style="background: #f8fafc; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
                   <h3 style="margin-top: 0; color: #475569;">Need Help?</h3>
-                  <p style="margin-bottom: 0;">If you have any questions or need assistance, simply reply to this email. We're here to help!</p>
+                  <p style="margin-bottom: 0;">If you have any questions or need assistance, contact us at info@moderntech.store.</p>
                 </div>
                 
                 <div style="text-align: center; color: #64748b; font-size: 14px;">
@@ -156,13 +156,20 @@ serve(async (req) => {
             `,
           });
 
+          if (emailResponse?.error) {
+            console.error("Resend returned an error:", emailResponse.error);
+            throw new Error(emailResponse.error.message || "Email send failed");
+          }
+
           console.log("Confirmation email sent successfully:", emailResponse);
         } catch (emailError) {
           console.error("Failed to send confirmation email:", emailError);
-          // Don't fail the webhook if email fails - log and continue
+          // Fail the webhook so Stripe retries the event instead of silently succeeding.
+          throw emailError;
         }
       } else {
-        console.warn("No customer email found in session");
+        console.error("No customer email found in session");
+        throw new Error("No customer email found in session");
       }
     }
 
