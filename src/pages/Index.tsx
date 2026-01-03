@@ -146,7 +146,7 @@ const Index = () => {
           </div>
           
           {/* CTA Buttons - positioned below hero */}
-          <div className="absolute -bottom-6 left-0 right-0 px-4 z-20">
+          <div className="absolute -bottom-16 left-0 right-0 px-4 z-20">
             <div className="flex flex-row gap-3 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button 
                 className="bg-cyan-500 hover:bg-cyan-400 text-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
