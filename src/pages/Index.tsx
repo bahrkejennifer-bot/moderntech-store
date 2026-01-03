@@ -7,7 +7,7 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { TechChatbot } from "@/components/TechChatbot";
-import heroImage from "@/assets/hero-tech-luxury.jpg";
+import heroImage from "@/assets/hero-tech-leather.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
 import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
