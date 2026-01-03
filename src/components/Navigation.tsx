@@ -28,14 +28,9 @@ const Navigation = () => {
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center space-x-3">
             <img src={logo} alt="Modern Tech LLC" className="h-10 w-10 object-contain" />
-            <div className="flex flex-col">
-              <span className="text-xl font-bold font-display text-foreground leading-tight">
-                Modern Tech LLC
-              </span>
-              <span className="text-xs font-medium text-primary italic">
-                Unlock Your Tech Journey
-              </span>
-            </div>
+            <span className="text-xl font-bold font-display text-foreground">
+              Modern Tech LLC
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
