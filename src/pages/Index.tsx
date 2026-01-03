@@ -145,8 +145,8 @@ const Index = () => {
             </p>
           </div>
           
-          {/* CTA Buttons - positioned between parents */}
-          <div className="absolute top-1/2 left-0 right-0 px-4 transform -translate-y-1/2 mt-16">
+          {/* CTA Buttons - positioned lower between parents */}
+          <div className="absolute bottom-[25%] left-0 right-0 px-4">
             <div className="flex flex-row gap-3 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button 
                 className="bg-cyan-500 hover:bg-cyan-400 text-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
