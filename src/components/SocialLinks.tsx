@@ -14,7 +14,7 @@ const SocialLinks = () => {
         href={socialLinks.facebook}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-muted-foreground hover:text-primary transition-colors"
+        className="text-[#1877F2] hover:text-[#1877F2]/80 transition-colors"
         aria-label="Facebook"
       >
         <Facebook className="h-5 w-5" />
@@ -23,7 +23,7 @@ const SocialLinks = () => {
         href={socialLinks.youtube}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-muted-foreground hover:text-primary transition-colors"
+        className="text-[#FF0000] hover:text-[#FF0000]/80 transition-colors"
         aria-label="YouTube"
       >
         <Youtube className="h-5 w-5" />
@@ -32,7 +32,7 @@ const SocialLinks = () => {
         href={socialLinks.instagram}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-muted-foreground hover:text-primary transition-colors"
+        className="text-[#E4405F] hover:text-[#E4405F]/80 transition-colors"
         aria-label="Instagram"
       >
         <Instagram className="h-5 w-5" />
@@ -41,7 +41,7 @@ const SocialLinks = () => {
         href={socialLinks.tiktok}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-muted-foreground hover:text-primary transition-colors"
+        className="text-foreground hover:text-foreground/80 transition-colors"
         aria-label="TikTok"
       >
         <TikTokIcon />
