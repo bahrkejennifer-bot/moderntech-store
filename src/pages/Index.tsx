@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import SocialLinks from "@/components/SocialLinks";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { TechChatbot } from "@/components/TechChatbot";
@@ -162,6 +163,26 @@ const Index = () => {
               >
               <Link to="/blog">Read Our Blog</Link>
             </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Affiliate Banner & Social Links */}
+      <section className="py-4 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 border-y border-amber-500/20">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="bg-amber-500/20 p-2 rounded-full">
+                <ExternalLink className="h-4 w-4 text-amber-600" />
+              </div>
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">Amazon Associate:</span> We earn from qualifying purchases at no extra cost to you.
+              </p>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground hidden sm:block">Follow us:</span>
+              <SocialLinks />
             </div>
           </div>
         </div>
