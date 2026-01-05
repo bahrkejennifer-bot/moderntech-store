@@ -29,12 +29,60 @@ interface Message {
   content: string;
 }
 
+// Simple in-memory rate limiter
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT = 10; // requests per window
+const RATE_WINDOW_MS = 60 * 1000; // 1 minute
+
+function checkRateLimit(clientIp: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(clientIp);
+  
+  // Clean up old entries periodically
+  if (rateLimitMap.size > 10000) {
+    const cutoff = now - RATE_WINDOW_MS;
+    for (const [key, value] of rateLimitMap.entries()) {
+      if (value.resetTime < cutoff) {
+        rateLimitMap.delete(key);
+      }
+    }
+  }
+  
+  if (!entry || entry.resetTime < now) {
+    rateLimitMap.set(clientIp, { count: 1, resetTime: now + RATE_WINDOW_MS });
+    return true;
+  }
+  
+  if (entry.count >= RATE_LIMIT) {
+    return false;
+  }
+  
+  entry.count++;
+  return true;
+}
+
+function getClientIp(req: Request): string {
+  return req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+         req.headers.get('x-real-ip') || 
+         'unknown';
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    // Rate limiting check
+    const clientIp = getClientIp(req);
+    if (!checkRateLimit(clientIp)) {
+      console.log(`Rate limit exceeded for IP: ${clientIp}`);
+      return new Response(
+        JSON.stringify({ error: "Rate limit exceeded. Please try again in a minute." }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 429 }
+      );
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
@@ -42,8 +90,26 @@ serve(async (req) => {
 
     const { messages } = await req.json() as { messages: Message[] };
 
+    // Input validation
     if (!messages || !Array.isArray(messages)) {
       throw new Error("Messages array is required");
+    }
+
+    if (messages.length === 0 || messages.length > 20) {
+      throw new Error("Invalid message count (1-20 allowed)");
+    }
+
+    // Validate each message
+    for (const msg of messages) {
+      if (!msg.content || typeof msg.content !== 'string') {
+        throw new Error('Invalid message format');
+      }
+      if (msg.content.length > 1000) {
+        throw new Error('Message too long (max 1000 characters)');
+      }
+      if (!['user', 'assistant'].includes(msg.role)) {
+        throw new Error('Invalid message role');
+      }
     }
 
     // Build the conversation with system prompt
@@ -52,7 +118,7 @@ serve(async (req) => {
       ...messages.slice(-10) // Keep last 10 messages for context
     ];
 
-    console.log("Sending chat request with", conversationMessages.length, "messages");
+    console.log("Sending chat request with", conversationMessages.length, "messages from IP:", clientIp);
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
