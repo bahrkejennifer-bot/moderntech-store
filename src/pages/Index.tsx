@@ -8,7 +8,7 @@ import SocialLinks from "@/components/SocialLinks";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { TechChatbot } from "@/components/TechChatbot";
-import heroImage from "@/assets/hero-family-tech.jpg";
+import heroImage from "@/assets/hero-family-drive.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
 import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
