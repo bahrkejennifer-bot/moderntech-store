@@ -7,6 +7,12 @@ const TikTokIcon = () => (
   </svg>
 );
 
+const PinterestIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+    <path d="M12 0a12 12 0 0 0-4.37 23.17c-.1-.94-.2-2.4.04-3.43l1.4-5.96s-.36-.72-.36-1.78c0-1.67.97-2.92 2.17-2.92 1.02 0 1.52.77 1.52 1.7 0 1.03-.66 2.58-1 4.01-.28 1.2.6 2.18 1.78 2.18 2.13 0 3.77-2.25 3.77-5.5 0-2.87-2.06-4.88-5.01-4.88-3.41 0-5.42 2.56-5.42 5.2 0 1.03.4 2.13.89 2.73.1.12.11.22.08.34l-.33 1.36c-.05.22-.18.27-.41.16-1.54-.72-2.5-2.96-2.5-4.77 0-3.88 2.82-7.44 8.14-7.44 4.27 0 7.59 3.04 7.59 7.11 0 4.24-2.67 7.66-6.39 7.66-1.25 0-2.42-.65-2.82-1.42l-.77 2.93c-.28 1.08-1.04 2.43-1.55 3.26A12 12 0 1 0 12 0z"/>
+  </svg>
+);
+
 const SocialLinks = () => {
   return (
     <div className="flex items-center gap-4">
@@ -45,6 +51,15 @@ const SocialLinks = () => {
         aria-label="TikTok"
       >
         <TikTokIcon />
+      </a>
+      <a
+        href={socialLinks.pinterest}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[#E60023] hover:text-[#E60023]/80 transition-colors"
+        aria-label="Pinterest"
+      >
+        <PinterestIcon />
       </a>
     </div>
   );
