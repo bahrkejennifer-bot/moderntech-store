@@ -104,28 +104,24 @@ const DigitalProducts = () => {
     setDownloadingId(product.id);
 
     try {
+      // Use signed URL for secure access (1 hour expiry)
       const { data, error } = await supabase.storage
         .from("digital-products")
-        .download(product.pdf_path);
+        .createSignedUrl(product.pdf_path, 3600);
 
       if (error) {
         throw error;
       }
 
-      // Create download link
-      const url = URL.createObjectURL(data);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${product.slug}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-
-      toast({
-        title: "Download Started!",
-        description: `Your ${product.title} guide is downloading now.`,
-      });
+      if (data?.signedUrl) {
+        window.open(data.signedUrl, '_blank');
+        toast({
+          title: "Download Started!",
+          description: `Your ${product.title} guide is opening now.`,
+        });
+      } else {
+        throw new Error("Failed to generate download URL");
+      }
     } catch (error) {
       console.error("Download error:", error);
       toast({
