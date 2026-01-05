@@ -74,7 +74,7 @@ const DigitalProducts = () => {
 
   const fetchProducts = async () => {
     const { data, error } = await supabase
-      .from("digital_products")
+      .from("products_public")
       .select("*")
       .order("display_order", { ascending: true });
 
