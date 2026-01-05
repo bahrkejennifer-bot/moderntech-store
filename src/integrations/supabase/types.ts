@@ -86,6 +86,13 @@ export type Database = {
             referencedRelation: "digital_products"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "purchases_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products_public"
+            referencedColumns: ["id"]
+          },
         ]
       }
       user_roles: {
@@ -111,7 +118,45 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      products_public: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          display_order: number | null
+          id: string | null
+          is_free: boolean | null
+          pdf_path: string | null
+          price: number | null
+          slug: string | null
+          title: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          id?: string | null
+          is_free?: boolean | null
+          pdf_path?: never
+          price?: number | null
+          slug?: string | null
+          title?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          id?: string | null
+          is_free?: boolean | null
+          pdf_path?: never
+          price?: number | null
+          slug?: string | null
+          title?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       has_role: {
