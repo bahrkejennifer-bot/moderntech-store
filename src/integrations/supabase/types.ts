@@ -118,6 +118,45 @@ export type Database = {
       }
     }
     Views: {
+      my_purchases: {
+        Row: {
+          id: string | null
+          product_id: string | null
+          purchased_at: string | null
+          stripe_session_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          id?: string | null
+          product_id?: string | null
+          purchased_at?: string | null
+          stripe_session_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          id?: string | null
+          product_id?: string | null
+          purchased_at?: string | null
+          stripe_session_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchases_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "digital_products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "purchases_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products_public"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       products_public: {
         Row: {
           created_at: string | null
