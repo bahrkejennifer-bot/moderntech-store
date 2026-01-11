@@ -725,6 +725,14 @@ const defaultPost = {
   products: [] as BlogProduct[]
 };
 
+// Helper function to safely parse **bold** markdown to React elements
+const parseMarkdownBold = (text: string): React.ReactNode[] => {
+  const parts = text.split(/\*\*(.*?)\*\*/g);
+  return parts.map((part, i) => 
+    i % 2 === 0 ? part : <strong key={i}>{part}</strong>
+  );
+};
+
 const BlogPost = () => {
   const { slug } = useParams();
   const post = slug && blogPostsData[slug] ? blogPostsData[slug] : defaultPost;
