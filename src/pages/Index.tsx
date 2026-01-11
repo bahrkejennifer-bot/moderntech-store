@@ -361,7 +361,7 @@ const Index = () => {
                 <p className="text-white/80">Categories</p>
               </div>
               <div className="bg-vibrant-orange p-6 rounded-2xl text-white">
-                <div className="text-3xl font-bold mb-2">Weekly</div>
+                <div className="text-3xl font-bold mb-2">Monthly</div>
                 <p className="text-white/80">New Updates</p>
               </div>
               <div className="bg-vibrant-green p-6 rounded-2xl text-white">
