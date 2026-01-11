@@ -210,6 +210,13 @@ All colors MUST be HSL.
     background-clip: text;
   }
 
+  .gradient-text-valentine {
+    background: linear-gradient(135deg, hsl(350 85% 55%), hsl(330 90% 60%), hsl(350 80% 65%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .glow-line {
     background: linear-gradient(90deg, transparent, hsl(250 85% 55% / 0.4), transparent);
     height: 1px;
@@ -220,12 +227,51 @@ All colors MUST be HSL.
     height: 1px;
   }
 
+  .glow-line-valentine {
+    background: linear-gradient(90deg, transparent, hsl(350 85% 55% / 0.5), hsl(330 90% 60% / 0.6), hsl(350 85% 55% / 0.5), transparent);
+    height: 2px;
+  }
+
   .hover-lift {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .hover-lift:hover {
     transform: translateY(-4px);
+  }
+
+  @keyframes float-up {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-float-up {
+    animation: float-up linear infinite;
+  }
+
+  @keyframes pulse-heart {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  .animate-pulse-heart {
+    animation: pulse-heart 1.5s ease-in-out infinite;
   }
 }
 
