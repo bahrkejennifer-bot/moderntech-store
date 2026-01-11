@@ -745,17 +745,17 @@ const BlogPost = () => {
         );
       case 'paragraph':
         return (
-          <p key={index} className="text-foreground/80 leading-relaxed mb-4" dangerouslySetInnerHTML={{ 
-            __html: section.content?.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') || '' 
-          }} />
+          <p key={index} className="text-foreground/80 leading-relaxed mb-4">
+            {parseMarkdownBold(section.content || '')}
+          </p>
         );
       case 'list':
         return (
           <ul key={index} className="list-disc list-inside space-y-2 mb-6 text-foreground/80">
             {section.items?.map((item, i) => (
-              <li key={i} className="leading-relaxed" dangerouslySetInnerHTML={{ 
-                __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
-              }} />
+              <li key={i} className="leading-relaxed">
+                {parseMarkdownBold(item)}
+              </li>
             ))}
           </ul>
         );
