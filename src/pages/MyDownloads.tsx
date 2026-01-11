@@ -113,16 +113,16 @@ const MyDownloads = () => {
     setDownloadingId(purchase.id);
 
     try {
-      const { data, error } = await supabase.storage
-        .from("digital-products")
-        .createSignedUrl(purchase.product.pdf_path, 3600); // 1 hour expiry
+      // Use secure edge function that verifies purchase ownership
+      const { data, error } = await supabase.functions.invoke("generate-download-link", {
+        body: { productId: purchase.product.id },
+      });
 
       if (error) {
         throw error;
       }
 
       if (data?.signedUrl) {
-        // Use anchor element to trigger download without popup blocker issues
         const link = document.createElement("a");
         link.href = data.signedUrl;
         link.download = purchase.product.title + ".pdf";
@@ -136,6 +136,8 @@ const MyDownloads = () => {
           title: "Download Started",
           description: "Your file is downloading.",
         });
+      } else {
+        throw new Error(data?.error || "Failed to generate download URL");
       }
     } catch (err) {
       console.error("Error generating download URL:", err);
