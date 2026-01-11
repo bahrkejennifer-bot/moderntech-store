@@ -60,18 +60,13 @@ const MyDownloads = () => {
     }
 
     try {
+      // Use secure view that excludes customer_email
       const { data, error } = await supabase
-        .from("purchases")
+        .from("my_purchases")
         .select(`
           id,
           purchased_at,
-          product:digital_products (
-            id,
-            title,
-            description,
-            slug,
-            pdf_path
-          )
+          product_id
         `)
         .order("purchased_at", { ascending: false });
 
@@ -82,17 +77,42 @@ const MyDownloads = () => {
           description: "Failed to load your purchases.",
           variant: "destructive",
         });
-      } else {
-        // Filter and type the data properly
-        const validPurchases = (data || [])
-          .filter((p: any) => p.product !== null)
-          .map((p: any) => ({
-            id: p.id,
-            purchased_at: p.purchased_at,
-            product: p.product,
-          }));
-        setPurchases(validPurchases);
+        return;
       }
+
+      // Fetch product details separately
+      const productIds = (data || []).map((p: any) => p.product_id);
+      if (productIds.length === 0) {
+        setPurchases([]);
+        return;
+      }
+
+      const { data: products, error: productsError } = await supabase
+        .from("digital_products")
+        .select("id, title, description, slug, pdf_path")
+        .in("id", productIds);
+
+      if (productsError) {
+        console.error("Error fetching products:", productsError);
+        toast({
+          title: "Error",
+          description: "Failed to load your purchases.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Map products to purchases
+      const productMap = new Map((products || []).map((p: any) => [p.id, p]));
+      const validPurchases = (data || [])
+        .map((p: any) => ({
+          id: p.id,
+          purchased_at: p.purchased_at,
+          product: productMap.get(p.product_id),
+        }))
+        .filter((p: any) => p.product !== undefined);
+      
+      setPurchases(validPurchases);
     } catch (err) {
       console.error("Error fetching purchases:", err);
     } finally {
