@@ -123,9 +123,10 @@ const Index = () => {
             alt="Family of four driving down coastal mountain road towards ocean" 
             className="w-full h-full object-cover"
           />
-          {/* Romantic pink overlay for Valentine's */}
-          <div className="absolute inset-0 bg-gradient-to-b from-rose-900/40 via-pink-500/10 to-rose-900/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-pink-900/20 via-transparent to-rose-600/20" />
+          {/* Soft overlay for text readability - stronger at top */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/40" />
+          {/* Tropical blue accent overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 via-transparent to-sky-600/10" />
         </div>
         
         <div className="container relative z-10 mx-auto px-4 text-center">
