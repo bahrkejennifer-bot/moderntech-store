@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Sparkles, Star, ExternalLink, ArrowRight, Check } from "lucide-react";
+import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Sparkles, Star, ExternalLink, ArrowRight, Check, Heart } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
@@ -8,6 +8,7 @@ import SocialLinks from "@/components/SocialLinks";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { TechChatbot } from "@/components/TechChatbot";
+import { FloatingHearts } from "@/components/FloatingHearts";
 import heroImage from "@/assets/hero-family-drive.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
@@ -111,8 +112,9 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      <FloatingHearts />
       
-      {/* Hero Section - Dark Luxurious Tech */}
+      {/* Hero Section - Valentine's Theme */}
       <section className="relative min-h-[90vh] flex items-start justify-center overflow-hidden pt-20">
         {/* Premium tech background image */}
         <div className="absolute inset-0">
@@ -121,67 +123,68 @@ const Index = () => {
             alt="Family of four driving down coastal mountain road towards ocean" 
             className="w-full h-full object-cover"
           />
-          {/* Soft overlay for text readability - stronger at top */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/40" />
-          {/* Tropical blue accent overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 via-transparent to-sky-600/10" />
+          {/* Romantic pink overlay for Valentine's */}
+          <div className="absolute inset-0 bg-gradient-to-b from-rose-900/40 via-pink-500/10 to-rose-900/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-pink-900/20 via-transparent to-rose-600/20" />
         </div>
         
         <div className="container relative z-10 mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white px-2.5 py-1 rounded-full mb-2 animate-fade-in border border-white/30">
-              <Sparkles className="h-2.5 w-2.5 text-cyan-300" />
-              <span className="text-[10px] font-medium">Tech Today, Trend Tomorrow</span>
+            {/* Valentine's Badge */}
+            <div className="inline-flex items-center gap-1.5 bg-rose-500/30 backdrop-blur-sm text-white px-3 py-1.5 rounded-full mb-3 animate-fade-in border border-rose-300/40">
+              <Heart className="h-3 w-3 text-rose-300 fill-rose-300 animate-pulse-heart" />
+              <span className="text-[10px] font-medium">Valentine's Day Gift Guide</span>
+              <Heart className="h-3 w-3 text-rose-300 fill-rose-300 animate-pulse-heart" />
             </div>
             
-            {/* Main headline - Compact */}
+            {/* Main headline - Valentine's */}
             <h1 className="mb-2 text-2xl md:text-3xl font-bold tracking-tight text-white animate-fade-in drop-shadow-lg">
-              Live Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-400">Best Life</span>
+              Tech They'll <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-pink-400 to-red-400">Love</span> 💕
             </h1>
             
             {/* Subheadline */}
             <p className="mb-4 text-sm md:text-base text-white/95 max-w-md mx-auto leading-relaxed animate-fade-in drop-shadow-md" style={{ animationDelay: '0.15s' }}>
-              Premium tech and lifestyle essentials curated for the modern family.
+              Show your love with the perfect tech gift this Valentine's Day.
             </p>
           </div>
           
-          {/* CTA Buttons - positioned below hero */}
+          {/* CTA Buttons - Valentine's themed */}
           <div className="absolute -bottom-16 left-0 right-0 px-4 z-20">
             <div className="flex flex-row gap-3 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button 
-                className="bg-cyan-500 hover:bg-cyan-400 text-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
+                className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-400 hover:to-pink-400 text-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
                 size="sm" 
                 onClick={scrollToFeatured}
               >
-                Explore Now
+                <Heart className="h-3 w-3 mr-1 fill-white" />
+                Find the Perfect Gift
               </Button>
               <Button 
-                className="bg-white/90 text-slate-900 hover:bg-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
+                className="bg-white/90 text-rose-600 hover:bg-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
                 size="sm" 
                 asChild
               >
-              <Link to="/blog">Read Our Blog</Link>
+              <Link to="/blog">Gift Ideas Blog</Link>
             </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Affiliate Banner & Social Links */}
-      <section className="py-4 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 border-y border-amber-500/20">
+      {/* Valentine's Affiliate Banner & Social Links */}
+      <section className="py-4 bg-gradient-to-r from-rose-500/10 via-pink-500/15 to-rose-500/10 border-y border-rose-500/20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="bg-amber-500/20 p-2 rounded-full">
-                <ExternalLink className="h-4 w-4 text-amber-600" />
+              <div className="bg-rose-500/20 p-2 rounded-full">
+                <Heart className="h-4 w-4 text-rose-500 fill-rose-500" />
               </div>
               <p className="text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground">Amazon Associate:</span> We earn from qualifying purchases at no extra cost to you.
+                <span className="font-semibold text-rose-600">💕 Valentine's Deals:</span> Find the perfect gift at no extra cost to you.
               </p>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-muted-foreground hidden sm:block">Follow us:</span>
+              <span className="text-sm text-muted-foreground hidden sm:block">Share the love:</span>
               <SocialLinks />
             </div>
           </div>
@@ -208,18 +211,22 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Featured Products Section */}
+      {/* Featured Products Section - Valentine's */}
       <section id="featured-products" className="py-28 relative overflow-hidden bg-background">
-        <div className="absolute top-0 left-0 right-0 h-px glow-line" />
+        <div className="absolute top-0 left-0 right-0 h-px glow-line-valentine" />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <span className="inline-block text-vibrant-pink font-semibold text-sm tracking-widest uppercase mb-4">Featured Products</span>
+            <span className="inline-block text-rose-500 font-semibold text-sm tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
+              <Heart className="h-4 w-4 fill-rose-500" />
+              Valentine's Gift Guide
+              <Heart className="h-4 w-4 fill-rose-500" />
+            </span>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-foreground">
-              Top Picks for You
+              Gifts They'll <span className="gradient-text-valentine">Adore</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Our handpicked selection of premium tech essentials.
+              Perfect tech gifts to show how much you care this Valentine's Day.
             </p>
           </div>
           
