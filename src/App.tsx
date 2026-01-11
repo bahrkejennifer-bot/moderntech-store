@@ -18,6 +18,11 @@ import AdminUpload from "./pages/AdminUpload";
 import AdminAuth from "./pages/AdminAuth";
 import MyDownloads from "./pages/MyDownloads";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import Disclaimer from "./pages/Disclaimer";
+import ReturnPolicy from "./pages/ReturnPolicy";
+import Contact from "./pages/Contact";
 import { NewsletterPopup } from "./components/NewsletterPopup";
 
 const queryClient = new QueryClient();
@@ -44,6 +49,11 @@ const App = () => (
           <Route path="/my-downloads" element={<MyDownloads />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin/upload" element={<AdminUpload />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/return-policy" element={<ReturnPolicy />} />
+          <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
