@@ -97,6 +97,9 @@ const HealthWellness = () => {
           <p className="text-center text-sm text-muted-foreground mt-4">
             💝 Show your love with the gift of health tracking
           </p>
+          <p className="text-center text-xs text-muted-foreground mt-2 italic">
+            As an Amazon Associate, I earn from qualifying purchases
+          </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
