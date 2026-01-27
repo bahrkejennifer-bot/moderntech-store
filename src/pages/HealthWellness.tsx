@@ -1,11 +1,23 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import { Heart } from "lucide-react";
 import ekrinBantamImage from "@/assets/products/ekrin-bantam.jpg";
 import withingsScaleImage from "@/assets/products/withings-scale.jpg";
 import philipsWakeupImage from "@/assets/products/philips-wakeup-light.jpg";
 import fitbitCharge6Image from "@/assets/products/fitbit-charge-6.jpg";
 import boseSleepbudsImage from "@/assets/products/bose-sleepbuds.jpg";
+import ouraRingImage from "@/assets/products/oura-ring-gen3.jpg";
+
+// Valentine's Day Featured Product
+const featuredProduct = {
+  title: "Oura Ring Gen 3",
+  description: "The ultimate health tracking ring - monitors sleep, heart rate, temperature & activity. Perfect Valentine's gift for wellness lovers!",
+  price: "$299.00",
+  rating: 4.7,
+  imageUrl: ouraRingImage,
+  affiliateLink: "https://amzn.to/4bm3o3z",
+};
 
 const products = [
   {
@@ -69,6 +81,21 @@ const HealthWellness = () => {
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Track your health and improve your wellbeing with cutting-edge technology
+          </p>
+        </div>
+
+        {/* Valentine's Day Featured Product */}
+        <div className="mb-12 p-6 bg-gradient-to-r from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/20 rounded-2xl border border-pink-200 dark:border-pink-800">
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
+            <h2 className="text-2xl font-bold text-rose-600 dark:text-rose-400">Valentine's Day Special</h2>
+            <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
+          </div>
+          <div className="max-w-md mx-auto">
+            <ProductCard {...featuredProduct} />
+          </div>
+          <p className="text-center text-sm text-muted-foreground mt-4">
+            💝 Show your love with the gift of health tracking
           </p>
         </div>
         
