@@ -7,6 +7,14 @@ import { Button } from "@/components/ui/button";
 
 const blogPosts = [
   {
+    title: "2026 Valentine Gift Guide: Tech for Family Edition",
+    excerpt: "Gifts that build connection, not clutter. This Valentine, give more than gadgets—give presence, peace of mind, and moments that matter. Curated for families who live fully.",
+    date: "2026-02-02",
+    category: "Gift Guides",
+    imageUrl: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format",
+    slug: "valentine-gift-guide-family-tech-2026",
+  },
+  {
     title: "Top 10 Smart Home Devices for 2025",
     excerpt: "Discover the latest smart home technology that will transform your living space into a connected, efficient haven. From security cameras to smart thermostats, we've tested the best devices.",
     date: "2025-01-14",
