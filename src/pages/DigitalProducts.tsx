@@ -29,7 +29,8 @@ interface DigitalProduct {
 }
 
 // Map slugs to cover images and icons
-const productMeta: Record<string, { cover: string; icon: React.ReactNode; gradient: string }> = {
+const productMeta: Record<string, { cover: string; icon: React.ReactNode; gradient: string; isPremium?: boolean }> = {
+  "valentine-family-tech-guide": { cover: kidsTechCover, icon: <Star className="h-8 w-8 text-white" />, gradient: "bg-gradient-to-r from-pink-500 to-red-500" },
   "kids-tech-guide": { cover: kidsTechCover, icon: <Baby className="h-8 w-8 text-white" />, gradient: "bg-gradient-gold" },
   "smart-home-guide": { cover: smartHomeCover, icon: <Home className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-accent/20 to-primary/20" },
   "gaming-monitors-guide": { cover: gamingMonitorsCover, icon: <Monitor className="h-8 w-8 text-primary" />, gradient: "bg-gradient-to-r from-primary/20 to-accent/20" },
@@ -37,6 +38,7 @@ const productMeta: Record<string, { cover: string; icon: React.ReactNode; gradie
   "student-tech-guide": { cover: studentTechCover, icon: <GraduationCap className="h-8 w-8 text-primary" />, gradient: "bg-gradient-to-r from-primary/20 to-accent/20" },
   "fitness-trackers-guide": { cover: fitnessTrackersCover, icon: <Activity className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-accent/20 to-primary/20" },
   "remote-workspace-guide": { cover: remoteWorkspaceCover, icon: <Briefcase className="h-8 w-8 text-primary" />, gradient: "bg-gradient-to-r from-primary/20 to-accent/20" },
+  "smart-ring-guide": { cover: fitnessTrackersCover, icon: <Star className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-purple-500/30 to-pink-500/30", isPremium: true },
 };
 
 const DigitalProducts = () => {
@@ -244,95 +246,96 @@ const DigitalProducts = () => {
         </div>
         
         <div className="max-w-4xl mx-auto">
-          {/* Free Product */}
+          {/* Free Product - Valentine Family Tech Guide */}
           {freeProduct && (
-            <Card className="mb-8 overflow-hidden border-2 border-accent">
+            <Card className="mb-8 overflow-hidden border-4 border-pink-400 shadow-2xl">
               {/* Ribbon Header with Image and Title */}
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-gold opacity-90" />
-                <div className="relative flex items-center gap-6 p-4">
+                <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-red-500 opacity-95" />
+                <div className="relative flex items-center gap-6 p-6">
                   <img 
                     src={productMeta[freeProduct.slug]?.cover || kidsTechCover} 
                     alt={`${freeProduct.title} Cover`} 
-                    className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-lg shadow-lg border-2 border-white/30"
+                    className="w-36 h-36 md:w-44 md:h-44 object-cover rounded-xl shadow-xl border-4 border-white/40"
                   />
                   <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="bg-white/20 p-2 rounded-full">
-                        {productMeta[freeProduct.slug]?.icon || <Baby className="h-6 w-6 text-white" />}
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="bg-white/20 p-2 rounded-full animate-pulse">
+                        {productMeta[freeProduct.slug]?.icon || <Star className="h-7 w-7 text-white" />}
                       </div>
-                      <span className="bg-white/20 text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide">
-                        Free Guide
+                      <span className="bg-white text-pink-600 px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider shadow-lg">
+                        ✨ 100% FREE ✨
                       </span>
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-1">
+                    <h2 className="text-2xl md:text-4xl font-black text-white mb-2 drop-shadow-lg">
                       {freeProduct.title}
                     </h2>
-                    <p className="text-white/90 text-lg">
-                      {freeProduct.description || "Your comprehensive guide"}
+                    <p className="text-white/95 text-lg font-medium">
+                      {freeProduct.description || "Your comprehensive guide to connection-building tech"}
                     </p>
                   </div>
                 </div>
               </div>
               
               {/* Content Below Ribbon */}
-              <CardContent className="p-8">
-                <p className="text-lg text-muted-foreground mb-6">
-                  Navigate the complex world of kids' technology with confidence. This comprehensive guide helps parents choose devices, apps, and services that balance education, entertainment, and safety at every developmental stage.
+              <CardContent className="p-8 bg-gradient-to-b from-pink-50 to-white">
+                <p className="text-lg text-muted-foreground mb-6 text-center">
+                  This Valentine's Day, give the gift of connection. Our curated guide helps families choose tech that brings people together, not apart.
                 </p>
                 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  <div>
-                    <h3 className="text-xl font-bold mb-4">What's Inside:</h3>
+                  <div className="bg-white p-5 rounded-xl shadow-md border border-pink-100">
+                    <h3 className="text-xl font-bold mb-4 text-pink-600">What's Inside:</h3>
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                        <span>Age-by-age device recommendations (3-6, 7-10, 11-14, 15-18)</span>
+                        <CheckCircle className="h-5 w-5 text-pink-500 mt-0.5 flex-shrink-0" />
+                        <span>The 4 Pillars of Connection-Building Tech</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                        <span>Parental control setup guides for all platforms</span>
+                        <CheckCircle className="h-5 w-5 text-pink-500 mt-0.5 flex-shrink-0" />
+                        <span>Curated products that foster family moments</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                        <span>Screen time management strategies that work</span>
+                        <CheckCircle className="h-5 w-5 text-pink-500 mt-0.5 flex-shrink-0" />
+                        <span>Gifts for every family member</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                        <span>Educational app reviews by subject and age</span>
+                        <CheckCircle className="h-5 w-5 text-pink-500 mt-0.5 flex-shrink-0" />
+                        <span>Budget-friendly options included</span>
                       </li>
                     </ul>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-4">Age Groups Covered:</h3>
+                  <div className="bg-white p-5 rounded-xl shadow-md border border-pink-100">
+                    <h3 className="text-xl font-bold mb-4 text-pink-600">Perfect For:</h3>
                     <ul className="space-y-2">
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span>Ages 3-6: Tablets, educational apps, screen limits</span>
+                        <CheckCircle className="h-5 w-5 text-red-400 mt-0.5 flex-shrink-0" />
+                        <span>Parents looking for meaningful gifts</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span>Ages 7-10: First devices, learning tools, gaming</span>
+                        <CheckCircle className="h-5 w-5 text-red-400 mt-0.5 flex-shrink-0" />
+                        <span>Couples who want to disconnect to reconnect</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span>Ages 11-14: Smartphone readiness, social media</span>
+                        <CheckCircle className="h-5 w-5 text-red-400 mt-0.5 flex-shrink-0" />
+                        <span>Families prioritizing quality time</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span>Ages 15-18: Independence, college prep, career skills</span>
+                        <CheckCircle className="h-5 w-5 text-red-400 mt-0.5 flex-shrink-0" />
+                        <span>Anyone tired of thoughtless tech gifts</span>
                       </li>
                     </ul>
                   </div>
                 </div>
                 
                 {/* GetResponse Email Capture Form */}
-                <div className="bg-primary/5 p-6 rounded-lg border border-primary/20">
-                  <h3 className="text-xl font-bold mb-2 text-center">Get Your Free Guide Instantly</h3>
-                  <p className="text-muted-foreground text-center mb-4">
-                    Enter your email below and we'll send the guide straight to your inbox!
+                <div className="bg-gradient-to-r from-pink-500 to-red-500 p-8 rounded-2xl shadow-xl">
+                  <h3 className="text-2xl font-black mb-2 text-center text-white">🎁 Get Your FREE Download Now!</h3>
+                  <p className="text-white/90 text-center mb-4 text-lg">
+                    Enter your email and receive instant access to your Valentine's Gift Guide!
                   </p>
                   <NewsletterSignup campaignId="CiFHU" className="max-w-md mx-auto" />
+                  <p className="text-white/70 text-center mt-3 text-sm">No spam, ever. Unsubscribe anytime.</p>
                 </div>
               </CardContent>
             </Card>
@@ -344,73 +347,164 @@ const DigitalProducts = () => {
               <h2 className="text-3xl font-bold mb-6 text-center">Premium Tech Guides</h2>
               
               <div className="space-y-6">
-                {paidProducts.map((product) => (
-                  <Card key={product.id} className="overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
-                    <div className="grid md:grid-cols-4 gap-0">
-                      <div className="md:col-span-1">
-                        <img 
-                          src={productMeta[product.slug]?.cover || smartHomeCover} 
-                          alt={`${product.title} Cover`} 
-                          className="w-full h-full object-cover min-h-[150px]"
-                        />
-                      </div>
-                      
-                      <div className="md:col-span-3">
-                        <div className={`${productMeta[product.slug]?.gradient || "bg-gradient-to-r from-accent/20 to-primary/20"} p-6`}>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <div className="bg-accent/20 p-3 rounded-full">
-                                {productMeta[product.slug]?.icon || <BookOpen className="h-8 w-8 text-accent" />}
-                              </div>
-                              <div>
-                                <h2 className="text-2xl font-bold mb-1">
-                                  {product.title}
-                                </h2>
-                                <p className="text-muted-foreground">
-                                  {product.description || "Your comprehensive buying guide"}
-                                </p>
-                              </div>
+                {paidProducts.map((product) => {
+                  const isSmartRing = product.slug === "smart-ring-guide";
+                  
+                  if (isSmartRing) {
+                    // Premium Smart Ring Guide - Special Display
+                    return (
+                      <Card key={product.id} className="overflow-hidden border-4 border-purple-400 shadow-2xl bg-gradient-to-br from-purple-50 to-pink-50">
+                        <div className="relative">
+                          <div className="absolute top-4 right-4 z-10">
+                            <span className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-black uppercase tracking-wide shadow-lg">
+                              ⭐ Premium Deep-Dive
+                            </span>
+                          </div>
+                          <div className="grid md:grid-cols-3 gap-0">
+                            <div className="md:col-span-1 p-6 flex items-center justify-center bg-gradient-to-br from-purple-500/20 to-pink-500/20">
+                              <img 
+                                src={productMeta[product.slug]?.cover || fitnessTrackersCover} 
+                                alt={`${product.title} Cover`} 
+                                className="w-48 h-48 object-cover rounded-2xl shadow-2xl border-4 border-white"
+                              />
                             </div>
-                            <div className="text-right">
-                              <div className="text-3xl font-bold text-primary">
-                                ${(product.price || 10).toFixed(2)}
+                            
+                            <div className="md:col-span-2 p-8">
+                              <div className="flex items-center gap-3 mb-4">
+                                <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-3 rounded-full">
+                                  <Star className="h-8 w-8 text-white" />
+                                </div>
+                                <div className="flex items-center gap-1 text-yellow-500">
+                                  {[...Array(5)].map((_, i) => (
+                                    <Star key={i} className="h-5 w-5 fill-current" />
+                                  ))}
+                                  <span className="text-muted-foreground ml-2 text-sm">Expert Reviewed</span>
+                                </div>
                               </div>
-                              <div className="flex items-center gap-1 text-yellow-500">
-                                <Star className="h-4 w-4 fill-current" />
-                                <Star className="h-4 w-4 fill-current" />
-                                <Star className="h-4 w-4 fill-current" />
-                                <Star className="h-4 w-4 fill-current" />
-                                <Star className="h-4 w-4 fill-current" />
+                              
+                              <h2 className="text-3xl font-black mb-3 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                                {product.title}
+                              </h2>
+                              <p className="text-lg text-muted-foreground mb-4">
+                                {product.description}
+                              </p>
+                              
+                              <div className="grid grid-cols-2 gap-4 mb-6">
+                                <div className="flex items-center gap-2">
+                                  <CheckCircle className="h-5 w-5 text-purple-500" />
+                                  <span className="text-sm">Complete brand comparisons</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <CheckCircle className="h-5 w-5 text-purple-500" />
+                                  <span className="text-sm">Sizing & fit guide</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <CheckCircle className="h-5 w-5 text-purple-500" />
+                                  <span className="text-sm">Feature-by-feature breakdown</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <CheckCircle className="h-5 w-5 text-purple-500" />
+                                  <span className="text-sm">Expert recommendations</span>
+                                </div>
+                              </div>
+                              
+                              <div className="flex items-center gap-6">
+                                <div>
+                                  <div className="text-4xl font-black text-purple-600">
+                                    ${(product.price || 10).toFixed(2)}
+                                  </div>
+                                  <p className="text-sm text-muted-foreground">One-time purchase</p>
+                                </div>
+                                <Button
+                                  size="lg"
+                                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all"
+                                  onClick={() => handleBuy(product)}
+                                  disabled={checkoutLoading === product.id}
+                                >
+                                  {checkoutLoading === product.id ? (
+                                    <Loader2 className="h-5 w-5 animate-spin mr-2" />
+                                  ) : (
+                                    <ShoppingCart className="h-5 w-5 mr-2" />
+                                  )}
+                                  Get the Ultimate Guide
+                                </Button>
                               </div>
                             </div>
                           </div>
                         </div>
-                    
-                        <CardContent className="p-6">
-                          <Button 
-                            variant="cta" 
-                            size="lg" 
-                            className="w-full text-lg h-12"
-                            onClick={() => handleBuy(product)}
-                            disabled={checkoutLoading === product.id}
-                          >
-                            {checkoutLoading === product.id ? (
-                              <>
-                                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                                Processing...
-                              </>
-                            ) : (
-                              <>
-                                <ShoppingCart className="mr-2 h-5 w-5" />
-                                Buy Now - ${(product.price || 10).toFixed(2)}
-                              </>
-                            )}
-                          </Button>
-                        </CardContent>
+                      </Card>
+                    );
+                  }
+                  
+                  // Regular Premium Products
+                  return (
+                    <Card key={product.id} className="overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
+                      <div className="grid md:grid-cols-4 gap-0">
+                        <div className="md:col-span-1">
+                          <img 
+                            src={productMeta[product.slug]?.cover || smartHomeCover} 
+                            alt={`${product.title} Cover`} 
+                            className="w-full h-full object-cover min-h-[150px]"
+                          />
+                        </div>
+                        
+                        <div className="md:col-span-3">
+                          <div className={`${productMeta[product.slug]?.gradient || "bg-gradient-to-r from-accent/20 to-primary/20"} p-6`}>
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-3">
+                                <div className="bg-accent/20 p-3 rounded-full">
+                                  {productMeta[product.slug]?.icon || <BookOpen className="h-8 w-8 text-accent" />}
+                                </div>
+                                <div>
+                                  <h2 className="text-2xl font-bold mb-1">
+                                    {product.title}
+                                  </h2>
+                                  <p className="text-muted-foreground">
+                                    {product.description || "Your comprehensive buying guide"}
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="text-right">
+                                <div className="text-3xl font-bold text-primary">
+                                  ${(product.price || 10).toFixed(2)}
+                                </div>
+                                <div className="flex items-center gap-1 text-yellow-500">
+                                  <Star className="h-4 w-4 fill-current" />
+                                  <Star className="h-4 w-4 fill-current" />
+                                  <Star className="h-4 w-4 fill-current" />
+                                  <Star className="h-4 w-4 fill-current" />
+                                  <Star className="h-4 w-4 fill-current" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <CardContent className="p-6">
+                            <Button 
+                              variant="cta" 
+                              size="lg" 
+                              className="w-full text-lg h-12"
+                              onClick={() => handleBuy(product)}
+                              disabled={checkoutLoading === product.id}
+                            >
+                              {checkoutLoading === product.id ? (
+                                <>
+                                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                                  Processing...
+                                </>
+                              ) : (
+                                <>
+                                  <ShoppingCart className="mr-2 h-5 w-5" />
+                                  Buy Now - ${(product.price || 10).toFixed(2)}
+                                </>
+                              )}
+                            </Button>
+                          </CardContent>
+                        </div>
                       </div>
-                    </div>
-                  </Card>
-                ))}
+                    </Card>
+                  );
+                })}
               </div>
             </div>
           )}
