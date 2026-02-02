@@ -17,6 +17,8 @@ import earbudsCover from "@/assets/pdf-covers/earbuds-guide-cover.jpg";
 import studentTechCover from "@/assets/pdf-covers/student-tech-guide-cover.jpg";
 import fitnessTrackersCover from "@/assets/pdf-covers/fitness-trackers-guide-cover.jpg";
 import remoteWorkspaceCover from "@/assets/pdf-covers/remote-workspace-guide-cover.jpg";
+import valentineFamilyCover from "@/assets/pdf-covers/valentine-family-tech-guide-cover.jpg";
+import smartRingCover from "@/assets/pdf-covers/smart-ring-guide-cover.jpg";
 
 interface DigitalProduct {
   id: string;
@@ -30,7 +32,7 @@ interface DigitalProduct {
 
 // Map slugs to cover images and icons
 const productMeta: Record<string, { cover: string; icon: React.ReactNode; gradient: string; isPremium?: boolean }> = {
-  "valentine-family-tech-guide": { cover: kidsTechCover, icon: <Star className="h-8 w-8 text-white" />, gradient: "bg-gradient-to-r from-pink-500 to-red-500" },
+  "valentine-family-tech-guide": { cover: valentineFamilyCover, icon: <Star className="h-8 w-8 text-white" />, gradient: "bg-gradient-to-r from-pink-500 to-red-500" },
   "kids-tech-guide": { cover: kidsTechCover, icon: <Baby className="h-8 w-8 text-white" />, gradient: "bg-gradient-gold" },
   "smart-home-guide": { cover: smartHomeCover, icon: <Home className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-accent/20 to-primary/20" },
   "gaming-monitors-guide": { cover: gamingMonitorsCover, icon: <Monitor className="h-8 w-8 text-primary" />, gradient: "bg-gradient-to-r from-primary/20 to-accent/20" },
@@ -38,7 +40,7 @@ const productMeta: Record<string, { cover: string; icon: React.ReactNode; gradie
   "student-tech-guide": { cover: studentTechCover, icon: <GraduationCap className="h-8 w-8 text-primary" />, gradient: "bg-gradient-to-r from-primary/20 to-accent/20" },
   "fitness-trackers-guide": { cover: fitnessTrackersCover, icon: <Activity className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-accent/20 to-primary/20" },
   "remote-workspace-guide": { cover: remoteWorkspaceCover, icon: <Briefcase className="h-8 w-8 text-primary" />, gradient: "bg-gradient-to-r from-primary/20 to-accent/20" },
-  "smart-ring-guide": { cover: fitnessTrackersCover, icon: <Star className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-purple-500/30 to-pink-500/30", isPremium: true },
+  "smart-ring-guide": { cover: smartRingCover, icon: <Star className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-purple-500/30 to-pink-500/30", isPremium: true },
 };
 
 const DigitalProducts = () => {
