@@ -33,6 +33,8 @@ import rocketbookImg from "@/assets/products/rocketbook-flex-planner.jpg";
 import ankerPowerImg from "@/assets/products/anker-power-bank.jpg";
 import boseQcImg from "@/assets/products/bose-qc45-headphones.jpg";
 import fitbitImg from "@/assets/products/fitbit-charge-6.jpg";
+import theragunImg from "@/assets/products/theragun-prime.jpg";
+import ouraRingImg from "@/assets/products/oura-ring-gen3.jpg";
 import ekrinImg from "@/assets/products/ekrin-bantam.jpg";
 import withingsImg from "@/assets/products/withings-scale.jpg";
 import boseSleepImg from "@/assets/products/bose-sleepbuds.jpg";
@@ -73,6 +75,169 @@ const blogPostsData: Record<string, {
   sections: ContentSection[];
   products: BlogProduct[];
 }> = {
+  "valentine-gift-guide-family-tech-2026": {
+    title: "2026 Valentine Gift Guide: Tech for Family Edition",
+    date: "2026-02-02",
+    category: "Gift Guides",
+    imageUrl: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1200&auto=format",
+    intro: "We've all been there. You open the drawer in your home office or bedroom, and it's a graveyard of gadgets. The fitness tracker you wore twice. The smart speaker that never quite understood you. The novelty device that seemed brilliant at 2 AM while scrolling Amazon, but now just collects dust. Most tech gifts fail because they solve problems we don't actually have. They're novelties, not necessities. This Valentine's Day, give gifts that build connection, not clutter.",
+    sections: [
+      {
+        type: 'heading',
+        content: 'The Connection Crisis'
+      },
+      {
+        type: 'paragraph',
+        content: "We're living through a paradox. We have more ways to communicate than ever before, yet loneliness and disconnection are at all-time highs. According to recent studies, the average family spends less than 37 minutes per day in meaningful conversation. Parents and adult children often go weeks without real connection. Couples live parallel lives in the same house."
+      },
+      {
+        type: 'paragraph',
+        content: "Technology often gets blamed for this crisis—and rightfully so. Endless scrolling, notification addiction, and screen time have isolated us in digital bubbles. But here's what most people miss: technology isn't inherently isolating. It's a tool. And like any tool, it can be used to build or to destroy."
+      },
+      {
+        type: 'heading',
+        content: 'The 4 Pillars of Connection-Building Tech'
+      },
+      {
+        type: 'paragraph',
+        content: "Not all technology is created equal. The gifts that truly matter fall into four categories:"
+      },
+      {
+        type: 'subheading',
+        content: '1. Daily Touchpoints'
+      },
+      {
+        type: 'paragraph',
+        content: "These are devices that create small moments of connection throughout the day. The **Aura Mason Luxe Frame** lets grandparents see new photos of grandkids instantly, without needing to navigate apps. The **Pixel Lovebox** allows partners to send quick love notes that make a physical heart spin on each other's desks. The **Skylight Calendar** syncs everyone's schedules so families actually know when they'll see each other next."
+      },
+      {
+        type: 'subheading',
+        content: '2. Shared Experiences'
+      },
+      {
+        type: 'paragraph',
+        content: "The best memories aren't made alone. The **Govee AI-Sync Backlight** transforms movie night from background noise into an immersive experience the whole family wants to participate in. The **Nex Playground System** gets kids (and parents) off the couch and moving together. The **Pura 4 Smart Diffuser** sets the mood for date night without anyone having to remember to light candles."
+      },
+      {
+        type: 'subheading',
+        content: '3. Health & Presence'
+      },
+      {
+        type: 'paragraph',
+        content: "You can't be present for the people you love if you're exhausted, stressed, or running on empty. The **Oura Ring Gen 4** helps you understand your body's signals so you can show up as your best self. The **Hatch Restore 2** improves sleep quality, which improves everything else. The **Therabody Theragun Relief** helps the hardworking parent or athlete recover so they have energy for what matters."
+      },
+      {
+        type: 'subheading',
+        content: '4. Safety & Peace of Mind'
+      },
+      {
+        type: 'paragraph',
+        content: "Love is wanting the people you care about to be safe. The **Apple Watch SE** with Family Setup lets parents stay connected to kids or elderly relatives without needing to buy them a phone. The **Aqara Smart Lock U100** means no more worrying about whether the door is locked or if your teenager made it home safely."
+      },
+      {
+        type: 'heading',
+        content: 'Real Stories: Tech That Changed Relationships'
+      },
+      {
+        type: 'paragraph',
+        content: "Sarah, a working mom in Portland, bought an Aura Frame for her parents who live across the country. \"My kids are growing up so fast, and my parents were missing it,\" she told us. \"Now, every time we do something fun, I send a photo. My mom says it's like having a window into our daily life.\""
+      },
+      {
+        type: 'paragraph',
+        content: "Marcus and Jennifer, married for 12 years, were in a rut. \"We were roommates, not partners,\" Marcus admitted. Then Jennifer surprised him with a Lovebox for his office. \"Getting a little love note in the middle of a stressful workday changed everything. It reminded us we were on the same team.\""
+      },
+      {
+        type: 'heading',
+        content: 'How to Choose the Right Gift'
+      },
+      {
+        type: 'paragraph',
+        content: "Match the gift to their love language:"
+      },
+      {
+        type: 'list',
+        items: [
+          "**Words of Affirmation?** Lovebox for sending love notes",
+          "**Quality Time?** Skylight Calendar or Nex Playground",
+          "**Acts of Service?** Smart home tech that makes life easier",
+          "**Physical Touch?** Therabody for massage and recovery",
+          "**Gifts?** Aura Frame filled with memories"
+        ]
+      },
+      {
+        type: 'heading',
+        content: 'Questions to Ask Before Buying'
+      },
+      {
+        type: 'list',
+        items: [
+          "Will this create a new ritual or enhance an existing one?",
+          "Does this solve a real problem in their daily life?",
+          "Will this bring people together or isolate them further?",
+          "Is this easy enough that they'll actually use it?"
+        ]
+      },
+      {
+        type: 'heading',
+        content: 'The Best Gift is Presence'
+      },
+      {
+        type: 'paragraph',
+        content: "Here's the truth: no gadget, no matter how smart or well-designed, can replace genuine human connection. Technology should be a bridge, not a destination. The gifts in this guide aren't magic. They won't fix a broken relationship or create connection where there's no foundation. But for families and couples who want to be closer, who are looking for tools to help them show up better for each other, these devices can make a real difference."
+      },
+      {
+        type: 'paragraph',
+        content: "This Valentine's Day, don't just give a gift. Give presence. Give attention. Give the message that says: \"I see you. I value our time together. And I'm willing to invest in what we have.\" Because the best technology doesn't demand our attention—it gives us more capacity to give our attention to the people who matter most."
+      }
+    ],
+    products: [
+      {
+        title: "Oura Ring Gen 4",
+        description: "Ultimate health tracker—tracks sleep, stress, and readiness without a screen",
+        badge: "Valentine's Pick",
+        rating: 4.8,
+        imageUrl: ouraRingImg,
+        affiliateLink: "https://www.amazon.com/dp/B0DJMJNHWX?tag=moderntechs0c-20"
+      },
+      {
+        title: "Hatch Restore 2",
+        description: "Smart sleep assistant with gentle light and sound wake-up",
+        badge: "Better Sleep",
+        rating: 4.7,
+        imageUrl: philipsWakeupImg,
+        affiliateLink: "https://www.amazon.com/dp/B0C5S7K1JK?tag=moderntechs0c-20"
+      },
+      {
+        title: "Therabody Theragun Prime",
+        description: "Professional-grade massage tech made quiet and easy for home use",
+        rating: 4.7,
+        imageUrl: theragunImg,
+        affiliateLink: "https://www.amazon.com/dp/B086Z6NZ2P?tag=moderntechs0c-20"
+      },
+      {
+        title: "Apple Watch SE",
+        description: "Family Setup lets parents stay connected to kids without a phone",
+        badge: "Family Safety",
+        rating: 4.8,
+        imageUrl: fitbitImg,
+        affiliateLink: "https://www.amazon.com/dp/B0CHX9N594?tag=moderntechs0c-20"
+      },
+      {
+        title: "Philips Hue White & Color Starter Kit",
+        description: "Set the perfect romantic ambiance with millions of colors",
+        rating: 4.8,
+        imageUrl: philipsHueImg,
+        affiliateLink: "https://www.amazon.com/dp/B09QZFVCL6?tag=moderntechs0c-20"
+      },
+      {
+        title: "August WiFi Smart Lock",
+        description: "Peace of mind with keyless entry and remote access",
+        rating: 4.5,
+        imageUrl: augustLockImg,
+        affiliateLink: "https://www.amazon.com/dp/B082VXK9CK?tag=moderntechs0c-20"
+      }
+    ]
+  },
   "top-10-smart-home-devices-2025": {
     title: "Top 10 Smart Home Devices for 2025",
     date: "2025-01-14",
