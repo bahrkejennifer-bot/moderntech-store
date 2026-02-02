@@ -7,6 +7,14 @@ import { Button } from "@/components/ui/button";
 
 const blogPosts = [
   {
+    title: "The Ultimate Smart Ring Guide for Valentine's Day 2026",
+    excerpt: "Oura, Samsung Galaxy Ring, or Ultrahuman? We compare the top smart rings, breaking down sleep tracking accuracy, heart rate monitoring, sizing, and whether they're worth the investment for your Valentine.",
+    date: "2026-02-02",
+    category: "Health & Wellness",
+    imageUrl: "https://images.unsplash.com/photo-1573405963648-854c31a4db30?w=800&auto=format",
+    slug: "smart-ring-guide-valentines-2026",
+  },
+  {
     title: "2026 Valentine Gift Guide: Tech for Family Edition",
     excerpt: "Gifts that build connection, not clutter. This Valentine, give more than gadgets—give presence, peace of mind, and moments that matter. Curated for families who live fully.",
     date: "2026-02-02",
