@@ -113,7 +113,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <FloatingHearts />
+      
       
       {/* Hero Section - Valentine's Theme */}
       <section className="relative min-h-[90vh] flex items-start justify-center overflow-hidden pt-20">
