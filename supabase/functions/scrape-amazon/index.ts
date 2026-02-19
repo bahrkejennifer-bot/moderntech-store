@@ -194,21 +194,42 @@ Deno.serve(async (req) => {
 
     const affiliateTag = "moderntechs0c-20";
     const savedProducts = [];
+    const skippedDuplicates = [];
+
+    // Fetch existing titles for duplicate detection
+    const existingTitles = new Set<string>();
+    const { data: existingProducts } = await supabaseAdmin
+      .from("scraped_products")
+      .select("title");
+    if (existingProducts) {
+      for (const p of existingProducts) {
+        existingTitles.add(p.title.toLowerCase().trim());
+      }
+    }
 
     for (const product of products) {
+      const title = product.title || "Untitled Product";
+
+      // Skip duplicates
+      if (existingTitles.has(title.toLowerCase().trim())) {
+        console.log("Skipping duplicate:", title);
+        skippedDuplicates.push(title);
+        continue;
+      }
+
       // Build affiliate link
       let affiliateLink = product.product_url || "";
       if (affiliateLink && !affiliateLink.includes("tag=")) {
         const separator = affiliateLink.includes("?") ? "&" : "?";
         affiliateLink = `${affiliateLink}${separator}tag=${affiliateTag}`;
       } else if (!affiliateLink) {
-        affiliateLink = `https://www.amazon.com/s?k=${encodeURIComponent(product.title || "")}&tag=${affiliateTag}`;
+        affiliateLink = `https://www.amazon.com/s?k=${encodeURIComponent(title)}&tag=${affiliateTag}`;
       }
 
       const { data: inserted, error: insertError } = await supabaseAdmin
         .from("scraped_products")
         .insert({
-          title: product.title || "Untitled Product",
+          title,
           price: product.price || null,
           image_url: product.image_url || null,
           affiliate_link: affiliateLink,
@@ -222,6 +243,7 @@ Deno.serve(async (req) => {
         continue;
       }
 
+      existingTitles.add(title.toLowerCase().trim());
       savedProducts.push(inserted);
     }
 
@@ -251,6 +273,8 @@ Deno.serve(async (req) => {
         success: true,
         products: savedProducts,
         count: savedProducts.length,
+        skipped_duplicates: skippedDuplicates,
+        duplicates_count: skippedDuplicates.length,
       }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
