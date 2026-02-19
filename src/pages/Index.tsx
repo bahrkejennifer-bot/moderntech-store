@@ -9,6 +9,7 @@ import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { TechChatbot } from "@/components/TechChatbot";
 import { FloatingHearts } from "@/components/FloatingHearts";
+import { StPatricksDecorations } from "@/components/StPatricksDecorations";
 import heroImage from "@/assets/hero-family-drive.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
@@ -116,6 +117,7 @@ const Index = () => {
       
       {/* Hero Section - Valentine's Theme */}
       <section className="relative min-h-[90vh] flex items-start justify-center overflow-hidden pt-20">
+        <StPatricksDecorations />
         {/* Premium tech background image */}
         <div className="absolute inset-0">
           <img 
