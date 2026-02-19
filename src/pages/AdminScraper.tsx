@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, Search, ExternalLink, Trash2, LogOut, Shield } from "lucide-react";
+import { Loader2, Search, ExternalLink, Trash2, LogOut, Shield, Megaphone } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 
@@ -117,6 +117,35 @@ const AdminScraper = () => {
     }
   };
 
+  const handlePromote = async (product: ScrapedProduct) => {
+    try {
+      const { data, error } = await supabase.functions.invoke("scrape-amazon", {
+        body: {
+          action: "promote",
+          product: {
+            title: product.title,
+            image_url: product.image_url,
+            affiliate_link: product.affiliate_link,
+          },
+        },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Promoted!",
+        description: `"${product.title}" sent to Make.com webhook.`,
+      });
+    } catch (error: any) {
+      console.error("Promote error:", error);
+      toast({
+        title: "Promotion Failed",
+        description: error.message || "Could not send to webhook",
+        variant: "destructive",
+      });
+    }
+  };
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate("/admin/auth");
@@ -224,6 +253,14 @@ const AdminScraper = () => {
                           >
                             View <ExternalLink className="ml-1 h-3 w-3" />
                           </a>
+                        </Button>
+                        <Button
+                          variant="default"
+                          size="sm"
+                          onClick={() => handlePromote(product)}
+                          title="Send to Make.com"
+                        >
+                          <Megaphone className="h-3 w-3" />
                         </Button>
                         <Button
                           variant="outline"

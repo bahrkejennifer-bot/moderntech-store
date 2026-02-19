@@ -57,7 +57,51 @@ Deno.serve(async (req) => {
       });
     }
 
-    const { url } = await req.json();
+    const body = await req.json();
+    const { action } = body;
+
+    // Handle promote action
+    if (action === "promote") {
+      const { product } = body;
+      if (!product) {
+        return new Response(JSON.stringify({ error: "Product data required" }), {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      const webhookUrl = Deno.env.get("MAKECOM_WEBHOOK_URL");
+      if (!webhookUrl) {
+        return new Response(JSON.stringify({ error: "Webhook not configured" }), {
+          status: 500,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      const webhookResponse = await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event: "product_promoted",
+          title: product.title,
+          image_url: product.image_url,
+          affiliate_link: product.affiliate_link,
+          promoted_at: new Date().toISOString(),
+        }),
+      });
+
+      if (!webhookResponse.ok) {
+        const errText = await webhookResponse.text();
+        throw new Error(`Webhook failed [${webhookResponse.status}]: ${errText}`);
+      }
+
+      return new Response(JSON.stringify({ success: true }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Default scrape action
+    const url = body.url;
     if (!url) {
       return new Response(JSON.stringify({ error: "URL is required" }), {
         status: 400,
