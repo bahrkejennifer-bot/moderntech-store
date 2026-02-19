@@ -95,6 +95,36 @@ export type Database = {
           },
         ]
       }
+      scraped_products: {
+        Row: {
+          affiliate_link: string
+          created_at: string
+          id: string
+          image_url: string | null
+          price: string | null
+          source_url: string | null
+          title: string
+        }
+        Insert: {
+          affiliate_link: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          price?: string | null
+          source_url?: string | null
+          title: string
+        }
+        Update: {
+          affiliate_link?: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          price?: string | null
+          source_url?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

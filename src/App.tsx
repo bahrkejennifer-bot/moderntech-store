@@ -16,6 +16,8 @@ import DigitalProducts from "./pages/DigitalProducts";
 import TechGiftCheatsheet from "./pages/TechGiftCheatsheet";
 import AdminUpload from "./pages/AdminUpload";
 import AdminAuth from "./pages/AdminAuth";
+import AdminScraper from "./pages/AdminScraper";
+import ScrapedProducts from "./pages/ScrapedProducts";
 import MyDownloads from "./pages/MyDownloads";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -49,6 +51,8 @@ const App = () => (
           <Route path="/my-downloads" element={<MyDownloads />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin/upload" element={<AdminUpload />} />
+          <Route path="/admin/scraper" element={<AdminScraper />} />
+          <Route path="/trending-products" element={<ScrapedProducts />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
