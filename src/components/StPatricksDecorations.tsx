@@ -1,5 +1,5 @@
+import { Clover } from "lucide-react";
 import leprechaunImg from "@/assets/leprechaun-dancing.jpg";
-import cloverImg from "@/assets/clover-leaf.png";
 
 export const StPatricksDecorations = () => {
   return (
@@ -15,22 +15,22 @@ export const StPatricksDecorations = () => {
 
       {/* Top-left clover */}
       <div className="absolute top-3 left-3 z-20 pointer-events-none">
-        <img src={cloverImg} alt="Clover" className="h-10 w-10 md:h-14 md:w-14 object-contain drop-shadow-lg -rotate-12" />
+        <Clover className="h-8 w-8 md:h-10 md:w-10 text-emerald-300 fill-emerald-300 drop-shadow-lg" />
       </div>
 
       {/* Top-right clover */}
       <div className="absolute top-3 right-3 z-20 pointer-events-none">
-        <img src={cloverImg} alt="Clover" className="h-10 w-10 md:h-14 md:w-14 object-contain drop-shadow-lg rotate-12" />
+        <Clover className="h-8 w-8 md:h-10 md:w-10 text-emerald-300 fill-emerald-300 drop-shadow-lg" />
       </div>
 
       {/* Bottom-left clover */}
       <div className="absolute bottom-20 left-3 z-20 pointer-events-none">
-        <img src={cloverImg} alt="Clover" className="h-10 w-10 md:h-14 md:w-14 object-contain drop-shadow-lg rotate-12" />
+        <Clover className="h-8 w-8 md:h-10 md:w-10 text-emerald-300 fill-emerald-300 drop-shadow-lg" />
       </div>
 
       {/* Bottom-right clover */}
       <div className="absolute bottom-20 right-3 z-20 pointer-events-none">
-        <img src={cloverImg} alt="Clover" className="h-10 w-10 md:h-14 md:w-14 object-contain drop-shadow-lg -rotate-12" />
+        <Clover className="h-8 w-8 md:h-10 md:w-10 text-emerald-300 fill-emerald-300 drop-shadow-lg" />
       </div>
     </>
   );
