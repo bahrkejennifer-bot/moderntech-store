@@ -131,31 +131,29 @@ Deno.serve(async (req) => {
       },
       body: JSON.stringify({
         url: url.trim(),
-        formats: [
-          {
-            type: "json",
-            schema: {
-              type: "object",
-              properties: {
-                products: {
-                  type: "array",
-                  items: {
-                    type: "object",
-                    properties: {
-                      title: { type: "string" },
-                      price: { type: "string" },
-                      image_url: { type: "string" },
-                      product_url: { type: "string" },
-                    },
+        formats: ["extract"],
+        extract: {
+          schema: {
+            type: "object",
+            properties: {
+              products: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    title: { type: "string" },
+                    price: { type: "string" },
+                    image_url: { type: "string" },
+                    product_url: { type: "string" },
                   },
-                  maxItems: 5,
                 },
+                maxItems: 5,
               },
             },
-            prompt:
-              "Extract the top 5 best-selling products from this Amazon page. For each product get the title, price (including currency symbol), main image URL, and the product page URL (full Amazon URL).",
           },
-        ],
+          prompt:
+            "Extract the top 5 best-selling products from this Amazon page. For each product get the title, price (including currency symbol), main image URL, and the product page URL (full Amazon URL).",
+        },
         waitFor: 3000,
       }),
     });
@@ -176,14 +174,14 @@ Deno.serve(async (req) => {
     }
 
     // Extract products from response
-    const jsonData = scrapeData.data?.json || scrapeData.json || {};
-    const products = jsonData.products || [];
+    const extractData = scrapeData.data?.extract || scrapeData.extract || {};
+    const products = extractData.products || [];
 
     if (products.length === 0) {
       return new Response(
         JSON.stringify({
           error: "No products found on this page",
-          raw: jsonData,
+          raw: extractData,
         }),
         {
           status: 400,
