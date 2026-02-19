@@ -1,7 +1,7 @@
-import { Heart } from "lucide-react";
+import { Clover } from "lucide-react";
 import { useEffect, useState } from "react";
 
-interface FloatingHeart {
+interface FloatingClover {
   id: number;
   left: number;
   delay: number;
@@ -11,12 +11,12 @@ interface FloatingHeart {
 }
 
 export const FloatingHearts = () => {
-  const [hearts, setHearts] = useState<FloatingHeart[]>([]);
+  const [clovers, setClovers] = useState<FloatingClover[]>([]);
 
   useEffect(() => {
-    const generatedHearts: FloatingHeart[] = [];
+    const generated: FloatingClover[] = [];
     for (let i = 0; i < 20; i++) {
-      generatedHearts.push({
+      generated.push({
         id: i,
         left: Math.random() * 100,
         delay: Math.random() * 10,
@@ -25,27 +25,27 @@ export const FloatingHearts = () => {
         opacity: 0.3 + Math.random() * 0.4,
       });
     }
-    setHearts(generatedHearts);
+    setClovers(generated);
   }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-10">
-      {hearts.map((heart) => (
+      {clovers.map((clover) => (
         <div
-          key={heart.id}
+          key={clover.id}
           className="absolute animate-float-up"
           style={{
-            left: `${heart.left}%`,
-            animationDelay: `${heart.delay}s`,
-            animationDuration: `${heart.duration}s`,
+            left: `${clover.left}%`,
+            animationDelay: `${clover.delay}s`,
+            animationDuration: `${clover.duration}s`,
           }}
         >
-          <Heart
-            className="text-rose-500 fill-rose-400"
+          <Clover
+            className="text-emerald-500 fill-emerald-400"
             style={{
-              width: heart.size,
-              height: heart.size,
-              opacity: heart.opacity,
+              width: clover.size,
+              height: clover.size,
+              opacity: clover.opacity,
             }}
           />
         </div>
