@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Sparkles, Star, ExternalLink, ArrowRight, Check, Heart } from "lucide-react";
+import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Sparkles, Star, ExternalLink, ArrowRight, Check, Clover } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
@@ -133,21 +133,21 @@ const Index = () => {
         
         <div className="container relative z-10 mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
-            {/* Valentine's Badge */}
-            <div className="inline-flex items-center gap-1.5 bg-rose-500/30 backdrop-blur-sm text-white px-3 py-1.5 rounded-full mb-3 animate-fade-in border border-rose-300/40">
-              <Heart className="h-3 w-3 text-rose-300 fill-rose-300 animate-pulse-heart" />
-              <span className="text-[10px] font-medium">Valentine's Day Gift Guide</span>
-              <Heart className="h-3 w-3 text-rose-300 fill-rose-300 animate-pulse-heart" />
+            {/* St. Patrick's Badge */}
+            <div className="inline-flex items-center gap-1.5 bg-emerald-500/30 backdrop-blur-sm text-white px-3 py-1.5 rounded-full mb-3 animate-fade-in border border-emerald-300/40">
+              <Clover className="h-3 w-3 text-emerald-300 fill-emerald-300" />
+              <span className="text-[10px] font-medium">St. Patrick's Day Family Tech Guide</span>
+              <Clover className="h-3 w-3 text-emerald-300 fill-emerald-300" />
             </div>
             
-            {/* Main headline - Valentine's */}
+            {/* Main headline */}
             <h1 className="mb-2 text-2xl md:text-3xl font-bold tracking-tight text-white animate-fade-in drop-shadow-lg">
-              Tech They'll <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-pink-400 to-red-400">Love</span> 💕
+              Lucky <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-green-400 to-teal-400">Family Finds</span> ☘️
             </h1>
             
             {/* Subheadline */}
             <p className="mb-4 text-sm md:text-base text-white/95 max-w-md mx-auto leading-relaxed animate-fade-in drop-shadow-md" style={{ animationDelay: '0.15s' }}>
-              Show your love with the perfect tech gift this Valentine's Day.
+              Strike gold with the best family tech picks this St. Patrick's Day.
             </p>
           </div>
           
@@ -155,15 +155,15 @@ const Index = () => {
           <div className="absolute -bottom-16 left-0 right-0 px-4 z-20">
             <div className="flex flex-row gap-3 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <Button 
-                className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-400 hover:to-pink-400 text-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
+                className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
                 size="sm" 
                 onClick={scrollToFeatured}
               >
-                <Heart className="h-3 w-3 mr-1 fill-white" />
-                Find the Perfect Gift
+                <Clover className="h-3 w-3 mr-1 fill-white" />
+                Find Lucky Deals
               </Button>
               <Button 
-                className="bg-white/90 text-rose-600 hover:bg-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
+                className="bg-white/90 text-emerald-600 hover:bg-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
                 size="sm" 
                 asChild
               >
@@ -174,20 +174,20 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Valentine's Affiliate Banner & Social Links */}
-      <section className="py-4 bg-gradient-to-r from-rose-500/10 via-pink-500/15 to-rose-500/10 border-y border-rose-500/20">
+      {/* St. Patrick's Affiliate Banner & Social Links */}
+      <section className="py-4 bg-gradient-to-r from-emerald-500/10 via-green-500/15 to-emerald-500/10 border-y border-emerald-500/20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="bg-rose-500/20 p-2 rounded-full">
-                <Heart className="h-4 w-4 text-rose-500 fill-rose-500" />
+              <div className="bg-emerald-500/20 p-2 rounded-full">
+                <Clover className="h-4 w-4 text-emerald-500 fill-emerald-500" />
               </div>
               <p className="text-sm text-muted-foreground">
-                <span className="font-semibold text-rose-600">💕 Valentine's Deals:</span> Find the perfect gift at no extra cost to you.
+                <span className="font-semibold text-emerald-600">☘️ Lucky Deals:</span> Find golden tech finds at no extra cost to you.
               </p>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-muted-foreground hidden sm:block">Share the love:</span>
+              <span className="text-sm text-muted-foreground hidden sm:block">Share the luck:</span>
               <SocialLinks />
             </div>
           </div>
@@ -220,16 +220,16 @@ const Index = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <span className="inline-block text-rose-500 font-semibold text-sm tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
-              <Heart className="h-4 w-4 fill-rose-500" />
-              Valentine's Gift Guide
-              <Heart className="h-4 w-4 fill-rose-500" />
+            <span className="inline-block text-emerald-500 font-semibold text-sm tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
+              <Clover className="h-4 w-4 fill-emerald-500" />
+              Family Tech Gift Guide
+              <Clover className="h-4 w-4 fill-emerald-500" />
             </span>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-foreground">
-              Gifts They'll <span className="gradient-text-valentine">Adore</span>
+              Golden <span className="gradient-text">Finds</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Perfect tech gifts to show how much you care this Valentine's Day.
+              Top family tech picks to celebrate this St. Patrick's Day season.
             </p>
           </div>
           
