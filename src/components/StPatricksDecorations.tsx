@@ -11,6 +11,7 @@ export const StPatricksDecorations = () => {
           alt="Dancing leprechaun"
           className="h-16 w-16 md:h-24 md:w-24 rounded-full object-cover border-2 border-emerald-400/60 shadow-lg animate-bounce"
         />
+        <span className="text-2xl md:text-3xl drop-shadow-lg -mt-2" role="img" aria-label="Pot of gold">🪙🏺🪙</span>
       </div>
 
       {/* Top-left clover */}
