@@ -7,6 +7,14 @@ import { Button } from "@/components/ui/button";
 
 const blogPosts = [
   {
+    title: "☘️ Best St. Patrick's Day Tech Deals 2026",
+    excerpt: "Lucky you! We've rounded up the best tech deals and discounts dropping this St. Patrick's Day — from smart home bundles to gaming gear, these prices are pure gold.",
+    date: "2026-02-19",
+    category: "Deals",
+    imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format",
+    slug: "st-patricks-day-tech-deals-2026",
+  },
+  {
     title: "The Ultimate Smart Ring Guide for St. Patrick's Day 2026",
     excerpt: "Oura, Samsung Galaxy Ring, or Ultrahuman? We compare the top smart rings, breaking down sleep tracking accuracy, heart rate monitoring, sizing, and whether they're worth the investment.",
     date: "2026-02-02",
