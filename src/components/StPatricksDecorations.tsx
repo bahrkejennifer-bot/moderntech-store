@@ -1,12 +1,16 @@
 import { Clover } from "lucide-react";
+import leprechaunImg from "@/assets/leprechaun-dancing.jpg";
 
 export const StPatricksDecorations = () => {
   return (
     <>
-      {/* Bouncing leprechaun on pot of gold - top center */}
-      <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center">
-        <span className="text-3xl md:text-4xl drop-shadow-lg animate-bounce" role="img" aria-label="Leprechaun">🧌</span>
-        <span className="text-2xl md:text-3xl drop-shadow-lg -mt-2" role="img" aria-label="Pot of gold">🪙🏺🪙</span>
+      {/* Bouncing leprechaun image - top center */}
+      <div className="absolute top-1 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center">
+        <img
+          src={leprechaunImg}
+          alt="Dancing leprechaun"
+          className="h-16 w-16 md:h-24 md:w-24 rounded-full object-cover border-2 border-emerald-400/60 shadow-lg animate-bounce"
+        />
       </div>
 
       {/* Top-left clover */}
