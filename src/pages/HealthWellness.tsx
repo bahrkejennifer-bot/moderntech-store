@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
-import { Heart } from "lucide-react";
+import { Clover } from "lucide-react";
 import ekrinBantamImage from "@/assets/products/ekrin-bantam.jpg";
 import withingsScaleImage from "@/assets/products/withings-scale.jpg";
 import philipsWakeupImage from "@/assets/products/philips-wakeup-light.jpg";
@@ -9,10 +9,10 @@ import fitbitCharge6Image from "@/assets/products/fitbit-charge-6.jpg";
 import boseSleepbudsImage from "@/assets/products/bose-sleepbuds.jpg";
 import ouraRingImage from "@/assets/products/oura-ring-gen3.jpg";
 
-// Valentine's Day Featured Product
+// St. Patrick's Day Featured Product
 const featuredProduct = {
   title: "Oura Ring Gen 3",
-  description: "The ultimate health tracking ring - monitors sleep, heart rate, temperature & activity. Perfect Valentine's gift for wellness lovers!",
+  description: "The ultimate health tracking ring - monitors sleep, heart rate, temperature & activity. A lucky find for wellness lovers!",
   price: "$299.00",
   rating: 4.7,
   imageUrl: ouraRingImage,
@@ -84,18 +84,18 @@ const HealthWellness = () => {
           </p>
         </div>
 
-        {/* Valentine's Day Featured Product */}
-        <div className="mb-12 p-6 bg-gradient-to-r from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/20 rounded-2xl border border-pink-200 dark:border-pink-800">
+        {/* St. Patrick's Day Featured Product */}
+        <div className="mb-12 p-6 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-950/20 dark:to-green-950/20 rounded-2xl border border-emerald-200 dark:border-emerald-800">
           <div className="flex items-center justify-center gap-2 mb-6">
-            <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
-            <h2 className="text-2xl font-bold text-rose-600 dark:text-rose-400">Valentine's Day Special</h2>
-            <Heart className="h-6 w-6 text-rose-500 fill-rose-500" />
+            <Clover className="h-6 w-6 text-emerald-500 fill-emerald-500" />
+            <h2 className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">St. Patrick's Day Special</h2>
+            <Clover className="h-6 w-6 text-emerald-500 fill-emerald-500" />
           </div>
           <div className="max-w-md mx-auto">
             <ProductCard {...featuredProduct} />
           </div>
           <p className="text-center text-sm text-muted-foreground mt-4">
-            💝 Show your love with the gift of health tracking
+            ☘️ Strike gold with the gift of health tracking
           </p>
           <p className="text-center text-xs text-muted-foreground mt-2 italic">
             As an Amazon Associate, I earn from qualifying purchases
