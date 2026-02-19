@@ -17,6 +17,7 @@ const Navigation = () => {
     { to: "/gaming", label: "Gaming" },
     { to: "/connectivity", label: "Connectivity" },
     { to: "/college", label: "College & School" },
+    { to: "/trending-products", label: "Trending Products" },
     { to: "/blog", label: "Blog" },
     { to: "/digital-products", label: "Digital Products" },
     { to: "/my-downloads", label: "My Downloads" },
