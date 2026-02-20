@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
-const PINTEREST_WEBHOOK_URL = "https://hook.us2.make.com/x9jm5p6f987cmkfghgapsf3gpkztrhcp";
 const SITE_BASE_URL = "https://moderntech.store";
 
 interface ProductCardProps {
@@ -23,19 +23,17 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
   const handlePinToPinterest = async () => {
     setPinning(true);
     try {
-      const response = await fetch(PINTEREST_WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const { error } = await supabase.functions.invoke("pin-to-pinterest", {
+        body: {
           event: "pin_product",
           title,
           image_url: imageUrl.startsWith("http") ? imageUrl : `${SITE_BASE_URL}${imageUrl}`,
           affiliate_link: affiliateLink,
           pinned_at: new Date().toISOString(),
-        }),
+        },
       });
 
-      if (!response.ok) throw new Error("Webhook failed");
+      if (error) throw error;
 
       toast({ title: "Pinned! 📌", description: `"${title}" was sent to Pinterest via Make.com.` });
     } catch {
