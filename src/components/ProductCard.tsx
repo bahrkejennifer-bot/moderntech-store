@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 const SITE_BASE_URL = "https://moderntech.store";
 
@@ -23,18 +22,25 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
   const handlePinToPinterest = async () => {
     setPinning(true);
     try {
-      const { error, data } = await supabase.functions.invoke("pin-to-pinterest", {
-        body: {
-          event: "pin_product",
-          title,
-          image_url: imageUrl.startsWith("http") ? imageUrl : `${SITE_BASE_URL}${imageUrl}`,
-          affiliate_link: affiliateLink,
-          pinned_at: new Date().toISOString(),
-        },
-      });
+      // Use fetch directly to avoid supabase.functions.invoke JSON-parse issues
+      // when Make.com returns plain text "Accepted"
+      const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID || "hvjhtfyxecnuehndnyrd";
+      const response = await fetch(
+        `https://${projectId}.supabase.co/functions/v1/pin-to-pinterest`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            event: "pin_product",
+            title,
+            image_url: imageUrl.startsWith("http") ? imageUrl : `${SITE_BASE_URL}${imageUrl}`,
+            affiliate_link: affiliateLink,
+            pinned_at: new Date().toISOString(),
+          }),
+        }
+      );
 
-      // Make.com returns plain text "Accepted" — treat any non-network error as success
-      if (error && !data) throw error;
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
       toast({ title: "Pinned! 📌", description: `"${title}" was sent to Pinterest via Make.com.` });
     } catch {
