@@ -28,7 +28,7 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
         body: JSON.stringify({
           event: "pin_product",
           title,
-          image_url: imageUrl,
+          image_url: imageUrl.startsWith("http") ? imageUrl : `${window.location.origin}${imageUrl}`,
           affiliate_link: affiliateLink,
           pinned_at: new Date().toISOString(),
         }),
