@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { useToast } from "@/hooks/use-toast";
 
 const PINTEREST_WEBHOOK_URL = "https://hook.us2.make.com/x9jm5p6f987cmkfghgapsf3gpkztrhcp";
+const SITE_BASE_URL = "https://moderntech.store";
 
 interface ProductCardProps {
   title: string;
@@ -28,7 +29,7 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
         body: JSON.stringify({
           event: "pin_product",
           title,
-          image_url: imageUrl.startsWith("http") ? imageUrl : `${window.location.origin}${imageUrl}`,
+          image_url: imageUrl.startsWith("http") ? imageUrl : `${SITE_BASE_URL}${imageUrl}`,
           affiliate_link: affiliateLink,
           pinned_at: new Date().toISOString(),
         }),
