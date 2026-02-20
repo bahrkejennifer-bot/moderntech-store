@@ -14,24 +14,10 @@ Deno.serve(async (req) => {
   try {
     const payload = await req.json();
 
-    // If image_url is a base64 data URL (local bundled asset), extract the base64
-    // and attach it separately so Make.com can use it directly without hotlink issues.
-    let finalPayload = { ...payload };
-    if (typeof payload.image_url === "string" && payload.image_url.startsWith("data:")) {
-      const [meta, base64] = payload.image_url.split(",");
-      const mimeMatch = meta.match(/data:([^;]+);/);
-      finalPayload = {
-        ...payload,
-        image_url: null, // no public URL available
-        image_base64: base64,
-        image_mime: mimeMatch ? mimeMatch[1] : "image/jpeg",
-      };
-    }
-
     const response = await fetch(PINTEREST_WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(finalPayload),
+      body: JSON.stringify(payload),
     });
 
     const text = await response.text();
