@@ -1,4 +1,4 @@
-const PINTEREST_WEBHOOK_URL = "https://hook.us2.make.com/x9jm5p6f987cmkfghgapsf3gpkztrhcp";
+const PINTEREST_WEBHOOK_URL = "https://hook.us2.make.com/hq6tpt93sjdpa148ahjbqr0b25pmxetb";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
