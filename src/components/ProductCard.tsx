@@ -4,23 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 
-const SITE_BASE_URL = "https://moderntech.store";
-
-async function getImageAsDataUrl(src: string): Promise<string> {
-  // If already an absolute external URL (e.g. Amazon CDN), return as-is
-  if (src.startsWith("http://") || src.startsWith("https://")) return src;
-  // Local / bundled asset — fetch and convert to base64 data URL
-  const response = await fetch(src);
-  if (!response.ok) throw new Error(`Image fetch failed: ${response.status}`);
-  const blob = await response.blob();
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result as string);
-    reader.onerror = reject;
-    reader.readAsDataURL(blob);
-  });
-}
-
 interface ProductCardProps {
   title: string;
   description: string;
@@ -37,9 +20,6 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
   const handlePinToPinterest = async () => {
     setPinning(true);
     try {
-      // Resolve image to a stable URL or base64 data URL so Make.com can always access it
-      const resolvedImage = await getImageAsDataUrl(imageUrl);
-
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID || "hvjhtfyxecnuehndnyrd";
       const response = await fetch(
         `https://${projectId}.supabase.co/functions/v1/pin-to-pinterest`,
@@ -49,7 +29,7 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
           body: JSON.stringify({
             event: "pin_product",
             title,
-            image_url: resolvedImage,
+            image_url: imageUrl,
             affiliate_link: affiliateLink,
             pinned_at: new Date().toISOString(),
           }),
