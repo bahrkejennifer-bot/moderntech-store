@@ -23,7 +23,7 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
   const handlePinToPinterest = async () => {
     setPinning(true);
     try {
-      const { error } = await supabase.functions.invoke("pin-to-pinterest", {
+      const { error, data } = await supabase.functions.invoke("pin-to-pinterest", {
         body: {
           event: "pin_product",
           title,
@@ -33,7 +33,8 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
         },
       });
 
-      if (error) throw error;
+      // Make.com returns plain text "Accepted" — treat any non-network error as success
+      if (error && !data) throw error;
 
       toast({ title: "Pinned! 📌", description: `"${title}" was sent to Pinterest via Make.com.` });
     } catch {
