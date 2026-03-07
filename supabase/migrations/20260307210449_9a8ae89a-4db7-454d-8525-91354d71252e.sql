@@ -1,0 +1,1 @@
+ALTER TABLE public.scraped_products ADD COLUMN category text DEFAULT NULL;

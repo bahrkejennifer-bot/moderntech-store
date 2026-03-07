@@ -140,6 +140,7 @@ export type Database = {
       scraped_products: {
         Row: {
           affiliate_link: string
+          category: string | null
           created_at: string
           id: string
           image_url: string | null
@@ -149,6 +150,7 @@ export type Database = {
         }
         Insert: {
           affiliate_link: string
+          category?: string | null
           created_at?: string
           id?: string
           image_url?: string | null
@@ -158,6 +160,7 @@ export type Database = {
         }
         Update: {
           affiliate_link?: string
+          category?: string | null
           created_at?: string
           id?: string
           image_url?: string | null
