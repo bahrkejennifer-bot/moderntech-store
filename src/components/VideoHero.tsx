@@ -28,7 +28,7 @@ const columns = [
       "https://cdn.pixabay.com/video/2019/09/02/26891-358839498_large.mp4",
     posterUrl:
       "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80",
-    link: "/trending-products",
+    link: "/creator-gear",
   },
 ];
 
