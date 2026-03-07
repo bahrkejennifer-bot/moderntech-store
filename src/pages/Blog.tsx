@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
-import { Calendar, ArrowRight } from "lucide-react";
+import { Calendar, ArrowRight, Sparkles } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { supabase } from "@/integrations/supabase/client";
 
-const blogPosts = [
+const staticBlogPosts = [
   {
     title: "☘️ Best St. Patrick's Day Tech Deals 2026",
     excerpt: "Lucky you! We've rounded up the best tech deals and discounts dropping this St. Patrick's Day — from smart home bundles to gaming gear, these prices are pure gold.",
@@ -13,6 +16,7 @@ const blogPosts = [
     category: "Deals",
     imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format",
     slug: "st-patricks-day-tech-deals-2026",
+    isGenerated: false,
   },
   {
     title: "The Ultimate Smart Ring Guide for St. Patrick's Day 2026",
@@ -21,6 +25,7 @@ const blogPosts = [
     category: "Health & Wellness",
     imageUrl: "https://images.unsplash.com/photo-1573405963648-854c31a4db30?w=800&auto=format",
     slug: "smart-ring-guide-valentines-2026",
+    isGenerated: false,
   },
   {
     title: "2026 St. Patrick's Day Gift Guide: Tech for Family Edition",
@@ -29,6 +34,7 @@ const blogPosts = [
     category: "Gift Guides",
     imageUrl: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format",
     slug: "valentine-gift-guide-family-tech-2026",
+    isGenerated: false,
   },
   {
     title: "Top 10 Smart Home Devices for 2025",
@@ -37,6 +43,7 @@ const blogPosts = [
     category: "Home & Safety",
     imageUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&auto=format",
     slug: "top-10-smart-home-devices-2025",
+    isGenerated: false,
   },
   {
     title: "Best Gaming Monitors Under $500",
@@ -45,6 +52,7 @@ const blogPosts = [
     category: "Gaming",
     imageUrl: "https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=800&auto=format",
     slug: "best-gaming-monitors-under-500",
+    isGenerated: false,
   },
   {
     title: "Wireless Earbuds Comparison Guide",
@@ -53,6 +61,7 @@ const blogPosts = [
     category: "Connectivity",
     imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format",
     slug: "wireless-earbuds-comparison-2025",
+    isGenerated: false,
   },
   {
     title: "Tech Essentials for College Students",
@@ -61,6 +70,7 @@ const blogPosts = [
     category: "College & School",
     imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format",
     slug: "tech-essentials-college-students",
+    isGenerated: false,
   },
   {
     title: "Best Fitness Trackers for Every Budget",
@@ -69,6 +79,7 @@ const blogPosts = [
     category: "Health & Wellness",
     imageUrl: "https://images.unsplash.com/photo-1575390260582-cf5f64c2a6e4?w=800&auto=format",
     slug: "best-fitness-trackers-every-budget",
+    isGenerated: false,
   },
   {
     title: "Educational Tech for Kids: Parent's Guide",
@@ -77,10 +88,37 @@ const blogPosts = [
     category: "Kids Tech",
     imageUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&auto=format",
     slug: "educational-tech-kids-parents-guide",
+    isGenerated: false,
   },
 ];
 
 const Blog = () => {
+  const { data: dynamicPosts } = useQuery({
+    queryKey: ["blog-posts"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("id, title, slug, excerpt, category, image_url, created_at, is_published")
+        .eq("is_published", true)
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data || [];
+    },
+  });
+
+  // Merge dynamic posts (AI-generated) with static ones, dynamic first
+  const dynamicMapped = (dynamicPosts || []).map((p) => ({
+    title: p.title,
+    excerpt: p.excerpt || "",
+    date: p.created_at,
+    category: p.category || "Tech Roundup",
+    imageUrl: p.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format",
+    slug: p.slug,
+    isGenerated: true,
+  }));
+
+  const allPosts = [...dynamicMapped, ...staticBlogPosts];
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -95,14 +133,19 @@ const Blog = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogPosts.map((post) => (
+          {allPosts.map((post) => (
             <Card key={post.slug} className="overflow-hidden hover:shadow-card transition-all duration-300">
-              <div className="aspect-video overflow-hidden">
+              <div className="aspect-video overflow-hidden relative">
                 <img
                   src={post.imageUrl}
                   alt={post.title}
                   className="h-full w-full object-cover transition-transform duration-300 hover:scale-110"
                 />
+                {post.isGenerated && (
+                  <Badge className="absolute top-2 right-2 bg-primary/90 text-primary-foreground gap-1">
+                    <Sparkles className="h-3 w-3" /> AI Roundup
+                  </Badge>
+                )}
               </div>
               <CardHeader>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
