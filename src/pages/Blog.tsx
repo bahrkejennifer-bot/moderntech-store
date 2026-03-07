@@ -131,6 +131,57 @@ const Blog = () => {
             Expert reviews, buying guides, and tech news to help you make informed decisions
           </p>
         </div>
+
+        {/* Weekly Deep-Dive Section */}
+        {dynamicMapped.length > 0 && (
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="h-px flex-1 bg-border" />
+              <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-primary" />
+                The Weekly Deep-Dive
+              </h2>
+              <div className="h-px flex-1 bg-border" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {dynamicMapped.slice(0, 3).map((post) => (
+                <Card key={post.slug} className="overflow-hidden hover:shadow-card transition-all duration-300 border-primary/20">
+                  <div className="aspect-video overflow-hidden relative">
+                    <img src={post.imageUrl} alt={post.title} className="h-full w-full object-cover transition-transform duration-300 hover:scale-110" />
+                    <Badge className="absolute top-2 right-2 bg-primary/90 text-primary-foreground gap-1">
+                      <Sparkles className="h-3 w-3" /> AI Roundup
+                    </Badge>
+                  </div>
+                  <CardHeader>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                      <Calendar className="h-4 w-4" />
+                      <span>{new Date(post.date).toLocaleDateString()}</span>
+                      <span className="ml-auto text-primary font-medium">{post.category}</span>
+                    </div>
+                    <CardTitle className="line-clamp-2">{post.title}</CardTitle>
+                    <CardDescription className="line-clamp-3">{post.excerpt}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button variant="link" className="p-0" asChild>
+                      <Link to={`/blog/${post.slug}`}>
+                        Read More <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Lead magnet CTA */}
+        <div className="mb-16 p-8 rounded-2xl bg-primary/5 border border-primary/20 text-center">
+          <h3 className="text-2xl font-bold mb-2 text-foreground">Free 90-Day Amazon Associate Roadmap</h3>
+          <p className="text-muted-foreground mb-4 max-w-lg mx-auto">Go from zero to your first affiliate commission — step-by-step checklist included.</p>
+          <Button asChild className="rounded-full font-semibold">
+            <Link to="/free-roadmap">Download Free Roadmap <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          </Button>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {allPosts.map((post) => (

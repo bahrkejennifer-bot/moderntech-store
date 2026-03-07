@@ -10,6 +10,7 @@ import KidsTech from "./pages/KidsTech";
 import Gaming from "./pages/Gaming";
 import Connectivity from "./pages/Connectivity";
 import College from "./pages/College";
+import CreatorGear from "./pages/CreatorGear";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import DigitalProducts from "./pages/DigitalProducts";
@@ -19,6 +20,7 @@ import AdminAuth from "./pages/AdminAuth";
 import AdminScraper from "./pages/AdminScraper";
 import ScrapedProducts from "./pages/ScrapedProducts";
 import MyDownloads from "./pages/MyDownloads";
+import LeadMagnet from "./pages/LeadMagnet";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -44,11 +46,13 @@ const App = () => (
           <Route path="/gaming" element={<Gaming />} />
           <Route path="/connectivity" element={<Connectivity />} />
           <Route path="/college" element={<College />} />
+          <Route path="/creator-gear" element={<CreatorGear />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/digital-products" element={<DigitalProducts />} />
           <Route path="/tech-gift-cheatsheet" element={<TechGiftCheatsheet />} />
           <Route path="/my-downloads" element={<MyDownloads />} />
+          <Route path="/free-roadmap" element={<LeadMagnet />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin/upload" element={<AdminUpload />} />
           <Route path="/admin/scraper" element={<AdminScraper />} />
