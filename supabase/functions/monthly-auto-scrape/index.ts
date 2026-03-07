@@ -221,6 +221,29 @@ Deno.serve(async (req) => {
       }
     }
 
+    // Generate AI blog post from saved products
+    let blogResult = null;
+    if (allSaved.length > 0) {
+      try {
+        console.log("Triggering blog post generation...");
+        const blogResponse = await fetch(
+          `${supabaseUrl}/functions/v1/generate-blog-post`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${serviceRoleKey}`,
+            },
+            body: JSON.stringify({ products: allSaved }),
+          }
+        );
+        blogResult = await blogResponse.json();
+        console.log("Blog generation result:", blogResult);
+      } catch (blogErr) {
+        console.error("Blog generation error:", blogErr);
+      }
+    }
+
     // Send webhook to Make.com if configured
     const webhookUrl = Deno.env.get("MAKECOM_WEBHOOK_URL");
     if (webhookUrl && allSaved.length > 0) {
@@ -231,6 +254,7 @@ Deno.serve(async (req) => {
           body: JSON.stringify({
             event: "monthly_auto_scrape",
             products: allSaved,
+            blog_post: blogResult,
             scraped_at: new Date().toISOString(),
           }),
         });
@@ -245,6 +269,7 @@ Deno.serve(async (req) => {
         saved_count: allSaved.length,
         skipped_count: allSkipped.length,
         pin_results: pinResults,
+        blog_post: blogResult,
         products: allSaved,
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }

@@ -1,9 +1,11 @@
 import { useParams, Link } from "react-router-dom";
 import { Calendar, ArrowLeft, ExternalLink, Download } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { supabase } from "@/integrations/supabase/client";
 
 // Import product images
 import ringDoorbellImg from "@/assets/products/ring-doorbell-pro2.jpg";
@@ -1236,7 +1238,23 @@ const parseMarkdownBold = (text: string): React.ReactNode[] => {
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const post = slug && blogPostsData[slug] ? blogPostsData[slug] : defaultPost;
+  const post = slug && blogPostsData[slug] ? blogPostsData[slug] : null;
+
+  // Check for AI-generated post from database (only if no static post found)
+  const { data: dynamicPost, isLoading } = useQuery({
+    queryKey: ["blog-post", slug],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("slug", slug!)
+        .eq("is_published", true)
+        .maybeSingle();
+      if (error) throw error;
+      return data;
+    },
+    enabled: !post && !!slug,
+  });
 
   const renderSection = (section: ContentSection, index: number) => {
     switch (section.type) {
@@ -1272,6 +1290,102 @@ const BlogPost = () => {
         return null;
     }
   };
+
+  // If we have a dynamic (AI-generated) post, render it
+  if (!post && dynamicPost) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        
+        <div className="relative h-[400px] overflow-hidden">
+          <img 
+            src={dynamicPost.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format"} 
+            alt={dynamicPost.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+        </div>
+
+        <div className="container mx-auto px-4 py-12 -mt-32 relative z-10">
+          <Link to="/blog" className="inline-flex items-center text-primary hover:underline mb-6">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Blog
+          </Link>
+
+          <article className="max-w-4xl mx-auto">
+            <header className="mb-8">
+              <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                <span className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+                  {dynamicPost.category || "Tech Roundup"}
+                </span>
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4" />
+                  <span>{new Date(dynamicPost.created_at).toLocaleDateString()}</span>
+                </div>
+              </div>
+            </header>
+
+            {/* AI-Generated Content */}
+            <div 
+              className="prose prose-lg max-w-none prose-headings:font-display prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground"
+              dangerouslySetInnerHTML={{ __html: dynamicPost.content_html }}
+            />
+
+            {/* Download CTA */}
+            <div className="mt-12 p-6 bg-primary/5 border border-primary/20 rounded-xl text-center">
+              <Download className="h-10 w-10 mx-auto mb-4 text-primary" />
+              <h3 className="text-xl font-bold mb-2">Download as PDF</h3>
+              <p className="text-muted-foreground mb-4">
+                All guides are available as beautifully formatted, downloadable PDFs—perfect for offline reading, 
+                sharing with friends, or taking with you while shopping.
+              </p>
+              <Button asChild>
+                <Link to="/digital-products">
+                  Get Your Free PDF Guide
+                </Link>
+              </Button>
+            </div>
+
+            {/* Affiliate Disclosure */}
+            <div className="mt-8 p-4 bg-muted rounded-lg text-sm text-muted-foreground">
+              <strong>Affiliate Disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. 
+              I am an Amazon Associate and I make a small percentage from sales. 
+              When you click links to Amazon and make a purchase, we may receive a small commission at no extra cost to you. #ad
+            </div>
+          </article>
+        </div>
+        
+        <AffiliateFooter />
+      </div>
+    );
+  }
+
+  if (!post && isLoading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <div className="container mx-auto px-4 py-12 text-center">
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!post && !dynamicPost) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <div className="container mx-auto px-4 py-12 text-center">
+          <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
+          <p className="text-muted-foreground mb-6">The blog post you're looking for doesn't exist.</p>
+          <Button asChild>
+            <Link to="/blog">Back to Blog</Link>
+          </Button>
+        </div>
+        <AffiliateFooter />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
