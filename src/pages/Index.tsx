@@ -10,7 +10,12 @@ import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { TechChatbot } from "@/components/TechChatbot";
 import { FloatingHearts } from "@/components/FloatingHearts";
 import { StPatricksDecorations } from "@/components/StPatricksDecorations";
-import heroImage from "@/assets/hero-family-drive.jpg";
+import VideoHero from "@/components/VideoHero";
+import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
+import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
+import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
+import samsungMonitorImage from "@/assets/products/samsung-odyssey-g9.jpg";
+import sonyHeadphonesImage from "@/assets/products/sony-wh-1000xm5.jpg";
 import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
 import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
 import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
@@ -115,64 +120,8 @@ const Index = () => {
       <Navigation />
       
       
-      {/* Hero Section - Valentine's Theme */}
-      <section className="relative min-h-[90vh] flex items-start justify-center overflow-hidden pt-20">
-        <StPatricksDecorations />
-        {/* Premium tech background image */}
-        <div className="absolute inset-0">
-          <img 
-            src={heroImage} 
-            alt="Family of four driving down coastal mountain road towards ocean" 
-            className="w-full h-full object-cover"
-          />
-          {/* Soft overlay for text readability - stronger at top */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/40" />
-          {/* Tropical blue accent overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 via-transparent to-sky-600/10" />
-        </div>
-        
-        <div className="container relative z-10 mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            {/* St. Patrick's Badge */}
-            <div className="inline-flex items-center gap-1.5 bg-emerald-500/30 backdrop-blur-sm text-white px-3 py-1.5 rounded-full mb-3 animate-fade-in border border-emerald-300/40">
-              <Clover className="h-3 w-3 text-emerald-300 fill-emerald-300" />
-              <span className="text-[10px] font-medium">St. Patrick's Day Family Tech Guide</span>
-              <Clover className="h-3 w-3 text-emerald-300 fill-emerald-300" />
-            </div>
-            
-            {/* Main headline */}
-            <h1 className="mb-2 text-2xl md:text-3xl font-bold tracking-tight text-white animate-fade-in drop-shadow-lg">
-              Lucky <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-green-400 to-teal-400">Family Finds</span> ☘️
-            </h1>
-            
-            {/* Subheadline */}
-            <p className="mb-4 text-sm md:text-base text-white/95 max-w-md mx-auto leading-relaxed animate-fade-in drop-shadow-md" style={{ animationDelay: '0.15s' }}>
-              Strike gold with the best family tech picks this St. Patrick's Day.
-            </p>
-          </div>
-          
-          {/* CTA Buttons - Valentine's themed */}
-          <div className="absolute -bottom-16 left-0 right-0 px-4 z-20">
-            <div className="flex flex-row gap-3 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              <Button 
-                className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
-                size="sm" 
-                onClick={scrollToFeatured}
-              >
-                <Clover className="h-3 w-3 mr-1 fill-white" />
-                Find Lucky Deals
-              </Button>
-              <Button 
-                className="bg-white/90 text-emerald-600 hover:bg-white transition-all duration-300 text-xs px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
-                size="sm" 
-                asChild
-              >
-              <Link to="/blog">Gift Ideas Blog</Link>
-            </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Dynamic 3-Column Video Hero */}
+      <VideoHero />
 
       {/* St. Patrick's Affiliate Banner & Social Links */}
       <section className="py-4 bg-gradient-to-r from-emerald-500/10 via-green-500/15 to-emerald-500/10 border-y border-emerald-500/20">
