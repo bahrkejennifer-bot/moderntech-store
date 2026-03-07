@@ -1238,7 +1238,23 @@ const parseMarkdownBold = (text: string): React.ReactNode[] => {
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const post = slug && blogPostsData[slug] ? blogPostsData[slug] : defaultPost;
+  const post = slug && blogPostsData[slug] ? blogPostsData[slug] : null;
+
+  // Check for AI-generated post from database (only if no static post found)
+  const { data: dynamicPost, isLoading } = useQuery({
+    queryKey: ["blog-post", slug],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("slug", slug!)
+        .eq("is_published", true)
+        .maybeSingle();
+      if (error) throw error;
+      return data;
+    },
+    enabled: !post && !!slug,
+  });
 
   const renderSection = (section: ContentSection, index: number) => {
     switch (section.type) {
@@ -1274,22 +1290,6 @@ const BlogPost = () => {
         return null;
     }
   };
-
-  // Check for AI-generated post from database
-  const { data: dynamicPost, isLoading } = useQuery({
-    queryKey: ["blog-post", slug],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("blog_posts")
-        .select("*")
-        .eq("slug", slug)
-        .eq("is_published", true)
-        .maybeSingle();
-      if (error) throw error;
-      return data;
-    },
-    enabled: !post, // Only fetch if no static post found
-  });
 
   // If we have a dynamic (AI-generated) post, render it
   if (!post && dynamicPost) {
