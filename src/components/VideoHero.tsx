@@ -7,27 +7,27 @@ const columns = [
     label: "Health & Wellness",
     tagline: "Invisible tech. Peak performance.",
     videoUrl:
-      "https://videos.pexels.com/video-files/4065924/4065924-uhd_2560_1440_24fps.mp4",
+      "https://cdn.pixabay.com/video/2020/07/30/45349-445871082_large.mp4",
     posterUrl:
-      "https://images.pexels.com/videos/4065924/free-video-4065924.jpg?auto=compress&w=800",
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80",
     link: "/health-wellness",
   },
   {
     label: "Family & Safety",
     tagline: "Smart protection. Real connection.",
     videoUrl:
-      "https://videos.pexels.com/video-files/5567740/5567740-uhd_2560_1440_30fps.mp4",
+      "https://cdn.pixabay.com/video/2021/02/12/64534-512131764_large.mp4",
     posterUrl:
-      "https://images.pexels.com/videos/5567740/pexels-photo-5567740.jpeg?auto=compress&w=800",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
     link: "/home-safety",
   },
   {
     label: "Creator Gear",
     tagline: "Sound like a pro. Look like one too.",
     videoUrl:
-      "https://videos.pexels.com/video-files/4491608/4491608-uhd_2560_1440_24fps.mp4",
+      "https://cdn.pixabay.com/video/2019/09/02/26891-358839498_large.mp4",
     posterUrl:
-      "https://images.pexels.com/videos/4491608/free-video-4491608.jpg?auto=compress&w=800",
+      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80",
     link: "/trending-products",
   },
 ];
