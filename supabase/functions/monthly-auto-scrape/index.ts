@@ -150,6 +150,7 @@ Deno.serve(async (req) => {
                 image_url: product.image_url || null,
                 affiliate_link: affiliateLink,
                 source_url: url,
+                category: category.niche,
               })
               .select()
               .single();
