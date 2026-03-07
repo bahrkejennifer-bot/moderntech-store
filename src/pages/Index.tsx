@@ -16,11 +16,6 @@ import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
 import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
 import samsungMonitorImage from "@/assets/products/samsung-odyssey-g9.jpg";
 import sonyHeadphonesImage from "@/assets/products/sony-wh-1000xm5.jpg";
-import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
-import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
-import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
-import samsungMonitorImage from "@/assets/products/samsung-odyssey-g9.jpg";
-import sonyHeadphonesImage from "@/assets/products/sony-wh-1000xm5.jpg";
 
 const featuredProducts = [
   {
