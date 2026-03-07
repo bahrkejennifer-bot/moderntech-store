@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Sparkles, Star, ExternalLink, ArrowRight, Check, Clover } from "lucide-react";
+import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Sparkles, Star, ExternalLink, ArrowRight, Check, Clover, Mic } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
@@ -63,17 +63,24 @@ const featuredProducts = [
 const categories = [
   {
     title: "Home & Safety",
-    description: "Smart protection for your space",
+    description: "Smart locks, cameras & family security systems",
     icon: ShieldCheck,
     link: "/home-safety",
     color: "bg-vibrant-green",
   },
   {
     title: "Health & Wellness",
-    description: "Track and optimize your wellbeing",
+    description: "Invisible wearables & lifestyle trackers",
     icon: HeartPulse,
     link: "/health-wellness",
     color: "bg-vibrant-pink",
+  },
+  {
+    title: "Creator Gear",
+    description: "Pro mics, lights & studio essentials",
+    icon: Mic,
+    link: "/creator-gear",
+    color: "bg-vibrant-coral",
   },
   {
     title: "Kids Tech",
@@ -101,7 +108,7 @@ const categories = [
     description: "Essential tech for students",
     icon: GraduationCap,
     link: "/college",
-    color: "bg-vibrant-coral",
+    color: "bg-vibrant-sky",
   },
 ];
 
