@@ -29,11 +29,11 @@ const LeadMagnet = () => {
 
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.from("lead_captures").insert({
+      const { error } = await supabase.from("lead_captures" as any).insert({
         name: name.trim(),
         email: email.trim().toLowerCase(),
         lead_magnet: "90-day-amazon-associate-roadmap",
-      });
+      } as any);
 
       if (error) {
         // If duplicate email, still allow download

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { Menu, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -13,6 +13,7 @@ const Navigation = () => {
     { to: "/", label: "Home" },
     { to: "/home-safety", label: "Home & Safety" },
     { to: "/health-wellness", label: "Health & Wellness" },
+    { to: "/creator-gear", label: "Creator Gear" },
     { to: "/kids-tech", label: "Kids Tech" },
     { to: "/gaming", label: "Gaming" },
     { to: "/connectivity", label: "Connectivity" },
@@ -45,6 +46,12 @@ const Navigation = () => {
                 {link.label}
               </Link>
             ))}
+            <Button asChild size="sm" className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold gap-2">
+              <Link to="/free-roadmap">
+                <Download className="h-4 w-4" />
+                Free Roadmap
+              </Link>
+            </Button>
           </div>
 
           {/* Mobile Navigation */}
@@ -65,6 +72,12 @@ const Navigation = () => {
                     {link.label}
                   </Link>
                 ))}
+                <Button asChild className="rounded-full mt-4 gap-2">
+                  <Link to="/free-roadmap">
+                    <Download className="h-4 w-4" />
+                    Free 90-Day Roadmap
+                  </Link>
+                </Button>
               </div>
             </SheetContent>
           </Sheet>
