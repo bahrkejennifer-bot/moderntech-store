@@ -54,7 +54,7 @@ BRAND VOICE:
 - Be specific about why each product matters in 2026
 
 WRITING FORMAT:
-Write a ~1,500-word Monthly Tech Roundup blog post in clean HTML (no <html>, <head>, or <body> tags — just the article content).
+Write a ~1,000-word Monthly Tech Roundup blog post in clean HTML (no <html>, <head>, or <body> tags — just the article content).
 
 Structure:
 1. A catchy, SEO-optimized headline (wrapped in <h1>)
@@ -79,7 +79,7 @@ Here are the products to feature:
 
 ${productList}
 
-Remember: No prices. Use the exact affiliate links. Make it ~1,500 words. Start with a hook about the creator economy or tech trends in ${monthName} ${year}.`;
+Remember: No prices. Use the exact affiliate links. Make it ~1,000 words. Include a "Why it fits your lifestyle" section for each product. Start with a hook about the creator economy or tech trends in ${monthName} ${year}.`;
 
     console.log(`Generating blog post for ${monthName} ${year}...`);
 
