@@ -8,7 +8,7 @@ const columns = [
     label: "Health & Wellness",
     tagline: "Invisible tech. Peak performance.",
     videoUrl:
-      "https://videos.pexels.com/video-files/4325474/4325474-sd_640_360_30fps.mp4",
+      "https://cdn.pixabay.com/video/2020/08/21/47799-451812887_large.mp4",
     posterUrl:
       "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
     link: "/health-wellness",
