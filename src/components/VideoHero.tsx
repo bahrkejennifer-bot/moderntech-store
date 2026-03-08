@@ -17,7 +17,7 @@ const columns = [
     label: "Family & Safety",
     tagline: "Smart protection. Real connection.",
     videoUrl:
-      "https://videos.pexels.com/video-files/5691571/5691571-sd_640_360_25fps.mp4",
+      "https://cdn.pixabay.com/video/2020/07/30/45349-445871082_large.mp4",
     posterUrl:
       "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80",
     link: "/home-safety",
