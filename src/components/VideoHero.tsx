@@ -40,7 +40,7 @@ const VideoHero = () => {
           <div key={col.label} className="relative group overflow-hidden h-full">
             {/* Background Video */}
             <video
-              className="absolute inset-0 w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700"
+              className="absolute inset-0 w-full h-full object-cover animate-[glide_20s_ease-in-out_infinite_alternate]"
               src={col.videoUrl}
               poster={col.posterUrl}
               autoPlay
