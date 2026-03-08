@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import SocialLinks from "@/components/SocialLinks";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
+import { RoadmapSignup } from "@/components/RoadmapSignup";
 import { NewsletterPopup } from "@/components/NewsletterPopup";
 import { TechChatbot } from "@/components/TechChatbot";
 import { FloatingHearts } from "@/components/FloatingHearts";
