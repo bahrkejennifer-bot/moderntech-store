@@ -7,25 +7,25 @@ const columns = [
     label: "Health & Wellness",
     tagline: "Invisible tech. Peak performance.",
     videoUrl:
-      "https://cdn.pixabay.com/video/2020/07/30/45349-445871082_large.mp4",
+      "https://cdn.pixabay.com/video/2020/05/25/40039-424930032_large.mp4",
     posterUrl:
-      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80",
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
     link: "/health-wellness",
   },
   {
     label: "Family & Safety",
     tagline: "Smart protection. Real connection.",
     videoUrl:
-      "https://cdn.pixabay.com/video/2021/02/12/64534-512131764_large.mp4",
+      "https://cdn.pixabay.com/video/2020/10/23/53480-473921338_large.mp4",
     posterUrl:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80",
     link: "/home-safety",
   },
   {
     label: "Creator Gear",
     tagline: "Sound like a pro. Look like one too.",
     videoUrl:
-      "https://cdn.pixabay.com/video/2019/09/02/26891-358839498_large.mp4",
+      "https://cdn.pixabay.com/video/2021/06/20/78837-567700198_large.mp4",
     posterUrl:
       "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80",
     link: "/creator-gear",
