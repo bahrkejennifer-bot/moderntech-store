@@ -335,6 +335,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Roadmap Signup - Glassmorphism */}
+      <RoadmapSignup />
+
       {/* Newsletter Section */}
       <section className="py-28 relative overflow-hidden bg-muted">
         <div className="absolute top-0 left-0 right-0 h-px glow-line" />
