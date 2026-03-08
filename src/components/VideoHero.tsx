@@ -7,8 +7,7 @@ const columns = [
   {
     label: "Health & Wellness",
     tagline: "Invisible tech. Peak performance.",
-    videoUrl:
-      "https://cdn.pixabay.com/video/2020/08/21/47799-451812887_large.mp4",
+    videoUrl: "/videos/wellness-yoga.mp4",
     posterUrl:
       "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
     link: "/health-wellness",
@@ -16,8 +15,7 @@ const columns = [
   {
     label: "Family & Safety",
     tagline: "Smart protection. Real connection.",
-    videoUrl:
-      "https://cdn.pixabay.com/video/2020/07/30/45349-445871082_large.mp4",
+    videoUrl: "/videos/safety-home.mp4",
     posterUrl:
       "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80",
     link: "/home-safety",
@@ -25,15 +23,14 @@ const columns = [
   {
     label: "Creator Gear",
     tagline: "Sound like a pro. Look like one too.",
-    videoUrl:
-      "https://cdn.pixabay.com/video/2019/09/02/26891-358839498_large.mp4",
+    videoUrl: "/videos/creator-studio.mp4",
     posterUrl:
       "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80",
     link: "/creator-gear",
   },
 ];
 
-const VideoColumn = ({ col }: { col: typeof columns[0] }) => {
+const VideoColumn = ({ col, index }: { col: typeof columns[0]; index: number }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -58,7 +55,8 @@ const VideoColumn = ({ col }: { col: typeof columns[0] }) => {
         playsInline
         preload="auto"
         style={{
-          animation: "glide 20s ease-in-out infinite alternate",
+          animation: `glide 20s ease-in-out infinite alternate`,
+          animationDelay: `${index * -7}s`,
         }}
       >
         <source src={col.videoUrl} type="video/mp4" />
@@ -95,8 +93,8 @@ const VideoHero = () => {
   return (
     <section className="relative w-full h-[85vh] min-h-[500px] max-h-[800px]">
       <div className="grid grid-cols-1 md:grid-cols-3 h-full">
-        {columns.map((col) => (
-          <VideoColumn key={col.label} col={col} />
+        {columns.map((col, index) => (
+          <VideoColumn key={col.label} col={col} index={index} />
         ))}
       </div>
 
