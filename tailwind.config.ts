@@ -111,14 +111,18 @@ export default {
   				from: { opacity: '0', transform: 'scale(0.95)' },
   				to: { opacity: '1', transform: 'scale(1)' }
   			},
-  			'float': {
-  				'0%, 100%': { transform: 'translateY(0)' },
-  				'50%': { transform: 'translateY(-15px)' }
-  			},
-  			'pulse-soft': {
-  				'0%, 100%': { opacity: '1' },
-  				'50%': { opacity: '0.7' }
-  			}
+			'float': {
+				'0%, 100%': { transform: 'translateY(0)' },
+				'50%': { transform: 'translateY(-15px)' }
+			},
+			'pulse-soft': {
+				'0%, 100%': { opacity: '1' },
+				'50%': { opacity: '0.7' }
+			},
+			'glide': {
+				'0%': { transform: 'scale(1.0)' },
+				'100%': { transform: 'scale(1.15)' }
+			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
