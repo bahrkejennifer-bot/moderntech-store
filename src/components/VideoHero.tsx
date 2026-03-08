@@ -26,7 +26,7 @@ const columns = [
     label: "Creator Gear",
     tagline: "Sound like a pro. Look like one too.",
     videoUrl:
-      "https://videos.pexels.com/video-files/4620563/4620563-sd_640_360_30fps.mp4",
+      "https://cdn.pixabay.com/video/2019/09/02/26891-358839498_large.mp4",
     posterUrl:
       "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80",
     link: "/creator-gear",
