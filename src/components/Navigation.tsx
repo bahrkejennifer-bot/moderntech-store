@@ -1,89 +1,89 @@
 import { Link } from "react-router-dom";
-import { Menu, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import logo from "@/assets/modern-tech-logo.png";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { FreeGuideModal } from "@/components/FreeGuideModal";
 
 const Navigation = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [guideOpen, setGuideOpen] = useState(false);
+
   const navLinks = [
-    { to: "/", label: "Home" },
-    { to: "/home-safety", label: "Home & Safety" },
     { to: "/health-wellness", label: "Health & Wellness" },
-    { to: "/creator-gear", label: "Creator Gear" },
-    { to: "/kids-tech", label: "Kids Tech" },
-    { to: "/gaming", label: "Gaming" },
-    { to: "/connectivity", label: "Connectivity" },
-    { to: "/college", label: "College & School" },
-    { to: "/trending-products", label: "Trending Products" },
+    { to: "/home-safety", label: "Home & Safety" },
+    { to: "/creator-gear", label: "Creator Corner" },
     { to: "/blog", label: "Blog" },
-    { to: "/digital-products", label: "Digital Products" },
-    { to: "/my-downloads", label: "My Downloads" },
   ];
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center space-x-3">
-            <img src={logo} alt="Modern Tech LLC" className="h-10 w-10 object-contain" />
-            <span className="text-xl font-bold font-display text-foreground">
-              Modern Tech LLC
-            </span>
-          </Link>
+    <>
+      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl">
+        <div className="max-w-[980px] mx-auto px-6">
+          <div className="flex h-12 items-center justify-between">
+            {/* Logo */}
+            <Link to="/" className="text-base font-semibold text-foreground tracking-tight">
+              Modern Tech
+            </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+            {/* Desktop center links */}
+            <div className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="text-xs font-normal text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Free Guide button */}
+            <div className="hidden md:block">
+              <button
+                onClick={() => setGuideOpen(true)}
+                className="text-xs font-normal text-muted-foreground hover:text-foreground transition-colors"
               >
-                {link.label}
-              </Link>
-            ))}
-            <Button asChild size="sm" className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold gap-2">
-              <Link to="/free-roadmap">
-                <Download className="h-4 w-4" />
-                Free Roadmap
-              </Link>
-            </Button>
-          </div>
+                Free Guide
+              </button>
+            </div>
 
-          {/* Mobile Navigation */}
-          <Sheet>
-            <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent>
-              <div className="flex flex-col space-y-4 mt-8">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    className="text-lg font-medium text-foreground/80 hover:text-foreground transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-                <Button asChild className="rounded-full mt-4 gap-2">
-                  <Link to="/free-roadmap">
-                    <Download className="h-4 w-4" />
-                    Free 90-Day Roadmap
-                  </Link>
-                </Button>
-              </div>
-            </SheetContent>
-          </Sheet>
+            {/* Mobile toggle */}
+            <button
+              className="md:hidden text-foreground"
+              onClick={() => setMobileOpen(!mobileOpen)}
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
-      </div>
-    </nav>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <div className="md:hidden bg-background border-t border-border/40">
+            <div className="max-w-[980px] mx-auto px-6 py-4 flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <button
+                onClick={() => { setGuideOpen(true); setMobileOpen(false); }}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors text-left"
+              >
+                Free Guide
+              </button>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      <FreeGuideModal open={guideOpen} onOpenChange={setGuideOpen} />
+    </>
   );
 };
 
