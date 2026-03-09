@@ -22,6 +22,7 @@ import ScrapedProducts from "./pages/ScrapedProducts";
 import MyDownloads from "./pages/MyDownloads";
 import LeadMagnet from "./pages/LeadMagnet";
 import SmartHomeSafetyChecklist from "./pages/SmartHomeSafetyChecklist";
+import SmartRingGuide from "./pages/SmartRingGuide";
 import AmazonAssociateGuide from "./pages/AmazonAssociateGuide";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -56,6 +57,7 @@ const App = () => (
           <Route path="/my-downloads" element={<MyDownloads />} />
           <Route path="/free-roadmap" element={<LeadMagnet />} />
           <Route path="/free-smart-home-checklist" element={<SmartHomeSafetyChecklist />} />
+          <Route path="/free-smart-ring-guide" element={<SmartRingGuide />} />
           <Route path="/amazon-associate-guide" element={<AmazonAssociateGuide />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin/upload" element={<AdminUpload />} />
