@@ -27,7 +27,7 @@ const categoryProducts = [
     heading: "Home & Safety",
     product: "Ring Battery Doorbell Plus — Smart Security",
     caption: "1536p HD video with Head-to-Toe view & motion detection. Smart home wellness simplified.",
-    image: "https://m.media-amazon.com/images/I/51BoGN7mP3L._AC_SX679_.jpg",
+    image: ringDoorbellImg,
     alt: "Ring Battery Doorbell Plus smart video doorbell for home security 2026",
     affiliateLink: "https://www.amazon.com/dp/B09WZBPX7K?tag=moderntechs0c-20",
     pinterestBoard: `${PINTEREST_PROFILE}/home-safety/`,
