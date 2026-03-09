@@ -21,6 +21,7 @@ import AdminScraper from "./pages/AdminScraper";
 import ScrapedProducts from "./pages/ScrapedProducts";
 import MyDownloads from "./pages/MyDownloads";
 import LeadMagnet from "./pages/LeadMagnet";
+import AmazonAssociateGuide from "./pages/AmazonAssociateGuide";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -53,6 +54,7 @@ const App = () => (
           <Route path="/tech-gift-cheatsheet" element={<TechGiftCheatsheet />} />
           <Route path="/my-downloads" element={<MyDownloads />} />
           <Route path="/free-roadmap" element={<LeadMagnet />} />
+          <Route path="/amazon-associate-guide" element={<AmazonAssociateGuide />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin/upload" element={<AdminUpload />} />
           <Route path="/admin/scraper" element={<AdminScraper />} />
