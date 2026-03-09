@@ -21,6 +21,7 @@ import AdminScraper from "./pages/AdminScraper";
 import ScrapedProducts from "./pages/ScrapedProducts";
 import MyDownloads from "./pages/MyDownloads";
 import LeadMagnet from "./pages/LeadMagnet";
+import SmartHomeSafetyChecklist from "./pages/SmartHomeSafetyChecklist";
 import AmazonAssociateGuide from "./pages/AmazonAssociateGuide";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
