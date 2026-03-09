@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ChevronRight, ExternalLink, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import heroBackground from "@/assets/hero-background.png";
 import ouraRingImage from "@/assets/heroes/oura-ring-hero.jpg";
 import eeroMeshImage from "@/assets/heroes/eero-mesh-hero.jpg";
 import streamDeckImage from "@/assets/heroes/streamdeck-hero.jpg";
@@ -65,17 +66,20 @@ const Index = () => {
 
       {/* Main hero — large statement */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 overflow-hidden">
-        {/* Subtle spotlight glow */}
-        <div className="absolute inset-0 bg-gradient-spotlight pointer-events-none" />
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img src={heroBackground} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-background/70" />
+        </div>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground text-center leading-[0.95] max-w-4xl">
+        <h1 className="relative z-10 text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground text-center leading-[0.95] max-w-4xl">
           The tech that{" "}
           <span className="gradient-text">changes everything.</span>
         </h1>
-        <p className="mt-6 text-lg md:text-xl text-muted-foreground text-center max-w-xl">
+        <p className="relative z-10 mt-6 text-lg md:text-xl text-muted-foreground text-center max-w-xl">
           Curated products for health, home, and creativity — handpicked by real people, not algorithms.
         </p>
-        <div className="mt-10 flex items-center gap-4">
+        <div className="relative z-10 mt-10 flex items-center gap-4">
           <Link
             to="/health-wellness"
             className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]"
