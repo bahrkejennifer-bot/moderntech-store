@@ -132,16 +132,27 @@ const Index = () => {
                   {item.caption}
                 </p>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-2">
                   <a
                     href={item.affiliateLink}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                     className={`inline-flex items-center gap-2 h-10 px-5 rounded-full bg-gradient-to-r ${item.accentColor} text-white text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:scale-[1.03]`}
                   >
-                    Shop on Amazon
+                    {item.secondLink ? "Shop Ring" : "Shop on Amazon"}
                     <ExternalLink className="h-3.5 w-3.5" />
                   </a>
+                  {item.secondLink && (
+                    <a
+                      href={item.secondLink}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      className={`inline-flex items-center gap-2 h-10 px-5 rounded-full bg-gradient-to-r ${item.accentColor} text-white text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:scale-[1.03] opacity-90`}
+                    >
+                      {item.secondLabel}
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  )}
                   <a
                     href={item.pinterestBoard}
                     target="_blank"
