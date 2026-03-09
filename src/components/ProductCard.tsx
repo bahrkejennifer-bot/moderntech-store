@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { usePinterestEvent } from "@/hooks/usePinterestTracking";
 
 interface ProductCardProps {
   title: string;
@@ -15,6 +16,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: ProductCardProps) => {
   const { toast } = useToast();
+  const { trackEvent } = usePinterestEvent();
   const [pinning, setPinning] = useState(false);
 
   const handlePinToPinterest = async () => {
@@ -95,7 +97,12 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
           className="w-full"
           asChild
         >
-          <a href={affiliateLink} target="_blank" rel="noopener noreferrer nofollow">
+          <a
+            href={affiliateLink}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            onClick={() => trackEvent("checkout", { product_name: title, value: 0, currency: "USD" })}
+          >
             View on Amazon <ExternalLink className="ml-2 h-4 w-4" />
           </a>
         </Button>

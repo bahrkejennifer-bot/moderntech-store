@@ -34,8 +34,14 @@ import Disclaimer from "./pages/Disclaimer";
 import ReturnPolicy from "./pages/ReturnPolicy";
 import Contact from "./pages/Contact";
 import { NewsletterPopup } from "./components/NewsletterPopup";
+import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
 
 const queryClient = new QueryClient();
+
+const PinterestTracker = () => {
+  usePinterestPageTracking();
+  return null;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -44,6 +50,7 @@ const App = () => (
       <Sonner />
       <NewsletterPopup />
       <BrowserRouter>
+        <PinterestTracker />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/home-safety" element={<HomeSafety />} />
