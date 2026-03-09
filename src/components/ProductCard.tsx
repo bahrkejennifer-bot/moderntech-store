@@ -16,6 +16,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: ProductCardProps) => {
   const { toast } = useToast();
+  const { trackEvent } = usePinterestEvent();
   const [pinning, setPinning] = useState(false);
 
   const handlePinToPinterest = async () => {
