@@ -22,6 +22,7 @@ import ScrapedProducts from "./pages/ScrapedProducts";
 import MyDownloads from "./pages/MyDownloads";
 import LeadMagnet from "./pages/LeadMagnet";
 import SmartHomeSafetyChecklist from "./pages/SmartHomeSafetyChecklist";
+import SmartRingGuide from "./pages/SmartRingGuide";
 import AmazonAssociateGuide from "./pages/AmazonAssociateGuide";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
