@@ -54,7 +54,7 @@ const Index = () => {
       <Navigation />
 
       {/* TOP HALF — Hero with background image */}
-      <section className="relative h-[50vh] min-h-[400px] flex flex-col items-center justify-center px-6 overflow-hidden">
+      <section className="relative h-[40vh] min-h-[320px] flex flex-col items-center justify-center px-6 overflow-hidden">
         <div className="absolute inset-0">
           <img src={heroBackground} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
@@ -67,7 +67,7 @@ const Index = () => {
         <p className="relative z-10 mt-4 text-base md:text-lg text-muted-foreground text-center max-w-xl">
           Curated products for health, home, and creativity — handpicked by real people, not algorithms.
         </p>
-        <div className="relative z-10 mt-8 flex items-center gap-4">
+        <div className="relative z-10 mt-6 flex items-center gap-4">
           <Link
             to="/health-wellness"
             className="inline-flex items-center gap-2 h-11 px-7 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]"
@@ -85,8 +85,8 @@ const Index = () => {
       </section>
 
       {/* BOTTOM HALF — Three colorful product cards */}
-      <section className="px-4 md:px-6 py-16 md:py-24">
-        <p className="text-xs text-muted-foreground/50 text-center mb-10">
+      <section className="px-4 md:px-6 py-8 md:py-12">
+        <p className="text-sm text-white font-medium text-center mb-8">
           As an Amazon Associate, I earn from qualifying purchases.
         </p>
 
