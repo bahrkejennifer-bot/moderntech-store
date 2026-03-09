@@ -1,70 +1,63 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
-import ringDoorbellImage from "@/assets/products/ring-doorbell-pro2.jpg";
-import wyzeCamImage from "@/assets/products/wyze-cam-v3.jpg";
-import echoShow8Image from "@/assets/products/echo-show-8.jpg";
-import arloPro4Image from "@/assets/products/arlo-pro-4.jpg";
-import augustLockImage from "@/assets/products/august-smart-lock.jpg";
-import kiddeDetectorImage from "@/assets/products/kidde-smoke-detector.jpg";
 
 const products = [
   {
-    title: "eufy FamiLock S3 Max Smart Lock",
-    description: "Palm vein recognition that unlocks in 0.1s with built-in 2K HD video doorbell — forgery-proof family security.",
-    price: "$549.98",
-    rating: 4.6,
-    imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0DK1NQX9S?tag=moderntechs0c-20",
-  },
-  {
-    title: "SimpliSafe Smart Home Security System",
-    description: "Wireless, no-contract system with 24/7 protection — covers every door and window, installs in under 15 minutes.",
-    price: "$229.99",
-    rating: 3.7,
-    imageUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?w=600&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B07V4FKHPN?tag=moderntechs0c-20",
-  },
-  {
-    title: "Ring Video Doorbell Pro 2",
-    description: "1536p HD video with 3D motion detection and radar-powered advanced alerts",
-    price: "$129.99",
+    title: "Ring Battery Doorbell Plus — Smart Video Doorbell",
+    description: "1536p HD video, Head-to-Toe view & advanced motion detection. Smart home security you can install in minutes.",
     rating: 4.5,
-    imageUrl: ringDoorbellImage,
-    affiliateLink: "https://www.amazon.com/dp/B086Q54K53?tag=moderntechs0c-20",
+    imageUrl: "https://m.media-amazon.com/images/I/51BoGN7mP3L._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B09WZBPX7K?tag=moderntechs0c-20",
   },
   {
-    title: "Wyze Cam v3 Security Camera",
-    description: "1080p HD indoor/outdoor camera with color night vision and two-way audio",
-    price: "$35.99",
-    rating: 4.6,
-    imageUrl: wyzeCamImage,
-    affiliateLink: "https://www.amazon.com/dp/B0F8QLK5BH?tag=moderntechs0c-20",
-  },
-  {
-    title: "Arlo Pro 4 Spotlight Camera",
-    description: "Wire-free security camera with 2K video, color night vision, and integrated spotlight",
-    price: "$199.99",
-    rating: 4.4,
-    imageUrl: arloPro4Image,
-    affiliateLink: "https://www.amazon.com/dp/B09G6211RW?tag=moderntechs0c-20",
-  },
-  {
-    title: "August WiFi Smart Lock (4th Gen)",
-    description: "Smart lock with built-in WiFi, auto-lock and unlock capabilities",
-    price: "$229.99",
+    title: "Blink Outdoor 4 — Wireless Security Camera",
+    description: "Wire-free HD camera with 2-year battery, person detection & Alexa integration. Smart home wellness starts here.",
     rating: 4.3,
-    imageUrl: augustLockImage,
-    affiliateLink: "https://amzn.to/48Y3n44",
+    imageUrl: "https://m.media-amazon.com/images/I/51AdvJCGpcL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0B1N5HW22?tag=moderntechs0c-20",
+  },
+  {
+    title: "eufy Security Smart Lock C220 — Fingerprint Door Lock",
+    description: "Keyless entry with fingerprint unlock in 0.3s. BHMA Grade 2 certified — minimalist tech meets maximum security.",
+    rating: 4.5,
+    imageUrl: "https://m.media-amazon.com/images/I/61m0T0pZP7L._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0CXKPTDRR?tag=moderntechs0c-20",
+  },
+  {
+    title: "Roborock S8 MaxV Ultra — Robot Vacuum & Mop",
+    description: "LiDAR navigation, 10,000Pa suction & auto-mop washing. The hottest smart home gadget of 2026.",
+    rating: 4.7,
+    imageUrl: "https://m.media-amazon.com/images/I/61OxqI1bVwL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0DBC8138W?tag=moderntechs0c-20",
+  },
+  {
+    title: "Echo Show 8 (3rd Gen) — Smart Display",
+    description: "8-inch HD smart display with spatial audio & smart home hub. Control your entire connected home from one screen.",
+    rating: 4.6,
+    imageUrl: "https://m.media-amazon.com/images/I/71tL7OmhUvL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0BLS3Y632?tag=moderntechs0c-20",
+  },
+  {
+    title: "SimpliSafe 8-Piece Wireless Security System",
+    description: "No-contract 24/7 monitoring with HD camera, sensors & keypad. Peace of mind, simplified.",
+    rating: 4.4,
+    imageUrl: "https://m.media-amazon.com/images/I/71X6iaGSx+L._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0D4126GYJ?tag=moderntechs0c-20",
   },
 ];
 
 const HomeSafety = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Best Smart Home Security Tech 2026 | Cameras, Locks & More</title>
+        <meta name="description" content="Shop the hottest smart home security tech of 2026 — Ring doorbells, robot vacuums, fingerprint locks & wireless cameras. Protect your home with minimalist tech." />
+      </Helmet>
       <Navigation />
       <div className="container mx-auto px-4 py-12">
         <div className="mb-4">
@@ -77,13 +70,16 @@ const HomeSafety = () => {
         </div>
         <div className="mb-12 text-center">
           <h1 className="text-5xl font-bold mb-4">
-            Home & Safety Tech
+            Smart Home & Safety Tech 2026
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Smart protection for your family — from palm vein smart locks to wireless security systems
+            Smart home wellness starts here — robot vacuums, fingerprint locks & wireless cameras that move fast on Amazon.
+          </p>
+          <p className="text-xs text-muted-foreground mt-3 italic">
+            As an Amazon Associate, I earn from qualifying purchases.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
             <ProductCard key={product.title} {...product} />

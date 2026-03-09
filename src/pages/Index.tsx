@@ -1,24 +1,20 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import heroBackground from "@/assets/hero-background.png";
-import ouraRingSizingBundle from "@/assets/products/oura-ring-sizing-bundle.jpg";
-import simplisafeSecurity from "@/assets/products/simplisafe-security-system.jpg";
-import elgatoStreamDeck from "@/assets/products/elgato-stream-deck-mk2.jpg";
 
 const PINTEREST_PROFILE = "https://www.pinterest.com/moderntechllc";
 
 const categoryProducts = [
   {
     heading: "Health & Wellness",
-    product: "Oura Ring 4 + Sizing Kit",
-    caption: "Track sleep, activity & readiness — start with the perfect fit.",
-    image: ouraRingSizingBundle,
-    alt: "Oura Ring 4 with sizing kit for health tracking",
+    product: "Oura Ring 4 — Smart Ring Fitness Tracker",
+    caption: "Titanium wearable for sleep, HRV & longevity tracking. The biohacking essential of 2026.",
+    image: "https://m.media-amazon.com/images/I/61r2m3e2jPL._AC_SX679_.jpg",
+    alt: "Oura Ring 4 smart ring fitness tracker for biohacking and sleep quality tracking 2026",
     affiliateLink: "https://www.amazon.com/dp/B0DHY5C1X1?tag=moderntechs0c-20",
-    secondLink: "https://www.amazon.com/dp/B0D9WVWXR1?tag=moderntechs0c-20",
-    secondLabel: "Get Sizing Kit",
     pinterestBoard: `${PINTEREST_PROFILE}/health-wellness/`,
     accentColor: "from-emerald-500 to-teal-600",
     glowColor: "shadow-emerald-500/30",
@@ -26,11 +22,11 @@ const categoryProducts = [
   },
   {
     heading: "Home & Safety",
-    product: "SimpliSafe 9-Piece Security System",
-    caption: "HD camera, sensors & 24/7 monitoring — peace of mind, simplified.",
-    image: simplisafeSecurity,
-    alt: "SimpliSafe home security system with camera and sensors",
-    affiliateLink: "https://www.amazon.com/dp/B0D4126GYJ?tag=moderntechs0c-20",
+    product: "Ring Battery Doorbell Plus — Smart Security",
+    caption: "1536p HD video with Head-to-Toe view & motion detection. Smart home wellness simplified.",
+    image: "https://m.media-amazon.com/images/I/51BoGN7mP3L._AC_SX679_.jpg",
+    alt: "Ring Battery Doorbell Plus smart video doorbell for home security 2026",
+    affiliateLink: "https://www.amazon.com/dp/B09WZBPX7K?tag=moderntechs0c-20",
     pinterestBoard: `${PINTEREST_PROFILE}/home-safety/`,
     accentColor: "from-amber-500 to-orange-600",
     glowColor: "shadow-amber-500/30",
@@ -38,11 +34,11 @@ const categoryProducts = [
   },
   {
     heading: "Creator Studio",
-    product: "Elgato Stream Deck MK.2",
-    caption: "15 programmable keys — the ultimate command center for creators.",
-    image: elgatoStreamDeck,
-    alt: "Elgato Stream Deck MK.2 with glowing LCD keys",
-    affiliateLink: "https://www.amazon.com/dp/B09738CV2G?tag=moderntechs0c-20",
+    product: "Shure MV7+ Podcast Microphone",
+    caption: "USB/XLR dynamic mic with auto-leveling. The 2026 upgrade to the podcaster's gold standard.",
+    image: "https://m.media-amazon.com/images/I/51h3FjKygML._AC_SX679_.jpg",
+    alt: "Shure MV7+ podcast microphone for content creators and streamers 2026",
+    affiliateLink: "https://www.amazon.com/dp/B0DJY8R8ZP?tag=moderntechs0c-20",
     pinterestBoard: `${PINTEREST_PROFILE}/creator-gear/`,
     accentColor: "from-purple-500 to-fuchsia-600",
     glowColor: "shadow-purple-500/30",
@@ -53,12 +49,16 @@ const categoryProducts = [
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Modern Tech 2026 — Hot-Moving Smart Tech, Wellness & Creator Gear</title>
+        <meta name="description" content="Curated hot-selling Amazon tech for 2026 — smart rings, biohacking wearables, home security, creator gear & more. Handpicked by real people, not algorithms." />
+      </Helmet>
       <Navigation />
 
       {/* TOP HALF — Hero with background image */}
       <section className="relative h-[40vh] min-h-[320px] flex flex-col items-center justify-center px-6 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroBackground} alt="" className="w-full h-full object-cover" />
+          <img src={heroBackground} alt="Modern Tech 2026 curated technology store" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
         </div>
 
@@ -67,7 +67,7 @@ const Index = () => {
           <span className="gradient-text">changes everything.</span>
         </h1>
         <p className="relative z-10 mt-4 text-base md:text-lg text-muted-foreground text-center max-w-xl">
-          Curated products for health, home, and creativity — handpicked by real people, not algorithms.
+          Hot-moving smart tech for health, home & creativity — curated for a high-performance lifestyle in 2026.
         </p>
         <div className="relative z-10 mt-6 flex items-center gap-4">
           <Link
@@ -139,20 +139,9 @@ const Index = () => {
                     rel="noopener noreferrer nofollow"
                     className={`inline-flex items-center gap-2 h-10 px-5 rounded-full bg-gradient-to-r ${item.accentColor} text-white text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:scale-[1.03]`}
                   >
-                    {item.secondLink ? "Shop Ring" : "Shop on Amazon"}
+                    Shop on Amazon
                     <ExternalLink className="h-3.5 w-3.5" />
                   </a>
-                  {item.secondLink && (
-                    <a
-                      href={item.secondLink}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                      className={`inline-flex items-center gap-2 h-10 px-5 rounded-full bg-gradient-to-r ${item.accentColor} text-white text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:scale-[1.03] opacity-90`}
-                    >
-                      {item.secondLabel}
-                      <ExternalLink className="h-3.5 w-3.5" />
-                    </a>
-                  )}
                   <a
                     href={item.pinterestBoard}
                     target="_blank"

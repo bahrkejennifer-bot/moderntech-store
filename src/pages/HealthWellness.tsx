@@ -1,107 +1,85 @@
+import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
-import { Clover } from "lucide-react";
-import ekrinBantamImage from "@/assets/products/ekrin-bantam.jpg";
-import withingsScaleImage from "@/assets/products/withings-scale.jpg";
-import philipsWakeupImage from "@/assets/products/philips-wakeup-light.jpg";
-import fitbitCharge6Image from "@/assets/products/fitbit-charge-6.jpg";
-import boseSleepbudsImage from "@/assets/products/bose-sleepbuds.jpg";
-import ouraRingImage from "@/assets/products/oura-ring-gen3.jpg";
-
-// St. Patrick's Day Featured Product
-const featuredProduct = {
-  title: "Oura Ring Gen 3",
-  description: "The ultimate health tracking ring - monitors sleep, heart rate, temperature & activity. A lucky find for wellness lovers!",
-  price: "$299.00",
-  rating: 4.7,
-  imageUrl: ouraRingImage,
-  affiliateLink: "https://amzn.to/4bm3o3z",
-};
+import { Button } from "@/components/ui/button";
 
 const products = [
   {
-    title: "Apple Watch Series 9",
-    description: "Advanced health monitoring with ECG, blood oxygen, and fitness tracking",
-    price: "$399.00",
+    title: "Oura Ring 4 — Smart Ring Fitness Tracker",
+    description: "Titanium wearable tech for sleep quality tracking, HRV monitoring & longevity insights. The biohacking essential of 2026.",
+    rating: 4.8,
+    imageUrl: "https://m.media-amazon.com/images/I/61r2m3e2jPL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0DHY5C1X1?tag=moderntechs0c-20",
+  },
+  {
+    title: "Apple Watch Series 10 — Health & Wellness Wearable",
+    description: "ECG, blood oxygen, sleep tracking & crash detection. The most advanced smartwatch for holistic health monitoring.",
     rating: 4.9,
-    imageUrl: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0CHX9CY7W?tag=moderntechs0c-20",
+    imageUrl: "https://m.media-amazon.com/images/I/61lYIKPieDL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0DGJ7QCS2?tag=moderntechs0c-20",
   },
   {
-    title: "Fitbit Charge 6",
-    description: "Health and fitness tracker with built-in GPS and heart rate monitoring",
-    price: "$159.95",
-    rating: 4.6,
-    imageUrl: fitbitCharge6Image,
-    affiliateLink: "https://www.amazon.com/dp/B0CC62ZG1M?tag=moderntechs0c-20",
-  },
-  {
-    title: "Ekrin Bantam Mini Massage Gun",
-    description: "Compact deep tissue percussion massager with long battery life and 4 attachments",
-    price: "$79.99",
-    rating: 4.6,
-    imageUrl: ekrinBantamImage,
-    affiliateLink: "https://www.amazon.com/dp/B08M8P7ZVD?tag=moderntechs0c-20",
-  },
-  {
-    title: "Withings Body+ Smart Scale",
-    description: "WiFi body composition scale with multi-user recognition",
-    price: "$99.95",
+    title: "WHOOP 4.0 — Biohacking Fitness Tracker",
+    description: "24/7 health monitoring with strain, recovery & sleep coaching. No screen, no distractions — pure performance data.",
     rating: 4.5,
-    imageUrl: withingsScaleImage,
-    affiliateLink: "https://www.amazon.com/dp/B071XW4C5Q?tag=moderntechs0c-20",
+    imageUrl: "https://m.media-amazon.com/images/I/51cxMll4NHL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0BFCYB2SJ?tag=moderntechs0c-20",
+  },
+  {
+    title: "Theragun Mini 2.0 — Portable Percussion Massager",
+    description: "Deep tissue muscle recovery in your pocket. Whisper-quiet motor with 3 speeds for daily wellness rituals.",
+    rating: 4.7,
+    imageUrl: "https://m.media-amazon.com/images/I/61Ie1DNWKWL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0CX48M92W?tag=moderntechs0c-20",
+  },
+  {
+    title: "Withings Body Smart Scale — WiFi Smart Scale",
+    description: "Body composition analysis with Eyes Closed Mode. Syncs with Apple Health — neurowellness meets precision tracking.",
+    rating: 4.5,
+    imageUrl: "https://m.media-amazon.com/images/I/61Bvs3AS3TL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0CG1VLXQF?tag=moderntechs0c-20",
   },
   {
     title: "Philips SmartSleep Wake-Up Light",
-    description: "Sunrise alarm clock with colored light simulation and FM radio",
-    price: "$109.99",
+    description: "Sunrise simulation alarm for stress management & better mornings. Clinically proven to improve sleep quality.",
     rating: 4.4,
-    imageUrl: philipsWakeupImage,
+    imageUrl: "https://m.media-amazon.com/images/I/71sGBFbNLzL._AC_SX679_.jpg",
     affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs0c-20",
-  },
-  {
-    title: "Bose Sleepbuds II",
-    description: "Sleep technology with noise-masking and relaxation sounds",
-    price: "$249.95",
-    rating: 4.3,
-    imageUrl: boseSleepbudsImage,
-    affiliateLink: "https://www.amazon.com/dp/B08FRR6Z1N?tag=moderntechs0c-20",
   },
 ];
 
 const HealthWellness = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Best Smart Ring & Wellness Tech 2026 | Biohacking Essentials</title>
+        <meta name="description" content="Discover the hottest wellness tech of 2026 — Oura Ring 4, Apple Watch Series 10, WHOOP 4.0 & more. Smart ring fitness trackers, biohacking tools & longevity tech." />
+      </Helmet>
       <Navigation />
       <div className="container mx-auto px-4 py-12">
+        <div className="mb-4">
+          <Button variant="ghost" size="sm" asChild>
+            <Link to="/" className="text-muted-foreground hover:text-foreground">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Home
+            </Link>
+          </Button>
+        </div>
         <div className="mb-12 text-center">
           <h1 className="text-5xl font-bold mb-4">
-            Health & Wellness Tech
+            Health & Wellness Tech 2026
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Track your health and improve your wellbeing with cutting-edge technology
+            Smart ring fitness trackers, biohacking essentials & longevity tech — curated for a high-performance lifestyle.
+          </p>
+          <p className="text-xs text-muted-foreground mt-3 italic">
+            As an Amazon Associate, I earn from qualifying purchases.
           </p>
         </div>
 
-        {/* St. Patrick's Day Featured Product */}
-        <div className="mb-12 p-6 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-950/20 dark:to-green-950/20 rounded-2xl border border-emerald-200 dark:border-emerald-800">
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <Clover className="h-6 w-6 text-emerald-500 fill-emerald-500" />
-            <h2 className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">St. Patrick's Day Special</h2>
-            <Clover className="h-6 w-6 text-emerald-500 fill-emerald-500" />
-          </div>
-          <div className="max-w-md mx-auto">
-            <ProductCard {...featuredProduct} />
-          </div>
-          <p className="text-center text-sm text-muted-foreground mt-4">
-            ☘️ Strike gold with the gift of health tracking
-          </p>
-          <p className="text-center text-xs text-muted-foreground mt-2 italic">
-            As an Amazon Associate, I earn from qualifying purchases
-          </p>
-        </div>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
             <ProductCard key={product.title} {...product} />
