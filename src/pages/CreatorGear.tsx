@@ -7,30 +7,6 @@ import { ArrowLeft, ExternalLink, ShoppingCart, Bookmark } from "lucide-react";
 
 const products = [
   {
-    title: "Shure SM7B Dynamic Vocal Microphone",
-    description: "The gold standard for podcasting and streaming — natural, smooth sound with legendary durability and electromagnetic shielding.",
-    price: "$439.00",
-    rating: 4.7,
-    imageUrl: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0002E4Z8M?tag=moderntechs0c-20",
-  },
-  {
-    title: "Elgato Key Light Air",
-    description: "Professional-grade LED panel with app-controlled brightness and color temperature — soft, even lighting for creators.",
-    price: "$176.00",
-    rating: 4.6,
-    imageUrl: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B082QHRZFW?tag=moderntechs0c-20",
-  },
-  {
-    title: "DJI Osmo Mobile 6",
-    description: "3-axis smartphone stabilizer with intelligent tracking, gesture control, and built-in extension rod for cinematic content.",
-    price: "$139.00",
-    rating: 4.5,
-    imageUrl: "https://images.unsplash.com/photo-1626379953822-baec19c3accd?w=600&auto=format",
-    affiliateLink: "https://www.amazon.com/dp/B0BDKL2KST?tag=moderntechs0c-20",
-  },
-  {
     title: "Elgato Stream Deck MK.2",
     description: "15 customizable LCD keys to control apps, platforms, and workflows — the creator's command center.",
     price: "$149.99",
