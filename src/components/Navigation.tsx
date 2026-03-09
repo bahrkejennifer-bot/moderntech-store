@@ -22,7 +22,7 @@ const Navigation = () => {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2">
-              <img src={logo} alt="Modern Tech LLC" className="h-12 w-12 rounded-full object-cover shadow-sm" />
+              <img src={logo} alt="Modern Tech LLC" className="h-12 w-12 rounded-full object-contain bg-white p-1 shadow-sm border border-border/20" />
             </Link>
 
             {/* Desktop center links */}
