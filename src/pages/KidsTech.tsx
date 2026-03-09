@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-lite";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
