@@ -11,7 +11,7 @@ const Navigation = () => {
   const navLinks = [
     { to: "/health-wellness", label: "Health & Wellness" },
     { to: "/home-safety", label: "Home & Safety" },
-    { to: "/creator-gear", label: "Creator Corner" },
+    { to: "/creator-gear", label: "Content Creator Corner" },
     { to: "/blog", label: "Blog" },
   ];
 
