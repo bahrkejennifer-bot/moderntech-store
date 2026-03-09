@@ -97,7 +97,12 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
           className="w-full"
           asChild
         >
-          <a href={affiliateLink} target="_blank" rel="noopener noreferrer nofollow">
+          <a
+            href={affiliateLink}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            onClick={() => trackEvent("checkout", { product_name: title, value: 0, currency: "USD" })}
+          >
             View on Amazon <ExternalLink className="ml-2 h-4 w-4" />
           </a>
         </Button>
