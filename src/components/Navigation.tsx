@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { FreeGuideModal } from "@/components/FreeGuideModal";
+import logo from "@/assets/modern-tech-logo.jpg";
 
 const Navigation = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -20,8 +21,8 @@ const Navigation = () => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="text-lg font-bold text-foreground tracking-tight">
-              Modern Tech
+            <Link to="/" className="flex items-center gap-2">
+              <img src={logo} alt="Modern Tech LLC" className="h-10 w-auto rounded-full" />
             </Link>
 
             {/* Desktop center links */}
