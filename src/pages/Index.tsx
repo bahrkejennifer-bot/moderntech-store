@@ -39,7 +39,7 @@ const categoryProducts = [
     heading: "Creator Studio",
     product: "Shure MV7+ Podcast Microphone",
     caption: "USB/XLR dynamic mic with auto-leveling. The 2026 upgrade to the podcaster's gold standard.",
-    image: "https://m.media-amazon.com/images/I/51h3FjKygML._AC_SX679_.jpg",
+    image: streamDeckImg,
     alt: "Shure MV7+ podcast microphone for content creators and streamers 2026",
     affiliateLink: "https://www.amazon.com/dp/B0DJY8R8ZP?tag=moderntechs0c-20",
     pinterestBoard: `${PINTEREST_PROFILE}/creator-gear/`,
