@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ExternalLink } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import ouraRingImage from "@/assets/heroes/oura-ring-hero.jpg";
 import eeroMeshImage from "@/assets/heroes/eero-mesh-hero.jpg";
 import streamDeckImage from "@/assets/heroes/streamdeck-hero.jpg";
+import ouraRing4Image from "@/assets/products/oura-ring-4.jpg";
+import ouraChargingDockImage from "@/assets/products/oura-charging-dock.jpg";
+import ouraSizingKitImage from "@/assets/products/oura-sizing-kit.jpg";
 
 const heroSections = [
   {
@@ -30,6 +33,31 @@ const heroSections = [
   },
 ];
 
+const featuredProducts = [
+  {
+    title: "Oura Ring 4",
+    caption: "Premium Health Tracking",
+    image: ouraRing4Image,
+    alt: "Oura Ring 4 smart health ring",
+    affiliateLink: "https://www.amazon.com/dp/B0DHY5C1X1?tag=moderntechs0c-20",
+  },
+  {
+    title: "Oura Charging Dock",
+    caption: "Stay Powered Anywhere",
+    image: ouraChargingDockImage,
+    alt: "Oura Ring charging dock",
+    affiliateLink: "https://www.amazon.com/dp/B0DHXXKQ8G?tag=moderntechs0c-20",
+  },
+  {
+    title: "Oura Sizing Kit",
+    caption: "Start Here for the Perfect Fit",
+    image: ouraSizingKitImage,
+    alt: "Oura Ring sizing kit with multiple ring sizes",
+    affiliateLink: "https://www.amazon.com/dp/B0C7JHBJQT?tag=moderntechs0c-20",
+    highlight: true,
+  },
+];
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -40,7 +68,6 @@ const Index = () => {
           key={i}
           className="min-h-screen flex flex-col items-center justify-center px-6 py-24"
         >
-          {/* Product image */}
           <div className="w-full max-w-lg mb-12">
             <img
               src={section.image}
@@ -50,7 +77,6 @@ const Index = () => {
             />
           </div>
 
-          {/* Text */}
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground text-center leading-tight">
             {section.heading}
           </h1>
@@ -58,7 +84,6 @@ const Index = () => {
             {section.caption}
           </p>
 
-          {/* Learn More link */}
           <Link
             to={section.link}
             className="mt-5 inline-flex items-center text-primary text-base font-normal hover:underline underline-offset-4 transition-colors"
@@ -67,6 +92,63 @@ const Index = () => {
           </Link>
         </section>
       ))}
+
+      {/* Featured Tech Section */}
+      <section className="py-24 px-6">
+        <div className="max-w-[980px] mx-auto">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground text-center mb-3">
+            Featured Tech
+          </h2>
+          <p className="text-muted-foreground text-center mb-4 max-w-md mx-auto">
+            Find your perfect fit before you buy.
+          </p>
+          <p className="text-xs text-muted-foreground/60 text-center mb-16">
+            As an Amazon Associate, I earn from qualifying purchases.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {featuredProducts.map((product) => (
+              <div key={product.title} className="flex flex-col items-center text-center group">
+                {/* Product image */}
+                <div className="w-full aspect-square mb-6 overflow-hidden rounded-2xl bg-muted/30">
+                  <img
+                    src={product.image}
+                    alt={product.alt}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Label */}
+                <h3 className="text-lg font-semibold text-foreground mb-1">
+                  {product.title}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  {product.caption}
+                </p>
+
+                {/* Highlight hook for sizing kit */}
+                {product.highlight && (
+                  <p className="text-xs text-primary font-medium mb-4">
+                    ★ Most buyers start here
+                  </p>
+                )}
+
+                {/* CTA */}
+                <a
+                  href={product.affiliateLink}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="inline-flex items-center gap-2 h-10 px-6 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors"
+                >
+                  View on Amazon
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <AffiliateFooter />
     </div>
