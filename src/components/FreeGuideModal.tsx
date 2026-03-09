@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Shield, Rocket, ArrowLeft, Gem } from "lucide-react";
+import { Shield, Rocket, ArrowLeft, Gem, Video } from "lucide-react";
 
 interface FreeGuideModalProps {
   open: boolean;
@@ -38,6 +38,14 @@ const guides = [
     icon: Gem,
     accentClass: "text-purple-400",
     bgClass: "bg-purple-500/10",
+  },
+  {
+    id: "creator-gear-starter-kit",
+    title: "Creator Gear Starter Kit 2026",
+    description: "Mic, camera & lighting picks at every budget + a 7-day launch challenge.",
+    icon: Video,
+    accentClass: "text-orange-400",
+    bgClass: "bg-orange-500/10",
   },
 ];
 
