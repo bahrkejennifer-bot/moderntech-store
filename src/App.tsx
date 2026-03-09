@@ -24,6 +24,8 @@ import LeadMagnet from "./pages/LeadMagnet";
 import SmartHomeSafetyChecklist from "./pages/SmartHomeSafetyChecklist";
 import SmartRingGuide from "./pages/SmartRingGuide";
 import CreatorGearGuide from "./pages/CreatorGearGuide";
+import DormRoomTechGuide from "./pages/DormRoomTechGuide";
+import ScreenFreeKidsGuide from "./pages/ScreenFreeKidsGuide";
 import AmazonAssociateGuide from "./pages/AmazonAssociateGuide";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
