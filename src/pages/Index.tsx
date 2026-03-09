@@ -66,8 +66,11 @@ const Index = () => {
 
       {/* Main hero — large statement */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 overflow-hidden">
-        {/* Subtle spotlight glow */}
-        <div className="absolute inset-0 bg-gradient-spotlight pointer-events-none" />
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img src={heroBackground} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-background/70" />
+        </div>
 
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground text-center leading-[0.95] max-w-4xl">
           The tech that{" "}
