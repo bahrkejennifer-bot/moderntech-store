@@ -54,6 +54,7 @@ const App = () => (
           <Route path="/tech-gift-cheatsheet" element={<TechGiftCheatsheet />} />
           <Route path="/my-downloads" element={<MyDownloads />} />
           <Route path="/free-roadmap" element={<LeadMagnet />} />
+          <Route path="/amazon-associate-guide" element={<AmazonAssociateGuide />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin/upload" element={<AdminUpload />} />
           <Route path="/admin/scraper" element={<AdminScraper />} />
