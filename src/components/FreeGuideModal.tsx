@@ -43,9 +43,9 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md border-none shadow-none bg-background p-10">
+      <DialogContent className="sm:max-w-md border border-border bg-card p-10">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-semibold tracking-tight text-center text-foreground">
+          <DialogTitle className="text-2xl font-bold tracking-tight text-center text-foreground">
             Get the Amazon Associate Guide
           </DialogTitle>
           <p className="text-sm text-muted-foreground text-center mt-2">
@@ -60,12 +60,12 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full h-11 px-4 rounded-lg bg-muted text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20"
+            className="w-full h-11 px-4 rounded-lg bg-muted border border-border text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
           />
           <button
             type="submit"
             disabled={loading}
-            className="w-full h-11 rounded-lg bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors disabled:opacity-50"
+            className="w-full h-11 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all duration-200 disabled:opacity-50 hover:shadow-elegant"
           >
             {loading ? "Sending…" : "Get the Amazon Associate Guide"}
           </button>

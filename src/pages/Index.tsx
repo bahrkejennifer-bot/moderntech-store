@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ChevronRight, ExternalLink } from "lucide-react";
+import { ChevronRight, ExternalLink, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import ouraRingImage from "@/assets/heroes/oura-ring-hero.jpg";
@@ -63,30 +63,63 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
 
+      {/* Main hero — large statement */}
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 overflow-hidden">
+        {/* Subtle spotlight glow */}
+        <div className="absolute inset-0 bg-gradient-spotlight pointer-events-none" />
+
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground text-center leading-[0.95] max-w-4xl">
+          The tech that{" "}
+          <span className="gradient-text">changes everything.</span>
+        </h1>
+        <p className="mt-6 text-lg md:text-xl text-muted-foreground text-center max-w-xl">
+          Curated products for health, home, and creativity — handpicked by real people, not algorithms.
+        </p>
+        <div className="mt-10 flex items-center gap-4">
+          <Link
+            to="/health-wellness"
+            className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-elegant transition-all duration-300 hover:scale-[1.02]"
+          >
+            Explore Products
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 h-12 px-8 rounded-full border border-border text-foreground text-sm font-medium hover:bg-card transition-all duration-200"
+          >
+            Read the Blog
+          </Link>
+        </div>
+      </section>
+
+      {/* Category hero sections */}
       {heroSections.map((section, i) => (
         <section
           key={i}
-          className="min-h-screen flex flex-col items-center justify-center px-6 py-24"
+          className="min-h-screen flex flex-col items-center justify-center px-6 py-24 relative"
         >
-          <div className="w-full max-w-lg mb-12">
+          {/* Subtle divider */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 glow-line" />
+
+          <div className="w-full max-w-md mb-12 rounded-3xl overflow-hidden">
             <img
               src={section.image}
               alt={section.alt}
               className="w-full h-auto object-contain"
-              loading={i === 0 ? "eager" : "lazy"}
+              loading="lazy"
             />
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground text-center leading-tight">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-foreground text-center leading-tight">
             {section.heading}
-          </h1>
-          <p className="mt-3 text-lg text-muted-foreground text-center max-w-md">
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground text-center max-w-md">
             {section.caption}
           </p>
 
           <Link
             to={section.link}
-            className="mt-5 inline-flex items-center text-primary text-base font-normal hover:underline underline-offset-4 transition-colors"
+            className="mt-6 inline-flex items-center text-primary text-base font-medium hover:underline underline-offset-4 transition-colors"
           >
             Learn more <ChevronRight className="ml-1 h-4 w-4" />
           </Link>
@@ -94,23 +127,28 @@ const Index = () => {
       ))}
 
       {/* Featured Tech Section */}
-      <section className="py-24 px-6">
-        <div className="max-w-[980px] mx-auto">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground text-center mb-3">
+      <section className="py-32 px-6 relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 glow-line" />
+
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground text-center mb-4">
             Featured Tech
           </h2>
-          <p className="text-muted-foreground text-center mb-4 max-w-md mx-auto">
+          <p className="text-muted-foreground text-center mb-4 max-w-md mx-auto text-lg">
             Find your perfect fit before you buy.
           </p>
-          <p className="text-xs text-muted-foreground/60 text-center mb-16">
+          <p className="text-xs text-muted-foreground/50 text-center mb-20">
             As an Amazon Associate, I earn from qualifying purchases.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredProducts.map((product) => (
-              <div key={product.title} className="flex flex-col items-center text-center group">
+              <div
+                key={product.title}
+                className="flex flex-col items-center text-center group rounded-2xl bg-card p-6 border border-border/50 hover:border-primary/30 transition-all duration-300 hover-lift"
+              >
                 {/* Product image */}
-                <div className="w-full aspect-square mb-6 overflow-hidden rounded-2xl bg-muted/30">
+                <div className="w-full aspect-square mb-6 overflow-hidden rounded-xl bg-muted/20">
                   <img
                     src={product.image}
                     alt={product.alt}
@@ -123,13 +161,13 @@ const Index = () => {
                 <h3 className="text-lg font-semibold text-foreground mb-1">
                   {product.title}
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-sm text-muted-foreground mb-5">
                   {product.caption}
                 </p>
 
-                {/* Highlight hook for sizing kit */}
+                {/* Highlight */}
                 {product.highlight && (
-                  <p className="text-xs text-primary font-medium mb-4">
+                  <p className="text-xs text-primary font-semibold mb-4 tracking-wide uppercase">
                     ★ Most buyers start here
                   </p>
                 )}
@@ -139,7 +177,7 @@ const Index = () => {
                   href={product.affiliateLink}
                   target="_blank"
                   rel="noopener noreferrer nofollow"
-                  className="inline-flex items-center gap-2 h-10 px-6 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors"
+                  className="inline-flex items-center gap-2 h-10 px-6 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:shadow-elegant transition-all duration-300"
                 >
                   View on Amazon
                   <ExternalLink className="h-3.5 w-3.5" />
