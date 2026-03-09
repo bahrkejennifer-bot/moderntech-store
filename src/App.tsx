@@ -23,6 +23,7 @@ import MyDownloads from "./pages/MyDownloads";
 import LeadMagnet from "./pages/LeadMagnet";
 import SmartHomeSafetyChecklist from "./pages/SmartHomeSafetyChecklist";
 import SmartRingGuide from "./pages/SmartRingGuide";
+import CreatorGearGuide from "./pages/CreatorGearGuide";
 import AmazonAssociateGuide from "./pages/AmazonAssociateGuide";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
