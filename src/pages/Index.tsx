@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ChevronRight, ExternalLink, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import heroBackground from "@/assets/hero-background.png";
 import ouraRingImage from "@/assets/heroes/oura-ring-hero.jpg";
 import eeroMeshImage from "@/assets/heroes/eero-mesh-hero.jpg";
 import streamDeckImage from "@/assets/heroes/streamdeck-hero.jpg";
