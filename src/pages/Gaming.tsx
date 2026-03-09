@@ -1,74 +1,85 @@
+import { Helmet } from "react-helmet-lite";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
-
-const CDN = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/product-images/gaming";
+import { Button } from "@/components/ui/button";
 
 const products = [
   {
-    title: "Sony PlayStation 5",
-    description: "Next-gen gaming console with 4K graphics and ultra-high speed SSD",
-    price: "$499.99",
+    title: "PlayStation 5 Slim — Digital Edition",
+    description: "Next-gen gaming with 4K graphics, ray tracing & ultra-fast SSD. The hottest console of 2026.",
     rating: 4.9,
     imageUrl: "https://m.media-amazon.com/images/I/51051FiD9UL._AC_SX679_.jpg",
-    affiliateLink: "https://amzn.to/3Mnd7MI",
+    affiliateLink: "https://www.amazon.com/dp/B0CL61F39H?tag=moderntechs0c-20",
   },
   {
-    title: "Razer Basilisk V3 35K Wired Ergonomic Gaming Mouse",
-    description: "HyperScroll Tilt Wheel, 35K DPI Optical Sensor Gen 2, 13 Customizable Controls, Chroma RGB",
-    price: "$89.99",
-    rating: 4.7,
-    imageUrl: `${CDN}/razer-basilisk-v3.jpg`,
-    affiliateLink: "https://amzn.to/3Yh5JoC",
+    title: "Steam Deck OLED — Portable Gaming PC",
+    description: "7.4-inch HDR OLED display with 90Hz refresh. Play your entire Steam library anywhere — the PC gamer's dream.",
+    rating: 4.8,
+    imageUrl: "https://m.media-amazon.com/images/I/51VTuODLLWL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0DFDJSM46?tag=moderntechs0c-20",
   },
   {
-    title: "SteelSeries Arctis Nova Pro Wireless Multi-System Gaming Headset",
-    description: "Premium Hi-Fi Drivers, Active Noise Cancellation, Infinity Power System, ClearCast Gen 2 Mic",
-    price: "$349.99",
+    title: "SteelSeries Arctis Nova Pro Wireless — Gaming Headset",
+    description: "Hi-Fi audio with Active Noise Cancellation & Infinity Power System. Multi-system support for PC, PS5 & Switch.",
     rating: 4.6,
-    imageUrl: `${CDN}/steelseries-arctis-nova-pro.jpg`,
-    affiliateLink: "https://amzn.to/3XL3ppN",
+    imageUrl: "https://m.media-amazon.com/images/I/61emijLBsnL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B09ZWMHSD8?tag=moderntechs0c-20",
   },
   {
-    title: "Logitech G Pro X Superlight Wireless Gaming Mouse",
-    description: "Ultra-lightweight wireless gaming mouse with HERO 25K sensor, 70hr battery life",
-    price: "$159.99",
-    rating: 4.8,
-    imageUrl: `${CDN}/logitech-g-pro-x-superlight.jpg`,
-    affiliateLink: "https://amzn.to/4pqjhtU",
+    title: "Razer DeathAdder V3 — Ergonomic Gaming Mouse",
+    description: "63g ultralight with Focus Pro 35K sensor & 90-hour battery. The esports standard for competitive gaming.",
+    rating: 4.7,
+    imageUrl: "https://m.media-amazon.com/images/I/61Iy3ySuMPL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0CQR2WLRM?tag=moderntechs0c-20",
   },
   {
-    title: "ASUS ROG Swift OLED Gaming Monitor",
-    description: "27-inch 1440p OLED gaming monitor with 240Hz refresh rate",
-    price: "$899.99",
+    title: "ASUS ROG Swift OLED PG27AQDP — 27\" Gaming Monitor",
+    description: "1440p OLED with 240Hz refresh & 0.03ms response. Esports-grade visuals for competitive and AAA gaming.",
     rating: 4.9,
-    imageUrl: `${CDN}/asus-rog-swift-oled.jpg`,
-    affiliateLink: "https://amzn.to/3KKueHL",
+    imageUrl: "https://m.media-amazon.com/images/I/81uFpNyjMcL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0D5DTCKJ3?tag=moderntechs0c-20",
   },
   {
-    title: "Xbox Series X Gaming Console Bundle - 1TB SSD",
-    description: "Black Xbox Console with Two Wireless Controllers (Black & White) and HDMI Cable",
-    price: "$499.99",
-    rating: 4.8,
-    imageUrl: `${CDN}/xbox-series-x.jpg`,
-    affiliateLink: "https://amzn.to/4rQkaOi",
+    title: "Xbox Elite Wireless Controller Series 2 Core",
+    description: "Adjustable-tension thumbsticks, shorter hair trigger locks & rechargeable battery. Pro-level control.",
+    rating: 4.6,
+    imageUrl: "https://m.media-amazon.com/images/I/71kZVwl0NHL._AC_SX679_.jpg",
+    affiliateLink: "https://www.amazon.com/dp/B0B6JM5DSK?tag=moderntechs0c-20",
   },
 ];
 
 const Gaming = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Best Gaming Tech 2026 | PS5, Steam Deck OLED, Monitors & More</title>
+        <meta name="description" content="Shop the hottest gaming tech of 2026 — PS5 Slim, Steam Deck OLED, ASUS ROG OLED monitors, pro gaming mice & headsets. Level up your setup." />
+      </Helmet>
       <Navigation />
       <div className="container mx-auto px-4 py-12">
+        <div className="mb-4">
+          <Button variant="ghost" size="sm" asChild>
+            <Link to="/" className="text-muted-foreground hover:text-foreground">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Home
+            </Link>
+          </Button>
+        </div>
         <div className="mb-12 text-center">
           <h1 className="text-5xl font-bold mb-4">
-            Gaming Tech
+            Gaming Tech 2026
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Level up your gaming experience with the latest consoles, peripherals, and accessories
+            The hottest consoles, OLED monitors & pro peripherals flying off shelves right now.
+          </p>
+          <p className="text-xs text-muted-foreground mt-3 italic">
+            As an Amazon Associate, I earn from qualifying purchases.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
             <ProductCard key={product.title} {...product} />
