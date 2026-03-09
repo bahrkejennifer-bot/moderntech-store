@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Shield, Rocket, ArrowLeft } from "lucide-react";
+import { Shield, Rocket, ArrowLeft, Gem } from "lucide-react";
 
 interface FreeGuideModalProps {
   open: boolean;
