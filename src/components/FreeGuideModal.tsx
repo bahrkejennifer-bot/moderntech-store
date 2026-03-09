@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Shield, Rocket, ArrowLeft, Gem, Video } from "lucide-react";
+import { Shield, Rocket, ArrowLeft, Gem, Video, GraduationCap, Baby } from "lucide-react";
 
 interface FreeGuideModalProps {
   open: boolean;
@@ -46,6 +46,22 @@ const guides = [
     icon: Video,
     accentClass: "text-orange-400",
     bgClass: "bg-orange-500/10",
+  },
+  {
+    id: "dorm-room-tech-setup",
+    title: "Ultimate Dorm Room Tech Setup",
+    description: "Complete college tech checklist at 3 budgets + desk layout diagrams.",
+    icon: GraduationCap,
+    accentClass: "text-teal-400",
+    bgClass: "bg-teal-500/10",
+  },
+  {
+    id: "screen-free-kids-tech-toys",
+    title: "Screen-Free Kids: 10 Toys That Teach",
+    description: "Parent-approved STEM toys, coding robots & audio players for ages 3–12.",
+    icon: Baby,
+    accentClass: "text-yellow-500",
+    bgClass: "bg-yellow-500/10",
   },
 ];
 

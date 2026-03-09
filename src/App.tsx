@@ -24,6 +24,8 @@ import LeadMagnet from "./pages/LeadMagnet";
 import SmartHomeSafetyChecklist from "./pages/SmartHomeSafetyChecklist";
 import SmartRingGuide from "./pages/SmartRingGuide";
 import CreatorGearGuide from "./pages/CreatorGearGuide";
+import DormRoomTechGuide from "./pages/DormRoomTechGuide";
+import ScreenFreeKidsGuide from "./pages/ScreenFreeKidsGuide";
 import AmazonAssociateGuide from "./pages/AmazonAssociateGuide";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -60,6 +62,8 @@ const App = () => (
           <Route path="/free-smart-home-checklist" element={<SmartHomeSafetyChecklist />} />
           <Route path="/free-smart-ring-guide" element={<SmartRingGuide />} />
           <Route path="/free-creator-gear-guide" element={<CreatorGearGuide />} />
+          <Route path="/free-dorm-room-guide" element={<DormRoomTechGuide />} />
+          <Route path="/free-screen-free-kids-guide" element={<ScreenFreeKidsGuide />} />
           <Route path="/amazon-associate-guide" element={<AmazonAssociateGuide />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin/upload" element={<AdminUpload />} />
