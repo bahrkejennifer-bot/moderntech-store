@@ -8,13 +8,6 @@ const corsHeaders = {
 
 const AMAZON_CATEGORY_URLS = [
   {
-    niche: "Home Safety",
-    urls: [
-      "https://www.amazon.com/Best-Sellers-Home-Security-Surveillance/zgbs/hi/2972638011",
-      "https://www.amazon.com/gp/new-releases/hi/2972638011",
-    ],
-  },
-  {
     niche: "Health & Wellness",
     urls: [
       "https://www.amazon.com/Best-Sellers-Sports-Outdoors-Exercise-Fitness/zgbs/sporting-goods/3407731",
@@ -22,14 +15,20 @@ const AMAZON_CATEGORY_URLS = [
     ],
   },
   {
-    niche: "Creator Gear",
+    niche: "Home & Safety",
+    urls: [
+      "https://www.amazon.com/Best-Sellers-Home-Security-Surveillance/zgbs/hi/2972638011",
+      "https://www.amazon.com/gp/new-releases/hi/2972638011",
+    ],
+  },
+  {
+    niche: "Content Creator Corner",
     urls: [
       "https://www.amazon.com/Best-Sellers-Computers-Accessories-Streaming-Media-Players/zgbs/pc/13Icons880011",
       "https://www.amazon.com/Best-Sellers-Musical-Instruments-Microphones/zgbs/mi/11974561",
     ],
   },
 ];
-
 const AFFILIATE_TAG = "moderntechs0c-20";
 
 Deno.serve(async (req) => {
