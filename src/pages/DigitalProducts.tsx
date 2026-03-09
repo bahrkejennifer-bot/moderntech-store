@@ -510,6 +510,26 @@ const DigitalProducts = () => {
               </div>
             </div>
           )}
+
+          {/* Free Amazon Associate Guide Banner */}
+          <Card className="mt-10 overflow-hidden border-2 border-primary/30 shadow-xl">
+            <CardContent className="p-8 bg-gradient-to-r from-primary/10 to-accent/10">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="bg-primary/10 p-4 rounded-full">
+                  <DollarSign className="h-10 w-10 text-primary" />
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl font-bold mb-2">Free: Amazon Associate Quick-Start Guide</h3>
+                  <p className="text-muted-foreground">Learn how to sign up, create links, and earn your first commissions — 5 actionable pages, instant PDF download.</p>
+                </div>
+                <Link to="/amazon-associate-guide">
+                  <Button size="lg" className="whitespace-nowrap">
+                    <Download className="mr-2 h-5 w-5" /> Get Free Guide
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
       <AffiliateFooter />
