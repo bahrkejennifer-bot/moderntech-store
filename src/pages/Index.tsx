@@ -14,7 +14,7 @@ const categoryProducts = [
   {
     heading: "Health & Wellness",
     product: "Oura Ring 4 — Smart Ring Fitness Tracker",
-    caption: "Titanium wearable for sleep, HRV & longevity tracking. The biohacking essential of 2026.",
+    caption: "Titanium smart ring for sleep, HRV & longevity tracking. Pro tip: grab the Sizing Kit first to find your perfect fit.",
     image: ouraRingImg,
     alt: "Oura Ring 4 smart ring fitness tracker for biohacking and sleep quality tracking 2026",
     affiliateLink: "https://www.amazon.com/dp/B0DHY5C1X1?tag=moderntechs0c-20",
