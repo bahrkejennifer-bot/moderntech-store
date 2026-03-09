@@ -16,7 +16,9 @@ const categoryProducts = [
     caption: "Track sleep, activity & readiness — start with the perfect fit.",
     image: ouraRingSizingBundle,
     alt: "Oura Ring 4 with sizing kit for health tracking",
-    affiliateLink: "https://www.amazon.com/dp/B0D9WVWXR1?tag=moderntechs0c-20",
+    affiliateLink: "https://www.amazon.com/dp/B0DHY5C1X1?tag=moderntechs0c-20",
+    secondLink: "https://www.amazon.com/dp/B0D9WVWXR1?tag=moderntechs0c-20",
+    secondLabel: "Get Sizing Kit",
     pinterestBoard: `${PINTEREST_PROFILE}/health-wellness/`,
     accentColor: "from-emerald-500 to-teal-600",
     glowColor: "shadow-emerald-500/30",
@@ -130,16 +132,27 @@ const Index = () => {
                   {item.caption}
                 </p>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-2">
                   <a
                     href={item.affiliateLink}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                     className={`inline-flex items-center gap-2 h-10 px-5 rounded-full bg-gradient-to-r ${item.accentColor} text-white text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:scale-[1.03]`}
                   >
-                    Shop on Amazon
+                    {item.secondLink ? "Shop Ring" : "Shop on Amazon"}
                     <ExternalLink className="h-3.5 w-3.5" />
                   </a>
+                  {item.secondLink && (
+                    <a
+                      href={item.secondLink}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      className={`inline-flex items-center gap-2 h-10 px-5 rounded-full bg-gradient-to-r ${item.accentColor} text-white text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:scale-[1.03] opacity-90`}
+                    >
+                      {item.secondLabel}
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  )}
                   <a
                     href={item.pinterestBoard}
                     target="_blank"
