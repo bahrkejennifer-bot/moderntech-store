@@ -72,7 +72,7 @@ const Index = () => {
           <div className="absolute inset-0 bg-background/70" />
         </div>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground text-center leading-[0.95] max-w-4xl">
+        <h1 className="relative z-10 text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-foreground text-center leading-[0.95] max-w-4xl">
           The tech that{" "}
           <span className="gradient-text">changes everything.</span>
         </h1>
