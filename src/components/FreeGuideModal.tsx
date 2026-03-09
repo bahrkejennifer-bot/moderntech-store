@@ -31,6 +31,14 @@ const guides = [
     accentClass: "text-blue-400",
     bgClass: "bg-blue-500/10",
   },
+  {
+    id: "smart-ring-buyers-guide",
+    title: "Smart Ring Buyer's Guide 2026",
+    description: "Oura Ring 4 comparison, sizing tips & a 30-day biohacking challenge.",
+    icon: Gem,
+    accentClass: "text-purple-400",
+    bgClass: "bg-purple-500/10",
+  },
 ];
 
 export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
