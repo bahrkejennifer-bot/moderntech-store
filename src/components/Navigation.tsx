@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { FreeGuideModal } from "@/components/FreeGuideModal";
+import logo from "@/assets/modern-tech-logo.jpg";
 
 const Navigation = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
