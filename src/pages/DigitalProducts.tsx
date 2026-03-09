@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones, GraduationCap, Activity, Baby, BookOpen, Loader2, Briefcase } from "lucide-react";
+import { useSearchParams, Link } from "react-router-dom";
+import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones, GraduationCap, Activity, Baby, BookOpen, Loader2, Briefcase, DollarSign } from "lucide-react";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
