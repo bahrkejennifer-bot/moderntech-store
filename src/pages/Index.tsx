@@ -76,7 +76,7 @@ const Index = () => {
           The tech that{" "}
           <span className="gradient-text">changes everything.</span>
         </h1>
-        <p className="mt-6 text-lg md:text-xl text-muted-foreground text-center max-w-xl">
+        <p className="relative z-10 mt-6 text-lg md:text-xl text-muted-foreground text-center max-w-xl">
           Curated products for health, home, and creativity — handpicked by real people, not algorithms.
         </p>
         <div className="mt-10 flex items-center gap-4">
