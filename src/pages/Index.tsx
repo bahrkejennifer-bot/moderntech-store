@@ -4,6 +4,9 @@ import { ExternalLink, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import heroBackground from "@/assets/hero-background.png";
+import ouraRingImg from "@/assets/products/oura-ring-4.jpg";
+import ringDoorbellImg from "@/assets/products/ring-doorbell-pro2.jpg";
+import streamDeckImg from "@/assets/products/elgato-stream-deck-mk2.jpg";
 
 const PINTEREST_PROFILE = "https://www.pinterest.com/moderntechllc";
 
@@ -12,7 +15,7 @@ const categoryProducts = [
     heading: "Health & Wellness",
     product: "Oura Ring 4 — Smart Ring Fitness Tracker",
     caption: "Titanium wearable for sleep, HRV & longevity tracking. The biohacking essential of 2026.",
-    image: "https://m.media-amazon.com/images/I/61r2m3e2jPL._AC_SX679_.jpg",
+    image: ouraRingImg,
     alt: "Oura Ring 4 smart ring fitness tracker for biohacking and sleep quality tracking 2026",
     affiliateLink: "https://www.amazon.com/dp/B0DHY5C1X1?tag=moderntechs0c-20",
     pinterestBoard: `${PINTEREST_PROFILE}/health-wellness/`,
@@ -24,7 +27,7 @@ const categoryProducts = [
     heading: "Home & Safety",
     product: "Ring Battery Doorbell Plus — Smart Security",
     caption: "1536p HD video with Head-to-Toe view & motion detection. Smart home wellness simplified.",
-    image: "https://m.media-amazon.com/images/I/51BoGN7mP3L._AC_SX679_.jpg",
+    image: ringDoorbellImg,
     alt: "Ring Battery Doorbell Plus smart video doorbell for home security 2026",
     affiliateLink: "https://www.amazon.com/dp/B09WZBPX7K?tag=moderntechs0c-20",
     pinterestBoard: `${PINTEREST_PROFILE}/home-safety/`,
@@ -34,11 +37,11 @@ const categoryProducts = [
   },
   {
     heading: "Creator Studio",
-    product: "Shure MV7+ Podcast Microphone",
-    caption: "USB/XLR dynamic mic with auto-leveling. The 2026 upgrade to the podcaster's gold standard.",
-    image: "https://m.media-amazon.com/images/I/51h3FjKygML._AC_SX679_.jpg",
-    alt: "Shure MV7+ podcast microphone for content creators and streamers 2026",
-    affiliateLink: "https://www.amazon.com/dp/B0DJY8R8ZP?tag=moderntechs0c-20",
+    product: "Elgato Stream Deck MK.2 — Creator Command Center",
+    caption: "15 programmable LCD keys for streaming, editing & workflow automation. The essential creator tool of 2026.",
+    image: streamDeckImg,
+    alt: "Elgato Stream Deck MK.2 creator command center for streaming and content creation 2026",
+    affiliateLink: "https://www.amazon.com/dp/B09738CV2Q?tag=moderntechs0c-20",
     pinterestBoard: `${PINTEREST_PROFILE}/creator-gear/`,
     accentColor: "from-purple-500 to-fuchsia-600",
     glowColor: "shadow-purple-500/30",
