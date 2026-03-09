@@ -59,6 +59,7 @@ const App = () => (
           <Route path="/free-roadmap" element={<LeadMagnet />} />
           <Route path="/free-smart-home-checklist" element={<SmartHomeSafetyChecklist />} />
           <Route path="/free-smart-ring-guide" element={<SmartRingGuide />} />
+          <Route path="/free-creator-gear-guide" element={<CreatorGearGuide />} />
           <Route path="/amazon-associate-guide" element={<AmazonAssociateGuide />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin/upload" element={<AdminUpload />} />
