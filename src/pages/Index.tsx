@@ -1,391 +1,74 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, HeartPulse, Baby, Gamepad2, Wifi, GraduationCap, Sparkles, Star, ExternalLink, ArrowRight, Check, Clover, Mic } from "lucide-react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { ChevronRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
-import SocialLinks from "@/components/SocialLinks";
-import { NewsletterSignup } from "@/components/NewsletterSignup";
-import { RoadmapSignup } from "@/components/RoadmapSignup";
-import { NewsletterPopup } from "@/components/NewsletterPopup";
-import { TechChatbot } from "@/components/TechChatbot";
-import { FloatingHearts } from "@/components/FloatingHearts";
-import { StPatricksDecorations } from "@/components/StPatricksDecorations";
-import VideoHero from "@/components/VideoHero";
-import metaQuestImage from "@/assets/products/meta-quest-3.jpg";
-import djiDroneImage from "@/assets/products/dji-mini-4-pro.jpg";
-import roborockImage from "@/assets/products/roborock-saros-10r.jpg";
-import samsungMonitorImage from "@/assets/products/samsung-odyssey-g9.jpg";
-import sonyHeadphonesImage from "@/assets/products/sony-wh-1000xm5.jpg";
+import ouraRingImage from "@/assets/heroes/oura-ring-hero.jpg";
+import eeroMeshImage from "@/assets/heroes/eero-mesh-hero.jpg";
+import streamDeckImage from "@/assets/heroes/streamdeck-hero.jpg";
 
-const featuredProducts = [
+const heroSections = [
   {
-    title: "Meta Quest 3",
-    subtitle: "512GB Bundle",
-    description: "Next-gen VR with 24 months Meta Horizon+ subscription.",
-    rating: 4.8,
-    imageUrl: metaQuestImage,
-    affiliateLink: "https://amzn.to/48oAttS",
-  },
-  {
-    title: "DJI Mini 4 Pro",
-    subtitle: "Fly More Combo",
-    description: "4K HDR, Under 249g, Omnidirectional sensing.",
-    rating: 4.7,
-    imageUrl: djiDroneImage,
-    affiliateLink: "https://amzn.to/44Oulc1",
-  },
-  {
-    title: "Roborock Saros 10R",
-    subtitle: "Robot Vacuum",
-    description: "22,000 Pa suction, FlexiArm technology.",
-    rating: 4.6,
-    imageUrl: roborockImage,
-    affiliateLink: "https://amzn.to/4oLq6Fk",
-  },
-  {
-    title: "Samsung Odyssey",
-    subtitle: "OLED G9",
-    description: "49\" curved, 240Hz, 0.03ms response.",
-    rating: 4.5,
-    imageUrl: samsungMonitorImage,
-    affiliateLink: "https://amzn.to/4iIOFS5",
-  },
-  {
-    title: "Sony WH-1000XM5",
-    subtitle: "Wireless",
-    description: "Industry-leading noise cancellation.",
-    rating: 4.7,
-    imageUrl: sonyHeadphonesImage,
-    affiliateLink: "https://amzn.to/4oIrN6r",
-  },
-];
-
-const categories = [
-  {
-    title: "Home & Safety",
-    description: "Smart locks, cameras & family security systems",
-    icon: ShieldCheck,
-    link: "/home-safety",
-    color: "bg-vibrant-green",
-  },
-  {
-    title: "Health & Wellness",
-    description: "Invisible wearables & lifestyle trackers",
-    icon: HeartPulse,
+    heading: "Health. Redefined.",
+    caption: "Your health, at a glance.",
+    image: ouraRingImage,
+    alt: "Oura Ring 4 — smart health tracking ring",
     link: "/health-wellness",
-    color: "bg-vibrant-pink",
   },
   {
-    title: "Creator Gear",
-    description: "Pro mics, lights & studio essentials",
-    icon: Mic,
+    heading: "Fast. Secure. Invisible.",
+    caption: "Whole-home mesh WiFi that disappears into your life.",
+    image: eeroMeshImage,
+    alt: "Eero Max 7 mesh WiFi router",
+    link: "/home-safety",
+  },
+  {
+    heading: "Power your creativity.",
+    caption: "The ultimate command center for creators.",
+    image: streamDeckImage,
+    alt: "Elgato Stream Deck MK.2 in white",
     link: "/creator-gear",
-    color: "bg-vibrant-coral",
-  },
-  {
-    title: "Kids Tech",
-    description: "Educational gadgets for children",
-    icon: Baby,
-    link: "/kids-tech",
-    color: "bg-vibrant-orange",
-  },
-  {
-    title: "Gaming",
-    description: "Next-level gaming gear",
-    icon: Gamepad2,
-    link: "/gaming",
-    color: "bg-vibrant-teal",
-  },
-  {
-    title: "Connectivity",
-    description: "Stay connected everywhere",
-    icon: Wifi,
-    link: "/connectivity",
-    color: "bg-vibrant-sky",
-  },
-  {
-    title: "College & School",
-    description: "Essential tech for students",
-    icon: GraduationCap,
-    link: "/college",
-    color: "bg-vibrant-sky",
   },
 ];
 
 const Index = () => {
-  const scrollToFeatured = () => {
-    document.getElementById('featured-products')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
-      
-      {/* Dynamic 3-Column Video Hero */}
-      <VideoHero />
 
-      {/* St. Patrick's Affiliate Banner & Social Links */}
-      <section className="py-4 bg-gradient-to-r from-emerald-500/10 via-green-500/15 to-emerald-500/10 border-y border-emerald-500/20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="bg-emerald-500/20 p-2 rounded-full">
-                <Clover className="h-4 w-4 text-emerald-500 fill-emerald-500" />
-              </div>
-              <p className="text-sm text-muted-foreground">
-                <span className="font-semibold text-emerald-600">☘️ Lucky Deals:</span> Find golden tech finds at no extra cost to you.
-              </p>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-muted-foreground hidden sm:block">Share the luck:</span>
-              <SocialLinks />
-            </div>
+      {heroSections.map((section, i) => (
+        <section
+          key={i}
+          className="min-h-screen flex flex-col items-center justify-center px-6 py-24"
+        >
+          {/* Product image */}
+          <div className="w-full max-w-lg mb-12">
+            <img
+              src={section.image}
+              alt={section.alt}
+              className="w-full h-auto object-contain"
+              loading={i === 0 ? "eager" : "lazy"}
+            />
           </div>
-        </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="py-12 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-y border-white/10">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto grid grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-1">100+</div>
-              <p className="text-white/60 text-sm">Curated Products</p>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-1">4.8★</div>
-              <p className="text-white/60 text-sm">Average Rating</p>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-sky-300 mb-1">50K+</div>
-              <p className="text-white/60 text-sm">Happy Readers</p>
-            </div>
-          </div>
-        </div>
-      </section>
+          {/* Text */}
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground text-center leading-tight">
+            {section.heading}
+          </h1>
+          <p className="mt-3 text-lg text-muted-foreground text-center max-w-md">
+            {section.caption}
+          </p>
 
-      {/* Featured Products Section - Valentine's */}
-      <section id="featured-products" className="py-28 relative overflow-hidden bg-background">
-        <div className="absolute top-0 left-0 right-0 h-px glow-line-valentine" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <span className="inline-block text-emerald-500 font-semibold text-sm tracking-widest uppercase mb-4 flex items-center justify-center gap-2">
-              <Clover className="h-4 w-4 fill-emerald-500" />
-              Family Tech Gift Guide
-              <Clover className="h-4 w-4 fill-emerald-500" />
-            </span>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-foreground">
-              Golden <span className="gradient-text">Finds</span>
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Top family tech picks to celebrate this St. Patrick's Day season.
-            </p>
-          </div>
-          
-          {/* Product Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {featuredProducts.map((product) => (
-              <Card 
-                key={product.title} 
-                className="group overflow-hidden bg-card border-border hover:border-vibrant-green/40 transition-all duration-300 hover:shadow-elegant hover:-translate-y-2"
-              >
-                {/* Product Image */}
-                <div className="aspect-square overflow-hidden bg-muted relative">
-                  <img
-                    src={product.imageUrl}
-                    alt={product.title}
-                    className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
-                  />
-                  
-                  {/* Rating badge */}
-                  <div className="absolute top-3 right-3 flex items-center gap-1 bg-background/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm">
-                    <Star className="h-3.5 w-3.5 fill-vibrant-orange text-vibrant-orange" />
-                    <span className="text-xs font-bold text-foreground">{product.rating}</span>
-                  </div>
-                </div>
-                
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-bold text-foreground group-hover:text-vibrant-green transition-colors">
-                    {product.title}
-                  </CardTitle>
-                  <span className="text-sm text-muted-foreground font-medium">{product.subtitle}</span>
-                </CardHeader>
-                
-                <CardContent className="pb-4">
-                  <CardDescription className="text-sm text-muted-foreground line-clamp-2">
-                    {product.description}
-                  </CardDescription>
-                </CardContent>
-                
-                <CardFooter>
-                  <Button
-                    className="w-full bg-vibrant-green hover:bg-vibrant-green/90 text-white transition-all duration-300 rounded-full font-semibold"
-                    asChild
-                  >
-                    <a href={product.affiliateLink} target="_blank" rel="noopener noreferrer nofollow">
-                      View on Amazon
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Categories Section */}
-      <section className="py-28 relative overflow-hidden bg-muted/30">
-        <div className="absolute top-0 left-0 right-0 h-px glow-line-pink" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <span className="inline-block text-vibrant-orange font-semibold text-sm tracking-widest uppercase mb-4">Browse Categories</span>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-foreground">
-              Explore by Interest
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Find the perfect tech for every lifestyle
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {categories.map((category) => {
-              const Icon = category.icon;
-              return (
-                <Link
-                  key={category.link}
-                  to={category.link}
-                  className="group relative p-8 bg-card hover:bg-card/80 rounded-2xl border border-border hover:border-primary/40 transition-all duration-300 overflow-hidden hover:shadow-lg hover:-translate-y-1"
-                >
-                  <div className="relative z-10">
-                    <div className={`inline-flex p-4 rounded-2xl ${category.color} mb-5`}>
-                      <Icon className="h-8 w-8 text-white transition-transform duration-300 group-hover:scale-110" />
-                    </div>
-                    <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
-                      {category.title}
-                    </h3>
-                    <p className="text-muted-foreground">{category.description}</p>
-                    
-                    <div className="mt-5 flex items-center text-vibrant-blue opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-10px] group-hover:translate-x-0">
-                      <span className="text-sm font-semibold">Explore</span>
-                      <span className="text-sm font-semibold">Explore</span>
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-28 relative overflow-hidden bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="inline-block text-vibrant-green font-semibold text-sm tracking-widest uppercase mb-4">Why Choose Us</span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-foreground">
-                Tech That Transforms Your Life
-              </h2>
-              <p className="text-muted-foreground text-lg mb-8">
-                We spend hours researching and testing products so you don't have to. Every recommendation is backed by real-world experience.
-              </p>
-              
-              <div className="space-y-4">
-                {[
-                  "Expert reviews from tech enthusiasts",
-                  "Honest pros and cons for every product",
-                  "Best prices from trusted retailers",
-                  "Regular updates with new releases"
-                ].map((feature, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-vibrant-green flex items-center justify-center">
-                      <Check className="h-4 w-4 text-white" />
-                    </div>
-                    <span className="text-foreground font-medium">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-gradient-hero p-6 rounded-2xl text-white">
-                <div className="text-3xl font-bold mb-2">100+</div>
-                <p className="text-white/80">Products Reviewed</p>
-              </div>
-              <div className="bg-vibrant-pink p-6 rounded-2xl text-white">
-                <div className="text-3xl font-bold mb-2">6</div>
-                <p className="text-white/80">Categories</p>
-              </div>
-              <div className="bg-vibrant-orange p-6 rounded-2xl text-white">
-                <div className="text-3xl font-bold mb-2">Monthly</div>
-                <p className="text-white/80">New Updates</p>
-              </div>
-              <div className="bg-vibrant-green p-6 rounded-2xl text-white">
-                <div className="text-3xl font-bold mb-2">Free</div>
-                <p className="text-white/80">Expert Guides</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Roadmap Signup - Glassmorphism */}
-      <RoadmapSignup />
-
-      {/* Newsletter Section */}
-      <section className="py-28 relative overflow-hidden bg-muted">
-        <div className="absolute top-0 left-0 right-0 h-px glow-line" />
-        
-        {/* Subtle background elements */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(160_85%_40%/0.1),transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(195_95%_50%/0.1),transparent_50%)]" />
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="inline-flex p-4 rounded-2xl bg-vibrant-green/10 mb-8">
-              <Sparkles className="h-10 w-10 text-vibrant-green" />
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-foreground">
-              Stay Ahead of the Curve
-            </h2>
-            <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-              Get exclusive deals, tech insights, and productivity tips delivered to your inbox.
-            </p>
-            
-            <NewsletterSignup className="max-w-md mx-auto" />
-            
-            <div className="mt-10">
-              <Button 
-                variant="ghost"
-                size="lg" 
-                asChild
-                className="text-muted-foreground hover:text-foreground hover:bg-vibrant-green/10 transition-colors"
-              >
-                <Link to="/blog" className="flex items-center gap-2">
-                  Visit Our Blog
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+          {/* Learn More link */}
+          <Link
+            to={section.link}
+            className="mt-5 inline-flex items-center text-primary text-base font-normal hover:underline underline-offset-4 transition-colors"
+          >
+            Learn more <ChevronRight className="ml-1 h-4 w-4" />
+          </Link>
+        </section>
+      ))}
 
       <AffiliateFooter />
-      
-      {/* Newsletter Popup */}
-      <NewsletterPopup />
-      
-      {/* Tech Finder Chatbot */}
-      <TechChatbot />
     </div>
   );
 };
