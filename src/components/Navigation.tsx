@@ -16,11 +16,11 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl">
-        <div className="max-w-[980px] mx-auto px-6">
-          <div className="flex h-12 items-center justify-between">
+      <nav className="sticky top-0 z-50 glass-dark border-b border-border/40">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="text-base font-semibold text-foreground tracking-tight">
+            <Link to="/" className="text-lg font-bold text-foreground tracking-tight">
               Modern Tech
             </Link>
 
@@ -30,18 +30,18 @@ const Navigation = () => {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className="text-xs font-normal text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
 
-            {/* Free Guide button */}
+            {/* Free Guide CTA */}
             <div className="hidden md:block">
               <button
                 onClick={() => setGuideOpen(true)}
-                className="text-xs font-normal text-muted-foreground hover:text-foreground transition-colors"
+                className="h-9 px-5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-all duration-200 hover:shadow-elegant"
               >
                 Free Guide
               </button>
@@ -59,8 +59,8 @@ const Navigation = () => {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden bg-background border-t border-border/40">
-            <div className="max-w-[980px] mx-auto px-6 py-4 flex flex-col gap-4">
+          <div className="md:hidden border-t border-border/40 bg-card">
+            <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.to}
@@ -73,7 +73,7 @@ const Navigation = () => {
               ))}
               <button
                 onClick={() => { setGuideOpen(true); setMobileOpen(false); }}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors text-left"
+                className="h-9 px-5 rounded-full bg-primary text-primary-foreground text-sm font-medium w-fit"
               >
                 Free Guide
               </button>
