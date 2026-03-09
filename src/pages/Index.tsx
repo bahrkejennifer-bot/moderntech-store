@@ -4,6 +4,9 @@ import { ExternalLink, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import heroBackground from "@/assets/hero-background.png";
+import ouraRingImg from "@/assets/products/oura-ring-4.jpg";
+import ringDoorbellImg from "@/assets/products/ring-doorbell-pro2.jpg";
+import streamDeckImg from "@/assets/products/elgato-stream-deck-mk2.jpg";
 
 const PINTEREST_PROFILE = "https://www.pinterest.com/moderntechllc";
 
