@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import PinterestWidgets from "@/components/PinterestWidgets";
 import heroBackground from "@/assets/hero-background.png";
 import ouraRingImg from "@/assets/products/oura-ring-sizing-combo.jpg";
 import ringDoorbellImg from "@/assets/products/ring-doorbell-pro2.jpg";
@@ -160,6 +161,7 @@ const Index = () => {
         </div>
       </section>
 
+      <PinterestWidgets />
       <AffiliateFooter />
     </div>
   );
