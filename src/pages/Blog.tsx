@@ -292,15 +292,41 @@ const Blog = () => {
         <section>
           <div className="flex items-center gap-4 mb-8">
             <h2 className="text-sm font-semibold tracking-[0.15em] uppercase text-foreground whitespace-nowrap">
-              All Articles
+              {isFiltering
+                ? `${filteredPosts.length} result${filteredPosts.length !== 1 ? "s" : ""}`
+                : "All Articles"}
             </h2>
             <div className="h-px flex-1 bg-border/60" />
+            {isFiltering && (
+              <button
+                onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
+                className="text-xs text-primary font-medium hover:underline whitespace-nowrap"
+              >
+                Clear filters
+              </button>
+            )}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {gridPosts.map((post) => (
-              <BlogCard key={post.slug} post={post} />
-            ))}
-          </div>
+
+          {gridPosts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {gridPosts.map((post) => (
+                <BlogCard key={post.slug} post={post} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <Search className="h-10 w-10 mx-auto text-muted-foreground/40 mb-4" />
+              <p className="text-lg font-semibold text-foreground/70 mb-2">No articles found</p>
+              <p className="text-sm text-muted-foreground mb-6">Try a different search term or category.</p>
+              <Button
+                variant="outline"
+                className="rounded-full"
+                onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
+              >
+                Clear filters
+              </Button>
+            </div>
+          )}
         </section>
       </div>
 
