@@ -1260,28 +1260,29 @@ const BlogPost = () => {
     switch (section.type) {
       case 'heading':
         return (
-          <h2 key={index} className="text-2xl md:text-3xl font-bold font-display mt-10 mb-4 text-foreground">
+          <h2 key={index} className="text-2xl md:text-3xl font-bold font-display mt-14 mb-5 text-foreground tracking-tight">
             {section.content}
           </h2>
         );
       case 'subheading':
         return (
-          <h3 key={index} className="text-xl md:text-2xl font-semibold mt-8 mb-3 text-foreground">
+          <h3 key={index} className="text-xl md:text-2xl font-semibold mt-10 mb-4 text-foreground tracking-tight">
             {section.content}
           </h3>
         );
       case 'paragraph':
         return (
-          <p key={index} className="text-foreground/80 leading-relaxed mb-4">
+          <p key={index} className="text-foreground/80 leading-[1.8] mb-5 text-base">
             {parseMarkdownBold(section.content || '')}
           </p>
         );
       case 'list':
         return (
-          <ul key={index} className="list-disc list-inside space-y-2 mb-6 text-foreground/80">
+          <ul key={index} className="space-y-3 mb-8 text-foreground/80 ml-1">
             {section.items?.map((item, i) => (
-              <li key={i} className="leading-relaxed">
-                {parseMarkdownBold(item)}
+              <li key={i} className="leading-[1.8] flex gap-3 text-base">
+                <span className="text-primary mt-1.5 shrink-0">•</span>
+                <span>{parseMarkdownBold(item)}</span>
               </li>
             ))}
           </ul>
@@ -1332,24 +1333,26 @@ const BlogPost = () => {
             />
 
             {/* Download CTA */}
-            <div className="mt-12 p-6 bg-primary/5 border border-primary/20 rounded-xl text-center">
-              <Download className="h-10 w-10 mx-auto mb-4 text-primary" />
-              <h3 className="text-xl font-bold mb-2">Download as PDF</h3>
-              <p className="text-muted-foreground mb-4">
-                All guides are available as beautifully formatted, downloadable PDFs—perfect for offline reading, 
-                sharing with friends, or taking with you while shopping.
-              </p>
-              <Button asChild>
-                <Link to="/digital-products">
-                  Get Your Free PDF Guide
-                </Link>
-              </Button>
+            <div className="mt-16 relative rounded-2xl border border-border/60 overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(230_90%_58%/0.06),transparent_70%)]" />
+              <div className="relative z-10 py-12 px-8 text-center">
+                <Download className="h-8 w-8 mx-auto mb-4 text-primary" />
+                <p className="text-xs font-medium tracking-widest uppercase text-primary mb-3">Free Download</p>
+                <h3 className="text-xl font-bold mb-2 tracking-tight">Get This Guide as a PDF</h3>
+                <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto leading-relaxed">
+                  Beautifully formatted for offline reading, sharing, or taking with you while shopping.
+                </p>
+                <Button asChild variant="cta" className="rounded-full px-8">
+                  <Link to="/digital-products">
+                    Download Free PDF
+                  </Link>
+                </Button>
+              </div>
             </div>
 
             {/* Affiliate Disclosure */}
-            <div className="mt-8 p-4 bg-muted rounded-lg text-sm text-muted-foreground">
-              <strong>Affiliate Disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. 
-              I am an Amazon Associate and I make a small percentage from sales. 
+            <div className="mt-10 py-4 px-5 border-l-2 border-primary/30 text-sm text-muted-foreground leading-relaxed">
+              <strong className="text-foreground/70">Affiliate Disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. 
               When you click links to Amazon and make a purchase, we may receive a small commission at no extra cost to you. #ad
             </div>
           </article>
@@ -1430,49 +1433,52 @@ const BlogPost = () => {
 
           {/* Products Section - Featured at top */}
           {post.products.length > 0 && (
-            <section className="mb-12">
-              <h2 className="text-3xl font-bold font-display mb-8 text-center">
-                Featured Products
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <section className="mb-16">
+              <div className="flex items-center gap-4 mb-10">
+                <div className="glow-line flex-1" />
+                <h2 className="text-2xl font-bold font-display whitespace-nowrap tracking-tight">
+                  Featured Products
+                </h2>
+                <div className="glow-line flex-1" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {post.products.map((product, index) => (
-                  <Card key={index} className="overflow-hidden hover:shadow-card transition-all duration-300 group">
-                    <a href={product.affiliateLink} target="_blank" rel="noopener noreferrer nofollow" className="block aspect-square overflow-hidden bg-muted relative">
-                      <img
-                        src={product.imageUrl}
-                        alt={product.title}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                      {product.badge && (
-                        <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-medium px-2 py-1 rounded">
-                          {product.badge}
-                        </span>
-                      )}
-                    </a>
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-base line-clamp-2">{product.title}</CardTitle>
-                      <CardDescription className="line-clamp-2">{product.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="pb-2">
-                      <div className="flex items-center justify-end">
-                        <div className="flex items-center space-x-1">
-                          <span className="text-yellow-500">★</span>
-                          <span className="text-sm font-medium">{product.rating}/5</span>
+                  <a
+                    key={index}
+                    href={product.affiliateLink}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    className="group block"
+                  >
+                    <article className="rounded-xl border border-border/60 bg-card overflow-hidden hover-lift hover:shadow-card transition-all duration-300 h-full flex flex-col">
+                      <div className="aspect-[4/3] overflow-hidden relative">
+                        <img
+                          src={product.imageUrl}
+                          alt={product.title}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-card/50 to-transparent" />
+                        {product.badge && (
+                          <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-[11px] font-semibold px-2.5 py-1 rounded-full tracking-wide uppercase">
+                            {product.badge}
+                          </span>
+                        )}
+                      </div>
+                      <div className="p-5 flex flex-col flex-1">
+                        <h3 className="text-base font-semibold line-clamp-2 mb-1.5 group-hover:text-primary transition-colors">{product.title}</h3>
+                        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed flex-1">{product.description}</p>
+                        <div className="flex items-center justify-between mt-4 pt-4 border-t border-border/40">
+                          <div className="flex items-center gap-1 text-sm">
+                            <span className="text-yellow-500">★</span>
+                            <span className="font-medium">{product.rating}/5</span>
+                          </div>
+                          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary group-hover:gap-2.5 transition-all">
+                            View on Amazon <ExternalLink className="h-3.5 w-3.5" />
+                          </span>
                         </div>
                       </div>
-                    </CardContent>
-                    <CardFooter>
-                      <Button
-                        variant="cta"
-                        className="w-full"
-                        asChild
-                      >
-                        <a href={product.affiliateLink} target="_blank" rel="noopener noreferrer nofollow">
-                          View on Amazon <ExternalLink className="ml-2 h-4 w-4" />
-                        </a>
-                      </Button>
-                    </CardFooter>
-                  </Card>
+                    </article>
+                  </a>
                 ))}
               </div>
             </section>
@@ -1484,23 +1490,26 @@ const BlogPost = () => {
           </div>
 
           {/* Download CTA */}
-          <div className="mt-12 p-6 bg-primary/5 border border-primary/20 rounded-xl text-center">
-            <Download className="h-10 w-10 mx-auto mb-4 text-primary" />
-            <h3 className="text-xl font-bold mb-2">Download as PDF</h3>
-            <p className="text-muted-foreground mb-4">
-              All guides are available as beautifully formatted, downloadable PDFs—perfect for offline reading, 
-              sharing with friends, or taking with you while shopping.
-            </p>
-            <Button asChild>
-              <Link to="/digital-products">
-                Get Your Free PDF Guide
-              </Link>
-            </Button>
+          <div className="mt-16 relative rounded-2xl border border-border/60 overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(230_90%_58%/0.06),transparent_70%)]" />
+            <div className="relative z-10 py-12 px-8 text-center">
+              <Download className="h-8 w-8 mx-auto mb-4 text-primary" />
+              <p className="text-xs font-medium tracking-widest uppercase text-primary mb-3">Free Download</p>
+              <h3 className="text-xl font-bold mb-2 tracking-tight">Get This Guide as a PDF</h3>
+              <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto leading-relaxed">
+                Beautifully formatted for offline reading, sharing with friends, or taking with you while shopping.
+              </p>
+              <Button asChild variant="cta" className="rounded-full px-8">
+                <Link to="/digital-products">
+                  Download Free PDF
+                </Link>
+              </Button>
+            </div>
           </div>
 
           {/* Affiliate Disclosure */}
-          <div className="mt-8 p-4 bg-muted rounded-lg text-sm text-muted-foreground">
-            <strong>Affiliate Disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. 
+          <div className="mt-10 py-4 px-5 border-l-2 border-primary/30 text-sm text-muted-foreground leading-relaxed">
+            <strong className="text-foreground/70">Affiliate Disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. 
             When you click links to Amazon and make a purchase, we may receive a small commission at no extra cost to you.
           </div>
         </article>
