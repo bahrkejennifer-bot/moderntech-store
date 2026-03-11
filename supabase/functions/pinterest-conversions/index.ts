@@ -14,11 +14,11 @@ Deno.serve(async (req) => {
     const adAccountId = Deno.env.get("PINTEREST_AD_ACCOUNT_ID");
 
     if (!accessToken || !adAccountId) {
-      console.error("Missing Pinterest credentials:", {
-        hasToken: !!accessToken,
-        hasAdAccount: !!adAccountId,
+      console.warn("Pinterest credentials not configured — skipping conversion tracking");
+      return new Response(JSON.stringify({ skipped: true, reason: "credentials_missing" }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
-      throw new Error("Pinterest credentials not configured");
     }
 
     const { events } = await req.json();
