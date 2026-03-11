@@ -161,6 +161,7 @@ const Index = () => {
         </div>
       </section>
 
+      <PinterestWidgets />
       <AffiliateFooter />
     </div>
   );
