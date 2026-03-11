@@ -105,6 +105,9 @@ const staticBlogPosts = [
 const categories = ["All", "Deals", "Health & Wellness", "Gift Guides", "Home & Safety", "Gaming", "Connectivity", "College & School", "Kids Tech"];
 
 const Blog = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+
   const { data: dynamicPosts } = useQuery({
     queryKey: ["blog-posts"],
     queryFn: async () => {
@@ -130,8 +133,27 @@ const Blog = () => {
   }));
 
   const allPosts = [...dynamicMapped, ...staticBlogPosts];
-  const featuredPost = allPosts[0];
-  const remainingPosts = allPosts.slice(1);
+
+  const filteredPosts = useMemo(() => {
+    let posts = allPosts;
+    if (activeCategory !== "All") {
+      posts = posts.filter((p) => p.category === activeCategory);
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      posts = posts.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.excerpt.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q)
+      );
+    }
+    return posts;
+  }, [allPosts, activeCategory, searchQuery]);
+
+  const isFiltering = activeCategory !== "All" || searchQuery.trim().length > 0;
+  const featuredPost = isFiltering ? null : allPosts[0];
+  const gridPosts = isFiltering ? filteredPosts : filteredPosts.slice(1);
 
   return (
     <div className="min-h-screen bg-background">
