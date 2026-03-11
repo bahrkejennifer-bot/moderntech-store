@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { usePinterestEvent } from "@/hooks/usePinterestTracking";
+import { PinterestSaveButton } from "@/components/PinterestWidgets";
 
 interface ProductCardProps {
   title: string;
