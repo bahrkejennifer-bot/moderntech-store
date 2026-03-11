@@ -252,7 +252,7 @@ const Blog = () => {
         )}
 
         {/* ── AI Roundup Section ── */}
-        {dynamicMapped.length > 1 && (
+        {!isFiltering && dynamicMapped.length > 1 && (
           <section className="mb-16">
             <div className="flex items-center gap-4 mb-8">
               <h2 className="text-sm font-semibold tracking-[0.15em] uppercase text-primary flex items-center gap-2 whitespace-nowrap">
