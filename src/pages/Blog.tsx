@@ -1,10 +1,12 @@
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Calendar, ArrowRight, Sparkles, Clock } from "lucide-react";
+import { Calendar, ArrowRight, Sparkles, Clock, Search, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 
 const staticBlogPosts = [
