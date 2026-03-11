@@ -1437,7 +1437,7 @@ const BlogPost = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {post.products.map((product, index) => (
                   <Card key={index} className="overflow-hidden hover:shadow-card transition-all duration-300 group">
-                    <div className="aspect-square overflow-hidden bg-muted relative">
+                    <a href={product.affiliateLink} target="_blank" rel="noopener noreferrer nofollow" className="block aspect-square overflow-hidden bg-muted relative">
                       <img
                         src={product.imageUrl}
                         alt={product.title}
@@ -1448,7 +1448,7 @@ const BlogPost = () => {
                           {product.badge}
                         </span>
                       )}
-                    </div>
+                    </a>
                     <CardHeader className="pb-2">
                       <CardTitle className="text-base line-clamp-2">{product.title}</CardTitle>
                       <CardDescription className="line-clamp-2">{product.description}</CardDescription>
