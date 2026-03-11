@@ -270,21 +270,23 @@ const Blog = () => {
         )}
 
         {/* ── Newsletter CTA ── */}
-        <section className="mb-16 rounded-2xl border border-border/40 bg-card overflow-hidden">
-          <div className="relative py-14 px-8 text-center">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.06),transparent_70%)]" />
-            <div className="relative z-10">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">Free Resource</p>
-              <h3 className="text-2xl font-bold mb-3 tracking-tight">90-Day Amazon Associate Roadmap</h3>
-              <p className="text-muted-foreground mb-6 max-w-md mx-auto text-sm leading-relaxed">
-                Go from zero to your first affiliate commission — step-by-step checklist included.
-              </p>
-              <Button asChild variant="cta" className="rounded-full px-8">
-                <Link to="/free-roadmap">Download Free Roadmap <ArrowRight className="ml-2 h-4 w-4" /></Link>
-              </Button>
+        {!isFiltering && (
+          <section className="mb-16 rounded-2xl border border-border/40 bg-card overflow-hidden">
+            <div className="relative py-14 px-8 text-center">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.06),transparent_70%)]" />
+              <div className="relative z-10">
+                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">Free Resource</p>
+                <h3 className="text-2xl font-bold mb-3 tracking-tight">90-Day Amazon Associate Roadmap</h3>
+                <p className="text-muted-foreground mb-6 max-w-md mx-auto text-sm leading-relaxed">
+                  Go from zero to your first affiliate commission — step-by-step checklist included.
+                </p>
+                <Button asChild variant="cta" className="rounded-full px-8">
+                  <Link to="/free-roadmap">Download Free Roadmap <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                </Button>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* ── All Articles Grid ── */}
         <section>
