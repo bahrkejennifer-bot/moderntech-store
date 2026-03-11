@@ -172,16 +172,41 @@ const Blog = () => {
           </p>
         </div>
 
-        {/* Category pills */}
-        <div className="container mx-auto px-4 pb-5">
+        {/* Search bar + Category pills */}
+        <div className="container mx-auto px-4 pb-5 space-y-4">
+          {/* Search */}
+          <div className="relative max-w-md">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search articles..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 pr-9 h-10 bg-card border-border/60 rounded-full text-sm placeholder:text-muted-foreground/60"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
+          </div>
+
+          {/* Categories */}
           <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
             {categories.map((cat) => (
-              <span
+              <button
                 key={cat}
-                className="shrink-0 text-xs font-medium px-3.5 py-1.5 rounded-full border border-border/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors cursor-pointer"
+                onClick={() => setActiveCategory(cat)}
+                className={`shrink-0 text-xs font-medium px-3.5 py-1.5 rounded-full border transition-colors ${
+                  activeCategory === cat
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "border-border/60 text-muted-foreground hover:text-foreground hover:border-primary/40"
+                }`}
               >
                 {cat}
-              </span>
+              </button>
             ))}
           </div>
         </div>
