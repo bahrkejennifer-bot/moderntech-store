@@ -76,15 +76,11 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
               </svg>
               {pinning ? "Pinning…" : "Pin it"}
             </button>
-            <a
-              href={`https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(affiliateLink)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(title + " — Shop on Modern Tech 2026")}`}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              title="Save to your Pinterest board"
-              className="flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-md border border-border text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
-            >
-              📌 Save
-            </a>
+            <PinterestSaveButton
+              url={affiliateLink}
+              media={imageUrl}
+              description={title + " — Shop on Modern Tech 2026"}
+            />
           </div>
           <div className="flex items-center space-x-1">
             <span className="text-yellow-500">★</span>

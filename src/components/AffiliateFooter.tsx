@@ -17,6 +17,9 @@ const AffiliateFooter = () => {
               <div className="mt-2">
                 <SocialLinks />
               </div>
+              <div className="mt-3">
+                <PinterestFollowButton />
+              </div>
             </div>
           </div>
 
