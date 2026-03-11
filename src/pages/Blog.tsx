@@ -1,10 +1,12 @@
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Calendar, ArrowRight, Sparkles, Clock } from "lucide-react";
+import { Calendar, ArrowRight, Sparkles, Clock, Search, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 
 const staticBlogPosts = [
@@ -103,6 +105,9 @@ const staticBlogPosts = [
 const categories = ["All", "Deals", "Health & Wellness", "Gift Guides", "Home & Safety", "Gaming", "Connectivity", "College & School", "Kids Tech"];
 
 const Blog = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+
   const { data: dynamicPosts } = useQuery({
     queryKey: ["blog-posts"],
     queryFn: async () => {
@@ -128,8 +133,27 @@ const Blog = () => {
   }));
 
   const allPosts = [...dynamicMapped, ...staticBlogPosts];
-  const featuredPost = allPosts[0];
-  const remainingPosts = allPosts.slice(1);
+
+  const filteredPosts = useMemo(() => {
+    let posts = allPosts;
+    if (activeCategory !== "All") {
+      posts = posts.filter((p) => p.category === activeCategory);
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      posts = posts.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.excerpt.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q)
+      );
+    }
+    return posts;
+  }, [allPosts, activeCategory, searchQuery]);
+
+  const isFiltering = activeCategory !== "All" || searchQuery.trim().length > 0;
+  const featuredPost = isFiltering ? null : allPosts[0];
+  const gridPosts = isFiltering ? filteredPosts : filteredPosts.slice(1);
 
   return (
     <div className="min-h-screen bg-background">
@@ -148,16 +172,41 @@ const Blog = () => {
           </p>
         </div>
 
-        {/* Category pills */}
-        <div className="container mx-auto px-4 pb-5">
+        {/* Search bar + Category pills */}
+        <div className="container mx-auto px-4 pb-5 space-y-4">
+          {/* Search */}
+          <div className="relative max-w-md">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search articles..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 pr-9 h-10 bg-card border-border/60 rounded-full text-sm placeholder:text-muted-foreground/60"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
+          </div>
+
+          {/* Categories */}
           <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
             {categories.map((cat) => (
-              <span
+              <button
                 key={cat}
-                className="shrink-0 text-xs font-medium px-3.5 py-1.5 rounded-full border border-border/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors cursor-pointer"
+                onClick={() => setActiveCategory(cat)}
+                className={`shrink-0 text-xs font-medium px-3.5 py-1.5 rounded-full border transition-colors ${
+                  activeCategory === cat
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "border-border/60 text-muted-foreground hover:text-foreground hover:border-primary/40"
+                }`}
               >
                 {cat}
-              </span>
+              </button>
             ))}
           </div>
         </div>
@@ -203,7 +252,7 @@ const Blog = () => {
         )}
 
         {/* ── AI Roundup Section ── */}
-        {dynamicMapped.length > 1 && (
+        {!isFiltering && dynamicMapped.length > 1 && (
           <section className="mb-16">
             <div className="flex items-center gap-4 mb-8">
               <h2 className="text-sm font-semibold tracking-[0.15em] uppercase text-primary flex items-center gap-2 whitespace-nowrap">
@@ -221,35 +270,63 @@ const Blog = () => {
         )}
 
         {/* ── Newsletter CTA ── */}
-        <section className="mb-16 rounded-2xl border border-border/40 bg-card overflow-hidden">
-          <div className="relative py-14 px-8 text-center">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.06),transparent_70%)]" />
-            <div className="relative z-10">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">Free Resource</p>
-              <h3 className="text-2xl font-bold mb-3 tracking-tight">90-Day Amazon Associate Roadmap</h3>
-              <p className="text-muted-foreground mb-6 max-w-md mx-auto text-sm leading-relaxed">
-                Go from zero to your first affiliate commission — step-by-step checklist included.
-              </p>
-              <Button asChild variant="cta" className="rounded-full px-8">
-                <Link to="/free-roadmap">Download Free Roadmap <ArrowRight className="ml-2 h-4 w-4" /></Link>
-              </Button>
+        {!isFiltering && (
+          <section className="mb-16 rounded-2xl border border-border/40 bg-card overflow-hidden">
+            <div className="relative py-14 px-8 text-center">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.06),transparent_70%)]" />
+              <div className="relative z-10">
+                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">Free Resource</p>
+                <h3 className="text-2xl font-bold mb-3 tracking-tight">90-Day Amazon Associate Roadmap</h3>
+                <p className="text-muted-foreground mb-6 max-w-md mx-auto text-sm leading-relaxed">
+                  Go from zero to your first affiliate commission — step-by-step checklist included.
+                </p>
+                <Button asChild variant="cta" className="rounded-full px-8">
+                  <Link to="/free-roadmap">Download Free Roadmap <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                </Button>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* ── All Articles Grid ── */}
         <section>
           <div className="flex items-center gap-4 mb-8">
             <h2 className="text-sm font-semibold tracking-[0.15em] uppercase text-foreground whitespace-nowrap">
-              All Articles
+              {isFiltering
+                ? `${filteredPosts.length} result${filteredPosts.length !== 1 ? "s" : ""}`
+                : "All Articles"}
             </h2>
             <div className="h-px flex-1 bg-border/60" />
+            {isFiltering && (
+              <button
+                onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
+                className="text-xs text-primary font-medium hover:underline whitespace-nowrap"
+              >
+                Clear filters
+              </button>
+            )}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {remainingPosts.map((post) => (
-              <BlogCard key={post.slug} post={post} />
-            ))}
-          </div>
+
+          {gridPosts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {gridPosts.map((post) => (
+                <BlogCard key={post.slug} post={post} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <Search className="h-10 w-10 mx-auto text-muted-foreground/40 mb-4" />
+              <p className="text-lg font-semibold text-foreground/70 mb-2">No articles found</p>
+              <p className="text-sm text-muted-foreground mb-6">Try a different search term or category.</p>
+              <Button
+                variant="outline"
+                className="rounded-full"
+                onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
+              >
+                Clear filters
+              </Button>
+            </div>
+          )}
         </section>
       </div>
 
