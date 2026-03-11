@@ -14,11 +14,11 @@ Deno.serve(async (req) => {
     const adAccountId = Deno.env.get("PINTEREST_AD_ACCOUNT_ID");
 
     if (!accessToken || !adAccountId) {
-      console.error("Missing Pinterest credentials:", {
-        hasToken: !!accessToken,
-        hasAdAccount: !!adAccountId,
+      console.warn("Pinterest credentials not configured — skipping conversion tracking");
+      return new Response(JSON.stringify({ skipped: true, reason: "credentials_missing" }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
-      throw new Error("Pinterest credentials not configured");
     }
 
     const { events } = await req.json();
@@ -65,7 +65,11 @@ Deno.serve(async (req) => {
     console.log("Pinterest Conversions API response:", response.status, result);
 
     if (!response.ok) {
-      throw new Error(`Pinterest API error ${response.status}: ${result}`);
+      console.warn(`Pinterest API error ${response.status}: ${result} — skipping`);
+      return new Response(JSON.stringify({ skipped: true, reason: "api_error", status: response.status }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     return new Response(JSON.stringify({ success: true, result: JSON.parse(result) }), {
