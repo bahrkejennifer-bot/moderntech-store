@@ -186,7 +186,7 @@ const Blog = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {allPosts.map((post) => (
             <Card key={post.slug} className="overflow-hidden hover:shadow-card transition-all duration-300">
-              <div className="aspect-video overflow-hidden relative">
+              <Link to={`/blog/${post.slug}`} className="aspect-video overflow-hidden relative block">
                 <img
                   src={post.imageUrl}
                   alt={post.title}
@@ -197,7 +197,7 @@ const Blog = () => {
                     <Sparkles className="h-3 w-3" /> AI Roundup
                   </Badge>
                 )}
-              </div>
+              </Link>
               <CardHeader>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                   <Calendar className="h-4 w-4" />
