@@ -122,101 +122,116 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <div className="container mx-auto px-4 py-12">
-        <div className="mb-12 text-center">
-          <h1 className="text-5xl font-bold mb-4">
+      
+      {/* Hero header with subtle spotlight */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(230_90%_58%/0.08),transparent_60%)]" />
+        <div className="container mx-auto px-4 pt-20 pb-16 relative z-10">
+          <p className="text-sm font-medium tracking-widest uppercase text-primary mb-4 text-center">Modern Tech Blog</p>
+          <h1 className="text-4xl md:text-6xl font-bold mb-5 text-center tracking-tight">
             Tech Insights & Reviews
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Expert reviews, buying guides, and tech news to help you make informed decisions
+          <div className="glow-line max-w-xs mx-auto mb-5" />
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto text-center leading-relaxed">
+            Expert reviews, buying guides, and tech news to help you make informed decisions.
           </p>
         </div>
+      </div>
 
+      <div className="container mx-auto px-4 pb-20">
         {/* Weekly Deep-Dive Section */}
         {dynamicMapped.length > 0 && (
-          <div className="mb-16">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="h-px flex-1 bg-border" />
-              <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-primary" />
+          <section className="mb-20">
+            <div className="flex items-center gap-4 mb-10">
+              <div className="glow-line flex-1" />
+              <h2 className="text-xl font-semibold text-foreground flex items-center gap-2 whitespace-nowrap tracking-tight">
+                <Sparkles className="h-4 w-4 text-primary" />
                 The Weekly Deep-Dive
               </h2>
-              <div className="h-px flex-1 bg-border" />
+              <div className="glow-line flex-1" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {dynamicMapped.slice(0, 3).map((post) => (
-                <Card key={post.slug} className="overflow-hidden hover:shadow-card transition-all duration-300 border-primary/20">
-                  <Link to={`/blog/${post.slug}`} className="aspect-video overflow-hidden relative block">
-                    <img src={post.imageUrl} alt={post.title} className="h-full w-full object-cover transition-transform duration-300 hover:scale-110" />
-                    <Badge className="absolute top-2 right-2 bg-primary/90 text-primary-foreground gap-1">
-                      <Sparkles className="h-3 w-3" /> AI Roundup
-                    </Badge>
-                  </Link>
-                  <CardHeader>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                      <Calendar className="h-4 w-4" />
+                <Link key={post.slug} to={`/blog/${post.slug}`} className="group">
+                  <article className="rounded-xl border border-border/60 bg-card overflow-hidden hover-lift hover:shadow-card transition-all duration-300">
+                    <div className="aspect-video overflow-hidden relative">
+                      <img src={post.imageUrl} alt={post.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent" />
+                      <Badge className="absolute top-3 right-3 bg-primary/90 text-primary-foreground gap-1 text-xs">
+                        <Sparkles className="h-3 w-3" /> AI Roundup
+                      </Badge>
+                    </div>
+                    <div className="p-5">
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+                        <Calendar className="h-3.5 w-3.5" />
+                        <span>{new Date(post.date).toLocaleDateString()}</span>
+                        <span className="ml-auto text-primary font-medium">{post.category}</span>
+                      </div>
+                      <h3 className="text-lg font-semibold leading-snug line-clamp-2 mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{post.excerpt}</p>
+                      <span className="inline-flex items-center text-sm font-medium text-primary mt-4 group-hover:gap-2 transition-all">
+                        Read article <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                      </span>
+                    </div>
+                  </article>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Lead magnet CTA — refined glass card */}
+        <section className="mb-20">
+          <div className="relative rounded-2xl border border-border/60 overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(230_90%_58%/0.06),transparent_70%)]" />
+            <div className="relative z-10 py-12 px-8 text-center">
+              <p className="text-xs font-medium tracking-widest uppercase text-primary mb-3">Free Resource</p>
+              <h3 className="text-2xl font-bold mb-3 text-foreground tracking-tight">90-Day Amazon Associate Roadmap</h3>
+              <p className="text-muted-foreground mb-6 max-w-md mx-auto text-sm leading-relaxed">Go from zero to your first affiliate commission — step-by-step checklist included.</p>
+              <Button asChild variant="cta" className="rounded-full px-8">
+                <Link to="/free-roadmap">Download Free Roadmap <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+        
+        {/* All Posts Grid */}
+        <section>
+          <h2 className="text-2xl font-bold mb-8 tracking-tight">All Articles</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {allPosts.map((post) => (
+              <Link key={post.slug} to={`/blog/${post.slug}`} className="group">
+                <article className="rounded-xl border border-border/60 bg-card overflow-hidden hover-lift hover:shadow-card transition-all duration-300 h-full flex flex-col">
+                  <div className="aspect-video overflow-hidden relative">
+                    <img
+                      src={post.imageUrl}
+                      alt={post.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent" />
+                    {post.isGenerated && (
+                      <Badge className="absolute top-3 right-3 bg-primary/90 text-primary-foreground gap-1 text-xs">
+                        <Sparkles className="h-3 w-3" /> AI Roundup
+                      </Badge>
+                    )}
+                  </div>
+                  <div className="p-5 flex flex-col flex-1">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+                      <Calendar className="h-3.5 w-3.5" />
                       <span>{new Date(post.date).toLocaleDateString()}</span>
                       <span className="ml-auto text-primary font-medium">{post.category}</span>
                     </div>
-                    <CardTitle className="line-clamp-2">{post.title}</CardTitle>
-                    <CardDescription className="line-clamp-3">{post.excerpt}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button variant="link" className="p-0" asChild>
-                      <Link to={`/blog/${post.slug}`}>
-                        Read More <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Lead magnet CTA */}
-        <div className="mb-16 p-8 rounded-2xl bg-primary/5 border border-primary/20 text-center">
-          <h3 className="text-2xl font-bold mb-2 text-foreground">Free 90-Day Amazon Associate Roadmap</h3>
-          <p className="text-muted-foreground mb-4 max-w-lg mx-auto">Go from zero to your first affiliate commission — step-by-step checklist included.</p>
-          <Button asChild className="rounded-full font-semibold">
-            <Link to="/free-roadmap">Download Free Roadmap <ArrowRight className="ml-2 h-4 w-4" /></Link>
-          </Button>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allPosts.map((post) => (
-            <Card key={post.slug} className="overflow-hidden hover:shadow-card transition-all duration-300">
-              <Link to={`/blog/${post.slug}`} className="aspect-video overflow-hidden relative block">
-                <img
-                  src={post.imageUrl}
-                  alt={post.title}
-                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-110"
-                />
-                {post.isGenerated && (
-                  <Badge className="absolute top-2 right-2 bg-primary/90 text-primary-foreground gap-1">
-                    <Sparkles className="h-3 w-3" /> AI Roundup
-                  </Badge>
-                )}
+                    <h3 className="text-lg font-semibold leading-snug line-clamp-2 mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed flex-1">{post.excerpt}</p>
+                    <span className="inline-flex items-center text-sm font-medium text-primary mt-4 group-hover:gap-2 transition-all">
+                      Read article <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                    </span>
+                  </div>
+                </article>
               </Link>
-              <CardHeader>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>{new Date(post.date).toLocaleDateString()}</span>
-                  <span className="ml-auto text-primary font-medium">{post.category}</span>
-                </div>
-                <CardTitle className="line-clamp-2">{post.title}</CardTitle>
-                <CardDescription className="line-clamp-3">{post.excerpt}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button variant="link" className="p-0" asChild>
-                  <Link to={`/blog/${post.slug}`}>
-                    Read More <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
       </div>
       <AffiliateFooter />
     </div>
