@@ -295,7 +295,7 @@ const Blog = () => {
             <div className="h-px flex-1 bg-border/60" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {remainingPosts.map((post) => (
+            {gridPosts.map((post) => (
               <BlogCard key={post.slug} post={post} />
             ))}
           </div>
