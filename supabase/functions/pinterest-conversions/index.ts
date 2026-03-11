@@ -65,7 +65,11 @@ Deno.serve(async (req) => {
     console.log("Pinterest Conversions API response:", response.status, result);
 
     if (!response.ok) {
-      throw new Error(`Pinterest API error ${response.status}: ${result}`);
+      console.warn(`Pinterest API error ${response.status}: ${result} — skipping`);
+      return new Response(JSON.stringify({ skipped: true, reason: "api_error", status: response.status }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     return new Response(JSON.stringify({ success: true, result: JSON.parse(result) }), {
