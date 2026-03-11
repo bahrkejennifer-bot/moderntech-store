@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import SocialLinks from "./SocialLinks";
-
+import { PinterestFollowButton } from "./PinterestWidgets";
 const AffiliateFooter = () => {
   return (
     <footer className="border-t border-border py-8 mt-12">
