@@ -1487,23 +1487,26 @@ const BlogPost = () => {
           </div>
 
           {/* Download CTA */}
-          <div className="mt-12 p-6 bg-primary/5 border border-primary/20 rounded-xl text-center">
-            <Download className="h-10 w-10 mx-auto mb-4 text-primary" />
-            <h3 className="text-xl font-bold mb-2">Download as PDF</h3>
-            <p className="text-muted-foreground mb-4">
-              All guides are available as beautifully formatted, downloadable PDFs—perfect for offline reading, 
-              sharing with friends, or taking with you while shopping.
-            </p>
-            <Button asChild>
-              <Link to="/digital-products">
-                Get Your Free PDF Guide
-              </Link>
-            </Button>
+          <div className="mt-16 relative rounded-2xl border border-border/60 overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(230_90%_58%/0.06),transparent_70%)]" />
+            <div className="relative z-10 py-12 px-8 text-center">
+              <Download className="h-8 w-8 mx-auto mb-4 text-primary" />
+              <p className="text-xs font-medium tracking-widest uppercase text-primary mb-3">Free Download</p>
+              <h3 className="text-xl font-bold mb-2 tracking-tight">Get This Guide as a PDF</h3>
+              <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto leading-relaxed">
+                Beautifully formatted for offline reading, sharing with friends, or taking with you while shopping.
+              </p>
+              <Button asChild variant="cta" className="rounded-full px-8">
+                <Link to="/digital-products">
+                  Download Free PDF
+                </Link>
+              </Button>
+            </div>
           </div>
 
           {/* Affiliate Disclosure */}
-          <div className="mt-8 p-4 bg-muted rounded-lg text-sm text-muted-foreground">
-            <strong>Affiliate Disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. 
+          <div className="mt-10 py-4 px-5 border-l-2 border-primary/30 text-sm text-muted-foreground leading-relaxed">
+            <strong className="text-foreground/70">Affiliate Disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. 
             When you click links to Amazon and make a purchase, we may receive a small commission at no extra cost to you.
           </div>
         </article>
