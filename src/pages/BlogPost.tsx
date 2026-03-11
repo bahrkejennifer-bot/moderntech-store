@@ -1260,28 +1260,29 @@ const BlogPost = () => {
     switch (section.type) {
       case 'heading':
         return (
-          <h2 key={index} className="text-2xl md:text-3xl font-bold font-display mt-10 mb-4 text-foreground">
+          <h2 key={index} className="text-2xl md:text-3xl font-bold font-display mt-14 mb-5 text-foreground tracking-tight">
             {section.content}
           </h2>
         );
       case 'subheading':
         return (
-          <h3 key={index} className="text-xl md:text-2xl font-semibold mt-8 mb-3 text-foreground">
+          <h3 key={index} className="text-xl md:text-2xl font-semibold mt-10 mb-4 text-foreground tracking-tight">
             {section.content}
           </h3>
         );
       case 'paragraph':
         return (
-          <p key={index} className="text-foreground/80 leading-relaxed mb-4">
+          <p key={index} className="text-foreground/80 leading-[1.8] mb-5 text-base">
             {parseMarkdownBold(section.content || '')}
           </p>
         );
       case 'list':
         return (
-          <ul key={index} className="list-disc list-inside space-y-2 mb-6 text-foreground/80">
+          <ul key={index} className="space-y-3 mb-8 text-foreground/80 ml-1">
             {section.items?.map((item, i) => (
-              <li key={i} className="leading-relaxed">
-                {parseMarkdownBold(item)}
+              <li key={i} className="leading-[1.8] flex gap-3 text-base">
+                <span className="text-primary mt-1.5 shrink-0">•</span>
+                <span>{parseMarkdownBold(item)}</span>
               </li>
             ))}
           </ul>
