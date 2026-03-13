@@ -130,7 +130,7 @@ const Navigation = () => {
                       key={cat.to}
                       to={cat.to}
                       onClick={() => setMobileOpen(false)}
-                      className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+                      className="font-mono text-[10px] tracking-[0.15em] uppercase text-[hsl(40_18%_91%/0.4)] hover:text-[hsl(40_18%_91%)] transition-colors"
                     >
                       {cat.label}
                     </Link>
