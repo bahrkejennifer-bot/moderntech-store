@@ -122,43 +122,22 @@ const Index = () => {
       <Navigation />
 
       {/* ── HERO — asymmetric editorial layout ── */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[75vh]">
-        {/* Left — image */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[80vh]">
+        {/* Left — smart ring image */}
         <div className="relative overflow-hidden">
           <img
             src={heroImg}
-            alt="Premium tech lifestyle editorial"
-            className="w-full h-full object-cover min-h-[400px]"
+            alt="Brushed titanium smart ring on raw travertine stone — editorial still life"
+            className="w-full h-full object-cover min-h-[500px]"
           />
         </div>
-        {/* Right — text content */}
-        <div className="flex flex-col justify-center px-10 lg:px-16 py-16 lg:py-24">
-          <p className="font-mono text-[9px] tracking-[0.4em] uppercase text-muted-foreground mb-8">
-            Issue 03 · Spring / Summer 2026
-          </p>
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[0.92] tracking-tight mb-8" style={{ fontWeight: 400 }}>
+        {/* Right — minimal text */}
+        <div className="flex flex-col justify-center px-12 lg:px-24 py-24 lg:py-32">
+          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.92] tracking-tight" style={{ fontWeight: 400 }}>
             <em>The Art of</em>
             <br />
             Modern Tech
           </h1>
-          <p className="font-mono text-[11px] text-muted-foreground max-w-sm leading-[1.8] mb-10">
-            A curated collection of premium technology for health, creativity, and the modern workspace — selected with editorial precision.
-          </p>
-          <div className="flex items-center gap-6">
-            <Link
-              to="/health-wellness"
-              className="inline-flex items-center gap-3 h-12 px-8 bg-foreground text-background font-mono text-[10px] tracking-[0.2em] uppercase hover:bg-foreground/90 transition-all duration-300"
-            >
-              Explore Collection
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-            <Link
-              to="/blog"
-              className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4 decoration-border"
-            >
-              Read Journal
-            </Link>
-          </div>
         </div>
       </section>
 
