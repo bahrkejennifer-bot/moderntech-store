@@ -131,21 +131,21 @@ const Index = () => {
         </p>
       </div>
 
-      {/* ── HERO — duality editorial layout ── */}
-      <section className="relative py-12 md:py-20 px-8 md:px-16 lg:px-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center max-w-7xl mx-auto">
-          {/* Editorial image — contained, not full-bleed */}
+      {/* ── HERO — asymmetric editorial layout ── */}
+      <section className="relative py-12 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center">
+          {/* Image — bleeds to left edge */}
           <div className="overflow-hidden">
             <img
               src={heroImg}
               alt="Editorial lifestyle — woman descending spiral staircase with tulips"
               className="w-full h-auto object-cover"
-              style={{ maxHeight: '65vh' }}
+              style={{ maxHeight: '70vh' }}
             />
           </div>
 
-          {/* Text block */}
-          <div>
+          {/* Text block — generous whitespace on the right */}
+          <div className="px-12 md:px-16 lg:px-24 xl:px-32 py-12 md:py-0">
             <h1
               className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[0.92] tracking-tight"
               style={{ fontWeight: 400, color: 'hsl(40 10% 12%)' }}
