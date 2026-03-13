@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
+import ouraRing4Img from "@/assets/products/oura-ring-4.jpg";
 
 const products = [
   {
