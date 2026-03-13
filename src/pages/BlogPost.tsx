@@ -55,6 +55,11 @@ import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
 import stPatricksHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
 import smartRingHeroImg from "@/assets/heroes/smart-ring-guide-hero.png";
+import smartHomeHeroImg from "@/assets/blog/smart-home-devices-hero.jpg";
+import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
+import wirelessEarbudsHeroImg from "@/assets/blog/wireless-earbuds-hero.jpg";
+import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
+import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
 
 interface BlogProduct {
   title: string;
