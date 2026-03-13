@@ -90,7 +90,7 @@ const Navigation = () => {
 
             {/* Mobile toggle */}
             <button
-              className="md:hidden text-foreground ml-auto"
+              className="md:hidden text-[hsl(40_18%_91%)] ml-auto"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
