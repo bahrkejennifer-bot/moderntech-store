@@ -480,36 +480,45 @@ const BlogPost = () => {
           <meta property="pin:media" content={ogImage} />
           <meta property="pin:description" content={ogDesc} />
         </Helmet>
+        {/* Reading Progress Bar */}
+        <div className="fixed top-0 left-0 right-0 z-50 h-[3px] bg-transparent">
+          <div
+            className="h-full bg-primary transition-[width] duration-150 ease-out"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+
         <Navigation />
 
         {/* Hero */}
-        <div className="relative h-[420px] overflow-hidden">
+        <div className="relative h-[460px] overflow-hidden">
           <img
             src={dynamicPost.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format"}
             alt={dynamicPost.title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
         </div>
 
-        <div className="container mx-auto px-4 -mt-36 relative z-10 pb-16">
+        <div className="container mx-auto px-4 -mt-40 relative z-10 pb-16">
           <div className="max-w-3xl mx-auto">
-            <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
-              <ArrowLeft className="h-4 w-4" /> Back to Blog
+            <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8 group">
+              <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> Back to Blog
             </Link>
 
             <article>
-              <header className="mb-10">
-                <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4 flex-wrap">
-                  <span className="text-primary font-semibold uppercase tracking-wide">{dynamicPost.category || "Tech Roundup"}</span>
-                  <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-                  <span>by Modern Tech LLC</span>
-                  <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+              <header className="mb-12 pb-8 border-b border-border/30">
+                <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5 flex-wrap">
+                  <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{dynamicPost.category || "Tech Roundup"}</span>
                   <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(dynamicPost.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
                 </div>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1]">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.08]">
                   {dynamicPost.title}
                 </h1>
+                <div className="flex items-center gap-2 mt-6">
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">MT</div>
+                  <span className="text-sm text-muted-foreground">by <span className="text-foreground/80 font-medium">Modern Tech LLC</span></span>
+                </div>
               </header>
 
               <div
@@ -517,13 +526,21 @@ const BlogPost = () => {
                 dangerouslySetInnerHTML={{ __html: dynamicPost.content_html }}
               />
 
-              {/* Download CTA */}
               <DownloadCTA />
-
               <AffiliateDisclosure />
             </article>
           </div>
         </div>
+
+        {showScrollTop && (
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-8 right-8 z-40 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-elegant hover:scale-110 transition-transform"
+            aria-label="Scroll to top"
+          >
+            <ChevronUp className="h-5 w-5" />
+          </button>
+        )}
 
         <AffiliateFooter />
       </div>
