@@ -135,7 +135,7 @@ const Blog = () => {
     excerpt: p.excerpt || "",
     date: p.created_at,
     category: p.category || "Tech Roundup",
-    imageUrl: p.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format",
+    imageUrl: p.image_url || techDefaultHeroImg,
     slug: p.slug,
     isGenerated: true,
     readTime: "5 min read",

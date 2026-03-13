@@ -505,7 +505,7 @@ const BlogPost = () => {
 
   // ── Dynamic (AI-generated) post ──
   if (!post && dynamicPost) {
-    const ogImage = dynamicPost.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format";
+    const ogImage = dynamicPost.image_url || techDefaultHeroImg;
     const ogTitle = dynamicPost.title;
     const ogDesc = dynamicPost.excerpt || `${dynamicPost.title} — Read on Modern Tech LLC`;
     return (
