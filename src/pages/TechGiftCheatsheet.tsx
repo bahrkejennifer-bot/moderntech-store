@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Download, Printer } from "lucide-react";
 
@@ -131,6 +132,15 @@ const TechGiftCheatsheet = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Tech Gift Cheatsheet 2026 | Modern Tech</title>
+        <meta name="description" content="The ultimate printable tech gift cheatsheet — top picks for him, her, kids, college students and more at every budget." />
+        <meta property="og:title" content="Tech Gift Cheatsheet 2026" />
+        <meta property="og:description" content="Printable tech gift guide with top picks for him, her, kids & college students at every budget." />
+        <meta property="og:image" content="https://moderntech.store/images/products/airpods-pro-2.jpg" />
+        <meta property="og:url" content="https://moderntech.store/tech-gift-cheatsheet" />
+        <meta property="og:type" content="article" />
+      </Helmet>
       {/* Print Controls - Hidden when printing */}
       <div className="print:hidden sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border p-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
