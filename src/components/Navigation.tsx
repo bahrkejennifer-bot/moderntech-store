@@ -39,9 +39,9 @@ const Navigation = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
               <img src={logo} alt="Modern Tech LLC" className="h-14 w-14 rounded-full object-contain bg-white p-0.5 shadow-md border-2 border-primary/20" />
-              <span className="hidden sm:inline text-lg font-bold tracking-tight">
-                <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-sm">Modern Tech</span>
-                <span className="text-muted-foreground font-light ml-1.5 text-sm tracking-widest uppercase">LLC</span>
+              <span className="hidden sm:inline text-lg font-bold tracking-tight group/brand transition-all duration-300">
+                <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-sm group-hover/brand:drop-shadow-[0_0_8px_hsl(var(--primary)/0.6)] transition-all duration-500 group-hover/brand:from-blue-400 group-hover/brand:via-purple-400 group-hover/brand:to-primary">Modern Tech</span>
+                <span className="text-muted-foreground font-light ml-1.5 text-sm tracking-widest uppercase group-hover/brand:text-foreground transition-colors duration-500">LLC</span>
               </span>
             </Link>
 
