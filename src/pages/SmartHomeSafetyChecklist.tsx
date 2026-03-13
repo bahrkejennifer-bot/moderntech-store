@@ -92,6 +92,7 @@ const SmartHomeSafetyChecklist = () => {
                   <span className="text-blue-400">Smart Home Safety</span>{" "}
                   Checklist
                 </h1>
+                <p className="text-sm text-muted-foreground mb-4 font-medium">by Modern Tech LLC</p>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   A room-by-room guide to protecting your family with smart tech — cameras, locks, sensors & more. Written by parents, for parents. No jargon, no overwhelm.
                 </p>
