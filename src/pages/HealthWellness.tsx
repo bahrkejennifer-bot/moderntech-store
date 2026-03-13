@@ -6,6 +6,11 @@ import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 import ouraRing4Img from "@/assets/products/oura-ring-4.jpg";
+import appleWatchImg from "@/assets/products/apple-watch-series-10.jpg";
+import whoopImg from "@/assets/products/whoop-4.jpg";
+import theragunMiniImg from "@/assets/products/theragun-mini-2.jpg";
+import withingsScaleImg from "@/assets/products/withings-body-smart.jpg";
+import philipsSleepImg from "@/assets/products/philips-smartsleep.jpg";
 
 const products = [
   {
@@ -19,35 +24,35 @@ const products = [
     title: "Apple Watch Series 10 — Health & Wellness Wearable",
     description: "ECG, blood oxygen, sleep tracking & crash detection. The most advanced smartwatch for holistic health monitoring.",
     rating: 4.9,
-    imageUrl: "https://m.media-amazon.com/images/I/61lYIKPieDL._AC_SX679_.jpg",
+    imageUrl: appleWatchImg,
     affiliateLink: "https://www.amazon.com/dp/B0DGJ7QCS2?tag=moderntechs0c-20",
   },
   {
     title: "WHOOP 4.0 — Biohacking Fitness Tracker",
     description: "24/7 health monitoring with strain, recovery & sleep coaching. No screen, no distractions — pure performance data.",
     rating: 4.5,
-    imageUrl: "https://m.media-amazon.com/images/I/51cxMll4NHL._AC_SX679_.jpg",
+    imageUrl: whoopImg,
     affiliateLink: "https://www.amazon.com/dp/B0BFCYB2SJ?tag=moderntechs0c-20",
   },
   {
     title: "Theragun Mini 2.0 — Portable Percussion Massager",
     description: "Deep tissue muscle recovery in your pocket. Whisper-quiet motor with 3 speeds for daily wellness rituals.",
     rating: 4.7,
-    imageUrl: "https://m.media-amazon.com/images/I/61Ie1DNWKWL._AC_SX679_.jpg",
+    imageUrl: theragunMiniImg,
     affiliateLink: "https://www.amazon.com/dp/B0CX48M92W?tag=moderntechs0c-20",
   },
   {
     title: "Withings Body Smart Scale — WiFi Smart Scale",
     description: "Body composition analysis with Eyes Closed Mode. Syncs with Apple Health — neurowellness meets precision tracking.",
     rating: 4.5,
-    imageUrl: "https://m.media-amazon.com/images/I/61Bvs3AS3TL._AC_SX679_.jpg",
+    imageUrl: withingsScaleImg,
     affiliateLink: "https://www.amazon.com/dp/B0CG1VLXQF?tag=moderntechs0c-20",
   },
   {
     title: "Philips SmartSleep Wake-Up Light",
     description: "Sunrise simulation alarm for stress management & better mornings. Clinically proven to improve sleep quality.",
     rating: 4.4,
-    imageUrl: "https://m.media-amazon.com/images/I/71sGBFbNLzL._AC_SX679_.jpg",
+    imageUrl: philipsSleepImg,
     affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs0c-20",
   },
 ];
