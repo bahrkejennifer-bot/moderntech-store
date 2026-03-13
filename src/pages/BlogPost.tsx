@@ -276,7 +276,7 @@ const blogPostsData: Record<string, {
     title: "Tech Essentials for College Students",
     date: "2024-12-27",
     category: "College & School",
-    imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&auto=format",
+    imageUrl: collegeTechHeroImg,
     intro: "Your laptop died during finals week, and you just learned the hard way that 'any computer will do' is terrible advice. College moves fast, and outdated tech makes everything harder. Your laptop freezes during online exams. Your phone dies before your last class. Group projects become nightmares when you can't access shared files. The right tech doesn't just make college easier—it makes success inevitable. This guide reveals the essential devices that actually matter for modern college life.",
     sections: [
       { type: 'heading', content: 'Must-Have vs Nice-to-Have Tech' },
