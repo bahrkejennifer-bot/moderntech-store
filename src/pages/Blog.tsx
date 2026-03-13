@@ -210,7 +210,7 @@ const Blog = () => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`shrink-0 text-xs font-medium px-4 py-2 rounded-full border transition-all duration-200 ${
+                className={`shrink-0 font-mono text-[10px] tracking-[0.1em] uppercase px-4 py-2 border transition-all duration-200 ${
                   activeCategory === cat
                     ? "bg-foreground text-background border-foreground"
                     : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
