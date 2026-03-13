@@ -72,7 +72,7 @@ const Navigation = () => {
             {/* Center — logo */}
             <div className="flex-1 md:w-1/3 flex justify-center">
               <Link to="/" className="flex flex-col items-center">
-                <span className="font-serif text-2xl md:text-3xl tracking-tight" style={{ fontWeight: 500 }}>
+                <span className="font-serif text-2xl md:text-3xl tracking-tight text-[hsl(40_18%_91%)]" style={{ fontWeight: 500 }}>
                   MODERN TECH
                 </span>
               </Link>
