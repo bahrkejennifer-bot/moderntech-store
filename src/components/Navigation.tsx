@@ -82,7 +82,7 @@ const Navigation = () => {
             <div className="hidden md:flex items-center justify-end w-1/3">
               <button
                 onClick={() => setGuideOpen(true)}
-                className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors"
               >
                 Free Guide
               </button>
