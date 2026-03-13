@@ -606,7 +606,7 @@ const BlogPost = () => {
   // ── Loading ──
   if (!post && isLoading) {
     return (
-      <div className="min-h-screen blog-light bg-background">
+      <div className="min-h-screen vogue-theme bg-background text-foreground">
         <Navigation />
         <div className="container mx-auto px-4 py-24 text-center">
           <div className="animate-pulse space-y-4">
