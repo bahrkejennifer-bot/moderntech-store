@@ -17,6 +17,7 @@ import smartHomeHeroImg from "@/assets/blog/smart-home-devices-hero.jpg";
 import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
 import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
 import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
+import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
 
 const staticBlogPosts = [
   {
