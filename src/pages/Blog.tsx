@@ -25,7 +25,7 @@ const staticBlogPosts = [
     readTime: "8 min read",
   },
   {
-    title: "The Ultimate Smart Ring Guide for St. Patrick's Day 2026",
+    title: "The Ultimate Smart Ring Guide for 2026",
     excerpt: "Oura, Samsung Galaxy Ring, or Ultrahuman? We compare the top smart rings, breaking down sleep tracking accuracy, heart rate monitoring, sizing, and whether they're worth the investment.",
     date: "2026-02-02",
     category: "Health & Wellness",

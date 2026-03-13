@@ -82,7 +82,7 @@ const blogPostsData: Record<string, {
   products: BlogProduct[];
 }> = {
   "smart-ring-guide-valentines-2026": {
-    title: "The Ultimate Smart Ring Guide for Valentine's Day 2026",
+    title: "The Ultimate Smart Ring Guide for 2026",
     date: "2026-02-02",
     category: "Health & Wellness",
     imageUrl: "https://images.unsplash.com/photo-1573405963648-854c31a4db30?w=1200&auto=format",
