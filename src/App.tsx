@@ -28,6 +28,7 @@ import DormRoomTechGuide from "./pages/DormRoomTechGuide";
 import ScreenFreeKidsGuide from "./pages/ScreenFreeKidsGuide";
 import AmazonAssociateGuide from "./pages/AmazonAssociateGuide";
 import NotFound from "./pages/NotFound";
+import Signal from "./pages/Signal";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Disclaimer from "./pages/Disclaimer";
@@ -80,6 +81,7 @@ const App = () => (
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/return-policy" element={<ReturnPolicy />} />
+          <Route path="/signal" element={<Signal />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
