@@ -458,8 +458,8 @@ const BlogPost = () => {
         return (
           <div key={index} id={sectionId} className="mt-16 mb-6 scroll-mt-28">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-[2px] bg-primary rounded-full" />
-              <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-primary/70">Section {Math.ceil((index + 1) / 3)}</span>
+              <div className="w-8 h-[2px] bg-foreground/15 rounded-full" />
+              <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground">Section {Math.ceil((index + 1) / 3)}</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-tight">
               {section.content}
@@ -468,22 +468,22 @@ const BlogPost = () => {
         );
       case 'subheading':
         return (
-          <h3 key={index} id={sectionId} className="text-xl font-semibold mt-10 mb-4 text-foreground tracking-tight border-l-2 border-primary/40 pl-4 scroll-mt-28">
+          <h3 key={index} id={sectionId} className="text-xl font-semibold mt-10 mb-4 text-foreground tracking-tight border-l-2 border-foreground/15 pl-4 scroll-mt-28">
             {section.content}
           </h3>
         );
       case 'paragraph':
         return (
-          <p key={index} className="text-foreground/75 leading-[1.85] mb-6 text-[15px]">
+          <p key={index} className="text-muted-foreground leading-[1.85] mb-6 text-[15px]">
             {parseMarkdownBold(section.content || '')}
           </p>
         );
       case 'list':
         return (
-          <ul key={index} className="space-y-3 mb-8 ml-1 pl-4 border-l border-border/60">
+          <ul key={index} className="space-y-3 mb-8 ml-1 pl-4 border-l border-border">
             {section.items?.map((item, i) => (
-              <li key={i} className="text-foreground/75 leading-[1.8] flex gap-3 text-[15px]">
-                <span className="text-primary mt-1 shrink-0 text-xs">▸</span>
+              <li key={i} className="text-muted-foreground leading-[1.8] flex gap-3 text-[15px]">
+                <span className="text-foreground/30 mt-1 shrink-0 text-xs">▸</span>
                 <span>{parseMarkdownBold(item)}</span>
               </li>
             ))}
