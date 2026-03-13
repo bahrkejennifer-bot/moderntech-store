@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import { Download, Loader2, CheckCircle, ArrowRight, DollarSign, Globe, Link2, BarChart3, Rocket } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
