@@ -64,7 +64,7 @@ const staticBlogPosts = [
     excerpt: "We've tested dozens of gaming monitors to find the best value options for competitive and casual gamers alike. Get high refresh rates and stunning visuals without breaking the bank.",
     date: "2025-01-09",
     category: "Gaming",
-    imageUrl: "https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=800&auto=format",
+    imageUrl: gamingMonitorsHeroImg,
     slug: "best-gaming-monitors-under-500",
     isGenerated: false,
     readTime: "11 min read",
