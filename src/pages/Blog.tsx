@@ -227,7 +227,7 @@ const Blog = () => {
         {/* ── Featured Post (large hero card) ── */}
         {featuredPost && (
           <Link to={`/blog/${featuredPost.slug}`} className="group block mb-20">
-            <article className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden bg-card border border-border shadow-soft hover:shadow-elegant transition-all duration-500">
+            <article className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden border border-border hover:shadow-elegant transition-all duration-500">
               <div className="aspect-[16/10] lg:aspect-auto overflow-hidden relative">
                 <img
                   src={featuredPost.imageUrl}
