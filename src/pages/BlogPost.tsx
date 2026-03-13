@@ -766,7 +766,7 @@ const BlogPost = () => {
       {showScrollTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-8 right-8 z-40 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-elegant hover:scale-110 transition-transform"
+          className="fixed bottom-8 right-8 z-40 w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center shadow-elegant hover:scale-110 transition-transform"
           aria-label="Scroll to top"
         >
           <ChevronUp className="h-5 w-5" />
