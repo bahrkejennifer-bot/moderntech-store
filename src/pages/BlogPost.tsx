@@ -402,32 +402,52 @@ const BlogPost = () => {
     enabled: !post && !!slug,
   });
 
+  // Reading progress
+  const [progress, setProgress] = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  useEffect(() => {
+    const onScroll = () => {
+      const winH = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = winH > 0 ? (window.scrollY / winH) * 100 : 0;
+      setProgress(Math.min(pct, 100));
+      setShowScrollTop(window.scrollY > 600);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const renderSection = (section: ContentSection, index: number) => {
     switch (section.type) {
       case 'heading':
         return (
-          <h2 key={index} className="text-2xl md:text-3xl font-bold mt-14 mb-5 text-foreground tracking-tight leading-tight">
-            {section.content}
-          </h2>
+          <div key={index} className="mt-16 mb-6">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-[2px] bg-primary rounded-full" />
+              <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-primary/70">Section {Math.ceil((index + 1) / 3)}</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-tight">
+              {section.content}
+            </h2>
+          </div>
         );
       case 'subheading':
         return (
-          <h3 key={index} className="text-xl font-semibold mt-10 mb-4 text-foreground tracking-tight">
+          <h3 key={index} className="text-xl font-semibold mt-10 mb-4 text-foreground tracking-tight border-l-2 border-primary/40 pl-4">
             {section.content}
           </h3>
         );
       case 'paragraph':
         return (
-          <p key={index} className="text-foreground/75 leading-[1.85] mb-5 text-[15px]">
+          <p key={index} className="text-foreground/75 leading-[1.85] mb-6 text-[15px]">
             {parseMarkdownBold(section.content || '')}
           </p>
         );
       case 'list':
         return (
-          <ul key={index} className="space-y-3 mb-8 ml-1">
+          <ul key={index} className="space-y-3 mb-8 ml-1 pl-4 border-l border-border/60">
             {section.items?.map((item, i) => (
               <li key={i} className="text-foreground/75 leading-[1.8] flex gap-3 text-[15px]">
-                <span className="text-primary mt-1 shrink-0">•</span>
+                <span className="text-primary mt-1 shrink-0 text-xs">▸</span>
                 <span>{parseMarkdownBold(item)}</span>
               </li>
             ))}
