@@ -223,7 +223,7 @@ const Blog = () => {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-16 lg:py-20">
+      <div className="max-w-5xl mx-auto px-8 py-16 lg:py-20">
         {/* ── Featured Post (large hero card) ── */}
         {featuredPost && (
           <Link to={`/blog/${featuredPost.slug}`} className="group block mb-20">
