@@ -277,7 +277,7 @@ Dark base, bold blue accents, crisp white type
 }
 
 .vogue-theme .gradient-text {
-  background: linear-gradient(135deg, hsl(20 10% 10%), hsl(20 5% 30%));
+  background: linear-gradient(135deg, hsl(40 10% 12%), hsl(40 5% 30%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
