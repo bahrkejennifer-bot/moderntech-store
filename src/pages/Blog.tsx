@@ -230,7 +230,7 @@ const Blog = () => {
         {/* ── Featured Post (large hero card) ── */}
         {featuredPost && (
           <Link to={`/blog/${featuredPost.slug}`} className="group block mb-16">
-            <article className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-border/40 bg-card hover:shadow-card transition-all duration-500">
+            <article className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-border/30 bg-card hover:shadow-elegant transition-all duration-500">
               <div className="aspect-[16/10] lg:aspect-auto overflow-hidden relative">
                 <img
                   src={featuredPost.imageUrl}
@@ -244,11 +244,9 @@ const Blog = () => {
                 )}
               </div>
               <div className="p-8 lg:p-12 flex flex-col justify-center">
-                <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4">
-                  <span className="text-primary font-semibold uppercase tracking-wide">{featuredPost.category}</span>
-                  <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+                <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5">
+                  <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{featuredPost.category}</span>
                   <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(featuredPost.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
-                  <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
                   <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {featuredPost.readTime}</span>
                 </div>
                 <h2 className="text-2xl lg:text-3xl font-bold leading-tight tracking-tight mb-4 group-hover:text-primary transition-colors">
