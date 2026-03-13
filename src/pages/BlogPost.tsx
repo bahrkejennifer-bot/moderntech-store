@@ -133,7 +133,7 @@ const blogPostsData: Record<string, {
     date: "2026-02-02",
     category: "Gift Guides",
     imageUrl: stPatricksHeroImg,
-    intro: "We've all been there. You open the drawer in your home office or bedroom, and it's a graveyard of gadgets. The fitness tracker you wore twice. The smart speaker that never quite understood you. The novelty device that seemed brilliant at 2 AM while scrolling Amazon, but now just collects dust. Most tech gifts fail because they solve problems we don't actually have. They're novelties, not necessities. This Valentine's Day, give gifts that build connection, not clutter.",
+    intro: "We've all been there. You open the drawer in your home office or bedroom, and it's a graveyard of gadgets. The fitness tracker you wore twice. The smart speaker that never quite understood you. The novelty device that seemed brilliant at 2 AM while scrolling Amazon, but now just collects dust. Most tech gifts fail because they solve problems we don't actually have. They're novelties, not necessities. This year, give gifts that build connection, not clutter.",
     sections: [
       { type: 'heading', content: 'The Connection Crisis' },
       { type: 'paragraph', content: "We're living through a paradox. We have more ways to communicate than ever before, yet loneliness and disconnection are at all-time highs. According to recent studies, the average family spends less than 37 minutes per day in meaningful conversation. Parents and adult children often go weeks without real connection. Couples live parallel lives in the same house." },
