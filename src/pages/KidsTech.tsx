@@ -57,6 +57,11 @@ const KidsTech = () => {
       <Helmet>
         <title>Best Kids Tech & STEM Toys 2026 | Tablets, Smartwatches & Learning</title>
         <meta name="description" content="Shop the best kids tech of 2026 — Fire HD tablets, coding robots, STEM kits, kids smartwatches & safe headphones. Educational tech that's moving fast on Amazon." />
+        <meta property="og:title" content="Best Kids Tech & STEM Toys 2026 | Tablets, Smartwatches & Learning" />
+        <meta property="og:description" content="Shop the best kids tech of 2026 — Fire HD tablets, coding robots, STEM kits & kids smartwatches." />
+        <meta property="og:image" content="https://m.media-amazon.com/images/I/61UeDMERyAL._AC_SX679_.jpg" />
+        <meta property="og:url" content="https://moderntech.store/kids-tech" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <Navigation />
       <div className="container mx-auto px-4 py-12">

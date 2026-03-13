@@ -57,6 +57,11 @@ const HomeSafety = () => {
       <Helmet>
         <title>Best Smart Home Security Tech 2026 | Cameras, Locks & More</title>
         <meta name="description" content="Shop the hottest smart home security tech of 2026 — Ring doorbells, robot vacuums, fingerprint locks & wireless cameras. Protect your home with minimalist tech." />
+        <meta property="og:title" content="Best Smart Home Security Tech 2026 | Cameras, Locks & More" />
+        <meta property="og:description" content="Shop the hottest smart home security tech of 2026 — Ring doorbells, robot vacuums, fingerprint locks & wireless cameras." />
+        <meta property="og:image" content="https://m.media-amazon.com/images/I/51BoGN7mP3L._AC_SX679_.jpg" />
+        <meta property="og:url" content="https://moderntech.store/home-safety" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <Navigation />
       <div className="container mx-auto px-4 py-12">

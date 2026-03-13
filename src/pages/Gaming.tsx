@@ -57,6 +57,11 @@ const Gaming = () => {
       <Helmet>
         <title>Best Gaming Tech 2026 | PS5, Steam Deck OLED, Monitors & More</title>
         <meta name="description" content="Shop the hottest gaming tech of 2026 — PS5 Slim, Steam Deck OLED, ASUS ROG OLED monitors, pro gaming mice & headsets. Level up your setup." />
+        <meta property="og:title" content="Best Gaming Tech 2026 | PS5, Steam Deck OLED, Monitors & More" />
+        <meta property="og:description" content="Shop the hottest gaming tech of 2026 — PS5 Slim, Steam Deck OLED, ASUS ROG OLED monitors & pro peripherals." />
+        <meta property="og:image" content="https://m.media-amazon.com/images/I/51051FiD9UL._AC_SX679_.jpg" />
+        <meta property="og:url" content="https://moderntech.store/gaming" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <Navigation />
       <div className="container mx-auto px-4 py-12">
