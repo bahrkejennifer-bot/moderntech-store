@@ -15,6 +15,7 @@ import sonyZvImg from "@/assets/products/sony-zv1-ii.jpg";
 import whoop4Img from "@/assets/products/whoop-4.jpg";
 import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
 import heroImg from "@/assets/hero-duality-editorial.jpg";
+import essentialsImg from "@/assets/hero-workspace-essentials.jpg";
 
 interface Product {
   title: string;
