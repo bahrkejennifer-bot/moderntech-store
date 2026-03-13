@@ -241,14 +241,14 @@ const Blog = () => {
                 )}
               </div>
               <div className="p-10 lg:p-14 flex flex-col justify-center">
-                <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5">
-                  <span className="font-semibold uppercase tracking-[0.15em] text-foreground/60">{featuredPost.category}</span>
+                <div className="flex items-center gap-3 font-mono text-[10px] text-muted-foreground mb-5">
+                  <span className="tracking-[0.2em] uppercase text-foreground/60">{featuredPost.category}</span>
                   <span className="w-1 h-1 rounded-full bg-border" />
                   <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(featuredPost.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
                   <span className="w-1 h-1 rounded-full bg-border" />
                   <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {featuredPost.readTime}</span>
                 </div>
-                <h2 className="text-2xl lg:text-3xl font-bold leading-tight tracking-tight mb-5 group-hover:text-foreground/70 transition-colors">
+                <h2 className="font-serif text-2xl lg:text-4xl italic font-light leading-tight tracking-tight mb-5 group-hover:text-foreground/70 transition-colors">
                   {featuredPost.title}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-8 line-clamp-3">
