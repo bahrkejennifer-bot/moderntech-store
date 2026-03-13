@@ -2,7 +2,6 @@ import { ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { usePinterestEvent } from "@/hooks/usePinterestTracking";
-import { PinterestSaveButton } from "@/components/PinterestWidgets";
 
 interface ProductCardProps {
   title: string;
