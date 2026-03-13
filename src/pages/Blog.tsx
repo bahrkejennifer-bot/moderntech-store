@@ -54,7 +54,7 @@ const staticBlogPosts = [
     excerpt: "Discover the latest smart home technology that will transform your living space into a connected, efficient haven. From security cameras to smart thermostats, we've tested the best devices.",
     date: "2025-01-14",
     category: "Home & Safety",
-    imageUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&auto=format",
+    imageUrl: smartHomeHeroImg,
     slug: "top-10-smart-home-devices-2025",
     isGenerated: false,
     readTime: "9 min read",
