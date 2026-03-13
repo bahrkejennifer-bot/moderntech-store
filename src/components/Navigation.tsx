@@ -37,6 +37,13 @@ const Navigation = () => {
           <div className="flex h-16 items-center">
             {/* Left — hamburger + shop dropdown */}
             <div className="hidden md:flex items-center gap-8 w-1/3">
+              <Link
+                to="/"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors duration-200"
+              >
+                Home
+              </Link>
+
               <div ref={dropdownRef} className="relative">
                 <button
                   onClick={() => setShopOpen(!shopOpen)}
@@ -100,11 +107,18 @@ const Navigation = () => {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-border bg-background">
+          <div className="md:hidden border-t border-[hsl(40_18%_91%/0.15)]" style={{ backgroundColor: 'hsl(40 10% 12%)' }}>
             <div className="max-w-6xl mx-auto px-8 py-8 flex flex-col gap-6">
+              <Link
+                to="/"
+                onClick={() => setMobileOpen(false)}
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors"
+              >
+                Home
+              </Link>
               <button
                 onClick={() => setMobileShopOpen(!mobileShopOpen)}
-                className="flex items-center justify-between font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+                className="flex items-center justify-between font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors"
               >
                 Shop
                 <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${mobileShopOpen ? "rotate-180" : ""}`} />
@@ -116,7 +130,7 @@ const Navigation = () => {
                       key={cat.to}
                       to={cat.to}
                       onClick={() => setMobileOpen(false)}
-                      className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+                      className="font-mono text-[10px] tracking-[0.15em] uppercase text-[hsl(40_18%_91%/0.4)] hover:text-[hsl(40_18%_91%)] transition-colors"
                     >
                       {cat.label}
                     </Link>
@@ -127,14 +141,14 @@ const Navigation = () => {
               <Link
                 to="/blog"
                 onClick={() => setMobileOpen(false)}
-                className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors"
               >
                 Journal
               </Link>
 
               <button
                 onClick={() => { setGuideOpen(true); setMobileOpen(false); }}
-                className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground w-fit"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] w-fit transition-colors"
               >
                 Free Guide
               </button>
