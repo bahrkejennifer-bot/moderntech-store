@@ -550,14 +550,16 @@ const BlogPost = () => {
             <span className="text-sm text-muted-foreground">by <span className="text-foreground font-medium">Modern Tech LLC</span></span>
           </div>
 
-          {/* Hero Image */}
+          {/* Featured Hero Image */}
           {dynamicPost.image_url && (
-            <div className="rounded-xl overflow-hidden mb-12">
-              <img
-                src={dynamicPost.image_url}
-                alt={dynamicPost.title}
-                className="w-full h-auto object-cover"
-              />
+            <div className="rounded-lg overflow-hidden mb-10">
+              <div className="aspect-[3/2] w-full">
+                <img
+                  src={dynamicPost.image_url}
+                  alt={dynamicPost.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           )}
 
