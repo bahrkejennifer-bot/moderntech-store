@@ -60,7 +60,7 @@ const SmartRingGuide = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Free Smart Ring Buyer's Guide 2026 | Modern Tech LLC</title>
         <meta name="description" content="Download the free Smart Ring Buyer's Guide — compare Oura Ring 4, sizing tips & biohacking challenge. By Modern Tech LLC." />

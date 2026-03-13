@@ -70,7 +70,7 @@ const LeadMagnet = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Navigation />
 
       <section className="py-20 relative overflow-hidden">

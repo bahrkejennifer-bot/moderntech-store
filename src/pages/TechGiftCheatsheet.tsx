@@ -131,7 +131,7 @@ const TechGiftCheatsheet = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Tech Gift Cheatsheet 2026 | Modern Tech</title>
         <meta name="description" content="The ultimate printable tech gift cheatsheet — top picks for him, her, kids, college students and more at every budget." />

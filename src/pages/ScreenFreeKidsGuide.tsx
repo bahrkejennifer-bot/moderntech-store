@@ -50,7 +50,7 @@ const ScreenFreeKidsGuide = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Free Screen-Free Kids Guide 2026 | Modern Tech LLC</title>
         <meta name="description" content="Download the free Screen-Free Kids Guide — 10 parent-approved tech toys that teach coding, STEM & creativity. By Modern Tech LLC." />
