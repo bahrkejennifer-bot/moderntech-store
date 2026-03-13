@@ -37,6 +37,13 @@ const Navigation = () => {
           <div className="flex h-16 items-center">
             {/* Left — hamburger + shop dropdown */}
             <div className="hidden md:flex items-center gap-8 w-1/3">
+              <Link
+                to="/"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors duration-200"
+              >
+                Home
+              </Link>
+
               <div ref={dropdownRef} className="relative">
                 <button
                   onClick={() => setShopOpen(!shopOpen)}
