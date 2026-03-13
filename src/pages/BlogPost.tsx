@@ -323,7 +323,7 @@ const blogPostsData: Record<string, {
     title: "Educational Tech for Kids: Parent's Guide",
     date: "2024-12-14",
     category: "Kids Tech",
-    imageUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&auto=format",
+    imageUrl: kidsTechHeroImg,
     intro: "Navigate the world of educational technology with our guide to age-appropriate learning devices and apps. Make informed choices that support your child's development while ensuring safety and screen time balance. From tablets designed for little hands to STEM toys that spark curiosity, we've tested the best options to help your kids learn while having fun.",
     sections: [
       { type: 'heading', content: 'Age-Appropriate Tech Guidelines' },
