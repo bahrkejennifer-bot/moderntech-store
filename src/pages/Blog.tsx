@@ -265,14 +265,14 @@ const Blog = () => {
         {/* ── AI Roundup Section ── */}
         {!isFiltering && dynamicMapped.length > 1 && (
           <section className="mb-20">
-            <div className="flex items-center gap-4 mb-10">
-              <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground flex items-center gap-2 whitespace-nowrap">
-                <Sparkles className="h-4 w-4" />
+            <div className="flex items-center gap-6 mb-12">
+              <h2 className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground flex items-center gap-2 whitespace-nowrap">
+                <Sparkles className="h-3.5 w-3.5" />
                 Weekly Deep-Dive
               </h2>
               <div className="h-px flex-1 bg-border" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
               {dynamicMapped.slice(1, 4).map((post) => (
                 <BlogCard key={post.slug} post={post} />
               ))}
@@ -282,16 +282,16 @@ const Blog = () => {
 
         {/* ── Newsletter CTA ── */}
         {!isFiltering && (
-          <section className="mb-20 rounded-2xl border border-border bg-card overflow-hidden">
-            <div className="relative py-16 px-8 text-center">
+          <section className="mb-20 border border-border bg-card">
+            <div className="relative py-20 px-8 text-center">
               <div className="relative z-10">
-                <p className="text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-4">Free Resource</p>
-                <h3 className="text-2xl font-bold mb-4 tracking-tight text-foreground">90-Day Amazon Associate Roadmap</h3>
-                <p className="text-muted-foreground mb-8 max-w-md mx-auto text-sm leading-relaxed">
+                <p className="font-mono text-[9px] tracking-[0.4em] uppercase text-muted-foreground mb-6">Free Resource</p>
+                <h3 className="font-serif text-3xl md:text-4xl mb-4" style={{ fontStyle: "italic", fontWeight: 400 }}>90-Day Amazon Associate Roadmap</h3>
+                <p className="font-mono text-[11px] text-muted-foreground mb-10 max-w-md mx-auto leading-[1.8]">
                   Go from zero to your first affiliate commission — step-by-step checklist included.
                 </p>
-                <Button asChild className="rounded-full px-8 bg-foreground text-background hover:bg-foreground/90">
-                  <Link to="/free-roadmap">Download Free Roadmap <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                <Button asChild className="px-10 h-12 bg-foreground text-background hover:bg-foreground/90 font-mono text-[10px] tracking-[0.2em] uppercase rounded-none">
+                  <Link to="/free-roadmap">Download Free Roadmap <ArrowRight className="ml-2 h-3.5 w-3.5" /></Link>
                 </Button>
               </div>
             </div>
@@ -300,8 +300,8 @@ const Blog = () => {
 
         {/* ── All Articles Grid ── */}
         <section>
-          <div className="flex items-center gap-4 mb-10">
-            <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground whitespace-nowrap">
+          <div className="flex items-center gap-6 mb-12">
+            <h2 className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground whitespace-nowrap">
               {isFiltering
                 ? `${filteredPosts.length} result${filteredPosts.length !== 1 ? "s" : ""}`
                 : "All Articles"}
@@ -310,7 +310,7 @@ const Blog = () => {
             {isFiltering && (
               <button
                 onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
-                className="text-xs text-foreground font-medium hover:underline whitespace-nowrap"
+                className="font-mono text-[10px] tracking-[0.15em] uppercase text-foreground hover:underline whitespace-nowrap"
               >
                 Clear filters
               </button>
@@ -318,7 +318,7 @@ const Blog = () => {
           </div>
 
           {gridPosts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-border">
               {gridPosts.map((post) => (
                 <BlogCard key={post.slug} post={post} />
               ))}
@@ -326,11 +326,11 @@ const Blog = () => {
           ) : (
             <div className="text-center py-20">
               <Search className="h-10 w-10 mx-auto text-muted-foreground/40 mb-4" />
-              <p className="text-lg font-semibold text-foreground/70 mb-2">No articles found</p>
-              <p className="text-sm text-muted-foreground mb-6">Try a different search term or category.</p>
+              <p className="font-serif text-xl italic text-foreground/70 mb-2">No articles found</p>
+              <p className="font-mono text-[11px] text-muted-foreground mb-8">Try a different search term or category.</p>
               <Button
                 variant="outline"
-                className="rounded-full border-foreground/20 text-foreground hover:bg-foreground/5"
+                className="rounded-none border-foreground/20 text-foreground hover:bg-foreground/5 font-mono text-[10px] tracking-[0.15em] uppercase"
                 onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
               >
                 Clear filters
