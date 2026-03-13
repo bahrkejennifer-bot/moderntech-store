@@ -86,7 +86,7 @@ const blogPostsData: Record<string, {
     date: "2026-02-02",
     category: "Health & Wellness",
     imageUrl: "https://images.unsplash.com/photo-1573405963648-854c31a4db30?w=1200&auto=format",
-    intro: "Smart rings have quietly become the most intimate wearable technology on the market. Unlike bulky smartwatches or intrusive fitness bands, a smart ring sits discreetly on your finger, tracking your health 24/7 without demanding your attention. This Valentine's Day, a smart ring might be the perfect gift for the health-conscious partner who wants insights without the screen addiction. But with Oura, Samsung Galaxy Ring, and Ultrahuman all vying for your finger, which one deserves your love (and your money)?",
+    intro: "Smart rings have quietly become the most intimate wearable technology on the market. Unlike bulky smartwatches or intrusive fitness bands, a smart ring sits discreetly on your finger, tracking your health 24/7 without demanding your attention. Whether you're treating yourself or gifting to a health-conscious loved one, a smart ring delivers insights without the screen addiction. But with Oura, Samsung Galaxy Ring, and Ultrahuman all vying for your finger, which one deserves your money?",
     youtubeVideoId: "dQw4w9WgXcQ",
     sections: [
       { type: 'heading', content: 'Why Smart Rings Are the Future of Wearables' },
@@ -114,10 +114,10 @@ const blogPostsData: Record<string, {
       { type: 'paragraph', content: "Samsung and Ultrahuman take a different approach: **no subscription required**. All features are included with the purchase price. Over a 3-year ownership period, this saves you $216 compared to Oura—a significant consideration." },
       { type: 'heading', content: 'Who Should Buy Which Ring?' },
       { type: 'list', items: ["**Choose Oura if:** Sleep optimization is your priority, you want the most accurate and actionable sleep data, and you don't mind paying for a subscription", "**Choose Samsung Galaxy Ring if:** You're already in the Samsung ecosystem, want seamless integration with your phone, and prefer no subscription fees", "**Choose Ultrahuman if:** You're interested in metabolic health, want to pair with glucose monitoring, or prioritize recovery metrics over sleep staging"] },
-      { type: 'heading', content: 'The Perfect Valentine Gift?' },
-      { type: 'paragraph', content: "A smart ring makes an exceptional Valentine's gift because it says: \"I care about your health and wellbeing, but I also respect your need to disconnect from screens.\" Unlike a smartwatch that demands attention, a smart ring quietly works in the background, helping your partner understand their body without the digital noise." },
+      { type: 'heading', content: 'The Perfect Gift for Health Enthusiasts' },
+      { type: 'paragraph', content: "A smart ring makes an exceptional gift because it says: \"I care about your health and wellbeing, but I also respect your need to disconnect from screens.\" Unlike a smartwatch that demands attention, a smart ring quietly works in the background, helping the wearer understand their body without the digital noise." },
       { type: 'paragraph', content: "If you're gifting to someone new to health tracking, the **Oura Ring Gen 4** offers the best onboarding experience and most intuitive app. For the tech-savvy Samsung user, the **Galaxy Ring** integrates beautifully with their existing setup. And for the biohacker or fitness enthusiast who wants deep metabolic insights, **Ultrahuman** delivers data that other rings simply don't." },
-      { type: 'paragraph', content: "Whatever you choose, you're giving more than a gadget—you're giving the gift of self-knowledge and the tools to live a healthier, more intentional life. And isn't that what love is all about?" }
+      { type: 'paragraph', content: "Whatever you choose, you're giving more than a gadget—you're giving the gift of self-knowledge and the tools to live a healthier, more intentional life." }
     ],
     products: [
       { title: "Oura Ring Gen 4", description: "Best-in-class sleep tracking with Readiness Score and 7-day battery life", badge: "Editor's Choice", rating: 4.8, imageUrl: ouraRingImg, affiliateLink: "https://amzn.to/4jAjZTb" },
@@ -133,7 +133,7 @@ const blogPostsData: Record<string, {
     date: "2026-02-02",
     category: "Gift Guides",
     imageUrl: stPatricksHeroImg,
-    intro: "We've all been there. You open the drawer in your home office or bedroom, and it's a graveyard of gadgets. The fitness tracker you wore twice. The smart speaker that never quite understood you. The novelty device that seemed brilliant at 2 AM while scrolling Amazon, but now just collects dust. Most tech gifts fail because they solve problems we don't actually have. They're novelties, not necessities. This Valentine's Day, give gifts that build connection, not clutter.",
+    intro: "We've all been there. You open the drawer in your home office or bedroom, and it's a graveyard of gadgets. The fitness tracker you wore twice. The smart speaker that never quite understood you. The novelty device that seemed brilliant at 2 AM while scrolling Amazon, but now just collects dust. Most tech gifts fail because they solve problems we don't actually have. They're novelties, not necessities. This year, give gifts that build connection, not clutter.",
     sections: [
       { type: 'heading', content: 'The Connection Crisis' },
       { type: 'paragraph', content: "We're living through a paradox. We have more ways to communicate than ever before, yet loneliness and disconnection are at all-time highs. According to recent studies, the average family spends less than 37 minutes per day in meaningful conversation. Parents and adult children often go weeks without real connection. Couples live parallel lives in the same house." },
@@ -158,10 +158,10 @@ const blogPostsData: Record<string, {
       { type: 'list', items: ["Will this create a new ritual or enhance an existing one?", "Does this solve a real problem in their daily life?", "Will this bring people together or isolate them further?", "Is this easy enough that they'll actually use it?"] },
       { type: 'heading', content: 'The Best Gift is Presence' },
       { type: 'paragraph', content: "Here's the truth: no gadget, no matter how smart or well-designed, can replace genuine human connection. Technology should be a bridge, not a destination. The gifts in this guide aren't magic. They won't fix a broken relationship or create connection where there's no foundation. But for families and couples who want to be closer, who are looking for tools to help them show up better for each other, these devices can make a real difference." },
-      { type: 'paragraph', content: "This Valentine's Day, don't just give a gift. Give presence. Give attention. Give the message that says: \"I see you. I value our time together. And I'm willing to invest in what we have.\" Because the best technology doesn't demand our attention—it gives us more capacity to give our attention to the people who matter most." }
+      { type: 'paragraph', content: "Don't just give a gift. Give presence. Give attention. Give the message that says: \"I see you. I value our time together. And I'm willing to invest in what we have.\" Because the best technology doesn't demand our attention—it gives us more capacity to give our attention to the people who matter most." }
     ],
     products: [
-      { title: "Oura Ring Gen 4", description: "Ultimate health tracker—tracks sleep, stress, and readiness without a screen", badge: "Valentine's Pick", rating: 4.8, imageUrl: ouraRingImg, affiliateLink: "https://www.amazon.com/dp/B0DJMJNHWX?tag=moderntechs0c-20" },
+      { title: "Oura Ring Gen 4", description: "Ultimate health tracker—tracks sleep, stress, and readiness without a screen", badge: "Top Pick", rating: 4.8, imageUrl: ouraRingImg, affiliateLink: "https://www.amazon.com/dp/B0DJMJNHWX?tag=moderntechs0c-20" },
       { title: "Hatch Restore 2", description: "Smart sleep assistant with gentle light and sound wake-up", badge: "Better Sleep", rating: 4.7, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0C5S7K1JK?tag=moderntechs0c-20" },
       { title: "Therabody Theragun Prime", description: "Professional-grade massage tech made quiet and easy for home use", rating: 4.7, imageUrl: theragunImg, affiliateLink: "https://www.amazon.com/dp/B086Z6NZ2P?tag=moderntechs0c-20" },
       { title: "Apple Watch SE", description: "Family Setup lets parents stay connected to kids without a phone", badge: "Family Safety", rating: 4.8, imageUrl: fitbitImg, affiliateLink: "https://www.amazon.com/dp/B0CHX9N594?tag=moderntechs0c-20" },
