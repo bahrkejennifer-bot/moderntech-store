@@ -51,6 +51,7 @@ import rukoRobotImg from "@/assets/products/ruko-1088-robot.jpg";
 import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
 import stPatricksHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
+import smartRingHeroImg from "@/assets/heroes/smart-ring-guide-hero.png";
 
 interface BlogProduct {
   title: string;
