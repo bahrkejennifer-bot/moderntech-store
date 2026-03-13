@@ -6,47 +6,54 @@ import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 
+import shureMv7Img from "@/assets/products/shure-mv7-plus.jpg";
+import elgatoStreamDeckImg from "@/assets/products/elgato-stream-deck-mk2.jpg";
+import elgatoRingLightImg from "@/assets/products/elgato-ring-light.jpg";
+import sonyZv1Img from "@/assets/products/sony-zv1-ii.jpg";
+import djiOm7Img from "@/assets/products/dji-om7-gimbal.jpg";
+import rodePodmicImg from "@/assets/products/rode-podmic-usb.jpg";
+
 const products = [
   {
     title: "Shure MV7+ Podcast Microphone",
     description: "USB/XLR dynamic mic with auto-leveling & noise reduction. The 2026 upgrade to the podcaster's gold standard.",
     rating: 4.8,
-    imageUrl: "https://m.media-amazon.com/images/I/51h3FjKygML._AC_SX679_.jpg",
+    imageUrl: shureMv7Img,
     affiliateLink: "https://www.amazon.com/dp/B0DJY8R8ZP?tag=moderntechs0c-20",
   },
   {
     title: "Elgato Stream Deck MK.2 — Creator Command Center",
     description: "15 programmable LCD keys for streaming, editing & workflow automation. The essential creator tool of 2026.",
     rating: 4.8,
-    imageUrl: "https://m.media-amazon.com/images/I/61dnrBMaYZL._AC_SX679_.jpg",
+    imageUrl: elgatoStreamDeckImg,
     affiliateLink: "https://www.amazon.com/dp/B09738CV2Q?tag=moderntechs0c-20",
   },
   {
     title: "Elgato Ring Light — Pro Studio Lighting",
     description: "Edge-lit LED ring with app control & camera mount. Perfect glow for content creators, streamers & video calls.",
     rating: 4.6,
-    imageUrl: "https://m.media-amazon.com/images/I/51GXosfRdKL._AC_SX679_.jpg",
+    imageUrl: elgatoRingLightImg,
     affiliateLink: "https://www.amazon.com/dp/B0CLDD14VG?tag=moderntechs0c-20",
   },
   {
     title: "Sony ZV-1 II — Vlog Camera for Creators",
     description: "Ultra-wide 18mm lens, cinematic bokeh & directional 3-capsule mic. Built for YouTube, TikTok & live streaming.",
     rating: 4.6,
-    imageUrl: "https://m.media-amazon.com/images/I/61V+x6UClZL._AC_SX679_.jpg",
+    imageUrl: sonyZv1Img,
     affiliateLink: "https://www.amazon.com/dp/B0C5CCJNT3?tag=moderntechs0c-20",
   },
   {
     title: "DJI OM 7 — Smartphone Gimbal Stabilizer",
     description: "3-axis stabilization with ActiveTrack 6.0 & gesture control. Cinematic solo shoots from your phone.",
     rating: 4.7,
-    imageUrl: "https://m.media-amazon.com/images/I/51d4YKfKY1L._AC_SX679_.jpg",
+    imageUrl: djiOm7Img,
     affiliateLink: "https://www.amazon.com/dp/B0DNNKMJ3V?tag=moderntechs0c-20",
   },
   {
     title: "Rode PodMic USB — Dynamic Broadcast Microphone",
     description: "Broadcast-quality USB/XLR mic with built-in pop filter. Plug and play for podcasts, streams & voiceovers.",
     rating: 4.7,
-    imageUrl: "https://m.media-amazon.com/images/I/71FYaOwWJGL._AC_SX679_.jpg",
+    imageUrl: rodePodmicImg,
     affiliateLink: "https://www.amazon.com/dp/B0BX2SZ1SM?tag=moderntechs0c-20",
   },
 ];
@@ -56,7 +63,7 @@ const pinterestPins = [
     title: "Shure MV7+",
     subtitle: "The 2026 Podcaster's Mic",
     rating: "4.8",
-    imageUrl: "https://m.media-amazon.com/images/I/51h3FjKygML._AC_SX679_.jpg",
+    imageUrl: shureMv7Img,
     affiliateLink: "https://www.amazon.com/dp/B0DJY8R8ZP?tag=moderntechs0c-20",
     pinterestShareUrl: "https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fmoderntech-store.lovable.app%2Fcreator-gear&description=Shure%20MV7%2B%20-%20Best%20Podcast%20Microphone%202026",
     saves: "3.2k",
@@ -65,7 +72,7 @@ const pinterestPins = [
     title: "Elgato Stream Deck MK.2",
     subtitle: "Creator Command Center",
     rating: "4.8",
-    imageUrl: "https://m.media-amazon.com/images/I/61dnrBMaYZL._AC_SX679_.jpg",
+    imageUrl: elgatoStreamDeckImg,
     affiliateLink: "https://www.amazon.com/dp/B09738CV2Q?tag=moderntechs0c-20",
     pinterestShareUrl: "https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fmoderntech-store.lovable.app%2Fcreator-gear&description=Elgato%20Stream%20Deck%20MK.2%20-%20Essential%20Creator%20Tool%202026",
     saves: "4.1k",
@@ -74,7 +81,7 @@ const pinterestPins = [
     title: "Sony ZV-1 II",
     subtitle: "Vlog Camera for 2026",
     rating: "4.6",
-    imageUrl: "https://m.media-amazon.com/images/I/61V+x6UClZL._AC_SX679_.jpg",
+    imageUrl: sonyZv1Img,
     affiliateLink: "https://www.amazon.com/dp/B0C5CCJNT3?tag=moderntechs0c-20",
     pinterestShareUrl: "https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fmoderntech-store.lovable.app%2Fcreator-gear&description=Sony%20ZV-1%20II%20-%20Best%20Vlog%20Camera%202026",
     saves: "2.9k",
@@ -89,7 +96,7 @@ const CreatorGear = () => {
         <meta name="description" content="Shop the hottest creator gear of 2026 — Shure MV7+, Elgato Stream Deck, Sony ZV-1 II & more. Professional podcast mics, vlog cameras & streaming essentials." />
         <meta property="og:title" content="Best Creator Gear & Streaming Tech 2026 | Mics, Cameras & More" />
         <meta property="og:description" content="Shop the hottest creator gear of 2026 — Shure MV7+, Elgato Stream Deck, Sony ZV-1 II & more." />
-        <meta property="og:image" content="https://m.media-amazon.com/images/I/51h3FjKygML._AC_SX679_.jpg" />
+        <meta property="og:image" content="https://moderntech.store/assets/products/shure-mv7-plus.jpg" />
         <meta property="og:url" content="https://moderntech.store/creator-gear" />
         <meta property="og:type" content="website" />
       </Helmet>
