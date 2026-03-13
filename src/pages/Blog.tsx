@@ -358,32 +358,32 @@ interface BlogPostItem {
 }
 
 const BlogCard = ({ post }: { post: BlogPostItem }) => (
-  <Link to={`/blog/${post.slug}`} className="group block h-full">
-    <article className="border border-border overflow-hidden h-full flex flex-col hover:shadow-elegant transition-all duration-300">
-      <div className="aspect-[16/10] overflow-hidden relative">
+  <Link to={`/blog/${post.slug}`} className="group block h-full border-r border-b border-border">
+    <article className="overflow-hidden h-full flex flex-col hover:bg-card transition-all duration-300">
+      <div className="aspect-[4/3] overflow-hidden relative">
         <img
           src={post.imageUrl}
           alt={post.title}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         {post.isGenerated && (
-          <Badge className="absolute top-3 right-3 bg-foreground text-background gap-1 text-[10px] font-mono">
+          <Badge className="absolute top-3 right-3 bg-foreground text-background gap-1 text-[9px] font-mono rounded-none px-2">
             <Sparkles className="h-3 w-3" /> AI
           </Badge>
         )}
       </div>
       <div className="p-6 flex flex-col flex-1">
-        <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-3">
+        <div className="flex items-center gap-2 font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground mb-3">
           <span>{post.category}</span>
           <span className="ml-auto flex items-center gap-1"><Clock className="h-3 w-3" /> {post.readTime}</span>
         </div>
-        <h3 className="font-serif text-lg italic leading-snug line-clamp-2 mb-3 group-hover:text-foreground/70 transition-colors">
+        <h3 className="font-serif text-xl leading-snug line-clamp-2 mb-3 group-hover:text-foreground/70 transition-colors" style={{ fontStyle: "italic" }}>
           {post.title}
         </h3>
-        <p className="font-mono text-[11px] text-muted-foreground line-clamp-2 leading-relaxed flex-1">
+        <p className="font-mono text-[10px] text-muted-foreground line-clamp-2 leading-[1.7] flex-1">
           {post.excerpt}
         </p>
-        <span className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.15em] uppercase text-foreground mt-5 border-b border-foreground/20 pb-0.5 self-start group-hover:border-foreground/50 transition-colors">
+        <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground mt-5 group-hover:text-foreground transition-colors">
           Read more <ArrowRight className="h-3 w-3" />
         </span>
       </div>
