@@ -212,6 +212,81 @@ Dark base, bold blue accents, crisp white type
   height: 1px;
 }
 
+/* ═══════════════════════════════════════════
+   VOGUE TECH — editorial luxury aesthetic
+   Apply .vogue-theme to page wrappers
+   ═══════════════════════════════════════════ */
+.vogue-theme {
+  --background: 40 20% 97%;
+  --foreground: 0 0% 7%;
+
+  --card: 40 20% 97%;
+  --card-foreground: 0 0% 7%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 7%;
+
+  --primary: 0 0% 7%;
+  --primary-foreground: 40 20% 97%;
+
+  --secondary: 40 10% 93%;
+  --secondary-foreground: 0 0% 7%;
+
+  --muted: 40 10% 93%;
+  --muted-foreground: 0 0% 45%;
+
+  --accent: 30 15% 88%;
+  --accent-foreground: 0 0% 7%;
+
+  --destructive: 0 72% 50%;
+  --destructive-foreground: 0 85% 97%;
+
+  --border: 30 5% 85%;
+  --input: 30 5% 85%;
+  --ring: 0 0% 7%;
+
+  --shadow-card: none;
+  --shadow-elegant: 0 2px 20px hsl(0 0% 0% / 0.04);
+  --shadow-soft: 0 1px 8px hsl(0 0% 0% / 0.03);
+
+  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
+  --font-mono: 'IBM Plex Mono', 'Menlo', monospace;
+}
+
+.vogue-theme h1,
+.vogue-theme h2,
+.vogue-theme h3,
+.vogue-theme h4,
+.vogue-theme h5,
+.vogue-theme h6 {
+  font-family: var(--font-serif);
+  color: hsl(0 0% 7%);
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.vogue-theme .font-mono-tech {
+  font-family: var(--font-mono);
+}
+
+.vogue-theme .glass-dark {
+  background: hsl(40 20% 97% / 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.vogue-theme .gradient-text {
+  background: linear-gradient(135deg, hsl(0 0% 7%), hsl(0 0% 30%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.vogue-theme .glow-line {
+  background: hsl(30 5% 85%);
+  height: 0.5px;
+}
+
 @layer utilities {
   .glass-dark {
     background: hsl(240 20% 7% / 0.75);
