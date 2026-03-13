@@ -162,10 +162,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── MARQUEE DIVIDER ── */}
-      <div className="border-y border-border overflow-hidden py-4">
-        <p className="font-mono text-[9px] tracking-[0.5em] uppercase text-muted-foreground text-center">
-          Fresh Off The Press // Curated Selection // Spring 2026 // Fresh Off The Press // Curated Selection
+      {/* ── MARQUEE DIVIDER — dark olive banner like Noé ── */}
+      <div className="overflow-hidden py-4" style={{ backgroundColor: 'hsl(40 10% 12%)' }}>
+        <p className="font-mono text-[9px] tracking-[0.5em] uppercase text-center" style={{ color: 'hsl(40 18% 91%)' }}>
+          Fresh Off The Press · Curated Selection · Spring 2026 · Fresh Off The Press · Curated Selection
         </p>
       </div>
 
