@@ -64,6 +64,11 @@ const SmartHomeSafetyChecklist = () => {
       <Helmet>
         <title>Free Parent's Smart Home Safety Checklist 2026 | Modern Tech</title>
         <meta name="description" content="Download your free Smart Home Safety Checklist — a room-by-room guide to protecting your family with smart cameras, locks, sensors & more. Rated by parents, for parents." />
+        <meta property="og:title" content="Free Parent's Smart Home Safety Checklist 2026" />
+        <meta property="og:description" content="Room-by-room guide to protecting your family with smart cameras, locks, sensors & more." />
+        <meta property="og:image" content="https://moderntech.store/images/products/smart-home-safety-checklist-cover.jpg" />
+        <meta property="og:url" content="https://moderntech.store/smart-home-safety-checklist" />
+        <meta property="og:type" content="article" />
       </Helmet>
       <Navigation />
 

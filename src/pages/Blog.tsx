@@ -158,6 +158,15 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Modern Tech Blog | Reviews, Deals & Buying Guides</title>
+        <meta name="description" content="Expert tech reviews, buying guides and deals on smart home, gaming, wellness gear and more. Updated weekly." />
+        <meta property="og:title" content="Modern Tech Blog | Reviews, Deals & Buying Guides" />
+        <meta property="og:description" content="Expert tech reviews, buying guides and deals on smart home, gaming, wellness gear and more." />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format" />
+        <meta property="og:url" content="https://moderntech.store/blog" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Navigation />
 
       {/* ── Hero Section ── */}

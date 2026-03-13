@@ -54,6 +54,11 @@ const ScreenFreeKidsGuide = () => {
       <Helmet>
         <title>Free Screen-Free Kids Guide 2026 | 10 Tech Toys That Actually Teach</title>
         <meta name="description" content="Download the free Screen-Free Kids Guide — 10 parent-approved tech toys that teach coding, STEM & creativity without screens. Ranked by age group for ages 3-12." />
+        <meta property="og:title" content="Free Screen-Free Kids Guide 2026" />
+        <meta property="og:description" content="10 parent-approved tech toys that teach coding, STEM & creativity without screens." />
+        <meta property="og:image" content="https://moderntech.store/images/products/screen-free-kids-cover.jpg" />
+        <meta property="og:url" content="https://moderntech.store/screen-free-kids-guide" />
+        <meta property="og:type" content="article" />
       </Helmet>
       <Navigation />
 

@@ -38,6 +38,15 @@ const AmazonAssociateGuide = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Free Amazon Associate Quick-Start Guide 2026 | Modern Tech</title>
+        <meta name="description" content="Everything you need to launch your Amazon affiliate journey — from signup to your first commission, in 5 actionable pages." />
+        <meta property="og:title" content="Free Amazon Associate Quick-Start Guide 2026" />
+        <meta property="og:description" content="Launch your Amazon affiliate journey — from signup to your first commission in 5 pages." />
+        <meta property="og:image" content="https://moderntech.store/images/products/amazon-associate-guide-cover.jpg" />
+        <meta property="og:url" content="https://moderntech.store/amazon-associate-guide" />
+        <meta property="og:type" content="article" />
+      </Helmet>
       <Navigation />
 
       {/* Hero */}

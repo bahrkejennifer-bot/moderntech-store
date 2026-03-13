@@ -194,6 +194,15 @@ const DigitalProducts = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Digital Tech Guides & Downloads | Modern Tech</title>
+        <meta name="description" content="Navigate your next tech purchase with confidence — curated digital guides for smart home, gaming, fitness trackers and more." />
+        <meta property="og:title" content="Digital Tech Guides & Downloads | Modern Tech" />
+        <meta property="og:description" content="Curated digital guides for smart home, gaming, fitness trackers and more." />
+        <meta property="og:image" content="https://moderntech.store/images/products/smart-home-guide-cover.jpg" />
+        <meta property="og:url" content="https://moderntech.store/digital-products" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Navigation />
       <div className="container mx-auto px-4 py-12">
         <div className="mb-12 text-center">
