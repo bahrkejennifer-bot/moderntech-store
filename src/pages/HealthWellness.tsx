@@ -5,13 +5,14 @@ import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
+import ouraRing4Img from "@/assets/products/oura-ring-4.jpg";
 
 const products = [
   {
     title: "Oura Ring 4 — Smart Ring Fitness Tracker",
     description: "Titanium wearable tech for sleep quality tracking, HRV monitoring & longevity insights. The biohacking essential of 2026.",
     rating: 4.8,
-    imageUrl: "https://m.media-amazon.com/images/I/61r2m3e2jPL._AC_SX679_.jpg",
+    imageUrl: ouraRing4Img,
     affiliateLink: "https://www.amazon.com/dp/B0DHY5C1X1?tag=moderntechs0c-20",
   },
   {
@@ -59,7 +60,7 @@ const HealthWellness = () => {
         <meta name="description" content="Discover the hottest wellness tech of 2026 — Oura Ring 4, Apple Watch Series 10, WHOOP 4.0 & more. Smart ring fitness trackers, biohacking tools & longevity tech." />
         <meta property="og:title" content="Best Smart Ring & Wellness Tech 2026 | Biohacking Essentials" />
         <meta property="og:description" content="Discover the hottest wellness tech of 2026 — Oura Ring 4, Apple Watch Series 10, WHOOP 4.0 & more." />
-        <meta property="og:image" content="https://m.media-amazon.com/images/I/61r2m3e2jPL._AC_SX679_.jpg" />
+        <meta property="og:image" content="https://moderntech.store/images/products/oura-ring-4.jpg" />
         <meta property="og:url" content="https://moderntech.store/health-wellness" />
         <meta property="og:type" content="website" />
       </Helmet>
