@@ -138,7 +138,12 @@ const CreatorGear = () => {
                 key={pin.title}
                 className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="aspect-[4/5] overflow-hidden relative">
+                <a
+                  href={pin.affiliateLink}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="block aspect-[4/5] overflow-hidden relative"
+                >
                   <img
                     src={pin.imageUrl}
                     alt={`${pin.title} — best creator tech 2026 for podcasting and streaming`}

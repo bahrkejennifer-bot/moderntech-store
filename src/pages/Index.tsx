@@ -117,15 +117,20 @@ const Index = () => {
                 </a>
               </div>
 
-              {/* Product image */}
-              <div className="aspect-square overflow-hidden">
+              {/* Product image — links to Amazon */}
+              <a
+                href={item.affiliateLink}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="block aspect-square overflow-hidden"
+              >
                 <img
                   src={item.image}
                   alt={item.alt}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
-              </div>
+              </a>
 
               {/* Product info */}
               <div className="p-5">
