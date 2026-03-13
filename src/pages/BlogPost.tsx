@@ -667,22 +667,24 @@ const BlogPost = () => {
 
             <article>
               {/* Header */}
-              <header className="mb-12 pb-8 border-b border-border/30">
+              <header className="mb-14 pb-10 border-b border-border">
                 <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5 flex-wrap">
-                  <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{post!.category}</span>
+                  <span className="font-semibold uppercase tracking-[0.15em] text-foreground/50">{post!.category}</span>
+                  <span className="w-1 h-1 rounded-full bg-border" />
                   <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(post!.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+                  <span className="w-1 h-1 rounded-full bg-border" />
                   <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> 8 min read</span>
                 </div>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.08] mb-6">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.08] mb-6 text-foreground">
                   {post!.title}
                 </h1>
-                <p className="text-lg text-foreground/60 leading-relaxed max-w-2xl">
+                <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
                   {post!.intro}
                 </p>
-                <div className="flex items-center gap-4 mt-6">
+                <div className="flex items-center gap-4 mt-8">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">MT</div>
-                    <span className="text-sm text-muted-foreground">by <span className="text-foreground/80 font-medium">Modern Tech LLC</span></span>
+                    <div className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center text-foreground text-xs font-bold">MT</div>
+                    <span className="text-sm text-muted-foreground">by <span className="text-foreground font-medium">Modern Tech LLC</span></span>
                   </div>
                 </div>
               </header>
