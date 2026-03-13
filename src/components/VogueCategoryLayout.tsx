@@ -19,34 +19,34 @@ const VogueCategoryLayout = ({ title, subtitle, children }: VogueCategoryLayoutP
       <div className="max-w-6xl mx-auto px-8 pt-10">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+          className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft className="h-3 w-3" />
-          Back to Home
+          Back
         </Link>
       </div>
 
       {/* Header */}
       <header className="max-w-5xl mx-auto px-8 pt-10 pb-6 text-center">
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl italic font-light leading-tight tracking-tight">
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>
           {title}
         </h1>
-        <p className="mt-4 font-mono text-xs text-muted-foreground max-w-lg mx-auto leading-relaxed">
+        <p className="mt-5 font-mono text-[10px] text-muted-foreground max-w-md mx-auto leading-[1.8]">
           {subtitle}
         </p>
-        <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground mt-6">
+        <p className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground mt-8">
           As an Amazon Associate, I earn from qualifying purchases
         </p>
       </header>
 
       {/* Editorial divider */}
-      <div className="max-w-5xl mx-auto px-8 pb-10">
+      <div className="max-w-5xl mx-auto px-8 pb-12">
         <div className="h-px bg-border" />
       </div>
 
       {/* Product grid */}
       <section className="max-w-6xl mx-auto px-8 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-border">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-border">
           {children}
         </div>
       </section>
