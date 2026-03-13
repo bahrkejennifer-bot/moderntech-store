@@ -647,119 +647,110 @@ const BlogPost = () => {
 
       <Navigation />
 
-      {/* Hero Image */}
-      <div className="relative h-[460px] overflow-hidden">
-        <img
-          src={post!.imageUrl}
-          alt={post!.title}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
-      </div>
+      {/* Nav separator */}
+      <div className="border-b border-border/40" />
 
-      <div className="max-w-7xl mx-auto px-4 -mt-40 relative z-10 pb-16">
-        <div className="flex gap-10">
-          {/* Main content */}
-          <div className="max-w-3xl flex-1 min-w-0">
-            <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8 group">
-              <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> Back to Blog
-            </Link>
+      {/* Centered magazine column */}
+      <div className="max-w-[800px] mx-auto px-6 pt-12 pb-20">
+        {/* Category + Meta row */}
+        <div className="flex items-center justify-center gap-3 text-xs text-muted-foreground mb-6 flex-wrap">
+          <span className="font-semibold uppercase tracking-[0.15em] text-primary">{post!.category}</span>
+          <span className="w-1 h-1 rounded-full bg-border" />
+          <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(post!.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+          <span className="w-1 h-1 rounded-full bg-border" />
+          <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> 8 min read</span>
+        </div>
 
-            <article>
-              {/* Header */}
-              <header className="mb-14 pb-10 border-b border-border">
-                <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5 flex-wrap">
-                  <span className="font-semibold uppercase tracking-[0.15em] text-foreground/50">{post!.category}</span>
-                  <span className="w-1 h-1 rounded-full bg-border" />
-                  <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(post!.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
-                  <span className="w-1 h-1 rounded-full bg-border" />
-                  <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> 8 min read</span>
-                </div>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.08] mb-6 text-foreground">
-                  {post!.title}
-                </h1>
-                <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                  {post!.intro}
-                </p>
-                <div className="flex items-center gap-4 mt-8">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center text-foreground text-xs font-bold">MT</div>
-                    <span className="text-sm text-muted-foreground">by <span className="text-foreground font-medium">Modern Tech LLC</span></span>
-                  </div>
-                </div>
-              </header>
+        {/* Centered Title */}
+        <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight leading-[1.12] mb-6 text-foreground text-center">
+          {post!.title}
+        </h1>
 
-              {/* Products Section */}
-              {post!.products.length > 0 && (
-                <section className="mb-14">
-                  <div className="flex items-center gap-4 mb-10">
-                    <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground whitespace-nowrap">
-                      Featured Products
-                    </h2>
-                    <div className="h-px flex-1 bg-border" />
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {post!.products.map((product, index) => (
-                      <ProductCard key={index} product={product} />
-                    ))}
-                  </div>
-                </section>
-              )}
+        {/* Author */}
+        <div className="flex items-center justify-center gap-2 mb-10">
+          <div className="w-7 h-7 rounded-full bg-foreground/10 flex items-center justify-center text-foreground text-[10px] font-bold">MT</div>
+          <span className="text-sm text-muted-foreground">by <span className="text-foreground font-medium">Modern Tech LLC</span></span>
+        </div>
 
-              {/* Article Body */}
-              <div className="mb-14">
-                {post!.sections.map((section, index) => renderSection(section, index))}
+        {/* Hero Image — full container width, zero side margins */}
+        <div className="rounded-xl overflow-hidden mb-12 -mx-0">
+          <img
+            src={post!.imageUrl}
+            alt={post!.title}
+            className="w-full h-auto object-cover"
+          />
+        </div>
+
+        {/* Intro */}
+        <p className="text-lg text-muted-foreground leading-[1.85] mb-12 border-l-2 border-primary/30 pl-6 italic">
+          {post!.intro}
+        </p>
+
+        <article>
+          {/* TOC inline (for smaller screens) */}
+          {tocEntries.length > 0 && (
+            <nav className="mb-14 p-6 rounded-xl border border-border bg-card">
+              <div className="flex items-center gap-2 mb-4">
+                <List className="h-4 w-4 text-muted-foreground" />
+                <span className="text-xs font-semibold tracking-[0.15em] uppercase text-muted-foreground">Table of Contents</span>
               </div>
+              <ul className="space-y-1.5">
+                {tocEntries.map((entry) => (
+                  <li key={entry.id}>
+                    <button
+                      onClick={() => scrollToSection(entry.id)}
+                      className={`w-full text-left text-sm leading-snug py-1 transition-colors ${
+                        entry.level === 3 ? 'pl-5' : 'pl-0'
+                      } ${
+                        activeId === entry.id
+                          ? 'text-foreground font-medium'
+                          : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      {entry.title}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
 
-              <DownloadCTA />
-              <AffiliateDisclosure />
-            </article>
+          {/* Products Section */}
+          {post!.products.length > 0 && (
+            <section className="mb-14">
+              <div className="flex items-center gap-4 mb-10">
+                <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground whitespace-nowrap">
+                  Featured Products
+                </h2>
+                <div className="h-px flex-1 bg-border" />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {post!.products.map((product, index) => (
+                  <ProductCard key={index} product={product} />
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Article Body */}
+          <div className="mb-14">
+            {post!.sections.map((section, index) => renderSection(section, index))}
           </div>
 
-          {/* Table of Contents Sidebar */}
-          {tocEntries.length > 0 && (
-            <aside className="hidden xl:block w-64 shrink-0">
-              <nav className="sticky top-24">
-                <div className="flex items-center gap-2 mb-5 pb-3 border-b border-border">
-                  <List className="h-4 w-4 text-foreground/40" />
-                  <span className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground">On This Page</span>
-                </div>
-                <ul className="space-y-1">
-                  {tocEntries.map((entry) => (
-                    <li key={entry.id}>
-                      <button
-                        onClick={() => scrollToSection(entry.id)}
-                        className={`w-full text-left text-[13px] leading-snug py-1.5 transition-all duration-200 border-l-2 ${
-                          entry.level === 3 ? 'pl-5' : 'pl-3'
-                        } ${
-                          activeId === entry.id
-                            ? 'border-foreground text-foreground font-medium'
-                            : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
-                        }`}
-                      >
-                        {entry.title}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+          <DownloadCTA />
+          <AffiliateDisclosure />
 
-                {/* Progress indicator */}
-                <div className="mt-6 pt-4 border-t border-border">
-                  <div className="flex items-center justify-between text-[11px] text-muted-foreground mb-2">
-                    <span>Reading progress</span>
-                    <span>{Math.round(progress)}%</span>
-                  </div>
-                  <div className="h-1 w-full bg-secondary rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-foreground/30 rounded-full transition-[width] duration-150"
-                      style={{ width: `${progress}%` }}
-                    />
-                  </div>
-                </div>
-              </nav>
-            </aside>
-          )}
-        </div>
+          {/* Back to Blog footer */}
+          <div className="mt-16 pt-8 border-t border-border text-center">
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
+            >
+              <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+              Back to Blog
+            </Link>
+          </div>
+        </article>
       </div>
 
       {/* Scroll to top */}
