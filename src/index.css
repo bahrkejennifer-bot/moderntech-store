@@ -271,7 +271,7 @@ Dark base, bold blue accents, crisp white type
 }
 
 .vogue-theme .glass-dark {
-  background: hsl(40 18% 91% / 0.92);
+  background: hsl(40 10% 12% / 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
