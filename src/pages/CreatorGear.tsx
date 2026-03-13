@@ -138,34 +138,35 @@ const CreatorGear = () => {
                 key={pin.title}
                 className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1"
               >
-                <a
-                  href={pin.affiliateLink}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  className="block aspect-[4/5] overflow-hidden relative"
-                >
-                  <img
-                    src={pin.imageUrl}
-                    alt={`${pin.title} — best creator tech 2026 for podcasting and streaming`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-start justify-end p-3">
+                <div className="aspect-[4/5] overflow-hidden relative">
+                  <a
+                    href={pin.affiliateLink}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    className="block w-full h-full"
+                  >
+                    <img
+                      src={pin.imageUrl}
+                      alt={`${pin.title} — best creator tech 2026 for podcasting and streaming`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </a>
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-start justify-end p-3 pointer-events-none">
                     <a
                       href={pin.pinterestShareUrl}
                       target="_blank"
                       rel="noopener noreferrer nofollow"
-                      className="flex items-center gap-1.5 bg-destructive hover:bg-destructive/90 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg transition-all duration-200"
-                      onClick={(e) => e.stopPropagation()}
+                      className="pointer-events-auto flex items-center gap-1.5 bg-destructive hover:bg-destructive/90 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg transition-all duration-200"
                     >
                       <Bookmark className="h-3.5 w-3.5" />
                       Save
                     </a>
                   </div>
-                  <div className="absolute bottom-3 left-3 backdrop-blur-md bg-black/50 text-white text-xs font-medium px-2.5 py-1 rounded-full">
+                  <div className="absolute bottom-3 left-3 backdrop-blur-md bg-black/50 text-white text-xs font-medium px-2.5 py-1 rounded-full pointer-events-none">
                     ❤️ {pin.saves} saves
                   </div>
-                </a>
+                </div>
                 <div className="p-4">
                   <h3 className="font-bold text-foreground text-lg leading-tight">{pin.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{pin.subtitle}</p>
