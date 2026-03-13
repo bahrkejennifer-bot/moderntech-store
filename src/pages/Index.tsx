@@ -159,6 +159,48 @@ const Index = () => {
         </div>
       </section>
 
+      {/* ── THE ESSENTIALS — zigzag section ── */}
+      <section className="relative py-16 md:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center">
+          {/* Text block — left side with whitespace */}
+          <div className="px-12 md:px-16 lg:px-24 xl:px-32 py-12 md:py-0 order-2 md:order-1">
+            <p className="font-mono text-[9px] tracking-[0.4em] uppercase text-muted-foreground mb-10">
+              The Essentials
+            </p>
+            <div className="space-y-5 mb-12">
+              {[
+                { num: "01", label: "The Sculptural Ring" },
+                { num: "02", label: "Precision Hardware" },
+                { num: "03", label: "Ambient Connections" },
+              ].map((item) => (
+                <p key={item.num} className="font-mono text-[11px] tracking-[0.15em] uppercase text-foreground/70">
+                  <span className="text-muted-foreground">{item.num}</span>
+                  <span className="mx-3 text-muted-foreground">//</span>
+                  {item.label}
+                </p>
+              ))}
+            </div>
+            <Link
+              to="/health-wellness"
+              className="inline-flex items-center gap-2 font-serif text-lg tracking-tight hover:opacity-60 transition-opacity duration-300"
+              style={{ fontStyle: "italic" }}
+            >
+              Shop the Collection <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          {/* Image — bleeds to right edge */}
+          <div className="overflow-hidden order-1 md:order-2">
+            <img
+              src={essentialsImg}
+              alt="Top-down workspace with smart ring, laptop, headphones, and tulips"
+              className="w-full h-auto object-cover"
+              style={{ maxHeight: '65vh' }}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* ── MARQUEE DIVIDER — dark olive banner like Noé ── */}
       <div className="overflow-hidden py-4" style={{ backgroundColor: 'hsl(40 10% 12%)' }}>
         <p className="font-mono text-[9px] tracking-[0.5em] uppercase text-center" style={{ color: 'hsl(40 18% 91%)' }}>
