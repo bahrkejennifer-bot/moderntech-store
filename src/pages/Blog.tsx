@@ -361,28 +361,23 @@ interface BlogPostItem {
 
 const BlogCard = ({ post }: { post: BlogPostItem }) => (
   <Link to={`/blog/${post.slug}`} className="group block h-full">
-    <article className="rounded-xl border border-border/40 bg-card overflow-hidden h-full flex flex-col hover:border-primary/30 hover:shadow-card transition-all duration-300">
-      {/* Image */}
+    <article className="rounded-xl border border-border/30 bg-card overflow-hidden h-full flex flex-col hover:border-primary/20 hover:shadow-elegant transition-all duration-300">
       <div className="aspect-[16/10] overflow-hidden relative">
         <img
           src={post.imageUrl}
           alt={post.title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent" />
         {post.isGenerated && (
           <Badge className="absolute top-3 right-3 bg-primary/90 text-primary-foreground gap-1 text-[10px]">
             <Sparkles className="h-3 w-3" /> AI Roundup
           </Badge>
         )}
       </div>
-
-      {/* Content */}
       <div className="p-5 flex flex-col flex-1">
         <div className="flex items-center gap-2 text-[11px] text-muted-foreground mb-3">
-          <span className="text-primary font-semibold uppercase tracking-wide">{post.category}</span>
-          <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-          <span>{new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
+          <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full text-[10px]">{post.category}</span>
           <span className="ml-auto flex items-center gap-1"><Clock className="h-3 w-3" /> {post.readTime}</span>
         </div>
         <h3 className="text-base font-bold leading-snug line-clamp-2 mb-2 group-hover:text-primary transition-colors tracking-tight">
