@@ -118,7 +118,7 @@ const Navigation = () => {
               </Link>
               <button
                 onClick={() => setMobileShopOpen(!mobileShopOpen)}
-                className="flex items-center justify-between font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+                className="flex items-center justify-between font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors"
               >
                 Shop
                 <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${mobileShopOpen ? "rotate-180" : ""}`} />
