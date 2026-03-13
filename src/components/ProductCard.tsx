@@ -72,7 +72,7 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
           <h3 className="text-base font-semibold line-clamp-2 mb-1.5 group-hover:text-primary transition-colors">{title}</h3>
           <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed flex-1">{description}</p>
 
-          {/* Pinterest actions */}
+          {/* Pinterest action */}
           <div className="flex items-center gap-2 mt-4" onClick={(e) => e.preventDefault()}>
             <button
               onClick={handlePinToPinterest}
@@ -85,11 +85,6 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
               </svg>
               {pinning ? "Pinning…" : "Pin it"}
             </button>
-            <PinterestSaveButton
-              url={affiliateLink}
-              media={imageUrl}
-              description={title + " — Shop on Modern Tech 2026"}
-            />
           </div>
 
           {/* Footer */}
