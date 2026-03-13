@@ -49,6 +49,7 @@ import vtechImg from "@/assets/products/vtech-kidizoom-dx3.jpg";
 import rukoRobotImg from "@/assets/products/ruko-1088-robot.jpg";
 import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
+import stPatricksHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
 
 interface BlogProduct {
   title: string;
@@ -131,7 +132,7 @@ const blogPostsData: Record<string, {
     title: "2026 Valentine Gift Guide: Tech for Family Edition",
     date: "2026-02-02",
     category: "Gift Guides",
-    imageUrl: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1200&auto=format",
+    imageUrl: stPatricksHeroImg,
     intro: "We've all been there. You open the drawer in your home office or bedroom, and it's a graveyard of gadgets. The fitness tracker you wore twice. The smart speaker that never quite understood you. The novelty device that seemed brilliant at 2 AM while scrolling Amazon, but now just collects dust. Most tech gifts fail because they solve problems we don't actually have. They're novelties, not necessities. This Valentine's Day, give gifts that build connection, not clutter.",
     sections: [
       { type: 'heading', content: 'The Connection Crisis' },
