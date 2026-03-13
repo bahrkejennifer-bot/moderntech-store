@@ -52,13 +52,14 @@ const ScreenFreeKidsGuide = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Free Screen-Free Kids Guide 2026 | 10 Tech Toys That Actually Teach</title>
-        <meta name="description" content="Download the free Screen-Free Kids Guide — 10 parent-approved tech toys that teach coding, STEM & creativity without screens. Ranked by age group for ages 3-12." />
-        <meta property="og:title" content="Free Screen-Free Kids Guide 2026" />
+        <title>Free Screen-Free Kids Guide 2026 | Modern Tech LLC</title>
+        <meta name="description" content="Download the free Screen-Free Kids Guide — 10 parent-approved tech toys that teach coding, STEM & creativity. By Modern Tech LLC." />
+        <meta property="og:title" content="Free Screen-Free Kids Guide 2026 — by Modern Tech LLC" />
         <meta property="og:description" content="10 parent-approved tech toys that teach coding, STEM & creativity without screens." />
         <meta property="og:image" content="https://moderntech.store/images/products/screen-free-kids-cover.jpg" />
         <meta property="og:url" content="https://moderntech.store/screen-free-kids-guide" />
         <meta property="og:type" content="article" />
+        <meta name="author" content="Modern Tech LLC" />
       </Helmet>
       <Navigation />
 
@@ -79,6 +80,7 @@ const ScreenFreeKidsGuide = () => {
                   <span className="text-yellow-500">10 Tech Toys</span>{" "}
                   That Actually Teach
                 </h1>
+                <p className="text-sm text-muted-foreground mb-4 font-medium">by Modern Tech LLC</p>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   Parent-approved educational tech for ages 3–12. Coding robots, audio players, STEM kits & more — no screens required. Written by parents, for parents.
                 </p>

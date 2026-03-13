@@ -62,13 +62,14 @@ const SmartRingGuide = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Free Smart Ring Buyer's Guide 2026 | Oura Ring 4 & More</title>
-        <meta name="description" content="Download the free Smart Ring Buyer's Guide — compare Oura Ring 4, sizing tips, sleep tracking explained & a 30-day biohacking challenge. Everything you need before buying." />
-        <meta property="og:title" content="Free Smart Ring Buyer's Guide 2026 | Oura Ring 4 & More" />
+        <title>Free Smart Ring Buyer's Guide 2026 | Modern Tech LLC</title>
+        <meta name="description" content="Download the free Smart Ring Buyer's Guide — compare Oura Ring 4, sizing tips & biohacking challenge. By Modern Tech LLC." />
+        <meta property="og:title" content="Free Smart Ring Buyer's Guide 2026 — by Modern Tech LLC" />
         <meta property="og:description" content="Compare Oura Ring 4, sizing tips, sleep tracking explained & a 30-day biohacking challenge." />
         <meta property="og:image" content="https://moderntech.store/images/products/smart-ring-guide-cover.jpg" />
         <meta property="og:url" content="https://moderntech.store/smart-ring-guide" />
         <meta property="og:type" content="article" />
+        <meta name="author" content="Modern Tech LLC" />
       </Helmet>
       <Navigation />
 
@@ -90,6 +91,7 @@ const SmartRingGuide = () => {
                   <span className="text-purple-400">Buyer's Guide</span>{" "}
                   2026
                 </h1>
+                <p className="text-sm text-muted-foreground mb-4 font-medium">by Modern Tech LLC</p>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   Everything you need to know before buying a smart ring — sizing, features, sleep tracking & biohacking tips. No jargon, just answers.
                 </p>
