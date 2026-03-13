@@ -526,46 +526,60 @@ const BlogPost = () => {
 
         <Navigation />
 
-        {/* Hero */}
-        <div className="relative h-[460px] overflow-hidden">
-          <img
-            src={dynamicPost.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format"}
-            alt={dynamicPost.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
-        </div>
+        {/* Nav separator */}
+        <div className="border-b border-border/40" />
 
-        <div className="container mx-auto px-4 -mt-40 relative z-10 pb-16">
-          <div className="max-w-3xl mx-auto">
-            <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8 group">
-              <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> Back to Blog
-            </Link>
-
-            <article>
-              <header className="mb-12 pb-8 border-b border-border/30">
-                <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5 flex-wrap">
-                  <span className="font-semibold uppercase tracking-[0.15em] text-foreground/50 text-xs">{dynamicPost.category || "Tech Roundup"}</span>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground"><Calendar className="h-3 w-3" /> {new Date(dynamicPost.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
-                </div>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.08]">
-                  {dynamicPost.title}
-                </h1>
-                <div className="flex items-center gap-2 mt-6">
-                  <div className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center text-foreground text-xs font-bold">MT</div>
-                  <span className="text-sm text-muted-foreground">by <span className="text-foreground font-medium">Modern Tech LLC</span></span>
-                </div>
-              </header>
-
-              <div
-                className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:text-muted-foreground prose-p:leading-[1.85]"
-                dangerouslySetInnerHTML={{ __html: dynamicPost.content_html }}
-              />
-
-              <DownloadCTA />
-              <AffiliateDisclosure />
-            </article>
+        {/* Centered magazine column */}
+        <div className="max-w-[800px] mx-auto px-6 pt-12 pb-20">
+          {/* Category + Meta row */}
+          <div className="flex items-center justify-center gap-3 text-xs text-muted-foreground mb-6 flex-wrap">
+            <span className="font-semibold uppercase tracking-[0.15em] text-primary">{dynamicPost.category || "Tech Roundup"}</span>
+            <span className="w-1 h-1 rounded-full bg-border" />
+            <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(dynamicPost.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
           </div>
+
+          {/* Centered Title */}
+          <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight leading-[1.12] mb-6 text-foreground text-center">
+            {dynamicPost.title}
+          </h1>
+
+          {/* Author */}
+          <div className="flex items-center justify-center gap-2 mb-10">
+            <div className="w-7 h-7 rounded-full bg-foreground/10 flex items-center justify-center text-foreground text-[10px] font-bold">MT</div>
+            <span className="text-sm text-muted-foreground">by <span className="text-foreground font-medium">Modern Tech LLC</span></span>
+          </div>
+
+          {/* Hero Image */}
+          {dynamicPost.image_url && (
+            <div className="rounded-xl overflow-hidden mb-12">
+              <img
+                src={dynamicPost.image_url}
+                alt={dynamicPost.title}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          )}
+
+          <article>
+            <div
+              className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:text-muted-foreground prose-p:leading-[1.85]"
+              dangerouslySetInnerHTML={{ __html: dynamicPost.content_html }}
+            />
+
+            <DownloadCTA />
+            <AffiliateDisclosure />
+
+            {/* Back to Blog footer */}
+            <div className="mt-16 pt-8 border-t border-border text-center">
+              <Link
+                to="/blog"
+                className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
+              >
+                <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+                Back to Blog
+              </Link>
+            </div>
+          </article>
         </div>
 
         {showScrollTop && (
