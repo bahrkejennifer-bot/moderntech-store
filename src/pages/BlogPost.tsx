@@ -720,9 +720,9 @@ const BlogPost = () => {
           {tocEntries.length > 0 && (
             <aside className="hidden xl:block w-64 shrink-0">
               <nav className="sticky top-24">
-                <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border/30">
-                  <List className="h-4 w-4 text-primary" />
-                  <span className="text-xs font-semibold tracking-[0.15em] uppercase text-primary">On This Page</span>
+                <div className="flex items-center gap-2 mb-5 pb-3 border-b border-border">
+                  <List className="h-4 w-4 text-foreground/40" />
+                  <span className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground">On This Page</span>
                 </div>
                 <ul className="space-y-1">
                   {tocEntries.map((entry) => (
@@ -733,7 +733,7 @@ const BlogPost = () => {
                           entry.level === 3 ? 'pl-5' : 'pl-3'
                         } ${
                           activeId === entry.id
-                            ? 'border-primary text-primary font-medium'
+                            ? 'border-foreground text-foreground font-medium'
                             : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
                         }`}
                       >
@@ -744,14 +744,14 @@ const BlogPost = () => {
                 </ul>
 
                 {/* Progress indicator */}
-                <div className="mt-6 pt-4 border-t border-border/30">
+                <div className="mt-6 pt-4 border-t border-border">
                   <div className="flex items-center justify-between text-[11px] text-muted-foreground mb-2">
                     <span>Reading progress</span>
                     <span>{Math.round(progress)}%</span>
                   </div>
-                  <div className="h-1 w-full bg-muted rounded-full overflow-hidden">
+                  <div className="h-1 w-full bg-secondary rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-primary rounded-full transition-[width] duration-150"
+                      className="h-full bg-foreground/30 rounded-full transition-[width] duration-150"
                       style={{ width: `${progress}%` }}
                     />
                   </div>
