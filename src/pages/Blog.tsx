@@ -39,7 +39,7 @@ const staticBlogPosts = [
     excerpt: "Strike gold with the luckiest family tech picks! Curated gifts that bring the whole family together this St. Patrick's Day.",
     date: "2026-02-02",
     category: "Gift Guides",
-    imageUrl: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format",
+    imageUrl: stPatricksHeroImg,
     slug: "valentine-gift-guide-family-tech-2026",
     isGenerated: false,
     readTime: "10 min read",
