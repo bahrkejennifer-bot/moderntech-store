@@ -667,6 +667,17 @@ const BlogPost = () => {
 
       {/* Centered magazine column */}
       <div className="max-w-[800px] mx-auto px-6 pt-12 pb-20">
+        {/* Featured Hero Image — above title, 3:2 aspect ratio */}
+        <div className="rounded-lg overflow-hidden mb-10">
+          <div className="aspect-[3/2] w-full">
+            <img
+              src={post!.imageUrl}
+              alt={post!.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
         {/* Category + Meta row */}
         <div className="flex items-center justify-center gap-3 text-xs text-muted-foreground mb-6 flex-wrap">
           <span className="font-semibold uppercase tracking-[0.15em] text-primary">{post!.category}</span>
@@ -682,18 +693,9 @@ const BlogPost = () => {
         </h1>
 
         {/* Author */}
-        <div className="flex items-center justify-center gap-2 mb-10">
+        <div className="flex items-center justify-center gap-2 mb-12">
           <div className="w-7 h-7 rounded-full bg-foreground/10 flex items-center justify-center text-foreground text-[10px] font-bold">MT</div>
           <span className="text-sm text-muted-foreground">by <span className="text-foreground font-medium">Modern Tech LLC</span></span>
-        </div>
-
-        {/* Hero Image — full container width, zero side margins */}
-        <div className="rounded-xl overflow-hidden mb-12 -mx-0">
-          <img
-            src={post!.imageUrl}
-            alt={post!.title}
-            className="w-full h-auto object-cover"
-          />
         </div>
 
         {/* Intro */}
