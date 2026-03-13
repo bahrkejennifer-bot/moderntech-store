@@ -500,7 +500,7 @@ const BlogPost = () => {
     const ogTitle = dynamicPost.title;
     const ogDesc = dynamicPost.excerpt || `${dynamicPost.title} — Read on Modern Tech LLC`;
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen blog-light bg-background">
         <Helmet>
           <title>{ogTitle} | Modern Tech LLC</title>
           <meta name="description" content={ogDesc} />
