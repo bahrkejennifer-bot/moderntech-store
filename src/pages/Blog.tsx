@@ -160,7 +160,7 @@ const Blog = () => {
   const gridPosts = isFiltering ? filteredPosts : filteredPosts.slice(1);
 
   return (
-    <div className="min-h-screen blog-light bg-background">
+    <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Modern Tech Blog | Reviews, Deals & Buying Guides</title>
         <meta name="description" content="Expert tech reviews, buying guides and deals on smart home, gaming, wellness gear and more. Updated weekly." />
