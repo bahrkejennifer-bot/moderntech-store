@@ -89,7 +89,7 @@ const staticBlogPosts = [
     excerpt: "From budget-friendly options to premium smartwatches, find the perfect fitness tracker for your health goals. We compare features, accuracy, battery life, and overall value.",
     date: "2024-12-19",
     category: "Health & Wellness",
-    imageUrl: "https://images.unsplash.com/photo-1575390260582-cf5f64c2a6e4?w=800&auto=format",
+    imageUrl: fitnessTrackersHeroImg,
     slug: "best-fitness-trackers-every-budget",
     isGenerated: false,
     readTime: "9 min read",
