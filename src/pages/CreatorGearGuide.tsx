@@ -91,6 +91,7 @@ const CreatorGearGuide = () => {
                   <span className="text-orange-400">Starter Kit</span>{" "}
                   2026
                 </h1>
+                <p className="text-sm text-muted-foreground mb-4 font-medium">by Modern Tech LLC</p>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   Everything you need to build a pro content creator setup — mic, camera, lighting & software picks at every budget. Start creating today, not someday.
                 </p>

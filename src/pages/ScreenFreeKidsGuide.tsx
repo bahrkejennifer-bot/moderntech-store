@@ -80,6 +80,7 @@ const ScreenFreeKidsGuide = () => {
                   <span className="text-yellow-500">10 Tech Toys</span>{" "}
                   That Actually Teach
                 </h1>
+                <p className="text-sm text-muted-foreground mb-4 font-medium">by Modern Tech LLC</p>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   Parent-approved educational tech for ages 3–12. Coding robots, audio players, STEM kits & more — no screens required. Written by parents, for parents.
                 </p>

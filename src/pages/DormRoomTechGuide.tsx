@@ -79,6 +79,7 @@ const DormRoomTechGuide = () => {
                   Ultimate Dorm Room{" "}
                   <span className="text-teal-400">Tech Setup</span>
                 </h1>
+                <p className="text-sm text-muted-foreground mb-4 font-medium">by Modern Tech LLC</p>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   The complete tech checklist for college students — every gadget, app, and desk hack you need to crush your semester. Built for small spaces and tight budgets.
                 </p>

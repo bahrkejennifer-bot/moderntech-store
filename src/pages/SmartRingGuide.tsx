@@ -91,6 +91,7 @@ const SmartRingGuide = () => {
                   <span className="text-purple-400">Buyer's Guide</span>{" "}
                   2026
                 </h1>
+                <p className="text-sm text-muted-foreground mb-4 font-medium">by Modern Tech LLC</p>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                   Everything you need to know before buying a smart ring — sizing, features, sleep tracking & biohacking tips. No jargon, just answers.
                 </p>
