@@ -246,7 +246,7 @@ const blogPostsData: Record<string, {
     title: "Wireless Earbuds Comparison Guide",
     date: "2025-01-04",
     category: "Connectivity",
-    imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=1200&auto=format",
+    imageUrl: wirelessEarbudsHeroImg,
     intro: "You've bought three pairs of wireless earbuds in two years—and you still haven't found 'the one.' Wireless earbuds promise freedom, but most deliver frustration instead. They fall out during your morning run. They die halfway through your commute. They drop connection during important calls. The AirPods vs Galaxy Buds debate rages on with no clear winner. This guide cuts through the marketing noise and reveals the truth: there's no single 'best' earbud—there's the best one for YOU.",
     sections: [
       { type: 'heading', content: 'AirPods vs Galaxy Buds: A Head-to-Head Comparison' },
