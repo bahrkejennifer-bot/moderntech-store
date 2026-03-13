@@ -6,13 +6,7 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
-const ACTIVE_CATEGORIES = [
-  "Health & Wellness",
-  "Home & Safety",
-  "Content Creator Corner",
-];
-
-const SITE_URL = "https://moderntech-store.lovable.app";
+const SITE_URL = "https://moderntech.store";
 const FEED_TITLE = "Modern Tech LLC — Top Picks";
 const FEED_DESCRIPTION =
   "Curated tech products for health, home safety, and content creators. As an Amazon Associate, we earn from qualifying purchases.";
