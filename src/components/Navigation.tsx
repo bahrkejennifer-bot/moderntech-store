@@ -40,7 +40,7 @@ const Navigation = () => {
               <div ref={dropdownRef} className="relative">
                 <button
                   onClick={() => setShopOpen(!shopOpen)}
-                  className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors duration-200"
                 >
                   Shop
                   <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${shopOpen ? "rotate-180" : ""}`} />
