@@ -405,22 +405,58 @@ const BlogPost = () => {
   // Reading progress
   const [progress, setProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [activeId, setActiveId] = useState("");
+
+  // Build TOC from sections
+  const tocEntries = useMemo(() => {
+    if (!post) return [];
+    return post.sections
+      .map((s, i) => {
+        if (s.type === 'heading' || s.type === 'subheading') {
+          const id = `section-${i}`;
+          return { id, title: s.content || '', level: s.type === 'heading' ? 2 : 3 };
+        }
+        return null;
+      })
+      .filter(Boolean) as { id: string; title: string; level: number }[];
+  }, [post]);
+
+  // Scroll spy
   useEffect(() => {
     const onScroll = () => {
       const winH = document.documentElement.scrollHeight - window.innerHeight;
       const pct = winH > 0 ? (window.scrollY / winH) * 100 : 0;
       setProgress(Math.min(pct, 100));
       setShowScrollTop(window.scrollY > 600);
+
+      // Find active section
+      const headings = tocEntries.map(e => document.getElementById(e.id)).filter(Boolean) as HTMLElement[];
+      let current = "";
+      for (const el of headings) {
+        if (el.getBoundingClientRect().top <= 120) {
+          current = el.id;
+        }
+      }
+      setActiveId(current);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, [tocEntries]);
+
+  const scrollToSection = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
   }, []);
 
   const renderSection = (section: ContentSection, index: number) => {
+    const sectionId = `section-${index}`;
     switch (section.type) {
       case 'heading':
         return (
-          <div key={index} className="mt-16 mb-6">
+          <div key={index} id={sectionId} className="mt-16 mb-6 scroll-mt-28">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-8 h-[2px] bg-primary rounded-full" />
               <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-primary/70">Section {Math.ceil((index + 1) / 3)}</span>
@@ -432,7 +468,7 @@ const BlogPost = () => {
         );
       case 'subheading':
         return (
-          <h3 key={index} className="text-xl font-semibold mt-10 mb-4 text-foreground tracking-tight border-l-2 border-primary/40 pl-4">
+          <h3 key={index} id={sectionId} className="text-xl font-semibold mt-10 mb-4 text-foreground tracking-tight border-l-2 border-primary/40 pl-4 scroll-mt-28">
             {section.content}
           </h3>
         );
