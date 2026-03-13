@@ -12,6 +12,11 @@ import { supabase } from "@/integrations/supabase/client";
 import ouraRingHeroImg from "@/assets/heroes/oura-ring-hero.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
 import stPatricksHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
+import wirelessEarbudsHeroImg from "@/assets/blog/wireless-earbuds-hero.jpg";
+import smartHomeHeroImg from "@/assets/blog/smart-home-devices-hero.jpg";
+import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
+import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
+import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
 
 const staticBlogPosts = [
   {
@@ -19,7 +24,7 @@ const staticBlogPosts = [
     excerpt: "Lucky you! We've rounded up the best tech deals and discounts dropping this St. Patrick's Day — from smart home bundles to gaming gear, these prices are pure gold.",
     date: "2026-02-19",
     category: "Deals",
-    imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format",
+    imageUrl: stPatricksHeroImg,
     slug: "st-patricks-day-tech-deals-2026",
     isGenerated: false,
     readTime: "8 min read",
@@ -49,7 +54,7 @@ const staticBlogPosts = [
     excerpt: "Discover the latest smart home technology that will transform your living space into a connected, efficient haven. From security cameras to smart thermostats, we've tested the best devices.",
     date: "2025-01-14",
     category: "Home & Safety",
-    imageUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&auto=format",
+    imageUrl: smartHomeHeroImg,
     slug: "top-10-smart-home-devices-2025",
     isGenerated: false,
     readTime: "9 min read",
@@ -59,7 +64,7 @@ const staticBlogPosts = [
     excerpt: "We've tested dozens of gaming monitors to find the best value options for competitive and casual gamers alike. Get high refresh rates and stunning visuals without breaking the bank.",
     date: "2025-01-09",
     category: "Gaming",
-    imageUrl: "https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=800&auto=format",
+    imageUrl: gamingMonitorsHeroImg,
     slug: "best-gaming-monitors-under-500",
     isGenerated: false,
     readTime: "11 min read",
@@ -69,7 +74,7 @@ const staticBlogPosts = [
     excerpt: "AirPods vs Galaxy Buds vs Nothing Ear—which wireless earbuds are right for you? We break down the pros, cons, sound quality, battery life, and value proposition.",
     date: "2025-01-04",
     category: "Connectivity",
-    imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format",
+    imageUrl: wirelessEarbudsHeroImg,
     slug: "wireless-earbuds-comparison-2025",
     isGenerated: false,
     readTime: "10 min read",
@@ -79,7 +84,7 @@ const staticBlogPosts = [
     excerpt: "Starting college? Here's our comprehensive guide to the tech gear every student needs to succeed—from laptops and tablets to accessories that make campus life easier.",
     date: "2024-12-27",
     category: "College & School",
-    imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format",
+    imageUrl: collegeTechHeroImg,
     slug: "tech-essentials-college-students",
     isGenerated: false,
     readTime: "8 min read",
@@ -99,7 +104,7 @@ const staticBlogPosts = [
     excerpt: "Navigate the world of educational technology with our guide to age-appropriate learning devices and apps. Make informed choices that support your child's development.",
     date: "2024-12-14",
     category: "Kids Tech",
-    imageUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&auto=format",
+    imageUrl: kidsTechHeroImg,
     slug: "educational-tech-kids-parents-guide",
     isGenerated: false,
     readTime: "7 min read",
@@ -166,7 +171,7 @@ const Blog = () => {
         <meta name="description" content="Expert tech reviews, buying guides and deals on smart home, gaming, wellness gear and more. Updated weekly." />
         <meta property="og:title" content="Modern Tech Blog | Reviews, Deals & Buying Guides" />
         <meta property="og:description" content="Expert tech reviews, buying guides and deals on smart home, gaming, wellness gear and more." />
-        <meta property="og:image" content="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format" />
+        <meta property="og:image" content={stPatricksHeroImg} />
         <meta property="og:url" content="https://moderntech.store/blog" />
         <meta property="og:type" content="website" />
       </Helmet>
