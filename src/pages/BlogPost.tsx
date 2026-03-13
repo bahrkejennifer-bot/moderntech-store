@@ -348,7 +348,7 @@ const blogPostsData: Record<string, {
     title: "☘️ Best St. Patrick's Day Tech Deals 2026",
     date: "2026-02-19",
     category: "Deals",
-    imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&auto=format",
+    imageUrl: stPatricksHeroImg,
     intro: "Feeling lucky? You should be. Every March, retailers roll out some of the best tech deals of the year — and St. Patrick's Day 2026 is no exception. Whether you're upgrading your smart home, leveling up your gaming setup, or finally grabbing those wireless earbuds you've been eyeing, we've tracked down the deals worth your gold. Here are the best St. Patrick's Day tech deals happening right now.",
     sections: [
       { type: 'heading', content: "Why St. Patrick's Day Has Become a Tech Deal Holiday" },
