@@ -640,7 +640,7 @@ const BlogPost = () => {
   const staticOgImage = post!.imageUrl.startsWith("http") ? post!.imageUrl : `${SITE}${post!.imageUrl}`;
   const staticOgDesc = post!.intro.slice(0, 155) + "…";
   return (
-    <div className="min-h-screen blog-light bg-background">
+    <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>{post!.title} | Modern Tech LLC</title>
         <meta name="description" content={staticOgDesc} />
