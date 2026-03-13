@@ -261,7 +261,7 @@ Dark base, bold blue accents, crisp white type
 .vogue-theme h5,
 .vogue-theme h6 {
   font-family: var(--font-serif);
-  color: hsl(20 10% 10%);
+  color: hsl(40 10% 12%);
   letter-spacing: -0.03em;
   font-weight: 500;
 }
