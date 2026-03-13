@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
+import ouraRingHeroImg from "@/assets/heroes/oura-ring-hero.jpg";
+import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
+import stPatricksHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
 
 const staticBlogPosts = [
   {
@@ -26,7 +29,7 @@ const staticBlogPosts = [
     excerpt: "Oura, Samsung Galaxy Ring, or Ultrahuman? We compare the top smart rings, breaking down sleep tracking accuracy, heart rate monitoring, sizing, and whether they're worth the investment.",
     date: "2026-02-02",
     category: "Health & Wellness",
-    imageUrl: "https://images.unsplash.com/photo-1573405963648-854c31a4db30?w=800&auto=format",
+    imageUrl: ouraRingHeroImg,
     slug: "smart-ring-guide-valentines-2026",
     isGenerated: false,
     readTime: "12 min read",
@@ -36,7 +39,7 @@ const staticBlogPosts = [
     excerpt: "Strike gold with the luckiest family tech picks! Curated gifts that bring the whole family together this St. Patrick's Day.",
     date: "2026-02-02",
     category: "Gift Guides",
-    imageUrl: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format",
+    imageUrl: stPatricksHeroImg,
     slug: "valentine-gift-guide-family-tech-2026",
     isGenerated: false,
     readTime: "10 min read",
@@ -86,7 +89,7 @@ const staticBlogPosts = [
     excerpt: "From budget-friendly options to premium smartwatches, find the perfect fitness tracker for your health goals. We compare features, accuracy, battery life, and overall value.",
     date: "2024-12-19",
     category: "Health & Wellness",
-    imageUrl: "https://images.unsplash.com/photo-1575390260582-cf5f64c2a6e4?w=800&auto=format",
+    imageUrl: fitnessTrackersHeroImg,
     slug: "best-fitness-trackers-every-budget",
     isGenerated: false,
     readTime: "9 min read",
