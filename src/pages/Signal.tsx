@@ -1,5 +1,5 @@
 import Navigation from "@/components/Navigation";
-import { AffiliateFooter } from "@/components/AffiliateFooter";
+import AffiliateFooter from "@/components/AffiliateFooter";
 import { Link } from "react-router-dom";
 
 const signalEntries = [

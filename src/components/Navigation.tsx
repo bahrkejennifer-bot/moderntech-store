@@ -76,6 +76,13 @@ const Navigation = () => {
               </Link>
 
               <Link
+                to="/signal"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors duration-200"
+              >
+                Signal
+              </Link>
+
+              <Link
                 to="/digital-products"
                 className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors duration-200"
               >
