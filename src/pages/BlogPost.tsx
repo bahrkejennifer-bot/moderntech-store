@@ -217,7 +217,7 @@ const blogPostsData: Record<string, {
     title: "Best Gaming Monitors Under $500",
     date: "2025-01-09",
     category: "Gaming",
-    imageUrl: "https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=1200&auto=format",
+    imageUrl: gamingMonitorsHeroImg,
     intro: "You're losing matches before they even start—and your monitor is to blame. Every frame matters in competitive gaming. When your monitor can't keep up with your reflexes, you're fighting with one hand tied behind your back. Screen tearing ruins clutch moments. Motion blur makes tracking enemies impossible. And that split-second delay? It's the difference between victory and watching the killcam. The good news? You don't need to spend $1,000+ to compete at the highest level. The right gaming monitor under $500 can unlock your GPU's full potential, eliminate screen tearing, and give you the competitive edge you've been missing.",
     sections: [
       { type: 'heading', content: 'What to Look For in a Gaming Monitor' },
