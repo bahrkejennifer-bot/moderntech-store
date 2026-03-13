@@ -161,7 +161,7 @@ const blogPostsData: Record<string, {
       { type: 'paragraph', content: "Don't just give a gift. Give presence. Give attention. Give the message that says: \"I see you. I value our time together. And I'm willing to invest in what we have.\" Because the best technology doesn't demand our attention—it gives us more capacity to give our attention to the people who matter most." }
     ],
     products: [
-      { title: "Oura Ring Gen 4", description: "Ultimate health tracker—tracks sleep, stress, and readiness without a screen", badge: "Valentine's Pick", rating: 4.8, imageUrl: ouraRingImg, affiliateLink: "https://www.amazon.com/dp/B0DJMJNHWX?tag=moderntechs0c-20" },
+      { title: "Oura Ring Gen 4", description: "Ultimate health tracker—tracks sleep, stress, and readiness without a screen", badge: "Top Pick", rating: 4.8, imageUrl: ouraRingImg, affiliateLink: "https://www.amazon.com/dp/B0DJMJNHWX?tag=moderntechs0c-20" },
       { title: "Hatch Restore 2", description: "Smart sleep assistant with gentle light and sound wake-up", badge: "Better Sleep", rating: 4.7, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0C5S7K1JK?tag=moderntechs0c-20" },
       { title: "Therabody Theragun Prime", description: "Professional-grade massage tech made quiet and easy for home use", rating: 4.7, imageUrl: theragunImg, affiliateLink: "https://www.amazon.com/dp/B086Z6NZ2P?tag=moderntechs0c-20" },
       { title: "Apple Watch SE", description: "Family Setup lets parents stay connected to kids without a phone", badge: "Family Safety", rating: 4.8, imageUrl: fitbitImg, affiliateLink: "https://www.amazon.com/dp/B0CHX9N594?tag=moderntechs0c-20" },
