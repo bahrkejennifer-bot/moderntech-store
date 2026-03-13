@@ -149,6 +149,16 @@ export default {
   				'-apple-system',
   				'BlinkMacSystemFont',
   				'sans-serif'
+  			],
+  			serif: [
+  				'Cormorant Garamond',
+  				'Georgia',
+  				'serif'
+  			],
+  			mono: [
+  				'IBM Plex Mono',
+  				'Menlo',
+  				'monospace'
   			]
   		}
   	}

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { FreeGuideModal } from "@/components/FreeGuideModal";
-import logo from "@/assets/modern-tech-logo.png";
 
 const shopCategories = [
   { to: "/health-wellness", label: "Health & Wellness" },
@@ -34,36 +33,26 @@ const Navigation = () => {
   return (
     <>
       <nav className="sticky top-0 z-50 glass-dark border-b border-border/40">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex h-16 items-center justify-between">
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-3">
-              <img src={logo} alt="Modern Tech LLC" className="h-14 w-14 rounded-full object-contain bg-white p-0.5 shadow-md border-2 border-primary/20" />
-              <span className="hidden sm:inline text-lg font-bold tracking-tight group/brand transition-all duration-300">
-                <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-sm group-hover/brand:drop-shadow-[0_0_8px_hsl(var(--primary)/0.6)] transition-all duration-500 group-hover/brand:from-blue-400 group-hover/brand:via-purple-400 group-hover/brand:to-primary">Modern Tech</span>
-                <span className="text-muted-foreground font-light ml-1.5 text-sm tracking-widest uppercase group-hover/brand:text-foreground transition-colors duration-500">LLC</span>
-              </span>
-            </Link>
-
-            {/* Desktop center links */}
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="flex h-14 items-center justify-between">
+            {/* Left — nav links */}
             <div className="hidden md:flex items-center gap-8">
-              {/* Shop Dropdown */}
               <div ref={dropdownRef} className="relative">
                 <button
                   onClick={() => setShopOpen(!shopOpen)}
-                  className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="flex items-center gap-1 font-mono text-[11px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
                   Shop
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${shopOpen ? "rotate-180" : ""}`} />
+                  <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${shopOpen ? "rotate-180" : ""}`} />
                 </button>
                 {shopOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 rounded-xl border border-border/60 bg-card shadow-xl py-2 animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="absolute top-full left-0 mt-3 w-56 border border-border bg-card shadow-elegant py-2">
                     {shopCategories.map((cat) => (
                       <Link
                         key={cat.to}
                         to={cat.to}
                         onClick={() => setShopOpen(false)}
-                        className="block px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
+                        className="block px-5 py-2.5 font-mono text-[11px] text-muted-foreground hover:text-foreground hover:bg-accent/30 transition-colors"
                       >
                         {cat.label}
                       </Link>
@@ -74,17 +63,24 @@ const Navigation = () => {
 
               <Link
                 to="/blog"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+                className="font-mono text-[11px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors duration-200"
               >
-                Blog
+                Journal
               </Link>
             </div>
 
-            {/* Free Guide CTA */}
-            <div className="hidden md:block">
+            {/* Center — logo */}
+            <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
+              <span className="font-serif text-xl md:text-2xl tracking-tight italic">
+                Modern Tech
+              </span>
+            </Link>
+
+            {/* Right — CTA */}
+            <div className="hidden md:block ml-auto">
               <button
                 onClick={() => setGuideOpen(true)}
-                className="h-9 px-5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-all duration-200 hover:shadow-elegant"
+                className="font-mono text-[11px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
               >
                 Free Guide
               </button>
@@ -92,7 +88,7 @@ const Navigation = () => {
 
             {/* Mobile toggle */}
             <button
-              className="md:hidden text-foreground"
+              className="md:hidden text-foreground ml-auto"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -102,24 +98,23 @@ const Navigation = () => {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-border/40 bg-card">
-            <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-4">
-              {/* Mobile Shop Accordion */}
+          <div className="md:hidden border-t border-border bg-card">
+            <div className="max-w-6xl mx-auto px-8 py-6 flex flex-col gap-5">
               <button
                 onClick={() => setMobileShopOpen(!mobileShopOpen)}
-                className="flex items-center justify-between text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="flex items-center justify-between font-mono text-[11px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors"
               >
                 Shop
-                <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${mobileShopOpen ? "rotate-180" : ""}`} />
+                <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${mobileShopOpen ? "rotate-180" : ""}`} />
               </button>
               {mobileShopOpen && (
-                <div className="flex flex-col gap-3 pl-4 border-l-2 border-primary/20">
+                <div className="flex flex-col gap-3 pl-4 border-l border-border">
                   {shopCategories.map((cat) => (
                     <Link
                       key={cat.to}
                       to={cat.to}
                       onClick={() => setMobileOpen(false)}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      className="font-mono text-[11px] text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {cat.label}
                     </Link>
@@ -130,14 +125,14 @@ const Navigation = () => {
               <Link
                 to="/blog"
                 onClick={() => setMobileOpen(false)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="font-mono text-[11px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors"
               >
-                Blog
+                Journal
               </Link>
 
               <button
                 onClick={() => { setGuideOpen(true); setMobileOpen(false); }}
-                className="h-9 px-5 rounded-full bg-primary text-primary-foreground text-sm font-medium w-fit"
+                className="font-mono text-[11px] tracking-[0.15em] uppercase text-muted-foreground underline underline-offset-4 w-fit"
               >
                 Free Guide
               </button>
