@@ -583,42 +583,53 @@ const BlogPost = () => {
         <meta property="pin:media" content={staticOgImage} />
         <meta property="pin:description" content={staticOgDesc} />
       </Helmet>
+
+      {/* Reading Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-[3px] bg-transparent">
+        <div
+          className="h-full bg-primary transition-[width] duration-150 ease-out"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+
       <Navigation />
 
       {/* Hero Image */}
-      <div className="relative h-[420px] overflow-hidden">
+      <div className="relative h-[460px] overflow-hidden">
         <img
           src={post!.imageUrl}
           alt={post!.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
       </div>
 
-      <div className="container mx-auto px-4 -mt-36 relative z-10 pb-16">
+      <div className="container mx-auto px-4 -mt-40 relative z-10 pb-16">
         <div className="max-w-3xl mx-auto">
-          <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
-            <ArrowLeft className="h-4 w-4" /> Back to Blog
+          <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8 group">
+            <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> Back to Blog
           </Link>
 
           <article>
             {/* Header */}
-            <header className="mb-10 border-b border-border/40 pb-8">
-              <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4 flex-wrap">
-                <span className="text-primary font-semibold uppercase tracking-wide">{post!.category}</span>
-                <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-                <span>by Modern Tech LLC</span>
-                <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+            <header className="mb-12 pb-8 border-b border-border/30">
+              <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5 flex-wrap">
+                <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{post!.category}</span>
                 <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(post!.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
-                <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
                 <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> 8 min read</span>
               </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] mb-6">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.08] mb-6">
                 {post!.title}
               </h1>
-              <p className="text-lg text-foreground/70 leading-relaxed">
+              <p className="text-lg text-foreground/60 leading-relaxed max-w-2xl">
                 {post!.intro}
               </p>
+              <div className="flex items-center gap-4 mt-6">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">MT</div>
+                  <span className="text-sm text-muted-foreground">by <span className="text-foreground/80 font-medium">Modern Tech LLC</span></span>
+                </div>
+              </div>
             </header>
 
             {/* Products Section */}
@@ -648,6 +659,17 @@ const BlogPost = () => {
           </article>
         </div>
       </div>
+
+      {/* Scroll to top */}
+      {showScrollTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-8 right-8 z-40 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-elegant hover:scale-110 transition-transform"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp className="h-5 w-5" />
+        </button>
+      )}
 
       <AffiliateFooter />
     </div>
