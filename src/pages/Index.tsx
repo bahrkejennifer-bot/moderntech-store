@@ -14,7 +14,7 @@ import macbookImg from "@/assets/products/macbook-air-m4.jpg";
 import sonyZvImg from "@/assets/products/sony-zv1-ii.jpg";
 import whoop4Img from "@/assets/products/whoop-4.jpg";
 import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
-import heroImg from "@/assets/hero-smart-ring-editorial.jpg";
+import heroImg from "@/assets/hero-duality-editorial.jpg";
 
 interface Product {
   title: string;
@@ -121,23 +121,37 @@ const Index = () => {
       </Helmet>
       <Navigation />
 
-      {/* ── HERO — asymmetric editorial layout ── */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[80vh]">
-        {/* Left — smart ring image */}
-        <div className="relative overflow-hidden">
-          <img
-            src={heroImg}
-            alt="Brushed titanium smart ring on raw travertine stone — editorial still life"
-            className="w-full h-full object-cover min-h-[500px]"
-          />
-        </div>
-        {/* Right — minimal text */}
-        <div className="flex flex-col justify-center px-12 lg:px-24 py-24 lg:py-32">
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.92] tracking-tight" style={{ fontWeight: 400 }}>
-            <em>The Art of</em>
-            <br />
-            Modern Tech
-          </h1>
+      {/* ── S/S 2026 JOURNAL tagline ── */}
+      <div className="relative">
+        <p
+          className="absolute top-6 right-8 z-10 font-mono text-[9px] tracking-[0.35em] uppercase"
+          style={{ color: 'hsl(40 10% 12% / 0.4)' }}
+        >
+          S/S 2026 Journal
+        </p>
+      </div>
+
+      {/* ── HERO — duality editorial layout ── */}
+      <section className="relative min-h-[90vh] overflow-hidden">
+        {/* Full-bleed editorial image */}
+        <img
+          src={heroImg}
+          alt="Editorial duality — woman walking by the sea in sheer white dress with smart ring, blending into a peaceful sleep scene"
+          className="w-full h-full object-cover absolute inset-0"
+        />
+
+        {/* Text overlay — positioned to overlap the sheer dress area */}
+        <div className="relative z-10 flex items-center min-h-[90vh] px-8 md:px-16 lg:px-24">
+          <div className="max-w-xl" style={{ marginTop: '5vh' }}>
+            <h1
+              className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.92] tracking-tight mix-blend-multiply"
+              style={{ fontWeight: 400, color: 'hsl(40 10% 12%)' }}
+            >
+              <em>The Art of</em>
+              <br />
+              Modern Tech
+            </h1>
+          </div>
         </div>
       </section>
 
