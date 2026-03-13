@@ -165,7 +165,7 @@ const CreatorGear = () => {
                   <div className="absolute bottom-3 left-3 backdrop-blur-md bg-black/50 text-white text-xs font-medium px-2.5 py-1 rounded-full">
                     ❤️ {pin.saves} saves
                   </div>
-                </div>
+                </a>
                 <div className="p-4">
                   <h3 className="font-bold text-foreground text-lg leading-tight">{pin.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{pin.subtitle}</p>
