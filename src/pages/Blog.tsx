@@ -251,11 +251,12 @@ const Blog = () => {
                 <h2 className="font-serif text-2xl lg:text-4xl italic font-light leading-tight tracking-tight mb-5 group-hover:text-foreground/70 transition-colors">
                   {featuredPost.title}
                 </h2>
-                <p className="text-muted-foreground leading-relaxed mb-8 line-clamp-3">
+                <p className="font-mono text-xs text-muted-foreground leading-relaxed mb-8 line-clamp-3">
                   {featuredPost.excerpt}
                 </p>
-                <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground border-b border-foreground/30 pb-0.5 self-start group-hover:border-foreground transition-colors">
-                  Read Article <ArrowRight className="h-4 w-4" />
+                <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.15em] uppercase text-foreground border-b border-foreground/30 pb-1 self-start group-hover:border-foreground transition-colors">
+                  Read Article <ArrowRight className="h-3.5 w-3.5" />
+                </span>
                 </span>
               </div>
             </article>
