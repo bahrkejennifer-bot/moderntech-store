@@ -153,6 +153,14 @@ const Navigation = () => {
                 Journal
               </Link>
 
+              <Link
+                to="/digital-products"
+                onClick={() => setMobileOpen(false)}
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors"
+              >
+                Downloads
+              </Link>
+
               <button
                 onClick={() => { setGuideOpen(true); setMobileOpen(false); }}
                 className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] w-fit transition-colors"
