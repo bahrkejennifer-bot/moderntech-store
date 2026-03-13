@@ -640,7 +640,7 @@ const BlogPost = () => {
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 right-0 z-50 h-[3px] bg-transparent">
         <div
-          className="h-full bg-primary transition-[width] duration-150 ease-out"
+          className="h-full bg-foreground transition-[width] duration-150 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>
