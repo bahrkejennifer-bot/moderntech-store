@@ -32,7 +32,7 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 glass-dark border-b border-border/50">
+      <nav className="sticky top-0 z-50 glass-dark border-b border-border/50" style={{ color: 'hsl(40 18% 91%)' }}>
         <div className="max-w-6xl mx-auto px-8">
           <div className="flex h-16 items-center">
             {/* Left — hamburger + shop dropdown */}
@@ -40,7 +40,7 @@ const Navigation = () => {
               <div ref={dropdownRef} className="relative">
                 <button
                   onClick={() => setShopOpen(!shopOpen)}
-                  className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors duration-200"
                 >
                   Shop
                   <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${shopOpen ? "rotate-180" : ""}`} />
@@ -63,7 +63,7 @@ const Navigation = () => {
 
               <Link
                 to="/blog"
-                className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors duration-200"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors duration-200"
               >
                 Journal
               </Link>
@@ -72,7 +72,7 @@ const Navigation = () => {
             {/* Center — logo */}
             <div className="flex-1 md:w-1/3 flex justify-center">
               <Link to="/" className="flex flex-col items-center">
-                <span className="font-serif text-2xl md:text-3xl tracking-tight" style={{ fontWeight: 500 }}>
+                <span className="font-serif text-2xl md:text-3xl tracking-tight text-[hsl(40_18%_91%)]" style={{ fontWeight: 500 }}>
                   MODERN TECH
                 </span>
               </Link>
@@ -82,7 +82,7 @@ const Navigation = () => {
             <div className="hidden md:flex items-center justify-end w-1/3">
               <button
                 onClick={() => setGuideOpen(true)}
-                className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors"
               >
                 Free Guide
               </button>
@@ -90,7 +90,7 @@ const Navigation = () => {
 
             {/* Mobile toggle */}
             <button
-              className="md:hidden text-foreground ml-auto"
+              className="md:hidden text-[hsl(40_18%_91%)] ml-auto"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
