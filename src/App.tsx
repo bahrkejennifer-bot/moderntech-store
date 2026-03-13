@@ -28,6 +28,7 @@ import DormRoomTechGuide from "./pages/DormRoomTechGuide";
 import ScreenFreeKidsGuide from "./pages/ScreenFreeKidsGuide";
 import AmazonAssociateGuide from "./pages/AmazonAssociateGuide";
 import NotFound from "./pages/NotFound";
+import Signal from "./pages/Signal";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Disclaimer from "./pages/Disclaimer";

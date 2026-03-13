@@ -160,6 +160,27 @@ const Navigation = () => {
                 Journal
               </Link>
 
+              {/* Signal section */}
+              <div className="py-2">
+                <div className="border-t border-b border-[hsl(40_18%_91%/0.15)]" style={{ borderWidth: '0.5px' }}>
+                  <Link
+                    to="/signal"
+                    onClick={() => setMobileOpen(false)}
+                    className="block py-4"
+                  >
+                    <span className="font-serif text-lg tracking-tight text-[hsl(40_18%_91%)]" style={{ fontWeight: 400 }}>
+                      SIGNAL
+                    </span>
+                    <span
+                      className="block font-mono text-[hsl(40_18%_91%/0.4)] mt-1"
+                      style={{ fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+                    >
+                      the essential tech updates you actually need
+                    </span>
+                  </Link>
+                </div>
+              </div>
+
               <Link
                 to="/digital-products"
                 onClick={() => setMobileOpen(false)}
