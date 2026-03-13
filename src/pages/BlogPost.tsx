@@ -49,6 +49,7 @@ import vtechImg from "@/assets/products/vtech-kidizoom-dx3.jpg";
 import rukoRobotImg from "@/assets/products/ruko-1088-robot.jpg";
 import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
+import stPatricksHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
 
 interface BlogProduct {
   title: string;
