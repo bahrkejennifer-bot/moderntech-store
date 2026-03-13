@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Calendar, ArrowLeft, ExternalLink, Download, Clock, Share2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/Navigation";
@@ -437,8 +438,26 @@ const BlogPost = () => {
 
   // ── Dynamic (AI-generated) post ──
   if (!post && dynamicPost) {
+    const ogImage = dynamicPost.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format";
+    const ogTitle = dynamicPost.title;
+    const ogDesc = dynamicPost.excerpt || `${dynamicPost.title} — Read on Modern Tech LLC`;
     return (
       <div className="min-h-screen bg-background">
+        <Helmet>
+          <title>{ogTitle} | Modern Tech LLC</title>
+          <meta name="description" content={ogDesc} />
+          <meta property="og:title" content={ogTitle} />
+          <meta property="og:description" content={ogDesc} />
+          <meta property="og:image" content={ogImage} />
+          <meta property="og:url" content={`https://moderntech.store/blog/${slug}`} />
+          <meta property="og:type" content="article" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={ogTitle} />
+          <meta name="twitter:description" content={ogDesc} />
+          <meta name="twitter:image" content={ogImage} />
+          <meta property="pin:media" content={ogImage} />
+          <meta property="pin:description" content={ogDesc} />
+        </Helmet>
         <Navigation />
 
         {/* Hero */}
@@ -522,8 +541,26 @@ const BlogPost = () => {
   }
 
   // ── Static Post ──
+  const SITE = "https://moderntech.store";
+  const staticOgImage = post!.imageUrl.startsWith("http") ? post!.imageUrl : `${SITE}${post!.imageUrl}`;
+  const staticOgDesc = post!.intro.slice(0, 155) + "…";
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{post!.title} | Modern Tech LLC</title>
+        <meta name="description" content={staticOgDesc} />
+        <meta property="og:title" content={post!.title} />
+        <meta property="og:description" content={staticOgDesc} />
+        <meta property="og:image" content={staticOgImage} />
+        <meta property="og:url" content={`${SITE}/blog/${slug}`} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post!.title} />
+        <meta name="twitter:description" content={staticOgDesc} />
+        <meta name="twitter:image" content={staticOgImage} />
+        <meta property="pin:media" content={staticOgImage} />
+        <meta property="pin:description" content={staticOgDesc} />
+      </Helmet>
       <Navigation />
 
       {/* Hero Image */}
