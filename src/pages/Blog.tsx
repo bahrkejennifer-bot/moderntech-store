@@ -104,7 +104,7 @@ const staticBlogPosts = [
     excerpt: "Navigate the world of educational technology with our guide to age-appropriate learning devices and apps. Make informed choices that support your child's development.",
     date: "2024-12-14",
     category: "Kids Tech",
-    imageUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&auto=format",
+    imageUrl: kidsTechHeroImg,
     slug: "educational-tech-kids-parents-guide",
     isGenerated: false,
     readTime: "7 min read",
