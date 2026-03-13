@@ -657,59 +657,106 @@ const BlogPost = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
       </div>
 
-      <div className="container mx-auto px-4 -mt-40 relative z-10 pb-16">
-        <div className="max-w-3xl mx-auto">
-          <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8 group">
-            <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> Back to Blog
-          </Link>
+      <div className="max-w-7xl mx-auto px-4 -mt-40 relative z-10 pb-16">
+        <div className="flex gap-10">
+          {/* Main content */}
+          <div className="max-w-3xl flex-1 min-w-0">
+            <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8 group">
+              <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" /> Back to Blog
+            </Link>
 
-          <article>
-            {/* Header */}
-            <header className="mb-12 pb-8 border-b border-border/30">
-              <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5 flex-wrap">
-                <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{post!.category}</span>
-                <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(post!.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
-                <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> 8 min read</span>
-              </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.08] mb-6">
-                {post!.title}
-              </h1>
-              <p className="text-lg text-foreground/60 leading-relaxed max-w-2xl">
-                {post!.intro}
-              </p>
-              <div className="flex items-center gap-4 mt-6">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">MT</div>
-                  <span className="text-sm text-muted-foreground">by <span className="text-foreground/80 font-medium">Modern Tech LLC</span></span>
+            <article>
+              {/* Header */}
+              <header className="mb-12 pb-8 border-b border-border/30">
+                <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5 flex-wrap">
+                  <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{post!.category}</span>
+                  <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(post!.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+                  <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> 8 min read</span>
                 </div>
-              </div>
-            </header>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.08] mb-6">
+                  {post!.title}
+                </h1>
+                <p className="text-lg text-foreground/60 leading-relaxed max-w-2xl">
+                  {post!.intro}
+                </p>
+                <div className="flex items-center gap-4 mt-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">MT</div>
+                    <span className="text-sm text-muted-foreground">by <span className="text-foreground/80 font-medium">Modern Tech LLC</span></span>
+                  </div>
+                </div>
+              </header>
 
-            {/* Products Section */}
-            {post!.products.length > 0 && (
-              <section className="mb-14">
-                <div className="flex items-center gap-4 mb-8">
-                  <h2 className="text-sm font-semibold tracking-[0.15em] uppercase text-primary whitespace-nowrap">
-                    Featured Products
-                  </h2>
-                  <div className="glow-line flex-1" />
+              {/* Products Section */}
+              {post!.products.length > 0 && (
+                <section className="mb-14">
+                  <div className="flex items-center gap-4 mb-8">
+                    <h2 className="text-sm font-semibold tracking-[0.15em] uppercase text-primary whitespace-nowrap">
+                      Featured Products
+                    </h2>
+                    <div className="glow-line flex-1" />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {post!.products.map((product, index) => (
+                      <ProductCard key={index} product={product} />
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* Article Body */}
+              <div className="mb-14">
+                {post!.sections.map((section, index) => renderSection(section, index))}
+              </div>
+
+              <DownloadCTA />
+              <AffiliateDisclosure />
+            </article>
+          </div>
+
+          {/* Table of Contents Sidebar */}
+          {tocEntries.length > 0 && (
+            <aside className="hidden xl:block w-64 shrink-0">
+              <nav className="sticky top-24">
+                <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border/30">
+                  <List className="h-4 w-4 text-primary" />
+                  <span className="text-xs font-semibold tracking-[0.15em] uppercase text-primary">On This Page</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {post!.products.map((product, index) => (
-                    <ProductCard key={index} product={product} />
+                <ul className="space-y-1">
+                  {tocEntries.map((entry) => (
+                    <li key={entry.id}>
+                      <button
+                        onClick={() => scrollToSection(entry.id)}
+                        className={`w-full text-left text-[13px] leading-snug py-1.5 transition-all duration-200 border-l-2 ${
+                          entry.level === 3 ? 'pl-5' : 'pl-3'
+                        } ${
+                          activeId === entry.id
+                            ? 'border-primary text-primary font-medium'
+                            : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
+                        }`}
+                      >
+                        {entry.title}
+                      </button>
+                    </li>
                   ))}
+                </ul>
+
+                {/* Progress indicator */}
+                <div className="mt-6 pt-4 border-t border-border/30">
+                  <div className="flex items-center justify-between text-[11px] text-muted-foreground mb-2">
+                    <span>Reading progress</span>
+                    <span>{Math.round(progress)}%</span>
+                  </div>
+                  <div className="h-1 w-full bg-muted rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-primary rounded-full transition-[width] duration-150"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
                 </div>
-              </section>
-            )}
-
-            {/* Article Body */}
-            <div className="mb-14">
-              {post!.sections.map((section, index) => renderSection(section, index))}
-            </div>
-
-            <DownloadCTA />
-            <AffiliateDisclosure />
-          </article>
+              </nav>
+            </aside>
+          )}
         </div>
       </div>
 
