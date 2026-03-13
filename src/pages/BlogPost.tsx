@@ -545,8 +545,8 @@ const BlogPost = () => {
             <article>
               <header className="mb-12 pb-8 border-b border-border/30">
                 <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5 flex-wrap">
-                  <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{dynamicPost.category || "Tech Roundup"}</span>
-                  <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(dynamicPost.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+                  <span className="font-semibold uppercase tracking-[0.15em] text-foreground/50 text-xs">{dynamicPost.category || "Tech Roundup"}</span>
+                  <span className="flex items-center gap-1 text-xs text-muted-foreground"><Calendar className="h-3 w-3" /> {new Date(dynamicPost.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
                 </div>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.08]">
                   {dynamicPost.title}
