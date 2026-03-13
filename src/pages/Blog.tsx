@@ -174,16 +174,13 @@ const Blog = () => {
 
       {/* ── Hero Section ── */}
       <header className="border-b border-border">
-        <div className="container mx-auto px-4 pt-28 pb-10">
-          <div className="flex items-center gap-3 mb-5">
-            <div className="w-10 h-[2px] bg-foreground/20 rounded-full" />
-            <p className="text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground">Modern Tech Blog</p>
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] max-w-3xl text-foreground">
+        <div className="max-w-5xl mx-auto px-8 pt-28 pb-10">
+          <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">Modern Tech Journal</p>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl italic font-light tracking-tight leading-[1.08] max-w-3xl">
             Insights, Reviews &<br />
-            <span className="gradient-text">Buying Guides</span>
+            Buying Guides
           </h1>
-          <p className="mt-6 text-muted-foreground text-lg max-w-xl leading-relaxed">
+          <p className="mt-6 font-mono text-xs text-muted-foreground max-w-lg leading-relaxed">
             Expert-tested tech recommendations to help you spend smarter and live better.
           </p>
         </div>
