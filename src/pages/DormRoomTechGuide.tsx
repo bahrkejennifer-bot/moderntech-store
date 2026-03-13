@@ -50,7 +50,7 @@ const DormRoomTechGuide = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Free Dorm Room Tech Setup Guide 2026 | Modern Tech LLC</title>
         <meta name="description" content="Download the free Dorm Room Tech Setup Guide — complete checklist for college students. By Modern Tech LLC." />

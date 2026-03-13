@@ -1,10 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import Navigation from "@/components/Navigation";
 import ProductCard from "@/components/ProductCard";
-import AffiliateFooter from "@/components/AffiliateFooter";
-import { Button } from "@/components/ui/button";
+import VogueCategoryLayout from "@/components/VogueCategoryLayout";
 
 import ringDoorbellImg from "@/assets/products/ring-doorbell-plus.jpg";
 import blinkOutdoorImg from "@/assets/products/blink-outdoor-4.jpg";
@@ -29,7 +25,7 @@ const products = [
     affiliateLink: "https://www.amazon.com/dp/B0B1N5HW22?tag=moderntechs0c-20",
   },
   {
-    title: "eufy Security Smart Lock C220 — Fingerprint Door Lock",
+    title: "eufy Security Smart Lock C220",
     description: "Keyless entry with fingerprint unlock in 0.3s. BHMA Grade 2 certified — minimalist tech meets maximum security.",
     rating: 4.5,
     imageUrl: eufySmartLockImg,
@@ -60,45 +56,19 @@ const products = [
 
 const HomeSafety = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Best Smart Home Security Tech 2026 | Cameras, Locks & More</title>
-        <meta name="description" content="Shop the hottest smart home security tech of 2026 — Ring doorbells, robot vacuums, fingerprint locks & wireless cameras. Protect your home with minimalist tech." />
-        <meta property="og:title" content="Best Smart Home Security Tech 2026 | Cameras, Locks & More" />
-        <meta property="og:description" content="Shop the hottest smart home security tech of 2026 — Ring doorbells, robot vacuums, fingerprint locks & wireless cameras." />
-        <meta property="og:image" content="https://m.media-amazon.com/images/I/51BoGN7mP3L._AC_SX679_.jpg" />
-        <meta property="og:url" content="https://moderntech.store/home-safety" />
-        <meta property="og:type" content="website" />
+        <meta name="description" content="Shop the hottest smart home security tech of 2026 — Ring doorbells, robot vacuums, fingerprint locks & wireless cameras." />
       </Helmet>
-      <Navigation />
-      <div className="container mx-auto px-4 py-12">
-        <div className="mb-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link to="/" className="text-muted-foreground hover:text-foreground">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
-            </Link>
-          </Button>
-        </div>
-        <div className="mb-12 text-center">
-          <h1 className="text-5xl font-bold mb-4">
-            Smart Home & Safety Tech 2026
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Smart home wellness starts here — robot vacuums, fingerprint locks & wireless cameras that move fast on Amazon.
-          </p>
-          <p className="text-xs text-muted-foreground mt-3 italic">
-            As an Amazon Associate, I earn from qualifying purchases.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
-            <ProductCard key={product.title} {...product} />
-          ))}
-        </div>
-      </div>
-      <AffiliateFooter />
+      <VogueCategoryLayout
+        title="Home & Safety"
+        subtitle="Smart locks, security cameras, robot vacuums & connected displays — curated for the modern home."
+      >
+        {products.map((product) => (
+          <ProductCard key={product.title} {...product} />
+        ))}
+      </VogueCategoryLayout>
     </div>
   );
 };

@@ -60,7 +60,7 @@ const CreatorGearGuide = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Free Creator Gear Starter Kit 2026 | Modern Tech LLC</title>
         <meta name="description" content="Download the free Creator Gear Starter Kit — mic, camera & lighting picks at every budget. By Modern Tech LLC." />

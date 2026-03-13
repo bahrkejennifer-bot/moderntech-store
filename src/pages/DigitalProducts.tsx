@@ -183,7 +183,7 @@ const DigitalProducts = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen vogue-theme bg-background text-foreground">
         <Navigation />
         <div className="container mx-auto px-4 py-12 flex items-center justify-center">
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -193,7 +193,7 @@ const DigitalProducts = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Digital Tech Guides & Downloads | Modern Tech</title>
         <meta name="description" content="Navigate your next tech purchase with confidence — curated digital guides for smart home, gaming, fitness trackers and more." />

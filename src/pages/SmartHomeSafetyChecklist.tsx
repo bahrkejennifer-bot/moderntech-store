@@ -60,7 +60,7 @@ const SmartHomeSafetyChecklist = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Free Parent's Smart Home Safety Checklist 2026 | Modern Tech LLC</title>
         <meta name="description" content="Download your free Smart Home Safety Checklist — a room-by-room guide to protecting your family with smart cameras, locks, sensors & more. By Modern Tech LLC." />

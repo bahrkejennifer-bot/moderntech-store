@@ -504,7 +504,7 @@ const BlogPost = () => {
     const ogTitle = dynamicPost.title;
     const ogDesc = dynamicPost.excerpt || `${dynamicPost.title} — Read on Modern Tech LLC`;
     return (
-      <div className="min-h-screen blog-light bg-background">
+      <div className="min-h-screen vogue-theme bg-background text-foreground">
         <Helmet>
           <title>{ogTitle} | Modern Tech LLC</title>
           <meta name="description" content={ogDesc} />
@@ -606,7 +606,7 @@ const BlogPost = () => {
   // ── Loading ──
   if (!post && isLoading) {
     return (
-      <div className="min-h-screen blog-light bg-background">
+      <div className="min-h-screen vogue-theme bg-background text-foreground">
         <Navigation />
         <div className="container mx-auto px-4 py-24 text-center">
           <div className="animate-pulse space-y-4">
@@ -621,7 +621,7 @@ const BlogPost = () => {
   // ── Not Found ──
   if (!post && !dynamicPost) {
     return (
-      <div className="min-h-screen blog-light bg-background">
+      <div className="min-h-screen vogue-theme bg-background text-foreground">
         <Navigation />
         <div className="container mx-auto px-4 py-24 text-center">
           <h1 className="text-4xl font-bold mb-4 tracking-tight">Post Not Found</h1>
@@ -640,7 +640,7 @@ const BlogPost = () => {
   const staticOgImage = post!.imageUrl.startsWith("http") ? post!.imageUrl : `${SITE}${post!.imageUrl}`;
   const staticOgDesc = post!.intro.slice(0, 155) + "…";
   return (
-    <div className="min-h-screen blog-light bg-background">
+    <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>{post!.title} | Modern Tech LLC</title>
         <meta name="description" content={staticOgDesc} />
