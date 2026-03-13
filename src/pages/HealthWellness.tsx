@@ -57,6 +57,11 @@ const HealthWellness = () => {
       <Helmet>
         <title>Best Smart Ring & Wellness Tech 2026 | Biohacking Essentials</title>
         <meta name="description" content="Discover the hottest wellness tech of 2026 — Oura Ring 4, Apple Watch Series 10, WHOOP 4.0 & more. Smart ring fitness trackers, biohacking tools & longevity tech." />
+        <meta property="og:title" content="Best Smart Ring & Wellness Tech 2026 | Biohacking Essentials" />
+        <meta property="og:description" content="Discover the hottest wellness tech of 2026 — Oura Ring 4, Apple Watch Series 10, WHOOP 4.0 & more." />
+        <meta property="og:image" content="https://m.media-amazon.com/images/I/61r2m3e2jPL._AC_SX679_.jpg" />
+        <meta property="og:url" content="https://moderntech.store/health-wellness" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <Navigation />
       <div className="container mx-auto px-4 py-12">
