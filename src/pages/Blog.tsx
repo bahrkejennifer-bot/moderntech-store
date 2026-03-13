@@ -12,6 +12,11 @@ import { supabase } from "@/integrations/supabase/client";
 import ouraRingHeroImg from "@/assets/heroes/oura-ring-hero.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
 import stPatricksHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
+import wirelessEarbudsHeroImg from "@/assets/blog/wireless-earbuds-hero.jpg";
+import smartHomeHeroImg from "@/assets/blog/smart-home-devices-hero.jpg";
+import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
+import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
+import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
 
 const staticBlogPosts = [
   {
