@@ -186,14 +186,14 @@ const Blog = () => {
         </div>
 
         {/* Search bar + Category pills */}
-        <div className="container mx-auto px-4 pb-8 space-y-5">
-          <div className="relative max-w-md">
+        <div className="max-w-5xl mx-auto px-8 pb-8 space-y-5">
+          <div className="relative max-w-sm">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-11 pr-10 h-12 bg-card border-border rounded-full text-sm placeholder:text-muted-foreground/50 focus-visible:ring-foreground/10 shadow-sm"
+              className="pl-11 pr-10 h-11 bg-transparent border-border font-mono text-xs placeholder:text-muted-foreground/50 focus-visible:ring-foreground/10"
             />
             {searchQuery && (
               <button
