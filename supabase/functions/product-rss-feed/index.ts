@@ -34,9 +34,8 @@ Deno.serve(async (req) => {
     const { data: products, error } = await supabase
       .from("scraped_products")
       .select("*")
-      .in("category", ACTIVE_CATEGORIES)
       .order("created_at", { ascending: false })
-      .limit(50);
+      .limit(200);
 
     if (error) throw new Error(`DB error: ${error.message}`);
 
