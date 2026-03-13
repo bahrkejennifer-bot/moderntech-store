@@ -552,8 +552,8 @@ const BlogPost = () => {
                   {dynamicPost.title}
                 </h1>
                 <div className="flex items-center gap-2 mt-6">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">MT</div>
-                  <span className="text-sm text-muted-foreground">by <span className="text-foreground/80 font-medium">Modern Tech LLC</span></span>
+                  <div className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center text-foreground text-xs font-bold">MT</div>
+                  <span className="text-sm text-muted-foreground">by <span className="text-foreground font-medium">Modern Tech LLC</span></span>
                 </div>
               </header>
 
