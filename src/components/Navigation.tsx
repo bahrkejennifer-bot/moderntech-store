@@ -74,6 +74,13 @@ const Navigation = () => {
               >
                 Journal
               </Link>
+
+              <Link
+                to="/digital-products"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors duration-200"
+              >
+                Downloads
+              </Link>
             </div>
 
             {/* Center — logo */}
