@@ -558,7 +558,7 @@ const BlogPost = () => {
               </header>
 
               <div
-                className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-p:text-foreground/75 prose-p:leading-[1.85]"
+                className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:text-muted-foreground prose-p:leading-[1.85]"
                 dangerouslySetInnerHTML={{ __html: dynamicPost.content_html }}
               />
 
