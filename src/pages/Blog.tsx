@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
+import ouraRingHeroImg from "@/assets/heroes/oura-ring-hero.jpg";
+import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
+import stPatricksHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
 
 const staticBlogPosts = [
   {
