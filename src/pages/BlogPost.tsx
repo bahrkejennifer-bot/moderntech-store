@@ -692,11 +692,11 @@ const BlogPost = () => {
               {/* Products Section */}
               {post!.products.length > 0 && (
                 <section className="mb-14">
-                  <div className="flex items-center gap-4 mb-8">
-                    <h2 className="text-sm font-semibold tracking-[0.15em] uppercase text-primary whitespace-nowrap">
+                  <div className="flex items-center gap-4 mb-10">
+                    <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground whitespace-nowrap">
                       Featured Products
                     </h2>
-                    <div className="glow-line flex-1" />
+                    <div className="h-px flex-1 bg-border" />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {post!.products.map((product, index) => (
