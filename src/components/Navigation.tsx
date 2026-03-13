@@ -107,8 +107,15 @@ const Navigation = () => {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-border bg-background">
+          <div className="md:hidden border-t border-[hsl(40_18%_91%/0.15)]" style={{ backgroundColor: 'hsl(40 10% 12%)' }}>
             <div className="max-w-6xl mx-auto px-8 py-8 flex flex-col gap-6">
+              <Link
+                to="/"
+                onClick={() => setMobileOpen(false)}
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors"
+              >
+                Home
+              </Link>
               <button
                 onClick={() => setMobileShopOpen(!mobileShopOpen)}
                 className="flex items-center justify-between font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors"
