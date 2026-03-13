@@ -51,6 +51,7 @@ import rukoRobotImg from "@/assets/products/ruko-1088-robot.jpg";
 import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
 import stPatricksHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
+import smartRingHeroImg from "@/assets/heroes/smart-ring-guide-hero.png";
 
 interface BlogProduct {
   title: string;
@@ -86,7 +87,7 @@ const blogPostsData: Record<string, {
     title: "The Ultimate Smart Ring Guide for 2026",
     date: "2026-02-02",
     category: "Health & Wellness",
-    imageUrl: "https://images.unsplash.com/photo-1573405963648-854c31a4db30?w=1200&auto=format",
+    imageUrl: smartRingHeroImg,
     intro: "Smart rings have quietly become the most intimate wearable technology on the market. Unlike bulky smartwatches or intrusive fitness bands, a smart ring sits discreetly on your finger, tracking your health 24/7 without demanding your attention. Whether you're treating yourself or gifting to a health-conscious loved one, a smart ring delivers insights without the screen addiction. But with Oura, Samsung Galaxy Ring, and Ultrahuman all vying for your finger, which one deserves your money?",
     youtubeVideoId: "dQw4w9WgXcQ",
     sections: [
@@ -531,6 +532,19 @@ const BlogPost = () => {
 
         {/* Centered magazine column */}
         <div className="max-w-[800px] mx-auto px-6 pt-12 pb-20">
+          {/* Featured Hero Image */}
+          {dynamicPost.image_url && (
+            <div className="rounded-lg overflow-hidden mb-10">
+              <div className="aspect-[3/2] w-full">
+                <img
+                  src={dynamicPost.image_url}
+                  alt={dynamicPost.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          )}
+
           {/* Category + Meta row */}
           <div className="flex items-center justify-center gap-3 text-xs text-muted-foreground mb-6 flex-wrap">
             <span className="font-semibold uppercase tracking-[0.15em] text-primary">{dynamicPost.category || "Tech Roundup"}</span>
@@ -544,21 +558,10 @@ const BlogPost = () => {
           </h1>
 
           {/* Author */}
-          <div className="flex items-center justify-center gap-2 mb-10">
+          <div className="flex items-center justify-center gap-2 mb-12">
             <div className="w-7 h-7 rounded-full bg-foreground/10 flex items-center justify-center text-foreground text-[10px] font-bold">MT</div>
             <span className="text-sm text-muted-foreground">by <span className="text-foreground font-medium">Modern Tech LLC</span></span>
           </div>
-
-          {/* Hero Image */}
-          {dynamicPost.image_url && (
-            <div className="rounded-xl overflow-hidden mb-12">
-              <img
-                src={dynamicPost.image_url}
-                alt={dynamicPost.title}
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          )}
 
           <article>
             <div
@@ -666,6 +669,17 @@ const BlogPost = () => {
 
       {/* Centered magazine column */}
       <div className="max-w-[800px] mx-auto px-6 pt-12 pb-20">
+        {/* Featured Hero Image — above title, 3:2 aspect ratio */}
+        <div className="rounded-lg overflow-hidden mb-10">
+          <div className="aspect-[3/2] w-full">
+            <img
+              src={post!.imageUrl}
+              alt={post!.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
         {/* Category + Meta row */}
         <div className="flex items-center justify-center gap-3 text-xs text-muted-foreground mb-6 flex-wrap">
           <span className="font-semibold uppercase tracking-[0.15em] text-primary">{post!.category}</span>
@@ -681,18 +695,9 @@ const BlogPost = () => {
         </h1>
 
         {/* Author */}
-        <div className="flex items-center justify-center gap-2 mb-10">
+        <div className="flex items-center justify-center gap-2 mb-12">
           <div className="w-7 h-7 rounded-full bg-foreground/10 flex items-center justify-center text-foreground text-[10px] font-bold">MT</div>
           <span className="text-sm text-muted-foreground">by <span className="text-foreground font-medium">Modern Tech LLC</span></span>
-        </div>
-
-        {/* Hero Image — full container width, zero side margins */}
-        <div className="rounded-xl overflow-hidden mb-12 -mx-0">
-          <img
-            src={post!.imageUrl}
-            alt={post!.title}
-            className="w-full h-auto object-cover"
-          />
         </div>
 
         {/* Intro */}
