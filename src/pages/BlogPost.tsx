@@ -38,6 +38,9 @@ import boseQcImg from "@/assets/products/bose-qc45-headphones.jpg";
 import fitbitImg from "@/assets/products/fitbit-charge-6.jpg";
 import theragunImg from "@/assets/products/theragun-prime.jpg";
 import ouraRingImg from "@/assets/products/oura-ring-gen3.jpg";
+import ouraRing4BlogImg from "@/assets/products/oura-ring-4-blog.jpg";
+import samsungGalaxyRingImg from "@/assets/products/samsung-galaxy-ring.jpg";
+import ultrahumanRingImg from "@/assets/products/ultrahuman-ring-air.jpg";
 import ekrinImg from "@/assets/products/ekrin-bantam.jpg";
 import withingsImg from "@/assets/products/withings-scale.jpg";
 import boseSleepImg from "@/assets/products/bose-sleepbuds.jpg";
@@ -122,9 +125,9 @@ const blogPostsData: Record<string, {
       { type: 'paragraph', content: "Whatever you choose, you're giving more than a gadget—you're giving the gift of self-knowledge and the tools to live a healthier, more intentional life." }
     ],
     products: [
-      { title: "Oura Ring Gen 4", description: "Best-in-class sleep tracking with Readiness Score and 7-day battery life", badge: "Editor's Choice", rating: 4.8, imageUrl: ouraRingImg, affiliateLink: "https://amzn.to/4jAjZTb" },
-      { title: "Samsung Galaxy Ring", description: "No subscription required, seamless Samsung Health integration", badge: "Best Value", rating: 4.6, imageUrl: ouraRingImg, affiliateLink: "https://www.amazon.com/dp/B0D7DJCQN7?tag=moderntechs0c-20" },
-      { title: "Ultrahuman Ring AIR", description: "Metabolic health focus with glucose monitoring compatibility", rating: 4.5, imageUrl: ouraRingImg, affiliateLink: "https://www.amazon.com/dp/B0CG1N3GVV?tag=moderntechs0c-20" },
+      { title: "Oura Ring Gen 4", description: "Best-in-class sleep tracking with Readiness Score and 7-day battery life", badge: "Editor's Choice", rating: 4.8, imageUrl: ouraRing4BlogImg, affiliateLink: "https://amzn.to/4jAjZTb" },
+      { title: "Samsung Galaxy Ring", description: "No subscription required, seamless Samsung Health integration", badge: "Best Value", rating: 4.6, imageUrl: samsungGalaxyRingImg, affiliateLink: "https://www.amazon.com/dp/B0D7DJCQN7?tag=moderntechs0c-20" },
+      { title: "Ultrahuman Ring AIR", description: "Metabolic health focus with glucose monitoring compatibility", rating: 4.5, imageUrl: ultrahumanRingImg, affiliateLink: "https://www.amazon.com/dp/B0CG1N3GVV?tag=moderntechs0c-20" },
       { title: "Withings Body+ Smart Scale", description: "Pairs perfectly with smart rings for complete health tracking", rating: 4.7, imageUrl: withingsImg, affiliateLink: "https://www.amazon.com/dp/B071XW4B4X?tag=moderntechs0c-20" },
       { title: "Bose Sleepbuds II", description: "Enhance your sleep data with better actual sleep quality", rating: 4.3, imageUrl: boseSleepImg, affiliateLink: "https://www.amazon.com/dp/B08FRR6Z1B?tag=moderntechs0c-20" },
       { title: "Philips SmartSleep Wake-up Light", description: "Sunrise alarm that works with your ring's sleep insights", rating: 4.6, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs0c-20" }
