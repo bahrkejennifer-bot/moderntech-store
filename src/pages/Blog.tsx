@@ -84,7 +84,7 @@ const staticBlogPosts = [
     excerpt: "Starting college? Here's our comprehensive guide to the tech gear every student needs to succeed—from laptops and tablets to accessories that make campus life easier.",
     date: "2024-12-27",
     category: "College & School",
-    imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format",
+    imageUrl: collegeTechHeroImg,
     slug: "tech-essentials-college-students",
     isGenerated: false,
     readTime: "8 min read",
