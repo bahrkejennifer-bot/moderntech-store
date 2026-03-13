@@ -32,7 +32,7 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 glass-dark border-b border-border/50">
+      <nav className="sticky top-0 z-50 glass-dark border-b border-border/50" style={{ color: 'hsl(40 18% 91%)' }}>
         <div className="max-w-6xl mx-auto px-8">
           <div className="flex h-16 items-center">
             {/* Left — hamburger + shop dropdown */}
