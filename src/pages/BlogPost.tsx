@@ -183,7 +183,7 @@ const blogPostsData: Record<string, {
     title: "Top 10 Smart Home Devices for 2025",
     date: "2025-01-14",
     category: "Home & Safety",
-    imageUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?w=1200&auto=format",
+    imageUrl: smartHomeHeroImg,
     intro: "Imagine a home that anticipates your needs, protects your loved ones, and simplifies your daily life—all with effortless control. By 2025, smart home technology has evolved beyond mere convenience, offering an integrated sanctuary of unparalleled security, streamlined routines, and complete peace of mind. This essential guide explores the top 10 smart home devices poised to redefine comfort and safety, empowering you to create an intuitive, intelligent, and secure living space for your family.",
     sections: [
       { type: 'heading', content: 'Why Smart Home Security Matters in 2025' },
