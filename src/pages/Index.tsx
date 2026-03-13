@@ -132,19 +132,22 @@ const Index = () => {
       </div>
 
       {/* ── HERO — duality editorial layout ── */}
-      <section className="relative min-h-[90vh] overflow-hidden">
-        {/* Full-bleed editorial image */}
-        <img
-          src={heroImg}
-          alt="Editorial duality — woman walking by the sea in sheer white dress with smart ring, blending into a peaceful sleep scene"
-          className="w-full h-full object-cover absolute inset-0"
-        />
+      <section className="relative py-12 md:py-20 px-8 md:px-16 lg:px-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center max-w-7xl mx-auto">
+          {/* Editorial image — contained, not full-bleed */}
+          <div className="overflow-hidden">
+            <img
+              src={heroImg}
+              alt="Editorial lifestyle — woman descending spiral staircase with tulips"
+              className="w-full h-auto object-cover"
+              style={{ maxHeight: '65vh' }}
+            />
+          </div>
 
-        {/* Text overlay — positioned to overlap the sheer dress area */}
-        <div className="relative z-10 flex items-center min-h-[90vh] px-8 md:px-16 lg:px-24">
-          <div className="max-w-xl" style={{ marginTop: '5vh' }}>
+          {/* Text block */}
+          <div>
             <h1
-              className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.92] tracking-tight mix-blend-multiply"
+              className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[0.92] tracking-tight"
               style={{ fontWeight: 400, color: 'hsl(40 10% 12%)' }}
             >
               <em>The Art of</em>
