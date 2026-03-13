@@ -129,7 +129,7 @@ const blogPostsData: Record<string, {
     ]
   },
   "valentine-gift-guide-family-tech-2026": {
-    title: "2026 Valentine Gift Guide: Tech for Family Edition",
+    title: "2026 Saint Patrick's Day Gift Guide: Tech for Family Edition",
     date: "2026-02-02",
     category: "Gift Guides",
     imageUrl: stPatricksHeroImg,
