@@ -74,7 +74,7 @@ const staticBlogPosts = [
     excerpt: "AirPods vs Galaxy Buds vs Nothing Ear—which wireless earbuds are right for you? We break down the pros, cons, sound quality, battery life, and value proposition.",
     date: "2025-01-04",
     category: "Connectivity",
-    imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format",
+    imageUrl: wirelessEarbudsHeroImg,
     slug: "wireless-earbuds-comparison-2025",
     isGenerated: false,
     readTime: "10 min read",
