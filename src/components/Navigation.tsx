@@ -39,7 +39,10 @@ const Navigation = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
               <img src={logo} alt="Modern Tech LLC" className="h-14 w-14 rounded-full object-contain bg-white p-0.5 shadow-md border-2 border-primary/20" />
-              <span className="text-lg font-bold tracking-tight text-foreground hidden sm:inline">Modern Tech LLC</span>
+              <span className="hidden sm:inline text-lg font-bold tracking-tight">
+                <span className="bg-gradient-to-r from-primary via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-sm">Modern Tech</span>
+                <span className="text-muted-foreground font-light ml-1.5 text-sm tracking-widest uppercase">LLC</span>
+              </span>
             </Link>
 
             {/* Desktop center links */}
