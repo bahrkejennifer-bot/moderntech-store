@@ -360,7 +360,7 @@ interface BlogPostItem {
 
 const BlogCard = ({ post }: { post: BlogPostItem }) => (
   <Link to={`/blog/${post.slug}`} className="group block h-full">
-    <article className="rounded-xl bg-card border border-border overflow-hidden h-full flex flex-col shadow-soft hover:shadow-elegant transition-all duration-300">
+    <article className="border border-border overflow-hidden h-full flex flex-col hover:shadow-elegant transition-all duration-300">
       <div className="aspect-[16/10] overflow-hidden relative">
         <img
           src={post.imageUrl}
@@ -368,23 +368,23 @@ const BlogCard = ({ post }: { post: BlogPostItem }) => (
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         {post.isGenerated && (
-          <Badge className="absolute top-3 right-3 bg-foreground text-background gap-1 text-[10px]">
-            <Sparkles className="h-3 w-3" /> AI Roundup
+          <Badge className="absolute top-3 right-3 bg-foreground text-background gap-1 text-[10px] font-mono">
+            <Sparkles className="h-3 w-3" /> AI
           </Badge>
         )}
       </div>
       <div className="p-6 flex flex-col flex-1">
-        <div className="flex items-center gap-2 text-[11px] text-muted-foreground mb-3">
-          <span className="font-semibold uppercase tracking-[0.1em] text-foreground/50">{post.category}</span>
+        <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-3">
+          <span>{post.category}</span>
           <span className="ml-auto flex items-center gap-1"><Clock className="h-3 w-3" /> {post.readTime}</span>
         </div>
-        <h3 className="text-base font-bold leading-snug line-clamp-2 mb-3 group-hover:text-foreground/70 transition-colors tracking-tight text-foreground">
+        <h3 className="font-serif text-lg italic leading-snug line-clamp-2 mb-3 group-hover:text-foreground/70 transition-colors">
           {post.title}
         </h3>
-        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed flex-1">
+        <p className="font-mono text-[11px] text-muted-foreground line-clamp-2 leading-relaxed flex-1">
           {post.excerpt}
         </p>
-        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground mt-5 border-b border-foreground/20 pb-0.5 self-start group-hover:border-foreground/50 transition-colors">
+        <span className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.15em] uppercase text-foreground mt-5 border-b border-foreground/20 pb-0.5 self-start group-hover:border-foreground/50 transition-colors">
           Read more <ArrowRight className="h-3 w-3" />
         </span>
       </div>
