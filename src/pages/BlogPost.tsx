@@ -55,6 +55,11 @@ import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
 import stPatricksHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
 import smartRingHeroImg from "@/assets/heroes/smart-ring-guide-hero.png";
+import smartHomeHeroImg from "@/assets/blog/smart-home-devices-hero.jpg";
+import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
+import wirelessEarbudsHeroImg from "@/assets/blog/wireless-earbuds-hero.jpg";
+import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
+import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
 
 interface BlogProduct {
   title: string;
@@ -178,7 +183,7 @@ const blogPostsData: Record<string, {
     title: "Top 10 Smart Home Devices for 2025",
     date: "2025-01-14",
     category: "Home & Safety",
-    imageUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?w=1200&auto=format",
+    imageUrl: smartHomeHeroImg,
     intro: "Imagine a home that anticipates your needs, protects your loved ones, and simplifies your daily life—all with effortless control. By 2025, smart home technology has evolved beyond mere convenience, offering an integrated sanctuary of unparalleled security, streamlined routines, and complete peace of mind. This essential guide explores the top 10 smart home devices poised to redefine comfort and safety, empowering you to create an intuitive, intelligent, and secure living space for your family.",
     sections: [
       { type: 'heading', content: 'Why Smart Home Security Matters in 2025' },
@@ -212,7 +217,7 @@ const blogPostsData: Record<string, {
     title: "Best Gaming Monitors Under $500",
     date: "2025-01-09",
     category: "Gaming",
-    imageUrl: "https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=1200&auto=format",
+    imageUrl: gamingMonitorsHeroImg,
     intro: "You're losing matches before they even start—and your monitor is to blame. Every frame matters in competitive gaming. When your monitor can't keep up with your reflexes, you're fighting with one hand tied behind your back. Screen tearing ruins clutch moments. Motion blur makes tracking enemies impossible. And that split-second delay? It's the difference between victory and watching the killcam. The good news? You don't need to spend $1,000+ to compete at the highest level. The right gaming monitor under $500 can unlock your GPU's full potential, eliminate screen tearing, and give you the competitive edge you've been missing.",
     sections: [
       { type: 'heading', content: 'What to Look For in a Gaming Monitor' },
@@ -241,7 +246,7 @@ const blogPostsData: Record<string, {
     title: "Wireless Earbuds Comparison Guide",
     date: "2025-01-04",
     category: "Connectivity",
-    imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=1200&auto=format",
+    imageUrl: wirelessEarbudsHeroImg,
     intro: "You've bought three pairs of wireless earbuds in two years—and you still haven't found 'the one.' Wireless earbuds promise freedom, but most deliver frustration instead. They fall out during your morning run. They die halfway through your commute. They drop connection during important calls. The AirPods vs Galaxy Buds debate rages on with no clear winner. This guide cuts through the marketing noise and reveals the truth: there's no single 'best' earbud—there's the best one for YOU.",
     sections: [
       { type: 'heading', content: 'AirPods vs Galaxy Buds: A Head-to-Head Comparison' },
@@ -271,7 +276,7 @@ const blogPostsData: Record<string, {
     title: "Tech Essentials for College Students",
     date: "2024-12-27",
     category: "College & School",
-    imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&auto=format",
+    imageUrl: collegeTechHeroImg,
     intro: "Your laptop died during finals week, and you just learned the hard way that 'any computer will do' is terrible advice. College moves fast, and outdated tech makes everything harder. Your laptop freezes during online exams. Your phone dies before your last class. Group projects become nightmares when you can't access shared files. The right tech doesn't just make college easier—it makes success inevitable. This guide reveals the essential devices that actually matter for modern college life.",
     sections: [
       { type: 'heading', content: 'Must-Have vs Nice-to-Have Tech' },
@@ -318,7 +323,7 @@ const blogPostsData: Record<string, {
     title: "Educational Tech for Kids: Parent's Guide",
     date: "2024-12-14",
     category: "Kids Tech",
-    imageUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&auto=format",
+    imageUrl: kidsTechHeroImg,
     intro: "Navigate the world of educational technology with our guide to age-appropriate learning devices and apps. Make informed choices that support your child's development while ensuring safety and screen time balance. From tablets designed for little hands to STEM toys that spark curiosity, we've tested the best options to help your kids learn while having fun.",
     sections: [
       { type: 'heading', content: 'Age-Appropriate Tech Guidelines' },
@@ -343,7 +348,7 @@ const blogPostsData: Record<string, {
     title: "☘️ Best St. Patrick's Day Tech Deals 2026",
     date: "2026-02-19",
     category: "Deals",
-    imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&auto=format",
+    imageUrl: stPatricksHeroImg,
     intro: "Feeling lucky? You should be. Every March, retailers roll out some of the best tech deals of the year — and St. Patrick's Day 2026 is no exception. Whether you're upgrading your smart home, leveling up your gaming setup, or finally grabbing those wireless earbuds you've been eyeing, we've tracked down the deals worth your gold. Here are the best St. Patrick's Day tech deals happening right now.",
     sections: [
       { type: 'heading', content: "Why St. Patrick's Day Has Become a Tech Deal Holiday" },
@@ -383,7 +388,7 @@ const blogPostsData: Record<string, {
 const parseMarkdownBold = (text: string): React.ReactNode[] => {
   const parts = text.split(/\*\*(.*?)\*\*/g);
   return parts.map((part, i) =>
-    i % 2 === 0 ? part : <strong key={i} className="text-foreground font-semibold">{part}</strong>
+    i % 2 === 0 ? part : <strong key={i} className="text-foreground font-bold">{part}</strong>
   );
 };
 
