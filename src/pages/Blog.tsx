@@ -362,32 +362,31 @@ interface BlogPostItem {
 
 const BlogCard = ({ post }: { post: BlogPostItem }) => (
   <Link to={`/blog/${post.slug}`} className="group block h-full">
-    <article className="rounded-xl border border-border/30 bg-card overflow-hidden h-full flex flex-col hover:border-primary/20 hover:shadow-elegant transition-all duration-300">
+    <article className="rounded-xl bg-card border border-border overflow-hidden h-full flex flex-col shadow-soft hover:shadow-elegant transition-all duration-300">
       <div className="aspect-[16/10] overflow-hidden relative">
         <img
           src={post.imageUrl}
           alt={post.title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent" />
         {post.isGenerated && (
-          <Badge className="absolute top-3 right-3 bg-primary/90 text-primary-foreground gap-1 text-[10px]">
+          <Badge className="absolute top-3 right-3 bg-foreground text-background gap-1 text-[10px]">
             <Sparkles className="h-3 w-3" /> AI Roundup
           </Badge>
         )}
       </div>
-      <div className="p-5 flex flex-col flex-1">
+      <div className="p-6 flex flex-col flex-1">
         <div className="flex items-center gap-2 text-[11px] text-muted-foreground mb-3">
-          <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full text-[10px]">{post.category}</span>
+          <span className="font-semibold uppercase tracking-[0.1em] text-foreground/50">{post.category}</span>
           <span className="ml-auto flex items-center gap-1"><Clock className="h-3 w-3" /> {post.readTime}</span>
         </div>
-        <h3 className="text-base font-bold leading-snug line-clamp-2 mb-2 group-hover:text-primary transition-colors tracking-tight">
+        <h3 className="text-base font-bold leading-snug line-clamp-2 mb-3 group-hover:text-foreground/70 transition-colors tracking-tight text-foreground">
           {post.title}
         </h3>
         <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed flex-1">
           {post.excerpt}
         </p>
-        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all">
+        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground mt-5 border-b border-foreground/20 pb-0.5 self-start group-hover:border-foreground/50 transition-colors">
           Read more <ArrowRight className="h-3 w-3" />
         </span>
       </div>
