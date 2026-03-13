@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { Helmet } from "react-helmet-async";
-import { Calendar, ArrowLeft, ExternalLink, Download, Clock, Share2, ChevronUp, List } from "lucide-react";
+import { Calendar, ArrowLeft, ExternalLink, Download, Clock, ChevronUp, List } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
