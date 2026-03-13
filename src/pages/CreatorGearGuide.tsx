@@ -62,13 +62,14 @@ const CreatorGearGuide = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Free Creator Gear Starter Kit 2026 | Mics, Cameras & Streaming Setup</title>
-        <meta name="description" content="Download the free Creator Gear Starter Kit — mic, camera & lighting picks at every budget, studio layout guides, OBS setup walkthrough & a 7-day content launch challenge." />
-        <meta property="og:title" content="Free Creator Gear Starter Kit 2026" />
+        <title>Free Creator Gear Starter Kit 2026 | Modern Tech LLC</title>
+        <meta name="description" content="Download the free Creator Gear Starter Kit — mic, camera & lighting picks at every budget. By Modern Tech LLC." />
+        <meta property="og:title" content="Free Creator Gear Starter Kit 2026 — by Modern Tech LLC" />
         <meta property="og:description" content="Mic, camera & lighting picks at every budget, studio layout guides & OBS setup walkthrough." />
         <meta property="og:image" content="https://moderntech.store/images/products/creator-gear-starter-kit-cover.jpg" />
         <meta property="og:url" content="https://moderntech.store/creator-gear-guide" />
         <meta property="og:type" content="article" />
+        <meta name="author" content="Modern Tech LLC" />
       </Helmet>
       <Navigation />
 

@@ -52,13 +52,14 @@ const DormRoomTechGuide = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Free Ultimate Dorm Room Tech Setup Guide 2026 | College Essentials</title>
-        <meta name="description" content="Download the free Dorm Room Tech Setup Guide — complete checklist for college students with laptop, headphones, charger picks at every budget. Desk layouts for tiny spaces." />
-        <meta property="og:title" content="Free Dorm Room Tech Setup Guide 2026" />
+        <title>Free Dorm Room Tech Setup Guide 2026 | Modern Tech LLC</title>
+        <meta name="description" content="Download the free Dorm Room Tech Setup Guide — complete checklist for college students. By Modern Tech LLC." />
+        <meta property="og:title" content="Free Dorm Room Tech Setup Guide 2026 — by Modern Tech LLC" />
         <meta property="og:description" content="Complete checklist for college students with laptop, headphones, charger picks at every budget." />
         <meta property="og:image" content="https://moderntech.store/images/products/dorm-room-tech-cover.jpg" />
         <meta property="og:url" content="https://moderntech.store/dorm-room-tech-guide" />
         <meta property="og:type" content="article" />
+        <meta name="author" content="Modern Tech LLC" />
       </Helmet>
       <Navigation />
 
