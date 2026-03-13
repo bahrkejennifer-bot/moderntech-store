@@ -148,7 +148,7 @@ const Navigation = () => {
 
               <button
                 onClick={() => { setGuideOpen(true); setMobileOpen(false); }}
-                className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground w-fit"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] w-fit transition-colors"
               >
                 Free Guide
               </button>
