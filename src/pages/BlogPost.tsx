@@ -543,8 +543,10 @@ const BlogPost = () => {
           <article>
             {/* Header */}
             <header className="mb-10 border-b border-border/40 pb-8">
-              <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4">
+              <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4 flex-wrap">
                 <span className="text-primary font-semibold uppercase tracking-wide">{post!.category}</span>
+                <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+                <span>by Modern Tech LLC</span>
                 <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
                 <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(post!.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
                 <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
