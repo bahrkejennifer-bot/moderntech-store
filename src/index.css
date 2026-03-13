@@ -151,6 +151,66 @@ Dark base, bold blue accents, crisp white type
   }
 }
 
+/* ═══════════════════════════════════════════
+   BLOG LIGHT THEME — elegant, classy minimal
+   Apply .blog-light to blog page wrappers
+   ═══════════════════════════════════════════ */
+.blog-light {
+  --background: 0 0% 98%;
+  --foreground: 222 47% 11%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+
+  --primary: 222 47% 20%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 220 14% 96%;
+  --secondary-foreground: 222 47% 11%;
+
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;
+
+  --accent: 222 47% 20%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 72% 50%;
+  --destructive-foreground: 0 85% 97%;
+
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 222 47% 20%;
+
+  /* Blog-specific shadows for light bg */
+  --shadow-card: 0 1px 3px hsl(220 13% 91% / 0.5), 0 4px 16px hsl(220 13% 91% / 0.3);
+  --shadow-elegant: 0 4px 24px hsl(222 47% 11% / 0.06);
+  --shadow-soft: 0 2px 12px hsl(222 47% 11% / 0.04);
+}
+
+.blog-light h1,
+.blog-light h2,
+.blog-light h3,
+.blog-light h4,
+.blog-light h5,
+.blog-light h6 {
+  color: hsl(222 47% 11%);
+}
+
+.blog-light .gradient-text {
+  background: linear-gradient(135deg, hsl(222 47% 20%), hsl(250 40% 35%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.blog-light .glow-line {
+  background: linear-gradient(90deg, transparent, hsl(222 47% 20% / 0.15), transparent);
+  height: 1px;
+}
+
 @layer utilities {
   .glass-dark {
     background: hsl(240 20% 7% / 0.75);
