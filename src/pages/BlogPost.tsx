@@ -654,7 +654,7 @@ const BlogPost = () => {
           alt={post!.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 -mt-40 relative z-10 pb-16">
