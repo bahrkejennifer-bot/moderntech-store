@@ -601,7 +601,7 @@ const BlogPost = () => {
   // ── Not Found ──
   if (!post && !dynamicPost) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen blog-light bg-background">
         <Navigation />
         <div className="container mx-auto px-4 py-24 text-center">
           <h1 className="text-4xl font-bold mb-4 tracking-tight">Post Not Found</h1>
