@@ -29,7 +29,7 @@ const staticBlogPosts = [
     excerpt: "Oura, Samsung Galaxy Ring, or Ultrahuman? We compare the top smart rings, breaking down sleep tracking accuracy, heart rate monitoring, sizing, and whether they're worth the investment.",
     date: "2026-02-02",
     category: "Health & Wellness",
-    imageUrl: "https://images.unsplash.com/photo-1573405963648-854c31a4db30?w=800&auto=format",
+    imageUrl: ouraRingHeroImg,
     slug: "smart-ring-guide-valentines-2026",
     isGenerated: false,
     readTime: "12 min read",
