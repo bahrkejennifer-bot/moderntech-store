@@ -160,7 +160,7 @@ const Blog = () => {
   const gridPosts = isFiltering ? filteredPosts : filteredPosts.slice(1);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen blog-light bg-background">
       <Helmet>
         <title>Modern Tech Blog | Reviews, Deals & Buying Guides</title>
         <meta name="description" content="Expert tech reviews, buying guides and deals on smart home, gaming, wellness gear and more. Updated weekly." />
@@ -173,50 +173,50 @@ const Blog = () => {
       <Navigation />
 
       {/* ── Hero Section ── */}
-      <header className="border-b border-border/30">
-        <div className="container mx-auto px-4 pt-24 pb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-[2px] bg-primary rounded-full" />
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary">Modern Tech Blog</p>
+      <header className="border-b border-border">
+        <div className="container mx-auto px-4 pt-28 pb-10">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-10 h-[2px] bg-foreground/20 rounded-full" />
+            <p className="text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground">Modern Tech Blog</p>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] max-w-3xl">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] max-w-3xl text-foreground">
             Insights, Reviews &<br />
             <span className="gradient-text">Buying Guides</span>
           </h1>
-          <p className="mt-5 text-muted-foreground text-lg max-w-xl leading-relaxed">
+          <p className="mt-6 text-muted-foreground text-lg max-w-xl leading-relaxed">
             Expert-tested tech recommendations to help you spend smarter and live better.
           </p>
         </div>
 
         {/* Search bar + Category pills */}
-        <div className="container mx-auto px-4 pb-6 space-y-4">
+        <div className="container mx-auto px-4 pb-8 space-y-5">
           <div className="relative max-w-md">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 pr-9 h-11 bg-card border-border/40 rounded-full text-sm placeholder:text-muted-foreground/50 focus-visible:ring-primary/30"
+              className="pl-11 pr-10 h-12 bg-card border-border rounded-full text-sm placeholder:text-muted-foreground/50 focus-visible:ring-foreground/10 shadow-sm"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X className="h-4 w-4" />
               </button>
             )}
           </div>
 
-          <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
+          <div className="flex gap-2.5 overflow-x-auto scrollbar-hide pb-1">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`shrink-0 text-xs font-medium px-4 py-2 rounded-full border transition-all duration-200 ${
                   activeCategory === cat
-                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                    : "border-border/40 text-muted-foreground hover:text-foreground hover:border-primary/30 hover:bg-primary/5"
+                    ? "bg-foreground text-background border-foreground"
+                    : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
                 }`}
               >
                 {cat}
@@ -226,11 +226,11 @@ const Blog = () => {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-12 lg:py-16">
+      <div className="container mx-auto px-4 py-16 lg:py-20">
         {/* ── Featured Post (large hero card) ── */}
         {featuredPost && (
-          <Link to={`/blog/${featuredPost.slug}`} className="group block mb-16">
-            <article className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-border/30 bg-card hover:shadow-elegant transition-all duration-500">
+          <Link to={`/blog/${featuredPost.slug}`} className="group block mb-20">
+            <article className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden bg-card border border-border shadow-soft hover:shadow-elegant transition-all duration-500">
               <div className="aspect-[16/10] lg:aspect-auto overflow-hidden relative">
                 <img
                   src={featuredPost.imageUrl}
@@ -238,24 +238,26 @@ const Blog = () => {
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 {featuredPost.isGenerated && (
-                  <Badge className="absolute top-4 left-4 bg-primary/90 text-primary-foreground gap-1">
+                  <Badge className="absolute top-4 left-4 bg-foreground text-background gap-1 text-[10px]">
                     <Sparkles className="h-3 w-3" /> AI Roundup
                   </Badge>
                 )}
               </div>
-              <div className="p-8 lg:p-12 flex flex-col justify-center">
+              <div className="p-10 lg:p-14 flex flex-col justify-center">
                 <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5">
-                  <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{featuredPost.category}</span>
+                  <span className="font-semibold uppercase tracking-[0.15em] text-foreground/60">{featuredPost.category}</span>
+                  <span className="w-1 h-1 rounded-full bg-border" />
                   <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(featuredPost.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+                  <span className="w-1 h-1 rounded-full bg-border" />
                   <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {featuredPost.readTime}</span>
                 </div>
-                <h2 className="text-2xl lg:text-3xl font-bold leading-tight tracking-tight mb-4 group-hover:text-primary transition-colors">
+                <h2 className="text-2xl lg:text-3xl font-bold leading-tight tracking-tight mb-5 group-hover:text-foreground/70 transition-colors">
                   {featuredPost.title}
                 </h2>
-                <p className="text-muted-foreground leading-relaxed mb-6 line-clamp-3">
+                <p className="text-muted-foreground leading-relaxed mb-8 line-clamp-3">
                   {featuredPost.excerpt}
                 </p>
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all">
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground border-b border-foreground/30 pb-0.5 self-start group-hover:border-foreground transition-colors">
                   Read Article <ArrowRight className="h-4 w-4" />
                 </span>
               </div>
@@ -265,15 +267,15 @@ const Blog = () => {
 
         {/* ── AI Roundup Section ── */}
         {!isFiltering && dynamicMapped.length > 1 && (
-          <section className="mb-16">
-            <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-sm font-semibold tracking-[0.15em] uppercase text-primary flex items-center gap-2 whitespace-nowrap">
+          <section className="mb-20">
+            <div className="flex items-center gap-4 mb-10">
+              <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground flex items-center gap-2 whitespace-nowrap">
                 <Sparkles className="h-4 w-4" />
                 Weekly Deep-Dive
               </h2>
-              <div className="glow-line flex-1" />
+              <div className="h-px flex-1 bg-border" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {dynamicMapped.slice(1, 4).map((post) => (
                 <BlogCard key={post.slug} post={post} />
               ))}
@@ -283,16 +285,15 @@ const Blog = () => {
 
         {/* ── Newsletter CTA ── */}
         {!isFiltering && (
-          <section className="mb-16 rounded-2xl border border-border/40 bg-card overflow-hidden">
-            <div className="relative py-14 px-8 text-center">
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.06),transparent_70%)]" />
+          <section className="mb-20 rounded-2xl border border-border bg-card overflow-hidden">
+            <div className="relative py-16 px-8 text-center">
               <div className="relative z-10">
-                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">Free Resource</p>
-                <h3 className="text-2xl font-bold mb-3 tracking-tight">90-Day Amazon Associate Roadmap</h3>
-                <p className="text-muted-foreground mb-6 max-w-md mx-auto text-sm leading-relaxed">
+                <p className="text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-4">Free Resource</p>
+                <h3 className="text-2xl font-bold mb-4 tracking-tight text-foreground">90-Day Amazon Associate Roadmap</h3>
+                <p className="text-muted-foreground mb-8 max-w-md mx-auto text-sm leading-relaxed">
                   Go from zero to your first affiliate commission — step-by-step checklist included.
                 </p>
-                <Button asChild variant="cta" className="rounded-full px-8">
+                <Button asChild className="rounded-full px-8 bg-foreground text-background hover:bg-foreground/90">
                   <Link to="/free-roadmap">Download Free Roadmap <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
               </div>
@@ -302,17 +303,17 @@ const Blog = () => {
 
         {/* ── All Articles Grid ── */}
         <section>
-          <div className="flex items-center gap-4 mb-8">
-            <h2 className="text-sm font-semibold tracking-[0.15em] uppercase text-foreground whitespace-nowrap">
+          <div className="flex items-center gap-4 mb-10">
+            <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground whitespace-nowrap">
               {isFiltering
                 ? `${filteredPosts.length} result${filteredPosts.length !== 1 ? "s" : ""}`
                 : "All Articles"}
             </h2>
-            <div className="h-px flex-1 bg-border/60" />
+            <div className="h-px flex-1 bg-border" />
             {isFiltering && (
               <button
                 onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
-                className="text-xs text-primary font-medium hover:underline whitespace-nowrap"
+                className="text-xs text-foreground font-medium hover:underline whitespace-nowrap"
               >
                 Clear filters
               </button>
@@ -326,13 +327,13 @@ const Blog = () => {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16">
+            <div className="text-center py-20">
               <Search className="h-10 w-10 mx-auto text-muted-foreground/40 mb-4" />
               <p className="text-lg font-semibold text-foreground/70 mb-2">No articles found</p>
               <p className="text-sm text-muted-foreground mb-6">Try a different search term or category.</p>
               <Button
                 variant="outline"
-                className="rounded-full"
+                className="rounded-full border-foreground/20 text-foreground hover:bg-foreground/5"
                 onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
               >
                 Clear filters
@@ -361,32 +362,31 @@ interface BlogPostItem {
 
 const BlogCard = ({ post }: { post: BlogPostItem }) => (
   <Link to={`/blog/${post.slug}`} className="group block h-full">
-    <article className="rounded-xl border border-border/30 bg-card overflow-hidden h-full flex flex-col hover:border-primary/20 hover:shadow-elegant transition-all duration-300">
+    <article className="rounded-xl bg-card border border-border overflow-hidden h-full flex flex-col shadow-soft hover:shadow-elegant transition-all duration-300">
       <div className="aspect-[16/10] overflow-hidden relative">
         <img
           src={post.imageUrl}
           alt={post.title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent" />
         {post.isGenerated && (
-          <Badge className="absolute top-3 right-3 bg-primary/90 text-primary-foreground gap-1 text-[10px]">
+          <Badge className="absolute top-3 right-3 bg-foreground text-background gap-1 text-[10px]">
             <Sparkles className="h-3 w-3" /> AI Roundup
           </Badge>
         )}
       </div>
-      <div className="p-5 flex flex-col flex-1">
+      <div className="p-6 flex flex-col flex-1">
         <div className="flex items-center gap-2 text-[11px] text-muted-foreground mb-3">
-          <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full text-[10px]">{post.category}</span>
+          <span className="font-semibold uppercase tracking-[0.1em] text-foreground/50">{post.category}</span>
           <span className="ml-auto flex items-center gap-1"><Clock className="h-3 w-3" /> {post.readTime}</span>
         </div>
-        <h3 className="text-base font-bold leading-snug line-clamp-2 mb-2 group-hover:text-primary transition-colors tracking-tight">
+        <h3 className="text-base font-bold leading-snug line-clamp-2 mb-3 group-hover:text-foreground/70 transition-colors tracking-tight text-foreground">
           {post.title}
         </h3>
         <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed flex-1">
           {post.excerpt}
         </p>
-        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all">
+        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground mt-5 border-b border-foreground/20 pb-0.5 self-start group-hover:border-foreground/50 transition-colors">
           Read more <ArrowRight className="h-3 w-3" />
         </span>
       </div>

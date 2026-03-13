@@ -458,8 +458,8 @@ const BlogPost = () => {
         return (
           <div key={index} id={sectionId} className="mt-16 mb-6 scroll-mt-28">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-[2px] bg-primary rounded-full" />
-              <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-primary/70">Section {Math.ceil((index + 1) / 3)}</span>
+              <div className="w-8 h-[2px] bg-foreground/15 rounded-full" />
+              <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground">Section {Math.ceil((index + 1) / 3)}</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight leading-tight">
               {section.content}
@@ -468,22 +468,22 @@ const BlogPost = () => {
         );
       case 'subheading':
         return (
-          <h3 key={index} id={sectionId} className="text-xl font-semibold mt-10 mb-4 text-foreground tracking-tight border-l-2 border-primary/40 pl-4 scroll-mt-28">
+          <h3 key={index} id={sectionId} className="text-xl font-semibold mt-10 mb-4 text-foreground tracking-tight border-l-2 border-foreground/15 pl-4 scroll-mt-28">
             {section.content}
           </h3>
         );
       case 'paragraph':
         return (
-          <p key={index} className="text-foreground/75 leading-[1.85] mb-6 text-[15px]">
+          <p key={index} className="text-muted-foreground leading-[1.85] mb-6 text-[15px]">
             {parseMarkdownBold(section.content || '')}
           </p>
         );
       case 'list':
         return (
-          <ul key={index} className="space-y-3 mb-8 ml-1 pl-4 border-l border-border/60">
+          <ul key={index} className="space-y-3 mb-8 ml-1 pl-4 border-l border-border">
             {section.items?.map((item, i) => (
-              <li key={i} className="text-foreground/75 leading-[1.8] flex gap-3 text-[15px]">
-                <span className="text-primary mt-1 shrink-0 text-xs">▸</span>
+              <li key={i} className="text-muted-foreground leading-[1.8] flex gap-3 text-[15px]">
+                <span className="text-foreground/30 mt-1 shrink-0 text-xs">▸</span>
                 <span>{parseMarkdownBold(item)}</span>
               </li>
             ))}
@@ -500,7 +500,7 @@ const BlogPost = () => {
     const ogTitle = dynamicPost.title;
     const ogDesc = dynamicPost.excerpt || `${dynamicPost.title} — Read on Modern Tech LLC`;
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen blog-light bg-background">
         <Helmet>
           <title>{ogTitle} | Modern Tech LLC</title>
           <meta name="description" content={ogDesc} />
@@ -519,7 +519,7 @@ const BlogPost = () => {
         {/* Reading Progress Bar */}
         <div className="fixed top-0 left-0 right-0 z-50 h-[3px] bg-transparent">
           <div
-            className="h-full bg-primary transition-[width] duration-150 ease-out"
+           className="h-full bg-foreground transition-[width] duration-150 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -533,7 +533,7 @@ const BlogPost = () => {
             alt={dynamicPost.title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
         </div>
 
         <div className="container mx-auto px-4 -mt-40 relative z-10 pb-16">
@@ -545,20 +545,20 @@ const BlogPost = () => {
             <article>
               <header className="mb-12 pb-8 border-b border-border/30">
                 <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5 flex-wrap">
-                  <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{dynamicPost.category || "Tech Roundup"}</span>
-                  <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(dynamicPost.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+                  <span className="font-semibold uppercase tracking-[0.15em] text-foreground/50 text-xs">{dynamicPost.category || "Tech Roundup"}</span>
+                  <span className="flex items-center gap-1 text-xs text-muted-foreground"><Calendar className="h-3 w-3" /> {new Date(dynamicPost.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
                 </div>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.08]">
                   {dynamicPost.title}
                 </h1>
                 <div className="flex items-center gap-2 mt-6">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">MT</div>
-                  <span className="text-sm text-muted-foreground">by <span className="text-foreground/80 font-medium">Modern Tech LLC</span></span>
+                  <div className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center text-foreground text-xs font-bold">MT</div>
+                  <span className="text-sm text-muted-foreground">by <span className="text-foreground font-medium">Modern Tech LLC</span></span>
                 </div>
               </header>
 
               <div
-                className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-p:text-foreground/75 prose-p:leading-[1.85]"
+                className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:text-muted-foreground prose-p:leading-[1.85]"
                 dangerouslySetInnerHTML={{ __html: dynamicPost.content_html }}
               />
 
@@ -571,7 +571,7 @@ const BlogPost = () => {
         {showScrollTop && (
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="fixed bottom-8 right-8 z-40 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-elegant hover:scale-110 transition-transform"
+            className="fixed bottom-8 right-8 z-40 w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center shadow-elegant hover:scale-110 transition-transform"
             aria-label="Scroll to top"
           >
             <ChevronUp className="h-5 w-5" />
@@ -586,7 +586,7 @@ const BlogPost = () => {
   // ── Loading ──
   if (!post && isLoading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen blog-light bg-background">
         <Navigation />
         <div className="container mx-auto px-4 py-24 text-center">
           <div className="animate-pulse space-y-4">
@@ -601,7 +601,7 @@ const BlogPost = () => {
   // ── Not Found ──
   if (!post && !dynamicPost) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen blog-light bg-background">
         <Navigation />
         <div className="container mx-auto px-4 py-24 text-center">
           <h1 className="text-4xl font-bold mb-4 tracking-tight">Post Not Found</h1>
@@ -620,7 +620,7 @@ const BlogPost = () => {
   const staticOgImage = post!.imageUrl.startsWith("http") ? post!.imageUrl : `${SITE}${post!.imageUrl}`;
   const staticOgDesc = post!.intro.slice(0, 155) + "…";
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen blog-light bg-background">
       <Helmet>
         <title>{post!.title} | Modern Tech LLC</title>
         <meta name="description" content={staticOgDesc} />
@@ -640,7 +640,7 @@ const BlogPost = () => {
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 right-0 z-50 h-[3px] bg-transparent">
         <div
-          className="h-full bg-primary transition-[width] duration-150 ease-out"
+          className="h-full bg-foreground transition-[width] duration-150 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -654,7 +654,7 @@ const BlogPost = () => {
           alt={post!.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 -mt-40 relative z-10 pb-16">
@@ -667,22 +667,24 @@ const BlogPost = () => {
 
             <article>
               {/* Header */}
-              <header className="mb-12 pb-8 border-b border-border/30">
+              <header className="mb-14 pb-10 border-b border-border">
                 <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5 flex-wrap">
-                  <span className="bg-primary/10 text-primary font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{post!.category}</span>
+                  <span className="font-semibold uppercase tracking-[0.15em] text-foreground/50">{post!.category}</span>
+                  <span className="w-1 h-1 rounded-full bg-border" />
                   <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(post!.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+                  <span className="w-1 h-1 rounded-full bg-border" />
                   <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> 8 min read</span>
                 </div>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.08] mb-6">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.08] mb-6 text-foreground">
                   {post!.title}
                 </h1>
-                <p className="text-lg text-foreground/60 leading-relaxed max-w-2xl">
+                <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
                   {post!.intro}
                 </p>
-                <div className="flex items-center gap-4 mt-6">
+                <div className="flex items-center gap-4 mt-8">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">MT</div>
-                    <span className="text-sm text-muted-foreground">by <span className="text-foreground/80 font-medium">Modern Tech LLC</span></span>
+                    <div className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center text-foreground text-xs font-bold">MT</div>
+                    <span className="text-sm text-muted-foreground">by <span className="text-foreground font-medium">Modern Tech LLC</span></span>
                   </div>
                 </div>
               </header>
@@ -690,11 +692,11 @@ const BlogPost = () => {
               {/* Products Section */}
               {post!.products.length > 0 && (
                 <section className="mb-14">
-                  <div className="flex items-center gap-4 mb-8">
-                    <h2 className="text-sm font-semibold tracking-[0.15em] uppercase text-primary whitespace-nowrap">
+                  <div className="flex items-center gap-4 mb-10">
+                    <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground whitespace-nowrap">
                       Featured Products
                     </h2>
-                    <div className="glow-line flex-1" />
+                    <div className="h-px flex-1 bg-border" />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {post!.products.map((product, index) => (
@@ -718,9 +720,9 @@ const BlogPost = () => {
           {tocEntries.length > 0 && (
             <aside className="hidden xl:block w-64 shrink-0">
               <nav className="sticky top-24">
-                <div className="flex items-center gap-2 mb-4 pb-3 border-b border-border/30">
-                  <List className="h-4 w-4 text-primary" />
-                  <span className="text-xs font-semibold tracking-[0.15em] uppercase text-primary">On This Page</span>
+                <div className="flex items-center gap-2 mb-5 pb-3 border-b border-border">
+                  <List className="h-4 w-4 text-foreground/40" />
+                  <span className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground">On This Page</span>
                 </div>
                 <ul className="space-y-1">
                   {tocEntries.map((entry) => (
@@ -731,7 +733,7 @@ const BlogPost = () => {
                           entry.level === 3 ? 'pl-5' : 'pl-3'
                         } ${
                           activeId === entry.id
-                            ? 'border-primary text-primary font-medium'
+                            ? 'border-foreground text-foreground font-medium'
                             : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
                         }`}
                       >
@@ -742,14 +744,14 @@ const BlogPost = () => {
                 </ul>
 
                 {/* Progress indicator */}
-                <div className="mt-6 pt-4 border-t border-border/30">
+                <div className="mt-6 pt-4 border-t border-border">
                   <div className="flex items-center justify-between text-[11px] text-muted-foreground mb-2">
                     <span>Reading progress</span>
                     <span>{Math.round(progress)}%</span>
                   </div>
-                  <div className="h-1 w-full bg-muted rounded-full overflow-hidden">
+                  <div className="h-1 w-full bg-secondary rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-primary rounded-full transition-[width] duration-150"
+                      className="h-full bg-foreground/30 rounded-full transition-[width] duration-150"
                       style={{ width: `${progress}%` }}
                     />
                   </div>
@@ -764,7 +766,7 @@ const BlogPost = () => {
       {showScrollTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-8 right-8 z-40 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-elegant hover:scale-110 transition-transform"
+          className="fixed bottom-8 right-8 z-40 w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center shadow-elegant hover:scale-110 transition-transform"
           aria-label="Scroll to top"
         >
           <ChevronUp className="h-5 w-5" />
@@ -784,29 +786,28 @@ const ProductCard = ({ product }: { product: BlogProduct }) => (
     rel="noopener noreferrer nofollow"
     className="group block"
   >
-    <div className="rounded-xl border border-border/40 bg-card overflow-hidden h-full flex flex-col hover:border-primary/30 hover:shadow-card transition-all duration-300">
+    <div className="rounded-xl border border-border bg-card overflow-hidden h-full flex flex-col shadow-soft hover:shadow-elegant transition-all duration-300">
       <div className="aspect-[4/3] overflow-hidden relative">
         <img
           src={product.imageUrl}
           alt={product.title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent" />
         {product.badge && (
-          <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wide uppercase">
+          <span className="absolute top-3 left-3 bg-foreground text-background text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wide uppercase">
             {product.badge}
           </span>
         )}
       </div>
       <div className="p-4 flex flex-col flex-1">
-        <h3 className="text-sm font-bold line-clamp-2 mb-1 group-hover:text-primary transition-colors">{product.title}</h3>
+        <h3 className="text-sm font-bold line-clamp-2 mb-1 group-hover:text-foreground/70 transition-colors text-foreground">{product.title}</h3>
         <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed flex-1">{product.description}</p>
-        <div className="flex items-center justify-between mt-3 pt-3 border-t border-border/30">
+        <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
           <div className="flex items-center gap-1 text-xs">
-            <span className="text-yellow-500">★</span>
-            <span className="font-medium text-foreground/80">{product.rating}/5</span>
+            <span className="text-amber-500">★</span>
+            <span className="font-medium text-foreground/70">{product.rating}/5</span>
           </div>
-          <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:gap-2 transition-all">
+          <span className="inline-flex items-center gap-1 text-xs font-medium text-foreground border-b border-foreground/20 pb-0.5 group-hover:border-foreground/50 transition-all">
             Shop <ExternalLink className="h-3 w-3" />
           </span>
         </div>
@@ -817,17 +818,16 @@ const ProductCard = ({ product }: { product: BlogProduct }) => (
 
 /* ── Download CTA ── */
 const DownloadCTA = () => (
-  <div className="mt-14 rounded-2xl border border-border/40 bg-card overflow-hidden">
-    <div className="relative py-12 px-8 text-center">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.06),transparent_70%)]" />
+  <div className="mt-16 rounded-2xl border border-border bg-card overflow-hidden">
+    <div className="relative py-14 px-8 text-center">
       <div className="relative z-10">
-        <Download className="h-7 w-7 mx-auto mb-4 text-primary" />
-        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">Free Download</p>
-        <h3 className="text-xl font-bold mb-2 tracking-tight">Get This Guide as a PDF</h3>
-        <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto leading-relaxed">
+        <Download className="h-6 w-6 mx-auto mb-4 text-foreground/30" />
+        <p className="text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3">Free Download</p>
+        <h3 className="text-xl font-bold mb-3 tracking-tight text-foreground">Get This Guide as a PDF</h3>
+        <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
           Beautifully formatted for offline reading, sharing, or taking with you while shopping.
         </p>
-        <Button asChild variant="cta" className="rounded-full px-8">
+        <Button asChild className="rounded-full px-8 bg-foreground text-background hover:bg-foreground/90">
           <Link to="/digital-products">Download Free PDF</Link>
         </Button>
       </div>
@@ -837,8 +837,8 @@ const DownloadCTA = () => (
 
 /* ── Affiliate Disclosure ── */
 const AffiliateDisclosure = () => (
-  <div className="mt-10 py-4 px-5 border-l-2 border-primary/30 text-sm text-muted-foreground leading-relaxed">
-    <strong className="text-foreground/70">Affiliate Disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. When you click links to Amazon and make a purchase, we may receive a small commission at no extra cost to you. #ad
+  <div className="mt-12 py-4 px-5 border-l-2 border-border text-sm text-muted-foreground leading-relaxed">
+    <strong className="text-foreground/60">Affiliate Disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. When you click links to Amazon and make a purchase, we may receive a small commission at no extra cost to you. #ad
   </div>
 );
 
