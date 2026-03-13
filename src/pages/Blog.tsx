@@ -17,6 +17,7 @@ import smartHomeHeroImg from "@/assets/blog/smart-home-devices-hero.jpg";
 import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
 import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
 import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
+import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
 
 const staticBlogPosts = [
   {
@@ -135,7 +136,7 @@ const Blog = () => {
     excerpt: p.excerpt || "",
     date: p.created_at,
     category: p.category || "Tech Roundup",
-    imageUrl: p.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format",
+    imageUrl: p.image_url || techDefaultHeroImg,
     slug: p.slug,
     isGenerated: true,
     readTime: "5 min read",

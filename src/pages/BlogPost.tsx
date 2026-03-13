@@ -60,6 +60,7 @@ import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
 import wirelessEarbudsHeroImg from "@/assets/blog/wireless-earbuds-hero.jpg";
 import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
 import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
+import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
 
 interface BlogProduct {
   title: string;
@@ -505,7 +506,7 @@ const BlogPost = () => {
 
   // ── Dynamic (AI-generated) post ──
   if (!post && dynamicPost) {
-    const ogImage = dynamicPost.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format";
+    const ogImage = dynamicPost.image_url || techDefaultHeroImg;
     const ogTitle = dynamicPost.title;
     const ogDesc = dynamicPost.excerpt || `${dynamicPost.title} — Read on Modern Tech LLC`;
     return (

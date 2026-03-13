@@ -2,30 +2,30 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRef, useEffect } from "react";
+import wellnessPoster from "@/assets/heroes/wellness-yoga-poster.jpg";
+import safetyPoster from "@/assets/heroes/safety-home-poster.jpg";
+import creatorPoster from "@/assets/heroes/creator-studio-poster.jpg";
 
 const columns = [
   {
     label: "Health & Wellness",
     tagline: "Invisible tech. Peak performance.",
     videoUrl: "/videos/wellness-yoga.mp4",
-    posterUrl:
-      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
+    posterUrl: wellnessPoster,
     link: "/health-wellness",
   },
   {
     label: "Family & Safety",
     tagline: "Smart protection. Real connection.",
     videoUrl: "/videos/safety-home.mp4",
-    posterUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80",
+    posterUrl: safetyPoster,
     link: "/home-safety",
   },
   {
     label: "Creator Gear",
     tagline: "Sound like a pro. Look like one too.",
     videoUrl: "/videos/creator-studio.mp4",
-    posterUrl:
-      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80",
+    posterUrl: creatorPoster,
     link: "/creator-gear",
   },
 ];
