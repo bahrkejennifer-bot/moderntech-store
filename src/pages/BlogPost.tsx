@@ -388,7 +388,7 @@ const blogPostsData: Record<string, {
 const parseMarkdownBold = (text: string): React.ReactNode[] => {
   const parts = text.split(/\*\*(.*?)\*\*/g);
   return parts.map((part, i) =>
-    i % 2 === 0 ? part : <strong key={i} className="text-foreground font-semibold">{part}</strong>
+    i % 2 === 0 ? part : <strong key={i} className="text-foreground font-bold">{part}</strong>
   );
 };
 
