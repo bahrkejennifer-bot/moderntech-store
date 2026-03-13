@@ -541,8 +541,26 @@ const BlogPost = () => {
   }
 
   // ── Static Post ──
+  const SITE = "https://moderntech.store";
+  const staticOgImage = post!.imageUrl.startsWith("http") ? post!.imageUrl : `${SITE}${post!.imageUrl}`;
+  const staticOgDesc = post!.intro.slice(0, 155) + "…";
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{post!.title} | Modern Tech LLC</title>
+        <meta name="description" content={staticOgDesc} />
+        <meta property="og:title" content={post!.title} />
+        <meta property="og:description" content={staticOgDesc} />
+        <meta property="og:image" content={staticOgImage} />
+        <meta property="og:url" content={`${SITE}/blog/${slug}`} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post!.title} />
+        <meta name="twitter:description" content={staticOgDesc} />
+        <meta name="twitter:image" content={staticOgImage} />
+        <meta property="pin:media" content={staticOgImage} />
+        <meta property="pin:description" content={staticOgDesc} />
+      </Helmet>
       <Navigation />
 
       {/* Hero Image */}
