@@ -63,7 +63,7 @@ const Navigation = () => {
 
               <Link
                 to="/blog"
-                className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors duration-200"
+                className="font-mono text-[10px] tracking-[0.2em] uppercase text-[hsl(40_18%_91%/0.6)] hover:text-[hsl(40_18%_91%)] transition-colors duration-200"
               >
                 Journal
               </Link>
