@@ -786,29 +786,28 @@ const ProductCard = ({ product }: { product: BlogProduct }) => (
     rel="noopener noreferrer nofollow"
     className="group block"
   >
-    <div className="rounded-xl border border-border/40 bg-card overflow-hidden h-full flex flex-col hover:border-primary/30 hover:shadow-card transition-all duration-300">
+    <div className="rounded-xl border border-border bg-card overflow-hidden h-full flex flex-col shadow-soft hover:shadow-elegant transition-all duration-300">
       <div className="aspect-[4/3] overflow-hidden relative">
         <img
           src={product.imageUrl}
           alt={product.title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent" />
         {product.badge && (
-          <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wide uppercase">
+          <span className="absolute top-3 left-3 bg-foreground text-background text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wide uppercase">
             {product.badge}
           </span>
         )}
       </div>
       <div className="p-4 flex flex-col flex-1">
-        <h3 className="text-sm font-bold line-clamp-2 mb-1 group-hover:text-primary transition-colors">{product.title}</h3>
+        <h3 className="text-sm font-bold line-clamp-2 mb-1 group-hover:text-foreground/70 transition-colors text-foreground">{product.title}</h3>
         <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed flex-1">{product.description}</p>
-        <div className="flex items-center justify-between mt-3 pt-3 border-t border-border/30">
+        <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
           <div className="flex items-center gap-1 text-xs">
-            <span className="text-yellow-500">★</span>
-            <span className="font-medium text-foreground/80">{product.rating}/5</span>
+            <span className="text-amber-500">★</span>
+            <span className="font-medium text-foreground/70">{product.rating}/5</span>
           </div>
-          <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:gap-2 transition-all">
+          <span className="inline-flex items-center gap-1 text-xs font-medium text-foreground border-b border-foreground/20 pb-0.5 group-hover:border-foreground/50 transition-all">
             Shop <ExternalLink className="h-3 w-3" />
           </span>
         </div>
@@ -819,17 +818,16 @@ const ProductCard = ({ product }: { product: BlogProduct }) => (
 
 /* ── Download CTA ── */
 const DownloadCTA = () => (
-  <div className="mt-14 rounded-2xl border border-border/40 bg-card overflow-hidden">
-    <div className="relative py-12 px-8 text-center">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.06),transparent_70%)]" />
+  <div className="mt-16 rounded-2xl border border-border bg-card overflow-hidden">
+    <div className="relative py-14 px-8 text-center">
       <div className="relative z-10">
-        <Download className="h-7 w-7 mx-auto mb-4 text-primary" />
-        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">Free Download</p>
-        <h3 className="text-xl font-bold mb-2 tracking-tight">Get This Guide as a PDF</h3>
-        <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto leading-relaxed">
+        <Download className="h-6 w-6 mx-auto mb-4 text-foreground/30" />
+        <p className="text-xs font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3">Free Download</p>
+        <h3 className="text-xl font-bold mb-3 tracking-tight text-foreground">Get This Guide as a PDF</h3>
+        <p className="text-sm text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
           Beautifully formatted for offline reading, sharing, or taking with you while shopping.
         </p>
-        <Button asChild variant="cta" className="rounded-full px-8">
+        <Button asChild className="rounded-full px-8 bg-foreground text-background hover:bg-foreground/90">
           <Link to="/digital-products">Download Free PDF</Link>
         </Button>
       </div>
@@ -839,8 +837,8 @@ const DownloadCTA = () => (
 
 /* ── Affiliate Disclosure ── */
 const AffiliateDisclosure = () => (
-  <div className="mt-10 py-4 px-5 border-l-2 border-primary/30 text-sm text-muted-foreground leading-relaxed">
-    <strong className="text-foreground/70">Affiliate Disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. When you click links to Amazon and make a purchase, we may receive a small commission at no extra cost to you. #ad
+  <div className="mt-12 py-4 px-5 border-l-2 border-border text-sm text-muted-foreground leading-relaxed">
+    <strong className="text-foreground/60">Affiliate Disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. When you click links to Amazon and make a purchase, we may receive a small commission at no extra cost to you. #ad
   </div>
 );
 
