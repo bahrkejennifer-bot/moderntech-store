@@ -48,6 +48,23 @@ serve(async (req) => {
     // GetResponse returns 202 Accepted on success with no body, or 409 if contact exists
     if (response.status === 202 || response.status === 201) {
       console.log("Successfully subscribed:", email);
+
+      // Fire Zapier webhook for newsletter signup (fire-and-forget)
+      const zapierUrl = Deno.env.get("ZAPIER_WEBHOOK_URL");
+      if (zapierUrl) {
+        fetch(zapierUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            event: "newsletter_signup",
+            timestamp: new Date().toISOString(),
+            source: "moderntech.store",
+            email,
+            name: name || "",
+          }),
+        }).catch((err) => console.error("Zapier webhook error:", err));
+      }
+
       return new Response(
         JSON.stringify({ success: true, message: "Successfully subscribed!" }),
         {
