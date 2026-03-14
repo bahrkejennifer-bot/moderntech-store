@@ -74,7 +74,7 @@ const AmazonAssociateGuide = () => {
   ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "hsl(40 18% 91%)", color: "hsl(40 10% 12%)" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "hsl(38 20% 86%)", color: "hsl(40 10% 12%)" }}>
       <Helmet>
         <title>Free Amazon Associate Quick-Start Guide 2026 | Modern Tech</title>
         <meta name="description" content="Everything you need to launch your Amazon affiliate journey — from signup to your first commission, in 5 actionable pages." />
