@@ -1,12 +1,11 @@
 import { useState, useRef } from "react";
 import { Helmet } from "react-helmet-async";
-import { Download, Loader2, CheckCircle, ArrowRight, DollarSign, Globe, Link2, BarChart3, Rocket } from "lucide-react";
+import { Loader2, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
-import coverImage from "@/assets/pdf-covers/amazon-associate-guide-cover.jpg";
+import heroImage from "@/assets/heroes/workspace-minimalist-bw.jpg";
 
 const AmazonAssociateGuide = () => {
   const [downloading, setDownloading] = useState(false);
@@ -36,8 +35,16 @@ const AmazonAssociateGuide = () => {
     }
   };
 
+  const steps = [
+    { number: "01", title: "The Landscape", desc: "Understanding the Associates ecosystem & why trust-driven curation outperforms volume plays" },
+    { number: "02", title: "The Application", desc: "Navigating approval with editorial credibility — positioning your platform as an authority" },
+    { number: "03", title: "The Architecture", desc: "Constructing affiliate links that convert through contextual placement & strategic design" },
+    { number: "04", title: "The Content Strategy", desc: "High-intent content formats that attract discerning buyers ready to invest" },
+    { number: "05", title: "The Scale", desc: "From first commission to sustainable revenue — the 90-day blueprint for $500/month" },
+  ];
+
   return (
-    <div className="min-h-screen vogue-theme bg-background text-foreground">
+    <div className="min-h-screen" style={{ backgroundColor: "hsl(40 18% 91%)", color: "hsl(40 10% 12%)" }}>
       <Helmet>
         <title>Free Amazon Associate Quick-Start Guide 2026 | Modern Tech</title>
         <meta name="description" content="Everything you need to launch your Amazon affiliate journey — from signup to your first commission, in 5 actionable pages." />
@@ -50,60 +57,66 @@ const AmazonAssociateGuide = () => {
       <Navigation />
 
       {/* Hero */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-            <DollarSign className="h-4 w-4" /> FREE 5-Page Guide
+      <section className="max-w-5xl mx-auto px-8 pt-24 pb-20">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+              The Modern Tech Blueprint — Free 5-Page Guide
+            </p>
+            <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] mb-6" style={{ fontStyle: "italic" }}>
+              Amazon Associate<br />Quick-Start Guide
+            </h1>
+            <p className="font-mono text-[11px] leading-[2] max-w-md mb-10" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+              From application to first commission — the definitive playbook for building an affiliate platform with editorial integrity.
+            </p>
+            <Button
+              onClick={handleDownload}
+              disabled={downloading}
+              className="font-mono text-[10px] tracking-[0.2em] uppercase px-10 py-5 transition-all duration-300 hover:scale-[1.02]"
+              style={{
+                backgroundColor: "transparent",
+                color: "hsl(40 10% 12%)",
+                border: "1px solid hsl(40 10% 12%)",
+                borderRadius: "0",
+              }}
+            >
+              {downloading ? (
+                <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Generating PDF…</>
+              ) : (
+                <>ACCESS THE BLUEPRINT <ArrowRight className="ml-2 h-4 w-4" /></>
+              )}
+            </Button>
           </div>
-          <h1 className="text-4xl md:text-5xl font-black mb-4">
-            Amazon Associate Quick-Start Guide
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Everything you need to launch your Amazon affiliate journey — from signup to your first commission, in 5 actionable pages.
-          </p>
-          <Button
-            size="lg"
-            onClick={handleDownload}
-            disabled={downloading}
-            className="text-lg px-8 py-6 rounded-xl shadow-elegant"
-          >
-            {downloading ? (
-              <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Generating PDF...</>
-            ) : (
-              <><Download className="mr-2 h-5 w-5" /> Download Free Guide (PDF)</>
-            )}
-          </Button>
-        </div>
-
-        {/* Preview Card */}
-        <div className="max-w-sm mx-auto mb-16">
-          <img
-            src={coverImage}
-            alt="Amazon Associate Quick-Start Guide Cover"
-            className="rounded-2xl shadow-2xl border border-border"
-          />
+          <div>
+            <img
+              src={heroImage}
+              alt="Minimalist workspace with laptop and natural light"
+              className="w-full aspect-[4/3] object-cover"
+              style={{ filter: "contrast(1.05)" }}
+            />
+          </div>
         </div>
       </section>
 
-      {/* What's Inside */}
-      <section className="container mx-auto px-4 pb-16">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">What You'll Learn</h2>
-          <div className="grid md:grid-cols-5 gap-4">
-            {[
-              { icon: <Globe className="h-6 w-6" />, title: "Page 1", desc: "What Amazon Associates is & why it works" },
-              { icon: <Rocket className="h-6 w-6" />, title: "Page 2", desc: "How to sign up & get approved" },
-              { icon: <Link2 className="h-6 w-6" />, title: "Page 3", desc: "Creating affiliate links that convert" },
-              { icon: <BarChart3 className="h-6 w-6" />, title: "Page 4", desc: "Content strategies that drive clicks" },
-              { icon: <DollarSign className="h-6 w-6" />, title: "Page 5", desc: "Scaling to your first $500/month" },
-            ].map((page, i) => (
-              <Card key={i} className="text-center border-border/50 hover:border-primary/40 transition-colors">
-                <CardContent className="p-4">
-                  <div className="bg-primary/10 p-3 rounded-full inline-flex mb-3 text-primary">{page.icon}</div>
-                  <h3 className="font-bold text-sm mb-1">{page.title}</h3>
-                  <p className="text-xs text-muted-foreground">{page.desc}</p>
-                </CardContent>
-              </Card>
+      {/* Industry Intelligence */}
+      <section className="max-w-4xl mx-auto px-8 pb-24">
+        <div className="mb-16" style={{ borderTop: "0.5px solid hsl(40 10% 12% / 0.15)" }}>
+          <p className="font-mono text-[9px] tracking-[0.3em] uppercase pt-8 mb-12" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+            Industry Intelligence — What's Inside
+          </p>
+          <div className="space-y-12">
+            {steps.map((step) => (
+              <div key={step.number} className="grid grid-cols-[60px_1fr] gap-8">
+                <span className="font-serif text-3xl" style={{ fontStyle: "italic", color: "hsl(40 10% 12% / 0.25)" }}>
+                  {step.number}
+                </span>
+                <div>
+                  <h3 className="font-serif text-xl mb-2">{step.title}</h3>
+                  <p className="font-mono text-[10px] leading-[2]" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
