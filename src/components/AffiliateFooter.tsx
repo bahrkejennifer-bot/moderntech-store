@@ -18,7 +18,7 @@ const AffiliateFooter = () => {
           <div>
             <h3 className="font-serif text-2xl mb-4" style={{ fontStyle: "italic", color: "hsl(40 18% 91%)" }}>Modern Tech</h3>
             <p className="font-mono text-[10px] leading-[1.8]" style={{ color: "hsl(40 18% 91% / 0.5)" }}>
-              Honest tech reviews to help families make informed purchasing decisions.
+              A curated study in high-performance hardware and the quiet aesthetics of a well-lived life.
             </p>
             <div className="mt-8">
               <span className="font-mono text-[9px] tracking-[0.3em] uppercase" style={{ color: "hsl(40 18% 91% / 0.4)" }}>Follow</span>
