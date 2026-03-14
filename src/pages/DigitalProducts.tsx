@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import { Download, CheckCircle, ArrowRight, Home, Monitor, Headphones, GraduationCap, Activity, Baby, BookOpen, Loader2, Briefcase, DollarSign } from "lucide-react";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import Navigation from "@/components/Navigation";
