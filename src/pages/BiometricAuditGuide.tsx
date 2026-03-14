@@ -100,6 +100,14 @@ const BiometricAuditGuide = () => {
               <><Download className="mr-2 h-4 w-4" /> Download the Edit</>
             )}
           </Button>
+
+          <div className="mt-6 flex justify-center">
+            <PinterestSaveButton
+              url="https://moderntech.store/biometric-audit"
+              media={`https://moderntech.store${pinImage}`}
+              description="THE BIOMETRIC AUDIT — 2026 Wearable Health Guide. A curated analysis of the fitness trackers that meet the Modern Tech standard. Apple Watch Series 10, Fitbit Charge 6 & WHOOP 4.0. #FitnessTracker #WearableTech #Biohacking2026"
+            />
+          </div>
         </div>
       </section>
 
