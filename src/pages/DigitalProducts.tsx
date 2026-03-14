@@ -239,10 +239,27 @@ const DigitalProducts = () => {
                 ))}
               </div>
               <div className="pt-6" style={{ borderTop: "0.5px solid #d4d0c8" }}>
-                <p className="font-mono text-[10px] tracking-[0.2em] uppercase mb-4" style={{ color: "#6b6860" }}>
-                  Enter your email for instant access
-                </p>
-                <NewsletterSignup campaignId="CiFHU" className="max-w-sm" />
+                {dedicatedPageSlugs[freeProduct.slug] ? (
+                  <Link to={dedicatedPageSlugs[freeProduct.slug]}>
+                    <button
+                      className="inline-flex items-center gap-2 h-10 px-6 bg-transparent font-mono text-[10px] tracking-[0.15em] uppercase transition-all duration-300"
+                      style={{ border: "0.5px solid #3a3a35", color: "#1a1a18" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a18"; e.currentTarget.style.color = "#F9F7F2"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a18"; }}
+                    >
+                      <Download className="h-3 w-3" />
+                      Download the Edit
+                      <ArrowRight className="h-3 w-3" />
+                    </button>
+                  </Link>
+                ) : (
+                  <>
+                    <p className="font-mono text-[10px] tracking-[0.2em] uppercase mb-4" style={{ color: "#6b6860" }}>
+                      Enter your email for instant access
+                    </p>
+                    <NewsletterSignup campaignId="CiFHU" className="max-w-sm" />
+                  </>
+                )}
               </div>
             </div>
           </div>
