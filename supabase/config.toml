@@ -23,3 +23,6 @@ verify_jwt = false
 
 [functions.pinterest-conversions]
 verify_jwt = false
+
+[functions.trigger-zapier]
+verify_jwt = false
