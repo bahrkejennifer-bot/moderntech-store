@@ -74,7 +74,7 @@ const AmazonAssociateGuide = () => {
   ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "hsl(40 18% 91%)", color: "hsl(40 10% 12%)" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "hsl(38 20% 86%)", color: "hsl(40 10% 12%)" }}>
       <Helmet>
         <title>Free Amazon Associate Quick-Start Guide 2026 | Modern Tech</title>
         <meta name="description" content="Everything you need to launch your Amazon affiliate journey — from signup to your first commission, in 5 actionable pages." />
@@ -93,7 +93,7 @@ const AmazonAssociateGuide = () => {
             <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
               The Modern Tech Blueprint — Free 5-Page Guide
             </p>
-            <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] mb-6" style={{ fontStyle: "italic" }}>
+            <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] mb-6" style={{ fontStyle: "italic", color: "hsl(40 10% 8%)", fontWeight: 500 }}>
               Amazon Associate<br />Quick-Start Guide
             </h1>
             <p className="font-mono text-[11px] leading-[2] max-w-md mb-10" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
