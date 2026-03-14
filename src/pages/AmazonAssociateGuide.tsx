@@ -1,14 +1,15 @@
 import { useState, useRef } from "react";
 import { Helmet } from "react-helmet-async";
-import { Loader2, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
-import { toast } from "@/hooks/use-toast";
 import heroImage from "@/assets/heroes/workspace-minimalist-bw.jpg";
+import FreeGuideModal from "@/components/FreeGuideModal";
 
 const AmazonAssociateGuide = () => {
   const [downloading, setDownloading] = useState(false);
+  const [guideModalOpen, setGuideModalOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = async () => {
@@ -26,21 +27,19 @@ const AmazonAssociateGuide = () => {
         pagebreak: { mode: ["css", "legacy"], before: ".pdf-page-break" },
       };
       await html2pdf().set(opt).from(contentRef.current).save();
-      toast({ title: "Download Complete!", description: "Your guide has been saved as a PDF." });
     } catch (err) {
       console.error("PDF generation error:", err);
-      toast({ title: "Download Failed", description: "Please try again.", variant: "destructive" });
     } finally {
       setDownloading(false);
     }
   };
 
   const steps = [
-    { number: "01", title: "The Landscape", desc: "Understanding the Associates ecosystem & why trust-driven curation outperforms volume plays" },
-    { number: "02", title: "The Application", desc: "Navigating approval with editorial credibility — positioning your platform as an authority" },
-    { number: "03", title: "The Architecture", desc: "Constructing affiliate links that convert through contextual placement & strategic design" },
-    { number: "04", title: "The Content Strategy", desc: "High-intent content formats that attract discerning buyers ready to invest" },
-    { number: "05", title: "The Scale", desc: "From first commission to sustainable revenue — the 90-day blueprint for $500/month" },
+    { number: "01", title: "The Foundation", desc: "Setting up your luxury affiliate portal — domain, branding & the architecture of trust." },
+    { number: "02", title: "Curation Over Quantity", desc: "How to select high-ticket items that fit the brand — the editorial eye for premium products." },
+    { number: "03", title: "The Editorial Hook", desc: "Writing reviews that feel like magazine features — storytelling that converts discerning readers." },
+    { number: "04", title: "The Pinterest Pipeline", desc: "Driving high-intent traffic through aesthetic pins — from board strategy to viral reach." },
+    { number: "05", title: "Scaling to $500+", desc: "The roadmap to your first high-ticket commissions — compounding authority into revenue." },
   ];
 
   return (
