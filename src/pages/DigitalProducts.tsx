@@ -32,7 +32,7 @@ interface DigitalProduct {
 
 // Map slugs to cover images
 const productMeta: Record<string, { cover: string; icon: React.ReactNode }> = {
-  "valentine-family-tech-guide": { cover: valentineFamilyCover, icon: <BookOpen className="h-4 w-4" /> },
+  "valentine-family-tech-guide": { cover: smartRingCover, icon: <BookOpen className="h-4 w-4" /> },
   "kids-tech-guide": { cover: kidsTechCover, icon: <Baby className="h-4 w-4" /> },
   "smart-home-guide": { cover: smartHomeCover, icon: <Home className="h-4 w-4" /> },
   "gaming-monitors-guide": { cover: gamingMonitorsCover, icon: <Monitor className="h-4 w-4" /> },
