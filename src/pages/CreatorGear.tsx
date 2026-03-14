@@ -60,6 +60,11 @@ const CreatorGear = () => {
       <Helmet>
         <title>Best Creator Gear & Streaming Tech 2026 | Mics, Cameras & More</title>
         <meta name="description" content="Shop the hottest creator gear of 2026 — Shure MV7+, Elgato Stream Deck, Sony ZV-1 II & more." />
+        <meta property="og:title" content="Best Creator Gear & Streaming Tech 2026 | Mics, Cameras & More" />
+        <meta property="og:description" content="Shop the hottest creator gear of 2026 — Shure MV7+, Elgato Stream Deck, Sony ZV-1 II & more." />
+        <meta property="og:image" content="https://moderntech.store/images/products/creator-gear-starter-kit-cover.jpg" />
+        <meta property="og:url" content="https://moderntech.store/creator-gear" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <VogueCategoryLayout
         title="Creator Studio"

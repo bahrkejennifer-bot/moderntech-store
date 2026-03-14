@@ -59,6 +59,11 @@ const College = () => {
       <Helmet>
         <title>Best College & Student Tech 2026 | Laptops, Tablets & Study Gear</title>
         <meta name="description" content="Shop the best student tech of 2026 — MacBook Air M4, iPad 10th Gen & essential campus gear." />
+        <meta property="og:title" content="Best College & Student Tech 2026 | Laptops, Tablets & Study Gear" />
+        <meta property="og:description" content="Shop the best student tech of 2026 — MacBook Air M4, iPad 10th Gen & essential campus gear." />
+        <meta property="og:image" content="https://moderntech.store/images/products/dorm-room-tech-cover.jpg" />
+        <meta property="og:url" content="https://moderntech.store/college" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <VogueCategoryLayout
         title="College Essentials"

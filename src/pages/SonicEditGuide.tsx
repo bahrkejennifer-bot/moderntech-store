@@ -44,6 +44,7 @@ const SonicEditGuide = () => {
         <meta name="description" content="A curated analysis of the wireless earbuds that meet the Modern Tech standard — AirPods Pro 2, Sony WH-1000XM5 & Samsung Galaxy Buds2 Pro." />
         <meta property="og:title" content="THE SONIC EDIT — 2026 Wireless Earbuds Analysis" />
         <meta property="og:description" content="A study in the intersection of acoustic engineering and daily ritual. Three picks. One standard." />
+        <meta property="og:image" content="https://moderntech.store/images/products/airpods-pro-2.jpg" />
         <meta property="og:url" content="https://moderntech.store/sonic-edit" />
         <meta property="og:type" content="article" />
         <meta name="author" content="Modern Tech LLC" />
