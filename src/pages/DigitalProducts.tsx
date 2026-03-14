@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams, Link } from "react-router-dom";
-import { Download, CheckCircle, ShoppingCart, Home, Star, Monitor, Headphones, GraduationCap, Activity, Baby, BookOpen, Loader2, Briefcase, DollarSign } from "lucide-react";
+import { Download, CheckCircle, ArrowRight, Home, Monitor, Headphones, GraduationCap, Activity, Baby, BookOpen, Loader2, Briefcase, DollarSign } from "lucide-react";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -31,17 +30,23 @@ interface DigitalProduct {
   pdf_path: string | null;
 }
 
-// Map slugs to cover images and icons
-const productMeta: Record<string, { cover: string; icon: React.ReactNode; gradient: string; isPremium?: boolean }> = {
-  "valentine-family-tech-guide": { cover: valentineFamilyCover, icon: <Star className="h-8 w-8 text-white" />, gradient: "bg-gradient-to-r from-pink-500 to-red-500" },
-  "kids-tech-guide": { cover: kidsTechCover, icon: <Baby className="h-8 w-8 text-white" />, gradient: "bg-gradient-gold" },
-  "smart-home-guide": { cover: smartHomeCover, icon: <Home className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-accent/20 to-primary/20" },
-  "gaming-monitors-guide": { cover: gamingMonitorsCover, icon: <Monitor className="h-8 w-8 text-primary" />, gradient: "bg-gradient-to-r from-primary/20 to-accent/20" },
-  "earbuds-guide": { cover: earbudsCover, icon: <Headphones className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-accent/20 to-primary/20" },
-  "student-tech-guide": { cover: studentTechCover, icon: <GraduationCap className="h-8 w-8 text-primary" />, gradient: "bg-gradient-to-r from-primary/20 to-accent/20" },
-  "fitness-trackers-guide": { cover: fitnessTrackersCover, icon: <Activity className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-accent/20 to-primary/20" },
-  "remote-workspace-guide": { cover: remoteWorkspaceCover, icon: <Briefcase className="h-8 w-8 text-primary" />, gradient: "bg-gradient-to-r from-primary/20 to-accent/20" },
-  "smart-ring-guide": { cover: smartRingCover, icon: <Star className="h-8 w-8 text-accent" />, gradient: "bg-gradient-to-r from-purple-500/30 to-pink-500/30", isPremium: true },
+// Map slugs to cover images
+const productMeta: Record<string, { cover: string; icon: React.ReactNode }> = {
+  "valentine-family-tech-guide": { cover: valentineFamilyCover, icon: <BookOpen className="h-4 w-4" /> },
+  "kids-tech-guide": { cover: kidsTechCover, icon: <Baby className="h-4 w-4" /> },
+  "smart-home-guide": { cover: smartHomeCover, icon: <Home className="h-4 w-4" /> },
+  "gaming-monitors-guide": { cover: gamingMonitorsCover, icon: <Monitor className="h-4 w-4" /> },
+  "earbuds-guide": { cover: earbudsCover, icon: <Headphones className="h-4 w-4" /> },
+  "student-tech-guide": { cover: studentTechCover, icon: <GraduationCap className="h-4 w-4" /> },
+  "fitness-trackers-guide": { cover: fitnessTrackersCover, icon: <Activity className="h-4 w-4" /> },
+  "remote-workspace-guide": { cover: remoteWorkspaceCover, icon: <Briefcase className="h-4 w-4" /> },
+  "smart-ring-guide": { cover: smartRingCover, icon: <BookOpen className="h-4 w-4" /> },
+};
+
+// Editorial rename map
+const editorialNames: Record<string, string> = {
+  "earbuds-guide": "THE SONIC EDIT",
+  "fitness-trackers-guide": "THE BIOMETRIC AUDIT",
 };
 
 const DigitalProducts = () => {
@@ -54,7 +59,6 @@ const DigitalProducts = () => {
     fetchProducts();
   }, []);
 
-  // Handle success/cancel from Stripe checkout
   useEffect(() => {
     const success = searchParams.get("success");
     const canceled = searchParams.get("canceled");
@@ -62,15 +66,14 @@ const DigitalProducts = () => {
 
     if (success === "true") {
       toast({
-        title: "Purchase Successful!",
-        description: `Thank you for your purchase! You will receive an email with your ${productSlug?.replace(/-/g, " ") || "guide"} shortly.`,
+        title: "Download Ready",
+        description: `Your ${productSlug?.replace(/-/g, " ") || "guide"} is available now.`,
       });
-      // Clear the URL params
       setSearchParams({});
     } else if (canceled === "true") {
       toast({
-        title: "Purchase Canceled",
-        description: "Your purchase was canceled. Feel free to try again when you're ready.",
+        title: "Canceled",
+        description: "No worries — come back anytime.",
         variant: "destructive",
       });
       setSearchParams({});
@@ -85,11 +88,7 @@ const DigitalProducts = () => {
 
     if (error) {
       console.error("Error fetching products:", error);
-      toast({
-        title: "Error",
-        description: "Failed to load products",
-        variant: "destructive",
-      });
+      toast({ title: "Error", description: "Failed to load products", variant: "destructive" });
     } else {
       setProducts(data || []);
     }
@@ -98,450 +97,202 @@ const DigitalProducts = () => {
 
   const handleDownload = async (product: DigitalProduct) => {
     if (!product.pdf_path) {
-      toast({
-        title: "PDF Not Available",
-        description: "This guide is not yet available for download.",
-        variant: "destructive",
-      });
+      toast({ title: "Not Yet Available", description: "This edit is coming soon.", variant: "destructive" });
       return;
     }
 
     setDownloadingId(product.id);
-
     try {
-      // Use secure edge function that verifies purchase/free status
       const { data, error } = await supabase.functions.invoke("generate-download-link", {
         body: { productId: product.id },
       });
-
-      if (error) {
-        throw error;
-      }
-
+      if (error) throw error;
       if (data?.signedUrl) {
         window.open(data.signedUrl, '_blank');
-        toast({
-          title: "Download Started!",
-          description: `Your ${product.title} guide is opening now.`,
-        });
+        toast({ title: "Download Started", description: `Opening ${product.title} now.` });
       } else {
         throw new Error(data?.error || "Failed to generate download URL");
       }
     } catch (error) {
       console.error("Download error:", error);
-      toast({
-        title: "Download Failed",
-        description: "There was an error downloading the file. Please try again.",
-        variant: "destructive",
-      });
+      toast({ title: "Download Failed", description: "Please try again.", variant: "destructive" });
     } finally {
       setDownloadingId(null);
     }
   };
 
-  const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
-
-  const handleBuy = async (product: DigitalProduct) => {
-    setCheckoutLoading(product.id);
-    
-    try {
-      const response = await supabase.functions.invoke("create-checkout", {
-        body: {
-          productName: product.title,
-          productSlug: product.slug,
-          amount: Math.round((product.price || 10) * 100), // Convert to cents
-          successUrl: `${window.location.origin}/digital-products?success=true&product=${product.slug}`,
-          cancelUrl: `${window.location.origin}/digital-products?canceled=true`,
-        },
-      });
-
-      if (response.error) {
-        throw new Error(response.error.message);
-      }
-
-      const { url } = response.data;
-      if (url) {
-        // Open in new tab to avoid iframe redirect issues
-        window.open(url, "_blank");
-      } else {
-        throw new Error("No checkout URL returned");
-      }
-    } catch (error) {
-      console.error("Checkout error:", error);
-      toast({
-        title: "Checkout Error",
-        description: "There was an error starting checkout. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setCheckoutLoading(null);
-    }
+  const getDisplayTitle = (product: DigitalProduct) => {
+    return editorialNames[product.slug] || product.title;
   };
-
-  const freeProduct = products.find((p) => p.is_free);
-  const paidProducts = products.filter((p) => !p.is_free);
 
   if (loading) {
     return (
-      <div className="min-h-screen vogue-theme bg-background text-foreground">
+      <div className="min-h-screen bg-background text-foreground">
         <Navigation />
-        <div className="container mx-auto px-4 py-12 flex items-center justify-center">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <div className="flex items-center justify-center py-32">
+          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
         </div>
       </div>
     );
   }
 
+  const freeProduct = products.find((p) => p.is_free);
+  const paidProducts = products.filter((p) => !p.is_free);
+
   return (
-    <div className="min-h-screen vogue-theme bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>Digital Tech Guides & Downloads | Modern Tech</title>
-        <meta name="description" content="Navigate your next tech purchase with confidence — curated digital guides for smart home, gaming, fitness trackers and more." />
-        <meta property="og:title" content="Digital Tech Guides & Downloads | Modern Tech" />
-        <meta property="og:description" content="Curated digital guides for smart home, gaming, fitness trackers and more." />
-        <meta property="og:image" content="https://moderntech.store/images/products/smart-home-guide-cover.jpg" />
+        <title>The Edit — Curated Tech Guides | Modern Tech</title>
+        <meta name="description" content="Curated digital guides for the discerning tech enthusiast — smart home, wellness, gaming, and beyond." />
+        <meta property="og:title" content="The Edit — Curated Tech Guides | Modern Tech" />
+        <meta property="og:description" content="Curated digital guides for the discerning tech enthusiast." />
         <meta property="og:url" content="https://moderntech.store/digital-products" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Navigation />
-      <div className="container mx-auto px-4 py-12">
-        <div className="mb-12 text-center">
-          <h1 className="text-5xl font-bold mb-4">
-            Your Tech Buying Guide Collection
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Navigate your next tech purchase with confidence using our curated digital guides
-          </p>
-        </div>
 
-        {/* Introduction Section */}
-        <div className="max-w-4xl mx-auto mb-12">
-          <Card className="bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
-            <CardContent className="p-8">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="bg-primary/10 p-3 rounded-full">
-                  <BookOpen className="h-8 w-8 text-primary" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold mb-2">Welcome to Modern Tech LLC</h2>
-                  <p className="text-muted-foreground mb-4">
-                    Hello and welcome to Modern Tech LLC, an Amazon affiliate store. We'd like to wish all our customers a happy holiday! Our mission is simple: to build a collection of in-depth tech buying guides and blogs that help families make affordable, informed decisions. Each guide is carefully researched and designed to cut through the marketing noise, giving you and your loved ones the connection and safety you deserve. If you have any suggestions, please email us at <a href="mailto:info@moderntech.store" className="text-primary hover:underline">info@moderntech.store</a>, and we'll look into it.
-                  </p>
-                  <p className="text-sm text-muted-foreground/80 italic">
-                    As an Amazon Associate, we earn from qualifying purchases. This means we may receive a small commission at no extra cost to you when you purchase through our affiliate links.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-background/50 p-4 rounded-lg">
-                  <h3 className="font-bold mb-2 flex items-center gap-2">
-                    <Download className="h-5 w-5 text-primary" />
-                    Free Guide Available
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Start with our free <strong>Kids & Parents Tech Guide</strong> – perfect for parents navigating age-appropriate technology decisions.
-                  </p>
-                </div>
-                <div className="bg-background/50 p-4 rounded-lg">
-                  <h3 className="font-bold mb-2 flex items-center gap-2">
-                    <ShoppingCart className="h-5 w-5 text-accent" />
-                    Premium Guides for Sale
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Our premium guides are available for <strong>$10 each</strong> – packed with detailed reviews, comparison charts, and expert buying recommendations.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-        
-        <div className="max-w-4xl mx-auto">
-          {/* Free Product - Valentine Family Tech Guide */}
-          {freeProduct && (
-            <Card className="mb-8 overflow-hidden border-4 border-pink-400 shadow-2xl">
-              {/* Ribbon Header with Image and Title */}
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-red-500 opacity-95" />
-                <div className="relative flex items-center gap-6 p-6">
-                  <img 
-                    src={productMeta[freeProduct.slug]?.cover || kidsTechCover} 
-                    alt={`${freeProduct.title} Cover`} 
-                    className="w-36 h-36 md:w-44 md:h-44 object-cover rounded-xl shadow-xl border-4 border-white/40"
-                  />
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="bg-white/20 p-2 rounded-full animate-pulse">
-                        {productMeta[freeProduct.slug]?.icon || <Star className="h-7 w-7 text-white" />}
-                      </div>
-                      <span className="bg-white text-pink-600 px-5 py-1.5 rounded-full text-sm font-black uppercase tracking-wider shadow-lg">
-                        ✨ 100% FREE ✨
-                      </span>
-                    </div>
-                    <h2 className="text-2xl md:text-4xl font-black text-white mb-2 drop-shadow-lg">
-                      {freeProduct.title}
-                    </h2>
-                    <p className="text-white/95 text-lg font-medium">
-                      {freeProduct.description || "Your comprehensive guide to connection-building tech"}
-                    </p>
+      {/* Editorial Header */}
+      <header className="max-w-5xl mx-auto px-8 pt-16 pb-8 text-center">
+        <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-6">
+          The Modern Tech Library
+        </p>
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>
+          The Edit
+        </h1>
+        <p className="mt-6 font-mono text-[11px] tracking-[0.15em] uppercase text-muted-foreground max-w-lg mx-auto leading-[2]">
+          Expert-curated guides designed to cut through the noise. Every recommendation is tested, every word intentional.
+        </p>
+      </header>
+
+      <div className="max-w-5xl mx-auto px-8 pb-4">
+        <div className="h-px bg-border" />
+      </div>
+
+      {/* Free Product — Lead Magnet */}
+      {freeProduct && (
+        <section className="max-w-5xl mx-auto px-8 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-border">
+            <div className="aspect-square md:aspect-auto overflow-hidden">
+              <img
+                src={productMeta[freeProduct.slug]?.cover || kidsTechCover}
+                alt={freeProduct.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="p-8 md:p-12 flex flex-col justify-center">
+              <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-4 block">
+                Complimentary Download
+              </span>
+              <h2 className="font-serif text-2xl md:text-3xl leading-tight mb-4" style={{ fontStyle: "italic", fontWeight: 400 }}>
+                {getDisplayTitle(freeProduct)}
+              </h2>
+              <p className="font-mono text-[11px] text-muted-foreground leading-[1.8] mb-6">
+                {freeProduct.description || "Your comprehensive guide to connection-building tech for the modern family."}
+              </p>
+              <div className="space-y-2 mb-8">
+                {["The 4 Pillars of Connection-Building Tech", "Curated products that foster family moments", "Budget-friendly options included"].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="font-mono text-[10px] text-muted-foreground mt-0.5">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="font-mono text-[11px] text-foreground/80">{item}</span>
                   </div>
-                </div>
+                ))}
               </div>
-              
-              {/* Content Below Ribbon */}
-              <CardContent className="p-8 bg-gradient-to-b from-pink-50 to-white">
-                <p className="text-lg text-muted-foreground mb-6 text-center">
-                  This Valentine's Day, give the gift of connection. Our curated guide helps families choose tech that brings people together, not apart.
+              <div className="border-t border-border pt-6">
+                <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-4">
+                  Enter your email for instant access
                 </p>
-                
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  <div className="bg-white p-5 rounded-xl shadow-md border border-pink-100">
-                    <h3 className="text-xl font-bold mb-4 text-pink-600">What's Inside:</h3>
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-pink-500 mt-0.5 flex-shrink-0" />
-                        <span>The 4 Pillars of Connection-Building Tech</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-pink-500 mt-0.5 flex-shrink-0" />
-                        <span>Curated products that foster family moments</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-pink-500 mt-0.5 flex-shrink-0" />
-                        <span>Gifts for every family member</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-pink-500 mt-0.5 flex-shrink-0" />
-                        <span>Budget-friendly options included</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="bg-white p-5 rounded-xl shadow-md border border-pink-100">
-                    <h3 className="text-xl font-bold mb-4 text-pink-600">Perfect For:</h3>
-                    <ul className="space-y-2">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-red-400 mt-0.5 flex-shrink-0" />
-                        <span>Parents looking for meaningful gifts</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-red-400 mt-0.5 flex-shrink-0" />
-                        <span>Couples who want to disconnect to reconnect</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-red-400 mt-0.5 flex-shrink-0" />
-                        <span>Families prioritizing quality time</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-red-400 mt-0.5 flex-shrink-0" />
-                        <span>Anyone tired of thoughtless tech gifts</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                
-                {/* GetResponse Email Capture Form */}
-                <div className="bg-gradient-to-r from-pink-500 to-red-500 p-8 rounded-2xl shadow-xl">
-                  <h3 className="text-2xl font-black mb-2 text-center text-white">🎁 Get Your FREE Download Now!</h3>
-                  <p className="text-white/90 text-center mb-4 text-lg">
-                    Enter your email and receive instant access to your Valentine's Gift Guide!
-                  </p>
-                  <NewsletterSignup campaignId="CiFHU" className="max-w-md mx-auto" />
-                  <p className="text-white/70 text-center mt-3 text-sm">No spam, ever. Unsubscribe anytime.</p>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Premium Products */}
-          {paidProducts.length > 0 && (
-            <div className="mb-8">
-              <h2 className="text-3xl font-bold mb-6 text-center">Premium Tech Guides</h2>
-              
-              <div className="space-y-6">
-                {paidProducts.map((product) => {
-                  const isSmartRing = product.slug === "smart-ring-guide";
-                  
-                  if (isSmartRing) {
-                    // Premium Smart Ring Guide - Special Display
-                    return (
-                      <Card key={product.id} className="overflow-hidden border-4 border-purple-400 shadow-2xl bg-gradient-to-br from-purple-50 to-pink-50">
-                        <div className="relative">
-                          <div className="absolute top-4 right-4 z-10">
-                            <span className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-black uppercase tracking-wide shadow-lg">
-                              ⭐ Premium Deep-Dive
-                            </span>
-                          </div>
-                          <div className="grid md:grid-cols-3 gap-0">
-                            <div className="md:col-span-1 p-6 flex items-center justify-center bg-gradient-to-br from-purple-500/20 to-pink-500/20">
-                              <img 
-                                src={productMeta[product.slug]?.cover || fitnessTrackersCover} 
-                                alt={`${product.title} Cover`} 
-                                className="w-48 h-48 object-cover rounded-2xl shadow-2xl border-4 border-white"
-                              />
-                            </div>
-                            
-                            <div className="md:col-span-2 p-8">
-                              <div className="flex items-center gap-3 mb-4">
-                                <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-3 rounded-full">
-                                  <Star className="h-8 w-8 text-white" />
-                                </div>
-                                <div className="flex items-center gap-1 text-yellow-500">
-                                  {[...Array(5)].map((_, i) => (
-                                    <Star key={i} className="h-5 w-5 fill-current" />
-                                  ))}
-                                  <span className="text-muted-foreground ml-2 text-sm">Expert Reviewed</span>
-                                </div>
-                              </div>
-                              
-                              <h2 className="text-3xl font-black mb-3 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                                {product.title}
-                              </h2>
-                              <p className="text-lg text-muted-foreground mb-4">
-                                {product.description}
-                              </p>
-                              
-                              <div className="grid grid-cols-2 gap-4 mb-6">
-                                <div className="flex items-center gap-2">
-                                  <CheckCircle className="h-5 w-5 text-purple-500" />
-                                  <span className="text-sm">Complete brand comparisons</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <CheckCircle className="h-5 w-5 text-purple-500" />
-                                  <span className="text-sm">Sizing & fit guide</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <CheckCircle className="h-5 w-5 text-purple-500" />
-                                  <span className="text-sm">Feature-by-feature breakdown</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <CheckCircle className="h-5 w-5 text-purple-500" />
-                                  <span className="text-sm">Expert recommendations</span>
-                                </div>
-                              </div>
-                              
-                              <div className="flex items-center gap-6">
-                                <div>
-                                  <div className="text-4xl font-black text-purple-600">
-                                    ${(product.price || 10).toFixed(2)}
-                                  </div>
-                                  <p className="text-sm text-muted-foreground">One-time purchase</p>
-                                </div>
-                                <Button
-                                  size="lg"
-                                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all"
-                                  onClick={() => handleBuy(product)}
-                                  disabled={checkoutLoading === product.id}
-                                >
-                                  {checkoutLoading === product.id ? (
-                                    <Loader2 className="h-5 w-5 animate-spin mr-2" />
-                                  ) : (
-                                    <ShoppingCart className="h-5 w-5 mr-2" />
-                                  )}
-                                  Get the Ultimate Guide
-                                </Button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Card>
-                    );
-                  }
-                  
-                  // Regular Premium Products
-                  return (
-                    <Card key={product.id} className="overflow-hidden border-2 border-accent/50 hover:border-accent transition-colors">
-                      <div className="grid md:grid-cols-4 gap-0">
-                        <div className="md:col-span-1">
-                          <img 
-                            src={productMeta[product.slug]?.cover || smartHomeCover} 
-                            alt={`${product.title} Cover`} 
-                            className="w-full h-full object-cover min-h-[150px]"
-                          />
-                        </div>
-                        
-                        <div className="md:col-span-3">
-                          <div className={`${productMeta[product.slug]?.gradient || "bg-gradient-to-r from-accent/20 to-primary/20"} p-6`}>
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-3">
-                                <div className="bg-accent/20 p-3 rounded-full">
-                                  {productMeta[product.slug]?.icon || <BookOpen className="h-8 w-8 text-accent" />}
-                                </div>
-                                <div>
-                                  <h2 className="text-2xl font-bold mb-1">
-                                    {product.title}
-                                  </h2>
-                                  <p className="text-muted-foreground">
-                                    {product.description || "Your comprehensive buying guide"}
-                                  </p>
-                                </div>
-                              </div>
-                              <div className="text-right">
-                                <div className="text-3xl font-bold text-primary">
-                                  ${(product.price || 10).toFixed(2)}
-                                </div>
-                                <div className="flex items-center gap-1 text-yellow-500">
-                                  <Star className="h-4 w-4 fill-current" />
-                                  <Star className="h-4 w-4 fill-current" />
-                                  <Star className="h-4 w-4 fill-current" />
-                                  <Star className="h-4 w-4 fill-current" />
-                                  <Star className="h-4 w-4 fill-current" />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                      
-                          <CardContent className="p-6">
-                            <Button 
-                              variant="cta" 
-                              size="lg" 
-                              className="w-full text-lg h-12"
-                              onClick={() => handleBuy(product)}
-                              disabled={checkoutLoading === product.id}
-                            >
-                              {checkoutLoading === product.id ? (
-                                <>
-                                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                                  Processing...
-                                </>
-                              ) : (
-                                <>
-                                  <ShoppingCart className="mr-2 h-5 w-5" />
-                                  Buy Now - ${(product.price || 10).toFixed(2)}
-                                </>
-                              )}
-                            </Button>
-                          </CardContent>
-                        </div>
-                      </div>
-                    </Card>
-                  );
-                })}
+                <NewsletterSignup campaignId="CiFHU" className="max-w-sm" />
               </div>
             </div>
-          )}
+          </div>
+        </section>
+      )}
 
-          {/* Free Amazon Associate Guide Banner */}
-          <Card className="mt-10 overflow-hidden border-2 border-primary/30 shadow-xl">
-            <CardContent className="p-8 bg-gradient-to-r from-primary/10 to-accent/10">
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                <div className="bg-primary/10 p-4 rounded-full">
-                  <DollarSign className="h-10 w-10 text-primary" />
-                </div>
-                <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-2xl font-bold mb-2">Free: Amazon Associate Quick-Start Guide</h3>
-                  <p className="text-muted-foreground">Learn how to sign up, create links, and earn your first commissions — 5 actionable pages, instant PDF download.</p>
-                </div>
-                <Link to="/amazon-associate-guide">
-                  <Button size="lg" className="whitespace-nowrap">
-                    <Download className="mr-2 h-5 w-5" /> Get Free Guide
-                  </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+      {/* Divider */}
+      <div className="max-w-5xl mx-auto px-8">
+        <div className="h-px bg-border" />
       </div>
+
+      {/* All Guides Grid */}
+      {paidProducts.length > 0 && (
+        <section className="max-w-5xl mx-auto px-8 py-12">
+          <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-10 text-center">
+            The Complete Collection
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-border">
+            {paidProducts.map((product) => (
+              <div key={product.id} className="border-r border-b border-border group">
+                {/* Image */}
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={productMeta[product.slug]?.cover || smartHomeCover}
+                    alt={getDisplayTitle(product)}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale-[20%] group-hover:grayscale-0"
+                  />
+                </div>
+
+                {/* Details */}
+                <div className="p-6">
+                  <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground block mb-2">
+                    Expert Curated
+                  </span>
+                  <h3 className="font-serif text-lg leading-snug mb-2" style={{ fontStyle: "italic" }}>
+                    {getDisplayTitle(product)}
+                  </h3>
+                  <p className="font-mono text-[10px] text-muted-foreground leading-[1.7] mb-4 line-clamp-2">
+                    {product.description || "Your comprehensive buying guide"}
+                  </p>
+
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[12px] tracking-[0.1em] uppercase font-medium text-foreground">
+                      FREE
+                    </span>
+                    <button
+                      onClick={() => handleDownload(product)}
+                      disabled={downloadingId === product.id}
+                      className="inline-flex items-center gap-2 h-9 px-5 border border-foreground/30 bg-transparent font-mono text-[10px] tracking-[0.15em] uppercase text-foreground hover:bg-foreground hover:text-background transition-all duration-300 disabled:opacity-50"
+                    >
+                      {downloadingId === product.id ? (
+                        <Loader2 className="h-3 w-3 animate-spin" />
+                      ) : (
+                        <>
+                          Download the Edit
+                          <ArrowRight className="h-3 w-3" />
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Amazon Associate Guide Banner */}
+      <section className="max-w-5xl mx-auto px-8 pb-16">
+        <div className="border border-border p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+          <div className="flex-1">
+            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground block mb-3">
+              Complimentary Resource
+            </span>
+            <h3 className="font-serif text-2xl leading-tight mb-3" style={{ fontStyle: "italic", fontWeight: 400 }}>
+              Amazon Associate Quick-Start Guide
+            </h3>
+            <p className="font-mono text-[11px] text-muted-foreground leading-[1.8]">
+              Learn how to sign up, create links, and earn your first commissions — 5 actionable pages, instant PDF download.
+            </p>
+          </div>
+          <Link to="/amazon-associate-guide">
+            <button className="inline-flex items-center gap-2 h-10 px-6 border border-foreground/30 bg-transparent font-mono text-[10px] tracking-[0.15em] uppercase text-foreground hover:bg-foreground hover:text-background transition-all duration-300 whitespace-nowrap">
+              <Download className="h-3 w-3" />
+              Get Free Guide
+            </button>
+          </Link>
+        </div>
+      </section>
+
       <AffiliateFooter />
     </div>
   );
