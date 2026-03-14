@@ -140,7 +140,7 @@ Deno.serve(async (req) => {
           });
 
           const result = await pinResponse.text();
-          console.log(`Pin "${entry.pin.title}": ${pinResponse.status}`);
+          console.log(`Pin "${entry.pin.title}": ${pinResponse.status} — ${result}`);
           pinResults.push({
             title: entry.pin.title,
             status: pinResponse.status,
