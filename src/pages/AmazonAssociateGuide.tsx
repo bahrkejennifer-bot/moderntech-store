@@ -319,6 +319,7 @@ const AmazonAssociateGuide = () => {
         </div>
       </div>
 
+      <FreeGuideModal open={guideModalOpen} onOpenChange={setGuideModalOpen} />
       <AffiliateFooter />
     </div>
   );
