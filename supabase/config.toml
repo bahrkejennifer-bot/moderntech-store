@@ -44,3 +44,6 @@ verify_jwt = false
 
 [functions.monthly-auto-scrape]
 verify_jwt = false
+
+[functions.pinterest-trending-pins]
+verify_jwt = false
