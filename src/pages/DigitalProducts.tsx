@@ -199,11 +199,11 @@ const DigitalProducts = () => {
       {freeProduct && (
         <section className="max-w-5xl mx-auto px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0" style={{ border: "0.5px solid #d4d0c8" }}>
-            <div className="aspect-square md:aspect-auto overflow-hidden">
+            <div className="aspect-square md:aspect-auto overflow-hidden" style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))" }}>
               <img
                 src={productMeta[freeProduct.slug]?.cover || smartRingCover}
                 alt={getDisplayTitle(freeProduct)}
-                className="w-full h-full object-cover grayscale-[30%]"
+                className="w-full h-full object-cover grayscale"
               />
             </div>
             <div className="p-8 md:p-12 flex flex-col justify-center">
