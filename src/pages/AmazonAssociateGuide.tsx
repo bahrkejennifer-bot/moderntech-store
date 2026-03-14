@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/heroes/workspace-minimalist-bw.jpg";
-import FreeGuideModal from "@/components/FreeGuideModal";
+import { FreeGuideModal } from "@/components/FreeGuideModal";
 
 const AmazonAssociateGuide = () => {
   const [downloading, setDownloading] = useState(false);
