@@ -28,6 +28,8 @@ import DormRoomTechGuide from "./pages/DormRoomTechGuide";
 import ScreenFreeKidsGuide from "./pages/ScreenFreeKidsGuide";
 import AmazonAssociateGuide from "./pages/AmazonAssociateGuide";
 import WellnessSmartRingAnalysis from "./pages/WellnessSmartRingAnalysis";
+import SonicEditGuide from "./pages/SonicEditGuide";
+import BiometricAuditGuide from "./pages/BiometricAuditGuide";
 import NotFound from "./pages/NotFound";
 import Signal from "./pages/Signal";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -75,6 +77,8 @@ const App = () => (
           <Route path="/free-screen-free-kids-guide" element={<ScreenFreeKidsGuide />} />
           <Route path="/amazon-associate-guide" element={<AmazonAssociateGuide />} />
           <Route path="/wellness-smart-ring-analysis" element={<WellnessSmartRingAnalysis />} />
+          <Route path="/sonic-edit" element={<SonicEditGuide />} />
+          <Route path="/biometric-audit" element={<BiometricAuditGuide />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
           <Route path="/admin/upload" element={<AdminUpload />} />
           <Route path="/admin/scraper" element={<AdminScraper />} />
