@@ -47,6 +47,8 @@ const productMeta: Record<string, { cover: string; icon: React.ReactNode }> = {
 const editorialNames: Record<string, string> = {
   "earbuds-guide": "THE SONIC EDIT",
   "fitness-trackers-guide": "THE BIOMETRIC AUDIT",
+  "valentine-family-tech-guide": "The Architecture of Wellness: A 2026 Smart Ring Analysis",
+  "smart-ring-guide": "The Architecture of Wellness: Smart Ring Buyer's Guide",
 };
 
 const DigitalProducts = () => {
