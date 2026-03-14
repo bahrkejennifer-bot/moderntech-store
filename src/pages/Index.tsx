@@ -122,16 +122,6 @@ const Index = () => {
       </Helmet>
       <Navigation />
 
-      {/* ── S/S 2026 JOURNAL tagline ── */}
-      <div className="relative">
-        <p
-          className="absolute top-6 right-8 z-10 font-mono text-[9px] tracking-[0.35em] uppercase"
-          style={{ color: 'hsl(40 10% 12% / 0.4)' }}
-        >
-          S/S 2026 Journal
-        </p>
-      </div>
-
       {/* ── HERO — asymmetric editorial layout ── */}
       <section className="relative py-12 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center">
@@ -155,6 +145,23 @@ const Index = () => {
               <br />
               Modern Tech
             </h1>
+
+            {/* Manifesto */}
+            <h2
+              className="font-serif text-base md:text-lg leading-relaxed mt-8 max-w-[420px]"
+              style={{ fontStyle: 'italic', fontWeight: 400, color: 'hsl(40 10% 12% / 0.7)' }}
+            >
+              Beyond the screen lies the human experience. We curate beautiful, reliable technology designed for the way you actually live—from securing your home to the seamless flow of a day well-lived.
+            </h2>
+
+            {/* Brand Mission */}
+            <p
+              className="font-mono text-[10px] mt-8 text-muted-foreground"
+              style={{ letterSpacing: '0.25em', textTransform: 'uppercase' }}
+            >
+              Tech Today. Trend Tomorrow.<br />
+              Creating a Life We Have Yet to Imagine.
+            </p>
           </div>
         </div>
       </section>
