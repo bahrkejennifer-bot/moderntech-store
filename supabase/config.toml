@@ -26,3 +26,21 @@ verify_jwt = false
 
 [functions.trigger-zapier]
 verify_jwt = false
+
+[functions.pinterest-content-calendar]
+verify_jwt = false
+
+[functions.pin-to-pinterest]
+verify_jwt = false
+
+[functions.product-rss-feed]
+verify_jwt = false
+
+[functions.generate-blog-post]
+verify_jwt = false
+
+[functions.generate-download-link]
+verify_jwt = false
+
+[functions.monthly-auto-scrape]
+verify_jwt = false
