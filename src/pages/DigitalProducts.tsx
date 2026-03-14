@@ -109,6 +109,13 @@ const DigitalProducts = () => {
   };
 
   const handleDownload = async (product: DigitalProduct) => {
+    // Navigate to dedicated page if one exists
+    const dedicatedPage = dedicatedPageSlugs[product.slug];
+    if (dedicatedPage) {
+      navigate(dedicatedPage);
+      return;
+    }
+
     if (!product.pdf_path) {
       toast({ title: "Not Yet Available", description: "This edit is coming soon.", variant: "destructive" });
       return;
