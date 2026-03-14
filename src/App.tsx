@@ -27,6 +27,7 @@ import CreatorGearGuide from "./pages/CreatorGearGuide";
 import DormRoomTechGuide from "./pages/DormRoomTechGuide";
 import ScreenFreeKidsGuide from "./pages/ScreenFreeKidsGuide";
 import AmazonAssociateGuide from "./pages/AmazonAssociateGuide";
+import WellnessSmartRingAnalysis from "./pages/WellnessSmartRingAnalysis";
 import NotFound from "./pages/NotFound";
 import Signal from "./pages/Signal";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
