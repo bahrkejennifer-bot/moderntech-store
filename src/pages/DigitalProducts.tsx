@@ -55,6 +55,10 @@ const DigitalProducts = () => {
   const [products, setProducts] = useState<DigitalProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
+  const [emailGateId, setEmailGateId] = useState<string | null>(null);
+  const [gateEmail, setGateEmail] = useState("");
+  const [gateName, setGateName] = useState("");
+  const [submittingGate, setSubmittingGate] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
