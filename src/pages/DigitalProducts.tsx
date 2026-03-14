@@ -55,6 +55,8 @@ const editorialNames: Record<string, string> = {
 const dedicatedPageSlugs: Record<string, string> = {
   "valentine-family-tech-guide": "/wellness-smart-ring-analysis",
   "smart-ring-guide": "/wellness-smart-ring-analysis",
+  "earbuds-guide": "/sonic-edit",
+  "fitness-trackers-guide": "/biometric-audit",
 };
 
 const DigitalProducts = () => {
