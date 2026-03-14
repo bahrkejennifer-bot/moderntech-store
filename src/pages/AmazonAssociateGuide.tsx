@@ -93,7 +93,7 @@ const AmazonAssociateGuide = () => {
             <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
               The Modern Tech Blueprint — Free 5-Page Guide
             </p>
-            <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] mb-6" style={{ fontStyle: "italic" }}>
+            <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] mb-6" style={{ fontStyle: "italic", color: "hsl(40 10% 8%)", fontWeight: 500 }}>
               Amazon Associate<br />Quick-Start Guide
             </h1>
             <p className="font-mono text-[11px] leading-[2] max-w-md mb-10" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
