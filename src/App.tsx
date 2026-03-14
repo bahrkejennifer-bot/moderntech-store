@@ -28,6 +28,8 @@ import DormRoomTechGuide from "./pages/DormRoomTechGuide";
 import ScreenFreeKidsGuide from "./pages/ScreenFreeKidsGuide";
 import AmazonAssociateGuide from "./pages/AmazonAssociateGuide";
 import WellnessSmartRingAnalysis from "./pages/WellnessSmartRingAnalysis";
+import SonicEditGuide from "./pages/SonicEditGuide";
+import BiometricAuditGuide from "./pages/BiometricAuditGuide";
 import NotFound from "./pages/NotFound";
 import Signal from "./pages/Signal";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
