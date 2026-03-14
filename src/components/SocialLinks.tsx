@@ -20,7 +20,7 @@ const SocialLinks = () => {
         href={socialLinks.facebook}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-[#1877F2] hover:text-[#1877F2]/80 transition-colors"
+        className="text-current opacity-60 hover:opacity-100 transition-opacity"
         aria-label="Facebook"
       >
         <Facebook className="h-5 w-5" />
@@ -29,7 +29,7 @@ const SocialLinks = () => {
         href={socialLinks.youtube}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-[#FF0000] hover:text-[#FF0000]/80 transition-colors"
+        className="text-current opacity-60 hover:opacity-100 transition-opacity"
         aria-label="YouTube"
       >
         <Youtube className="h-5 w-5" />
@@ -38,7 +38,7 @@ const SocialLinks = () => {
         href={socialLinks.instagram}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-[#E4405F] hover:text-[#E4405F]/80 transition-colors"
+        className="text-current opacity-60 hover:opacity-100 transition-opacity"
         aria-label="Instagram"
       >
         <Instagram className="h-5 w-5" />
@@ -47,7 +47,7 @@ const SocialLinks = () => {
         href={socialLinks.tiktok}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-foreground hover:text-foreground/80 transition-colors"
+        className="text-current opacity-60 hover:opacity-100 transition-opacity"
         aria-label="TikTok"
       >
         <TikTokIcon />
@@ -56,7 +56,7 @@ const SocialLinks = () => {
         href={socialLinks.pinterest}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-[#E60023] hover:text-[#E60023]/80 transition-colors"
+        className="text-current opacity-60 hover:opacity-100 transition-opacity"
         aria-label="Pinterest"
       >
         <PinterestIcon />
