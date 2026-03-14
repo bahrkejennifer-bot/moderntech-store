@@ -140,7 +140,7 @@ const DigitalProducts = () => {
   const paidProducts = products.filter((p) => !p.is_free);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen" style={{ backgroundColor: "#F9F7F2", color: "#1a1a18" }}>
       <Helmet>
         <title>The Edit — Curated Tech Guides | Modern Tech</title>
         <meta name="description" content="Curated digital guides for the discerning tech enthusiast — smart home, wellness, gaming, and beyond." />
@@ -153,19 +153,19 @@ const DigitalProducts = () => {
 
       {/* Editorial Header */}
       <header className="max-w-5xl mx-auto px-8 pt-16 pb-8 text-center">
-        <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-6">
+        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "#6b6860" }}>
           The Modern Tech Library
         </p>
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight" style={{ fontStyle: "italic", fontWeight: 400, color: "#1a1a18" }}>
           The Edit
         </h1>
-        <p className="mt-6 font-mono text-[11px] tracking-[0.15em] uppercase text-muted-foreground max-w-lg mx-auto leading-[2]">
+        <p className="mt-6 font-mono text-[11px] tracking-[0.15em] uppercase max-w-lg mx-auto leading-[2]" style={{ color: "#6b6860" }}>
           Expert-curated guides designed to cut through the noise. Every recommendation is tested, every word intentional.
         </p>
       </header>
 
       <div className="max-w-5xl mx-auto px-8 pb-4">
-        <div className="h-px bg-border" />
+        <div className="h-px" style={{ backgroundColor: "#d4d0c8" }} />
       </div>
 
       {/* Free Product — Lead Magnet */}
