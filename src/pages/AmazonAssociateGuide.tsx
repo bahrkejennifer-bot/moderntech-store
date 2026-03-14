@@ -7,6 +7,37 @@ import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/heroes/workspace-minimalist-bw.jpg";
 import { FreeGuideModal } from "@/components/FreeGuideModal";
 
+const ProTipAccordion = ({ num, title, body }: { num: string; title: string; body: string }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div style={{ borderBottom: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center gap-6 py-6 text-left group"
+      >
+        <span className="font-serif text-2xl shrink-0" style={{ fontStyle: "italic", color: "hsl(40 10% 12% / 0.25)", width: 40 }}>
+          {num}
+        </span>
+        <span className="font-mono text-[11px] tracking-[0.15em] uppercase flex-1" style={{ color: "hsl(40 10% 12%)" }}>
+          {title}
+        </span>
+        <ChevronDown
+          className="h-4 w-4 shrink-0 transition-transform duration-300"
+          style={{ color: "hsl(40 10% 12% / 0.3)", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+        />
+      </button>
+      <div
+        className="overflow-hidden transition-all duration-300 ease-in-out"
+        style={{ maxHeight: open ? 400 : 0, opacity: open ? 1 : 0 }}
+      >
+        <p className="font-mono text-[10px] leading-[2.2] pb-8 pl-[64px] pr-4" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+          {body}
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const AmazonAssociateGuide = () => {
   const [downloading, setDownloading] = useState(false);
   const [guideModalOpen, setGuideModalOpen] = useState(false);
