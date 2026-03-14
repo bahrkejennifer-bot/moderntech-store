@@ -6,6 +6,8 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import coverImg from "@/assets/pdf-covers/earbuds-guide-cover.jpg";
+import { PinterestSaveButton } from "@/components/PinterestWidgets";
+import pinImage from "@/assets/pins/pin-sonic-edit-guide.jpg";
 
 const AFFILIATE_TAG = "moderntechs0c-20";
 
