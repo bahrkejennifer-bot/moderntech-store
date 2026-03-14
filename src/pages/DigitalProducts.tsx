@@ -51,6 +51,12 @@ const editorialNames: Record<string, string> = {
   "smart-ring-guide": "The Architecture of Wellness: Smart Ring Buyer's Guide",
 };
 
+// Slugs that have dedicated pages instead of PDF downloads
+const dedicatedPageSlugs: Record<string, string> = {
+  "valentine-family-tech-guide": "/wellness-smart-ring-analysis",
+  "smart-ring-guide": "/wellness-smart-ring-analysis",
+};
+
 const DigitalProducts = () => {
   const [products, setProducts] = useState<DigitalProduct[]>([]);
   const [loading, setLoading] = useState(true);
@@ -60,6 +66,7 @@ const DigitalProducts = () => {
   const [gateName, setGateName] = useState("");
   const [submittingGate, setSubmittingGate] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts();
