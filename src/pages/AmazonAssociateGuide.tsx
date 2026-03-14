@@ -81,32 +81,13 @@ const AmazonAssociateGuide = () => {
               ACCESS THE BLUEPRINT <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
-          <div className="relative">
+          <div>
             <img
               src={heroImage}
               alt="Minimalist workspace with laptop and natural light"
               className="w-full aspect-[4/3] object-cover"
               style={{ filter: "contrast(1.05)" }}
             />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div
-                className="text-center px-8 py-8"
-                style={{ backgroundColor: "rgba(26, 26, 24, 0.55)" }}
-              >
-                <p
-                  className="font-mono text-[11px] tracking-[0.4em] uppercase"
-                  style={{ color: "#ffffff" }}
-                >
-                  Curated Precision
-                </p>
-                <p
-                  className="font-serif text-lg md:text-xl mt-2"
-                  style={{ fontStyle: "italic", color: "#ffffff", fontWeight: 400 }}
-                >
-                  For the Modern Professional
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
