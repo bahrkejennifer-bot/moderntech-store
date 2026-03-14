@@ -1,11 +1,42 @@
 import { useState, useRef } from "react";
 import { Helmet } from "react-helmet-async";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/heroes/workspace-minimalist-bw.jpg";
 import { FreeGuideModal } from "@/components/FreeGuideModal";
+
+const ProTipAccordion = ({ num, title, body }: { num: string; title: string; body: string }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div style={{ borderBottom: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center gap-6 py-6 text-left group"
+      >
+        <span className="font-serif text-2xl shrink-0" style={{ fontStyle: "italic", color: "hsl(40 10% 12% / 0.25)", width: 40 }}>
+          {num}
+        </span>
+        <span className="font-mono text-[11px] tracking-[0.15em] uppercase flex-1" style={{ color: "hsl(40 10% 12%)" }}>
+          {title}
+        </span>
+        <ChevronDown
+          className="h-4 w-4 shrink-0 transition-transform duration-300"
+          style={{ color: "hsl(40 10% 12% / 0.3)", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+        />
+      </button>
+      <div
+        className="overflow-hidden transition-all duration-300 ease-in-out"
+        style={{ maxHeight: open ? 400 : 0, opacity: open ? 1 : 0 }}
+      >
+        <p className="font-mono text-[10px] leading-[2.2] pb-8 pl-[64px] pr-4" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+          {body}
+        </p>
+      </div>
+    </div>
+  );
+};
 
 const AmazonAssociateGuide = () => {
   const [downloading, setDownloading] = useState(false);
@@ -111,6 +142,44 @@ const AmazonAssociateGuide = () => {
                   </p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Pro Tips — Expandable */}
+        <div className="mt-20" style={{ borderTop: "0.5px solid hsl(40 10% 12% / 0.15)" }}>
+          <p className="font-mono text-[9px] tracking-[0.3em] uppercase pt-8 mb-12" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+            Insider Playbook — Pro Tips
+          </p>
+          <div className="space-y-0">
+            {[
+              {
+                num: "01",
+                title: "The Massage Chair Play",
+                body: "Most affiliates fight over $15 earbuds commissions. The real money is in the \"consideration purchase\" — items like premium massage chairs ($2,000–$5,000) where buyers spend weeks researching before clicking \"Add to Cart.\" A single Luraco or Osaki conversion at 4% nets you $80–$200 per sale. The strategy: write a \"Best Massage Chairs for Home Offices\" editorial that ranks for long-tail keywords like \"massage chair for remote workers 2026.\" These buyers aren't impulse shopping — they're investing. And they trust editorial-style reviews over listicles.",
+              },
+              {
+                num: "02",
+                title: "The 24-Hour Cookie Window",
+                body: "Amazon's affiliate cookie lasts only 24 hours — but here's what most guides won't tell you: if the reader adds any item to their cart within that window, the cookie extends to 90 days. Your strategy isn't just linking one product. It's creating \"ecosystem\" posts — \"The Complete Smart Home Stack\" — that encourage readers to cart multiple items in a single session. One click on your Oura Ring link could earn you commission on their entire $400 cart.",
+              },
+              {
+                num: "03",
+                title: "The Pinterest Arbitrage",
+                body: "Pinterest is the only major platform where affiliate-adjacent content gains reach over time. A well-designed pin linking to your \"Best Standing Desks for 2026\" post can drive traffic for 18+ months. The play: create 3 pin variations per blog post (lifestyle shot, infographic, product flat-lay), post them to 5 niche boards, and let the algorithm compound. Your cost is $0. Your ceiling is unlimited.",
+              },
+              {
+                num: "04",
+                title: "The \"Versus\" Format",
+                body: "\"Oura Ring 4 vs. Ultrahuman Ring Air\" will always outperform \"Best Smart Rings 2026.\" Why? Because versus searches signal a buyer who's already decided to purchase — they're just choosing which one. These posts convert at 3–5x the rate of general roundups. Structure them as editorial comparisons (not spec sheets), and always end with a clear \"The Verdict\" section with your affiliate link.",
+              },
+              {
+                num: "05",
+                title: "The Seasonal Surge Calendar",
+                body: "Mark these dates: Prime Day (July), Back-to-School (August), Black Friday/Cyber Monday (November), and Holiday Gift Guides (December). But the real edge is publishing your content 6–8 weeks early so Google indexes and ranks it before the surge. A \"Best Tech Gifts for Dad — Father's Day 2026\" post published in April will outrank one published in May every time. Plan your editorial calendar around these windows and watch your Q4 commissions fund your Q1.",
+              },
+            ].map((tip) => (
+              <ProTipAccordion key={tip.num} num={tip.num} title={tip.title} body={tip.body} />
             ))}
           </div>
         </div>
