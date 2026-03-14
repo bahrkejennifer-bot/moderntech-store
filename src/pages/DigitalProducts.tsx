@@ -107,8 +107,28 @@ const DigitalProducts = () => {
       return;
     }
 
-    setDownloadingId(product.id);
+    // Show email gate instead of direct download
+    setEmailGateId(product.id);
+    setGateEmail("");
+    setGateName("");
+  };
+
+  const handleEmailGateSubmit = async (product: DigitalProduct) => {
+    if (!gateEmail.trim() || !gateName.trim()) {
+      toast({ title: "Required", description: "Please enter your name and email.", variant: "destructive" });
+      return;
+    }
+
+    setSubmittingGate(true);
     try {
+      // Capture lead
+      await supabase.from("lead_captures").insert({
+        name: gateName.trim(),
+        email: gateEmail.trim(),
+        lead_magnet: product.slug,
+      });
+
+      // Generate download link
       const { data, error } = await supabase.functions.invoke("generate-download-link", {
         body: { productId: product.id },
       });
@@ -123,7 +143,8 @@ const DigitalProducts = () => {
       console.error("Download error:", error);
       toast({ title: "Download Failed", description: "Please try again.", variant: "destructive" });
     } finally {
-      setDownloadingId(null);
+      setSubmittingGate(false);
+      setEmailGateId(null);
     }
   };
 
