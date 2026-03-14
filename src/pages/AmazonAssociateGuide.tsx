@@ -97,17 +97,17 @@ const AmazonAssociateGuide = () => {
             <div className="absolute inset-0 flex items-center justify-center">
               <div
                 className="text-center px-8 py-8"
-                style={{ backgroundColor: "rgba(249, 247, 242, 0.8)" }}
+                style={{ backgroundColor: "rgba(26, 26, 24, 0.55)" }}
               >
                 <p
                   className="font-mono text-[11px] tracking-[0.4em] uppercase"
-                  style={{ color: "hsl(40 10% 12%)" }}
+                  style={{ color: "#ffffff" }}
                 >
                   Curated Precision
                 </p>
                 <p
                   className="font-serif text-lg md:text-xl mt-2"
-                  style={{ fontStyle: "italic", color: "hsl(40 10% 12%)", fontWeight: 400 }}
+                  style={{ fontStyle: "italic", color: "#ffffff", fontWeight: 400 }}
                 >
                   For the Modern Professional
                 </p>
