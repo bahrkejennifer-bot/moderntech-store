@@ -189,6 +189,7 @@ const DigitalProducts = () => {
         <meta name="description" content="Curated digital guides for the discerning tech enthusiast — smart home, wellness, gaming, and beyond." />
         <meta property="og:title" content="The Edit — Curated Tech Guides | Modern Tech" />
         <meta property="og:description" content="Curated digital guides for the discerning tech enthusiast." />
+        <meta property="og:image" content="https://moderntech.store/images/products/smart-ring-guide-cover.jpg" />
         <meta property="og:url" content="https://moderntech.store/digital-products" />
         <meta property="og:type" content="website" />
       </Helmet>

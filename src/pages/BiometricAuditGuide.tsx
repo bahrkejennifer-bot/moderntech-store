@@ -44,6 +44,7 @@ const BiometricAuditGuide = () => {
         <meta name="description" content="A curated analysis of the fitness trackers that meet the Modern Tech standard — Apple Watch Series 10, Fitbit Charge 6 & WHOOP 4.0." />
         <meta property="og:title" content="THE BIOMETRIC AUDIT — 2026 Fitness Tracker Analysis" />
         <meta property="og:description" content="A study in the intersection of human performance data and wearable design. Three trackers. One standard." />
+        <meta property="og:image" content="https://moderntech.store/images/products/oura-ring-4.jpg" />
         <meta property="og:url" content="https://moderntech.store/biometric-audit" />
         <meta property="og:type" content="article" />
         <meta name="author" content="Modern Tech LLC" />

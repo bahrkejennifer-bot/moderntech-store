@@ -119,6 +119,11 @@ const Index = () => {
       <Helmet>
         <title>Modern Tech — Curated Premium Technology for 2026</title>
         <meta name="description" content="A curated gallery of premium tech — wellness wearables, creator tools, and office essentials. Handpicked with editorial precision." />
+        <meta property="og:title" content="Modern Tech — Curated Premium Technology for 2026" />
+        <meta property="og:description" content="A curated gallery of premium tech — wellness wearables, creator tools, and office essentials. Handpicked with editorial precision." />
+        <meta property="og:image" content="https://moderntech.store/images/products/oura-ring-4.jpg" />
+        <meta property="og:url" content="https://moderntech.store/" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <Navigation />
 

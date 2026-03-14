@@ -59,6 +59,11 @@ const Connectivity = () => {
       <Helmet>
         <title>Best Wireless Audio, Chargers & Connectivity Tech 2026</title>
         <meta name="description" content="Shop the fastest-moving connectivity tech of 2026 — AirPods Pro 2, Anker chargers, AirTags & more." />
+        <meta property="og:title" content="Best Wireless Audio, Chargers & Connectivity Tech 2026" />
+        <meta property="og:description" content="Shop the fastest-moving connectivity tech of 2026 — AirPods Pro 2, Anker chargers, AirTags & more." />
+        <meta property="og:image" content="https://moderntech.store/images/products/airpods-pro-2.jpg" />
+        <meta property="og:url" content="https://moderntech.store/connectivity" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <VogueCategoryLayout
         title="Connectivity"
