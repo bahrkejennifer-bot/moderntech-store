@@ -199,6 +199,24 @@ serve(async (req) => {
           }
 
           console.log("Confirmation email sent successfully:", emailResponse);
+
+          // Fire Zapier webhook for product purchase (fire-and-forget)
+          const zapierUrl = Deno.env.get("ZAPIER_WEBHOOK_URL");
+          if (zapierUrl) {
+            fetch(zapierUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                event: "product_purchase",
+                timestamp: new Date().toISOString(),
+                source: "moderntech.store",
+                email: customerEmail,
+                product_name: productName,
+                product_slug: productSlug || "",
+                amount: (session.amount_total || 0) / 100,
+              }),
+            }).catch((err) => console.error("Zapier webhook error:", err));
+          }
         } catch (emailError) {
           console.error("Failed to send confirmation email:", emailError);
           // Fail the webhook so Stripe retries the event instead of silently succeeding.
