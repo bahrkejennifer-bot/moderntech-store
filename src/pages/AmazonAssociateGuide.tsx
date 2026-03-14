@@ -69,8 +69,7 @@ const AmazonAssociateGuide = () => {
               From application to first commission — the definitive playbook for building an affiliate platform with editorial integrity.
             </p>
             <Button
-              onClick={handleDownload}
-              disabled={downloading}
+              onClick={() => setGuideModalOpen(true)}
               className="font-mono text-[10px] tracking-[0.2em] uppercase px-10 py-5 transition-all duration-300 hover:scale-[1.02]"
               style={{
                 backgroundColor: "transparent",
@@ -79,11 +78,7 @@ const AmazonAssociateGuide = () => {
                 borderRadius: "0",
               }}
             >
-              {downloading ? (
-                <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Generating PDF…</>
-              ) : (
-                <>ACCESS THE BLUEPRINT <ArrowRight className="ml-2 h-4 w-4" /></>
-              )}
+              ACCESS THE BLUEPRINT <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
           <div className="relative">
