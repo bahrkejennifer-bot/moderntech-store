@@ -55,6 +55,10 @@ const DigitalProducts = () => {
   const [products, setProducts] = useState<DigitalProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
+  const [emailGateId, setEmailGateId] = useState<string | null>(null);
+  const [gateEmail, setGateEmail] = useState("");
+  const [gateName, setGateName] = useState("");
+  const [submittingGate, setSubmittingGate] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -103,8 +107,28 @@ const DigitalProducts = () => {
       return;
     }
 
-    setDownloadingId(product.id);
+    // Show email gate instead of direct download
+    setEmailGateId(product.id);
+    setGateEmail("");
+    setGateName("");
+  };
+
+  const handleEmailGateSubmit = async (product: DigitalProduct) => {
+    if (!gateEmail.trim() || !gateName.trim()) {
+      toast({ title: "Required", description: "Please enter your name and email.", variant: "destructive" });
+      return;
+    }
+
+    setSubmittingGate(true);
     try {
+      // Capture lead
+      await supabase.from("lead_captures").insert({
+        name: gateName.trim(),
+        email: gateEmail.trim(),
+        lead_magnet: product.slug,
+      });
+
+      // Generate download link
       const { data, error } = await supabase.functions.invoke("generate-download-link", {
         body: { productId: product.id },
       });
@@ -119,7 +143,8 @@ const DigitalProducts = () => {
       console.error("Download error:", error);
       toast({ title: "Download Failed", description: "Please try again.", variant: "destructive" });
     } finally {
-      setDownloadingId(null);
+      setSubmittingGate(false);
+      setEmailGateId(null);
     }
   };
 
@@ -174,11 +199,11 @@ const DigitalProducts = () => {
       {freeProduct && (
         <section className="max-w-5xl mx-auto px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0" style={{ border: "0.5px solid #d4d0c8" }}>
-            <div className="aspect-square md:aspect-auto overflow-hidden">
+            <div className="aspect-square md:aspect-auto overflow-hidden" style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))" }}>
               <img
                 src={productMeta[freeProduct.slug]?.cover || smartRingCover}
                 alt={getDisplayTitle(freeProduct)}
-                className="w-full h-full object-cover grayscale-[30%]"
+                className="w-full h-full object-cover grayscale"
               />
             </div>
             <div className="p-8 md:p-12 flex flex-col justify-center">
@@ -226,11 +251,11 @@ const DigitalProducts = () => {
             {paidProducts.map((product) => (
               <div key={product.id} className="group" style={{ borderRight: "0.5px solid #d4d0c8", borderBottom: "0.5px solid #d4d0c8" }}>
                 {/* Image */}
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="aspect-[4/3] overflow-hidden" style={{ filter: "drop-shadow(0 12px 30px rgba(0,0,0,0.12))" }}>
                   <img
                     src={productMeta[product.slug]?.cover || smartHomeCover}
                     alt={getDisplayTitle(product)}
-                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 grayscale-[20%] group-hover:grayscale-0"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 grayscale group-hover:grayscale-[50%]"
                   />
                 </div>
 
@@ -246,28 +271,63 @@ const DigitalProducts = () => {
                     {product.description || "Your comprehensive buying guide"}
                   </p>
 
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[12px] tracking-[0.1em] uppercase font-medium" style={{ color: "#1a1a18" }}>
-                      FREE
-                    </span>
-                    <button
-                      onClick={() => handleDownload(product)}
-                      disabled={downloadingId === product.id}
-                      className="inline-flex items-center gap-2 h-9 px-5 bg-transparent font-mono text-[10px] tracking-[0.15em] uppercase transition-all duration-300 disabled:opacity-50"
-                      style={{ border: "0.5px solid #3a3a35", color: "#1a1a18" }}
-                      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a18"; e.currentTarget.style.color = "#F9F7F2"; }}
-                      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a18"; }}
-                    >
-                      {downloadingId === product.id ? (
-                        <Loader2 className="h-3 w-3 animate-spin" />
-                      ) : (
-                        <>
-                          Download the Edit
-                          <ArrowRight className="h-3 w-3" />
-                        </>
-                      )}
-                    </button>
-                  </div>
+                  {emailGateId === product.id ? (
+                    /* Email capture gate */
+                    <div className="space-y-3 pt-2" style={{ borderTop: "0.5px solid #d4d0c8" }}>
+                      <p className="font-mono text-[10px] tracking-[0.15em] uppercase pt-3" style={{ color: "#6b6860" }}>
+                        Enter your details for instant access
+                      </p>
+                      <input
+                        type="text"
+                        placeholder="Your name"
+                        value={gateName}
+                        onChange={(e) => setGateName(e.target.value)}
+                        className="w-full h-9 px-3 font-mono text-[11px] bg-transparent outline-none"
+                        style={{ border: "0.5px solid #d4d0c8", color: "#1a1a18" }}
+                      />
+                      <input
+                        type="email"
+                        placeholder="Your email"
+                        value={gateEmail}
+                        onChange={(e) => setGateEmail(e.target.value)}
+                        className="w-full h-9 px-3 font-mono text-[11px] bg-transparent outline-none"
+                        style={{ border: "0.5px solid #d4d0c8", color: "#1a1a18" }}
+                      />
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleEmailGateSubmit(product)}
+                          disabled={submittingGate}
+                          className="flex-1 inline-flex items-center justify-center gap-2 h-9 px-4 font-mono text-[10px] tracking-[0.15em] uppercase transition-all duration-300 disabled:opacity-50"
+                          style={{ backgroundColor: "#1a1a18", color: "#F9F7F2" }}
+                        >
+                          {submittingGate ? <Loader2 className="h-3 w-3 animate-spin" /> : <>Get the Edit <ArrowRight className="h-3 w-3" /></>}
+                        </button>
+                        <button
+                          onClick={() => setEmailGateId(null)}
+                          className="h-9 px-3 font-mono text-[10px] uppercase"
+                          style={{ color: "#9a958c" }}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[12px] tracking-[0.1em] uppercase font-medium" style={{ color: "#c9a0a0" }}>
+                        FREE
+                      </span>
+                      <button
+                        onClick={() => handleDownload(product)}
+                        className="inline-flex items-center gap-2 h-9 px-5 bg-transparent font-mono text-[10px] tracking-[0.15em] uppercase transition-all duration-300"
+                        style={{ border: "0.5px solid #3a3a35", color: "#1a1a18" }}
+                        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a18"; e.currentTarget.style.color = "#F9F7F2"; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a18"; }}
+                      >
+                        Download the Edit
+                        <ArrowRight className="h-3 w-3" />
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
