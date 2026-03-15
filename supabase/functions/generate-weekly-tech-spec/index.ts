@@ -6,17 +6,6 @@ const corsHeaders = {
 };
 
 const LOGO_URL = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/email-assets/mt-welcome-logo.png";
-const SENDER_DOMAIN = "www.moderntech.store";
-
-const CATEGORIES = [
-  "Health & Wellness",
-  "Home & Safety",
-  "Creator Gear",
-  "College Essentials",
-  "Gaming",
-  "Connectivity",
-  "Kids Tech",
-];
 
 function buildEmailTemplate(subject: string, bodyHtml: string): string {
   return `<!DOCTYPE html>
@@ -26,44 +15,47 @@ function buildEmailTemplate(subject: string, bodyHtml: string): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${subject}</title>
 </head>
-<body style="margin:0;padding:0;background-color:#ede8e3;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#ede8e3;">
+<body style="margin:0;padding:0;background-color:#f5f5f7;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f5f5f7;">
     <tr>
-      <td align="center" style="padding:40px 16px;">
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;">
+      <td align="center" style="padding:48px 16px;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:12px;overflow:hidden;">
 
           <!-- Header -->
           <tr>
-            <td style="padding:32px 40px 0;text-align:center;">
-              <div style="width:60px;height:60px;border-radius:50%;overflow:hidden;border:3px solid #f0ebe6;display:inline-block;">
-                <img src="${LOGO_URL}" alt="Modern Tech" width="60" height="60" style="display:block;width:60px;height:60px;object-fit:cover;border:0;" />
+            <td style="padding:48px 48px 0;text-align:center;">
+              <div style="width:52px;height:52px;border-radius:50%;overflow:hidden;border:2px solid #e5e5e7;display:inline-block;">
+                <img src="${LOGO_URL}" alt="Modern Tech" width="52" height="52" style="display:block;width:52px;height:52px;object-fit:cover;border:0;" />
               </div>
-              <p style="margin:12px 0 0;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#b0a8a0;">
-                THE WEEKLY TECH SPEC
+              <p style="margin:16px 0 0;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#86868b;">
+                TECH SPECS WEEKLY REPORT
               </p>
-              <h1 style="margin:8px 0 0;font-family:'Georgia',serif;font-size:24px;font-weight:400;color:#2c2825;line-height:1.3;">
+              <h1 style="margin:8px 0 0;font-family:'Georgia',serif;font-size:26px;font-weight:400;color:#1d1d1f;line-height:1.25;letter-spacing:-0.01em;">
                 ${subject}
               </h1>
+              <p style="margin:8px 0 0;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#86868b;">
+                Precision Intelligence for the Modern Enterprise
+              </p>
             </td>
           </tr>
 
           <tr>
-            <td style="padding:24px 60px 0;">
-              <div style="height:1px;background-color:#e8e3de;"></div>
+            <td style="padding:28px 48px 0;">
+              <div style="height:1px;background-color:#e5e5e7;"></div>
             </td>
           </tr>
 
           <!-- Body -->
           <tr>
-            <td style="padding:24px 48px 0;">
+            <td style="padding:28px 48px 0;">
               ${bodyHtml}
             </td>
           </tr>
 
           <!-- CTA -->
           <tr>
-            <td align="center" style="padding:32px 48px 0;">
-              <a href="https://moderntech.store/blog" style="display:inline-block;background-color:#c8a0a0;color:#ffffff;font-family:'Courier New',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;padding:16px 40px;border:0;">
+            <td align="center" style="padding:36px 48px 0;">
+              <a href="https://moderntech.store/blog" style="display:inline-block;background-color:#1d1d1f;color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:500;letter-spacing:0.05em;text-decoration:none;padding:14px 36px;border-radius:8px;">
                 Explore All Picks
               </a>
             </td>
@@ -71,19 +63,19 @@ function buildEmailTemplate(subject: string, bodyHtml: string): string {
 
           <!-- Footer -->
           <tr>
-            <td style="padding:36px 48px 48px;">
-              <div style="height:1px;background-color:#e8e3de;margin-bottom:24px;"></div>
-              <p style="margin:0 0 4px;font-family:'Georgia',serif;font-size:13px;font-style:italic;color:#2c2825;text-align:center;">
+            <td style="padding:40px 48px 48px;">
+              <div style="height:1px;background-color:#e5e5e7;margin-bottom:24px;"></div>
+              <p style="margin:0 0 4px;font-family:'Georgia',serif;font-size:13px;font-style:italic;color:#1d1d1f;text-align:center;">
                 Modern Tech LLC
               </p>
-              <p style="margin:0;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:#b0a8a0;text-align:center;">
+              <p style="margin:0;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:#86868b;text-align:center;">
                 Tech today · Trend tomorrow
               </p>
-              <p style="margin:16px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:#b0a8a0;text-align:center;">
+              <p style="margin:16px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:#86868b;text-align:center;">
                 You received this because you subscribed at
-                <a href="https://moderntech.store" style="color:#c8a0a0;text-decoration:underline;">moderntech.store</a>
+                <a href="https://moderntech.store" style="color:#1d1d1f;text-decoration:underline;">moderntech.store</a>
               </p>
-              <p style="margin:8px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;color:#b0a8a0;text-align:center;">
+              <p style="margin:8px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;color:#86868b;text-align:center;">
                 As an Amazon Associate, I earn from qualifying purchases. #ad
               </p>
             </td>
@@ -124,6 +116,13 @@ Deno.serve(async (req) => {
 
     if (postsError) throw new Error(`Failed to fetch posts: ${postsError.message}`);
 
+    // Also fetch digital products for the "Digital Assets" pillar
+    const { data: products } = await supabase
+      .from("digital_products")
+      .select("title, slug, description, is_free, price")
+      .order("display_order", { ascending: true })
+      .limit(3);
+
     const postSummaries = (posts || []).map((p) => ({
       title: p.title,
       slug: p.slug,
@@ -131,37 +130,74 @@ Deno.serve(async (req) => {
       category: p.category || "Tech",
     }));
 
-    // Use AI to generate the newsletter content
-    const prompt = `You are the editor of "The Weekly Tech Spec" by Modern Tech LLC. Write a weekly newsletter email.
+    const productSummaries = (products || []).map((p) => ({
+      title: p.title,
+      slug: p.slug,
+      description: p.description || "",
+      isFree: p.is_free,
+      price: p.price,
+    }));
 
-BRAND VOICE: Authoritative, witty, and radically honest. You're an expert curator and supportive peer. Use short paragraphs and bold text for scannability.
+    const prompt = `You are the editor of "Tech Specs Weekly Report" by Modern Tech LLC.
 
-STRUCTURE:
-1. Opening hook (2-3 sentences) — reference a real-life problem or 2026 tech trend affecting how we live, work, stay connected, or stay healthy
-2. For each blog post below, write a brief section (3-4 sentences) that:
-   - Identifies a REAL PROBLEM people face (at work, home, health, safety, staying connected)
-   - Points to the product/solution from the post as the fix
-   - Includes a clear call-to-action link
-3. Brief closing (1-2 sentences) teasing next week
+BRAND IDENTITY: Apple-aesthetic. Monochromatic visuals, extreme white space, "less is more" editorial voice. Authoritative, witty, radically honest. You are an expert curator — never salesy, never fluffy. Short paragraphs. Never more than 3 sentences per paragraph.
 
-CATEGORIES WE COVER: ${CATEGORIES.join(", ")}
+TAGLINE: "Precision Intelligence for the Modern Enterprise"
 
-LATEST POSTS TO FEATURE:
+STRUCTURE — Follow this exact blueprint:
+
+## 1. THE LEAD: "The Friction of [Problem]"
+Open with a sharp, specific observation about a real-life friction point affecting how people live, work, stay connected, or stay healthy in 2026. Reference a real trend or statistic. 2-3 sentences max. End with the cost of inaction.
+
+## 2. THE SOLUTION: Integrated Approach
+One transitional paragraph (2 sentences) introducing this week's three pillars of optimization.
+
+## 3. PILLAR 1 — DIGITAL ASSETS: "The Architecture of Scale"
+Subtitle: "For the firm looking to build once and sell forever."
+Feature ONE of our digital products below. Frame it as removing guesswork from a specific problem. Include a clear action link.
+
+OUR DIGITAL PRODUCTS:
+${productSummaries.map((p) => `- "${p.title}" (${p.isFree ? 'FREE' : `$${p.price}`}) — ${p.description}
+  Link: https://moderntech.store/digital-products`).join("\n")}
+
+## 4. PILLAR 2 — AI IMPLEMENTATION: "Beyond the Hype"  
+Subtitle: "For the leader seeking measurable ROI from Machine Learning."
+Write about how our AI-powered tools (like the Tech Chatbot or AI-generated content) help automate real tasks. Link to our blog or tools page. Frame AI as "a specialized labor force, not a chatbot."
+
+## 5. PILLAR 3 — HARDWARE & GEAR: "The Professional's Toolkit"
+Subtitle: "Curated essentials for the high-output workspace."
+Feature 2-3 products from our latest blog posts. Frame as: "You cannot run elite software on mediocre hardware." Each product gets 1 sentence + link.
+
+LATEST BLOG POSTS TO DRAW FROM:
 ${postSummaries.map((p, i) => `${i + 1}. "${p.title}" (${p.category}) — ${p.excerpt}
    Link: https://moderntech.store/blog/${p.slug}`).join("\n")}
 
-${postSummaries.length === 0 ? "No new posts this week — write a general tech trends roundup instead with links to https://moderntech.store/blog" : ""}
+${postSummaries.length === 0 ? "No new posts this week — use general 2026 tech trends and link to https://moderntech.store/blog" : ""}
 
-OUTPUT FORMAT: Return valid HTML suitable for email (inline styles, no CSS classes). Use these style conventions:
-- Section headers: <p style="margin:0 0 8px;font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#b0a8a0;">SECTION LABEL</p>
-- Body text: <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#5a5550;">
-- Bold/emphasis: <strong style="color:#2c2825;">
-- Links: <a href="URL" style="color:#c8a0a0;text-decoration:underline;">
-- Section dividers: <div style="height:1px;background-color:#e8e3de;margin:24px 0;"></div>
+## 6. THE "NO-FLUFF" COMPARISON TABLE
+Create a simple HTML table with 4 columns: Category | The Problem | The Solution | The Outcome
+Three rows: Digital, AI, Hardware/Affiliate. Keep each cell to 3-5 words max.
 
-Also return a compelling email subject line (under 60 chars).
+## 7. CLOSING
+One sentence teasing next week's focus. One sentence with a direct CTA.
 
-Return your response as a JSON object with two keys: "subject" (string) and "body_html" (string containing the HTML).`;
+TONE RULES:
+- Never use "Click here." Use action phrases: "View the Spec Sheet →" or "Upgrade Your Stack →"
+- No stock-photo language. No "synergy" or "leverage." Write like a Bloomberg columnist, not a marketer.
+- Bold key phrases sparingly for scannability.
+
+OUTPUT FORMAT: Return valid HTML for email (inline styles only, no CSS classes). Use these exact style tokens:
+
+- Section label: <p style="margin:0 0 6px;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:#86868b;">LABEL</p>
+- Section title: <h2 style="margin:0 0 12px;font-family:'Georgia',serif;font-size:20px;font-weight:400;color:#1d1d1f;line-height:1.3;">Title</h2>
+- Subtitle: <p style="margin:0 0 16px;font-family:'Georgia',serif;font-size:14px;font-style:italic;color:#6e6e73;">Subtitle text</p>
+- Body text: <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#424245;">Text</p>
+- Bold: <strong style="color:#1d1d1f;">
+- Links: <a href="URL" style="color:#1d1d1f;text-decoration:underline;font-weight:500;">Link Text →</a>
+- Dividers: <div style="height:1px;background-color:#e5e5e7;margin:28px 0;"></div>
+- Table: Use simple HTML table with inline styles, light borders (#e5e5e7), monospace headers, 13px body text.
+
+Also generate a compelling email subject line under 60 characters. Think Bloomberg meets Apple.`;
 
     const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -172,7 +208,7 @@ Return your response as a JSON object with two keys: "subject" (string) and "bod
       body: JSON.stringify({
         model: "google/gemini-3-flash-preview",
         messages: [
-          { role: "system", content: "You are a newsletter content generator. Always return valid JSON." },
+          { role: "system", content: "You are an elite newsletter content generator specializing in high-end tech editorial. Always return structured output via tool calls." },
           { role: "user", content: prompt },
         ],
         tools: [
@@ -180,12 +216,12 @@ Return your response as a JSON object with two keys: "subject" (string) and "bod
             type: "function",
             function: {
               name: "generate_newsletter",
-              description: "Generate the weekly tech spec newsletter",
+              description: "Generate the Tech Specs Weekly Report newsletter",
               parameters: {
                 type: "object",
                 properties: {
-                  subject: { type: "string", description: "Email subject line, under 60 chars" },
-                  body_html: { type: "string", description: "HTML body content for the newsletter" },
+                  subject: { type: "string", description: "Email subject line, under 60 chars, Bloomberg-meets-Apple tone" },
+                  body_html: { type: "string", description: "Complete HTML body content following the exact blueprint structure" },
                 },
                 required: ["subject", "body_html"],
                 additionalProperties: false,
@@ -228,7 +264,7 @@ Return your response as a JSON object with two keys: "subject" (string) and "bod
 
     if (insertError) throw new Error(`Failed to save draft: ${insertError.message}`);
 
-    console.log("Weekly Tech Spec draft generated:", spec.id);
+    console.log("Tech Specs Weekly Report draft generated:", spec.id);
     return new Response(JSON.stringify({ success: true, spec }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
