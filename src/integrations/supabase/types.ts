@@ -359,6 +359,48 @@ export type Database = {
         }
         Relationships: []
       }
+      weekly_tech_specs: {
+        Row: {
+          blog_post_ids: string[] | null
+          created_at: string
+          generated_at: string
+          html_content: string
+          id: string
+          plain_text: string | null
+          recipients_count: number | null
+          sent_at: string | null
+          status: string
+          subject: string
+          updated_at: string
+        }
+        Insert: {
+          blog_post_ids?: string[] | null
+          created_at?: string
+          generated_at?: string
+          html_content: string
+          id?: string
+          plain_text?: string | null
+          recipients_count?: number | null
+          sent_at?: string | null
+          status?: string
+          subject: string
+          updated_at?: string
+        }
+        Update: {
+          blog_post_ids?: string[] | null
+          created_at?: string
+          generated_at?: string
+          html_content?: string
+          id?: string
+          plain_text?: string | null
+          recipients_count?: number | null
+          sent_at?: string | null
+          status?: string
+          subject?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       my_purchases: {
