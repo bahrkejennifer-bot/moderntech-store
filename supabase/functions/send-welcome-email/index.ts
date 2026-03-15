@@ -5,8 +5,8 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const LOGO_URL = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/email-assets/mt-monogram-logo.png";
-const HERO_URL = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/email-assets/email-hero-tech-lifestyle.jpg";
+const LOGO_URL = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/email-assets/mt-welcome-logo.png";
+const HERO_BG_URL = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/email-assets/email-welcome-hero-bg.jpg";
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -40,65 +40,58 @@ serve(async (req) => {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to The Tech Brief</title>
 </head>
-<body style="margin:0;padding:0;background-color:#f7f5f3;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
+<body style="margin:0;padding:0;background-color:#ede8e3;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
 
   <!-- Outer wrapper -->
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f7f5f3;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#ede8e3;">
     <tr>
       <td align="center" style="padding:40px 16px;">
 
         <!-- Inner card -->
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;">
 
-          <!-- Logo -->
+          <!-- Hero background image with "Hi there!" -->
           <tr>
-            <td align="center" style="padding:48px 40px 24px;">
-              <img src="${LOGO_URL}" alt="Modern Tech" width="64" height="64" style="display:block;width:64px;height:auto;border:0;" />
+            <td style="padding:0;">
+              <img src="${HERO_BG_URL}" alt="Hi there!" width="600" style="display:block;width:100%;height:auto;border:0;" />
             </td>
           </tr>
 
-          <!-- Brand name -->
+          <!-- Logo + About section -->
           <tr>
-            <td align="center" style="padding:0 40px 8px;">
-              <p style="margin:0;font-family:'Georgia',serif;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#b0a8a0;">Modern Tech LLC</p>
+            <td style="padding:32px 40px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <!-- Logo circle -->
+                  <td width="90" valign="top">
+                    <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:3px solid #f0ebe6;">
+                      <img src="${LOGO_URL}" alt="Modern Tech LLC" width="80" height="80" style="display:block;width:80px;height:80px;object-fit:cover;border:0;" />
+                    </div>
+                  </td>
+                  <!-- Welcome text -->
+                  <td valign="middle" style="padding-left:16px;">
+                    <h1 style="margin:0 0 6px;font-family:'Georgia',serif;font-size:22px;font-weight:400;color:#2c2825;line-height:1.3;">
+                      Hello, Welcome to Modern Tech LLC
+                    </h1>
+                    <p style="margin:0;font-family:'Georgia',serif;font-size:14px;font-style:italic;color:#5a5550;line-height:1.5;">
+                      "I share modern gadgets, AI tools, and digital products that make life easier, smarter, and a little more stylish."
+                    </p>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 
           <!-- Thin rule -->
           <tr>
-            <td style="padding:0 60px;">
+            <td style="padding:28px 60px 0;">
               <div style="height:1px;background-color:#e8e3de;"></div>
-            </td>
-          </tr>
-
-          <!-- Hero image -->
-          <tr>
-            <td style="padding:32px 40px 0;">
-              <img src="${HERO_URL}" alt="Tech lifestyle" width="520" style="display:block;width:100%;height:auto;border:0;" />
-            </td>
-          </tr>
-
-          <!-- Headline -->
-          <tr>
-            <td align="center" style="padding:40px 48px 0;">
-              <h1 style="margin:0;font-family:'Georgia',serif;font-size:28px;font-weight:400;font-style:italic;color:#2c2825;line-height:1.3;">
-                Welcome to The Tech Brief
-              </h1>
-            </td>
-          </tr>
-
-          <!-- Tagline -->
-          <tr>
-            <td align="center" style="padding:12px 48px 0;">
-              <p style="margin:0;font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#b0a8a0;">
-                Essential curation for a modern life
-              </p>
             </td>
           </tr>
 
           <!-- Body copy -->
           <tr>
-            <td style="padding:32px 48px 0;">
+            <td style="padding:28px 48px 0;">
               <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#5a5550;">
                 ${firstName}, thank you for joining us.
               </p>
@@ -113,7 +106,7 @@ serve(async (req) => {
 
           <!-- CTA Button -->
           <tr>
-            <td align="center" style="padding:36px 48px 0;">
+            <td align="center" style="padding:32px 48px 0;">
               <a href="https://moderntech.store/smart-ring-guide" style="display:inline-block;background-color:#c8a0a0;color:#ffffff;font-family:'Courier New',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;padding:16px 40px;border:0;">
                 View Your Guide
               </a>
@@ -122,14 +115,14 @@ serve(async (req) => {
 
           <!-- Divider -->
           <tr>
-            <td style="padding:40px 60px 0;">
+            <td style="padding:36px 60px 0;">
               <div style="height:1px;background-color:#e8e3de;"></div>
             </td>
           </tr>
 
           <!-- What to expect -->
           <tr>
-            <td style="padding:32px 48px 0;">
+            <td style="padding:28px 48px 0;">
               <p style="margin:0 0 20px;font-family:'Courier New',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#b0a8a0;">
                 What's ahead
               </p>
@@ -171,7 +164,7 @@ serve(async (req) => {
 
           <!-- Footer -->
           <tr>
-            <td style="padding:40px 48px 48px;">
+            <td style="padding:36px 48px 48px;">
               <div style="height:1px;background-color:#e8e3de;margin-bottom:24px;"></div>
               <p style="margin:0 0 4px;font-family:'Georgia',serif;font-size:13px;font-style:italic;color:#2c2825;text-align:center;">
                 Modern Tech LLC
