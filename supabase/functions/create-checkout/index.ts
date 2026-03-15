@@ -24,12 +24,13 @@ serve(async (req) => {
 
     const { priceId, productName, productSlug, amount, successUrl, cancelUrl } = await req.json();
 
+    const siteUrl = "https://moderntech.store";
     console.log("Creating checkout session for:", { productName, productSlug, amount, priceId });
 
     let sessionConfig: Stripe.Checkout.SessionCreateParams = {
       mode: "payment",
-      success_url: successUrl || `${req.headers.get("origin")}/success`,
-      cancel_url: cancelUrl || `${req.headers.get("origin")}/cancel`,
+      success_url: successUrl || `${siteUrl}/digital-products?success=true&product=${productSlug || ""}`,
+      cancel_url: cancelUrl || `${siteUrl}/digital-products?canceled=true`,
       metadata: {
         productName: productName || "Digital Product",
         productSlug: productSlug || "",
