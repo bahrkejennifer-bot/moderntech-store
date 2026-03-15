@@ -1,8 +1,42 @@
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
+
+async function getPinterestToken(supabase: any): Promise<string | null> {
+  const { data } = await supabase.from("pinterest_tokens").select("*").order("updated_at", { ascending: false }).limit(1).maybeSingle();
+  if (!data) return Deno.env.get("PINTEREST_ACCESS_TOKEN") || null;
+
+  if (data.expires_at && data.refresh_token) {
+    const expiresAt = new Date(data.expires_at).getTime();
+    if (expiresAt < Date.now() + 3600000) {
+      const appId = Deno.env.get("PINTEREST_APP_ID");
+      const appSecret = Deno.env.get("PINTEREST_APP_SECRET");
+      if (appId && appSecret) {
+        try {
+          const resp = await fetch("https://api.pinterest.com/v5/oauth/token", {
+            method: "POST",
+            headers: { "Authorization": `Basic ${btoa(`${appId}:${appSecret}`)}`, "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({ grant_type: "refresh_token", refresh_token: data.refresh_token }).toString(),
+          });
+          if (resp.ok) {
+            const t = await resp.json();
+            await supabase.from("pinterest_tokens").update({
+              access_token: t.access_token, refresh_token: t.refresh_token || data.refresh_token,
+              expires_at: t.expires_in ? new Date(Date.now() + t.expires_in * 1000).toISOString() : data.expires_at,
+              updated_at: new Date().toISOString(),
+            }).eq("id", data.id);
+            return t.access_token;
+          } else { await resp.text(); }
+        } catch (e) { console.error("Refresh failed:", e); }
+      }
+    }
+  }
+  return data.access_token;
+}
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -10,7 +44,11 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const accessToken = Deno.env.get("PINTEREST_ACCESS_TOKEN");
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, serviceRoleKey);
+
+    const accessToken = await getPinterestToken(supabase);
     const adAccountId = Deno.env.get("PINTEREST_AD_ACCOUNT_ID");
 
     if (!accessToken || !adAccountId) {
@@ -27,7 +65,6 @@ Deno.serve(async (req) => {
       throw new Error("No events provided");
     }
 
-    // Format events for Pinterest Conversions API v5
     const formattedEvents = events.map((event: Record<string, unknown>) => ({
       event_name: event.event_name || "page_visit",
       action_source: "web",
@@ -53,10 +90,7 @@ Deno.serve(async (req) => {
       `https://api.pinterest.com/v5/ad_accounts/${adAccountId}/events`,
       {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
+        headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       }
     );

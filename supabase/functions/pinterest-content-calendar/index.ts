@@ -2,18 +2,15 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// Only the 3 current store pillars
 const ACTIVE_CATEGORIES = [
   "Health & Wellness",
   "Home & Safety",
   "Content Creator Corner",
 ];
 
-// Pin description templates per category for variety
 const PIN_TEMPLATES: Record<string, string[]> = {
   "Health & Wellness": [
     "Level up your wellness routine ✨ {title} — a must-have for health-conscious living.",
@@ -43,6 +40,48 @@ function getRandomTemplate(category: string, title: string): string {
   return `${template.replace("{title}", title)}\n\n${AFFILIATE_DISCLOSURE}`;
 }
 
+async function getPinterestToken(supabase: any): Promise<string | null> {
+  const { data } = await supabase
+    .from("pinterest_tokens")
+    .select("*")
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (!data) return Deno.env.get("PINTEREST_ACCESS_TOKEN") || null;
+
+  if (data.expires_at && data.refresh_token) {
+    const expiresAt = new Date(data.expires_at).getTime();
+    if (expiresAt < Date.now() + 3600000) {
+      const appId = Deno.env.get("PINTEREST_APP_ID");
+      const appSecret = Deno.env.get("PINTEREST_APP_SECRET");
+      if (appId && appSecret) {
+        try {
+          const resp = await fetch("https://api.pinterest.com/v5/oauth/token", {
+            method: "POST",
+            headers: {
+              "Authorization": `Basic ${btoa(`${appId}:${appSecret}`)}`,
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({ grant_type: "refresh_token", refresh_token: data.refresh_token }).toString(),
+          });
+          if (resp.ok) {
+            const t = await resp.json();
+            await supabase.from("pinterest_tokens").update({
+              access_token: t.access_token,
+              refresh_token: t.refresh_token || data.refresh_token,
+              expires_at: t.expires_in ? new Date(Date.now() + t.expires_in * 1000).toISOString() : data.expires_at,
+              updated_at: new Date().toISOString(),
+            }).eq("id", data.id);
+            return t.access_token;
+          } else { await resp.text(); }
+        } catch (e) { console.error("Refresh failed:", e); }
+      }
+    }
+  }
+  return data.access_token;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -51,15 +90,14 @@ Deno.serve(async (req) => {
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const accessToken = Deno.env.get("PINTEREST_ACCESS_TOKEN");
     const boardId = Deno.env.get("PINTEREST_BOARD_ID");
-
     const supabase = createClient(supabaseUrl, serviceRoleKey);
+
+    const accessToken = await getPinterestToken(supabase);
 
     const body = await req.json().catch(() => ({}));
     const { publish = false, limit = 15 } = body;
 
-    // Pull newest products from the 3 active categories only
     const { data: products, error } = await supabase
       .from("scraped_products")
       .select("*")
@@ -75,25 +113,20 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Build a monthly content calendar — spread pins across 4 weeks
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    // Distribute pins evenly across the month (Mon/Wed/Fri schedule)
     const pinDays: number[] = [];
     for (let d = 1; d <= daysInMonth; d++) {
       const dayOfWeek = new Date(year, month, d).getDay();
-      if (dayOfWeek === 1 || dayOfWeek === 3 || dayOfWeek === 5) {
-        pinDays.push(d);
-      }
+      if (dayOfWeek === 1 || dayOfWeek === 3 || dayOfWeek === 5) pinDays.push(d);
     }
 
     const calendar = products.map((product, idx) => {
       const scheduledDay = pinDays[idx % pinDays.length];
       const scheduledDate = new Date(year, month, scheduledDay);
-
       return {
         scheduled_date: scheduledDate.toISOString().split("T")[0],
         day_of_week: scheduledDate.toLocaleDateString("en-US", { weekday: "long" }),
@@ -109,54 +142,31 @@ Deno.serve(async (req) => {
       };
     });
 
-    // Sort by date
     calendar.sort((a, b) => a.scheduled_date.localeCompare(b.scheduled_date));
 
-    // If publish=true, actually post to Pinterest
     const pinResults: any[] = [];
     if (publish && accessToken && boardId) {
       for (const entry of calendar) {
-        // Only publish pins scheduled for today or earlier
         const today = new Date().toISOString().split("T")[0];
         if (entry.scheduled_date > today) continue;
-
         try {
           const pinResponse = await fetch("https://api.pinterest.com/v5/pins", {
             method: "POST",
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-              "Content-Type": "application/json",
-            },
+            headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
             body: JSON.stringify({
               board_id: entry.pin.board_id,
               title: entry.pin.title,
               description: entry.pin.description,
               link: entry.pin.link,
-              media_source: {
-                source_type: "image_url",
-                url: entry.pin.image_url,
-              },
+              media_source: { source_type: "image_url", url: entry.pin.image_url },
             }),
           });
-
           const result = await pinResponse.text();
-          console.log(`Pin "${entry.pin.title}": ${pinResponse.status} — ${result}`);
-          pinResults.push({
-            title: entry.pin.title,
-            status: pinResponse.status,
-            success: pinResponse.ok,
-          });
-
-          // Rate limit protection
+          console.log(`Pin "${entry.pin.title}": ${pinResponse.status}`);
+          pinResults.push({ title: entry.pin.title, status: pinResponse.status, success: pinResponse.ok });
           await new Promise((r) => setTimeout(r, 2000));
         } catch (pinErr) {
-          console.error(`Pin error: ${pinErr}`);
-          pinResults.push({
-            title: entry.pin.title,
-            status: 0,
-            success: false,
-            error: String(pinErr),
-          });
+          pinResults.push({ title: entry.pin.title, status: 0, success: false, error: String(pinErr) });
         }
       }
     }
@@ -175,13 +185,8 @@ Deno.serve(async (req) => {
   } catch (error) {
     console.error("Content calendar error:", error);
     return new Response(
-      JSON.stringify({
-        error: error instanceof Error ? error.message : "Unknown error",
-      }),
-      {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
+      JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }),
+      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
 });
