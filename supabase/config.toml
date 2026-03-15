@@ -1,52 +1,39 @@
 project_id = "hvjhtfyxecnuehndnyrd"
 
-[functions.create-checkout]
-verify_jwt = false
-
-[functions.subscribe-newsletter]
-verify_jwt = false
-
-[functions.tech-chat]
-verify_jwt = false
-
-[functions.stripe-webhook]
-verify_jwt = false
-
-[functions.scrape-amazon]
-verify_jwt = false
-
-[functions.send-welcome-email]
-verify_jwt = false
-
-[functions.send-monthly-roundup]
-verify_jwt = false
-
-[functions.pinterest-conversions]
-verify_jwt = false
-
-[functions.trigger-zapier]
-verify_jwt = false
-
-[functions.pinterest-content-calendar]
-verify_jwt = false
-
-[functions.pin-to-pinterest]
-verify_jwt = false
-
-[functions.product-rss-feed]
-verify_jwt = false
-
-[functions.generate-blog-post]
-verify_jwt = false
-
-[functions.generate-download-link]
-verify_jwt = false
-
-[functions.monthly-auto-scrape]
-verify_jwt = false
-
-[functions.pinterest-trending-pins]
-verify_jwt = false
-
-[functions.process-email-queue]
-verify_jwt = true
+[functions]
+  [functions.auth-email-hook]
+    verify_jwt = false
+  [functions.create-checkout]
+    verify_jwt = false
+  [functions.generate-blog-post]
+    verify_jwt = false
+  [functions.generate-download-link]
+    verify_jwt = false
+  [functions.monthly-auto-scrape]
+    verify_jwt = false
+  [functions.pin-to-pinterest]
+    verify_jwt = false
+  [functions.pinterest-content-calendar]
+    verify_jwt = false
+  [functions.pinterest-conversions]
+    verify_jwt = false
+  [functions.pinterest-trending-pins]
+    verify_jwt = false
+  [functions.process-email-queue]
+    verify_jwt = true
+  [functions.product-rss-feed]
+    verify_jwt = false
+  [functions.scrape-amazon]
+    verify_jwt = false
+  [functions.send-monthly-roundup]
+    verify_jwt = false
+  [functions.send-welcome-email]
+    verify_jwt = false
+  [functions.stripe-webhook]
+    verify_jwt = false
+  [functions.subscribe-newsletter]
+    verify_jwt = false
+  [functions.tech-chat]
+    verify_jwt = false
+  [functions.trigger-zapier]
+    verify_jwt = false
