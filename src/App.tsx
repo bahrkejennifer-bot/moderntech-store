@@ -37,6 +37,7 @@ import TermsOfService from "./pages/TermsOfService";
 import Disclaimer from "./pages/Disclaimer";
 import ReturnPolicy from "./pages/ReturnPolicy";
 import Contact from "./pages/Contact";
+import PinterestCallback from "./pages/PinterestCallback";
 import { NewsletterPopup } from "./components/NewsletterPopup";
 import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
 
@@ -89,6 +90,7 @@ const App = () => (
           <Route path="/return-policy" element={<ReturnPolicy />} />
           <Route path="/signal" element={<Signal />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/pinterest-callback" element={<PinterestCallback />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
