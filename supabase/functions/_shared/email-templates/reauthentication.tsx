@@ -7,7 +7,9 @@ import {
   Container,
   Head,
   Heading,
+  Hr,
   Html,
+  Img,
   Preview,
   Text,
 } from 'npm:@react-email/components@0.0.22'
@@ -16,19 +18,25 @@ interface ReauthenticationEmailProps {
   token: string
 }
 
+const LOGO_URL = 'https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/email-assets/mt-monogram-logo.png'
+
 export const ReauthenticationEmail = ({ token }: ReauthenticationEmailProps) => (
   <Html lang="en" dir="ltr">
     <Head />
     <Preview>Your verification code</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Heading style={h1}>Confirm reauthentication</Heading>
-        <Text style={text}>Use the code below to confirm your identity:</Text>
+        <Img src={LOGO_URL} alt="Modern Tech" width="48" height="48" style={logo} />
+        <Text style={brandName}>Modern Tech LLC</Text>
+        <Hr style={rule} />
+        <Heading style={h1}>Confirm your identity</Heading>
+        <Text style={text}>Use the code below to verify your identity:</Text>
         <Text style={codeStyle}>{token}</Text>
+        <Hr style={rule} />
         <Text style={footer}>
-          This code will expire shortly. If you didn't request this, you can
-          safely ignore this email.
+          This code will expire shortly. If you didn't request this, you can safely ignore this email.
         </Text>
+        <Text style={brandFooter}>Tech today · Trend tomorrow</Text>
       </Container>
     </Body>
   </Html>
@@ -36,25 +44,13 @@ export const ReauthenticationEmail = ({ token }: ReauthenticationEmailProps) => 
 
 export default ReauthenticationEmail
 
-const main = { backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif' }
-const container = { padding: '20px 25px' }
-const h1 = {
-  fontSize: '22px',
-  fontWeight: 'bold' as const,
-  color: '#000000',
-  margin: '0 0 20px',
-}
-const text = {
-  fontSize: '14px',
-  color: '#55575d',
-  lineHeight: '1.5',
-  margin: '0 0 25px',
-}
-const codeStyle = {
-  fontFamily: 'Courier, monospace',
-  fontSize: '22px',
-  fontWeight: 'bold' as const,
-  color: '#000000',
-  margin: '0 0 30px',
-}
-const footer = { fontSize: '12px', color: '#999999', margin: '30px 0 0' }
+const main = { backgroundColor: '#f7f5f3', fontFamily: 'Georgia, serif' }
+const container = { padding: '48px 40px', maxWidth: '600px', margin: '0 auto', backgroundColor: '#ffffff' }
+const logo = { display: 'block' as const, margin: '0 auto 12px' }
+const brandName = { fontFamily: 'Georgia, serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: '#b0a8a0', textAlign: 'center' as const, margin: '0 0 24px' }
+const rule = { borderColor: '#e8e3de', margin: '0 20px 32px' }
+const h1 = { fontFamily: 'Georgia, serif', fontSize: '24px', fontWeight: '400' as const, fontStyle: 'italic' as const, color: '#2c2825', margin: '0 0 20px', textAlign: 'center' as const }
+const text = { fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: '15px', color: '#5a5550', lineHeight: '1.7', margin: '0 0 20px' }
+const codeStyle = { fontFamily: "'Courier New', monospace", fontSize: '28px', fontWeight: 'bold' as const, color: '#2c2825', textAlign: 'center' as const, margin: '0 0 32px', letterSpacing: '0.15em' }
+const footer = { fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: '12px', color: '#b0a8a0', margin: '0 0 8px', textAlign: 'center' as const }
+const brandFooter = { fontFamily: "'Courier New', monospace", fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase' as const, color: '#b0a8a0', textAlign: 'center' as const, margin: '0' }
