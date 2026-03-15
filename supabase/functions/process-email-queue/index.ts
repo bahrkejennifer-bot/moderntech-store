@@ -242,9 +242,13 @@ Deno.serve(async (req) => {
       }
 
       try {
+        // For auth emails, run_id comes from the webhook payload.
+        // For transactional/marketing emails enqueued manually, fall back to
+        // the LOVABLE_RUN_ID environment variable provided by the platform.
+        const runId = payload.run_id || Deno.env.get('LOVABLE_RUN_ID') || ''
         await sendLovableEmail(
           {
-            run_id: payload.run_id,
+            run_id: runId,
             to: payload.to,
             from: payload.from,
             sender_domain: payload.sender_domain,
