@@ -28,7 +28,7 @@ Deno.serve(async (req) => {
       body: new URLSearchParams({
         grant_type: "authorization_code",
         code: code,
-        redirect_uri: "https://moderntech-store.lovable.app",
+        redirect_uri: "https://moderntech-store.lovable.app/pinterest-callback",
       }).toString(),
     });
 
