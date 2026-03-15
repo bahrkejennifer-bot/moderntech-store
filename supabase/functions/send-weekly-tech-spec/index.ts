@@ -157,7 +157,7 @@ Deno.serve(async (req) => {
         recipients_count: cloudSent,
         updated_at: new Date().toISOString(),
       })
-      .eq("id", spec_id);
+      .eq("id", spec.id);
 
     return new Response(
       JSON.stringify({
