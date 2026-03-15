@@ -19,20 +19,46 @@ Deno.serve(async (req) => {
 
     if (!supabaseUrl || !supabaseServiceKey) throw new Error("Missing server config");
 
-    const { spec_id } = await req.json();
-    if (!spec_id) throw new Error("spec_id is required");
+    let specId: string | null = null;
+    try {
+      const body = await req.json();
+      specId = body.spec_id || null;
+    } catch {
+      // No body = cron auto-send mode
+    }
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Fetch the approved spec
-    const { data: spec, error: specError } = await supabase
-      .from("weekly_tech_specs")
-      .select("*")
-      .eq("id", spec_id)
-      .single();
+    let spec: any;
 
-    if (specError || !spec) throw new Error("Newsletter draft not found");
-    if (spec.status === "sent") throw new Error("This newsletter has already been sent");
+    if (specId) {
+      // Manual send mode - specific spec
+      const { data, error } = await supabase
+        .from("weekly_tech_specs")
+        .select("*")
+        .eq("id", specId)
+        .single();
+      if (error || !data) throw new Error("Newsletter draft not found");
+      if (data.status === "sent") throw new Error("This newsletter has already been sent");
+      spec = data;
+    } else {
+      // Auto-send mode - find the latest approved spec
+      const { data, error } = await supabase
+        .from("weekly_tech_specs")
+        .select("*")
+        .eq("status", "approved")
+        .order("generated_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (error) throw new Error(`Failed to fetch approved spec: ${error.message}`);
+      if (!data) {
+        console.log("No approved specs to send");
+        return new Response(JSON.stringify({ success: true, message: "No approved specs to send" }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      spec = data;
+    }
 
     // 1. Send via Cloud pipeline to lead_captures subscribers
     const { data: leads, error: leadsError } = await supabase
@@ -131,7 +157,7 @@ Deno.serve(async (req) => {
         recipients_count: cloudSent,
         updated_at: new Date().toISOString(),
       })
-      .eq("id", spec_id);
+      .eq("id", spec.id);
 
     return new Response(
       JSON.stringify({

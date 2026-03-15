@@ -265,6 +265,76 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
     if (insertError) throw new Error(`Failed to save draft: ${insertError.message}`);
 
     console.log("Tech Specs Weekly Report draft generated:", spec.id);
+
+    // Send notification email to admin with Approve button
+    const approveUrl = `${supabaseUrl}/functions/v1/approve-tech-spec?spec_id=${spec.id}&action=approve`;
+    const adminPreviewUrl = "https://moderntech.store/admin/tech-spec";
+
+    const adminEmailHtml = `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background-color:#f5f5f7;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f5f5f7;">
+    <tr><td align="center" style="padding:48px 16px;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:12px;overflow:hidden;">
+        <tr><td style="padding:40px 48px;text-align:center;">
+          <p style="margin:0 0 8px;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#86868b;">ADMIN REVIEW REQUIRED</p>
+          <h1 style="margin:0 0 16px;font-family:'Georgia',serif;font-size:24px;font-weight:400;color:#1d1d1f;">New Tech Spec Draft Ready</h1>
+          <p style="margin:0 0 8px;font-size:15px;color:#424245;line-height:1.6;">Subject: <strong style="color:#1d1d1f;">${subject}</strong></p>
+          <p style="margin:0 0 28px;font-size:14px;color:#86868b;">Generated ${new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })} at 7:00 AM EST</p>
+          <div style="height:1px;background-color:#e5e5e7;margin:0 0 28px;"></div>
+          <p style="margin:0 0 24px;font-size:14px;color:#424245;line-height:1.6;">Review the draft below. Click <strong>Approve &amp; Schedule</strong> to auto-send to all subscribers Monday at 7:00 AM EST. Or edit it in the admin dashboard first.</p>
+          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 24px;">
+            <tr>
+              <td style="padding-right:12px;">
+                <a href="${approveUrl}" style="display:inline-block;background-color:#1d1d1f;color:#ffffff;font-size:13px;font-weight:500;letter-spacing:0.04em;text-decoration:none;padding:14px 32px;border-radius:8px;">✓ Approve &amp; Schedule Monday Send</a>
+              </td>
+              <td>
+                <a href="${adminPreviewUrl}" style="display:inline-block;border:1px solid #1d1d1f;color:#1d1d1f;font-size:13px;font-weight:500;letter-spacing:0.04em;text-decoration:none;padding:13px 32px;border-radius:8px;">Edit in Dashboard →</a>
+              </td>
+            </tr>
+          </table>
+          <div style="height:1px;background-color:#e5e5e7;margin:0 0 24px;"></div>
+          <p style="margin:0 0 8px;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#86868b;">DRAFT PREVIEW</p>
+        </td></tr>
+        <tr><td style="padding:0 24px 40px;">
+          <div style="border:1px solid #e5e5e7;border-radius:8px;overflow:hidden;max-height:500px;overflow-y:auto;">
+            ${fullHtml}
+          </div>
+        </td></tr>
+        <tr><td style="padding:0 48px 40px;text-align:center;">
+          <p style="margin:0;font-size:11px;color:#86868b;">Modern Tech LLC · Automated Admin Notification</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+    const adminMessageId = `tech-spec-admin-${spec.id}-${Date.now()}`;
+    await supabase.from("email_send_log").insert({
+      message_id: adminMessageId,
+      template_name: "tech_spec_admin_review",
+      recipient_email: "info@moderntech.store",
+      status: "pending",
+    });
+
+    await supabase.rpc("enqueue_email", {
+      queue_name: "transactional_emails",
+      payload: {
+        message_id: adminMessageId,
+        to: "info@moderntech.store",
+        from: "The Tech Brief <hello@www.moderntech.store>",
+        sender_domain: "www.moderntech.store",
+        subject: `📋 Review Draft: ${subject}`,
+        html: adminEmailHtml,
+        purpose: "transactional",
+        label: "tech_spec_admin_review",
+        queued_at: new Date().toISOString(),
+      },
+    });
+
+    console.log("Admin notification email enqueued to info@moderntech.store");
+
     return new Response(JSON.stringify({ success: true, spec }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
