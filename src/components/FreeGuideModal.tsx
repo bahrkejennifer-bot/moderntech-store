@@ -76,6 +76,7 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
 
     setLoading(true);
     try {
+      // Capture lead
       const { error } = await supabase.from("lead_captures").insert({
         email,
         name: email.split("@")[0],
@@ -84,7 +85,27 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
 
       if (error && error.code !== "23505") throw error;
 
-      toast.success("Check your inbox for the guide!");
+      // Trigger welcome email (fire-and-forget, don't block on failure)
+      supabase.functions.invoke("send-welcome-email", {
+        body: { name: email.split("@")[0], email },
+      }).catch(() => {});
+
+      // Navigate to the appropriate guide page
+      const guideRoutes: Record<string, string> = {
+        "amazon-associate-guide": "/amazon-associate-guide",
+        "parents-smart-home-safety-checklist": "/smart-home-safety-checklist",
+        "smart-ring-buyers-guide": "/smart-ring-guide",
+        "creator-gear-starter-kit": "/creator-gear-guide",
+        "dorm-room-tech-setup": "/dorm-room-tech-guide",
+        "screen-free-kids-tech-toys": "/screen-free-kids-guide",
+      };
+
+      const route = guideRoutes[selectedGuide];
+      if (route) {
+        window.location.href = route;
+      }
+
+      toast.success("Your guide is ready! 🎉");
       setEmail("");
       setSelectedGuide(null);
       onOpenChange(false);
