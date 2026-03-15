@@ -58,6 +58,11 @@ export const NewsletterPopup = () => {
 
       if (error) throw error;
 
+      // Fire-and-forget welcome email via Cloud pipeline
+      supabase.functions.invoke("send-welcome-email", {
+        body: { name: validation.data.name || validation.data.email.split("@")[0], email: validation.data.email },
+      }).catch(() => {});
+
       toast({
         title: "🎉 You're on the list!",
         description: data.message || "Check your inbox for exclusive tech guides!",
