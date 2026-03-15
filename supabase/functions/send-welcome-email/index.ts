@@ -24,7 +24,7 @@ serve(async (req) => {
         Authorization: `Bearer ${resendApiKey}`,
       },
       body: JSON.stringify({
-        from: "Modern Tech LLC <onboarding@resend.dev>",
+        from: "Modern Tech LLC <hello@moderntech.store>",
         to: [email],
         subject: "🚀 Your 90-Day Amazon Associate Roadmap is Here!",
         html: `
