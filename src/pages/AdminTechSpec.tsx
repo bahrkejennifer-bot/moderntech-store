@@ -197,7 +197,7 @@ const AdminTechSpec = () => {
                   <Button size="sm" variant="outline" onClick={() => setPreviewId(spec.id)}>
                     <Eye className="w-3 h-3 mr-1" /> Preview
                   </Button>
-                  {spec.status === "draft" && (
+                  {(spec.status === "draft" || spec.status === "approved") && (
                     <Button
                       size="sm"
                       onClick={() => handleSend(spec.id)}
