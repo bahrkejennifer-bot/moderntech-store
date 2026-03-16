@@ -47,6 +47,16 @@ const AdminCommandCenter = () => {
   const [products, setProducts] = useState<ScrapedProduct[]>([]);
   const [approving, setApproving] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"queue" | "calendar" | "podcast">("queue");
+  const [checklists, setChecklists] = useState<Record<string, [boolean, boolean, boolean]>>({});
+
+  const getChecklist = (id: string): [boolean, boolean, boolean] => checklists[id] || [false, false, false];
+  const toggleCheck = (id: string, idx: number) => {
+    const current = getChecklist(id);
+    const updated = [...current] as [boolean, boolean, boolean];
+    updated[idx] = !updated[idx];
+    setChecklists((prev) => ({ ...prev, [id]: updated }));
+  };
+  const allChecked = (id: string) => getChecklist(id).every(Boolean);
 
   const checkAdmin = useCallback(async () => {
     const { data: { user } } = await supabase.auth.getUser();
@@ -239,25 +249,48 @@ const AdminCommandCenter = () => {
                       <Send className="h-4 w-4" />
                     </div>
 
-                    {/* Preview + Approve */}
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                      <PreviewModal
-                        productTitle={product.title}
-                        productImage={product.image_url || undefined}
-                        productPrice={product.price || undefined}
-                      />
-                      <Button
-                        onClick={() => handleApprove(product)}
-                        disabled={approving === product.id}
-                        className="bg-emerald-600 hover:bg-emerald-500 text-white font-['Inter'] font-semibold px-6 py-3 rounded-xl"
-                      >
-                        {approving === product.id ? (
-                          <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                        ) : (
-                          <CheckCircle2 className="h-4 w-4 mr-2" />
-                        )}
-                        Approve & Blast
-                      </Button>
+                    {/* Preview + Checklist + Approve */}
+                    <div className="flex flex-col items-end gap-3 flex-shrink-0">
+                      <div className="flex items-center gap-2">
+                        <PreviewModal
+                          productTitle={product.title}
+                          productImage={product.image_url || undefined}
+                          productPrice={product.price || undefined}
+                        />
+                        <Button
+                          onClick={() => handleApprove(product)}
+                          disabled={approving === product.id || !allChecked(product.id)}
+                          className="bg-emerald-600 hover:bg-emerald-500 text-white font-['Inter'] font-semibold px-6 py-3 rounded-xl disabled:opacity-40"
+                        >
+                          {approving === product.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                          ) : (
+                            <CheckCircle2 className="h-4 w-4 mr-2" />
+                          )}
+                          Approve & Blast
+                        </Button>
+                      </div>
+                      {/* Final Approval Checklist */}
+                      <div className="flex flex-col gap-1.5 text-xs font-['Inter']">
+                        {[
+                          "Content is accurate & nurse-verified",
+                          "Image & pricing are correct",
+                          "Ready for patient-facing distribution",
+                        ].map((label, idx) => {
+                          const checks = getChecklist(product.id);
+                          return (
+                            <label key={idx} className="flex items-center gap-2 cursor-pointer select-none text-muted-foreground hover:text-foreground transition-colors">
+                              <input
+                                type="checkbox"
+                                checked={checks[idx]}
+                                onChange={() => toggleCheck(product.id, idx)}
+                                className="rounded border-border accent-emerald-600 h-3.5 w-3.5"
+                              />
+                              {label}
+                            </label>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 ))}
