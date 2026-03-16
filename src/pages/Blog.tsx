@@ -383,7 +383,7 @@ const BlogCard = ({ post }: { post: BlogPostItem }) => (
           <span>{post.category}</span>
           <span className="ml-auto flex items-center gap-1"><Clock className="h-3 w-3" /> {post.readTime}</span>
         </div>
-        <h3 className="font-serif text-xl leading-snug line-clamp-2 mb-3 group-hover:text-foreground/70 transition-colors" style={{ fontStyle: "italic" }}>
+        <h3 className="font-serif text-xl leading-snug line-clamp-2 mb-3 group-hover:text-foreground/70 transition-colors" style={{ fontStyle: "italic", fontWeight: 700, color: '#000000' }}>
           {post.title}
         </h3>
         <p className="font-mono text-[10px] text-muted-foreground line-clamp-2 leading-[1.7] flex-1">

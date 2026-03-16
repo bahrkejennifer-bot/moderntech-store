@@ -1,108 +1,26 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink, Loader2 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
-// Product images
-import ouraRingImg from "@/assets/products/oura-ring-4.jpg";
-import sonyHeadphonesImg from "@/assets/products/sony-wh-1000xm5.jpg";
-import streamDeckImg from "@/assets/products/elgato-stream-deck-mk2.jpg";
-import rodeMicImg from "@/assets/products/rode-podmic-usb.jpg";
-import roboswiftImg from "@/assets/products/asus-rog-swift-oled.jpg";
-import macbookImg from "@/assets/products/macbook-air-m4.jpg";
-import sonyZvImg from "@/assets/products/sony-zv1-ii.jpg";
-import whoop4Img from "@/assets/products/whoop-4.jpg";
-import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
 import heroImg from "@/assets/hero-duality-editorial.jpg";
 import essentialsImg from "@/assets/hero-workspace-essentials.jpg";
 
-interface Product {
+interface DBProduct {
+  id: string;
   title: string;
-  category: string;
-  image: string;
-  alt: string;
-  specs: { label: string; value: string }[];
-  affiliateLink: string;
+  description: string | null;
+  price: string | null;
+  rating: number | null;
+  badge: string | null;
+  image_url: string | null;
+  affiliate_link: string;
+  category: string | null;
+  display_order: number | null;
 }
-
-const products: Product[] = [
-  {
-    title: "Oura Ring Gen 4",
-    category: "Wellness",
-    image: ouraRingImg,
-    alt: "Oura Ring 4 titanium smart ring",
-    specs: [{ label: "Battery", value: "7 days" }, { label: "Material", value: "Titanium" }, { label: "Sensors", value: "SpO2 + HRV" }],
-    affiliateLink: "https://www.amazon.com/dp/B0DHY5C1X1?tag=moderntechs0c-20",
-  },
-  {
-    title: "Sony WH-1000XM5",
-    category: "Office",
-    image: sonyHeadphonesImg,
-    alt: "Sony WH-1000XM5 noise cancelling headphones",
-    specs: [{ label: "ANC", value: "8 Mics" }, { label: "Battery", value: "30 hrs" }, { label: "Weight", value: "250g" }],
-    affiliateLink: "https://www.amazon.com/dp/B09XS7JWHH?tag=moderntechs0c-20",
-  },
-  {
-    title: "Elgato Stream Deck MK.2",
-    category: "Creator",
-    image: streamDeckImg,
-    alt: "Elgato Stream Deck MK.2 for creators",
-    specs: [{ label: "Keys", value: "15 LCD" }, { label: "Interface", value: "USB-C" }, { label: "Profiles", value: "Unlimited" }],
-    affiliateLink: "https://www.amazon.com/dp/B09738CV2Q?tag=moderntechs0c-20",
-  },
-  {
-    title: "Røde PodMic USB",
-    category: "Creator",
-    image: rodeMicImg,
-    alt: "Rode PodMic USB broadcast microphone",
-    specs: [{ label: "Type", value: "Dynamic" }, { label: "Output", value: "USB-C + XLR" }, { label: "Pattern", value: "Cardioid" }],
-    affiliateLink: "https://www.amazon.com/dp/B0BG7KM78N?tag=moderntechs0c-20",
-  },
-  {
-    title: "ASUS ROG Swift OLED",
-    category: "Office",
-    image: roboswiftImg,
-    alt: "ASUS ROG Swift OLED gaming monitor",
-    specs: [{ label: "Panel", value: "OLED 27″" }, { label: "Refresh", value: "240 Hz" }, { label: "Response", value: "0.03ms" }],
-    affiliateLink: "https://www.amazon.com/dp/B0BVMRHZ6J?tag=moderntechs0c-20",
-  },
-  {
-    title: "MacBook Air M4",
-    category: "Office",
-    image: macbookImg,
-    alt: "MacBook Air M4 ultralight laptop",
-    specs: [{ label: "Chip", value: "Apple M4" }, { label: "Battery", value: "18 hrs" }, { label: "Weight", value: "1.24 kg" }],
-    affiliateLink: "https://www.amazon.com/dp/B0DG2R2YYJ?tag=moderntechs0c-20",
-  },
-];
-
-const featuredProducts: Product[] = [
-  {
-    title: "Sony ZV-1 II",
-    category: "Creator",
-    image: sonyZvImg,
-    alt: "Sony ZV-1 II vlogging camera",
-    specs: [{ label: "Sensor", value: "1″ CMOS" }, { label: "Video", value: "4K 30fps" }, { label: "Lens", value: "18-50mm" }],
-    affiliateLink: "https://www.amazon.com/dp/B0C5DHGQHH?tag=moderntechs0c-20",
-  },
-  {
-    title: "WHOOP 4.0",
-    category: "Wellness",
-    image: whoop4Img,
-    alt: "WHOOP 4.0 fitness tracker",
-    specs: [{ label: "Tracking", value: "24/7 HRV" }, { label: "Battery", value: "5 days" }, { label: "Size", value: "36mm" }],
-    affiliateLink: "https://www.amazon.com/dp/B0BXHF23Y5?tag=moderntechs0c-20",
-  },
-  {
-    title: "Philips Hue Starter",
-    category: "Smart Home",
-    image: philipsHueImg,
-    alt: "Philips Hue smart lighting starter kit",
-    specs: [{ label: "Bulbs", value: "4 × E26" }, { label: "Colors", value: "16M RGB" }, { label: "Protocol", value: "Zigbee" }],
-    affiliateLink: "https://www.amazon.com/dp/B096YFWLHW?tag=moderntechs0c-20",
-  },
-];
 
 const categories = [
   { label: "Health & Wellness", to: "/health-wellness", desc: "Smart rings · Sleep trackers · Biohacking" },
@@ -113,7 +31,32 @@ const categories = [
   { label: "Connectivity", to: "/connectivity", desc: "WiFi · Earbuds · Trackers" },
 ];
 
+const useHomepageProducts = () => {
+  return useQuery({
+    queryKey: ["homepage-products"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("scraped_products")
+        .select("*")
+        .in("category", ["homepage-featured", "homepage-collection", "health-wellness", "creator-gear", "gaming", "connectivity", "college", "kids-tech", "home-safety"])
+        .order("display_order", { ascending: true });
+      if (error) throw error;
+      return data as unknown as DBProduct[];
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+};
+
 const Index = () => {
+  const { data: allProducts, isLoading } = useHomepageProducts();
+
+  const featuredProducts = (allProducts || []).filter(p => p.category === "homepage-featured").slice(0, 3);
+  const collectionProducts = (allProducts || []).filter(p => p.category === "homepage-collection").slice(0, 6);
+
+  // Fallback: if no homepage-specific categories, show a mix from all categories
+  const fallbackFeatured = featuredProducts.length > 0 ? featuredProducts : (allProducts || []).slice(0, 3);
+  const fallbackCollection = collectionProducts.length > 0 ? collectionProducts : (allProducts || []).slice(3, 9);
+
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
@@ -130,7 +73,6 @@ const Index = () => {
       {/* ── HERO — asymmetric editorial layout ── */}
       <section className="relative py-12 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center">
-          {/* Image — bleeds to left edge */}
           <div className="overflow-hidden">
             <img
               src={heroImg}
@@ -139,8 +81,6 @@ const Index = () => {
               style={{ maxHeight: '70vh' }}
             />
           </div>
-
-          {/* Text block — generous whitespace on the right */}
           <div className="px-12 md:px-16 lg:px-24 xl:px-32 py-12 md:py-0">
             <h1
               className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[0.92] tracking-tight"
@@ -150,16 +90,12 @@ const Index = () => {
               <br />
               Modern Tech
             </h1>
-
-            {/* Manifesto */}
             <h2
               className="font-serif text-base md:text-lg leading-relaxed mt-8 max-w-[420px]"
               style={{ fontStyle: 'italic', fontWeight: 400, color: 'hsl(40 10% 12% / 0.7)' }}
             >
               Beyond the screen lies the human experience. We curate beautiful, reliable technology designed for the way you actually live—from securing your home to the seamless flow of a day well-lived.
             </h2>
-
-            {/* Brand Mission */}
             <p
               className="font-mono text-[10px] mt-8 text-muted-foreground"
               style={{ letterSpacing: '0.25em', textTransform: 'uppercase' }}
@@ -174,7 +110,6 @@ const Index = () => {
       {/* ── THE ESSENTIALS — zigzag section ── */}
       <section className="relative py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center">
-          {/* Text block — left side with whitespace */}
           <div className="px-12 md:px-16 lg:px-24 xl:px-32 py-12 md:py-0 order-2 md:order-1">
             <p className="font-mono text-[9px] tracking-[0.4em] uppercase text-muted-foreground mb-10">
               The Essentials
@@ -200,8 +135,6 @@ const Index = () => {
               Shop the Collection <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-
-          {/* Image — bleeds to right edge */}
           <div className="overflow-hidden order-1 md:order-2">
             <img
               src={essentialsImg}
@@ -213,53 +146,56 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── MARQUEE DIVIDER — dark olive banner like Noé ── */}
+      {/* ── MARQUEE DIVIDER ── */}
       <div className="overflow-hidden py-4" style={{ backgroundColor: 'hsl(40 10% 12%)' }}>
         <p className="font-mono text-[9px] tracking-[0.5em] uppercase text-center" style={{ color: 'hsl(40 18% 91%)' }}>
           Fresh Off The Press · Curated Selection · Spring 2026 · Fresh Off The Press · Curated Selection
         </p>
       </div>
 
-      {/* ── FEATURED 3 — asymmetric grid ── */}
+      {/* ── FEATURED 3 — database-driven ── */}
       <section className="max-w-6xl mx-auto px-8 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
-          {featuredProducts.map((product) => (
-            <a
-              key={product.title}
-              href={product.affiliateLink}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              className="group border-r last:border-r-0 border-border"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-                {/* Spec overlay */}
-                <div className="absolute inset-0 bg-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-8">
-                  <div className="space-y-3 mb-8">
-                    {product.specs.map((spec) => (
-                      <div key={spec.label} className="flex items-center justify-between gap-10">
-                        <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-background/50">{spec.label}</span>
-                        <span className="font-mono text-sm font-medium text-background">{spec.value}</span>
-                      </div>
-                    ))}
+        {isLoading ? (
+          <div className="flex items-center justify-center py-20">
+            <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
+            {fallbackFeatured.map((product) => (
+              <a
+                key={product.id}
+                href={product.affiliate_link}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="group border-r last:border-r-0 border-border"
+              >
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <img
+                    src={product.image_url || "/placeholder.svg"}
+                    alt={product.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-8">
+                    {product.description && (
+                      <p className="font-mono text-xs text-background/80 text-center mb-6 line-clamp-3">{product.description}</p>
+                    )}
+                    {product.price && (
+                      <p className="font-mono text-lg font-medium text-background mb-6">{product.price}</p>
+                    )}
+                    <span className="inline-flex items-center gap-2 h-10 px-6 border border-background/30 text-background font-mono text-[10px] tracking-[0.15em] uppercase hover:bg-background hover:text-foreground transition-all duration-300">
+                      View Details <ExternalLink className="h-3 w-3" />
+                    </span>
                   </div>
-                  <span className="inline-flex items-center gap-2 h-10 px-6 border border-background/30 text-background font-mono text-[10px] tracking-[0.15em] uppercase hover:bg-background hover:text-foreground transition-all duration-300">
-                    View Details <ExternalLink className="h-3 w-3" />
-                  </span>
                 </div>
-              </div>
-              <div className="p-6 border-t border-border">
-                <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground">{product.category}</span>
-                <h3 className="font-serif text-xl mt-1" style={{ fontStyle: "italic" }}>{product.title}</h3>
-              </div>
-            </a>
-          ))}
-        </div>
+                <div className="p-6 border-t border-border">
+                  <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground">{product.badge || product.category}</span>
+                  <h3 className="font-serif text-xl mt-1" style={{ fontStyle: "italic" }}>{product.title}</h3>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
 
         <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground text-center mt-6">
           As an Amazon Associate, I earn from qualifying purchases
@@ -277,7 +213,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── PRODUCT GRID ── */}
+      {/* ── PRODUCT GRID — database-driven ── */}
       <section className="max-w-6xl mx-auto px-8 py-20">
         <div className="flex items-center gap-6 mb-14">
           <div className="flex-1 h-px bg-border" />
@@ -287,48 +223,51 @@ const Index = () => {
           <div className="flex-1 h-px bg-border" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-border">
-          {products.map((product) => (
-            <a
-              key={product.title}
-              href={product.affiliateLink}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              className="group border-b border-r border-border last:border-r-0 [&:nth-child(3n)]:border-r-0"
-            >
-              <div className="relative aspect-square overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute top-4 left-5">
-                  <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground bg-background/80 px-2.5 py-1">
-                    {product.category}
-                  </span>
-                </div>
-                {/* Spec overlay */}
-                <div className="absolute inset-0 bg-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-6">
-                  <div className="space-y-3 mb-8">
-                    {product.specs.map((spec) => (
-                      <div key={spec.label} className="flex items-center justify-between gap-8">
-                        <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-background/50">{spec.label}</span>
-                        <span className="font-mono text-sm font-medium text-background">{spec.value}</span>
-                      </div>
-                    ))}
+        {isLoading ? (
+          <div className="flex items-center justify-center py-20">
+            <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-border">
+            {fallbackCollection.map((product) => (
+              <a
+                key={product.id}
+                href={product.affiliate_link}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="group border-b border-r border-border last:border-r-0 [&:nth-child(3n)]:border-r-0"
+              >
+                <div className="relative aspect-square overflow-hidden">
+                  <img
+                    src={product.image_url || "/placeholder.svg"}
+                    alt={product.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-4 left-5">
+                    <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground bg-background/80 px-2.5 py-1">
+                      {product.badge || product.category}
+                    </span>
                   </div>
-                  <span className="inline-flex items-center gap-2 h-10 px-6 border border-background/30 text-background font-mono text-[10px] tracking-[0.15em] uppercase hover:bg-background hover:text-foreground transition-all duration-300">
-                    View Details <ExternalLink className="h-3 w-3" />
-                  </span>
+                  <div className="absolute inset-0 bg-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-6">
+                    {product.description && (
+                      <p className="font-mono text-xs text-background/80 text-center mb-4 line-clamp-3">{product.description}</p>
+                    )}
+                    {product.price && (
+                      <p className="font-mono text-lg font-medium text-background mb-6">{product.price}</p>
+                    )}
+                    <span className="inline-flex items-center gap-2 h-10 px-6 border border-background/30 text-background font-mono text-[10px] tracking-[0.15em] uppercase hover:bg-background hover:text-foreground transition-all duration-300">
+                      View Details <ExternalLink className="h-3 w-3" />
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="p-5">
-                <h3 className="font-serif text-lg" style={{ fontStyle: "italic" }}>{product.title}</h3>
-              </div>
-            </a>
-          ))}
-        </div>
+                <div className="p-5">
+                  <h3 className="font-serif text-lg" style={{ fontStyle: "italic" }}>{product.title}</h3>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* ── CATEGORIES — editorial grid ── */}
