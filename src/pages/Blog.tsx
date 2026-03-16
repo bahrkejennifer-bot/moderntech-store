@@ -254,7 +254,7 @@ const Blog = () => {
                   <span className="w-1 h-1 rounded-full bg-border" />
                   <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {featuredPost.readTime}</span>
                 </div>
-                <h2 className="font-serif text-2xl lg:text-4xl italic font-light leading-tight tracking-tight mb-5 group-hover:text-foreground/70 transition-colors">
+                <h2 className="font-serif text-2xl lg:text-4xl italic leading-tight tracking-tight mb-5 group-hover:text-foreground/70 transition-colors" style={{ fontWeight: 700, color: '#000000' }}>
                   {featuredPost.title}
                 </h2>
                 <p className="font-mono text-xs text-muted-foreground leading-relaxed mb-8 line-clamp-3">
