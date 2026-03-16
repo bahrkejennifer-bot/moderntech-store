@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Plus, Pencil, Trash2, Eye, EyeOff, Star, Video, Headphones, Upload, ImageIcon, X } from "lucide-react";
+import { ArrowLeft, Plus, Pencil, Trash2, Eye, EyeOff, Star, Video, Headphones, Upload, ImageIcon, X, Images, Check, AlertCircle } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -76,6 +76,12 @@ const AdminEpisodes = () => {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Bulk upload state
+  const [bulkDialogOpen, setBulkDialogOpen] = useState(false);
+  const [bulkFiles, setBulkFiles] = useState<{ file: File; matchedEpisode: Episode | null; status: "pending" | "uploading" | "done" | "error"; progress: number; error?: string }[]>([]);
+  const [bulkUploading, setBulkUploading] = useState(false);
+  const bulkFileInputRef = useRef<HTMLInputElement>(null);
 
   const { data: episodes = [], isLoading } = useQuery({
     queryKey: ["admin-episodes"],
@@ -215,7 +221,76 @@ const AdminEpisodes = () => {
     }
   };
 
-  return (
+  const matchFileToEpisode = (filename: string): Episode | null => {
+    const name = filename.toLowerCase().replace(/\.[^.]+$/, "").replace(/[^a-z0-9]/g, "");
+    return episodes.find((ep) => {
+      const code = ep.episode_code.toLowerCase().replace(/[^a-z0-9]/g, "");
+      return name.includes(code);
+    }) || null;
+  };
+
+  const addBulkFiles = (files: FileList | File[]) => {
+    const imageFiles = Array.from(files).filter((f) => f.type.startsWith("image/"));
+    const newEntries = imageFiles.map((file) => ({
+      file,
+      matchedEpisode: matchFileToEpisode(file.name),
+      status: "pending" as const,
+      progress: 0,
+    }));
+    setBulkFiles((prev) => [...prev, ...newEntries]);
+  };
+
+  const uploadSingleBulk = async (index: number, file: File, episode: Episode) => {
+    setBulkFiles((prev) => prev.map((f, i) => i === index ? { ...f, status: "uploading" as const } : f));
+    const code = episode.episode_code.toLowerCase();
+    const ext = file.name.split(".").pop() || "jpg";
+    const path = `${code}-${Date.now()}.${ext}`;
+
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const token = session?.access_token;
+      const url = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/episode-thumbnails/${path}`;
+
+      await new Promise<void>((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", url);
+        xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+        xhr.setRequestHeader("x-upsert", "true");
+        xhr.upload.onprogress = (e) => {
+          if (e.lengthComputable) {
+            const pct = Math.round((e.loaded / e.total) * 100);
+            setBulkFiles((prev) => prev.map((f, i) => i === index ? { ...f, progress: pct } : f));
+          }
+        };
+        xhr.onload = () => (xhr.status >= 200 && xhr.status < 300 ? resolve() : reject(new Error(xhr.statusText)));
+        xhr.onerror = () => reject(new Error("Network error"));
+        xhr.send(file);
+      });
+
+      const { data: urlData } = supabase.storage.from("episode-thumbnails").getPublicUrl(path);
+
+      await supabase.from("episodes").update({ thumbnail_url: urlData.publicUrl }).eq("id", episode.id);
+      setBulkFiles((prev) => prev.map((f, i) => i === index ? { ...f, status: "done" as const, progress: 100 } : f));
+    } catch (err: any) {
+      setBulkFiles((prev) => prev.map((f, i) => i === index ? { ...f, status: "error" as const, error: err.message } : f));
+    }
+  };
+
+  const startBulkUpload = async () => {
+    setBulkUploading(true);
+    const matched = bulkFiles.filter((f) => f.matchedEpisode && f.status === "pending");
+    for (let i = 0; i < bulkFiles.length; i++) {
+      const entry = bulkFiles[i];
+      if (entry.matchedEpisode && entry.status === "pending") {
+        await uploadSingleBulk(i, entry.file, entry.matchedEpisode);
+      }
+    }
+    setBulkUploading(false);
+    queryClient.invalidateQueries({ queryKey: ["admin-episodes"] });
+    toast({ title: "Bulk upload complete", description: `${matched.length} thumbnail(s) processed.` });
+  };
+
+
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-8 py-10">
         <Link
@@ -234,9 +309,14 @@ const AdminEpisodes = () => {
               Add, edit, and publish video & podcast episodes
             </p>
           </div>
-          <Button onClick={openNew} className="gap-2">
-            <Plus className="h-4 w-4" /> New Episode
-          </Button>
+          <div className="flex gap-3">
+            <Button variant="outline" onClick={() => { setBulkFiles([]); setBulkDialogOpen(true); }} className="gap-2">
+              <Images className="h-4 w-4" /> Bulk Upload
+            </Button>
+            <Button onClick={openNew} className="gap-2">
+              <Plus className="h-4 w-4" /> New Episode
+            </Button>
+          </div>
         </div>
 
         {isLoading ? (
@@ -600,6 +680,105 @@ const AdminEpisodes = () => {
                   {saveMutation.isPending ? "Saving…" : "Save Episode"}
                 </Button>
               </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Bulk Upload Dialog */}
+      <Dialog open={bulkDialogOpen} onOpenChange={setBulkDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="font-serif text-xl">Bulk Thumbnail Upload</DialogTitle>
+            <p className="font-mono text-[10px] text-muted-foreground">
+              Name files to match episode codes (e.g. mtl-v004.jpg → MTL-V004). Unmatched files will be skipped.
+            </p>
+          </DialogHeader>
+
+          <input
+            ref={bulkFileInputRef}
+            type="file"
+            accept="image/*"
+            multiple
+            className="hidden"
+            onChange={(e) => { if (e.target.files) addBulkFiles(e.target.files); e.target.value = ""; }}
+          />
+
+          <button
+            type="button"
+            onClick={() => bulkFileInputRef.current?.click()}
+            disabled={bulkUploading}
+            className="w-full h-32 border-2 border-dashed border-border rounded-md flex flex-col items-center justify-center gap-2 text-muted-foreground hover:border-primary/50 hover:text-foreground transition-colors"
+            onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); }}
+            onDragEnter={(e) => { e.preventDefault(); e.currentTarget.classList.add("border-primary", "text-foreground"); }}
+            onDragLeave={(e) => { e.preventDefault(); e.currentTarget.classList.remove("border-primary", "text-foreground"); }}
+            onDrop={(e) => {
+              e.preventDefault(); e.stopPropagation();
+              e.currentTarget.classList.remove("border-primary", "text-foreground");
+              if (e.dataTransfer.files) addBulkFiles(e.dataTransfer.files);
+            }}
+          >
+            <Images className="h-6 w-6" />
+            <span className="font-mono text-[10px]">Drag & drop multiple images or click to select</span>
+          </button>
+
+          {bulkFiles.length > 0 && (
+            <div className="space-y-2 mt-4">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[10px] text-muted-foreground uppercase">
+                  {bulkFiles.length} file(s) — {bulkFiles.filter((f) => f.matchedEpisode).length} matched
+                </span>
+                <div className="flex gap-2">
+                  <Button variant="ghost" size="sm" onClick={() => setBulkFiles([])} disabled={bulkUploading}>
+                    Clear All
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={startBulkUpload}
+                    disabled={bulkUploading || bulkFiles.filter((f) => f.matchedEpisode && f.status === "pending").length === 0}
+                    className="gap-1"
+                  >
+                    <Upload className="h-3 w-3" />
+                    {bulkUploading ? "Uploading…" : "Upload All Matched"}
+                  </Button>
+                </div>
+              </div>
+
+              {bulkFiles.map((entry, i) => (
+                <div
+                  key={i}
+                  className={`flex items-center gap-3 p-3 rounded-md border ${
+                    entry.status === "done" ? "border-green-500/30 bg-green-500/5" :
+                    entry.status === "error" ? "border-destructive/30 bg-destructive/5" :
+                    !entry.matchedEpisode ? "border-border bg-muted/30 opacity-60" :
+                    "border-border"
+                  }`}
+                >
+                  <div className="h-10 w-10 rounded overflow-hidden flex-shrink-0 bg-muted">
+                    <img src={URL.createObjectURL(entry.file)} alt="" className="h-full w-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-mono text-xs truncate">{entry.file.name}</p>
+                    {entry.matchedEpisode ? (
+                      <p className="font-mono text-[10px] text-primary">→ {entry.matchedEpisode.episode_code}: {entry.matchedEpisode.title}</p>
+                    ) : (
+                      <p className="font-mono text-[10px] text-muted-foreground">No matching episode found</p>
+                    )}
+                    {entry.status === "uploading" && (
+                      <Progress value={entry.progress} className="h-1.5 mt-1" />
+                    )}
+                    {entry.error && (
+                      <p className="font-mono text-[10px] text-destructive">{entry.error}</p>
+                    )}
+                  </div>
+                  <div className="flex-shrink-0">
+                    {entry.status === "done" && <Check className="h-4 w-4 text-green-500" />}
+                    {entry.status === "error" && <AlertCircle className="h-4 w-4 text-destructive" />}
+                    {entry.status === "uploading" && <span className="font-mono text-[10px] text-muted-foreground">{entry.progress}%</span>}
+                    {entry.status === "pending" && !entry.matchedEpisode && <X className="h-4 w-4 text-muted-foreground" />}
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </DialogContent>
