@@ -239,19 +239,26 @@ const AdminCommandCenter = () => {
                       <Send className="h-4 w-4" />
                     </div>
 
-                    {/* Approve Button */}
-                    <Button
-                      onClick={() => handleApprove(product)}
-                      disabled={approving === product.id}
-                      className="bg-emerald-600 hover:bg-emerald-500 text-white font-['Inter'] font-semibold px-6 py-3 rounded-xl flex-shrink-0"
-                    >
-                      {approving === product.id ? (
-                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                      ) : (
-                        <CheckCircle2 className="h-4 w-4 mr-2" />
-                      )}
-                      Approve & Blast
-                    </Button>
+                    {/* Preview + Approve */}
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <PreviewModal
+                        productTitle={product.title}
+                        productImage={product.image_url || undefined}
+                        productPrice={product.price || undefined}
+                      />
+                      <Button
+                        onClick={() => handleApprove(product)}
+                        disabled={approving === product.id}
+                        className="bg-emerald-600 hover:bg-emerald-500 text-white font-['Inter'] font-semibold px-6 py-3 rounded-xl"
+                      >
+                        {approving === product.id ? (
+                          <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                        ) : (
+                          <CheckCircle2 className="h-4 w-4 mr-2" />
+                        )}
+                        Approve & Blast
+                      </Button>
+                    </div>
                   </div>
                 ))}
               </div>
