@@ -309,9 +309,14 @@ const AdminEpisodes = () => {
               Add, edit, and publish video & podcast episodes
             </p>
           </div>
-          <Button onClick={openNew} className="gap-2">
-            <Plus className="h-4 w-4" /> New Episode
-          </Button>
+          <div className="flex gap-3">
+            <Button variant="outline" onClick={() => { setBulkFiles([]); setBulkDialogOpen(true); }} className="gap-2">
+              <Images className="h-4 w-4" /> Bulk Upload
+            </Button>
+            <Button onClick={openNew} className="gap-2">
+              <Plus className="h-4 w-4" /> New Episode
+            </Button>
+          </div>
         </div>
 
         {isLoading ? (
