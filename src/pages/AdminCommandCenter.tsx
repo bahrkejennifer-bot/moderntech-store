@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "@/hooks/use-toast";
+import PreviewModal from "@/components/PreviewModal";
 import {
   Zap, ShieldCheck, Play, Calendar, CheckCircle2, Loader2,
   ArrowLeft, Eye, Youtube, Scissors, Share2, Pin,
