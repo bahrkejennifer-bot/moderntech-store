@@ -47,6 +47,16 @@ const AdminCommandCenter = () => {
   const [products, setProducts] = useState<ScrapedProduct[]>([]);
   const [approving, setApproving] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"queue" | "calendar" | "podcast">("queue");
+  const [checklists, setChecklists] = useState<Record<string, [boolean, boolean, boolean]>>({});
+
+  const getChecklist = (id: string): [boolean, boolean, boolean] => checklists[id] || [false, false, false];
+  const toggleCheck = (id: string, idx: number) => {
+    const current = getChecklist(id);
+    const updated = [...current] as [boolean, boolean, boolean];
+    updated[idx] = !updated[idx];
+    setChecklists((prev) => ({ ...prev, [id]: updated }));
+  };
+  const allChecked = (id: string) => getChecklist(id).every(Boolean);
 
   const checkAdmin = useCallback(async () => {
     const { data: { user } } = await supabase.auth.getUser();
