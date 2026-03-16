@@ -43,7 +43,7 @@ function AdminSidebar() {
     <Sidebar collapsible="icon" className="border-r border-border/50">
       <SidebarContent className="bg-card pt-4">
         {/* The Boardroom */}
-        <SidebarGroup defaultOpen>
+        <SidebarGroup>
           <SidebarGroupLabel className="font-['Playfair_Display'] text-xs tracking-wider uppercase text-primary px-4">
             {!collapsed && "The Boardroom"}
           </SidebarGroupLabel>
