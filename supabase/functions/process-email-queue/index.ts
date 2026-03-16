@@ -242,23 +242,24 @@ Deno.serve(async (req) => {
       }
 
       try {
-        // All emails go through the Lovable pipeline using the verified
-        // notify.www.moderntech.store sender domain.
         await sendLovableEmail(
           {
             run_id: payload.run_id,
             to: payload.to,
-            from: payload.from || 'Modern Tech LLC <noreply@notify.www.moderntech.store>',
-            sender_domain: payload.sender_domain || 'notify.www.moderntech.store',
+            from: payload.from,
+            sender_domain: payload.sender_domain,
             subject: payload.subject,
             html: payload.html,
-            text: payload.text || payload.subject || 'View this email in your browser',
-            purpose: payload.purpose || 'transactional',
+            text: payload.text,
+            purpose: payload.purpose,
             label: payload.label,
             idempotency_key: payload.idempotency_key,
             unsubscribe_token: payload.unsubscribe_token,
             message_id: payload.message_id,
           },
+          // sendUrl is optional — when LOVABLE_SEND_URL is not set, the library
+          // falls back to the default Lovable API endpoint (https://api.lovable.dev).
+          // Set LOVABLE_SEND_URL as a Supabase secret to override (e.g. for local dev).
           { apiKey, sendUrl: Deno.env.get('LOVABLE_SEND_URL') }
         )
 
