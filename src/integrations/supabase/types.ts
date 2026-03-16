@@ -359,31 +359,43 @@ export type Database = {
       scraped_products: {
         Row: {
           affiliate_link: string
+          badge: string | null
           category: string | null
           created_at: string
+          description: string | null
+          display_order: number | null
           id: string
           image_url: string | null
           price: string | null
+          rating: number | null
           source_url: string | null
           title: string
         }
         Insert: {
           affiliate_link: string
+          badge?: string | null
           category?: string | null
           created_at?: string
+          description?: string | null
+          display_order?: number | null
           id?: string
           image_url?: string | null
           price?: string | null
+          rating?: number | null
           source_url?: string | null
           title: string
         }
         Update: {
           affiliate_link?: string
+          badge?: string | null
           category?: string | null
           created_at?: string
+          description?: string | null
+          display_order?: number | null
           id?: string
           image_url?: string | null
           price?: string | null
+          rating?: number | null
           source_url?: string | null
           title?: string
         }
