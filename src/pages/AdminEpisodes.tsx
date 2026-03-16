@@ -171,7 +171,31 @@ const AdminEpisodes = () => {
     });
   };
 
-  return (
+  const handleThumbnailUpload = async (file: File) => {
+    if (!editingEpisode) return;
+    const code = (editingEpisode.episode_code || "upload").toLowerCase();
+    const ext = file.name.split(".").pop() || "jpg";
+    const path = `${code}-${Date.now()}.${ext}`;
+
+    setUploading(true);
+    try {
+      const { error } = await supabase.storage
+        .from("episode-thumbnails")
+        .upload(path, file, { upsert: true });
+      if (error) throw error;
+
+      const { data: urlData } = supabase.storage
+        .from("episode-thumbnails")
+        .getPublicUrl(path);
+
+      setEditingEpisode({ ...editingEpisode, thumbnail_url: urlData.publicUrl });
+      toast({ title: "Thumbnail uploaded" });
+    } catch (err: any) {
+      toast({ title: "Upload failed", description: err.message, variant: "destructive" });
+    } finally {
+      setUploading(false);
+    }
+  };
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-8 py-10">
         <Link
