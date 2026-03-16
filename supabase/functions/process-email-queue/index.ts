@@ -242,26 +242,57 @@ Deno.serve(async (req) => {
       }
 
       try {
-        await sendLovableEmail(
-          {
-            run_id: payload.run_id,
-            to: payload.to,
-            from: payload.from,
-            sender_domain: payload.sender_domain,
-            subject: payload.subject,
-            html: payload.html,
-            text: payload.text,
-            purpose: payload.purpose,
-            label: payload.label,
-            idempotency_key: payload.idempotency_key,
-            unsubscribe_token: payload.unsubscribe_token,
-            message_id: payload.message_id,
-          },
-          // sendUrl is optional — when LOVABLE_SEND_URL is not set, the library
-          // falls back to the default Lovable API endpoint (https://api.lovable.dev).
-          // Set LOVABLE_SEND_URL as a Supabase secret to override (e.g. for local dev).
-          { apiKey, sendUrl: Deno.env.get('LOVABLE_SEND_URL') }
-        )
+        if (payload.run_id) {
+          // Auth emails: use Lovable pipeline (has run_id from webhook)
+          await sendLovableEmail(
+            {
+              run_id: payload.run_id,
+              to: payload.to,
+              from: payload.from,
+              sender_domain: payload.sender_domain,
+              subject: payload.subject,
+              html: payload.html,
+              text: payload.text,
+              purpose: payload.purpose,
+              label: payload.label,
+              idempotency_key: payload.idempotency_key,
+              unsubscribe_token: payload.unsubscribe_token,
+              message_id: payload.message_id,
+            },
+            { apiKey, sendUrl: Deno.env.get('LOVABLE_SEND_URL') }
+          )
+        } else {
+          // Transactional emails: send via Resend API using verified moderntech.store domain
+          const resendApiKey = Deno.env.get('RESEND_API_KEY')
+          if (!resendApiKey) throw new Error('RESEND_API_KEY not configured')
+
+          // Normalize sender to Resend-verified root domain
+          const senderFrom = (payload.from || '')
+            .replace(/@notify\.www\.moderntech\.store/g, '@moderntech.store')
+            .replace(/@www\.moderntech\.store/g, '@moderntech.store')
+            || 'Modern Tech LLC <noreply@moderntech.store>'
+
+          const resendRes = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${resendApiKey}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              from: senderFrom,
+              to: payload.to,
+              subject: payload.subject,
+              html: payload.html,
+              text: payload.text || payload.subject || ' ',
+            }),
+          })
+
+          if (!resendRes.ok) {
+            const errBody = await resendRes.text()
+            throw new Error(`Resend API error: ${resendRes.status} ${errBody}`)
+          }
+          await resendRes.text() // consume body
+        }
 
         // Log success
         await supabase.from('email_send_log').insert({
