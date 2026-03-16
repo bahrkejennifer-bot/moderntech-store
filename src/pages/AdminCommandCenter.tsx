@@ -119,14 +119,22 @@ const AdminCommandCenter = () => {
             </div>
           </div>
 
-          {/* Human-First Toggle */}
-          <div className="flex items-center gap-3 bg-card border border-border rounded-xl px-5 py-3">
-            <Brain className="h-5 w-5 text-muted-foreground" />
-            <span className="text-sm font-medium text-muted-foreground font-['Inter']">
-              {humanReview ? "Human Review" : "Autonomous"}
-            </span>
-            <Switch checked={humanReview} onCheckedChange={setHumanReview} />
-            <ShieldCheck className={`h-5 w-5 transition-colors ${humanReview ? "text-emerald-400" : "text-muted-foreground"}`} />
+          <div className="flex items-center gap-3">
+            {/* Episode Manager Link */}
+            <Button variant="outline" size="sm" onClick={() => navigate("/admin/episodes")} className="gap-2 font-['Inter']">
+              <Play className="h-4 w-4" />
+              Episode Manager
+            </Button>
+
+            {/* Human-First Toggle */}
+            <div className="flex items-center gap-3 bg-card border border-border rounded-xl px-5 py-3">
+              <Brain className="h-5 w-5 text-muted-foreground" />
+              <span className="text-sm font-medium text-muted-foreground font-['Inter']">
+                {humanReview ? "Human Review" : "Autonomous"}
+              </span>
+              <Switch checked={humanReview} onCheckedChange={setHumanReview} />
+              <ShieldCheck className={`h-5 w-5 transition-colors ${humanReview ? "text-emerald-400" : "text-muted-foreground"}`} />
+            </div>
           </div>
         </div>
 
