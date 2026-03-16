@@ -41,6 +41,7 @@ import PinterestCallback from "./pages/PinterestCallback";
 import AdminPinterest from "./pages/AdminPinterest";
 import AdminTechSpec from "./pages/AdminTechSpec";
 import AdminEmails from "./pages/AdminEmails";
+import AdminCommandCenter from "./pages/AdminCommandCenter";
 import { NewsletterPopup } from "./components/NewsletterPopup";
 import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
 
@@ -97,6 +98,7 @@ const App = () => (
           <Route path="/admin/pinterest" element={<AdminPinterest />} />
           <Route path="/admin/tech-spec" element={<AdminTechSpec />} />
           <Route path="/admin/emails" element={<AdminEmails />} />
+          <Route path="/admin/command-center" element={<AdminCommandCenter />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
