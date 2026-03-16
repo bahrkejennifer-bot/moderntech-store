@@ -39,3 +39,5 @@ project_id = "hvjhtfyxecnuehndnyrd"
     verify_jwt = false
   [functions.trigger-zapier]
     verify_jwt = false
+  [functions.webhook-ingest]
+    verify_jwt = false
