@@ -456,7 +456,10 @@ const AdminEpisodes = () => {
                     }}
                   >
                     {uploading ? (
-                      <span className="font-mono text-[10px]">Uploading…</span>
+                      <>
+                        <span className="font-mono text-[10px]">Uploading… {uploadProgress}%</span>
+                        <Progress value={uploadProgress} className="w-3/4 h-2 mt-1" />
+                      </>
                     ) : (
                       <>
                         <ImageIcon className="h-6 w-6" />
