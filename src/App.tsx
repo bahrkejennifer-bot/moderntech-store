@@ -63,7 +63,6 @@ const App = () => (
       <Toaster />
       <Sonner />
       <NewsletterPopup />
-      <AdminAccessButton />
       <BrowserRouter>
         <PinterestTracker />
         <Routes>
