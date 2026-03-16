@@ -74,7 +74,7 @@ function AdminSidebar() {
         </SidebarGroup>
 
         {/* Operations */}
-        <SidebarGroup defaultOpen>
+        <SidebarGroup>
           <SidebarGroupLabel className="font-['Inter'] text-[9px] tracking-[0.2em] uppercase text-muted-foreground px-4 mt-4">
             {!collapsed && "Operations"}
           </SidebarGroupLabel>
