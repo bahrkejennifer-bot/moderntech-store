@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, Play, Headphones, Youtube, Share2, Subtitles, FileText, ChevronDown, ChevronUp, Instagram, ExternalLink } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import thumbV004 from "@/assets/thumbnails/mtl-v004-thumbnail.jpg";
