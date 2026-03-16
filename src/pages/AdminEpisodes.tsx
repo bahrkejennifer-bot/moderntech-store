@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Plus, Pencil, Trash2, Eye, EyeOff, Star, Video, Headphones } from "lucide-react";
+import { ArrowLeft, Plus, Pencil, Trash2, Eye, EyeOff, Star, Video, Headphones, Upload, ImageIcon, X } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -72,6 +72,8 @@ const AdminEpisodes = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingEpisode, setEditingEpisode] = useState<Partial<Episode> | null>(null);
   const [takeawayInput, setTakeawayInput] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const { data: episodes = [], isLoading } = useQuery({
     queryKey: ["admin-episodes"],
@@ -167,6 +169,32 @@ const AdminEpisodes = () => {
       ...editingEpisode,
       takeaways: (editingEpisode.takeaways || []).filter((_, i) => i !== index),
     });
+  };
+
+  const handleThumbnailUpload = async (file: File) => {
+    if (!editingEpisode) return;
+    const code = (editingEpisode.episode_code || "upload").toLowerCase();
+    const ext = file.name.split(".").pop() || "jpg";
+    const path = `${code}-${Date.now()}.${ext}`;
+
+    setUploading(true);
+    try {
+      const { error } = await supabase.storage
+        .from("episode-thumbnails")
+        .upload(path, file, { upsert: true });
+      if (error) throw error;
+
+      const { data: urlData } = supabase.storage
+        .from("episode-thumbnails")
+        .getPublicUrl(path);
+
+      setEditingEpisode({ ...editingEpisode, thumbnail_url: urlData.publicUrl });
+      toast({ title: "Thumbnail uploaded" });
+    } catch (err: any) {
+      toast({ title: "Upload failed", description: err.message, variant: "destructive" });
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (
@@ -343,11 +371,67 @@ const AdminEpisodes = () => {
               </div>
 
               <div>
-                <label className="font-mono text-[10px] uppercase text-muted-foreground">Thumbnail URL</label>
+                <label className="font-mono text-[10px] uppercase text-muted-foreground">Thumbnail</label>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleThumbnailUpload(file);
+                    e.target.value = "";
+                  }}
+                />
+                {editingEpisode.thumbnail_url ? (
+                  <div className="mt-1 relative group">
+                    <img
+                      src={editingEpisode.thumbnail_url}
+                      alt="Thumbnail preview"
+                      className="w-full h-40 object-cover rounded-md border border-border"
+                    />
+                    <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity rounded-md flex items-center justify-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => fileInputRef.current?.click()}
+                        disabled={uploading}
+                      >
+                        <Upload className="h-3 w-3 mr-1" />
+                        Replace
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setEditingEpisode({ ...editingEpisode, thumbnail_url: "" })}
+                      >
+                        <X className="h-3 w-3 mr-1" />
+                        Remove
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={uploading}
+                    className="mt-1 w-full h-32 border-2 border-dashed border-border rounded-md flex flex-col items-center justify-center gap-2 text-muted-foreground hover:border-primary/50 hover:text-foreground transition-colors"
+                  >
+                    {uploading ? (
+                      <span className="font-mono text-[10px]">Uploading…</span>
+                    ) : (
+                      <>
+                        <ImageIcon className="h-6 w-6" />
+                        <span className="font-mono text-[10px]">Click to upload thumbnail</span>
+                      </>
+                    )}
+                  </button>
+                )}
                 <Input
+                  className="mt-2"
                   value={editingEpisode.thumbnail_url || ""}
                   onChange={(e) => setEditingEpisode({ ...editingEpisode, thumbnail_url: e.target.value })}
-                  placeholder="/thumbnails/mtl-v005-thumbnail.jpg"
+                  placeholder="Or paste a URL…"
                 />
               </div>
 
