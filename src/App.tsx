@@ -46,9 +46,10 @@ import AdminEpisodes from "./pages/AdminEpisodes";
 import MediaHub from "./pages/MediaHub";
 import EpisodeDetail from "./pages/EpisodeDetail";
 import FoundersTechStack from "./pages/FoundersTechStack";
+import AdminLayout from "./components/AdminLayout";
+import AdminAccessButton from "./components/AdminAccessButton";
 import { NewsletterPopup } from "./components/NewsletterPopup";
 import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
-
 const queryClient = new QueryClient();
 
 const PinterestTracker = () => {
@@ -64,6 +65,7 @@ const App = () => (
       <NewsletterPopup />
       <BrowserRouter>
         <PinterestTracker />
+        <AdminAccessButton />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/home-safety" element={<HomeSafety />} />
@@ -89,8 +91,8 @@ const App = () => (
           <Route path="/sonic-edit" element={<SonicEditGuide />} />
           <Route path="/biometric-audit" element={<BiometricAuditGuide />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
-          <Route path="/admin/upload" element={<AdminUpload />} />
-          <Route path="/admin/scraper" element={<AdminScraper />} />
+          <Route path="/admin/upload" element={<AdminLayout><AdminUpload /></AdminLayout>} />
+          <Route path="/admin/scraper" element={<AdminLayout><AdminScraper /></AdminLayout>} />
           <Route path="/trending-products" element={<ScrapedProducts />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
@@ -99,11 +101,11 @@ const App = () => (
           <Route path="/signal" element={<Signal />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/pinterest-callback" element={<PinterestCallback />} />
-          <Route path="/admin/pinterest" element={<AdminPinterest />} />
-          <Route path="/admin/tech-spec" element={<AdminTechSpec />} />
-          <Route path="/admin/emails" element={<AdminEmails />} />
-          <Route path="/admin/command-center" element={<AdminCommandCenter />} />
-          <Route path="/admin/episodes" element={<AdminEpisodes />} />
+          <Route path="/admin/pinterest" element={<AdminLayout><AdminPinterest /></AdminLayout>} />
+          <Route path="/admin/tech-spec" element={<AdminLayout><AdminTechSpec /></AdminLayout>} />
+          <Route path="/admin/emails" element={<AdminLayout><AdminEmails /></AdminLayout>} />
+          <Route path="/admin/command-center" element={<AdminLayout><AdminCommandCenter /></AdminLayout>} />
+          <Route path="/admin/episodes" element={<AdminLayout><AdminEpisodes /></AdminLayout>} />
           <Route path="/media" element={<MediaHub />} />
           <Route path="/media/:id" element={<EpisodeDetail />} />
           <Route path="/founders-tech-stack" element={<FoundersTechStack />} />
