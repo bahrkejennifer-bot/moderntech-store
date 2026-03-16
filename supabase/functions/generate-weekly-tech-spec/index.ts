@@ -264,7 +264,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
 
     if (insertError) throw new Error(`Failed to save draft: ${insertError.message}`);
 
-    console.log("Tech Specs Weekly Report draft generated:", spec.id);
+    console.log("Art of Modern Tech Weekly Report draft generated:", spec.id);
 
     // Send notification email to admin with Approve button
     const approveUrl = `${supabaseUrl}/functions/v1/approve-tech-spec?spec_id=${spec.id}&action=approve`;
