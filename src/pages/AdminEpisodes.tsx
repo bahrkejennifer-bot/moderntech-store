@@ -384,7 +384,18 @@ const AdminEpisodes = () => {
                   }}
                 />
                 {editingEpisode.thumbnail_url ? (
-                  <div className="mt-1 relative group">
+                  <div
+                    className="mt-1 relative group"
+                    onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                    onDragEnter={(e) => { e.preventDefault(); e.stopPropagation(); e.currentTarget.classList.add("ring-2", "ring-primary"); }}
+                    onDragLeave={(e) => { e.preventDefault(); e.stopPropagation(); e.currentTarget.classList.remove("ring-2", "ring-primary"); }}
+                    onDrop={(e) => {
+                      e.preventDefault(); e.stopPropagation();
+                      e.currentTarget.classList.remove("ring-2", "ring-primary");
+                      const file = e.dataTransfer.files?.[0];
+                      if (file && file.type.startsWith("image/")) handleThumbnailUpload(file);
+                    }}
+                  >
                     <img
                       src={editingEpisode.thumbnail_url}
                       alt="Thumbnail preview"
@@ -416,13 +427,22 @@ const AdminEpisodes = () => {
                     onClick={() => fileInputRef.current?.click()}
                     disabled={uploading}
                     className="mt-1 w-full h-32 border-2 border-dashed border-border rounded-md flex flex-col items-center justify-center gap-2 text-muted-foreground hover:border-primary/50 hover:text-foreground transition-colors"
+                    onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                    onDragEnter={(e) => { e.preventDefault(); e.stopPropagation(); e.currentTarget.classList.add("border-primary", "text-foreground"); }}
+                    onDragLeave={(e) => { e.preventDefault(); e.stopPropagation(); e.currentTarget.classList.remove("border-primary", "text-foreground"); }}
+                    onDrop={(e) => {
+                      e.preventDefault(); e.stopPropagation();
+                      e.currentTarget.classList.remove("border-primary", "text-foreground");
+                      const file = e.dataTransfer.files?.[0];
+                      if (file && file.type.startsWith("image/")) handleThumbnailUpload(file);
+                    }}
                   >
                     {uploading ? (
                       <span className="font-mono text-[10px]">Uploading…</span>
                     ) : (
                       <>
                         <ImageIcon className="h-6 w-6" />
-                        <span className="font-mono text-[10px]">Click to upload thumbnail</span>
+                        <span className="font-mono text-[10px]">Drag & drop or click to upload</span>
                       </>
                     )}
                   </button>
