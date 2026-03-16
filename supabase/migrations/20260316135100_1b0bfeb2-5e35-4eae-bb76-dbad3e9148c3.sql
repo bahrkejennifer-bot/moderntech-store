@@ -1,0 +1,5 @@
+ALTER TABLE public.scraped_products
+  ADD COLUMN IF NOT EXISTS rating numeric DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS badge text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS description text DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS display_order integer DEFAULT 0;
