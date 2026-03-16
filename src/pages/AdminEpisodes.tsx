@@ -74,6 +74,7 @@ const AdminEpisodes = () => {
   const [editingEpisode, setEditingEpisode] = useState<Partial<Episode> | null>(null);
   const [takeawayInput, setTakeawayInput] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const { data: episodes = [], isLoading } = useQuery({
