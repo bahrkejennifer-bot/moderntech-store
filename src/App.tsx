@@ -42,6 +42,8 @@ import AdminPinterest from "./pages/AdminPinterest";
 import AdminTechSpec from "./pages/AdminTechSpec";
 import AdminEmails from "./pages/AdminEmails";
 import AdminCommandCenter from "./pages/AdminCommandCenter";
+import MediaHub from "./pages/MediaHub";
+import EpisodeDetail from "./pages/EpisodeDetail";
 import { NewsletterPopup } from "./components/NewsletterPopup";
 import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
 
