@@ -46,6 +46,7 @@ import AdminEpisodes from "./pages/AdminEpisodes";
 import MediaHub from "./pages/MediaHub";
 import EpisodeDetail from "./pages/EpisodeDetail";
 import FoundersTechStack from "./pages/FoundersTechStack";
+import LinksPage from "./pages/LinksPage";
 import AdminLayout from "./components/AdminLayout";
 import AdminAccessButton from "./components/AdminAccessButton";
 import { NewsletterPopup } from "./components/NewsletterPopup";
@@ -109,6 +110,7 @@ const App = () => (
           <Route path="/media" element={<MediaHub />} />
           <Route path="/media/:id" element={<EpisodeDetail />} />
           <Route path="/founders-tech-stack" element={<FoundersTechStack />} />
+          <Route path="/links" element={<LinksPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
