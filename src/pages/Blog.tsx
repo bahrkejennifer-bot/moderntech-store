@@ -182,7 +182,7 @@ const Blog = () => {
       <header className="border-b border-border">
         <div className="max-w-5xl mx-auto px-8 pt-28 pb-10">
           <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">Modern Tech Journal</p>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl italic font-light tracking-tight leading-[1.08] max-w-3xl">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl italic tracking-tight leading-[1.08] max-w-3xl" style={{ fontWeight: 700, color: '#000000' }}>
             Insights, Reviews &<br />
             Buying Guides
           </h1>
