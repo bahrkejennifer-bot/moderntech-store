@@ -221,7 +221,76 @@ const AdminEpisodes = () => {
     }
   };
 
-  return (
+  const matchFileToEpisode = (filename: string): Episode | null => {
+    const name = filename.toLowerCase().replace(/\.[^.]+$/, "").replace(/[^a-z0-9]/g, "");
+    return episodes.find((ep) => {
+      const code = ep.episode_code.toLowerCase().replace(/[^a-z0-9]/g, "");
+      return name.includes(code);
+    }) || null;
+  };
+
+  const addBulkFiles = (files: FileList | File[]) => {
+    const imageFiles = Array.from(files).filter((f) => f.type.startsWith("image/"));
+    const newEntries = imageFiles.map((file) => ({
+      file,
+      matchedEpisode: matchFileToEpisode(file.name),
+      status: "pending" as const,
+      progress: 0,
+    }));
+    setBulkFiles((prev) => [...prev, ...newEntries]);
+  };
+
+  const uploadSingleBulk = async (index: number, file: File, episode: Episode) => {
+    setBulkFiles((prev) => prev.map((f, i) => i === index ? { ...f, status: "uploading" as const } : f));
+    const code = episode.episode_code.toLowerCase();
+    const ext = file.name.split(".").pop() || "jpg";
+    const path = `${code}-${Date.now()}.${ext}`;
+
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const token = session?.access_token;
+      const url = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/episode-thumbnails/${path}`;
+
+      await new Promise<void>((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", url);
+        xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+        xhr.setRequestHeader("x-upsert", "true");
+        xhr.upload.onprogress = (e) => {
+          if (e.lengthComputable) {
+            const pct = Math.round((e.loaded / e.total) * 100);
+            setBulkFiles((prev) => prev.map((f, i) => i === index ? { ...f, progress: pct } : f));
+          }
+        };
+        xhr.onload = () => (xhr.status >= 200 && xhr.status < 300 ? resolve() : reject(new Error(xhr.statusText)));
+        xhr.onerror = () => reject(new Error("Network error"));
+        xhr.send(file);
+      });
+
+      const { data: urlData } = supabase.storage.from("episode-thumbnails").getPublicUrl(path);
+
+      await supabase.from("episodes").update({ thumbnail_url: urlData.publicUrl }).eq("id", episode.id);
+      setBulkFiles((prev) => prev.map((f, i) => i === index ? { ...f, status: "done" as const, progress: 100 } : f));
+    } catch (err: any) {
+      setBulkFiles((prev) => prev.map((f, i) => i === index ? { ...f, status: "error" as const, error: err.message } : f));
+    }
+  };
+
+  const startBulkUpload = async () => {
+    setBulkUploading(true);
+    const matched = bulkFiles.filter((f) => f.matchedEpisode && f.status === "pending");
+    for (let i = 0; i < bulkFiles.length; i++) {
+      const entry = bulkFiles[i];
+      if (entry.matchedEpisode && entry.status === "pending") {
+        await uploadSingleBulk(i, entry.file, entry.matchedEpisode);
+      }
+    }
+    setBulkUploading(false);
+    queryClient.invalidateQueries({ queryKey: ["admin-episodes"] });
+    toast({ title: "Bulk upload complete", description: `${matched.length} thumbnail(s) processed.` });
+  };
+
+
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-8 py-10">
         <Link
