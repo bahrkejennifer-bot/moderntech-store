@@ -173,7 +173,6 @@ const AdminEpisodes = () => {
     });
   };
 
-  const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleThumbnailUpload = async (file: File) => {
     if (!editingEpisode) return;
