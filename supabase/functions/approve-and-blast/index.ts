@@ -37,7 +37,7 @@ Deno.serve(async (req) => {
       <div style="font-family:'Inter',Arial,sans-serif;max-width:600px;margin:0 auto;background:#ffffff;">
         <div style="padding:40px 30px;text-align:center;background:#0a0a0a;color:#ffffff;">
           <h1 style="font-family:'Playfair Display',Georgia,serif;font-size:28px;margin:0 0 8px;">🔥 Hot Pick of the Week</h1>
-          <p style="font-size:14px;color:#a0a0a0;margin:0;">Nurse-Verified by Modern Tech LLC</p>
+          <p style="font-size:14px;color:#a0a0a0;margin:0;">Jen-Verified by Modern Tech LLC</p>
         </div>
         <div style="padding:30px;">
           ${productImage ? `<img src="${productImage}" alt="${productTitle}" style="width:100%;max-height:300px;object-fit:contain;border-radius:12px;margin-bottom:20px;" />` : ""}
