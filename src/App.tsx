@@ -41,6 +41,7 @@ import PinterestCallback from "./pages/PinterestCallback";
 import AdminPinterest from "./pages/AdminPinterest";
 import AdminTechSpec from "./pages/AdminTechSpec";
 import AdminEmails from "./pages/AdminEmails";
+import AdminCommandCenter from "./pages/AdminCommandCenter";
 import { NewsletterPopup } from "./components/NewsletterPopup";
 import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
 
