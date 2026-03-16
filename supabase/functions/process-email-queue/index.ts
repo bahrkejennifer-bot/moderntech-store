@@ -253,7 +253,7 @@ Deno.serve(async (req) => {
             sender_domain: payload.sender_domain,
             subject: payload.subject,
             html: payload.html,
-            text: payload.text,
+            text: payload.text || payload.subject || 'View this email in your browser',
             purpose: payload.purpose || 'transactional',
             label: payload.label,
             idempotency_key: payload.idempotency_key,
