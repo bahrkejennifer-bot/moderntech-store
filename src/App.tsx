@@ -91,8 +91,8 @@ const App = () => (
           <Route path="/sonic-edit" element={<SonicEditGuide />} />
           <Route path="/biometric-audit" element={<BiometricAuditGuide />} />
           <Route path="/admin/auth" element={<AdminAuth />} />
-          <Route path="/admin/upload" element={<AdminUpload />} />
-          <Route path="/admin/scraper" element={<AdminScraper />} />
+          <Route path="/admin/upload" element={<AdminLayout><AdminUpload /></AdminLayout>} />
+          <Route path="/admin/scraper" element={<AdminLayout><AdminScraper /></AdminLayout>} />
           <Route path="/trending-products" element={<ScrapedProducts />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
@@ -101,11 +101,11 @@ const App = () => (
           <Route path="/signal" element={<Signal />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/pinterest-callback" element={<PinterestCallback />} />
-          <Route path="/admin/pinterest" element={<AdminPinterest />} />
-          <Route path="/admin/tech-spec" element={<AdminTechSpec />} />
-          <Route path="/admin/emails" element={<AdminEmails />} />
-          <Route path="/admin/command-center" element={<AdminCommandCenter />} />
-          <Route path="/admin/episodes" element={<AdminEpisodes />} />
+          <Route path="/admin/pinterest" element={<AdminLayout><AdminPinterest /></AdminLayout>} />
+          <Route path="/admin/tech-spec" element={<AdminLayout><AdminTechSpec /></AdminLayout>} />
+          <Route path="/admin/emails" element={<AdminLayout><AdminEmails /></AdminLayout>} />
+          <Route path="/admin/command-center" element={<AdminLayout><AdminCommandCenter /></AdminLayout>} />
+          <Route path="/admin/episodes" element={<AdminLayout><AdminEpisodes /></AdminLayout>} />
           <Route path="/media" element={<MediaHub />} />
           <Route path="/media/:id" element={<EpisodeDetail />} />
           <Route path="/founders-tech-stack" element={<FoundersTechStack />} />
