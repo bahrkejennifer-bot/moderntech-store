@@ -323,7 +323,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
       payload: {
         message_id: adminMessageId,
         to: "info@moderntech.store",
-        from: "The Tech Brief <hello@notify.www.moderntech.store>",
+        from: "Modern Tech LLC <noreply@notify.www.moderntech.store>",
         sender_domain: "notify.www.moderntech.store",
         subject: `📋 Review Draft: ${subject}`,
         html: adminEmailHtml,
