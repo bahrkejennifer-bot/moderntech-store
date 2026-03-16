@@ -28,7 +28,7 @@ function buildEmailTemplate(subject: string, bodyHtml: string): string {
                 <img src="${LOGO_URL}" alt="Modern Tech" width="52" height="52" style="display:block;width:52px;height:52px;object-fit:cover;border:0;" />
               </div>
               <p style="margin:16px 0 0;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#86868b;">
-                TECH SPECS WEEKLY REPORT
+                THE ART OF MODERN TECH
               </p>
               <h1 style="margin:8px 0 0;font-family:'Georgia',serif;font-size:26px;font-weight:400;color:#1d1d1f;line-height:1.25;letter-spacing:-0.01em;">
                 ${subject}

@@ -106,6 +106,7 @@ const App = () => (
           <Route path="/admin/episodes" element={<AdminEpisodes />} />
           <Route path="/media" element={<MediaHub />} />
           <Route path="/media/:id" element={<EpisodeDetail />} />
+          <Route path="/founders-tech-stack" element={<FoundersTechStack />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
