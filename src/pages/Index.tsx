@@ -39,6 +39,7 @@ const useHomepageProducts = () => {
         .from("scraped_products")
         .select("*")
         .in("category", ["homepage-featured", "homepage-collection", "health-wellness", "creator-gear", "gaming", "connectivity", "college", "kids-tech", "home-safety"])
+        .eq("is_active", true)
         .order("display_order", { ascending: true });
       if (error) throw error;
       return data as unknown as DBProduct[];
