@@ -182,7 +182,7 @@ const Blog = () => {
       <header className="border-b border-border">
         <div className="max-w-5xl mx-auto px-8 pt-28 pb-10">
           <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">Modern Tech Journal</p>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl italic font-light tracking-tight leading-[1.08] max-w-3xl">
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl italic tracking-tight leading-[1.08] max-w-3xl" style={{ fontWeight: 700, color: '#000000' }}>
             Insights, Reviews &<br />
             Buying Guides
           </h1>
@@ -254,7 +254,7 @@ const Blog = () => {
                   <span className="w-1 h-1 rounded-full bg-border" />
                   <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {featuredPost.readTime}</span>
                 </div>
-                <h2 className="font-serif text-2xl lg:text-4xl italic font-light leading-tight tracking-tight mb-5 group-hover:text-foreground/70 transition-colors">
+                <h2 className="font-serif text-2xl lg:text-4xl italic leading-tight tracking-tight mb-5 group-hover:text-foreground/70 transition-colors" style={{ fontWeight: 700, color: '#000000' }}>
                   {featuredPost.title}
                 </h2>
                 <p className="font-mono text-xs text-muted-foreground leading-relaxed mb-8 line-clamp-3">
@@ -383,7 +383,7 @@ const BlogCard = ({ post }: { post: BlogPostItem }) => (
           <span>{post.category}</span>
           <span className="ml-auto flex items-center gap-1"><Clock className="h-3 w-3" /> {post.readTime}</span>
         </div>
-        <h3 className="font-serif text-xl leading-snug line-clamp-2 mb-3 group-hover:text-foreground/70 transition-colors" style={{ fontStyle: "italic" }}>
+        <h3 className="font-serif text-xl leading-snug line-clamp-2 mb-3 group-hover:text-foreground/70 transition-colors" style={{ fontStyle: "italic", fontWeight: 700, color: '#000000' }}>
           {post.title}
         </h3>
         <p className="font-mono text-[10px] text-muted-foreground line-clamp-2 leading-[1.7] flex-1">

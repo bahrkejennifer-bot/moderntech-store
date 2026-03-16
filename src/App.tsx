@@ -45,6 +45,7 @@ import AdminCommandCenter from "./pages/AdminCommandCenter";
 import AdminEpisodes from "./pages/AdminEpisodes";
 import MediaHub from "./pages/MediaHub";
 import EpisodeDetail from "./pages/EpisodeDetail";
+import FoundersTechStack from "./pages/FoundersTechStack";
 import { NewsletterPopup } from "./components/NewsletterPopup";
 import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
 
@@ -105,6 +106,7 @@ const App = () => (
           <Route path="/admin/episodes" element={<AdminEpisodes />} />
           <Route path="/media" element={<MediaHub />} />
           <Route path="/media/:id" element={<EpisodeDetail />} />
+          <Route path="/founders-tech-stack" element={<FoundersTechStack />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
