@@ -196,6 +196,8 @@ const AdminEpisodes = () => {
       setUploading(false);
     }
   };
+
+  return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-8 py-10">
         <Link
