@@ -65,6 +65,7 @@ const App = () => (
       <NewsletterPopup />
       <BrowserRouter>
         <PinterestTracker />
+        <AdminAccessButton />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/home-safety" element={<HomeSafety />} />
