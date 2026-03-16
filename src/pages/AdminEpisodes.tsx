@@ -172,6 +172,8 @@ const AdminEpisodes = () => {
     });
   };
 
+  const [uploadProgress, setUploadProgress] = useState(0);
+
   const handleThumbnailUpload = async (file: File) => {
     if (!editingEpisode) return;
     const code = (editingEpisode.episode_code || "upload").toLowerCase();
@@ -179,11 +181,25 @@ const AdminEpisodes = () => {
     const path = `${code}-${Date.now()}.${ext}`;
 
     setUploading(true);
+    setUploadProgress(0);
+
     try {
-      const { error } = await supabase.storage
-        .from("episode-thumbnails")
-        .upload(path, file, { upsert: true });
-      if (error) throw error;
+      const { data: { session } } = await supabase.auth.getSession();
+      const token = session?.access_token;
+      const url = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/episode-thumbnails/${path}`;
+
+      await new Promise<void>((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", url);
+        xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+        xhr.setRequestHeader("x-upsert", "true");
+        xhr.upload.onprogress = (e) => {
+          if (e.lengthComputable) setUploadProgress(Math.round((e.loaded / e.total) * 100));
+        };
+        xhr.onload = () => (xhr.status >= 200 && xhr.status < 300 ? resolve() : reject(new Error(`Upload failed: ${xhr.statusText}`)));
+        xhr.onerror = () => reject(new Error("Network error"));
+        xhr.send(file);
+      });
 
       const { data: urlData } = supabase.storage
         .from("episode-thumbnails")
@@ -195,6 +211,7 @@ const AdminEpisodes = () => {
       toast({ title: "Upload failed", description: err.message, variant: "destructive" });
     } finally {
       setUploading(false);
+      setUploadProgress(0);
     }
   };
 
