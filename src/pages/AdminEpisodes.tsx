@@ -684,6 +684,105 @@ const AdminEpisodes = () => {
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Bulk Upload Dialog */}
+      <Dialog open={bulkDialogOpen} onOpenChange={setBulkDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="font-serif text-xl">Bulk Thumbnail Upload</DialogTitle>
+            <p className="font-mono text-[10px] text-muted-foreground">
+              Name files to match episode codes (e.g. mtl-v004.jpg → MTL-V004). Unmatched files will be skipped.
+            </p>
+          </DialogHeader>
+
+          <input
+            ref={bulkFileInputRef}
+            type="file"
+            accept="image/*"
+            multiple
+            className="hidden"
+            onChange={(e) => { if (e.target.files) addBulkFiles(e.target.files); e.target.value = ""; }}
+          />
+
+          <button
+            type="button"
+            onClick={() => bulkFileInputRef.current?.click()}
+            disabled={bulkUploading}
+            className="w-full h-32 border-2 border-dashed border-border rounded-md flex flex-col items-center justify-center gap-2 text-muted-foreground hover:border-primary/50 hover:text-foreground transition-colors"
+            onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); }}
+            onDragEnter={(e) => { e.preventDefault(); e.currentTarget.classList.add("border-primary", "text-foreground"); }}
+            onDragLeave={(e) => { e.preventDefault(); e.currentTarget.classList.remove("border-primary", "text-foreground"); }}
+            onDrop={(e) => {
+              e.preventDefault(); e.stopPropagation();
+              e.currentTarget.classList.remove("border-primary", "text-foreground");
+              if (e.dataTransfer.files) addBulkFiles(e.dataTransfer.files);
+            }}
+          >
+            <Images className="h-6 w-6" />
+            <span className="font-mono text-[10px]">Drag & drop multiple images or click to select</span>
+          </button>
+
+          {bulkFiles.length > 0 && (
+            <div className="space-y-2 mt-4">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[10px] text-muted-foreground uppercase">
+                  {bulkFiles.length} file(s) — {bulkFiles.filter((f) => f.matchedEpisode).length} matched
+                </span>
+                <div className="flex gap-2">
+                  <Button variant="ghost" size="sm" onClick={() => setBulkFiles([])} disabled={bulkUploading}>
+                    Clear All
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={startBulkUpload}
+                    disabled={bulkUploading || bulkFiles.filter((f) => f.matchedEpisode && f.status === "pending").length === 0}
+                    className="gap-1"
+                  >
+                    <Upload className="h-3 w-3" />
+                    {bulkUploading ? "Uploading…" : "Upload All Matched"}
+                  </Button>
+                </div>
+              </div>
+
+              {bulkFiles.map((entry, i) => (
+                <div
+                  key={i}
+                  className={`flex items-center gap-3 p-3 rounded-md border ${
+                    entry.status === "done" ? "border-green-500/30 bg-green-500/5" :
+                    entry.status === "error" ? "border-destructive/30 bg-destructive/5" :
+                    !entry.matchedEpisode ? "border-border bg-muted/30 opacity-60" :
+                    "border-border"
+                  }`}
+                >
+                  <div className="h-10 w-10 rounded overflow-hidden flex-shrink-0 bg-muted">
+                    <img src={URL.createObjectURL(entry.file)} alt="" className="h-full w-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-mono text-xs truncate">{entry.file.name}</p>
+                    {entry.matchedEpisode ? (
+                      <p className="font-mono text-[10px] text-primary">→ {entry.matchedEpisode.episode_code}: {entry.matchedEpisode.title}</p>
+                    ) : (
+                      <p className="font-mono text-[10px] text-muted-foreground">No matching episode found</p>
+                    )}
+                    {entry.status === "uploading" && (
+                      <Progress value={entry.progress} className="h-1.5 mt-1" />
+                    )}
+                    {entry.error && (
+                      <p className="font-mono text-[10px] text-destructive">{entry.error}</p>
+                    )}
+                  </div>
+                  <div className="flex-shrink-0">
+                    {entry.status === "done" && <Check className="h-4 w-4 text-green-500" />}
+                    {entry.status === "error" && <AlertCircle className="h-4 w-4 text-destructive" />}
+                    {entry.status === "uploading" && <span className="font-mono text-[10px] text-muted-foreground">{entry.progress}%</span>}
+                    {entry.status === "pending" && !entry.matchedEpisode && <X className="h-4 w-4 text-muted-foreground" />}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
