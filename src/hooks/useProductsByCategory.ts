@@ -22,6 +22,7 @@ export const useProductsByCategory = (category: string) => {
         .from("scraped_products")
         .select("*")
         .eq("category", category)
+        .eq("is_active", true)
         .order("display_order", { ascending: true });
       if (error) throw error;
       return data as unknown as Product[];

@@ -11,7 +11,6 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // Authenticate via shared secret (no JWT needed)
     const webhookSecret = Deno.env.get("WEBHOOK_INGEST_SECRET");
     if (!webhookSecret) {
       return new Response(JSON.stringify({ error: "Webhook secret not configured" }), {
@@ -44,21 +43,20 @@ Deno.serve(async (req) => {
 
     const affiliateTag = "moderntechs0c-20";
     const saved = [];
+    const updated = [];
     const skipped = [];
 
-    // Fetch existing titles for dedup
-    const { data: existing } = await supabase.from("scraped_products").select("title");
-    const existingTitles = new Set(
-      (existing || []).map((p) => p.title.toLowerCase().trim())
+    // Fetch existing products for dedup / upsert
+    const { data: existing } = await supabase.from("scraped_products").select("id, title, affiliate_link");
+    const existingMap = new Map(
+      (existing || []).map((p) => [p.title.toLowerCase().trim(), p])
     );
 
     for (const product of products.slice(0, 10)) {
       const title = product.title || "Untitled";
-      if (existingTitles.has(title.toLowerCase().trim())) {
-        skipped.push(title);
-        continue;
-      }
+      const normalizedTitle = title.toLowerCase().trim();
 
+      // Build affiliate link
       let affiliateLink = product.product_url || product.affiliate_link || "";
       if (affiliateLink && !affiliateLink.includes("tag=")) {
         const sep = affiliateLink.includes("?") ? "&" : "?";
@@ -67,6 +65,26 @@ Deno.serve(async (req) => {
         affiliateLink = `https://www.amazon.com/s?k=${encodeURIComponent(title)}&tag=${affiliateTag}`;
       }
 
+      const match = existingMap.get(normalizedTitle);
+
+      if (match) {
+        // UPSERT: Update existing product with fresh link, image, price & mark active
+        const { error } = await supabase
+          .from("scraped_products")
+          .update({
+            affiliate_link: affiliateLink,
+            price: product.price || match.price,
+            image_url: product.image_url || match.image_url,
+            source_url: url || null,
+            is_active: true,
+          })
+          .eq("id", match.id);
+
+        if (!error) updated.push(title);
+        continue;
+      }
+
+      // INSERT new product
       const { data: inserted, error } = await supabase
         .from("scraped_products")
         .insert({
@@ -76,18 +94,19 @@ Deno.serve(async (req) => {
           affiliate_link: affiliateLink,
           source_url: url || null,
           category: product.category || null,
+          is_active: true,
         })
         .select()
         .single();
 
       if (!error && inserted) {
-        existingTitles.add(title.toLowerCase().trim());
+        existingMap.set(normalizedTitle, inserted);
         saved.push(inserted);
       }
     }
 
     return new Response(
-      JSON.stringify({ success: true, saved: saved.length, skipped: skipped.length }),
+      JSON.stringify({ success: true, saved: saved.length, updated: updated.length, skipped: skipped.length }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (err) {
