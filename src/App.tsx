@@ -101,6 +101,8 @@ const App = () => (
           <Route path="/admin/tech-spec" element={<AdminTechSpec />} />
           <Route path="/admin/emails" element={<AdminEmails />} />
           <Route path="/admin/command-center" element={<AdminCommandCenter />} />
+          <Route path="/media" element={<MediaHub />} />
+          <Route path="/media/mtl-v004" element={<EpisodeDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

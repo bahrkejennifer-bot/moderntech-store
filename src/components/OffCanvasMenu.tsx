@@ -5,6 +5,7 @@ import { useState } from "react";
 const menuItems = [
   { to: "/", label: "Home" },
   { to: "#", label: "Shop", hasSubmenu: true },
+  { to: "/media", label: "Watch & Listen" },
   { to: "/blog", label: "The Blueprint" },
   { to: "/signal", label: "Signal" },
   { to: "/digital-products", label: "Downloads" },
