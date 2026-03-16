@@ -34,7 +34,7 @@ function buildEmailTemplate(subject: string, bodyHtml: string): string {
                 ${subject}
               </h1>
               <p style="margin:8px 0 0;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#86868b;">
-                Precision Intelligence for the Modern Enterprise
+                The Essential Tech Updates You Actually Need
               </p>
             </td>
           </tr>
