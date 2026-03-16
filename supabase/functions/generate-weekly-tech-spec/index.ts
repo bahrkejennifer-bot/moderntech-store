@@ -325,6 +325,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
         to: "info@moderntech.store",
         from: "Modern Tech LLC <noreply@notify.www.moderntech.store>",
         sender_domain: "notify.www.moderntech.store",
+        purpose: "transactional",
         subject: `📋 Review Draft: ${subject}`,
         html: adminEmailHtml,
         purpose: "transactional",

@@ -243,7 +243,7 @@ Deno.serve(async (req) => {
 
       try {
         if (payload.run_id) {
-          // Auth emails: use Lovable email pipeline (run_id from webhook)
+          // Auth emails: use Lovable pipeline (has run_id from webhook)
           await sendLovableEmail(
             {
               run_id: payload.run_id,
@@ -262,14 +262,14 @@ Deno.serve(async (req) => {
             { apiKey, sendUrl: Deno.env.get('LOVABLE_SEND_URL') }
           )
         } else {
-          // Transactional/marketing emails: send via Resend API
-          // Use the Resend-verified domain (moderntech.store)
+          // Transactional emails: send via Resend API using verified moderntech.store domain
           const resendApiKey = Deno.env.get('RESEND_API_KEY')
-          if (!resendApiKey) throw new Error('RESEND_API_KEY not configured for transactional sends')
+          if (!resendApiKey) throw new Error('RESEND_API_KEY not configured')
 
-          // Override sender to use Resend-verified domain
-          const resendFrom = payload.from?.replace(/@notify\.www\.moderntech\.store/, '@moderntech.store')
-            ?.replace(/@www\.moderntech\.store/, '@moderntech.store')
+          // Normalize sender to Resend-verified root domain
+          const senderFrom = (payload.from || '')
+            .replace(/@notify\.www\.moderntech\.store/g, '@moderntech.store')
+            .replace(/@www\.moderntech\.store/g, '@moderntech.store')
             || 'Modern Tech LLC <noreply@moderntech.store>'
 
           const resendRes = await fetch('https://api.resend.com/emails', {
@@ -279,11 +279,11 @@ Deno.serve(async (req) => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              from: resendFrom,
+              from: senderFrom,
               to: payload.to,
               subject: payload.subject,
               html: payload.html,
-              text: payload.text || payload.subject || 'View this email in your browser',
+              text: payload.text || payload.subject || ' ',
             }),
           })
 
@@ -291,6 +291,7 @@ Deno.serve(async (req) => {
             const errBody = await resendRes.text()
             throw new Error(`Resend API error: ${resendRes.status} ${errBody}`)
           }
+          await resendRes.text() // consume body
         }
 
         // Log success
