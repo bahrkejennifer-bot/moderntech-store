@@ -216,7 +216,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
             type: "function",
             function: {
               name: "generate_newsletter",
-              description: "Generate the Tech Specs Weekly Report newsletter",
+              description: "Generate The Art of Modern Tech Weekly Report newsletter",
               parameters: {
                 type: "object",
                 properties: {
