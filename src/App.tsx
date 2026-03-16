@@ -96,6 +96,7 @@ const App = () => (
           <Route path="/pinterest-callback" element={<PinterestCallback />} />
           <Route path="/admin/pinterest" element={<AdminPinterest />} />
           <Route path="/admin/tech-spec" element={<AdminTechSpec />} />
+          <Route path="/admin/emails" element={<AdminEmails />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
