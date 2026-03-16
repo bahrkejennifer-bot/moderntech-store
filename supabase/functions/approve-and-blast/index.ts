@@ -97,7 +97,7 @@ Deno.serve(async (req) => {
               body: JSON.stringify({
                 board_id: boardId,
                 title: productTitle.substring(0, 100),
-                description: `🔥 ${productTitle} ${productPrice || ""} — Nurse-Verified pick! ${affiliateLink}\n\n#tech #gadgets #amazonfinds #moderntech\n\nAs an Amazon Associate, I earn from qualifying purchases.`,
+                description: `🔥 ${productTitle} ${productPrice || ""} — Jen-Verified pick! ${affiliateLink}\n\n#tech #gadgets #amazonfinds #moderntech\n\nAs an Amazon Associate, I earn from qualifying purchases.`,
                 media_source: { source_type: "image_url", url: productImage },
                 link: affiliateLink,
               }),
