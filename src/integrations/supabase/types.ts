@@ -182,6 +182,81 @@ export type Database = {
         }
         Relationships: []
       }
+      episodes: {
+        Row: {
+          apple_url: string | null
+          created_at: string
+          day_theme: string | null
+          description: string | null
+          episode_code: string
+          has_cc: boolean | null
+          has_transcript: boolean | null
+          id: string
+          is_featured: boolean | null
+          is_published: boolean | null
+          publish_date: string | null
+          quote_author: string | null
+          quote_text: string | null
+          spotify_url: string | null
+          story_html: string | null
+          takeaways: Json | null
+          thumbnail_url: string | null
+          title: string
+          transcript_html: string | null
+          type: string
+          updated_at: string
+          youtube_url: string | null
+        }
+        Insert: {
+          apple_url?: string | null
+          created_at?: string
+          day_theme?: string | null
+          description?: string | null
+          episode_code: string
+          has_cc?: boolean | null
+          has_transcript?: boolean | null
+          id?: string
+          is_featured?: boolean | null
+          is_published?: boolean | null
+          publish_date?: string | null
+          quote_author?: string | null
+          quote_text?: string | null
+          spotify_url?: string | null
+          story_html?: string | null
+          takeaways?: Json | null
+          thumbnail_url?: string | null
+          title: string
+          transcript_html?: string | null
+          type?: string
+          updated_at?: string
+          youtube_url?: string | null
+        }
+        Update: {
+          apple_url?: string | null
+          created_at?: string
+          day_theme?: string | null
+          description?: string | null
+          episode_code?: string
+          has_cc?: boolean | null
+          has_transcript?: boolean | null
+          id?: string
+          is_featured?: boolean | null
+          is_published?: boolean | null
+          publish_date?: string | null
+          quote_author?: string | null
+          quote_text?: string | null
+          spotify_url?: string | null
+          story_html?: string | null
+          takeaways?: Json | null
+          thumbnail_url?: string | null
+          title?: string
+          transcript_html?: string | null
+          type?: string
+          updated_at?: string
+          youtube_url?: string | null
+        }
+        Relationships: []
+      }
       lead_captures: {
         Row: {
           created_at: string

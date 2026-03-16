@@ -42,6 +42,7 @@ import AdminPinterest from "./pages/AdminPinterest";
 import AdminTechSpec from "./pages/AdminTechSpec";
 import AdminEmails from "./pages/AdminEmails";
 import AdminCommandCenter from "./pages/AdminCommandCenter";
+import AdminEpisodes from "./pages/AdminEpisodes";
 import MediaHub from "./pages/MediaHub";
 import EpisodeDetail from "./pages/EpisodeDetail";
 import { NewsletterPopup } from "./components/NewsletterPopup";
@@ -101,7 +102,9 @@ const App = () => (
           <Route path="/admin/tech-spec" element={<AdminTechSpec />} />
           <Route path="/admin/emails" element={<AdminEmails />} />
           <Route path="/admin/command-center" element={<AdminCommandCenter />} />
+          <Route path="/admin/episodes" element={<AdminEpisodes />} />
           <Route path="/media" element={<MediaHub />} />
+          <Route path="/media/:id" element={<EpisodeDetail />} />
           <Route path="/media/mtl-v004" element={<EpisodeDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
