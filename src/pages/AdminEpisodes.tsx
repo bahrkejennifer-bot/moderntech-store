@@ -72,6 +72,8 @@ const AdminEpisodes = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingEpisode, setEditingEpisode] = useState<Partial<Episode> | null>(null);
   const [takeawayInput, setTakeawayInput] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const { data: episodes = [], isLoading } = useQuery({
     queryKey: ["admin-episodes"],
