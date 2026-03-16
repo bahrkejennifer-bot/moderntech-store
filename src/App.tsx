@@ -45,6 +45,7 @@ import AdminCommandCenter from "./pages/AdminCommandCenter";
 import AdminEpisodes from "./pages/AdminEpisodes";
 import MediaHub from "./pages/MediaHub";
 import EpisodeDetail from "./pages/EpisodeDetail";
+import FoundersTechStack from "./pages/FoundersTechStack";
 import { NewsletterPopup } from "./components/NewsletterPopup";
 import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
 
