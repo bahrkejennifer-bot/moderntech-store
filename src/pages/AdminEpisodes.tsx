@@ -77,6 +77,12 @@ const AdminEpisodes = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Bulk upload state
+  const [bulkDialogOpen, setBulkDialogOpen] = useState(false);
+  const [bulkFiles, setBulkFiles] = useState<{ file: File; matchedEpisode: Episode | null; status: "pending" | "uploading" | "done" | "error"; progress: number; error?: string }[]>([]);
+  const [bulkUploading, setBulkUploading] = useState(false);
+  const bulkFileInputRef = useRef<HTMLInputElement>(null);
+
   const { data: episodes = [], isLoading } = useQuery({
     queryKey: ["admin-episodes"],
     queryFn: async () => {
