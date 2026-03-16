@@ -7,7 +7,7 @@ const menuItems = [
   { to: "#", label: "Shop", hasSubmenu: true },
   { to: "/media", label: "Watch & Listen" },
   { to: "/blog", label: "The Blueprint" },
-  { to: "/signal", label: "Signal" },
+  { to: "/signal", label: "The Art of Modern Tech" },
   { to: "/digital-products", label: "Downloads" },
 ];
 
