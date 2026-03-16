@@ -34,7 +34,7 @@ function buildEmailTemplate(subject: string, bodyHtml: string): string {
                 ${subject}
               </h1>
               <p style="margin:8px 0 0;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#86868b;">
-                Precision Intelligence for the Modern Enterprise
+                The Essential Tech Updates You Actually Need
               </p>
             </td>
           </tr>
@@ -138,11 +138,11 @@ Deno.serve(async (req) => {
       price: p.price,
     }));
 
-    const prompt = `You are the editor of "Tech Specs Weekly Report" by Modern Tech LLC.
+    const prompt = `You are the editor of "The Art of Modern Tech — Weekly Report" by Modern Tech LLC.
 
 BRAND IDENTITY: Apple-aesthetic. Monochromatic visuals, extreme white space, "less is more" editorial voice. Authoritative, witty, radically honest. You are an expert curator — never salesy, never fluffy. Short paragraphs. Never more than 3 sentences per paragraph.
 
-TAGLINE: "Precision Intelligence for the Modern Enterprise"
+TAGLINE: "The Essential Tech Updates You Actually Need"
 
 STRUCTURE — Follow this exact blueprint:
 
@@ -216,7 +216,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
             type: "function",
             function: {
               name: "generate_newsletter",
-              description: "Generate the Tech Specs Weekly Report newsletter",
+              description: "Generate The Art of Modern Tech Weekly Report newsletter",
               parameters: {
                 type: "object",
                 properties: {
@@ -264,7 +264,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
 
     if (insertError) throw new Error(`Failed to save draft: ${insertError.message}`);
 
-    console.log("Tech Specs Weekly Report draft generated:", spec.id);
+    console.log("Art of Modern Tech Weekly Report draft generated:", spec.id);
 
     // Send notification email to admin with Approve button
     const approveUrl = `${supabaseUrl}/functions/v1/approve-tech-spec?spec_id=${spec.id}&action=approve`;
@@ -279,7 +279,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:12px;overflow:hidden;">
         <tr><td style="padding:40px 48px;text-align:center;">
           <p style="margin:0 0 8px;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#86868b;">ADMIN REVIEW REQUIRED</p>
-          <h1 style="margin:0 0 16px;font-family:'Georgia',serif;font-size:24px;font-weight:400;color:#1d1d1f;">New Tech Spec Draft Ready</h1>
+          <h1 style="margin:0 0 16px;font-family:'Georgia',serif;font-size:24px;font-weight:400;color:#1d1d1f;">New Weekly Report Draft Ready</h1>
           <p style="margin:0 0 8px;font-size:15px;color:#424245;line-height:1.6;">Subject: <strong style="color:#1d1d1f;">${subject}</strong></p>
           <p style="margin:0 0 28px;font-size:14px;color:#86868b;">Generated ${new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })} at 7:00 AM EST</p>
           <div style="height:1px;background-color:#e5e5e7;margin:0 0 28px;"></div>

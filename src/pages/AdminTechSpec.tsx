@@ -114,8 +114,8 @@ const AdminTechSpec = () => {
             <button onClick={() => navigate("/admin/upload")} className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-2">
               <ArrowLeft className="w-4 h-4" /> Back to Admin
             </button>
-            <h1 className="font-serif text-3xl text-foreground">The Weekly Tech Spec</h1>
-            <p className="text-muted-foreground mt-1">AI-generated newsletter drafts · Review & send</p>
+            <h1 className="font-serif text-3xl text-foreground">The Art of Modern Tech — Weekly Report</h1>
+            <p className="text-muted-foreground mt-1">AI-generated weekly report drafts · Review & send</p>
           </div>
           <Button onClick={handleGenerate} disabled={generating} className="bg-primary hover:bg-primary/90">
             {generating ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <RefreshCw className="w-4 h-4 mr-2" />}
