@@ -5,7 +5,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const SENDER_DOMAIN = "www.moderntech.store";
+const SENDER_DOMAIN = "notify.www.moderntech.store";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {

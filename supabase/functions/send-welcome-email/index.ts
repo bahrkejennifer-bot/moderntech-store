@@ -8,7 +8,7 @@ const corsHeaders = {
 const LOGO_URL = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/email-assets/mt-welcome-logo.png";
 const HERO_BG_URL = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/email-assets/email-welcome-hero-bg.jpg";
 
-const SENDER_DOMAIN = "www.moderntech.store";
+const SENDER_DOMAIN = "notify.www.moderntech.store";
 
 function buildWelcomeHtml(firstName: string): string {
   return `<!DOCTYPE html>
