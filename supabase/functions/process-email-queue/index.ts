@@ -242,50 +242,26 @@ Deno.serve(async (req) => {
       }
 
       try {
-        if (payload.run_id) {
-          // Auth emails: use Lovable email pipeline (run_id from webhook)
-          await sendLovableEmail(
-            {
-              run_id: payload.run_id,
-              to: payload.to,
-              from: payload.from,
-              sender_domain: payload.sender_domain,
-              subject: payload.subject,
-              html: payload.html,
-              text: payload.text,
-              purpose: payload.purpose,
-              label: payload.label,
-              idempotency_key: payload.idempotency_key,
-              unsubscribe_token: payload.unsubscribe_token,
-              message_id: payload.message_id,
-            },
-            { apiKey, sendUrl: Deno.env.get('LOVABLE_SEND_URL') }
-          )
-        } else {
-          // Transactional/marketing emails: send via Resend API directly
-          const resendApiKey = Deno.env.get('RESEND_API_KEY')
-          if (!resendApiKey) throw new Error('RESEND_API_KEY not configured for transactional sends')
-
-          const resendRes = await fetch('https://api.resend.com/emails', {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${resendApiKey}`,
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              from: payload.from,
-              to: payload.to,
-              subject: payload.subject,
-              html: payload.html,
-              text: payload.text,
-            }),
-          })
-
-          if (!resendRes.ok) {
-            const errBody = await resendRes.text()
-            throw new Error(`Resend API error: ${resendRes.status} ${errBody}`)
-          }
-        }
+        // Route ALL emails through the Lovable email pipeline
+        // For transactional emails without a run_id, generate one
+        const runId = payload.run_id || crypto.randomUUID()
+        await sendLovableEmail(
+          {
+            run_id: runId,
+            to: payload.to,
+            from: payload.from,
+            sender_domain: payload.sender_domain,
+            subject: payload.subject,
+            html: payload.html,
+            text: payload.text,
+            purpose: payload.purpose || 'transactional',
+            label: payload.label,
+            idempotency_key: payload.idempotency_key,
+            unsubscribe_token: payload.unsubscribe_token,
+            message_id: payload.message_id,
+          },
+          { apiKey, sendUrl: Deno.env.get('LOVABLE_SEND_URL') }
+        )
 
         // Log success
         await supabase.from('email_send_log').insert({

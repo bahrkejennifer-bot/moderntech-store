@@ -95,7 +95,7 @@ Deno.serve(async (req) => {
         payload: {
           message_id: messageId,
           to: email,
-          from: `The Tech Brief <hello@${SENDER_DOMAIN}>`,
+          from: `Modern Tech LLC <noreply@${SENDER_DOMAIN}>`,
           sender_domain: SENDER_DOMAIN,
           subject: spec.subject,
           html: spec.html_content,
