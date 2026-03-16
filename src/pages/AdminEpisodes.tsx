@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Plus, Pencil, Trash2, Eye, EyeOff, Star, Video, Headphones, Upload, ImageIcon, X } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
