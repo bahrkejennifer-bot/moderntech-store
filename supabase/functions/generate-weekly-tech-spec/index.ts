@@ -24,9 +24,7 @@ function buildEmailTemplate(subject: string, bodyHtml: string): string {
           <!-- Header -->
           <tr>
             <td style="padding:48px 48px 0;text-align:center;">
-              <div style="width:52px;height:52px;border-radius:50%;overflow:hidden;border:2px solid #e5e5e7;display:inline-block;">
-                <img src="${LOGO_URL}" alt="Modern Tech" width="52" height="52" style="display:block;width:52px;height:52px;object-fit:cover;border:0;" />
-              </div>
+              <img src="${LOGO_URL}" alt="Modern Tech" width="140" height="auto" style="display:inline-block;width:140px;height:auto;border:0;" />
               <p style="margin:16px 0 0;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#86868b;">
                 THE ART OF MODERN TECH
               </p>
