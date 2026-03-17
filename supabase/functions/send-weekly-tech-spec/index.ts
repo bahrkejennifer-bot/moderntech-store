@@ -125,7 +125,7 @@ Deno.serve(async (req) => {
           },
           body: JSON.stringify({
             subject: spec.subject,
-            name: `Weekly Tech Spec - ${new Date().toISOString().split("T")[0]}`,
+            name: `The Art of Modern Tech - ${new Date().toISOString().split("T")[0]}`,
             content: {
               html: spec.html_content,
               plain: spec.plain_text || undefined,

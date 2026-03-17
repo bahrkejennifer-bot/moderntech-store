@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 const boardroomItems = [
-  { title: "Weekly Report", url: "/admin/command-center", icon: Newspaper, description: "Approve & blast emails" },
+  { title: "Art of Modern Tech", url: "/admin/command-center", icon: Newspaper, description: "Approve & blast emails" },
   { title: "Podcast Studio", url: "/admin/episodes", icon: Mic, description: "Manage episodes" },
   { title: "Product Queue", url: "/admin/scraper", icon: Package, description: "Review scraped products" },
 ];
