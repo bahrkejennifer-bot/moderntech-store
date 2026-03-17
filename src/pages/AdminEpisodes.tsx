@@ -362,7 +362,12 @@ const AdminEpisodes = () => {
                       )}
                     </TableCell>
                     <TableCell className="text-right">
-                      <div className="flex justify-end gap-2">
+                      <div className="flex justify-end gap-1">
+                        {(ep.youtube_url || ep.spotify_url || ep.apple_url) && (
+                          <Button variant="ghost" size="sm" onClick={() => setPreviewEpisode(ep)} title="Preview">
+                            <Play className="h-3.5 w-3.5 text-primary" />
+                          </Button>
+                        )}
                         <Button variant="ghost" size="sm" onClick={() => openEdit(ep)}>
                           <Pencil className="h-3.5 w-3.5" />
                         </Button>
