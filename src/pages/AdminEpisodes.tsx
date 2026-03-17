@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Plus, Pencil, Trash2, Eye, EyeOff, Star, Video, Headphones, Upload, ImageIcon, X, Images, Check, AlertCircle } from "lucide-react";
+import { ArrowLeft, Plus, Pencil, Trash2, Eye, EyeOff, Star, Video, Headphones, Upload, ImageIcon, X, Images, Check, AlertCircle, Play, ExternalLink } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -76,6 +76,7 @@ const AdminEpisodes = () => {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [previewEpisode, setPreviewEpisode] = useState<Episode | null>(null);
 
   // Bulk upload state
   const [bulkDialogOpen, setBulkDialogOpen] = useState(false);
@@ -361,7 +362,12 @@ const AdminEpisodes = () => {
                       )}
                     </TableCell>
                     <TableCell className="text-right">
-                      <div className="flex justify-end gap-2">
+                      <div className="flex justify-end gap-1">
+                        {(ep.youtube_url || ep.spotify_url || ep.apple_url) && (
+                          <Button variant="ghost" size="sm" onClick={() => setPreviewEpisode(ep)} title="Preview">
+                            <Play className="h-3.5 w-3.5 text-primary" />
+                          </Button>
+                        )}
                         <Button variant="ghost" size="sm" onClick={() => openEdit(ep)}>
                           <Pencil className="h-3.5 w-3.5" />
                         </Button>
@@ -779,6 +785,84 @@ const AdminEpisodes = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Preview Dialog */}
+      <Dialog open={!!previewEpisode} onOpenChange={(open) => !open && setPreviewEpisode(null)}>
+        <DialogContent className="max-w-3xl">
+          <DialogHeader>
+            <DialogTitle className="font-serif text-xl flex items-center gap-2">
+              {previewEpisode?.type === "video" ? <Video className="h-5 w-5" /> : <Headphones className="h-5 w-5" />}
+              {previewEpisode?.title}
+            </DialogTitle>
+          </DialogHeader>
+
+          {previewEpisode && (
+            <div className="space-y-4 mt-2">
+              {/* YouTube Embed */}
+              {previewEpisode.youtube_url && (() => {
+                const url = previewEpisode.youtube_url!;
+                const videoIdMatch = url.match(/(?:v=|youtu\.be\/|\/embed\/)([a-zA-Z0-9_-]{11})/);
+                if (videoIdMatch) {
+                  return (
+                    <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${videoIdMatch[1]}`}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        title={previewEpisode.title}
+                      />
+                    </div>
+                  );
+                }
+                return (
+                  <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary hover:underline font-mono text-sm">
+                    <ExternalLink className="h-4 w-4" /> Open YouTube Channel
+                  </a>
+                );
+              })()}
+
+              {/* Spotify Embed */}
+              {previewEpisode.spotify_url && (() => {
+                const url = previewEpisode.spotify_url!;
+                const spotifyMatch = url.match(/open\.spotify\.com\/(episode|show)\/([a-zA-Z0-9]+)/);
+                if (spotifyMatch) {
+                  return (
+                    <div className="rounded-lg overflow-hidden">
+                      <iframe
+                        src={`https://open.spotify.com/embed/${spotifyMatch[1]}/${spotifyMatch[2]}`}
+                        className="w-full"
+                        height="152"
+                        allow="encrypted-media"
+                        title="Spotify Player"
+                      />
+                    </div>
+                  );
+                }
+                return (
+                  <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary hover:underline font-mono text-sm">
+                    <ExternalLink className="h-4 w-4" /> Open on Spotify
+                  </a>
+                );
+              })()}
+
+              {/* Apple Podcasts Link */}
+              {previewEpisode.apple_url && (
+                <a href={previewEpisode.apple_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary hover:underline font-mono text-sm">
+                  <ExternalLink className="h-4 w-4" /> Listen on Apple Podcasts
+                </a>
+              )}
+
+              {/* No links */}
+              {!previewEpisode.youtube_url && !previewEpisode.spotify_url && !previewEpisode.apple_url && (
+                <p className="text-muted-foreground font-mono text-sm text-center py-8">
+                  No media links added yet. Edit this episode to add YouTube, Spotify, or Apple Podcast URLs.
+                </p>
+              )}
             </div>
           )}
         </DialogContent>
