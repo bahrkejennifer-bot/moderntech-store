@@ -76,6 +76,7 @@ const AdminEpisodes = () => {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [previewEpisode, setPreviewEpisode] = useState<Episode | null>(null);
 
   // Bulk upload state
   const [bulkDialogOpen, setBulkDialogOpen] = useState(false);
