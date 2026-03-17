@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Plus, Pencil, Trash2, Eye, EyeOff, Star, Video, Headphones, Upload, ImageIcon, X, Images, Check, AlertCircle, Play, ExternalLink } from "lucide-react";
+import { ArrowLeft, Plus, Pencil, Trash2, Eye, EyeOff, Star, Video, Headphones, Upload, ImageIcon, X, Images, Check, AlertCircle, Play, ExternalLink, MonitorPlay, Music, Podcast, ChevronDown, ChevronUp, Calendar, Tag } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
