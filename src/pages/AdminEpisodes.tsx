@@ -562,6 +562,7 @@ const AdminEpisodes = () => {
                 />
               </div>
 
+              {/* Media URLs */}
               <div className="grid grid-cols-3 gap-4">
                 <div>
                   <label className="font-mono text-[10px] uppercase text-muted-foreground">YouTube URL</label>
@@ -585,6 +586,50 @@ const AdminEpisodes = () => {
                   />
                 </div>
               </div>
+
+              {/* Inline Media Preview */}
+              {(editingEpisode.youtube_url || editingEpisode.spotify_url) && (
+                <div className="border border-border rounded-lg overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => setInlinePreviewOpen(!inlinePreviewOpen)}
+                    className="w-full flex items-center justify-between px-4 py-2.5 bg-muted/30 hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase text-muted-foreground">
+                      <MonitorPlay className="h-3.5 w-3.5" /> Media Preview
+                    </span>
+                    {inlinePreviewOpen ? <ChevronUp className="h-3.5 w-3.5 text-muted-foreground" /> : <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />}
+                  </button>
+                  {inlinePreviewOpen && (
+                    <div className="p-4 space-y-3">
+                      {editingEpisode.youtube_url && (() => {
+                        const vidMatch = editingEpisode.youtube_url!.match(/(?:v=|youtu\.be\/|\/embed\/)([a-zA-Z0-9_-]{11})/);
+                        return vidMatch ? (
+                          <div className="aspect-video rounded-md overflow-hidden bg-muted">
+                            <iframe
+                              src={`https://www.youtube.com/embed/${vidMatch[1]}`}
+                              className="w-full h-full"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          </div>
+                        ) : null;
+                      })()}
+                      {editingEpisode.spotify_url && (() => {
+                        const spMatch = editingEpisode.spotify_url!.match(/open\.spotify\.com\/(episode|show)\/([a-zA-Z0-9]+)/);
+                        return spMatch ? (
+                          <iframe
+                            src={`https://open.spotify.com/embed/${spMatch[1]}/${spMatch[2]}`}
+                            className="w-full rounded-md"
+                            height="152"
+                            allow="encrypted-media"
+                          />
+                        ) : null;
+                      })()}
+                    </div>
+                  )}
+                </div>
+              )}
 
               <div>
                 <label className="font-mono text-[10px] uppercase text-muted-foreground">Quote</label>
