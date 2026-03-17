@@ -277,7 +277,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:12px;overflow:hidden;">
         <tr><td style="padding:40px 48px;text-align:center;">
           <p style="margin:0 0 8px;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#86868b;">ADMIN REVIEW REQUIRED</p>
-          <h1 style="margin:0 0 16px;font-family:'Georgia',serif;font-size:24px;font-weight:400;color:#1d1d1f;">New Weekly Report Draft Ready</h1>
+          <h1 style="margin:0 0 16px;font-family:'Georgia',serif;font-size:24px;font-weight:400;color:#1d1d1f;">New Art of Modern Tech Draft Ready</h1>
           <p style="margin:0 0 8px;font-size:15px;color:#424245;line-height:1.6;">Subject: <strong style="color:#1d1d1f;">${subject}</strong></p>
           <p style="margin:0 0 28px;font-size:14px;color:#86868b;">Generated ${new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })} at 7:00 AM EST</p>
           <div style="height:1px;background-color:#e5e5e7;margin:0 0 28px;"></div>
