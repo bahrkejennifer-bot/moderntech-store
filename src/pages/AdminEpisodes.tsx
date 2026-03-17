@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Plus, Pencil, Trash2, Eye, EyeOff, Star, Video, Headphones, Upload, ImageIcon, X, Images, Check, AlertCircle, Play, ExternalLink } from "lucide-react";
+import { ArrowLeft, Plus, Pencil, Trash2, Eye, EyeOff, Star, Video, Headphones, Upload, ImageIcon, X, Images, Check, AlertCircle, Play, ExternalLink, MonitorPlay, Music, Podcast, ChevronDown, ChevronUp, Calendar, Tag } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -77,6 +77,8 @@ const AdminEpisodes = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewEpisode, setPreviewEpisode] = useState<Episode | null>(null);
+  const [inlinePreviewOpen, setInlinePreviewOpen] = useState(false);
+  const [previewTab, setPreviewTab] = useState<"youtube" | "spotify" | "apple">("youtube");
 
   // Bulk upload state
   const [bulkDialogOpen, setBulkDialogOpen] = useState(false);
@@ -562,6 +564,7 @@ const AdminEpisodes = () => {
                 />
               </div>
 
+              {/* Media URLs */}
               <div className="grid grid-cols-3 gap-4">
                 <div>
                   <label className="font-mono text-[10px] uppercase text-muted-foreground">YouTube URL</label>
@@ -585,6 +588,50 @@ const AdminEpisodes = () => {
                   />
                 </div>
               </div>
+
+              {/* Inline Media Preview */}
+              {(editingEpisode.youtube_url || editingEpisode.spotify_url) && (
+                <div className="border border-border rounded-lg overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => setInlinePreviewOpen(!inlinePreviewOpen)}
+                    className="w-full flex items-center justify-between px-4 py-2.5 bg-muted/30 hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase text-muted-foreground">
+                      <MonitorPlay className="h-3.5 w-3.5" /> Media Preview
+                    </span>
+                    {inlinePreviewOpen ? <ChevronUp className="h-3.5 w-3.5 text-muted-foreground" /> : <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />}
+                  </button>
+                  {inlinePreviewOpen && (
+                    <div className="p-4 space-y-3">
+                      {editingEpisode.youtube_url && (() => {
+                        const vidMatch = editingEpisode.youtube_url!.match(/(?:v=|youtu\.be\/|\/embed\/)([a-zA-Z0-9_-]{11})/);
+                        return vidMatch ? (
+                          <div className="aspect-video rounded-md overflow-hidden bg-muted">
+                            <iframe
+                              src={`https://www.youtube.com/embed/${vidMatch[1]}`}
+                              className="w-full h-full"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          </div>
+                        ) : null;
+                      })()}
+                      {editingEpisode.spotify_url && (() => {
+                        const spMatch = editingEpisode.spotify_url!.match(/open\.spotify\.com\/(episode|show)\/([a-zA-Z0-9]+)/);
+                        return spMatch ? (
+                          <iframe
+                            src={`https://open.spotify.com/embed/${spMatch[1]}/${spMatch[2]}`}
+                            className="w-full rounded-md"
+                            height="152"
+                            allow="encrypted-media"
+                          />
+                        ) : null;
+                      })()}
+                    </div>
+                  )}
+                </div>
+              )}
 
               <div>
                 <label className="font-mono text-[10px] uppercase text-muted-foreground">Quote</label>
@@ -790,81 +837,176 @@ const AdminEpisodes = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Preview Dialog */}
+      {/* Preview Dialog — Rich Player */}
       <Dialog open={!!previewEpisode} onOpenChange={(open) => !open && setPreviewEpisode(null)}>
-        <DialogContent className="max-w-3xl">
-          <DialogHeader>
-            <DialogTitle className="font-serif text-xl flex items-center gap-2">
-              {previewEpisode?.type === "video" ? <Video className="h-5 w-5" /> : <Headphones className="h-5 w-5" />}
-              {previewEpisode?.title}
-            </DialogTitle>
-          </DialogHeader>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0">
+          {previewEpisode && (() => {
+            const ytMatch = previewEpisode.youtube_url?.match(/(?:v=|youtu\.be\/|\/embed\/)([a-zA-Z0-9_-]{11})/);
+            const spMatch = previewEpisode.spotify_url?.match(/open\.spotify\.com\/(episode|show)\/([a-zA-Z0-9]+)/);
+            const hasYT = !!ytMatch;
+            const hasSP = !!spMatch;
+            const hasApple = !!previewEpisode.apple_url;
+            const sources = [
+              hasYT && "youtube" as const,
+              hasSP && "spotify" as const,
+              hasApple && "apple" as const,
+            ].filter(Boolean) as ("youtube" | "spotify" | "apple")[];
 
-          {previewEpisode && (
-            <div className="space-y-4 mt-2">
-              {/* YouTube Embed */}
-              {previewEpisode.youtube_url && (() => {
-                const url = previewEpisode.youtube_url!;
-                const videoIdMatch = url.match(/(?:v=|youtu\.be\/|\/embed\/)([a-zA-Z0-9_-]{11})/);
-                if (videoIdMatch) {
-                  return (
-                    <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+            const activeTab = sources.includes(previewTab) ? previewTab : sources[0] || "youtube";
+
+            return (
+              <>
+                {/* Header with thumbnail background */}
+                <div className="relative">
+                  {previewEpisode.thumbnail_url && (
+                    <div className="absolute inset-0 overflow-hidden">
+                      <img src={previewEpisode.thumbnail_url} alt="" className="w-full h-full object-cover blur-2xl opacity-20" />
+                    </div>
+                  )}
+                  <div className="relative px-6 pt-6 pb-4">
+                    <div className="flex items-start gap-4">
+                      {previewEpisode.thumbnail_url && (
+                        <img src={previewEpisode.thumbnail_url} alt="" className="w-20 h-20 rounded-lg object-cover border border-border shadow-sm flex-shrink-0" />
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          {previewEpisode.type === "video" ? <Video className="h-4 w-4 text-primary" /> : <Headphones className="h-4 w-4 text-primary" />}
+                          <span className="font-mono text-[10px] uppercase text-muted-foreground">{previewEpisode.episode_code}</span>
+                          {previewEpisode.is_published ? (
+                            <span className="inline-flex items-center gap-1 font-mono text-[9px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary">
+                              <Eye className="h-2.5 w-2.5" /> Live
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 font-mono text-[9px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">
+                              <EyeOff className="h-2.5 w-2.5" /> Draft
+                            </span>
+                          )}
+                        </div>
+                        <h2 className="font-serif text-lg leading-tight">{previewEpisode.title}</h2>
+                        <div className="flex items-center gap-3 mt-1.5 font-mono text-[10px] text-muted-foreground">
+                          {previewEpisode.day_theme && (
+                            <span className="inline-flex items-center gap-1"><Tag className="h-3 w-3" /> {previewEpisode.day_theme}</span>
+                          )}
+                          {previewEpisode.publish_date && (
+                            <span className="inline-flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(previewEpisode.publish_date).toLocaleDateString()}</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Source Tabs */}
+                {sources.length > 1 && (
+                  <div className="flex border-b border-border px-6">
+                    {hasYT && (
+                      <button
+                        onClick={() => setPreviewTab("youtube")}
+                        className={`inline-flex items-center gap-1.5 px-4 py-2.5 font-mono text-[10px] uppercase border-b-2 transition-colors ${activeTab === "youtube" ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"}`}
+                      >
+                        <MonitorPlay className="h-3.5 w-3.5" /> YouTube
+                      </button>
+                    )}
+                    {hasSP && (
+                      <button
+                        onClick={() => setPreviewTab("spotify")}
+                        className={`inline-flex items-center gap-1.5 px-4 py-2.5 font-mono text-[10px] uppercase border-b-2 transition-colors ${activeTab === "spotify" ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"}`}
+                      >
+                        <Music className="h-3.5 w-3.5" /> Spotify
+                      </button>
+                    )}
+                    {hasApple && (
+                      <button
+                        onClick={() => setPreviewTab("apple")}
+                        className={`inline-flex items-center gap-1.5 px-4 py-2.5 font-mono text-[10px] uppercase border-b-2 transition-colors ${activeTab === "apple" ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"}`}
+                      >
+                        <Podcast className="h-3.5 w-3.5" /> Apple
+                      </button>
+                    )}
+                  </div>
+                )}
+
+                {/* Player Area */}
+                <div className="px-6 py-4">
+                  {activeTab === "youtube" && hasYT && (
+                    <div className="aspect-video rounded-lg overflow-hidden bg-muted shadow-inner">
                       <iframe
-                        src={`https://www.youtube.com/embed/${videoIdMatch[1]}`}
+                        src={`https://www.youtube.com/embed/${ytMatch![1]}?rel=0`}
                         className="w-full h-full"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         title={previewEpisode.title}
                       />
                     </div>
-                  );
-                }
-                return (
-                  <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary hover:underline font-mono text-sm">
-                    <ExternalLink className="h-4 w-4" /> Open YouTube Channel
-                  </a>
-                );
-              })()}
+                  )}
 
-              {/* Spotify Embed */}
-              {previewEpisode.spotify_url && (() => {
-                const url = previewEpisode.spotify_url!;
-                const spotifyMatch = url.match(/open\.spotify\.com\/(episode|show)\/([a-zA-Z0-9]+)/);
-                if (spotifyMatch) {
-                  return (
+                  {activeTab === "spotify" && hasSP && (
                     <div className="rounded-lg overflow-hidden">
                       <iframe
-                        src={`https://open.spotify.com/embed/${spotifyMatch[1]}/${spotifyMatch[2]}`}
-                        className="w-full"
-                        height="152"
+                        src={`https://open.spotify.com/embed/${spMatch![1]}/${spMatch![2]}?theme=0`}
+                        className="w-full rounded-lg"
+                        height="232"
                         allow="encrypted-media"
                         title="Spotify Player"
                       />
                     </div>
-                  );
-                }
-                return (
-                  <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary hover:underline font-mono text-sm">
-                    <ExternalLink className="h-4 w-4" /> Open on Spotify
-                  </a>
-                );
-              })()}
+                  )}
 
-              {/* Apple Podcasts Link */}
-              {previewEpisode.apple_url && (
-                <a href={previewEpisode.apple_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary hover:underline font-mono text-sm">
-                  <ExternalLink className="h-4 w-4" /> Listen on Apple Podcasts
-                </a>
-              )}
+                  {activeTab === "apple" && hasApple && (
+                    <div className="flex flex-col items-center gap-3 py-8 text-center">
+                      <Podcast className="h-10 w-10 text-muted-foreground" />
+                      <p className="font-mono text-xs text-muted-foreground">Apple Podcasts doesn't support inline embeds</p>
+                      <a
+                        href={previewEpisode.apple_url!}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-primary-foreground font-mono text-xs hover:bg-primary/90 transition-colors"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" /> Listen on Apple Podcasts
+                      </a>
+                    </div>
+                  )}
 
-              {/* No links */}
-              {!previewEpisode.youtube_url && !previewEpisode.spotify_url && !previewEpisode.apple_url && (
-                <p className="text-muted-foreground font-mono text-sm text-center py-8">
-                  No media links added yet. Edit this episode to add YouTube, Spotify, or Apple Podcast URLs.
-                </p>
-              )}
-            </div>
-          )}
+                  {sources.length === 0 && (
+                    <p className="text-muted-foreground font-mono text-sm text-center py-8">
+                      No media links added yet. Edit this episode to add YouTube, Spotify, or Apple Podcast URLs.
+                    </p>
+                  )}
+                </div>
+
+                {/* Description */}
+                {previewEpisode.description && (
+                  <div className="px-6 pb-4">
+                    <p className="font-mono text-xs text-muted-foreground leading-relaxed">{previewEpisode.description}</p>
+                  </div>
+                )}
+
+                {/* Quote */}
+                {previewEpisode.quote_text && (
+                  <div className="mx-6 mb-4 px-4 py-3 border-l-2 border-primary/40 bg-muted/30 rounded-r-md">
+                    <p className="font-serif text-sm italic text-foreground/80">"{previewEpisode.quote_text}"</p>
+                    {previewEpisode.quote_author && (
+                      <p className="font-mono text-[10px] text-muted-foreground mt-1">— {previewEpisode.quote_author}</p>
+                    )}
+                  </div>
+                )}
+
+                {/* Takeaways */}
+                {previewEpisode.takeaways && (previewEpisode.takeaways as string[]).length > 0 && (
+                  <div className="px-6 pb-6">
+                    <h3 className="font-mono text-[10px] uppercase text-muted-foreground mb-2">Key Takeaways</h3>
+                    <ul className="space-y-1">
+                      {(previewEpisode.takeaways as string[]).map((t, i) => (
+                        <li key={i} className="flex items-start gap-2 font-mono text-xs text-foreground/80">
+                          <span className="text-primary mt-0.5">▸</span> {t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
+            );
+          })()}
         </DialogContent>
       </Dialog>
     </div>
