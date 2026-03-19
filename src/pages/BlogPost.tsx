@@ -661,6 +661,18 @@ const BlogPost = () => {
         <meta name="twitter:image" content={staticOgImage} />
         <meta property="pin:media" content={staticOgImage} />
         <meta property="pin:description" content={staticOgDesc} />
+        <link rel="canonical" href={`${SITE}/blog/${slug}`} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": post!.title,
+          "description": staticOgDesc,
+          "image": staticOgImage,
+          "datePublished": post!.date,
+          "author": { "@type": "Organization", "name": "Modern Tech LLC" },
+          "publisher": { "@type": "Organization", "name": "Modern Tech LLC", "url": SITE },
+          "mainEntityOfPage": { "@type": "WebPage", "@id": `${SITE}/blog/${slug}` }
+        })}</script>
       </Helmet>
 
       {/* Reading Progress Bar */}
