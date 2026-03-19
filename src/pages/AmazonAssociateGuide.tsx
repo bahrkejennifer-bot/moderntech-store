@@ -83,6 +83,13 @@ const AmazonAssociateGuide = () => {
         <meta property="og:image" content="https://moderntech.store/images/products/amazon-associate-guide-cover.jpg" />
         <meta property="og:url" content="https://moderntech.store/amazon-associate-guide" />
         <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Amazon Associate Quick-Start Guide 2026" />
+        <meta name="twitter:image" content="https://moderntech.store/images/products/amazon-associate-guide-cover.jpg" />
+        <meta property="pin:media" content="https://moderntech.store/images/products/amazon-associate-guide-cover.jpg" />
+        <meta property="pin:description" content="Launch your Amazon affiliate journey — from signup to your first commission in 5 pages." />
+        <link rel="canonical" href="https://moderntech.store/amazon-associate-guide" />
+        <script type="application/ld+json">{JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "Free Amazon Associate Quick-Start Guide 2026", "description": "Launch your Amazon affiliate journey — from signup to your first commission in 5 pages.", "image": "https://moderntech.store/images/products/amazon-associate-guide-cover.jpg", "author": { "@type": "Organization", "name": "Modern Tech LLC" }, "publisher": { "@type": "Organization", "name": "Modern Tech LLC", "url": "https://moderntech.store" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://moderntech.store/amazon-associate-guide" } })}</script>
       </Helmet>
       <Navigation />
 

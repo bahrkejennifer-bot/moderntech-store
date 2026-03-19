@@ -67,9 +67,16 @@ const SmartHomeSafetyChecklist = () => {
         <meta property="og:title" content="Free Parent's Smart Home Safety Checklist 2026 — by Modern Tech LLC" />
         <meta property="og:description" content="Room-by-room guide to protecting your family with smart cameras, locks, sensors & more." />
         <meta property="og:image" content="https://moderntech.store/images/products/smart-home-safety-checklist-cover.jpg" />
-        <meta property="og:url" content="https://moderntech.store/smart-home-safety-checklist" />
+        <meta property="og:url" content="https://moderntech.store/free-smart-home-checklist" />
         <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Parent's Smart Home Safety Checklist 2026" />
+        <meta name="twitter:image" content="https://moderntech.store/images/products/smart-home-safety-checklist-cover.jpg" />
+        <meta property="pin:media" content="https://moderntech.store/images/products/smart-home-safety-checklist-cover.jpg" />
+        <meta property="pin:description" content="Room-by-room guide to protecting your family with smart cameras, locks, sensors & more." />
+        <link rel="canonical" href="https://moderntech.store/free-smart-home-checklist" />
         <meta name="author" content="Modern Tech LLC" />
+        <script type="application/ld+json">{JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "Free Parent's Smart Home Safety Checklist 2026", "description": "Room-by-room guide to protecting your family with smart cameras, locks, sensors & more.", "image": "https://moderntech.store/images/products/smart-home-safety-checklist-cover.jpg", "author": { "@type": "Organization", "name": "Modern Tech LLC" }, "publisher": { "@type": "Organization", "name": "Modern Tech LLC", "url": "https://moderntech.store" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://moderntech.store/free-smart-home-checklist" } })}</script>
       </Helmet>
       <Navigation />
 

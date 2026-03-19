@@ -67,9 +67,16 @@ const SmartRingGuide = () => {
         <meta property="og:title" content="Free Smart Ring Buyer's Guide 2026 — by Modern Tech LLC" />
         <meta property="og:description" content="Compare Oura Ring 4, sizing tips, sleep tracking explained & a 30-day biohacking challenge." />
         <meta property="og:image" content="https://moderntech.store/images/products/smart-ring-guide-cover.jpg" />
-        <meta property="og:url" content="https://moderntech.store/smart-ring-guide" />
+        <meta property="og:url" content="https://moderntech.store/free-smart-ring-guide" />
         <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Smart Ring Buyer's Guide 2026 — by Modern Tech LLC" />
+        <meta name="twitter:image" content="https://moderntech.store/images/products/smart-ring-guide-cover.jpg" />
+        <meta property="pin:media" content="https://moderntech.store/images/products/smart-ring-guide-cover.jpg" />
+        <meta property="pin:description" content="Compare Oura Ring 4, sizing tips, sleep tracking explained & a 30-day biohacking challenge." />
+        <link rel="canonical" href="https://moderntech.store/free-smart-ring-guide" />
         <meta name="author" content="Modern Tech LLC" />
+        <script type="application/ld+json">{JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "Free Smart Ring Buyer's Guide 2026", "description": "Compare Oura Ring 4, sizing tips, sleep tracking explained & a 30-day biohacking challenge.", "image": "https://moderntech.store/images/products/smart-ring-guide-cover.jpg", "author": { "@type": "Organization", "name": "Modern Tech LLC" }, "publisher": { "@type": "Organization", "name": "Modern Tech LLC", "url": "https://moderntech.store" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://moderntech.store/free-smart-ring-guide" } })}</script>
       </Helmet>
       <Navigation />
 

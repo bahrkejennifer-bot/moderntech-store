@@ -525,6 +525,18 @@ const BlogPost = () => {
           <meta name="twitter:image" content={ogImage} />
           <meta property="pin:media" content={ogImage} />
           <meta property="pin:description" content={ogDesc} />
+          <link rel="canonical" href={`https://moderntech.store/blog/${slug}`} />
+          <script type="application/ld+json">{JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": ogTitle,
+            "description": ogDesc,
+            "image": ogImage,
+            "datePublished": dynamicPost.created_at,
+            "author": { "@type": "Organization", "name": "Modern Tech LLC" },
+            "publisher": { "@type": "Organization", "name": "Modern Tech LLC", "url": "https://moderntech.store" },
+            "mainEntityOfPage": { "@type": "WebPage", "@id": `https://moderntech.store/blog/${slug}` }
+          })}</script>
         </Helmet>
         {/* Reading Progress Bar */}
         <div className="fixed top-0 left-0 right-0 z-50 h-[3px] bg-transparent">
@@ -661,6 +673,18 @@ const BlogPost = () => {
         <meta name="twitter:image" content={staticOgImage} />
         <meta property="pin:media" content={staticOgImage} />
         <meta property="pin:description" content={staticOgDesc} />
+        <link rel="canonical" href={`${SITE}/blog/${slug}`} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": post!.title,
+          "description": staticOgDesc,
+          "image": staticOgImage,
+          "datePublished": post!.date,
+          "author": { "@type": "Organization", "name": "Modern Tech LLC" },
+          "publisher": { "@type": "Organization", "name": "Modern Tech LLC", "url": SITE },
+          "mainEntityOfPage": { "@type": "WebPage", "@id": `${SITE}/blog/${slug}` }
+        })}</script>
       </Helmet>
 
       {/* Reading Progress Bar */}

@@ -57,9 +57,16 @@ const ScreenFreeKidsGuide = () => {
         <meta property="og:title" content="Free Screen-Free Kids Guide 2026 — by Modern Tech LLC" />
         <meta property="og:description" content="10 parent-approved tech toys that teach coding, STEM & creativity without screens." />
         <meta property="og:image" content="https://moderntech.store/images/products/screen-free-kids-cover.jpg" />
-        <meta property="og:url" content="https://moderntech.store/screen-free-kids-guide" />
+        <meta property="og:url" content="https://moderntech.store/free-screen-free-kids-guide" />
         <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Screen-Free Kids Guide 2026" />
+        <meta name="twitter:image" content="https://moderntech.store/images/products/screen-free-kids-cover.jpg" />
+        <meta property="pin:media" content="https://moderntech.store/images/products/screen-free-kids-cover.jpg" />
+        <meta property="pin:description" content="10 parent-approved tech toys that teach coding, STEM & creativity without screens." />
+        <link rel="canonical" href="https://moderntech.store/free-screen-free-kids-guide" />
         <meta name="author" content="Modern Tech LLC" />
+        <script type="application/ld+json">{JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "Free Screen-Free Kids Guide 2026", "description": "10 parent-approved tech toys that teach coding, STEM & creativity without screens.", "image": "https://moderntech.store/images/products/screen-free-kids-cover.jpg", "author": { "@type": "Organization", "name": "Modern Tech LLC" }, "publisher": { "@type": "Organization", "name": "Modern Tech LLC", "url": "https://moderntech.store" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://moderntech.store/free-screen-free-kids-guide" } })}</script>
       </Helmet>
       <Navigation />
 

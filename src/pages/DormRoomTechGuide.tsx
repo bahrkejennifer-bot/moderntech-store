@@ -57,9 +57,16 @@ const DormRoomTechGuide = () => {
         <meta property="og:title" content="Free Dorm Room Tech Setup Guide 2026 — by Modern Tech LLC" />
         <meta property="og:description" content="Complete checklist for college students with laptop, headphones, charger picks at every budget." />
         <meta property="og:image" content="https://moderntech.store/images/products/dorm-room-tech-cover.jpg" />
-        <meta property="og:url" content="https://moderntech.store/dorm-room-tech-guide" />
+        <meta property="og:url" content="https://moderntech.store/free-dorm-room-guide" />
         <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Dorm Room Tech Setup Guide 2026" />
+        <meta name="twitter:image" content="https://moderntech.store/images/products/dorm-room-tech-cover.jpg" />
+        <meta property="pin:media" content="https://moderntech.store/images/products/dorm-room-tech-cover.jpg" />
+        <meta property="pin:description" content="Complete checklist for college students with laptop, headphones, charger picks at every budget." />
+        <link rel="canonical" href="https://moderntech.store/free-dorm-room-guide" />
         <meta name="author" content="Modern Tech LLC" />
+        <script type="application/ld+json">{JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "Free Dorm Room Tech Setup Guide 2026", "description": "Complete checklist for college students with laptop, headphones, charger picks at every budget.", "image": "https://moderntech.store/images/products/dorm-room-tech-cover.jpg", "author": { "@type": "Organization", "name": "Modern Tech LLC" }, "publisher": { "@type": "Organization", "name": "Modern Tech LLC", "url": "https://moderntech.store" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://moderntech.store/free-dorm-room-guide" } })}</script>
       </Helmet>
       <Navigation />
 
