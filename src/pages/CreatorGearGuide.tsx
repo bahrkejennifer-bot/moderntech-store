@@ -67,9 +67,16 @@ const CreatorGearGuide = () => {
         <meta property="og:title" content="Free Creator Gear Starter Kit 2026 — by Modern Tech LLC" />
         <meta property="og:description" content="Mic, camera & lighting picks at every budget, studio layout guides & OBS setup walkthrough." />
         <meta property="og:image" content="https://moderntech.store/images/products/creator-gear-starter-kit-cover.jpg" />
-        <meta property="og:url" content="https://moderntech.store/creator-gear-guide" />
+        <meta property="og:url" content="https://moderntech.store/free-creator-gear-guide" />
         <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Creator Gear Starter Kit 2026 — by Modern Tech LLC" />
+        <meta name="twitter:image" content="https://moderntech.store/images/products/creator-gear-starter-kit-cover.jpg" />
+        <meta property="pin:media" content="https://moderntech.store/images/products/creator-gear-starter-kit-cover.jpg" />
+        <meta property="pin:description" content="Mic, camera & lighting picks at every budget, studio layout guides & OBS setup walkthrough." />
+        <link rel="canonical" href="https://moderntech.store/free-creator-gear-guide" />
         <meta name="author" content="Modern Tech LLC" />
+        <script type="application/ld+json">{JSON.stringify({ "@context": "https://schema.org", "@type": "Article", "headline": "Free Creator Gear Starter Kit 2026", "description": "Mic, camera & lighting picks at every budget, studio layout guides & OBS setup walkthrough.", "image": "https://moderntech.store/images/products/creator-gear-starter-kit-cover.jpg", "author": { "@type": "Organization", "name": "Modern Tech LLC" }, "publisher": { "@type": "Organization", "name": "Modern Tech LLC", "url": "https://moderntech.store" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://moderntech.store/free-creator-gear-guide" } })}</script>
       </Helmet>
       <Navigation />
 
