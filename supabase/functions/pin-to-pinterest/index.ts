@@ -110,7 +110,12 @@ Deno.serve(async (req) => {
 
     console.log("Creating Pinterest pin:", JSON.stringify({ board_id: boardId, title: pinData.title }));
 
-    const response = await fetch("https://api.pinterest.com/v5/pins", {
+    // Use sandbox while app is in Trial access; switch to api.pinterest.com once Standard access is granted
+    const apiBase = Deno.env.get("PINTEREST_USE_PRODUCTION") === "true"
+      ? "https://api.pinterest.com"
+      : "https://api-sandbox.pinterest.com";
+
+    const response = await fetch(`${apiBase}/v5/pins`, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${accessToken}`,
