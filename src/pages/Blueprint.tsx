@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Check, Shield, ArrowRight, ChevronDown, Zap, BookOpen, Target, TrendingUp, Gift } from "lucide-react";
+import { Check, Shield, ArrowRight, ChevronDown, Zap, BookOpen, Target, TrendingUp, Gift, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 
@@ -28,6 +30,33 @@ const testimonials = [
 
 const Blueprint = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleCheckout = async () => {
+    setIsLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: {
+          productName: "Amazon Affiliate Blueprint 2026",
+          productSlug: "amazon-affiliate-blueprint-2026",
+          amount: 2700,
+          successUrl: "https://moderntech.store/blueprint/success",
+          cancelUrl: "https://moderntech.store/blueprint",
+        },
+      });
+      if (error) throw error;
+      if (data?.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL returned");
+      }
+    } catch (err: any) {
+      console.error("Checkout error:", err);
+      toast.error("Unable to start checkout. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(40 18% 91%)", color: "hsl(40 10% 12%)" }}>
@@ -49,13 +78,14 @@ const Blueprint = () => {
           The Exact Amazon Affiliate System That Built ModernTech.store — Now Yours for $27.
         </p>
         <div className="mt-10">
-          <a
-            href="#get-access"
-            className="inline-block font-mono text-[11px] tracking-[0.2em] uppercase px-10 py-4 transition-all duration-200 hover:opacity-80"
+          <button
+            onClick={handleCheckout}
+            disabled={isLoading}
+            className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-10 py-4 transition-all duration-200 hover:opacity-80 disabled:opacity-50"
             style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}
           >
-            Get Instant Access — $27
-          </a>
+            {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Get Instant Access — $27"}
+          </button>
         </div>
       </section>
 
@@ -177,14 +207,14 @@ const Blueprint = () => {
           <p className="font-serif text-sm mb-8" style={{ color: "hsl(40 18% 91% / 0.6)", fontWeight: 300 }}>
             One payment. Lifetime access. Zero risk.
           </p>
-          {/* Gumroad placeholder — replace href with real Gumroad URL */}
-          <a
-            href="#gumroad-link"
-            className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-10 py-4 transition-all duration-200 hover:opacity-80"
+          <button
+            onClick={handleCheckout}
+            disabled={isLoading}
+            className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-10 py-4 transition-all duration-200 hover:opacity-80 disabled:opacity-50"
             style={{ backgroundColor: "hsl(40 18% 91%)", color: "hsl(40 10% 12%)" }}
           >
-            Get Instant Access — $27 <ArrowRight className="w-3 h-3" />
-          </a>
+            {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Get Instant Access — $27 <ArrowRight className="w-3 h-3" /></>}
+          </button>
         </div>
       </section>
 
