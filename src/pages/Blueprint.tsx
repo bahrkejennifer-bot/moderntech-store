@@ -207,14 +207,14 @@ const Blueprint = () => {
           <p className="font-serif text-sm mb-8" style={{ color: "hsl(40 18% 91% / 0.6)", fontWeight: 300 }}>
             One payment. Lifetime access. Zero risk.
           </p>
-          {/* Gumroad placeholder — replace href with real Gumroad URL */}
-          <a
-            href="#gumroad-link"
-            className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-10 py-4 transition-all duration-200 hover:opacity-80"
+          <button
+            onClick={handleCheckout}
+            disabled={isLoading}
+            className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-10 py-4 transition-all duration-200 hover:opacity-80 disabled:opacity-50"
             style={{ backgroundColor: "hsl(40 18% 91%)", color: "hsl(40 10% 12%)" }}
           >
-            Get Instant Access — $27 <ArrowRight className="w-3 h-3" />
-          </a>
+            {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Get Instant Access — $27 <ArrowRight className="w-3 h-3" /></>}
+          </button>
         </div>
       </section>
 
