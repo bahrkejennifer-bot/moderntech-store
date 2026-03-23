@@ -31,7 +31,7 @@ const FreeGuide = () => {
 
       // Trigger email notification
       await supabase.functions.invoke("send-welcome-email", {
-        body: { name: name.trim(), email: email.trim(), lead_magnet: "free-affiliate-quick-start" },
+        body: { name: name.trim(), email: email.trim(), lead_magnet: "amazon-associate-guide" },
       });
 
       toast.success("Check your inbox! Your free guide is on the way.");
