@@ -69,8 +69,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <NewsletterPopup />
       <BrowserRouter>
+        <NewsletterPopup />
         <PromoBanner />
         <PinterestTracker />
         <AdminAccessButton />
