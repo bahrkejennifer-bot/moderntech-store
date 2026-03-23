@@ -78,13 +78,14 @@ const Blueprint = () => {
           The Exact Amazon Affiliate System That Built ModernTech.store — Now Yours for $27.
         </p>
         <div className="mt-10">
-          <a
-            href="#get-access"
-            className="inline-block font-mono text-[11px] tracking-[0.2em] uppercase px-10 py-4 transition-all duration-200 hover:opacity-80"
+          <button
+            onClick={handleCheckout}
+            disabled={isLoading}
+            className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-10 py-4 transition-all duration-200 hover:opacity-80 disabled:opacity-50"
             style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}
           >
-            Get Instant Access — $27
-          </a>
+            {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Get Instant Access — $27"}
+          </button>
         </div>
       </section>
 
