@@ -93,11 +93,11 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
       // Navigate to the appropriate guide page
       const guideRoutes: Record<string, string> = {
         "amazon-associate-guide": "/amazon-associate-guide",
-        "parents-smart-home-safety-checklist": "/smart-home-safety-checklist",
-        "smart-ring-buyers-guide": "/smart-ring-guide",
-        "creator-gear-starter-kit": "/creator-gear-guide",
-        "dorm-room-tech-setup": "/dorm-room-tech-guide",
-        "screen-free-kids-tech-toys": "/screen-free-kids-guide",
+        "parents-smart-home-safety-checklist": "/free-smart-home-checklist",
+        "smart-ring-buyers-guide": "/free-smart-ring-guide",
+        "creator-gear-starter-kit": "/free-creator-gear-guide",
+        "dorm-room-tech-setup": "/free-dorm-room-guide",
+        "screen-free-kids-tech-toys": "/free-screen-free-kids-guide",
       };
 
       const route = guideRoutes[selectedGuide];

@@ -192,7 +192,7 @@ Deno.serve(async (req) => {
         to: email,
         from: `Modern Tech LLC <noreply@${SENDER_DOMAIN}>`,
         sender_domain: SENDER_DOMAIN,
-        subject: "Welcome to The Tech Brief — Essential curation for a modern life.",
+        subject: "Welcome to The Art of Modern Tech — Essential curation for a modern life.",
         html,
         purpose: "transactional",
         label: "welcome",
