@@ -192,6 +192,34 @@ const AmazonAssociateGuide = () => {
         </div>
       </section>
 
+      {/* Download CTA */}
+      <section className="max-w-4xl mx-auto px-8 pb-24">
+        <div className="text-center py-12" style={{ borderTop: "0.5px solid hsl(40 10% 12% / 0.15)" }}>
+          <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+            Ready to Begin?
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl mb-4" style={{ fontStyle: "italic", color: "hsl(40 10% 8%)" }}>
+            Download Your Free Guide
+          </h2>
+          <p className="font-mono text-[11px] leading-[2] max-w-md mx-auto mb-8" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+            Get the complete 5-page blueprint as a beautifully formatted PDF — yours to keep.
+          </p>
+          <Button
+            onClick={handleDownload}
+            disabled={downloading}
+            className="font-mono text-[10px] tracking-[0.2em] uppercase px-10 py-5 transition-all duration-300 hover:scale-[1.02]"
+            style={{
+              backgroundColor: "hsl(40 10% 12%)",
+              color: "hsl(38 20% 86%)",
+              border: "1px solid hsl(40 10% 12%)",
+              borderRadius: "0",
+            }}
+          >
+            {downloading ? "Generating PDF…" : "Download PDF"} <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+      </section>
+
       {/* ===================== PDF CONTENT (hidden visually, used for PDF generation) ===================== */}
       <div
         ref={contentRef}
