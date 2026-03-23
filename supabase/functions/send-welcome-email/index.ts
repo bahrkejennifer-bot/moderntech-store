@@ -63,7 +63,7 @@ function buildWelcomeHtml(firstName: string): string {
           <tr>
             <td style="padding:28px 48px 0;">
               <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#5a5550;">
-                Hello, welcome! Thank you for joining us. We hope you enjoy your free guide!
+                Hello, welcome to Modern Tech. Thank you for joining us and we hope you enjoy your free guide!
               </p>
               <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#5a5550;">
                 We curate the technology that shapes how you live, work, and play — distilled into what actually matters. No noise, no filler. Just the essentials.
