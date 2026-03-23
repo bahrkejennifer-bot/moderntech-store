@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/heroes/workspace-minimalist-bw.jpg";
+import coverImg from "@/assets/pdf-covers/amazon-associate-guide-cover.jpg";
 import { FreeGuideModal } from "@/components/FreeGuideModal";
 
 const ProTipAccordion = ({ num, title, body }: { num: string; title: string; body: string }) => {
