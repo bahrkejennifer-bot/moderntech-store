@@ -22,8 +22,9 @@ export const NewsletterPopup = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Don't show popup on /links (link-in-bio page)
-    if (location.pathname === "/links") return;
+    // Don't show popup on pages with their own CTAs
+    const suppressedPaths = ["/links", "/blueprint", "/free-guide"];
+    if (suppressedPaths.includes(location.pathname)) return;
 
     // Check if user has already dismissed or subscribed
     const hasInteracted = localStorage.getItem("newsletter_popup_interacted");
