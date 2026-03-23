@@ -10,7 +10,21 @@ const HERO_BG_URL = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/
 
 const SENDER_DOMAIN = "notify.www.moderntech.store";
 
-function buildWelcomeHtml(firstName: string): string {
+const GUIDE_ROUTES: Record<string, { url: string; label: string }> = {
+  "amazon-associate-guide": { url: "https://moderntech.store/amazon-associate-guide", label: "Amazon Associate Quick-Start Guide" },
+  "parents-smart-home-safety-checklist": { url: "https://moderntech.store/free-smart-home-checklist", label: "Parent's Smart Home Safety Checklist" },
+  "smart-ring-buyers-guide": { url: "https://moderntech.store/free-smart-ring-guide", label: "Smart Ring Buyer's Guide" },
+  "creator-gear-starter-kit": { url: "https://moderntech.store/free-creator-gear-guide", label: "Creator Gear Starter Kit" },
+  "dorm-room-tech-setup": { url: "https://moderntech.store/free-dorm-room-guide", label: "Dorm Room Tech Setup Guide" },
+  "screen-free-kids-tech-toys": { url: "https://moderntech.store/free-screen-free-kids-guide", label: "Screen-Free Kids Tech Guide" },
+  "free-affiliate-quick-start": { url: "https://moderntech.store/amazon-associate-guide", label: "Amazon Affiliate Quick-Start Guide" },
+};
+
+const DEFAULT_GUIDE = { url: "https://moderntech.store/digital-products", label: "Your Free Guide" };
+
+function buildWelcomeHtml(leadMagnet?: string): string {
+  const guide = (leadMagnet && GUIDE_ROUTES[leadMagnet]) || DEFAULT_GUIDE;
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,14 +83,14 @@ function buildWelcomeHtml(firstName: string): string {
                 We curate the technology that shapes how you live, work, and play — distilled into what actually matters. No noise, no filler. Just the essentials.
               </p>
               <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#5a5550;">
-                Your free guide is ready for you. Click below to explore it now.
+                Your <strong>${guide.label}</strong> is ready for you. Click below to explore it now.
               </p>
             </td>
           </tr>
 
           <tr>
             <td align="center" style="padding:32px 48px 0;">
-              <a href="https://moderntech.store/smart-ring-guide" style="display:inline-block;background-color:#c8a0a0;color:#ffffff;font-family:'Courier New',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;padding:16px 40px;border:0;">
+              <a href="${guide.url}" style="display:inline-block;background-color:#c8a0a0;color:#ffffff;font-family:'Courier New',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;padding:16px 40px;border:0;">
                 View Your Guide
               </a>
             </td>
@@ -167,11 +181,10 @@ Deno.serve(async (req) => {
       throw new Error("Missing server configuration");
     }
 
-    const { name, email } = await req.json();
+    const { name, email, lead_magnet } = await req.json();
     if (!email) throw new Error("Email is required");
 
-    const firstName = name || "Friend";
-    const html = buildWelcomeHtml(firstName);
+    const html = buildWelcomeHtml(lead_magnet);
     const messageId = `welcome-${email}-${Date.now()}`;
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
