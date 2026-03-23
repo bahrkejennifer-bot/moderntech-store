@@ -87,7 +87,7 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
 
       // Trigger welcome email (fire-and-forget, don't block on failure)
       supabase.functions.invoke("send-welcome-email", {
-        body: { name: email.split("@")[0], email },
+        body: { name: email.split("@")[0], email, lead_magnet: selectedGuide },
       }).catch(() => {});
 
       // Navigate to the appropriate guide page
