@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Check, Shield, ArrowRight, ChevronDown, Zap, BookOpen, Target, TrendingUp, Gift } from "lucide-react";
+import { Check, Shield, ArrowRight, ChevronDown, Zap, BookOpen, Target, TrendingUp, Gift, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 
