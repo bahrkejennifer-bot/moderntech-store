@@ -104,9 +104,16 @@ const AmazonAssociateGuide = () => {
             <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] mb-6" style={{ fontStyle: "italic", color: "hsl(40 10% 8%)", fontWeight: 500 }}>
               Amazon Associate<br />Quick-Start Guide
             </h1>
-            <p className="font-mono text-[11px] leading-[2] max-w-md mb-10" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+            <p className="font-mono text-[11px] leading-[2] max-w-md mb-8" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
               From application to first commission — the definitive playbook for building an affiliate platform with editorial integrity.
             </p>
+            <div className="mb-10 overflow-hidden shadow-lg border border-border/30 max-w-[240px]">
+              <img
+                src={coverImg}
+                alt="Amazon Associate Quick-Start Guide 2026 PDF cover"
+                className="w-full h-auto"
+              />
+            </div>
             <Button
               onClick={() => setGuideModalOpen(true)}
               className="font-mono text-[10px] tracking-[0.2em] uppercase px-10 py-5 transition-all duration-300 hover:scale-[1.02]"
