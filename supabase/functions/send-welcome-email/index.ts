@@ -43,7 +43,7 @@ function buildWelcomeHtml(firstName: string): string {
                   </td>
                   <td valign="middle" style="padding-left:16px;">
                     <h1 style="margin:0 0 6px;font-family:'Georgia',serif;font-size:22px;font-weight:400;color:#2c2825;line-height:1.3;">
-                      Hello, Welcome to Modern Tech LLC
+                      Hello, Welcome to The Art of Modern Tech
                     </h1>
                     <p style="margin:0;font-family:'Georgia',serif;font-size:14px;font-style:italic;color:#5a5550;line-height:1.5;">
                       "I share modern gadgets, AI tools, and digital products that make life easier, smarter, and a little more stylish."
