@@ -16,7 +16,7 @@ function buildWelcomeHtml(firstName: string): string {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to The Tech Brief</title>
+  <title>Welcome to The Art of Modern Tech</title>
 </head>
 <body style="margin:0;padding:0;background-color:#ede8e3;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
 
