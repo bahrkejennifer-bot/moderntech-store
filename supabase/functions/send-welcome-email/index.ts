@@ -16,7 +16,7 @@ function buildWelcomeHtml(firstName: string): string {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to The Tech Brief</title>
+  <title>Welcome to The Art of Modern Tech</title>
 </head>
 <body style="margin:0;padding:0;background-color:#ede8e3;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
 
@@ -43,7 +43,7 @@ function buildWelcomeHtml(firstName: string): string {
                   </td>
                   <td valign="middle" style="padding-left:16px;">
                     <h1 style="margin:0 0 6px;font-family:'Georgia',serif;font-size:22px;font-weight:400;color:#2c2825;line-height:1.3;">
-                      Hello, Welcome to Modern Tech LLC
+                      Hello, Welcome to The Art of Modern Tech
                     </h1>
                     <p style="margin:0;font-family:'Georgia',serif;font-size:14px;font-style:italic;color:#5a5550;line-height:1.5;">
                       "I share modern gadgets, AI tools, and digital products that make life easier, smarter, and a little more stylish."
@@ -63,7 +63,7 @@ function buildWelcomeHtml(firstName: string): string {
           <tr>
             <td style="padding:28px 48px 0;">
               <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#5a5550;">
-                ${firstName}, thank you for joining us.
+                Hello ${firstName}, thank you for joining us. We hope you enjoy your free guide!
               </p>
               <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#5a5550;">
                 We curate the technology that shapes how you live, work, and play — distilled into what actually matters. No noise, no filler. Just the essentials.
@@ -192,7 +192,7 @@ Deno.serve(async (req) => {
         to: email,
         from: `Modern Tech LLC <noreply@${SENDER_DOMAIN}>`,
         sender_domain: SENDER_DOMAIN,
-        subject: "Welcome to The Tech Brief — Essential curation for a modern life.",
+        subject: "Welcome to The Art of Modern Tech — Essential curation for a modern life.",
         html,
         purpose: "transactional",
         label: "welcome",
