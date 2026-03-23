@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,7 +19,12 @@ export const NewsletterPopup = () => {
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const location = useLocation();
+
   useEffect(() => {
+    // Don't show popup on /links (link-in-bio page)
+    if (location.pathname === "/links") return;
+
     // Check if user has already dismissed or subscribed
     const hasInteracted = localStorage.getItem("newsletter_popup_interacted");
     if (hasInteracted) return;
@@ -29,7 +35,7 @@ export const NewsletterPopup = () => {
     }, 5000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [location.pathname]);
 
   const handleClose = () => {
     setIsOpen(false);
