@@ -70,10 +70,15 @@ const App = () => (
       <Sonner />
       <NewsletterPopup />
       <BrowserRouter>
+        <PromoBanner />
         <PinterestTracker />
         <AdminAccessButton />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/blueprint" element={<Blueprint />} />
+          <Route path="/free-guide" element={<FreeGuide />} />
+          <Route path="/the-signal" element={<TheSignal />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/home-safety" element={<HomeSafety />} />
           <Route path="/health-wellness" element={<HealthWellness />} />
           <Route path="/kids-tech" element={<KidsTech />} />
