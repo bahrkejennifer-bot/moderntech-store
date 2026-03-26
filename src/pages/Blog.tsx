@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import ouraRingHeroImg from "@/assets/heroes/oura-ring-hero.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
-import stPatricksHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
+import springDealsHeroImg from "@/assets/blog/spring-deals-hero.jpg";
 import wirelessEarbudsHeroImg from "@/assets/blog/wireless-earbuds-hero.jpg";
 import smartHomeHeroImg from "@/assets/blog/smart-home-devices-hero.jpg";
 import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
@@ -25,7 +25,7 @@ const staticBlogPosts = [
     excerpt: "We've rounded up the best tech deals and discounts this spring — from smart home bundles to gaming gear, these prices can't be beat.",
     date: "2026-02-19",
     category: "Deals",
-    imageUrl: stPatricksHeroImg,
+    imageUrl: springDealsHeroImg,
     slug: "st-patricks-day-tech-deals-2026",
     isGenerated: false,
     readTime: "8 min read",
@@ -45,7 +45,7 @@ const staticBlogPosts = [
     excerpt: "Curated family tech picks that bring everyone together — devices that build connection, not clutter.",
     date: "2026-02-02",
     category: "Gift Guides",
-    imageUrl: stPatricksHeroImg,
+    imageUrl: springDealsHeroImg,
     slug: "valentine-gift-guide-family-tech-2026",
     isGenerated: false,
     readTime: "10 min read",
@@ -172,7 +172,7 @@ const Blog = () => {
         <meta name="description" content="Expert tech reviews, buying guides and deals on smart home, gaming, wellness gear and more. Updated weekly." />
         <meta property="og:title" content="Modern Tech Blog | Reviews, Deals & Buying Guides" />
         <meta property="og:description" content="Expert tech reviews, buying guides and deals on smart home, gaming, wellness gear and more." />
-        <meta property="og:image" content={stPatricksHeroImg} />
+        <meta property="og:image" content={springDealsHeroImg} />
         <meta property="og:url" content="https://moderntech.store/blog" />
         <meta property="og:type" content="website" />
       </Helmet>
