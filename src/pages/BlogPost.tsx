@@ -53,7 +53,7 @@ import vtechImg from "@/assets/products/vtech-kidizoom-dx3.jpg";
 import rukoRobotImg from "@/assets/products/ruko-1088-robot.jpg";
 import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
-import springDealsHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
+import springDealsHeroImg from "@/assets/blog/spring-deals-hero.jpg";
 import smartRingHeroImg from "@/assets/heroes/smart-ring-guide-hero.png";
 import smartHomeHeroImg from "@/assets/blog/smart-home-devices-hero.jpg";
 import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
