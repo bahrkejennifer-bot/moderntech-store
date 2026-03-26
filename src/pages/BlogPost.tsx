@@ -374,7 +374,7 @@ const blogPostsData: Record<string, {
     products: [
       { title: "Sony WH-1000XM5", description: "Industry-leading noise cancellation, 30-hour battery life", badge: "Best Deal", rating: 4.8, imageUrl: boseQcImg, affiliateLink: "https://www.amazon.com/dp/B0BX2L8PBS?tag=moderntechs0c-20" },
       { title: "AirPods Pro 2 (USB-C)", description: "Adaptive transparency, spatial audio, USB-C charging", badge: "$50 Off", rating: 4.7, imageUrl: airpodsImg, affiliateLink: "https://amzn.to/4jN7yiK" },
-      { title: "Philips Hue Starter Kit", description: "4 smart bulbs + bridge, 30% off for St. Patrick's Day", badge: "30% Off", rating: 4.6, imageUrl: philipsHueImg, affiliateLink: "https://www.amazon.com/dp/B096YFWBYS?tag=moderntechs0c-20" },
+      { title: "Philips Hue Starter Kit", description: "4 smart bulbs + bridge, 30% off this spring", badge: "30% Off", rating: 4.6, imageUrl: philipsHueImg, affiliateLink: "https://www.amazon.com/dp/B096YFWBYS?tag=moderntechs0c-20" },
       { title: "Meta Quest 3", description: "Standalone VR headset with free game bundle included", rating: 4.7, imageUrl: metaQuestImg, affiliateLink: "https://www.amazon.com/dp/B0C8VKH1ZH?tag=moderntechs0c-20" },
       { title: "Fitbit Charge 6", description: "Advanced health tracking with built-in GPS, 25% off", badge: "25% Off", rating: 4.5, imageUrl: fitbitImg, affiliateLink: "https://www.amazon.com/dp/B0CCSHKQPX?tag=moderntechs0c-20" },
       { title: "Logitech G Pro X Superlight", description: "Ultra-lightweight wireless gaming mouse, lowest price of 2026", rating: 4.8, imageUrl: logitechMouseImg, affiliateLink: "https://www.amazon.com/dp/B09MVF8YLY?tag=moderntechs0c-20" }
