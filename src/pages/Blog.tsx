@@ -41,8 +41,8 @@ const staticBlogPosts = [
     readTime: "12 min read",
   },
   {
-    title: "2026 St. Patrick's Day Gift Guide: Tech for Family Edition",
-    excerpt: "Strike gold with the luckiest family tech picks! Curated gifts that bring the whole family together this St. Patrick's Day.",
+    title: "2026 Spring Gift Guide: Tech for Family Edition",
+    excerpt: "Curated family tech picks that bring everyone together — devices that build connection, not clutter.",
     date: "2026-02-02",
     category: "Gift Guides",
     imageUrl: stPatricksHeroImg,

@@ -346,7 +346,7 @@ const blogPostsData: Record<string, {
     ]
   },
   "st-patricks-day-tech-deals-2026": {
-    title: "☘️ Best St. Patrick's Day Tech Deals 2026",
+    title: "🔥 Best Spring Tech Deals 2026",
     date: "2026-02-19",
     category: "Deals",
     imageUrl: stPatricksHeroImg,
