@@ -53,7 +53,7 @@ import vtechImg from "@/assets/products/vtech-kidizoom-dx3.jpg";
 import rukoRobotImg from "@/assets/products/ruko-1088-robot.jpg";
 import philipsHueImg from "@/assets/products/philips-hue-starter-kit.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
-import stPatricksHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
+import springDealsHeroImg from "@/assets/blog/st-patricks-gift-guide-hero.jpg";
 import smartRingHeroImg from "@/assets/heroes/smart-ring-guide-hero.png";
 import smartHomeHeroImg from "@/assets/blog/smart-home-devices-hero.jpg";
 import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
@@ -143,7 +143,7 @@ const blogPostsData: Record<string, {
     title: "2026 Spring Gift Guide: Tech for Family Edition",
     date: "2026-02-02",
     category: "Gift Guides",
-    imageUrl: stPatricksHeroImg,
+    imageUrl: springDealsHeroImg,
     intro: "We've all been there. You open the drawer in your home office or bedroom, and it's a graveyard of gadgets. The fitness tracker you wore twice. The smart speaker that never quite understood you. The novelty device that seemed brilliant at 2 AM while scrolling Amazon, but now just collects dust. Most tech gifts fail because they solve problems we don't actually have. They're novelties, not necessities. This year, give gifts that build connection, not clutter.",
     sections: [
       { type: 'heading', content: 'The Connection Crisis' },
@@ -349,7 +349,7 @@ const blogPostsData: Record<string, {
     title: "🔥 Best Spring Tech Deals 2026",
     date: "2026-02-19",
     category: "Deals",
-    imageUrl: stPatricksHeroImg,
+    imageUrl: springDealsHeroImg,
     intro: "Every spring, retailers roll out some of the best tech deals of the year. Whether you're upgrading your smart home, leveling up your gaming setup, or finally grabbing those wireless earbuds you've been eyeing, we've tracked down the deals worth your attention. Here are the best spring tech deals happening right now.",
     sections: [
       { type: 'heading', content: "Why Spring Is a Prime Time for Tech Deals" },
