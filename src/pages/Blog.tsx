@@ -21,8 +21,8 @@ import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
 
 const staticBlogPosts = [
   {
-    title: "☘️ Best St. Patrick's Day Tech Deals 2026",
-    excerpt: "Lucky you! We've rounded up the best tech deals and discounts dropping this St. Patrick's Day — from smart home bundles to gaming gear, these prices are pure gold.",
+    title: "🔥 Best Spring Tech Deals 2026",
+    excerpt: "We've rounded up the best tech deals and discounts this spring — from smart home bundles to gaming gear, these prices can't be beat.",
     date: "2026-02-19",
     category: "Deals",
     imageUrl: stPatricksHeroImg,
@@ -41,8 +41,8 @@ const staticBlogPosts = [
     readTime: "12 min read",
   },
   {
-    title: "2026 St. Patrick's Day Gift Guide: Tech for Family Edition",
-    excerpt: "Strike gold with the luckiest family tech picks! Curated gifts that bring the whole family together this St. Patrick's Day.",
+    title: "2026 Spring Gift Guide: Tech for Family Edition",
+    excerpt: "Curated family tech picks that bring everyone together — devices that build connection, not clutter.",
     date: "2026-02-02",
     category: "Gift Guides",
     imageUrl: stPatricksHeroImg,
