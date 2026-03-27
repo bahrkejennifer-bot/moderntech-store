@@ -65,29 +65,6 @@ export default function AdminAuth() {
         });
         if (error) throw error;
 
-        // After signup, add admin role for the first user
-        if (data.user) {
-          const { error: roleError } = await supabase
-            .from("user_roles")
-            .insert({ user_id: data.user.id, role: "admin" });
-          
-          // If role insert fails due to RLS (no existing admin), we need to handle first admin setup
-          if (roleError) {
-            // Check if this is the first user (no admins exist yet)
-            const { count } = await supabase
-              .from("user_roles")
-              .select("*", { count: "exact", head: true });
-            
-            if (count === 0) {
-              // This is handled by a separate flow - for now just notify
-              toast({
-                title: "Account created!",
-                description: "Please contact support to get admin access.",
-              });
-            }
-          }
-        }
-
         toast({
           title: "Account created!",
           description: "You can now log in.",
