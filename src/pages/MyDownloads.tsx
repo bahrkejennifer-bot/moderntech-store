@@ -17,7 +17,7 @@ interface Purchase {
     title: string;
     description: string | null;
     slug: string;
-    pdf_path: string | null;
+    pdf_path?: string | null;
   };
 }
 
@@ -88,8 +88,8 @@ const MyDownloads = () => {
       }
 
       const { data: products, error: productsError } = await supabase
-        .from("digital_products")
-        .select("id, title, description, slug, pdf_path")
+        .from("products_public")
+        .select("id, title, description, slug")
         .in("id", productIds);
 
       if (productsError) {
@@ -121,14 +121,6 @@ const MyDownloads = () => {
   };
 
   const handleDownload = async (purchase: Purchase) => {
-    if (!purchase.product.pdf_path) {
-      toast({
-        title: "Download Unavailable",
-        description: "This product doesn't have a downloadable file yet.",
-        variant: "destructive",
-      });
-      return;
-    }
 
     setDownloadingId(purchase.id);
 
@@ -267,7 +259,7 @@ const MyDownloads = () => {
                     <div className="flex items-center justify-end p-6 bg-muted/30 sm:w-48">
                       <Button
                         onClick={() => handleDownload(purchase)}
-                        disabled={downloadingId === purchase.id || !purchase.product.pdf_path}
+                        disabled={downloadingId === purchase.id}
                         className="w-full sm:w-auto"
                       >
                         {downloadingId === purchase.id ? (
