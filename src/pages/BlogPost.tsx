@@ -270,7 +270,7 @@ const blogPostsData: Record<string, {
       { title: "Google Nest WiFi Pro 6E", description: "Next-gen WiFi, whole-home coverage, easy setup", rating: 4.5, imageUrl: nestWifiImg, affiliateLink: "https://www.amazon.com/dp/B0BCQS55N6?tag=moderntechs0c-20" },
       { title: "Acer S2 3-in-1 Charging Station", description: "Wireless charging for multiple devices simultaneously", rating: 4.4, imageUrl: acerChargingImg, affiliateLink: "https://www.amazon.com/dp/B0D5QYLMGT?tag=moderntechs0c-20" },
       { title: "TP-Link WiFi 6 Router AX3000", description: "Fast connectivity for all devices, mesh capability", rating: 4.6, imageUrl: tplinkRouterImg, affiliateLink: "https://www.amazon.com/dp/B09G5W9R6R?tag=moderntechs0c-20" },
-      { title: "Tile Pro Bluetooth Tracker", description: "Never lose your items, long range, replaceable battery", rating: 4.5, imageUrl: tileProImg, affiliateLink: "https://www.amazon.com/dp/B0D636MDW7?tag=moderntechs0c-20" }
+      { title: "Tile Pro 2024 Bluetooth Tracker", description: "Powerful key finder, long range, iOS & Android compatible", rating: 4.5, imageUrl: tileProImg, affiliateLink: "https://www.amazon.com/dp/B0D636MDW7?tag=moderntechs0c-20" }
     ]
   },
   "tech-essentials-college-students": {
