@@ -121,14 +121,6 @@ const MyDownloads = () => {
   };
 
   const handleDownload = async (purchase: Purchase) => {
-    if (!purchase.product.pdf_path) {
-      toast({
-        title: "Download Unavailable",
-        description: "This product doesn't have a downloadable file yet.",
-        variant: "destructive",
-      });
-      return;
-    }
 
     setDownloadingId(purchase.id);
 
