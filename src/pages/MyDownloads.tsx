@@ -259,7 +259,7 @@ const MyDownloads = () => {
                     <div className="flex items-center justify-end p-6 bg-muted/30 sm:w-48">
                       <Button
                         onClick={() => handleDownload(purchase)}
-                        disabled={downloadingId === purchase.id || !purchase.product.pdf_path}
+                        disabled={downloadingId === purchase.id}
                         className="w-full sm:w-auto"
                       >
                         {downloadingId === purchase.id ? (
