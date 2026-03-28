@@ -23,12 +23,10 @@ interface DBProduct {
 }
 
 const categories = [
-  { label: "Health & Wellness", to: "/health-wellness", desc: "Smart rings · Sleep trackers · Biohacking" },
-  { label: "Creator Studio", to: "/creator-gear", desc: "Microphones · Cameras · Lighting" },
-  { label: "Home & Safety", to: "/home-safety", desc: "Smart locks · Cameras · Displays" },
-  { label: "Gaming", to: "/gaming", desc: "Consoles · Monitors · Peripherals" },
-  { label: "College Essentials", to: "/college", desc: "Laptops · Headphones · Chargers" },
-  { label: "Connectivity", to: "/connectivity", desc: "WiFi · Earbuds · Trackers" },
+  { label: "Smart Home & Security", to: "/smart-home-security", desc: "Smart locks · Cameras · WiFi · Trackers" },
+  { label: "Wellness Tech", to: "/wellness-tech", desc: "Smart rings · Sleep trackers · Recovery" },
+  { label: "Digital Lifestyle", to: "/digital-lifestyle", desc: "Creator gear · Gaming · Streaming" },
+  { label: "Productivity & Family", to: "/productivity-family", desc: "Kids tech · College · AI gadgets" },
 ];
 
 const useHomepageProducts = () => {
