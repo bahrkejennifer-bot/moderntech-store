@@ -131,10 +131,10 @@ const blogPostsData: Record<string, {
       { type: 'paragraph', content: "Whatever you choose, you're giving more than a gadget—you're giving the gift of self-knowledge and the tools to live a healthier, more intentional life." }
     ],
     products: [
-      { title: "Oura Ring Gen 4", description: "Best-in-class sleep tracking with Readiness Score and 7-day battery life", badge: "Editor's Choice", rating: 4.8, imageUrl: ouraRing4BlogImg, affiliateLink: "https://amzn.to/4jAjZTb" },
+      { title: "Oura Ring Gen 4", description: "Best-in-class sleep tracking with Readiness Score and 7-day battery life", badge: "Editor's Choice", rating: 4.8, imageUrl: ouraRing4BlogImg, affiliateLink: "https://www.amazon.com/dp/B0D9WVSZ56?tag=moderntechs0c-20" },
       { title: "Samsung Galaxy Ring", description: "No subscription required, seamless Samsung Health integration", badge: "Best Value", rating: 4.6, imageUrl: samsungGalaxyRingImg, affiliateLink: "https://www.amazon.com/dp/B0D7DJCQN7?tag=moderntechs0c-20" },
       { title: "Ultrahuman Ring AIR", description: "Metabolic health focus with glucose monitoring compatibility", rating: 4.5, imageUrl: ultrahumanRingImg, affiliateLink: "https://www.amazon.com/dp/B0CG1N3GVV?tag=moderntechs0c-20" },
-      { title: "Withings Body+ Smart Scale", description: "Pairs perfectly with smart rings for complete health tracking", rating: 4.7, imageUrl: withingsImg, affiliateLink: "https://www.amazon.com/dp/B071XW4B4X?tag=moderntechs0c-20" },
+      { title: "Withings Body+ Smart Scale", description: "Pairs perfectly with smart rings for complete health tracking", rating: 4.7, imageUrl: withingsImg, affiliateLink: "https://www.amazon.com/dp/B0C3JNJPZ7?tag=moderntechs0c-20" },
       { title: "Bose Sleepbuds II", description: "Enhance your sleep data with better actual sleep quality", rating: 4.3, imageUrl: boseSleepImg, affiliateLink: "https://www.amazon.com/dp/B08FRR6Z1B?tag=moderntechs0c-20" },
       { title: "Philips SmartSleep Wake-up Light", description: "Sunrise alarm that works with your ring's sleep insights", rating: 4.6, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs0c-20" }
     ]
@@ -207,10 +207,10 @@ const blogPostsData: Record<string, {
       { title: "Amazon Echo Show 8", description: "Smart display features, Alexa integration, home control hub", rating: 4.7, imageUrl: echoShowImg, affiliateLink: "https://www.amazon.com/dp/B0BLS3Y632?tag=moderntechs0c-20" },
       { title: "Arlo Pro 4 Spotlight Camera", description: "Wire-free, 2K HDR, color night vision, integrated spotlight", rating: 4.5, imageUrl: arloProImg, affiliateLink: "https://www.amazon.com/dp/B08L73V89X?tag=moderntechs0c-20" },
       { title: "August WiFi Smart Lock", description: "Keyless entry, remote access, auto-lock features", rating: 4.5, imageUrl: augustLockImg, affiliateLink: "https://www.amazon.com/dp/B082VXK9CK?tag=moderntechs0c-20" },
-      { title: "Kidde Smoke & CO Detector", description: "Smart alerts, voice warnings, essential safety device", badge: "Safety Essential", rating: 4.7, imageUrl: kiddeDetectorImg, affiliateLink: "https://www.amazon.com/dp/B07H56MC3J?tag=moderntechs0c-20" },
+      { title: "Kidde Smoke & CO Detector", description: "Smart alerts, voice warnings, essential safety device", badge: "Safety Essential", rating: 4.7, imageUrl: kiddeDetectorImg, affiliateLink: "https://www.amazon.com/dp/B0BZQFGG64?tag=moderntechs0c-20" },
       { title: "Google Nest Protect", description: "Split-spectrum sensor, app alerts, pathway lighting", rating: 4.8, imageUrl: nestProtectImg, affiliateLink: "https://www.amazon.com/dp/B00XV1RCRY?tag=moderntechs0c-20" },
       { title: "Philips Hue White & Color Starter Kit", description: "Millions of colors, voice control, schedules, smart hub included", badge: "Smart Lighting", rating: 4.8, imageUrl: philipsHueImg, affiliateLink: "https://www.amazon.com/dp/B09QZFVCL6?tag=moderntechs0c-20" },
-      { title: "Philips SmartSleep Wake-Up Light", description: "Sunrise simulation, natural wake-up, sleep sounds", rating: 4.5, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B07JXWS3Z8?tag=moderntechs0c-20" },
+      { title: "Philips SmartSleep Wake-Up Light", description: "Sunrise simulation, natural wake-up, sleep sounds", rating: 4.5, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs0c-20" },
       { title: "TP-Link WiFi 6 Router AX3000", description: "Fast connectivity, whole-home coverage, mesh capable", rating: 4.6, imageUrl: tplinkRouterImg, affiliateLink: "https://www.amazon.com/dp/B09G5W9R6R?tag=moderntechs0c-20" }
     ]
   },
@@ -267,10 +267,10 @@ const blogPostsData: Record<string, {
     products: [
       { title: "Apple AirPods Pro (2nd Gen)", description: "Active noise cancellation, spatial audio, seamless Apple integration", badge: "Best for iPhone", rating: 4.8, imageUrl: airpodsImg, affiliateLink: "https://www.amazon.com/dp/B0D1XD1ZV3?tag=moderntechs0c-20" },
       { title: "Samsung Galaxy Buds2 Pro", description: "Intelligent ANC, 360 audio, Android optimization", badge: "Best for Samsung", rating: 4.6, imageUrl: galaxyBudsImg, affiliateLink: "https://www.amazon.com/dp/B0B2SH4CN6?tag=moderntechs0c-20" },
-      { title: "Google Nest WiFi Pro 6E", description: "Next-gen WiFi, whole-home coverage, easy setup", rating: 4.5, imageUrl: nestWifiImg, affiliateLink: "https://www.amazon.com/dp/B0BCPDR56W?tag=moderntechs0c-20" },
+      { title: "Google Nest WiFi Pro 6E", description: "Next-gen WiFi, whole-home coverage, easy setup", rating: 4.5, imageUrl: nestWifiImg, affiliateLink: "https://www.amazon.com/dp/B0BCQS55N6?tag=moderntechs0c-20" },
       { title: "Acer S2 3-in-1 Charging Station", description: "Wireless charging for multiple devices simultaneously", rating: 4.4, imageUrl: acerChargingImg, affiliateLink: "https://www.amazon.com/dp/B0D5QYLMGT?tag=moderntechs0c-20" },
       { title: "TP-Link WiFi 6 Router AX3000", description: "Fast connectivity for all devices, mesh capability", rating: 4.6, imageUrl: tplinkRouterImg, affiliateLink: "https://www.amazon.com/dp/B09G5W9R6R?tag=moderntechs0c-20" },
-      { title: "Tile Pro Bluetooth Tracker", description: "Never lose your items, long range, replaceable battery", rating: 4.5, imageUrl: tileProImg, affiliateLink: "https://www.amazon.com/dp/B09B2W7WF3?tag=moderntechs0c-20" }
+      { title: "Tile Pro Bluetooth Tracker", description: "Never lose your items, long range, replaceable battery", rating: 4.5, imageUrl: tileProImg, affiliateLink: "https://www.amazon.com/dp/B0D636MDW7?tag=moderntechs0c-20" }
     ]
   },
   "tech-essentials-college-students": {
@@ -291,7 +291,7 @@ const blogPostsData: Record<string, {
       { title: "MacBook Air 13-inch M4", description: "Powerful M4 chip, all-day battery, lightweight design", badge: "Best Laptop", rating: 4.9, imageUrl: macbookImg, affiliateLink: "https://www.amazon.com/dp/B0DM7KRPFP?tag=moderntechs0c-20" },
       { title: "Apple iPad 10th Generation", description: "Versatile tablet, note-taking, digital textbooks", badge: "Perfect for Lectures", rating: 4.7, imageUrl: ipadImg, affiliateLink: "https://www.amazon.com/dp/B0BJLXMVMV?tag=moderntechs0c-20" },
       { title: "Logitech MX Keys Combo", description: "Keyboard and mouse combo, ergonomic, productivity boost", rating: 4.7, imageUrl: logitechKeysImg, affiliateLink: "https://www.amazon.com/dp/B0BKNGL5F3?tag=moderntechs0c-20" },
-      { title: "Rocketbook Flex Planner", description: "Reusable smart notebook, cloud sync, eco-friendly", rating: 4.5, imageUrl: rocketbookImg, affiliateLink: "https://www.amazon.com/dp/B09QRVCJYL?tag=moderntechs0c-20" },
+      { title: "Rocketbook Flex Planner", description: "Reusable smart notebook, cloud sync, eco-friendly", rating: 4.5, imageUrl: rocketbookImg, affiliateLink: "https://www.amazon.com/dp/B0B48K5SF8?tag=moderntechs0c-20" },
       { title: "Anker Power Bank 20,000mAh", description: "High-capacity portable charger, multiple devices, fast charging", rating: 4.7, imageUrl: ankerPowerImg, affiliateLink: "https://www.amazon.com/dp/B09VP6FQZG?tag=moderntechs0c-20" },
       { title: "Bose QuietComfort 45", description: "Premium noise-canceling headphones, study focus, comfort", rating: 4.7, imageUrl: boseQcImg, affiliateLink: "https://www.amazon.com/dp/B098FKXT8L?tag=moderntechs0c-20" }
     ]
@@ -316,8 +316,8 @@ const blogPostsData: Record<string, {
       { title: "Fitbit Charge 6", description: "Affordable fitness tracking, heart rate, sleep monitoring", badge: "Best Value", rating: 4.5, imageUrl: fitbitImg, affiliateLink: "https://www.amazon.com/dp/B0BXMKXPVL?tag=moderntechs0c-20" },
       { title: "Ekrin Bantam Massage Gun", description: "Recovery tool, muscle relief, portable design", rating: 4.6, imageUrl: ekrinImg, affiliateLink: "https://www.amazon.com/dp/B087CKJ7GP?tag=moderntechs0c-20" },
       { title: "Withings Body+ Smart Scale", description: "WiFi-connected scale, body composition, health tracking", rating: 4.5, imageUrl: withingsImg, affiliateLink: "https://www.amazon.com/dp/B071XW4C5Q?tag=moderntechs0c-20" },
-      { title: "Philips SmartSleep Wake-Up Light", description: "Sunrise simulation, better sleep quality, natural wake-up", rating: 4.5, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B07JXWS3Z8?tag=moderntechs0c-20" },
-      { title: "Bose Sleepbuds II", description: "Sleep-focused earbuds, noise masking, better rest", rating: 4.3, imageUrl: boseSleepImg, affiliateLink: "https://www.amazon.com/dp/B08FRXBC79?tag=moderntechs0c-20" }
+      { title: "Philips SmartSleep Wake-Up Light", description: "Sunrise simulation, better sleep quality, natural wake-up", rating: 4.5, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs0c-20" },
+      { title: "Bose Sleepbuds II", description: "Sleep-focused earbuds, noise masking, better rest", rating: 4.3, imageUrl: boseSleepImg, affiliateLink: "https://www.amazon.com/dp/B0DCVX154M?tag=moderntechs0c-20" }
     ]
   },
   "educational-tech-kids-parents-guide": {
