@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Blueprint from "./pages/Blueprint";
 import BlueprintSuccess from "./pages/BlueprintSuccess";
@@ -10,13 +10,10 @@ import FreeGuide from "./pages/FreeGuide";
 import TheSignal from "./pages/TheSignal";
 import ContactPage from "./pages/ContactPage";
 import PromoBanner from "./components/PromoBanner";
-import HomeSafety from "./pages/HomeSafety";
-import HealthWellness from "./pages/HealthWellness";
-import KidsTech from "./pages/KidsTech";
-import Gaming from "./pages/Gaming";
-import Connectivity from "./pages/Connectivity";
-import College from "./pages/College";
-import CreatorGear from "./pages/CreatorGear";
+import SmartHomeSecurity from "./pages/SmartHomeSecurity";
+import WellnessTech from "./pages/WellnessTech";
+import DigitalLifestyle from "./pages/DigitalLifestyle";
+import ProductivityFamily from "./pages/ProductivityFamily";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import DigitalProducts from "./pages/DigitalProducts";
@@ -81,13 +78,22 @@ const App = () => (
           <Route path="/free-guide" element={<FreeGuide />} />
           <Route path="/the-signal" element={<TheSignal />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/home-safety" element={<HomeSafety />} />
-          <Route path="/health-wellness" element={<HealthWellness />} />
-          <Route path="/kids-tech" element={<KidsTech />} />
-          <Route path="/gaming" element={<Gaming />} />
-          <Route path="/connectivity" element={<Connectivity />} />
-          <Route path="/college" element={<College />} />
-          <Route path="/creator-gear" element={<CreatorGear />} />
+
+          {/* ── New Master Category Pages ── */}
+          <Route path="/smart-home-security" element={<SmartHomeSecurity />} />
+          <Route path="/wellness-tech" element={<WellnessTech />} />
+          <Route path="/digital-lifestyle" element={<DigitalLifestyle />} />
+          <Route path="/productivity-family" element={<ProductivityFamily />} />
+
+          {/* ── Redirects from old category URLs ── */}
+          <Route path="/home-safety" element={<Navigate to="/smart-home-security" replace />} />
+          <Route path="/connectivity" element={<Navigate to="/smart-home-security" replace />} />
+          <Route path="/health-wellness" element={<Navigate to="/wellness-tech" replace />} />
+          <Route path="/creator-gear" element={<Navigate to="/digital-lifestyle" replace />} />
+          <Route path="/gaming" element={<Navigate to="/digital-lifestyle" replace />} />
+          <Route path="/kids-tech" element={<Navigate to="/productivity-family" replace />} />
+          <Route path="/college" element={<Navigate to="/productivity-family" replace />} />
+
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/digital-products" element={<DigitalProducts />} />
@@ -112,7 +118,6 @@ const App = () => (
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/return-policy" element={<ReturnPolicy />} />
           <Route path="/signal" element={<Signal />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/pinterest-callback" element={<PinterestCallback />} />
           <Route path="/admin/pinterest" element={<AdminLayout><AdminPinterest /></AdminLayout>} />
           <Route path="/admin/tech-spec" element={<AdminLayout><AdminTechSpec /></AdminLayout>} />

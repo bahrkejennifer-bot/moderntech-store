@@ -49,13 +49,10 @@ Deno.serve(async (req) => {
 
     // Also include category pages as product sitemaps
     const categories = [
-      { path: "/health-wellness", name: "Health & Wellness" },
-      { path: "/home-safety", name: "Home & Safety" },
-      { path: "/creator-gear", name: "Creator Gear" },
-      { path: "/kids-tech", name: "Kids Tech" },
-      { path: "/gaming", name: "Gaming" },
-      { path: "/connectivity", name: "Connectivity" },
-      { path: "/college", name: "College Essentials" },
+      { path: "/smart-home-security", name: "Smart Home & Security" },
+      { path: "/wellness-tech", name: "Wellness Tech" },
+      { path: "/digital-lifestyle", name: "Digital Lifestyle" },
+      { path: "/productivity-family", name: "Productivity & Family" },
     ];
 
     const categoryUrls = categories.map((c) => `  <url>

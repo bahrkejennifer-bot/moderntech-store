@@ -16,13 +16,10 @@ const menuItems = [
 ];
 
 const shopCategories = [
-  { to: "/health-wellness", label: "Health & Wellness" },
-  { to: "/home-safety", label: "Home & Safety" },
-  { to: "/creator-gear", label: "Creator Studio" },
-  { to: "/gaming", label: "Gaming" },
-  { to: "/kids-tech", label: "Kids Tech" },
-  { to: "/college", label: "College Essentials" },
-  { to: "/connectivity", label: "Connectivity" },
+  { to: "/smart-home-security", label: "Smart Home & Security" },
+  { to: "/wellness-tech", label: "Wellness Tech" },
+  { to: "/digital-lifestyle", label: "Digital Lifestyle" },
+  { to: "/productivity-family", label: "Productivity & Family" },
 ];
 
 interface OffCanvasMenuProps {

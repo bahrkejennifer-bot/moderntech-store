@@ -130,7 +130,7 @@ const SmartHomeSafetyChecklist = () => {
                       <div className="mt-8 pt-6 border-t border-border">
                         <p className="text-sm text-muted-foreground mb-3">Ready to start protecting your home?</p>
                         <Button variant="outline" className="rounded-full" asChild>
-                          <a href="/home-safety">Shop Home Safety Tech <ArrowRight className="ml-2 h-4 w-4" /></a>
+                          <a href="/smart-home-security">Shop Smart Home Tech <ArrowRight className="ml-2 h-4 w-4" /></a>
                         </Button>
                       </div>
                     </div>

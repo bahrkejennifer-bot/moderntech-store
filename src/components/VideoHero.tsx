@@ -8,25 +8,25 @@ import creatorPoster from "@/assets/heroes/creator-studio-poster.jpg";
 
 const columns = [
   {
-    label: "Health & Wellness",
+    label: "Wellness Tech",
     tagline: "Invisible tech. Peak performance.",
     videoUrl: "/videos/wellness-yoga.mp4",
     posterUrl: wellnessPoster,
-    link: "/health-wellness",
+    link: "/wellness-tech",
   },
   {
-    label: "Family & Safety",
+    label: "Smart Home & Security",
     tagline: "Smart protection. Real connection.",
     videoUrl: "/videos/safety-home.mp4",
     posterUrl: safetyPoster,
-    link: "/home-safety",
+    link: "/smart-home-security",
   },
   {
-    label: "Creator Gear",
+    label: "Digital Lifestyle",
     tagline: "Sound like a pro. Look like one too.",
     videoUrl: "/videos/creator-studio.mp4",
     posterUrl: creatorPoster,
-    link: "/creator-gear",
+    link: "/digital-lifestyle",
   },
 ];
 
