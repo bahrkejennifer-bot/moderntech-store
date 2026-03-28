@@ -291,7 +291,7 @@ const blogPostsData: Record<string, {
       { title: "MacBook Air 13-inch M4", description: "Powerful M4 chip, all-day battery, lightweight design", badge: "Best Laptop", rating: 4.9, imageUrl: macbookImg, affiliateLink: "https://www.amazon.com/dp/B0DM7KRPFP?tag=moderntechs0c-20" },
       { title: "Apple iPad 10th Generation", description: "Versatile tablet, note-taking, digital textbooks", badge: "Perfect for Lectures", rating: 4.7, imageUrl: ipadImg, affiliateLink: "https://www.amazon.com/dp/B0BJLXMVMV?tag=moderntechs0c-20" },
       { title: "Logitech MX Keys Combo", description: "Keyboard and mouse combo, ergonomic, productivity boost", rating: 4.7, imageUrl: logitechKeysImg, affiliateLink: "https://www.amazon.com/dp/B0BKNGL5F3?tag=moderntechs0c-20" },
-      { title: "Rocketbook Flex Planner", description: "Reusable smart notebook, cloud sync, eco-friendly", rating: 4.5, imageUrl: rocketbookImg, affiliateLink: "https://www.amazon.com/dp/B0B48K5SF8?tag=moderntechs0c-20" },
+      { title: "Rocketbook Pro Planner", description: "Scannable reusable planner, cloud sync, eco-friendly", rating: 4.5, imageUrl: rocketbookImg, affiliateLink: "https://www.amazon.com/dp/B0B48K5SF8?tag=moderntechs0c-20" },
       { title: "Anker Power Bank 20,000mAh", description: "High-capacity portable charger, multiple devices, fast charging", rating: 4.7, imageUrl: ankerPowerImg, affiliateLink: "https://www.amazon.com/dp/B09VP6FQZG?tag=moderntechs0c-20" },
       { title: "Bose QuietComfort 45", description: "Premium noise-canceling headphones, study focus, comfort", rating: 4.7, imageUrl: boseQcImg, affiliateLink: "https://www.amazon.com/dp/B098FKXT8L?tag=moderntechs0c-20" }
     ]
