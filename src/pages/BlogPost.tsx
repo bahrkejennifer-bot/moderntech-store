@@ -317,7 +317,7 @@ const blogPostsData: Record<string, {
       { title: "Ekrin Bantam Massage Gun", description: "Recovery tool, muscle relief, portable design", rating: 4.6, imageUrl: ekrinImg, affiliateLink: "https://www.amazon.com/dp/B087CKJ7GP?tag=moderntechs0c-20" },
       { title: "Withings Body+ Smart Scale", description: "WiFi-connected scale, body composition, health tracking", rating: 4.5, imageUrl: withingsImg, affiliateLink: "https://www.amazon.com/dp/B071XW4C5Q?tag=moderntechs0c-20" },
       { title: "Philips SmartSleep Wake-Up Light", description: "Sunrise simulation, better sleep quality, natural wake-up", rating: 4.5, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs0c-20" },
-      { title: "Bose Sleepbuds II", description: "Sleep-focused earbuds, noise masking, better rest", rating: 4.3, imageUrl: boseSleepImg, affiliateLink: "https://www.amazon.com/dp/B0DCVX154M?tag=moderntechs0c-20" }
+      { title: "Noise Blocking Sleep Earbuds", description: "Sleep, game & music modes, 7-hour battery, slim fit for side sleepers", rating: 4.3, imageUrl: boseSleepImg, affiliateLink: "https://www.amazon.com/dp/B0DCVX154M?tag=moderntechs0c-20" }
     ]
   },
   "educational-tech-kids-parents-guide": {
