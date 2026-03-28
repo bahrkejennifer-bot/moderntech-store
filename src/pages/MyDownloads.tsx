@@ -88,8 +88,8 @@ const MyDownloads = () => {
       }
 
       const { data: products, error: productsError } = await supabase
-        .from("digital_products")
-        .select("id, title, description, slug, pdf_path")
+        .from("products_public")
+        .select("id, title, description, slug")
         .in("id", productIds);
 
       if (productsError) {
