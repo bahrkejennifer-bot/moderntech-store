@@ -17,7 +17,7 @@ interface Purchase {
     title: string;
     description: string | null;
     slug: string;
-    pdf_path: string | null;
+    pdf_path?: string | null;
   };
 }
 
