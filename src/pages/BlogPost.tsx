@@ -134,7 +134,7 @@ const blogPostsData: Record<string, {
       { title: "Oura Ring Gen 4", description: "Best-in-class sleep tracking with Readiness Score and 7-day battery life", badge: "Editor's Choice", rating: 4.8, imageUrl: ouraRing4BlogImg, affiliateLink: "https://www.amazon.com/dp/B0D9WVSZ56?tag=moderntechs0c-20" },
       { title: "Samsung Galaxy Ring", description: "No subscription required, seamless Samsung Health integration", badge: "Best Value", rating: 4.6, imageUrl: samsungGalaxyRingImg, affiliateLink: "https://www.amazon.com/dp/B0D7DJCQN7?tag=moderntechs0c-20" },
       { title: "Ultrahuman Ring AIR", description: "Metabolic health focus with glucose monitoring compatibility", rating: 4.5, imageUrl: ultrahumanRingImg, affiliateLink: "https://www.amazon.com/dp/B0CG1N3GVV?tag=moderntechs0c-20" },
-      { title: "Withings Body+ Smart Scale", description: "Pairs perfectly with smart rings for complete health tracking", rating: 4.7, imageUrl: withingsImg, affiliateLink: "https://www.amazon.com/dp/B0C3JNJPZ7?tag=moderntechs0c-20" },
+      { title: "Withings Body Smart Scale", description: "Wi-Fi body composition scale — pairs perfectly with smart rings", rating: 4.7, imageUrl: withingsImg, affiliateLink: "https://www.amazon.com/dp/B0C3JNJPZ7?tag=moderntechs0c-20" },
       { title: "Bose Sleepbuds II", description: "Enhance your sleep data with better actual sleep quality", rating: 4.3, imageUrl: boseSleepImg, affiliateLink: "https://www.amazon.com/dp/B08FRR6Z1B?tag=moderntechs0c-20" },
       { title: "Philips SmartSleep Wake-up Light", description: "Sunrise alarm that works with your ring's sleep insights", rating: 4.6, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs0c-20" }
     ]
