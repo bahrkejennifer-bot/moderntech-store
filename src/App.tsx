@@ -129,7 +129,9 @@ const App = () => (
           <Route path="/media" element={<MediaHub />} />
           <Route path="/media/:id" element={<EpisodeDetail />} />
           <Route path="/founders-tech-stack" element={<FoundersTechStack />} />
-          <Route path="/links" element={<LinksPage />} />
+          <Route path="/creator-funnel" element={<CreatorFunnel />} />
+          <Route path="/creator-funnel/success" element={<CreatorFunnelSuccess />} />
+          <Route path="/free-amazon-associate-guide" element={<AmazonAssociateGuide />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
