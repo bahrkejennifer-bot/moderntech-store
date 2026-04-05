@@ -52,6 +52,9 @@ import FoundersTechStack from "./pages/FoundersTechStack";
 import LinksPage from "./pages/LinksPage";
 import CreatorFunnel from "./pages/CreatorFunnel";
 import CreatorFunnelSuccess from "./pages/CreatorFunnelSuccess";
+import CanvaMasterclass from "./pages/CanvaMasterclass";
+import FacelessYoutube from "./pages/FacelessYoutube";
+import CreatorBundle from "./pages/CreatorBundle";
 import AdminLayout from "./components/AdminLayout";
 import AdminAccessButton from "./components/AdminAccessButton";
 import { NewsletterPopup } from "./components/NewsletterPopup";
@@ -131,6 +134,9 @@ const App = () => (
           <Route path="/founders-tech-stack" element={<FoundersTechStack />} />
           <Route path="/creator-funnel" element={<CreatorFunnel />} />
           <Route path="/creator-funnel/success" element={<CreatorFunnelSuccess />} />
+          <Route path="/canva-masterclass" element={<CanvaMasterclass />} />
+          <Route path="/faceless-youtube" element={<FacelessYoutube />} />
+          <Route path="/creator-bundle" element={<CreatorBundle />} />
           <Route path="/free-amazon-associate-guide" element={<AmazonAssociateGuide />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
