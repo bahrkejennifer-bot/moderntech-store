@@ -50,6 +50,8 @@ import MediaHub from "./pages/MediaHub";
 import EpisodeDetail from "./pages/EpisodeDetail";
 import FoundersTechStack from "./pages/FoundersTechStack";
 import LinksPage from "./pages/LinksPage";
+import CreatorFunnel from "./pages/CreatorFunnel";
+import CreatorFunnelSuccess from "./pages/CreatorFunnelSuccess";
 import AdminLayout from "./components/AdminLayout";
 import AdminAccessButton from "./components/AdminAccessButton";
 import { NewsletterPopup } from "./components/NewsletterPopup";
