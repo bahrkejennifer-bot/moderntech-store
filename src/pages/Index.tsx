@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, Loader2 } from "lucide-react";
+import { ArrowRight, ExternalLink, Loader2, Video, Palette, Youtube } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { useQuery } from "@tanstack/react-query";
@@ -267,6 +267,55 @@ const Index = () => {
             ))}
           </div>
         )}
+      </section>
+
+      {/* ── THE CREATOR TRIO ── */}
+      <section className="border-t border-border">
+        <div className="max-w-6xl mx-auto px-8 py-20">
+          <p className="font-mono text-[9px] text-muted-foreground text-center tracking-[0.4em] uppercase mb-4">
+            Digital Products
+          </p>
+          <h2 className="font-serif text-4xl md:text-5xl text-center mb-3" style={{ fontStyle: "italic", fontWeight: 400 }}>
+            The Creator Trio
+          </h2>
+          <p className="font-mono text-[10px] text-muted-foreground text-center tracking-wide mb-16 max-w-md mx-auto">
+            Everything you need to create, design, and monetize faceless content.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
+            {[
+              { icon: Video, title: "Faceless Reels Guide", desc: "27-page playbook with viral hooks, scripts & strategies", price: "FREE", to: "/creator-funnel", cta: "Download Free" },
+              { icon: Palette, title: "Canva Masterclass", desc: "Full video course + 50 templates for scroll-stopping designs", price: "$29", to: "/canva-masterclass", cta: "Get Access" },
+              { icon: Youtube, title: "Faceless YouTube", desc: "Complete AI-powered system to build a monetized channel", price: "$49", to: "/faceless-youtube", cta: "Get Access" },
+            ].map((item, i) => (
+              <Link
+                key={i}
+                to={item.to}
+                className="group border-r last:border-r-0 border-border p-10 text-center hover:bg-card transition-colors duration-300 flex flex-col items-center"
+              >
+                <item.icon className="h-8 w-8 text-muted-foreground mb-6" strokeWidth={1.2} />
+                <h3 className="font-serif text-xl mb-2" style={{ fontStyle: "italic" }}>{item.title}</h3>
+                <p className="font-mono text-[10px] text-muted-foreground tracking-wide leading-relaxed mb-6 max-w-[220px]">
+                  {item.desc}
+                </p>
+                <span className="font-mono text-lg font-medium mb-4">{item.price}</span>
+                <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors">
+                  {item.cta} <ArrowRight className="h-3 w-3" />
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <Link
+              to="/creator-bundle"
+              className="inline-flex items-center gap-2 h-12 px-10 font-mono text-[10px] tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-80"
+              style={{ backgroundColor: 'hsl(40 10% 12%)', color: 'hsl(40 18% 91%)' }}
+            >
+              Get All 3 for $59 — Save $19 <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* ── CATEGORIES — editorial grid ── */}
