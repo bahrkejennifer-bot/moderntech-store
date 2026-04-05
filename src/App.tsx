@@ -50,6 +50,8 @@ import MediaHub from "./pages/MediaHub";
 import EpisodeDetail from "./pages/EpisodeDetail";
 import FoundersTechStack from "./pages/FoundersTechStack";
 import LinksPage from "./pages/LinksPage";
+import CreatorFunnel from "./pages/CreatorFunnel";
+import CreatorFunnelSuccess from "./pages/CreatorFunnelSuccess";
 import AdminLayout from "./components/AdminLayout";
 import AdminAccessButton from "./components/AdminAccessButton";
 import { NewsletterPopup } from "./components/NewsletterPopup";
@@ -127,7 +129,9 @@ const App = () => (
           <Route path="/media" element={<MediaHub />} />
           <Route path="/media/:id" element={<EpisodeDetail />} />
           <Route path="/founders-tech-stack" element={<FoundersTechStack />} />
-          <Route path="/links" element={<LinksPage />} />
+          <Route path="/creator-funnel" element={<CreatorFunnel />} />
+          <Route path="/creator-funnel/success" element={<CreatorFunnelSuccess />} />
+          <Route path="/free-amazon-associate-guide" element={<AmazonAssociateGuide />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
