@@ -20,7 +20,7 @@ const PromoBanner = () => {
       style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}
     >
       <Link to="/creator-bundle" className="hover:opacity-80 transition-opacity">
-        ✨ The Faceless Creator Bundle — Build online income without showing your face. Instagram, Canva, YouTube & more →
+        ✨ New: The Faceless Creator Bundle — Get all 3 guides for $59 →
       </Link>
       <button
         onClick={handleDismiss}
