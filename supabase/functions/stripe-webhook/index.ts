@@ -145,7 +145,28 @@ serve(async (req) => {
           }
         }
         
-        // Send confirmation email with download link
+        // Send confirmation email with download link + bundle upsell
+        const isBundle = productSlug === "creator-bundle";
+        const isFunnelProduct = ["canva-masterclass", "faceless-youtube-automation", "creator-bundle"].includes(productSlug || "");
+        
+        // Build upsell block for non-bundle funnel purchases
+        let upsellHtml = "";
+        if (isFunnelProduct && !isBundle) {
+          upsellHtml = `
+            <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-radius: 12px; padding: 30px; margin: 30px 0; text-align: center;">
+              <p style="color: #fbbf24; font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px;">💎 EXCLUSIVE OFFER</p>
+              <h3 style="color: #f8fafc; font-size: 20px; margin-bottom: 12px;">Get the Complete Creator Bundle</h3>
+              <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">
+                All 3 guides — Faceless Reels, Canva Masterclass &amp; YouTube Automation — for just <strong style="color: #fbbf24;">$59</strong> <span style="text-decoration: line-through;">$78</span>
+              </p>
+              <a href="https://moderntech.store/creator-funnel"
+                 style="display: inline-block; background: #fbbf24; color: #0f172a; padding: 14px 28px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 14px;">
+                Upgrade to the Bundle →
+              </a>
+            </div>
+          `;
+        }
+
         try {
           const emailResponse = await resend.emails.send({
             from: "Modern Tech LLC <noreply@moderntech.store>",
@@ -176,6 +197,8 @@ serve(async (req) => {
                     </ul>
                   `}
                 </div>
+
+                ${upsellHtml}
                 
                 <div style="background: #f8fafc; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
                   <h3 style="margin-top: 0; color: #475569;">Need Help?</h3>
