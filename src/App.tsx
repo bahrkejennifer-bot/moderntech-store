@@ -134,6 +134,9 @@ const App = () => (
           <Route path="/founders-tech-stack" element={<FoundersTechStack />} />
           <Route path="/creator-funnel" element={<CreatorFunnel />} />
           <Route path="/creator-funnel/success" element={<CreatorFunnelSuccess />} />
+          <Route path="/canva-masterclass" element={<CanvaMasterclass />} />
+          <Route path="/faceless-youtube" element={<FacelessYoutube />} />
+          <Route path="/creator-bundle" element={<CreatorBundle />} />
           <Route path="/free-amazon-associate-guide" element={<AmazonAssociateGuide />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
