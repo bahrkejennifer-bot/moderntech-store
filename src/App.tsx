@@ -76,8 +76,6 @@ const App = () => (
         <AdminAccessButton />
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/blueprint" element={<Blueprint />} />
-          <Route path="/blueprint/success" element={<BlueprintSuccess />} />
           <Route path="/free-guide" element={<FreeGuide />} />
           <Route path="/the-signal" element={<TheSignal />} />
           <Route path="/contact" element={<ContactPage />} />
