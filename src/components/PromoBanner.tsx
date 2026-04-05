@@ -19,8 +19,8 @@ const PromoBanner = () => {
       className="relative z-[51] flex items-center justify-center px-4 py-2.5 font-mono text-[10px] md:text-[11px] tracking-[0.15em] uppercase"
       style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}
     >
-      <Link to="/blueprint" className="hover:opacity-80 transition-opacity">
-        🎯 New: The Amazon Affiliate Blueprint 2026 — Get it for $27 →
+      <Link to="/creator-bundle" className="hover:opacity-80 transition-opacity">
+        ✨ New: The Faceless Creator Bundle — Get all 3 guides for $59 →
       </Link>
       <button
         onClick={handleDismiss}
