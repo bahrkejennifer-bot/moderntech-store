@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, Loader2 } from "lucide-react";
+import { ArrowRight, ExternalLink, Loader2, Video, Palette, Youtube } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { useQuery } from "@tanstack/react-query";
