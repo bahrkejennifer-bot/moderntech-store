@@ -1,30 +1,27 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Check, Sparkles, Video, Palette, Youtube, Loader2, Star } from "lucide-react";
+import { Check, Sparkles, Video, Palette, Youtube, Loader2, Star, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 const bundleItems = [
-  { icon: Video, name: "Faceless Reels Guide", value: "FREE", desc: "27-page Reels playbook with viral hooks & scripts" },
-  { icon: Palette, name: "Canva Masterclass", value: "$29", desc: "Full video course + 50 templates" },
-  { icon: Youtube, name: "Faceless YouTube Automation", value: "$49", desc: "Complete AI-powered YouTube system" },
+  { icon: Video, name: "Reels Master Class", value: "FREE", desc: "Learn to create attention-grabbing reels that stop the scroll" },
+  { icon: Palette, name: "Canva Master Class", value: "$29", desc: "Design polished graphics and branded content in Canva" },
+  { icon: Youtube, name: "YouTube Master Class", value: "$49", desc: "Build smarter YouTube content with practical strategies" },
 ];
 
 const allFeatures = [
-  "27-page step-by-step Reels playbook",
-  "Viral hook templates & scripts",
-  "Content calendar template",
-  "Scroll-stopping thumbnail templates",
-  "Animated story & Reel overlays",
-  "Brand kit setup walkthrough",
-  "50+ Canva templates",
-  "Complete faceless YouTube system",
-  "AI tool stack & automation setup",
-  "Niche selection framework",
-  "Monetization roadmap",
-  "Script-to-upload workflow",
+  "Hooks, content ideas, and structure tips for reels",
+  "Practical strategies for better short-form videos",
+  "Design tips for polished, professional content",
+  "Branding guidance to build a consistent look",
+  "Layout ideas for social media & digital products",
+  "Planning tips to structure your YouTube strategy",
+  "Video flow guidance for engaging, watchable videos",
+  "Channel growth ideas to build your audience",
   "30-day launch plan",
 ];
 
@@ -55,8 +52,8 @@ const CreatorBundle = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "hsl(40 18% 91%)", color: "hsl(40 10% 12%)" }}>
       <Helmet>
-        <title>The Complete Creator Bundle — Save $19 | ModernTech</title>
-        <meta name="description" content="Get all three creator guides in one bundle and save $19. Faceless Reels, Canva Masterclass, and YouTube Automation — everything you need." />
+        <title>The Complete Creator Bundle — Save $19 | Modern Tech</title>
+        <meta name="description" content="Get all three master classes together for just $59. Learn reels, Canva, and YouTube in one practical bundle designed to help creators build better content." />
       </Helmet>
       <Navigation />
 
@@ -69,7 +66,7 @@ const CreatorBundle = () => {
           The Complete<br />Creator Bundle
         </h1>
         <p className="font-mono text-[12px] tracking-[0.05em] max-w-xl mx-auto leading-relaxed" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
-          Everything you need to create, design, and monetize faceless content — bundled together at one unbeatable price.
+          Learn reels, Canva, and YouTube together in one practical bundle designed to help creators and business owners build content that looks better, performs better, and sells better.
         </p>
       </section>
 
@@ -91,7 +88,7 @@ const CreatorBundle = () => {
       </section>
 
       {/* CTA card */}
-      <section className="max-w-lg mx-auto px-6 pb-20">
+      <section className="max-w-lg mx-auto px-6 pb-16">
         <div className="p-8 rounded-sm text-center" style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}>
           <div className="flex items-center justify-center gap-1 mb-4">
             {[...Array(5)].map((_, i) => (
@@ -102,7 +99,10 @@ const CreatorBundle = () => {
             <span className="font-mono text-[12px] line-through mr-2" style={{ color: "hsl(40 18% 91% / 0.4)" }}>$78</span>
             <span className="font-serif text-5xl" style={{ color: "hsl(45 80% 55%)" }}>$59</span>
           </div>
-          <p className="font-mono text-[11px] mb-6" style={{ color: "hsl(40 18% 91% / 0.5)" }}>
+          <p className="font-mono text-[11px] mb-2" style={{ color: "hsl(40 18% 91% / 0.5)" }}>
+            Buy all 3 for $59 and save $19
+          </p>
+          <p className="font-mono text-[10px] mb-6" style={{ color: "hsl(40 18% 91% / 0.4)" }}>
             One payment • All three products • Lifetime access
           </p>
 
@@ -120,12 +120,40 @@ const CreatorBundle = () => {
             className="w-full flex items-center justify-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-4 transition-all hover:opacity-90 disabled:opacity-50"
             style={{ backgroundColor: "hsl(45 80% 55%)", color: "hsl(40 10% 12%)" }}
           >
-            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Get the Complete Bundle <Sparkles className="w-3 h-3" /></>}
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Get the Bundle <Sparkles className="w-3 h-3" /></>}
           </button>
 
           <p className="font-mono text-[9px] mt-4" style={{ color: "hsl(40 18% 91% / 0.3)" }}>
             30-day money-back guarantee • Instant delivery
           </p>
+        </div>
+      </section>
+
+      {/* Trust Section */}
+      <section className="px-6 pb-16">
+        <div className="max-w-3xl mx-auto text-center py-12" style={{ borderTop: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
+          <h2 className="font-serif text-3xl tracking-tight mb-4" style={{ fontWeight: 400 }}>
+            Built for Real People Creating Real Content
+          </h2>
+          <p className="font-mono text-[11px] leading-relaxed max-w-lg mx-auto" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
+            These guides are designed to be practical, easy to follow, and useful whether you're just starting out or ready to level up your content and brand.
+          </p>
+        </div>
+      </section>
+
+      {/* Or shop individually */}
+      <section className="px-6 pb-20">
+        <div className="max-w-md mx-auto text-center">
+          <p className="font-mono text-[10px] tracking-[0.15em] uppercase mb-4" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+            Prefer to start with one?
+          </p>
+          <Link
+            to="/digital-products"
+            className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase hover:opacity-60 transition-opacity"
+            style={{ color: "hsl(40 10% 12% / 0.6)" }}
+          >
+            Shop Individual Guides <ArrowRight className="w-3 h-3" />
+          </Link>
         </div>
       </section>
 

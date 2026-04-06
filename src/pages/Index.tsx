@@ -269,24 +269,48 @@ const Index = () => {
         )}
       </section>
 
-      {/* ── THE CREATOR TRIO ── */}
+      {/* ── DIGITAL PRODUCTS ── */}
       <section className="border-t border-border">
         <div className="max-w-6xl mx-auto px-8 py-20">
           <p className="font-mono text-[9px] text-muted-foreground text-center tracking-[0.4em] uppercase mb-4">
             Digital Products
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-center mb-3" style={{ fontStyle: "italic", fontWeight: 400 }}>
-            The Creator Trio
+            Learn the Skills to Grow Online
           </h2>
-          <p className="font-mono text-[10px] text-muted-foreground text-center tracking-wide mb-16 max-w-md mx-auto">
-            Everything you need to create, design, and monetize faceless content.
+          <p className="font-mono text-[10px] text-muted-foreground text-center tracking-wide mb-12 max-w-lg mx-auto">
+            Practical digital guides to help you create better content, build your brand, and grow with confidence.
           </p>
 
+          {/* Featured Bundle */}
+          <div className="p-8 md:p-10 mb-12 text-center" style={{ backgroundColor: 'hsl(40 10% 12%)', color: 'hsl(40 18% 91%)' }}>
+            <span className="inline-block font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1 mb-4" style={{ backgroundColor: 'hsl(45 80% 55%)', color: 'hsl(40 10% 12%)' }}>
+              Best Value
+            </span>
+            <h3 className="font-serif text-2xl md:text-3xl mb-2" style={{ fontWeight: 400 }}>
+              Get All 3 Master Classes for Just $59
+            </h3>
+            <p className="font-mono text-[11px] mb-6 max-w-md mx-auto" style={{ color: 'hsl(40 18% 91% / 0.6)' }}>
+              Save $19 when you bundle all three and get the full content creator toolkit.
+            </p>
+            <Link
+              to="/creator-bundle"
+              className="inline-flex items-center gap-2 h-12 px-10 font-mono text-[10px] tracking-[0.2em] uppercase transition-all hover:opacity-90"
+              style={{ backgroundColor: 'hsl(45 80% 55%)', color: 'hsl(40 10% 12%)' }}
+            >
+              Get the Bundle <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+
+          {/* Individual Guides */}
+          <p className="font-mono text-[9px] text-muted-foreground text-center tracking-[0.3em] uppercase mb-8">
+            Choose Your Master Class
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
             {[
-              { icon: Video, title: "Faceless Reels Guide", desc: "27-page playbook with viral hooks, scripts & strategies", price: "FREE", to: "/creator-funnel", cta: "Download Free" },
-              { icon: Palette, title: "Canva Masterclass", desc: "Full video course + 50 templates for scroll-stopping designs", price: "$29", to: "/canva-masterclass", cta: "Get Access" },
-              { icon: Youtube, title: "Faceless YouTube", desc: "Complete AI-powered system to build a monetized channel", price: "$49", to: "/faceless-youtube", cta: "Get Access" },
+              { icon: Video, title: "Reels Master Class", desc: "Learn how to create attention-grabbing reels that stop the scroll and help people notice your brand.", price: "FREE", to: "/creator-funnel", cta: "Get the Free Guide" },
+              { icon: Palette, title: "Canva Master Class", desc: "Create polished graphics, digital products, and branded content in Canva without feeling overwhelmed.", price: "$29", to: "/canva-masterclass", cta: "Buy for $29" },
+              { icon: Youtube, title: "YouTube Master Class", desc: "Build smarter YouTube content with practical strategies for video structure, branding, and audience growth.", price: "$49", to: "/faceless-youtube", cta: "Buy for $49" },
             ].map((item, i) => (
               <Link
                 key={i}
@@ -295,7 +319,7 @@ const Index = () => {
               >
                 <item.icon className="h-8 w-8 text-muted-foreground mb-6" strokeWidth={1.2} />
                 <h3 className="font-serif text-xl mb-2" style={{ fontStyle: "italic" }}>{item.title}</h3>
-                <p className="font-mono text-[10px] text-muted-foreground tracking-wide leading-relaxed mb-6 max-w-[220px]">
+                <p className="font-mono text-[10px] text-muted-foreground tracking-wide leading-relaxed mb-6 max-w-[240px]">
                   {item.desc}
                 </p>
                 <span className="font-mono text-lg font-medium mb-4">{item.price}</span>
@@ -308,11 +332,10 @@ const Index = () => {
 
           <div className="text-center mt-8">
             <Link
-              to="/creator-bundle"
-              className="inline-flex items-center gap-2 h-12 px-10 font-mono text-[10px] tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-80"
-              style={{ backgroundColor: 'hsl(40 10% 12%)', color: 'hsl(40 18% 91%)' }}
+              to="/digital-products"
+              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors"
             >
-              Get All 3 for $59 — Save $19 <ArrowRight className="h-3.5 w-3.5" />
+              Shop Digital Products <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
         </div>

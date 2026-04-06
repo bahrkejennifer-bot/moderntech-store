@@ -1,17 +1,25 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { ArrowRight, Check, Palette, Loader2, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 const features = [
-  "Scroll-stopping thumbnail templates",
-  "Animated story & Reel overlays",
-  "Brand kit setup walkthrough",
+  "Design tips for polished, professional content",
+  "Branding guidance to build a consistent look",
+  "Layout ideas for social media & digital products",
+  "Practical ways to create beautiful content faster",
   "Export settings for every platform",
-  "Bonus: 50+ Canva templates",
+];
+
+const whoItsFor = [
+  "Creators who want their content to look more polished",
+  "Business owners building their brand visuals",
+  "Beginners who feel overwhelmed by design tools",
+  "Anyone who wants to use Canva more effectively",
 ];
 
 const CanvaMasterclass = () => {
@@ -22,7 +30,7 @@ const CanvaMasterclass = () => {
     try {
       const { data, error } = await supabase.functions.invoke("create-checkout", {
         body: {
-          productName: "Canva Masterclass",
+          productName: "Canva Master Class",
           productSlug: "canva-masterclass",
           amount: 2900,
           successUrl: "https://moderntech.store/creator-funnel/success?product=canva-masterclass",
@@ -41,32 +49,36 @@ const CanvaMasterclass = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "hsl(40 18% 91%)", color: "hsl(40 10% 12%)" }}>
       <Helmet>
-        <title>Canva Masterclass — Design Like a Pro | ModernTech</title>
-        <meta name="description" content="Master Canva for content creation. Scroll-stopping thumbnails, animated overlays, brand kits, and 50+ templates included." />
+        <title>Canva Master Class — Design Like a Pro | Modern Tech</title>
+        <meta name="description" content="The Canva Master Class helps you design more polished content for your brand, products, and social media without wasting time guessing what looks good." />
       </Helmet>
       <Navigation />
 
       <section className="pt-28 pb-20 px-6">
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          {/* Left — copy */}
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-start">
           <div>
             <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
-              VIDEO MASTERCLASS
+              DIGITAL GUIDE
             </p>
             <h1 className="font-serif text-4xl md:text-5xl tracking-tight mb-6" style={{ fontWeight: 400 }}>
-              Canva<br />Masterclass
+              Canva<br />Master Class
             </h1>
             <p className="font-mono text-[12px] tracking-[0.05em] leading-relaxed mb-8" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
-              Design like a pro — no design degree needed. This complete video course walks you through everything from thumbnail creation to brand kit setup, with 50+ ready-to-use templates.
+              The Canva Master Class helps you design more polished content for your brand, products, and social media without wasting time guessing what looks good.
             </p>
 
-            <ul className="space-y-3 mb-8">
-              {features.map((f) => (
-                <li key={f} className="flex items-start gap-3 font-mono text-[12px]" style={{ color: "hsl(40 10% 12% / 0.7)" }}>
-                  <Check className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "hsl(40 10% 12% / 0.4)" }} /> {f}
-                </li>
-              ))}
-            </ul>
+            <div className="mb-8">
+              <p className="font-mono text-[9px] tracking-[0.2em] uppercase mb-3" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+                What's Included
+              </p>
+              <ul className="space-y-3">
+                {features.map((f) => (
+                  <li key={f} className="flex items-start gap-3 font-mono text-[12px]" style={{ color: "hsl(40 10% 12% / 0.7)" }}>
+                    <Check className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "hsl(40 10% 12% / 0.4)" }} /> {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <div className="flex items-baseline gap-3 mb-6">
               <span className="font-serif text-4xl">$29</span>
@@ -79,26 +91,47 @@ const CanvaMasterclass = () => {
               className="flex items-center justify-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-10 py-4 transition-all hover:opacity-80 disabled:opacity-50"
               style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}
             >
-              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Get Instant Access <ArrowRight className="w-3 h-3" /></>}
+              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Buy for $29 <ArrowRight className="w-3 h-3" /></>}
             </button>
           </div>
 
-          {/* Right — visual card */}
-          <div className="p-8 rounded-sm text-center" style={{ backgroundColor: "hsl(40 18% 95%)", border: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
-            <Palette className="w-16 h-16 mx-auto mb-6" style={{ color: "hsl(40 10% 12% / 0.2)" }} />
-            <h2 className="font-serif text-2xl mb-3" style={{ fontWeight: 400 }}>What's Inside</h2>
-            <p className="font-mono text-[11px] leading-relaxed mb-6" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
-              A full video walkthrough of Canva's most powerful features — designed specifically for content creators who want to level up their visuals.
-            </p>
-            <div className="flex items-center justify-center gap-1 mb-4">
+          <div>
+            <div className="p-8 rounded-sm text-center mb-6" style={{ backgroundColor: "hsl(40 18% 95%)", border: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
+              <Palette className="w-16 h-16 mx-auto mb-6" style={{ color: "hsl(40 10% 12% / 0.2)" }} />
+              <h2 className="font-serif text-2xl mb-3" style={{ fontWeight: 400 }}>Who It's For</h2>
+              <ul className="space-y-3 text-left max-w-xs mx-auto">
+                {whoItsFor.map((item) => (
+                  <li key={item} className="flex items-start gap-2 font-mono text-[11px]" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+                    <Check className="w-3 h-3 mt-0.5 shrink-0" style={{ color: "hsl(40 10% 12% / 0.3)" }} /> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex items-center justify-center gap-1 mb-2">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-4 h-4 fill-current" style={{ color: "hsl(45 80% 55%)" }} />
               ))}
             </div>
-            <p className="font-mono text-[10px]" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
-              Instant delivery • Video format • Lifetime access
+            <p className="font-mono text-[10px] text-center" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+              Instant delivery • Lifetime access
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Bundle Upsell */}
+      <section className="px-6 pb-16">
+        <div className="max-w-md mx-auto p-6 text-center" style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}>
+          <p className="font-mono text-[9px] tracking-[0.15em] uppercase mb-2" style={{ color: "hsl(45 80% 55%)" }}>Save $19</p>
+          <p className="font-serif text-lg mb-3">Get all 3 Master Classes for $59</p>
+          <Link
+            to="/creator-bundle"
+            className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase hover:opacity-70 transition-opacity"
+            style={{ color: "hsl(45 80% 55%)" }}
+          >
+            See the Bundle <ArrowRight className="w-3 h-3" />
+          </Link>
         </div>
       </section>
 
