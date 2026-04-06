@@ -146,10 +146,10 @@ const CreatorFunnel = () => {
               </p>
             </div>
             <h2 className="font-serif text-2xl text-center mb-2" style={{ fontWeight: 400 }}>
-              The Faceless Reels Guide
+              Reels Master Class
             </h2>
             <p className="font-mono text-[11px] text-center mb-6 leading-relaxed" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
-              27 pages of viral hooks, scripts, and editing workflows — yours free.
+              The Reels Master Class helps you create stronger short-form videos with better hooks, clearer structure, and more engaging content ideas so you can show up with confidence.
             </p>
 
             <form onSubmit={handleFreeDownload} className="space-y-3">
