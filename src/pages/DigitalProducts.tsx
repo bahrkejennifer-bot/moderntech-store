@@ -179,6 +179,7 @@ const DigitalProducts = () => {
                     {product.cta} <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
+                </div>
               </Link>
             );
           })}
