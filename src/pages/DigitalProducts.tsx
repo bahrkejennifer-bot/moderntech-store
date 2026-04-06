@@ -20,6 +20,7 @@ const products = [
     cta: "Get the Free Guide",
     to: "/creator-funnel",
     isFree: true,
+    cover: coverReels,
   },
   {
     icon: Palette,
