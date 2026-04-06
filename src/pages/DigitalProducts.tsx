@@ -3,6 +3,9 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, Video, Palette, Youtube, Sparkles, Loader2 } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import coverReels from "@/assets/cover-reels.jpg";
+import coverCanva from "@/assets/cover-canva.jpg";
+import coverYoutube from "@/assets/cover-youtube.jpg";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -17,6 +20,7 @@ const products = [
     cta: "Get the Free Guide",
     to: "/creator-funnel",
     isFree: true,
+    cover: coverReels,
   },
   {
     icon: Palette,
@@ -27,6 +31,7 @@ const products = [
     cta: "Buy for $29",
     to: "/canva-masterclass",
     isFree: false,
+    cover: coverCanva,
   },
   {
     icon: Youtube,
@@ -37,6 +42,7 @@ const products = [
     cta: "Buy for $49",
     to: "/faceless-youtube",
     isFree: false,
+    cover: coverYoutube,
   },
 ];
 
@@ -139,10 +145,20 @@ const DigitalProducts = () => {
               <Link
                 key={product.title}
                 to={product.to}
-                className="group flex flex-col p-8 transition-all duration-300 hover:shadow-lg"
+                className="group flex flex-col transition-all duration-300 hover:shadow-lg overflow-hidden"
                 style={{ backgroundColor: "hsl(40 18% 95%)", border: "0.5px solid hsl(40 10% 12% / 0.1)" }}
               >
-                <Icon className="w-8 h-8 mb-4" style={{ color: "hsl(40 10% 12% / 0.3)" }} />
+                <div className="aspect-[3/4] overflow-hidden">
+                  <img
+                    src={product.cover}
+                    alt={`${product.title} cover`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    width={600}
+                    height={800}
+                  />
+                </div>
+                <div className="p-8">
                 <h3 className="font-serif text-xl mb-3" style={{ fontWeight: 400 }}>{product.title}</h3>
                 <p className="font-mono text-[11px] leading-relaxed mb-4 flex-1" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
                   {product.desc}
@@ -162,6 +178,7 @@ const DigitalProducts = () => {
                   <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.15em] uppercase group-hover:translate-x-1 transition-transform" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
                     {product.cta} <ArrowRight className="w-3 h-3" />
                   </span>
+                </div>
                 </div>
               </Link>
             );
