@@ -125,13 +125,13 @@ const CreatorFunnel = () => {
       {/* Hero */}
       <section className="pt-24 pb-16 px-6 text-center max-w-4xl mx-auto">
         <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
-          THE CREATOR COLLECTION
+          MODERN TECH DIGITAL GUIDES
         </p>
         <h1 className="font-serif text-4xl md:text-6xl tracking-tight mb-6" style={{ fontWeight: 400 }}>
-          Build Your Faceless<br />Content Empire
+          Start Building Better<br />Content Today
         </h1>
         <p className="font-mono text-[12px] tracking-[0.05em] max-w-xl mx-auto leading-relaxed" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
-          From Instagram Reels to YouTube — everything you need to create, design, and monetize faceless content. Start free, scale as you grow.
+          Get the Reels Master Class free — then unlock the full system to design, create, and grow your content with confidence.
         </p>
       </section>
 
