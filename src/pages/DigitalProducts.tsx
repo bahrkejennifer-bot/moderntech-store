@@ -31,6 +31,7 @@ const products = [
     cta: "Buy for $29",
     to: "/canva-masterclass",
     isFree: false,
+    cover: coverCanva,
   },
   {
     icon: Youtube,
@@ -41,6 +42,7 @@ const products = [
     cta: "Buy for $49",
     to: "/faceless-youtube",
     isFree: false,
+    cover: coverYoutube,
   },
 ];
 
