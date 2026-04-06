@@ -1,399 +1,212 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useSearchParams, Link, useNavigate } from "react-router-dom";
-import { Download, CheckCircle, ArrowRight, Home, Monitor, Headphones, GraduationCap, Activity, Baby, BookOpen, Loader2, Briefcase, DollarSign } from "lucide-react";
-import { NewsletterSignup } from "@/components/NewsletterSignup";
+import { Link } from "react-router-dom";
+import { ArrowRight, Check, Video, Palette, Youtube, Sparkles, Loader2 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
-import { Button } from "@/components/ui/button";
-import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
-// Import cover images
-import kidsTechCover from "@/assets/pdf-covers/kids-tech-guide-cover.jpg";
-import smartHomeCover from "@/assets/pdf-covers/smart-home-guide-cover.jpg";
-import gamingMonitorsCover from "@/assets/pdf-covers/gaming-monitors-guide-cover.jpg";
-import earbudsCover from "@/assets/pdf-covers/earbuds-guide-cover.jpg";
-import studentTechCover from "@/assets/pdf-covers/student-tech-guide-cover.jpg";
-import fitnessTrackersCover from "@/assets/pdf-covers/fitness-trackers-guide-cover.jpg";
-import remoteWorkspaceCover from "@/assets/pdf-covers/remote-workspace-guide-cover.jpg";
-import valentineFamilyCover from "@/assets/pdf-covers/valentine-family-tech-guide-cover.jpg";
-import smartRingCover from "@/assets/pdf-covers/smart-ring-guide-cover.jpg";
-
-interface DigitalProduct {
-  id: string;
-  slug: string;
-  title: string;
-  description: string | null;
-  price: number | null;
-  is_free: boolean | null;
-  pdf_path: string | null;
-}
-
-// Map slugs to cover images
-const productMeta: Record<string, { cover: string; icon: React.ReactNode }> = {
-  "valentine-family-tech-guide": { cover: smartRingCover, icon: <BookOpen className="h-4 w-4" /> },
-  "kids-tech-guide": { cover: kidsTechCover, icon: <Baby className="h-4 w-4" /> },
-  "smart-home-guide": { cover: smartHomeCover, icon: <Home className="h-4 w-4" /> },
-  "gaming-monitors-guide": { cover: gamingMonitorsCover, icon: <Monitor className="h-4 w-4" /> },
-  "earbuds-guide": { cover: earbudsCover, icon: <Headphones className="h-4 w-4" /> },
-  "student-tech-guide": { cover: studentTechCover, icon: <GraduationCap className="h-4 w-4" /> },
-  "fitness-trackers-guide": { cover: fitnessTrackersCover, icon: <Activity className="h-4 w-4" /> },
-  "remote-workspace-guide": { cover: remoteWorkspaceCover, icon: <Briefcase className="h-4 w-4" /> },
-  "smart-ring-guide": { cover: smartRingCover, icon: <BookOpen className="h-4 w-4" /> },
-};
-
-// Editorial rename map
-const editorialNames: Record<string, string> = {
-  "earbuds-guide": "THE SONIC EDIT",
-  "fitness-trackers-guide": "THE BIOMETRIC AUDIT",
-  "valentine-family-tech-guide": "The Architecture of Wellness: A 2026 Smart Ring Analysis",
-  "smart-ring-guide": "The Architecture of Wellness: Smart Ring Buyer's Guide",
-};
-
-// Slugs that have dedicated pages instead of PDF downloads
-const dedicatedPageSlugs: Record<string, string> = {
-  "valentine-family-tech-guide": "/wellness-smart-ring-analysis",
-  "smart-ring-guide": "/wellness-smart-ring-analysis",
-  "earbuds-guide": "/sonic-edit",
-  "fitness-trackers-guide": "/biometric-audit",
-};
+const products = [
+  {
+    icon: Video,
+    title: "Reels Master Class",
+    desc: "Learn how to create attention-grabbing reels that stop the scroll and help people notice your brand.",
+    included: "Hooks, content ideas, structure tips, and practical strategies for better short-form videos.",
+    price: "FREE",
+    cta: "Get the Free Guide",
+    to: "/creator-funnel",
+    isFree: true,
+  },
+  {
+    icon: Palette,
+    title: "Canva Master Class",
+    desc: "Create polished graphics, digital products, and branded content in Canva without feeling overwhelmed.",
+    included: "Design tips, branding guidance, layout ideas, and practical ways to create beautiful content faster.",
+    price: "$29",
+    cta: "Buy for $29",
+    to: "/canva-masterclass",
+    isFree: false,
+  },
+  {
+    icon: Youtube,
+    title: "YouTube Master Class",
+    desc: "Build smarter YouTube content with practical strategies for video structure, branding, and audience growth.",
+    included: "Planning tips, video flow, channel growth ideas, and guidance for creating useful, engaging content.",
+    price: "$49",
+    cta: "Buy for $49",
+    to: "/faceless-youtube",
+    isFree: false,
+  },
+];
 
 const DigitalProducts = () => {
-  const [products, setProducts] = useState<DigitalProduct[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [downloadingId, setDownloadingId] = useState<string | null>(null);
-  const [emailGateId, setEmailGateId] = useState<string | null>(null);
-  const [gateEmail, setGateEmail] = useState("");
-  const [gateName, setGateName] = useState("");
-  const [submittingGate, setSubmittingGate] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const [bundleLoading, setBundleLoading] = useState(false);
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  useEffect(() => {
-    const success = searchParams.get("success");
-    const canceled = searchParams.get("canceled");
-    const productSlug = searchParams.get("product");
-
-    if (success === "true") {
-      toast({
-        title: "Download Ready",
-        description: `Your ${productSlug?.replace(/-/g, " ") || "guide"} is available now.`,
-      });
-      setSearchParams({});
-    } else if (canceled === "true") {
-      toast({
-        title: "Canceled",
-        description: "No worries — come back anytime.",
-        variant: "destructive",
-      });
-      setSearchParams({});
-    }
-  }, [searchParams, setSearchParams]);
-
-  const fetchProducts = async () => {
-    const { data, error } = await supabase
-      .from("products_public")
-      .select("*")
-      .order("display_order", { ascending: true });
-
-    if (error) {
-      console.error("Error fetching products:", error);
-      toast({ title: "Error", description: "Failed to load products", variant: "destructive" });
-    } else {
-      setProducts(data || []);
-    }
-    setLoading(false);
-  };
-
-  const handleDownload = async (product: DigitalProduct) => {
-    // Navigate to dedicated page if one exists
-    const dedicatedPage = dedicatedPageSlugs[product.slug];
-    if (dedicatedPage) {
-      navigate(dedicatedPage);
-      return;
-    }
-
-    if (!product.pdf_path) {
-      toast({ title: "Not Yet Available", description: "This edit is coming soon.", variant: "destructive" });
-      return;
-    }
-
-    // Show email gate instead of direct download
-    setEmailGateId(product.id);
-    setGateEmail("");
-    setGateName("");
-  };
-
-  const handleEmailGateSubmit = async (product: DigitalProduct) => {
-    if (!gateEmail.trim() || !gateName.trim()) {
-      toast({ title: "Required", description: "Please enter your name and email.", variant: "destructive" });
-      return;
-    }
-
-    setSubmittingGate(true);
+  const handleBundleCheckout = async () => {
+    setBundleLoading(true);
     try {
-      // Capture lead
-      await supabase.from("lead_captures").insert({
-        name: gateName.trim(),
-        email: gateEmail.trim(),
-        lead_magnet: product.slug,
-      });
-
-      // Generate download link
-      const { data, error } = await supabase.functions.invoke("generate-download-link", {
-        body: { productId: product.id },
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: {
+          productName: "The Complete Creator Bundle",
+          productSlug: "creator-bundle",
+          amount: 5900,
+          successUrl: "https://moderntech.store/creator-funnel/success?product=creator-bundle",
+          cancelUrl: "https://moderntech.store/digital-products",
+        },
       });
       if (error) throw error;
-      if (data?.signedUrl) {
-        window.open(data.signedUrl, '_blank');
-        toast({ title: "Download Started", description: `Opening ${product.title} now.` });
-      } else {
-        throw new Error(data?.error || "Failed to generate download URL");
-      }
-    } catch (error) {
-      console.error("Download error:", error);
-      toast({ title: "Download Failed", description: "Please try again.", variant: "destructive" });
+      if (data?.url) window.location.href = data.url;
+    } catch {
+      toast.error("Checkout failed. Please try again.");
     } finally {
-      setSubmittingGate(false);
-      setEmailGateId(null);
+      setBundleLoading(false);
     }
   };
 
-  const getDisplayTitle = (product: DigitalProduct) => {
-    return editorialNames[product.slug] || product.title;
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-background text-foreground">
-        <Navigation />
-        <div className="flex items-center justify-center py-32">
-          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-        </div>
-      </div>
-    );
-  }
-
-  const freeProduct = products.find((p) => p.is_free);
-  const paidProducts = products.filter((p) => !p.is_free);
-
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#F9F7F2", color: "#1a1a18" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "hsl(40 18% 91%)", color: "hsl(40 10% 12%)" }}>
       <Helmet>
-        <title>The Edit — Curated Tech Guides | Modern Tech</title>
-        <meta name="description" content="Curated digital guides for the discerning tech enthusiast — smart home, wellness, gaming, and beyond." />
-        <meta property="og:title" content="The Edit — Curated Tech Guides | Modern Tech" />
-        <meta property="og:description" content="Curated digital guides for the discerning tech enthusiast." />
-        <meta property="og:image" content="https://moderntech.store/images/products/smart-ring-guide-cover.jpg" />
-        <meta property="og:url" content="https://moderntech.store/digital-products" />
-        <meta property="og:type" content="website" />
+        <title>Digital Products — Modern Tech</title>
+        <meta name="description" content="Explore Modern Tech's digital guides designed to help creators, entrepreneurs, and beginners make better content, build stronger branding, and grow online." />
       </Helmet>
       <Navigation />
 
-      {/* Editorial Header */}
-      <header className="max-w-5xl mx-auto px-8 pt-16 pb-8 text-center">
-        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "#6b6860" }}>
-          The Modern Tech Library
+      {/* Header */}
+      <header className="max-w-4xl mx-auto px-8 pt-28 pb-10 text-center">
+        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+          Modern Tech
         </p>
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight" style={{ fontStyle: "italic", fontWeight: 400, color: "#1a1a18" }}>
-          The Edit
+        <h1 className="font-serif text-4xl md:text-5xl tracking-tight mb-6" style={{ fontWeight: 400 }}>
+          Digital Products
         </h1>
-        <p className="mt-6 font-mono text-[11px] tracking-[0.15em] uppercase max-w-lg mx-auto leading-[2]" style={{ color: "#6b6860" }}>
-          Expert-curated guides designed to cut through the noise. Every recommendation is tested, every word intentional.
+        <p className="font-mono text-[12px] tracking-[0.05em] leading-relaxed max-w-xl mx-auto" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+          Explore Modern Tech's digital guides designed to help creators, entrepreneurs, and beginners make better content, build stronger branding, and grow online with practical tools and strategies.
         </p>
       </header>
 
-      <div className="max-w-5xl mx-auto px-8 pb-4">
-        <div className="h-px" style={{ backgroundColor: "#d4d0c8" }} />
-      </div>
-
-      {/* Free Product — Lead Magnet */}
-      {freeProduct && (
-        <section className="max-w-5xl mx-auto px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0" style={{ border: "0.5px solid #d4d0c8" }}>
-            <div className="aspect-square md:aspect-auto overflow-hidden" style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.15))" }}>
-              <img
-                src={productMeta[freeProduct.slug]?.cover || smartRingCover}
-                alt={getDisplayTitle(freeProduct)}
-                className="w-full h-full object-cover grayscale"
-              />
-            </div>
-            <div className="p-8 md:p-12 flex flex-col justify-center">
-              <span className="font-mono text-[10px] tracking-[0.3em] uppercase mb-4 block" style={{ color: "#6b6860" }}>
-                Complimentary Download
-              </span>
-              <h2 className="font-serif text-2xl md:text-3xl leading-tight mb-4" style={{ fontStyle: "italic", fontWeight: 400, color: "#1a1a18" }}>
-                {getDisplayTitle(freeProduct)}
-              </h2>
-              <p className="font-mono text-[11px] leading-[1.8] mb-6" style={{ color: "#6b6860" }}>
-                {freeProduct.description || "A comprehensive analysis of the smart ring landscape — health tracking, design, and the technology shaping how we live."}
-              </p>
-              <div className="space-y-2 mb-8">
-                {["The Science of Wearable Wellness", "Smart ring comparisons across every price point", "Sleep, recovery & readiness — decoded"].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <span className="font-mono text-[10px] mt-0.5" style={{ color: "#9a958c" }}>{String(i + 1).padStart(2, '0')}</span>
-                    <span className="font-mono text-[11px]" style={{ color: "#3a3a35" }}>{item}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="pt-6" style={{ borderTop: "0.5px solid #d4d0c8" }}>
-                {dedicatedPageSlugs[freeProduct.slug] ? (
-                  <Link to={dedicatedPageSlugs[freeProduct.slug]}>
-                    <button
-                      className="inline-flex items-center gap-2 h-10 px-6 bg-transparent font-mono text-[10px] tracking-[0.15em] uppercase transition-all duration-300"
-                      style={{ border: "0.5px solid #3a3a35", color: "#1a1a18" }}
-                      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a18"; e.currentTarget.style.color = "#F9F7F2"; }}
-                      onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a18"; }}
-                    >
-                      <Download className="h-3 w-3" />
-                      Download the Edit
-                      <ArrowRight className="h-3 w-3" />
-                    </button>
-                  </Link>
-                ) : (
-                  <>
-                    <p className="font-mono text-[10px] tracking-[0.2em] uppercase mb-4" style={{ color: "#6b6860" }}>
-                      Enter your email for instant access
-                    </p>
-                    <NewsletterSignup campaignId="CiFHU" className="max-w-sm" />
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Divider */}
-      <div className="max-w-5xl mx-auto px-8">
-        <div className="h-px" style={{ backgroundColor: "#d4d0c8" }} />
-      </div>
-
-      {/* All Guides Grid */}
-      {paidProducts.length > 0 && (
-        <section className="max-w-5xl mx-auto px-8 py-12">
-          <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-10 text-center" style={{ color: "#6b6860" }}>
-            The Complete Collection
+      {/* Bundle Featured Section */}
+      <section className="max-w-4xl mx-auto px-6 pb-16">
+        <div className="p-8 md:p-12 text-center" style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}>
+          <span className="inline-block font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1 mb-4" style={{ backgroundColor: "hsl(45 80% 55%)", color: "hsl(40 10% 12%)" }}>
+            Best Value
+          </span>
+          <h2 className="font-serif text-2xl md:text-3xl mb-2" style={{ fontWeight: 400 }}>
+            Start with the Full Bundle
+          </h2>
+          <p className="font-mono text-[11px] leading-relaxed mb-6 max-w-lg mx-auto" style={{ color: "hsl(40 18% 91% / 0.6)" }}>
+            Want the complete system? Get all three master classes together for just $59. This bundle is perfect for anyone who wants to improve short-form content, design better visuals, and grow on YouTube while saving money.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0" style={{ borderTop: "0.5px solid #d4d0c8", borderLeft: "0.5px solid #d4d0c8" }}>
-            {paidProducts.map((product) => (
-              <div key={product.id} className="group" style={{ borderRight: "0.5px solid #d4d0c8", borderBottom: "0.5px solid #d4d0c8" }}>
-                {/* Image */}
-                <div className="aspect-[4/3] overflow-hidden" style={{ filter: "drop-shadow(0 12px 30px rgba(0,0,0,0.12))" }}>
-                  <img
-                    src={productMeta[product.slug]?.cover || smartHomeCover}
-                    alt={getDisplayTitle(product)}
-                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 grayscale group-hover:grayscale-[50%]"
-                  />
-                </div>
-
-                {/* Details */}
-                <div className="p-6">
-                  <span className="font-mono text-[9px] tracking-[0.3em] uppercase block mb-2" style={{ color: "#9a958c" }}>
-                    Expert Curated
-                  </span>
-                  <h3 className="font-serif text-lg leading-snug mb-2" style={{ fontStyle: "italic", color: "#1a1a18" }}>
-                    {getDisplayTitle(product)}
-                  </h3>
-                  <p className="font-mono text-[10px] leading-[1.7] mb-4 line-clamp-2" style={{ color: "#6b6860" }}>
-                    {product.description || "Your comprehensive buying guide"}
-                  </p>
-
-                  {emailGateId === product.id ? (
-                    /* Email capture gate */
-                    <div className="space-y-3 pt-2" style={{ borderTop: "0.5px solid #d4d0c8" }}>
-                      <p className="font-mono text-[10px] tracking-[0.15em] uppercase pt-3" style={{ color: "#6b6860" }}>
-                        Enter your details for instant access
-                      </p>
-                      <input
-                        type="text"
-                        placeholder="Your name"
-                        value={gateName}
-                        onChange={(e) => setGateName(e.target.value)}
-                        className="w-full h-9 px-3 font-mono text-[11px] bg-transparent outline-none"
-                        style={{ border: "0.5px solid #d4d0c8", color: "#1a1a18" }}
-                      />
-                      <input
-                        type="email"
-                        placeholder="Your email"
-                        value={gateEmail}
-                        onChange={(e) => setGateEmail(e.target.value)}
-                        className="w-full h-9 px-3 font-mono text-[11px] bg-transparent outline-none"
-                        style={{ border: "0.5px solid #d4d0c8", color: "#1a1a18" }}
-                      />
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => handleEmailGateSubmit(product)}
-                          disabled={submittingGate}
-                          className="flex-1 inline-flex items-center justify-center gap-2 h-9 px-4 font-mono text-[10px] tracking-[0.15em] uppercase transition-all duration-300 disabled:opacity-50"
-                          style={{ backgroundColor: "#1a1a18", color: "#F9F7F2" }}
-                        >
-                          {submittingGate ? <Loader2 className="h-3 w-3 animate-spin" /> : <>Get the Edit <ArrowRight className="h-3 w-3" /></>}
-                        </button>
-                        <button
-                          onClick={() => setEmailGateId(null)}
-                          className="h-9 px-3 font-mono text-[10px] uppercase"
-                          style={{ color: "#9a958c" }}
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-[12px] tracking-[0.1em] uppercase font-medium" style={{ color: "#c9a0a0" }}>
-                        FREE
-                      </span>
-                      <button
-                        onClick={() => handleDownload(product)}
-                        className="inline-flex items-center gap-2 h-9 px-5 bg-transparent font-mono text-[10px] tracking-[0.15em] uppercase transition-all duration-300"
-                        style={{ border: "0.5px solid #3a3a35", color: "#1a1a18" }}
-                        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a18"; e.currentTarget.style.color = "#F9F7F2"; }}
-                        onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a18"; }}
-                      >
-                        Download the Edit
-                        <ArrowRight className="h-3 w-3" />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <span className="font-mono text-[12px] line-through" style={{ color: "hsl(40 18% 91% / 0.4)" }}>$78</span>
+            <span className="font-serif text-4xl" style={{ color: "hsl(45 80% 55%)" }}>$59</span>
           </div>
-        </section>
-      )}
+          <p className="font-mono text-[10px] mb-6" style={{ color: "hsl(40 18% 91% / 0.5)" }}>
+            Buy all 3 for $59 and save $19
+          </p>
 
-      {/* Amazon Associate Guide Banner */}
-      <section className="max-w-5xl mx-auto px-8 pb-16">
-        <div className="p-8 md:p-12 flex flex-col md:flex-row items-center gap-8" style={{ border: "0.5px solid #d4d0c8" }}>
-          <div className="flex-1">
-            <span className="font-mono text-[10px] tracking-[0.3em] uppercase block mb-3" style={{ color: "#6b6860" }}>
-              Complimentary Resource
-            </span>
-            <h3 className="font-serif text-2xl leading-tight mb-3" style={{ fontStyle: "italic", fontWeight: 400, color: "#1a1a18" }}>
-              Amazon Associate Quick-Start Guide
-            </h3>
-            <p className="font-mono text-[11px] leading-[1.8]" style={{ color: "#6b6860" }}>
-              Learn how to sign up, create links, and earn your first commissions — 5 actionable pages, instant PDF download.
-            </p>
-          </div>
-          <Link to="/amazon-associate-guide">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
-              className="inline-flex items-center gap-2 h-10 px-6 bg-transparent font-mono text-[10px] tracking-[0.15em] uppercase transition-all duration-300 whitespace-nowrap"
-              style={{ border: "0.5px solid #3a3a35", color: "#1a1a18" }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#1a1a18"; e.currentTarget.style.color = "#F9F7F2"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#1a1a18"; }}
+              onClick={handleBundleCheckout}
+              disabled={bundleLoading}
+              className="inline-flex items-center gap-2 h-12 px-10 font-mono text-[10px] tracking-[0.2em] uppercase transition-all hover:opacity-90 disabled:opacity-50"
+              style={{ backgroundColor: "hsl(45 80% 55%)", color: "hsl(40 10% 12%)" }}
             >
-              <Download className="h-3 w-3" />
-              Get Free Guide
+              {bundleLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Get the Bundle <Sparkles className="w-3 h-3" /></>}
             </button>
-          </Link>
+            <Link
+              to="/creator-bundle"
+              className="font-mono text-[10px] tracking-[0.15em] uppercase transition-opacity hover:opacity-70"
+              style={{ color: "hsl(40 18% 91% / 0.5)" }}
+            >
+              See what's included →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Individual Products */}
+      <section className="max-w-4xl mx-auto px-6 pb-20">
+        <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-center mb-10" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+          Choose Your Master Class
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {products.map((product) => {
+            const Icon = product.icon;
+            return (
+              <Link
+                key={product.title}
+                to={product.to}
+                className="group flex flex-col p-8 transition-all duration-300 hover:shadow-lg"
+                style={{ backgroundColor: "hsl(40 18% 95%)", border: "0.5px solid hsl(40 10% 12% / 0.1)" }}
+              >
+                <Icon className="w-8 h-8 mb-4" style={{ color: "hsl(40 10% 12% / 0.3)" }} />
+                <h3 className="font-serif text-xl mb-3" style={{ fontWeight: 400 }}>{product.title}</h3>
+                <p className="font-mono text-[11px] leading-relaxed mb-4 flex-1" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+                  {product.desc}
+                </p>
+
+                <div className="pt-4 mb-4" style={{ borderTop: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
+                  <p className="font-mono text-[9px] tracking-[0.2em] uppercase mb-2" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+                    What's included
+                  </p>
+                  <p className="font-mono text-[10px] leading-relaxed" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
+                    {product.included}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between mt-auto pt-4">
+                  <span className="font-serif text-2xl">{product.price}</span>
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.15em] uppercase group-hover:translate-x-1 transition-transform" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+                    {product.cta} <ArrowRight className="w-3 h-3" />
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Trust Section */}
+      <section className="px-6 pb-16">
+        <div className="max-w-3xl mx-auto text-center py-16" style={{ borderTop: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
+          <h2 className="font-serif text-3xl md:text-4xl tracking-tight mb-4" style={{ fontWeight: 400 }}>
+            Built for Real People Creating Real Content
+          </h2>
+          <p className="font-mono text-[11px] leading-relaxed max-w-lg mx-auto" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
+            These guides are designed to be practical, easy to follow, and useful whether you're just starting out or ready to level up your content and brand.
+          </p>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="px-6 pb-20">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="font-serif text-3xl md:text-4xl tracking-tight mb-4" style={{ fontWeight: 400 }}>
+            Start Building Better Content Today
+          </h2>
+          <p className="font-mono text-[11px] leading-relaxed mb-8" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
+            Choose the guide that fits your next step, or get the full bundle and save.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              to="/creator-bundle"
+              className="inline-flex items-center gap-2 h-12 px-10 font-mono text-[10px] tracking-[0.2em] uppercase transition-all hover:opacity-80"
+              style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}
+            >
+              Get the Bundle <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+            <a
+              href="#"
+              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              className="font-mono text-[10px] tracking-[0.15em] uppercase transition-opacity hover:opacity-60"
+              style={{ color: "hsl(40 10% 12% / 0.5)" }}
+            >
+              Shop Digital Products ↑
+            </a>
+          </div>
         </div>
       </section>
 
