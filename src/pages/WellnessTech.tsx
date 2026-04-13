@@ -11,15 +11,15 @@ const WellnessTech = () => {
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
-        <title>Wellness Tech 2026 | Smart Rings, Fitness Trackers & Recovery</title>
-        <meta name="description" content="Shop the best wellness tech of 2026 — Oura Ring, Fitbit, smart scales, massage guns & sleep gadgets." />
-        <meta property="og:title" content="Wellness Tech 2026 | Smart Rings, Fitness Trackers & Recovery" />
-        <meta property="og:description" content="Shop the best wellness tech of 2026 — Oura Ring, Fitbit, smart scales, massage guns & sleep gadgets." />
-        <meta property="og:url" content="https://moderntech-store.lovable.app/wellness-tech" />
+        <title>Health & Wellness Tech 2026 | Smart Rings, Fitness Trackers & Recovery</title>
+        <meta name="description" content="Shop the best health & wellness tech of 2026 — Oura Ring, Fitbit, smart scales, massage guns & sleep gadgets." />
+        <meta property="og:title" content="Health & Wellness Tech 2026 | Smart Rings, Fitness Trackers & Recovery" />
+        <meta property="og:description" content="Shop the best health & wellness tech of 2026 — Oura Ring, Fitbit, smart scales, massage guns & sleep gadgets." />
+        <meta property="og:url" content="https://moderntech-store.lovable.app/health-wellness-tech" />
         <meta property="og:type" content="website" />
       </Helmet>
       <VogueCategoryLayout
-        title="Wellness Tech"
+        title="Health & Wellness Tech"
         subtitle="Smart rings, fitness trackers, recovery tools & sleep tech — invest in your body's operating system."
       >
         {isLoading ? (

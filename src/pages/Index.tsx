@@ -24,9 +24,9 @@ interface DBProduct {
 
 const categories = [
   { label: "Smart Home & Security", to: "/smart-home-security", desc: "Smart locks · Cameras · WiFi · Trackers" },
-  { label: "Wellness Tech", to: "/wellness-tech", desc: "Smart rings · Sleep trackers · Recovery" },
-  { label: "Digital Lifestyle", to: "/digital-lifestyle", desc: "Creator gear · Gaming · Streaming" },
-  { label: "Productivity & Family", to: "/productivity-family", desc: "Kids tech · College · AI gadgets" },
+  { label: "Health & Wellness Tech", to: "/health-wellness-tech", desc: "Smart rings · Sleep trackers · Recovery" },
+  { label: "Office Essentials", to: "/office-essentials", desc: "Creator gear · Gaming · Streaming" },
+  { label: "Kids & STEM", to: "/kids-stem", desc: "Kids tech · College · AI gadgets" },
 ];
 
 const useHomepageProducts = () => {
@@ -127,7 +127,7 @@ const Index = () => {
               ))}
             </div>
             <Link
-              to="/wellness-tech"
+              to="/health-wellness-tech"
               className="inline-flex items-center gap-2 font-serif text-lg tracking-tight hover:opacity-60 transition-opacity duration-300"
               style={{ fontStyle: "italic" }}
             >

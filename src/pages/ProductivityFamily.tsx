@@ -11,16 +11,16 @@ const ProductivityFamily = () => {
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
-        <title>Productivity & Family Tech 2026 | Kids, College & Office Essentials</title>
-        <meta name="description" content="Shop the best productivity and family tech of 2026 — kids tablets, college laptops, AI gadgets & study gear." />
-        <meta property="og:title" content="Productivity & Family Tech 2026 | Kids, College & Office Essentials" />
-        <meta property="og:description" content="Shop the best productivity and family tech of 2026 — kids tablets, college laptops, AI gadgets & study gear." />
-        <meta property="og:url" content="https://moderntech-store.lovable.app/productivity-family" />
+        <title>Kids & STEM Tech 2026 | Educational Tablets, Coding Robots & Study Gear</title>
+        <meta name="description" content="Shop the best kids & STEM tech of 2026 — kids tablets, coding robots, college laptops, AI gadgets & study gear." />
+        <meta property="og:title" content="Kids & STEM Tech 2026 | Educational Tablets, Coding Robots & Study Gear" />
+        <meta property="og:description" content="Shop the best kids & STEM tech of 2026 — kids tablets, coding robots, college laptops, AI gadgets & study gear." />
+        <meta property="og:url" content="https://moderntech-store.lovable.app/kids-stem" />
         <meta property="og:type" content="website" />
       </Helmet>
       <VogueCategoryLayout
-        title="Productivity & Family"
-        subtitle="Kids tablets, college laptops, AI gadgets & study gear — tech for every age and stage."
+        title="Kids & STEM"
+        subtitle="Kids tablets, coding robots, college laptops & AI gadgets — tech for every age and stage."
       >
         {isLoading ? (
           <p className="col-span-full text-center text-muted-foreground font-mono text-sm py-12">Loading products…</p>
