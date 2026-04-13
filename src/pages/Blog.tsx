@@ -34,7 +34,7 @@ const staticBlogPosts = [
     title: "The Ultimate Smart Ring Guide for 2026",
     excerpt: "Oura, Samsung Galaxy Ring, or Ultrahuman? We compare the top smart rings, breaking down sleep tracking accuracy, heart rate monitoring, sizing, and whether they're worth the investment.",
     date: "2026-02-02",
-    category: "Health & Wellness",
+    category: "Health & Wellness Tech",
     imageUrl: ouraRingHeroImg,
     slug: "smart-ring-guide-valentines-2026",
     isGenerated: false,
@@ -54,7 +54,7 @@ const staticBlogPosts = [
     title: "Top 10 Smart Home Devices for 2025",
     excerpt: "Discover the latest smart home technology that will transform your living space into a connected, efficient haven. From security cameras to smart thermostats, we've tested the best devices.",
     date: "2025-01-14",
-    category: "Home & Safety",
+    category: "Smart Home & Security",
     imageUrl: smartHomeHeroImg,
     slug: "top-10-smart-home-devices-2025",
     isGenerated: false,
@@ -64,7 +64,7 @@ const staticBlogPosts = [
     title: "Best Gaming Monitors Under $500",
     excerpt: "We've tested dozens of gaming monitors to find the best value options for competitive and casual gamers alike. Get high refresh rates and stunning visuals without breaking the bank.",
     date: "2025-01-09",
-    category: "Gaming",
+    category: "Office Essentials",
     imageUrl: gamingMonitorsHeroImg,
     slug: "best-gaming-monitors-under-500",
     isGenerated: false,
@@ -74,7 +74,7 @@ const staticBlogPosts = [
     title: "Wireless Earbuds Comparison Guide",
     excerpt: "AirPods vs Galaxy Buds vs Nothing Ear—which wireless earbuds are right for you? We break down the pros, cons, sound quality, battery life, and value proposition.",
     date: "2025-01-04",
-    category: "Connectivity",
+    category: "Office Essentials",
     imageUrl: wirelessEarbudsHeroImg,
     slug: "wireless-earbuds-comparison-2025",
     isGenerated: false,
@@ -84,7 +84,7 @@ const staticBlogPosts = [
     title: "Tech Essentials for College Students",
     excerpt: "Starting college? Here's our comprehensive guide to the tech gear every student needs to succeed—from laptops and tablets to accessories that make campus life easier.",
     date: "2024-12-27",
-    category: "College & School",
+    category: "Kids & STEM",
     imageUrl: collegeTechHeroImg,
     slug: "tech-essentials-college-students",
     isGenerated: false,
@@ -94,7 +94,7 @@ const staticBlogPosts = [
     title: "Best Fitness Trackers for Every Budget",
     excerpt: "From budget-friendly options to premium smartwatches, find the perfect fitness tracker for your health goals. We compare features, accuracy, battery life, and overall value.",
     date: "2024-12-19",
-    category: "Health & Wellness",
+    category: "Health & Wellness Tech",
     imageUrl: fitnessTrackersHeroImg,
     slug: "best-fitness-trackers-every-budget",
     isGenerated: false,
@@ -104,7 +104,7 @@ const staticBlogPosts = [
     title: "Educational Tech for Kids: Parent's Guide",
     excerpt: "Navigate the world of educational technology with our guide to age-appropriate learning devices and apps. Make informed choices that support your child's development.",
     date: "2024-12-14",
-    category: "Kids Tech",
+    category: "Kids & STEM",
     imageUrl: kidsTechHeroImg,
     slug: "educational-tech-kids-parents-guide",
     isGenerated: false,
@@ -112,7 +112,7 @@ const staticBlogPosts = [
   },
 ];
 
-const categories = ["All", "Deals", "Health & Wellness", "Gift Guides", "Home & Safety", "Gaming", "Connectivity", "College & School", "Kids Tech"];
+const categories = ["All", "Deals", "Smart Home & Security", "Health & Wellness Tech", "Office Essentials", "Kids & STEM", "Gift Guides", "Tech Roundup", "Deep Dive"];
 
 const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -168,10 +168,10 @@ const Blog = () => {
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
-        <title>Modern Tech Blog | Reviews, Deals & Buying Guides</title>
-        <meta name="description" content="Expert tech reviews, buying guides and deals on smart home, gaming, wellness gear and more. Updated weekly." />
-        <meta property="og:title" content="Modern Tech Blog | Reviews, Deals & Buying Guides" />
-        <meta property="og:description" content="Expert tech reviews, buying guides and deals on smart home, gaming, wellness gear and more." />
+        <title>Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech</title>
+        <meta name="description" content="Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly." />
+        <meta property="og:title" content="Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech" />
+        <meta property="og:description" content="Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM." />
         <meta property="og:image" content={springDealsHeroImg} />
         <meta property="og:url" content="https://moderntech.store/blog" />
         <meta property="og:type" content="website" />
@@ -183,8 +183,8 @@ const Blog = () => {
         <div className="max-w-5xl mx-auto px-8 pt-28 pb-10">
           <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">Modern Tech Journal</p>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl italic tracking-tight leading-[1.08] max-w-3xl" style={{ fontWeight: 700, color: '#000000' }}>
-            Insights, Reviews &<br />
-            Buying Guides
+            Smart Home & Security · Health &<br />
+            Wellness · Office · Kids & STEM
           </h1>
           <p className="mt-6 font-mono text-xs text-muted-foreground max-w-lg leading-relaxed">
             Expert-tested tech recommendations to help you spend smarter and live better.
