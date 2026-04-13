@@ -41,7 +41,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    const affiliateTag = "moderntechs04-20";
+    const affiliateTag = "moderntechs0c-20";
     const saved = [];
     const updated = [];
     const skipped = [];

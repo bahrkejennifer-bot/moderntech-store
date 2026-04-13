@@ -192,7 +192,7 @@ Deno.serve(async (req) => {
 
     console.log(`Found ${products.length} products`);
 
-    const affiliateTag = "moderntechs04-20";
+    const affiliateTag = "moderntechs0c-20";
     const savedProducts = [];
     const skippedDuplicates = [];
 
