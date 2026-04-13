@@ -62,6 +62,42 @@ import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
 import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
 import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
 
+// Blog product images (AI-generated for roundup posts)
+import whoop5Img from "@/assets/blog-products/whoop-5.jpg";
+import etekcityScaleImg from "@/assets/blog-products/etekcity-scale.jpg";
+import airpods4Img from "@/assets/blog-products/airpods-4.jpg";
+import echoShow11Img from "@/assets/blog-products/echo-show-11.jpg";
+import raybanMetaImg from "@/assets/blog-products/rayban-meta.jpg";
+import fitbitCharge6Img from "@/assets/blog-products/fitbit-charge-6.jpg";
+import plaudNoteImg from "@/assets/blog-products/plaud-note.jpg";
+import sjcamC400Img from "@/assets/blog-products/sjcam-c400.jpg";
+import ringLightImg from "@/assets/blog-products/ring-light.jpg";
+import smartRingProductImg from "@/assets/blog-products/smart-ring.jpg";
+
+// Map product titles to local images for dynamic blog posts
+const blogProductImageMap: Record<string, string> = {
+  "whoop 5.0": whoop5Img,
+  "etekcity smart body": etekcityScaleImg,
+  "airpods 4": airpods4Img,
+  "echo show 11": echoShow11Img,
+  "echo show": echoShow11Img,
+  "ray-ban meta": raybanMetaImg,
+  "fitbit charge 6": fitbitCharge6Img,
+  "plaud note": plaudNoteImg,
+  "sjcam c400": sjcamC400Img,
+  "ring light": ringLightImg,
+  "smart health ring": smartRingProductImg,
+  "prxxhri": smartRingProductImg,
+};
+
+const findProductImage = (title: string): string => {
+  const lower = title.toLowerCase();
+  for (const [key, img] of Object.entries(blogProductImageMap)) {
+    if (lower.includes(key)) return img;
+  }
+  return techDefaultHeroImg;
+};
+
 interface BlogProduct {
   title: string;
   description: string;
