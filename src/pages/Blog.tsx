@@ -168,10 +168,10 @@ const Blog = () => {
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
-        <title>Modern Tech Blog | Reviews, Deals & Buying Guides</title>
-        <meta name="description" content="Expert tech reviews, buying guides and deals on smart home, gaming, wellness gear and more. Updated weekly." />
-        <meta property="og:title" content="Modern Tech Blog | Reviews, Deals & Buying Guides" />
-        <meta property="og:description" content="Expert tech reviews, buying guides and deals on smart home, gaming, wellness gear and more." />
+        <title>Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech</title>
+        <meta name="description" content="Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly." />
+        <meta property="og:title" content="Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech" />
+        <meta property="og:description" content="Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM." />
         <meta property="og:image" content={springDealsHeroImg} />
         <meta property="og:url" content="https://moderntech.store/blog" />
         <meta property="og:type" content="website" />
