@@ -9,7 +9,7 @@ import coverImg from "@/assets/pdf-covers/earbuds-guide-cover.jpg";
 import { PinterestSaveButton } from "@/components/PinterestWidgets";
 import pinImage from "@/assets/pins/pin-sonic-edit-guide.jpg";
 
-const AFFILIATE_TAG = "moderntechs04-20";
+const AFFILIATE_TAG = "moderntechs0c-20";
 
 const SonicEditGuide = () => {
   const [downloading, setDownloading] = useState(false);
