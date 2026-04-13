@@ -586,8 +586,8 @@ const BlogPost = () => {
 
           <article>
             <div
-              className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:text-muted-foreground prose-p:leading-[1.85]"
-              dangerouslySetInnerHTML={{ __html: dynamicPost.content_html }}
+              className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:text-muted-foreground prose-p:leading-[1.85] prose-img:mx-auto prose-img:rounded-xl"
+              dangerouslySetInnerHTML={{ __html: dynamicPost.content_html.replace(/<img /g, '<img referrerpolicy="no-referrer" ') }}
             />
 
             <DownloadCTA />
