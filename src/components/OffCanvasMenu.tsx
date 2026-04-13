@@ -9,7 +9,7 @@ const menuItems = [
   { to: "/blog", label: "The Blueprint" },
   { to: "/signal", label: "The Art of Modern Tech" },
   { to: "/digital-products", label: "Downloads" },
-  { to: "/blueprint", label: "Affiliate Blueprint" },
+  
   { to: "/free-guide", label: "Free Guide" },
   { to: "/the-signal", label: "The Signal Podcast" },
   { to: "/contact", label: "Contact" },
