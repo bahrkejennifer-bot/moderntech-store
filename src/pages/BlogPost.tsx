@@ -621,9 +621,24 @@ const BlogPost = () => {
           </div>
 
           <article>
+            {/* Product Cards Grid */}
+            {dynamicPost.products && Array.isArray(dynamicPost.products) && (dynamicPost.products as any[]).length > 0 && (
+              <section className="mb-14">
+                <div className="flex items-center gap-4 mb-10">
+                  <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground whitespace-nowrap">Featured Products</h2>
+                  <div className="h-px flex-1 bg-border" />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {(dynamicPost.products as any[]).map((p: any, i: number) => (
+                    <ProductCard key={i} product={{ title: p.title, description: p.niche || "Tech", badge: i === 0 ? "Top Pick" : undefined, rating: 4.7, imageUrl: findProductImage(p.title), affiliateLink: p.affiliate_link }} />
+                  ))}
+                </div>
+              </section>
+            )}
+
             <div
-              className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:text-muted-foreground prose-p:leading-[1.85] prose-img:mx-auto prose-img:rounded-xl"
-              dangerouslySetInnerHTML={{ __html: dynamicPost.content_html.replace(/<img /g, '<img referrerpolicy="no-referrer" ') }}
+              className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:text-muted-foreground prose-p:leading-[1.85] prose-img:hidden"
+              dangerouslySetInnerHTML={{ __html: dynamicPost.content_html }}
             />
 
             <DownloadCTA />
