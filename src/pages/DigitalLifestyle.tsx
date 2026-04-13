@@ -11,15 +11,15 @@ const DigitalLifestyle = () => {
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
-        <title>Digital Lifestyle 2026 | Creator Gear, Gaming & Performance Tech</title>
-        <meta name="description" content="Shop the best creator gear and gaming tech of 2026 — mics, cameras, monitors, headsets & peripherals." />
-        <meta property="og:title" content="Digital Lifestyle 2026 | Creator Gear, Gaming & Performance Tech" />
-        <meta property="og:description" content="Shop the best creator gear and gaming tech of 2026 — mics, cameras, monitors, headsets & peripherals." />
-        <meta property="og:url" content="https://moderntech-store.lovable.app/digital-lifestyle" />
+        <title>Office Essentials 2026 | Creator Gear, Gaming & Performance Tech</title>
+        <meta name="description" content="Shop the best office essentials and creator gear of 2026 — mics, cameras, monitors, headsets & peripherals." />
+        <meta property="og:title" content="Office Essentials 2026 | Creator Gear, Gaming & Performance Tech" />
+        <meta property="og:description" content="Shop the best office essentials and creator gear of 2026 — mics, cameras, monitors, headsets & peripherals." />
+        <meta property="og:url" content="https://moderntech-store.lovable.app/office-essentials" />
         <meta property="og:type" content="website" />
       </Helmet>
       <VogueCategoryLayout
-        title="Digital Lifestyle"
+        title="Office Essentials"
         subtitle="Creator mics, cameras, gaming monitors, headsets & streaming gear — your performance command center."
       >
         {isLoading ? (

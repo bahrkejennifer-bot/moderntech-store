@@ -80,20 +80,23 @@ const App = () => (
           <Route path="/the-signal" element={<TheSignal />} />
           <Route path="/contact" element={<ContactPage />} />
 
-          {/* ── New Master Category Pages ── */}
+          {/* ── Master Category Pages ── */}
           <Route path="/smart-home-security" element={<SmartHomeSecurity />} />
-          <Route path="/wellness-tech" element={<WellnessTech />} />
-          <Route path="/digital-lifestyle" element={<DigitalLifestyle />} />
-          <Route path="/productivity-family" element={<ProductivityFamily />} />
+          <Route path="/health-wellness-tech" element={<WellnessTech />} />
+          <Route path="/office-essentials" element={<DigitalLifestyle />} />
+          <Route path="/kids-stem" element={<ProductivityFamily />} />
 
           {/* ── Redirects from old category URLs ── */}
           <Route path="/home-safety" element={<Navigate to="/smart-home-security" replace />} />
           <Route path="/connectivity" element={<Navigate to="/smart-home-security" replace />} />
-          <Route path="/health-wellness" element={<Navigate to="/wellness-tech" replace />} />
-          <Route path="/creator-gear" element={<Navigate to="/digital-lifestyle" replace />} />
-          <Route path="/gaming" element={<Navigate to="/digital-lifestyle" replace />} />
-          <Route path="/kids-tech" element={<Navigate to="/productivity-family" replace />} />
-          <Route path="/college" element={<Navigate to="/productivity-family" replace />} />
+          <Route path="/health-wellness" element={<Navigate to="/health-wellness-tech" replace />} />
+          <Route path="/wellness-tech" element={<Navigate to="/health-wellness-tech" replace />} />
+          <Route path="/creator-gear" element={<Navigate to="/office-essentials" replace />} />
+          <Route path="/gaming" element={<Navigate to="/office-essentials" replace />} />
+          <Route path="/digital-lifestyle" element={<Navigate to="/office-essentials" replace />} />
+          <Route path="/kids-tech" element={<Navigate to="/kids-stem" replace />} />
+          <Route path="/college" element={<Navigate to="/kids-stem" replace />} />
+          <Route path="/productivity-family" element={<Navigate to="/kids-stem" replace />} />
 
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
