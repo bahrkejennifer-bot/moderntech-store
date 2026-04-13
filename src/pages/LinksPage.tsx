@@ -54,7 +54,7 @@ const LINKS = [
   {
     emoji: "🛒",
     label: "Shop Amazon Favorites — Affiliate Picks",
-    url: "https://www.amazon.com/shop/moderntechllc?tag=moderntechs0c-20",
+    url: "https://www.amazon.com/shop/moderntechllc?tag=moderntechs04-20",
   },
 ];
 

@@ -29,7 +29,7 @@ const AMAZON_CATEGORY_URLS = [
     ],
   },
 ];
-const AFFILIATE_TAG = "moderntechs0c-20";
+const AFFILIATE_TAG = "moderntechs04-20";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
