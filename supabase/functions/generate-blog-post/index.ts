@@ -38,7 +38,7 @@ Deno.serve(async (req) => {
     const productList = products
       .map(
         (p: any, i: number) =>
-          `${i + 1}. **${p.title}** (Niche: ${p.niche || "Tech"})\n   Affiliate Link: ${p.affiliate_link}\n   Image: ${p.image_url || "N/A"}`
+          `${i + 1}. **${p.title}** (Niche: ${p.niche || "Tech"})\n   Affiliate Link: ${p.affiliate_link}\n   Image URL: ${p.image_url || "N/A"}`
       )
       .join("\n\n");
 
@@ -55,11 +55,12 @@ BRAND VOICE:
 
 WRITING FORMAT:
 Write a ~1,000-word Monthly Tech Roundup blog post in clean HTML (no <html>, <head>, or <body> tags — just the article content).
-
+Use ONLY HTML formatting — no markdown syntax. Use <strong> for bold, <em> for italics. Do NOT use ** or __ or any markdown.
 Structure:
 1. A catchy, SEO-optimized headline (wrapped in <h1>)
 2. An engaging intro (2-3 paragraphs) discussing current 2026 tech trends for creators, home safety, and wellness
 3. A dedicated <h2> section for EACH product with:
+   - A product image IMMEDIATELY after the <h2>: <div style="text-align:center;margin:1.5rem 0"><a href="AFFILIATE_LINK" target="_blank" rel="noopener noreferrer nofollow"><img src="IMAGE_URL" alt="PRODUCT_TITLE" referrerpolicy="no-referrer" style="max-width:400px;width:100%;border-radius:12px" /></a></div>
    - The problem it solves (1-2 sentences)
    - Key benefits as a <ul> list (3-4 bullets)
    - A call-to-action link: <a href="AFFILIATE_LINK" target="_blank" rel="noopener noreferrer nofollow">Check it out on Amazon →</a>
@@ -68,6 +69,7 @@ Structure:
 
 IMPORTANT:
 - Use the EXACT affiliate links provided — do not modify them
+- Use the EXACT image URLs provided for each product — do not omit images
 - Do NOT include prices (users will see them when they click)
 - Make it scannable with bold text, bullets, and clear headers
 - Include SEO-friendly subheadings

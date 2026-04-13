@@ -62,6 +62,42 @@ import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
 import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
 import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
 
+// Blog product images (AI-generated for roundup posts)
+import whoop5Img from "@/assets/blog-products/whoop-5.jpg";
+import etekcityScaleImg from "@/assets/blog-products/etekcity-scale.jpg";
+import airpods4Img from "@/assets/blog-products/airpods-4.jpg";
+import echoShow11Img from "@/assets/blog-products/echo-show-11.jpg";
+import raybanMetaImg from "@/assets/blog-products/rayban-meta.jpg";
+import fitbitCharge6Img from "@/assets/blog-products/fitbit-charge-6.jpg";
+import plaudNoteImg from "@/assets/blog-products/plaud-note.jpg";
+import sjcamC400Img from "@/assets/blog-products/sjcam-c400.jpg";
+import ringLightImg from "@/assets/blog-products/ring-light.jpg";
+import smartRingProductImg from "@/assets/blog-products/smart-ring.jpg";
+
+// Map product titles to local images for dynamic blog posts
+const blogProductImageMap: Record<string, string> = {
+  "whoop 5.0": whoop5Img,
+  "etekcity smart body": etekcityScaleImg,
+  "airpods 4": airpods4Img,
+  "echo show 11": echoShow11Img,
+  "echo show": echoShow11Img,
+  "ray-ban meta": raybanMetaImg,
+  "fitbit charge 6": fitbitCharge6Img,
+  "plaud note": plaudNoteImg,
+  "sjcam c400": sjcamC400Img,
+  "ring light": ringLightImg,
+  "smart health ring": smartRingProductImg,
+  "prxxhri": smartRingProductImg,
+};
+
+const findProductImage = (title: string): string => {
+  const lower = title.toLowerCase();
+  for (const [key, img] of Object.entries(blogProductImageMap)) {
+    if (lower.includes(key)) return img;
+  }
+  return techDefaultHeroImg;
+};
+
 interface BlogProduct {
   title: string;
   description: string;
@@ -585,8 +621,23 @@ const BlogPost = () => {
           </div>
 
           <article>
+            {/* Product Cards Grid */}
+            {dynamicPost.products && Array.isArray(dynamicPost.products) && (dynamicPost.products as any[]).length > 0 && (
+              <section className="mb-14">
+                <div className="flex items-center gap-4 mb-10">
+                  <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground whitespace-nowrap">Featured Products</h2>
+                  <div className="h-px flex-1 bg-border" />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {(dynamicPost.products as any[]).map((p: any, i: number) => (
+                    <ProductCard key={i} product={{ title: p.title, description: p.niche || "Tech", badge: i === 0 ? "Top Pick" : undefined, rating: 4.7, imageUrl: findProductImage(p.title), affiliateLink: p.affiliate_link }} />
+                  ))}
+                </div>
+              </section>
+            )}
+
             <div
-              className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:text-muted-foreground prose-p:leading-[1.85]"
+              className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:text-muted-foreground prose-p:leading-[1.85] prose-img:hidden"
               dangerouslySetInnerHTML={{ __html: dynamicPost.content_html }}
             />
 
