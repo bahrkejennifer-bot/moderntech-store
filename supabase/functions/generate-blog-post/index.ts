@@ -69,6 +69,7 @@ Structure:
 
 IMPORTANT:
 - Use the EXACT affiliate links provided — do not modify them
+- Use the EXACT image URLs provided for each product — do not omit images
 - Do NOT include prices (users will see them when they click)
 - Make it scannable with bold text, bullets, and clear headers
 - Include SEO-friendly subheadings
