@@ -55,7 +55,7 @@ BRAND VOICE:
 
 WRITING FORMAT:
 Write a ~1,000-word Monthly Tech Roundup blog post in clean HTML (no <html>, <head>, or <body> tags — just the article content).
-
+Use ONLY HTML formatting — no markdown syntax. Use <strong> for bold, <em> for italics. Do NOT use ** or __ or any markdown.
 Structure:
 1. A catchy, SEO-optimized headline (wrapped in <h1>)
 2. An engaging intro (2-3 paragraphs) discussing current 2026 tech trends for creators, home safety, and wellness
