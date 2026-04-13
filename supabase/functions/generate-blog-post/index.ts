@@ -38,7 +38,7 @@ Deno.serve(async (req) => {
     const productList = products
       .map(
         (p: any, i: number) =>
-          `${i + 1}. **${p.title}** (Niche: ${p.niche || "Tech"})\n   Affiliate Link: ${p.affiliate_link}\n   Image: ${p.image_url || "N/A"}`
+          `${i + 1}. **${p.title}** (Niche: ${p.niche || "Tech"})\n   Affiliate Link: ${p.affiliate_link}\n   Image URL: ${p.image_url || "N/A"}`
       )
       .join("\n\n");
 
@@ -60,6 +60,7 @@ Structure:
 1. A catchy, SEO-optimized headline (wrapped in <h1>)
 2. An engaging intro (2-3 paragraphs) discussing current 2026 tech trends for creators, home safety, and wellness
 3. A dedicated <h2> section for EACH product with:
+   - A product image IMMEDIATELY after the <h2>: <div style="text-align:center;margin:1.5rem 0"><a href="AFFILIATE_LINK" target="_blank" rel="noopener noreferrer nofollow"><img src="IMAGE_URL" alt="PRODUCT_TITLE" style="max-width:400px;width:100%;border-radius:12px" /></a></div>
    - The problem it solves (1-2 sentences)
    - Key benefits as a <ul> list (3-4 bullets)
    - A call-to-action link: <a href="AFFILIATE_LINK" target="_blank" rel="noopener noreferrer nofollow">Check it out on Amazon →</a>
