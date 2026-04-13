@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import coverImg from "@/assets/pdf-covers/smart-ring-guide-cover.jpg";
 
-const AFFILIATE_TAG = "moderntechs0c-20";
+const AFFILIATE_TAG = "moderntechs04-20";
 
 const WellnessSmartRingAnalysis = () => {
   const [downloading, setDownloading] = useState(false);
