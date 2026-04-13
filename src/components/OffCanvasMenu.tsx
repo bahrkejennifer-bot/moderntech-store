@@ -17,9 +17,9 @@ const menuItems = [
 
 const shopCategories = [
   { to: "/smart-home-security", label: "Smart Home & Security" },
-  { to: "/wellness-tech", label: "Wellness Tech" },
-  { to: "/digital-lifestyle", label: "Digital Lifestyle" },
-  { to: "/productivity-family", label: "Productivity & Family" },
+  { to: "/health-wellness-tech", label: "Health & Wellness Tech" },
+  { to: "/office-essentials", label: "Office Essentials" },
+  { to: "/kids-stem", label: "Kids & STEM" },
 ];
 
 interface OffCanvasMenuProps {
