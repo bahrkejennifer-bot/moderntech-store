@@ -624,6 +624,10 @@ export type Database = {
         }
         Returns: boolean
       }
+      increment_redirect_clicks: {
+        Args: { redirect_slug: string }
+        Returns: undefined
+      }
       move_to_dlq: {
         Args: {
           dlq_name: string
