@@ -7,7 +7,7 @@ const menuItems = [
   { to: "#", label: "Shop", hasSubmenu: true },
   { to: "/the-art-of-modern-tech", label: "The Art of Modern Tech" },
   { to: "/blog", label: "The Blueprint" },
-  { to: "/signal", label: "The Art of Modern Tech" },
+  { to: "/signal", label: "The Signal Podcast" },
   { to: "/digital-products", label: "Downloads" },
   
   { to: "/free-guide", label: "Free Guide" },
