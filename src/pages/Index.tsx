@@ -1,6 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, Loader2, Video, Palette, Youtube } from "lucide-react";
+import { ArrowRight, ExternalLink, Loader2 } from "lucide-react";
+import coverReels from "@/assets/cover-reels.jpg";
+import coverCanva from "@/assets/cover-canva.jpg";
+import coverYoutube from "@/assets/cover-youtube.jpg";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { useQuery } from "@tanstack/react-query";
@@ -306,26 +309,30 @@ const Index = () => {
           <p className="font-mono text-[9px] text-muted-foreground text-center tracking-[0.3em] uppercase mb-8">
             Choose Your Master Class
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: Video, title: "Reels Master Class", desc: "Learn how to create attention-grabbing reels that stop the scroll and help people notice your brand.", price: "FREE", to: "/creator-funnel", cta: "Get the Free Guide" },
-              { icon: Palette, title: "Canva Master Class", desc: "Create polished graphics, digital products, and branded content in Canva without feeling overwhelmed.", price: "$29", to: "/canva-masterclass", cta: "Buy for $29" },
-              { icon: Youtube, title: "YouTube Master Class", desc: "Build smarter YouTube content with practical strategies for video structure, branding, and audience growth.", price: "$49", to: "/faceless-youtube", cta: "Buy for $49" },
+              { cover: coverReels, title: "Reels Master Class", desc: "Learn how to create attention-grabbing reels that stop the scroll and help people notice your brand.", price: "FREE", to: "/creator-funnel", cta: "Get the Free Guide" },
+              { cover: coverCanva, title: "Canva Master Class", desc: "Create polished graphics, digital products, and branded content in Canva without feeling overwhelmed.", price: "$29", to: "/canva-masterclass", cta: "Buy for $29" },
+              { cover: coverYoutube, title: "YouTube Master Class", desc: "Build smarter YouTube content with practical strategies for video structure, branding, and audience growth.", price: "$49", to: "/faceless-youtube", cta: "Buy for $49" },
             ].map((item, i) => (
               <Link
                 key={i}
                 to={item.to}
-                className="group border-r last:border-r-0 border-border p-10 text-center hover:bg-card transition-colors duration-300 flex flex-col items-center"
+                className="group flex flex-col overflow-hidden border border-border hover:shadow-lg transition-all duration-300"
               >
-                <item.icon className="h-8 w-8 text-muted-foreground mb-6" strokeWidth={1.2} />
-                <h3 className="font-serif text-xl mb-2" style={{ fontStyle: "italic" }}>{item.title}</h3>
-                <p className="font-mono text-[10px] text-muted-foreground tracking-wide leading-relaxed mb-6 max-w-[240px]">
-                  {item.desc}
-                </p>
-                <span className="font-mono text-lg font-medium mb-4">{item.price}</span>
-                <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors">
-                  {item.cta} <ArrowRight className="h-3 w-3" />
-                </span>
+                <div className="aspect-[3/4] overflow-hidden">
+                  <img src={item.cover} alt={`${item.title} cover`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                </div>
+                <div className="p-8 text-center flex flex-col items-center">
+                  <h3 className="font-serif text-xl mb-2" style={{ fontStyle: "italic" }}>{item.title}</h3>
+                  <p className="font-mono text-[10px] text-muted-foreground tracking-wide leading-relaxed mb-6 max-w-[240px]">
+                    {item.desc}
+                  </p>
+                  <span className="font-mono text-lg font-medium mb-4">{item.price}</span>
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors">
+                    {item.cta} <ArrowRight className="h-3 w-3" />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
