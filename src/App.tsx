@@ -45,6 +45,7 @@ import AdminEmails from "./pages/AdminEmails";
 import AdminCommandCenter from "./pages/AdminCommandCenter";
 import AdminEpisodes from "./pages/AdminEpisodes";
 import MediaHub from "./pages/MediaHub";
+import ArtOfModernTech from "./pages/ArtOfModernTech";
 import EpisodeDetail from "./pages/EpisodeDetail";
 import FoundersTechStack from "./pages/FoundersTechStack";
 import LinksPage from "./pages/LinksPage";
@@ -129,7 +130,8 @@ const App = () => (
           <Route path="/admin/emails" element={<AdminLayout><AdminEmails /></AdminLayout>} />
           <Route path="/admin/command-center" element={<AdminLayout><AdminCommandCenter /></AdminLayout>} />
           <Route path="/admin/episodes" element={<AdminLayout><AdminEpisodes /></AdminLayout>} />
-          <Route path="/media" element={<MediaHub />} />
+          <Route path="/the-art-of-modern-tech" element={<ArtOfModernTech />} />
+          <Route path="/media" element={<Navigate to="/the-art-of-modern-tech" replace />} />
           <Route path="/media/:id" element={<EpisodeDetail />} />
           <Route path="/founders-tech-stack" element={<FoundersTechStack />} />
           <Route path="/creator-funnel" element={<CreatorFunnel />} />
