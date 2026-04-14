@@ -138,6 +138,7 @@ const App = () => (
           <Route path="/faceless-youtube" element={<FacelessYoutube />} />
           <Route path="/creator-bundle" element={<CreatorBundle />} />
           <Route path="/free-amazon-associate-guide" element={<AmazonAssociateGuide />} />
+          <Route path="/go/:slug" element={<ProductRedirect />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
