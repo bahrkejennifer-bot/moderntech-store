@@ -1,14 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink, Loader2 } from "lucide-react";
-import coverReels from "@/assets/cover-reels.jpg";
-import coverCanva from "@/assets/cover-canva.jpg";
-import coverYoutube from "@/assets/cover-youtube.jpg";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-
 import heroImg from "@/assets/hero-duality-editorial.jpg";
 import essentialsImg from "@/assets/hero-workspace-essentials.jpg";
 
@@ -31,6 +27,11 @@ const categories = [
   { label: "Office Essentials", to: "/office-essentials", desc: "Creator gear · Gaming · Streaming" },
   { label: "Kids & STEM", to: "/kids-stem", desc: "Kids tech · College · AI gadgets" },
 ];
+
+// Ebook cover images from Supabase Storage
+const COVER_REELS = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/product-images/cover-reels.jpg";
+const COVER_CANVA = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/product-images/cover-canva.jpg";
+const COVER_YOUTUBE = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/product-images/cover-youtube.jpg";
 
 const useHomepageProducts = () => {
   return useQuery({
@@ -311,9 +312,9 @@ const Index = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { cover: coverReels, title: "Reels Master Class", desc: "Learn how to create attention-grabbing reels that stop the scroll and help people notice your brand.", price: "FREE", to: "/creator-funnel", cta: "Get the Free Guide" },
-              { cover: coverCanva, title: "Canva Master Class", desc: "Create polished graphics, digital products, and branded content in Canva without feeling overwhelmed.", price: "$29", to: "/canva-masterclass", cta: "Buy for $29" },
-              { cover: coverYoutube, title: "YouTube Master Class", desc: "Build smarter YouTube content with practical strategies for video structure, branding, and audience growth.", price: "$49", to: "/faceless-youtube", cta: "Buy for $49" },
+              { cover: COVER_REELS, title: "Reels Master Class", desc: "Learn how to create attention-grabbing reels that stop the scroll and help people notice your brand.", price: "FREE", to: "/creator-funnel", cta: "Get the Free Guide" },
+              { cover: COVER_CANVA, title: "Canva Master Class", desc: "Create polished graphics, digital products, and branded content in Canva without feeling overwhelmed.", price: "$29", to: "/canva-masterclass", cta: "Buy for $29" },
+              { cover: COVER_YOUTUBE, title: "YouTube Master Class", desc: "Build smarter YouTube content with practical strategies for video structure, branding, and audience growth.", price: "$49", to: "/faceless-youtube", cta: "Buy for $49" },
             ].map((item, i) => (
               <Link
                 key={i}
