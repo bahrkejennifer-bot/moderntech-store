@@ -314,6 +314,42 @@ export type Database = {
         }
         Relationships: []
       }
+      product_redirects: {
+        Row: {
+          amazon_url: string
+          click_count: number
+          created_at: string
+          id: string
+          is_active: boolean
+          product_name: string
+          search_fallback_url: string | null
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          amazon_url: string
+          click_count?: number
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          product_name: string
+          search_fallback_url?: string | null
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          amazon_url?: string
+          click_count?: number
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          product_name?: string
+          search_fallback_url?: string | null
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       purchases: {
         Row: {
           customer_email: string
@@ -587,6 +623,10 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      increment_redirect_clicks: {
+        Args: { redirect_slug: string }
+        Returns: undefined
       }
       move_to_dlq: {
         Args: {

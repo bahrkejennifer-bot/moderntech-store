@@ -53,6 +53,7 @@ import CreatorFunnelSuccess from "./pages/CreatorFunnelSuccess";
 import CanvaMasterclass from "./pages/CanvaMasterclass";
 import FacelessYoutube from "./pages/FacelessYoutube";
 import CreatorBundle from "./pages/CreatorBundle";
+import ProductRedirect from "./pages/ProductRedirect";
 import AdminLayout from "./components/AdminLayout";
 import AdminAccessButton from "./components/AdminAccessButton";
 import { NewsletterPopup } from "./components/NewsletterPopup";
@@ -137,6 +138,7 @@ const App = () => (
           <Route path="/faceless-youtube" element={<FacelessYoutube />} />
           <Route path="/creator-bundle" element={<CreatorBundle />} />
           <Route path="/free-amazon-associate-guide" element={<AmazonAssociateGuide />} />
+          <Route path="/go/:slug" element={<ProductRedirect />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
