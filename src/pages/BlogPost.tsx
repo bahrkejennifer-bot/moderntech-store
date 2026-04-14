@@ -684,7 +684,7 @@ const BlogPost = () => {
 
             <div
               className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:text-muted-foreground prose-p:leading-[1.85] prose-img:hidden"
-              dangerouslySetInnerHTML={{ __html: dynamicPost.content_html }}
+              dangerouslySetInnerHTML={{ __html: rewriteAmazonLinks(dynamicPost.content_html) }}
             />
 
             <DownloadCTA />
