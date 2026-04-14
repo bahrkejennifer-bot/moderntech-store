@@ -98,6 +98,52 @@ const findProductImage = (title: string): string => {
   return techDefaultHeroImg;
 };
 
+// Amazon-to-redirect link mapping (ASIN → /go/ slug)
+const asinToSlug: Record<string, string> = {
+  "B0002E4Z8M": "shure-sm7b", "B082QHRZFW": "elgato-key-light-air", "B0BDKML2JZ": "dji-osmo-mobile-6",
+  "B0DHY5C1X1": "oura-ring-4", "B0D9WVWXR1": "oura-sizing-kit", "B0CX48M92W": "theragun-mini-2",
+  "B0CG1VLXQF": "withings-body-smart", "B0093162RM": "philips-smartsleep", "B0BFCYB2SJ": "whoop-4",
+  "B0DGJ7QCS2": "apple-watch-series-10", "B09WZBPX7K": "ring-doorbell-plus", "B0B1N5HW22": "blink-outdoor-4",
+  "B0CXKPTDRR": "eufy-smart-lock", "B0DBC8138W": "roborock-s8", "B0BLS3Y632": "echo-show-8",
+  "B0D4126GYJ": "simplisafe-security", "B0DJY8R8ZP": "shure-mv7-plus", "B09738CV2Q": "elgato-stream-deck",
+  "B0CLDD14VG": "elgato-ring-light", "B0C5CCJNT3": "sony-zv1-ii", "B0DNNKMJ3V": "dji-om-7",
+  "B0BX2SZ1SM": "rode-podmic-usb", "B0DZ6B7YYH": "macbook-air-m4", "B0BHTY6LMY": "ipad-10th-gen",
+  "B09XS7JWHH": "sony-xm5", "B09VPHQGZL": "anker-737", "B0C2TMFJJH": "logitech-mx-keys-s",
+  "B0CFPJYX2T": "kindle-paperwhite", "B0CL61F39H": "ps5-slim", "B0DFDJSM46": "steam-deck-oled",
+  "B09ZWMHSD8": "steelseries-arctis-nova", "B0CQR2WLRM": "razer-deathadder-v3",
+  "B0D5DTCKJ3": "asus-rog-swift-oled", "B0B6JM5DSK": "xbox-elite-controller",
+  "B0CHWRXH8B": "airpods-pro-2", "B0CF54MFPB": "anker-maggo-3in1", "B0D54JZTHY": "apple-airtag-4pack",
+  "B091G64GVK": "eero-pro-6e", "B0BL5SY2S6": "fire-hd-10-kids-pro", "B0CFR91BBG": "vtech-kidizoom-dx3",
+  "B07VCS5W53": "osmo-genius-kit", "B08QGR2TF5": "lego-spike-essential", "B08X1SN9QW": "jbl-jr310bt",
+  "B0B1CDCTSC": "tonies-toniebox", "B0CWSY8KNT": "whoop-5", "B07H2YBWCB": "etekcity-scale",
+  "B0DKWFVGQY": "airpods-4-anc", "B0CGXYNWBH": "rayban-meta-glasses", "B0CC62ZG1M": "fitbit-charge-6",
+  "B0FYQ4Y2ZZ": "plaud-note-pro", "B0FW55GRTN": "smart-health-ring",
+};
+
+const amznToSlug: Record<string, string> = {
+  "4cmK0n7": "sjcam-c400", "4s8RqPr": "rgb-ring-light-18",
+};
+
+const rewriteAmazonLinks = (html: string): string => {
+  // Replace amazon.com/dp/ASIN links
+  let result = html.replace(
+    /https?:\/\/(?:www\.)?amazon\.com\/dp\/([A-Z0-9]+)[^"']*/g,
+    (_match, asin) => {
+      const slug = asinToSlug[asin];
+      return slug ? `/go/${slug}` : _match;
+    }
+  );
+  // Replace amzn.to short links
+  result = result.replace(
+    /https?:\/\/amzn\.to\/([A-Za-z0-9]+)/g,
+    (_match, code) => {
+      const slug = amznToSlug[code];
+      return slug ? `/go/${slug}` : _match;
+    }
+  );
+  return result;
+};
+
 interface BlogProduct {
   title: string;
   description: string;
