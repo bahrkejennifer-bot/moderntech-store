@@ -62,7 +62,7 @@ const CreatorBundle = () => {
           <Sparkles className="w-3 h-3" style={{ color: "hsl(45 80% 55%)" }} />
           <span className="font-mono text-[10px] tracking-[0.15em] uppercase" style={{ color: "hsl(45 60% 35%)" }}>BEST VALUE — SAVE $19</span>
         </div>
-        <h1 className="font-serif text-4xl md:text-5xl tracking-tight mb-6" style={{ fontWeight: 400 }}>
+        <h1 className="font-serif text-4xl md:text-5xl tracking-tight mb-6" style={{ fontWeight: 400, color: "hsl(40 10% 8%)" }}>
           The Complete<br />Creator Bundle
         </h1>
         <p className="font-mono text-[12px] tracking-[0.05em] max-w-xl mx-auto leading-relaxed" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
