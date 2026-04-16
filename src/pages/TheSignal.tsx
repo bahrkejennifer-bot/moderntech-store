@@ -40,6 +40,13 @@ const TheSignal = () => {
       <Navigation />
 
       {/* Hero */}
+      {/* Coming Soon Banner */}
+      <div className="text-center pt-20 pb-4">
+        <span className="inline-block font-mono text-[11px] tracking-[0.3em] uppercase px-6 py-2 rounded-full" style={{ backgroundColor: "hsl(0 70% 45% / 0.15)", color: "hsl(0 70% 55%)", border: "1px solid hsl(0 70% 45% / 0.3)" }}>
+          Coming Soon
+        </span>
+      </div>
+
       <section className="max-w-[800px] mx-auto px-8 pt-24 pb-16 text-center">
         <div className="mb-8">
           <Radio className="w-6 h-6 mx-auto mb-6" style={{ color: "hsl(0 70% 45%)" }} />
