@@ -112,7 +112,7 @@ const staticBlogPosts = [
   },
 ];
 
-const categories = ["All", "Deals", "Smart Home & Security", "Health & Wellness Tech", "Office Essentials", "Kids & STEM", "Gift Guides", "Tech Roundup", "Deep Dive"];
+const categories = ["All", "Deals", "Smart Home & Security", "Health & Wellness Tech", "Office Essentials", "Kids & STEM", "Gift Guides", "MODERN TECH: WEEKLY REPORT", "Deep Dive"];
 
 const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -135,7 +135,7 @@ const Blog = () => {
     title: p.title,
     excerpt: p.excerpt || "",
     date: p.created_at,
-    category: p.category || "Tech Roundup",
+    category: p.category || "MODERN TECH: WEEKLY REPORT",
     imageUrl: p.image_url || techDefaultHeroImg,
     slug: p.slug,
     isGenerated: true,
@@ -181,7 +181,7 @@ const Blog = () => {
       {/* ── Hero Section ── */}
       <header className="border-b border-border">
         <div className="max-w-5xl mx-auto px-8 pt-28 pb-10">
-          <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">Modern Tech Journal</p>
+          <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">MODERN TECH:WEEKLY REPORT</p>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl italic tracking-tight leading-[1.08] max-w-3xl" style={{ fontWeight: 700, color: '#000000' }}>
             Smart Home & Security · Health &<br />
             Wellness · Office · Kids & STEM
