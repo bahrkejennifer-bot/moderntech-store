@@ -1,16 +1,20 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Check, Sparkles, Video, Palette, Youtube, Loader2, Star, ArrowRight } from "lucide-react";
+import { Check, Sparkles, Loader2, Star, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
+const COVER_REELS = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/product-images/cover-reels.jpg";
+const COVER_CANVA = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/product-images/cover-canva.jpg";
+const COVER_YOUTUBE = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/product-images/cover-youtube.jpg";
+
 const bundleItems = [
-  { icon: Video, name: "Reels Master Class", value: "FREE", desc: "Learn to create attention-grabbing reels that stop the scroll" },
-  { icon: Palette, name: "Canva Master Class", value: "$29", desc: "Design polished graphics and branded content in Canva" },
-  { icon: Youtube, name: "YouTube Master Class", value: "$49", desc: "Build smarter YouTube content with practical strategies" },
+  { cover: COVER_REELS, name: "Reels Master Class", value: "FREE", desc: "Learn to create attention-grabbing reels that stop the scroll" },
+  { cover: COVER_CANVA, name: "Canva Master Class", value: "$29", desc: "Design polished graphics and branded content in Canva" },
+  { cover: COVER_YOUTUBE, name: "YouTube Master Class", value: "$49", desc: "Build smarter YouTube content with practical strategies" },
 ];
 
 const allFeatures = [
@@ -74,10 +78,16 @@ const CreatorBundle = () => {
       <section className="max-w-4xl mx-auto px-6 pb-12">
         <div className="grid md:grid-cols-3 gap-6">
           {bundleItems.map((item) => {
-            const Icon = item.icon;
             return (
               <div key={item.name} className="p-6 rounded-sm text-center" style={{ backgroundColor: "hsl(40 18% 95%)", border: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
-                <Icon className="w-8 h-8 mx-auto mb-3" style={{ color: "hsl(40 10% 12% / 0.3)" }} />
+                <div className="mx-auto mb-4 aspect-[3/4] w-28 overflow-hidden rounded-sm" style={{ border: "0.5px solid hsl(40 10% 12% / 0.08)" }}>
+                  <img
+                    src={item.cover}
+                    alt={`${item.name} cover`}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
                 <h3 className="font-serif text-lg mb-1" style={{ fontWeight: 400 }}>{item.name}</h3>
                 <p className="font-mono text-[10px] mb-2" style={{ color: "hsl(40 10% 12% / 0.5)" }}>{item.desc}</p>
                 <span className="font-mono text-[11px] tracking-[0.1em]" style={{ color: "hsl(40 10% 12% / 0.4)" }}>{item.value}</span>
