@@ -6,7 +6,7 @@ const menuItems = [
   { to: "/", label: "Home" },
   { to: "#", label: "Shop", hasSubmenu: true },
   { to: "/the-art-of-modern-tech", label: "The Art of Modern Tech" },
-  { to: "/blog", label: "Modern Tech: The Weekly" },
+  { to: "/blog", label: "Modern Tech: Weekly Report" },
   { to: "/signal", label: "The Art of Modern Tech Podcast" },
   { to: "/digital-products", label: "Downloads" },
   
