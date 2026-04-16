@@ -117,25 +117,12 @@ const Index = () => {
             <p className="font-mono text-[9px] tracking-[0.4em] uppercase text-muted-foreground mb-10">
               The Essentials
             </p>
-            <div className="space-y-5 mb-12">
-              {[
-                { num: "01", label: "The Sculptural Ring" },
-                { num: "02", label: "Precision Hardware" },
-                { num: "03", label: "Ambient Connections" },
-              ].map((item) => (
-                <p key={item.num} className="font-mono text-[11px] tracking-[0.15em] uppercase text-foreground/70">
-                  <span className="text-muted-foreground">{item.num}</span>
-                  <span className="mx-3 text-muted-foreground">//</span>
-                  {item.label}
-                </p>
-              ))}
-            </div>
             <Link
-              to="/health-wellness-tech"
+              to="/blog"
               className="inline-flex items-center gap-2 font-serif text-lg tracking-tight hover:opacity-60 transition-opacity duration-300"
               style={{ fontStyle: "italic" }}
             >
-              Shop the Collection <ArrowRight className="h-4 w-4" />
+              View Latest Weekly Report <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="overflow-hidden order-1 md:order-2">
