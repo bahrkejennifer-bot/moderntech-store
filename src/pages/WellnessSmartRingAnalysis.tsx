@@ -267,7 +267,7 @@ const WellnessSmartRingAnalysis = () => {
         <div className="pdf-page-break" />
         <div style={{ textAlign: "center", padding: "100px 20px 80px" }}>
           <h3 style={{ fontSize: 36, fontWeight: 300, fontStyle: "italic", marginBottom: 24 }}>
-            THE SIGNAL
+            MODERN TECH'S FREE GUIDES
           </h3>
           <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 9, letterSpacing: "0.25em", color: "#8a8578", textTransform: "uppercase", lineHeight: 2, maxWidth: 400, margin: "0 auto 40px" }}>
             TECH TODAY. TREND TOMORROW.<br />
