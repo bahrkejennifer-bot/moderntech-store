@@ -56,7 +56,7 @@ const WellnessSmartRingAnalysis = () => {
             className="text-[9px] tracking-[0.25em] uppercase mb-6"
             style={{ fontFamily: "'IBM Plex Mono', monospace", color: "#8a8578" }}
           >
-            THE SIGNAL &nbsp;// &nbsp;SPECIAL EDIT
+            THE ART OF MODERN TECH &nbsp;// &nbsp;FREE GUIDES
           </p>
           <h1
             className="text-4xl md:text-6xl font-light italic mb-4"
@@ -116,7 +116,7 @@ const WellnessSmartRingAnalysis = () => {
         {/* COVER */}
         <div style={{ textAlign: "center", padding: "80px 20px 60px" }}>
           <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 9, letterSpacing: "0.25em", color: "#8a8578", marginBottom: 32, textTransform: "uppercase" }}>
-            THE SIGNAL &nbsp;// &nbsp;SPECIAL EDIT
+            THE ART OF MODERN TECH &nbsp;// &nbsp;FREE GUIDES
           </p>
           <h2 style={{ fontSize: 42, fontWeight: 300, fontStyle: "italic", marginBottom: 16 }}>
             The Architecture of Wellness

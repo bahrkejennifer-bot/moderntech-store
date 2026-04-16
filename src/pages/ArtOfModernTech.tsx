@@ -93,9 +93,9 @@ const ArtOfModernTech = () => {
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>The Art of Modern Tech — Videos, Podcast & Blog</title>
-        <meta name="description" content="Watch, listen, and read — weekly tech videos, The Signal podcast, and editorial blog posts from Modern Tech LLC." />
+        <meta name="description" content="Watch, listen, and read — weekly tech videos, podcast, and editorial blog posts from Modern Tech LLC." />
         <meta property="og:title" content="The Art of Modern Tech — Videos, Podcast & Blog" />
-        <meta property="og:description" content="Weekly tech videos, The Signal podcast, and editorial blog posts for women ready to lead the future." />
+        <meta property="og:description" content="Weekly tech videos, podcast, and editorial blog posts for women ready to lead the future." />
         <meta property="og:url" content="https://moderntech.store/the-art-of-modern-tech" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -195,7 +195,7 @@ const ArtOfModernTech = () => {
         <div className="flex items-center justify-between mb-10">
           <div>
             <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">Latest Episodes</p>
-            <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>The Signal Podcast</h2>
+            <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>The Art of Modern Tech Podcast</h2>
           </div>
           <Link to="/the-signal" className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
             <Headphones className="h-4 w-4" /> Full Page
