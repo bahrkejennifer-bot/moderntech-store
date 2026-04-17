@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Star, Check, Sparkles, ArrowRight, Quote } from "lucide-react";
+import { Star, Check, Sparkles, ArrowRight, Quote, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 // Lux palette
 const CREAM = "hsl(36 33% 96%)";
@@ -12,26 +15,45 @@ const CHARCOAL_SOFT = "hsl(30 10% 18%)";
 const ROSE_GOLD = "hsl(14 65% 55%)";
 const ROSE_GOLD_DEEP = "hsl(12 60% 42%)";
 
-const BUNDLE_URL = "https://www.moderntech.store/creator-bundle";
+const SITE = "https://moderntech.store";
 
-const products = [
+type ProductKey = "reels" | "canva" | "youtube" | "bundle";
+
+const products: {
+  key: ProductKey;
+  name: string;
+  tag: string;
+  price: string;
+  desc: string;
+  amount: number; // cents, 0 = free
+  slug: string;
+}[] = [
   {
+    key: "reels",
     name: "Faceless Instagram Reels",
     tag: "FREE",
     price: "Free",
     desc: "The exact framework to grow a faceless Reels page that pulls in followers while you sleep — no camera, no face, no fuss.",
+    amount: 0,
+    slug: "reels-master-class",
   },
   {
+    key: "canva",
     name: "Canva Master Class",
     tag: "$29",
     price: "$29",
     desc: "Design polished, scroll-stopping graphics in Canva. Templates, brand kits, and the visual system that makes your content look expensive.",
+    amount: 2900,
+    slug: "canva-masterclass",
   },
   {
+    key: "youtube",
     name: "Faceless YouTube Automation",
     tag: "$49",
     price: "$49",
     desc: "Build a hands-off YouTube channel using AI tools, voiceovers, and a content engine that runs without you on camera.",
+    amount: 4900,
+    slug: "faceless-youtube",
   },
 ];
 
