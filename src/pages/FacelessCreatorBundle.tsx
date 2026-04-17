@@ -327,7 +327,7 @@ const FacelessCreatorBundle = () => {
           </a>
           <p
             className="font-mono text-[9px] tracking-[0.2em] uppercase mt-6"
-            style={{ color: TAUPE }}
+            style={{ color: "hsl(36 25% 80%)" }}
           >
             30-day guarantee · Instant access
           </p>
