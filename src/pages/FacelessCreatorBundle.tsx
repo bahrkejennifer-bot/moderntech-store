@@ -84,6 +84,40 @@ const reviews = [
 ];
 
 const FacelessCreatorBundle = () => {
+  const [loading, setLoading] = useState<ProductKey | null>(null);
+
+  const startCheckout = async (
+    key: ProductKey,
+    name: string,
+    amount: number,
+    slug: string,
+  ) => {
+    if (amount === 0) {
+      // Free product → send to lead-magnet flow
+      window.location.href = `${SITE}/free-guide?product=${slug}`;
+      return;
+    }
+    setLoading(key);
+    try {
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: {
+          productName: name,
+          productSlug: slug,
+          amount,
+          successUrl: `${SITE}/creator-funnel/success?product=${slug}`,
+          cancelUrl: `${SITE}/faceless-creator-bundle`,
+        },
+      });
+      if (error) throw error;
+      if (data?.url) window.location.href = data.url;
+      else throw new Error("No checkout URL returned");
+    } catch (err) {
+      console.error("Checkout error:", err);
+      toast.error("Checkout failed. Please try again.");
+      setLoading(null);
+    }
+  };
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: CREAM, color: CHARCOAL }}>
       <Helmet>
