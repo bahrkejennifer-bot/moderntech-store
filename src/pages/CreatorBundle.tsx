@@ -91,7 +91,7 @@ const CreatorBundle = () => {
       {/* MAGAZINE MASTHEAD */}
       <section className="pt-24 pb-4 px-6 text-center">
         <p className="font-mono text-[10px] tracking-[0.4em] uppercase" style={{ color: INK_MUTED }}>
-          Modern Tech · The Edit · Vol. 01
+          Modern Tech LLC · Tech Today, Trend Tomorrow
         </p>
         <div className="mx-auto mt-3 h-px w-24" style={{ backgroundColor: INK }} />
       </section>
