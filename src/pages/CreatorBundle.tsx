@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import ogImage from "@/assets/creator-bundle-og.jpg";
 
 const COVER_REELS = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/product-images/cover-reels.jpg";
 const COVER_CANVA = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/product-images/cover-canva.jpg";
@@ -84,7 +85,30 @@ const CreatorBundle = () => {
     <div className="min-h-screen" style={{ backgroundColor: CREAM, color: INK_BODY }}>
       <Helmet>
         <title>The Complete Creator Bundle — Save $19 | Modern Tech</title>
-        <meta name="description" content="Get all three master classes together for just $59. Learn reels, Canva, and YouTube in one practical bundle designed to help creators build better content." />
+        <meta name="description" content="Three master classes — Reels, Canva, and YouTube — bundled into one quiet, luxurious system for creators. Just $59. Instant delivery, lifetime access." />
+        <link rel="canonical" href="https://moderntech.store/creator-bundle" />
+
+        {/* Open Graph — Facebook, Instagram DMs, iMessage, LinkedIn */}
+        <meta property="og:type" content="product" />
+        <meta property="og:site_name" content="Modern Tech LLC" />
+        <meta property="og:url" content="https://moderntech.store/creator-bundle" />
+        <meta property="og:title" content="The Complete Creator Bundle — Just $59" />
+        <meta property="og:description" content="Reels. Canva. YouTube. Three master classes, one quiet revolution. Save $19 — instant delivery, lifetime access." />
+        <meta property="og:image" content={`https://moderntech.store${ogImage}`} />
+        <meta property="og:image:secure_url" content={`https://moderntech.store${ogImage}`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="The Complete Creator Bundle — Reels, Canva, and YouTube master classes" />
+
+        {/* Twitter / X */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="The Complete Creator Bundle — Just $59" />
+        <meta name="twitter:description" content="Reels. Canva. YouTube. Three master classes, one quiet revolution. Save $19." />
+        <meta name="twitter:image" content={`https://moderntech.store${ogImage}`} />
+
+        {/* Pinterest / Rich Pins */}
+        <meta property="product:price:amount" content="59.00" />
+        <meta property="product:price:currency" content="USD" />
       </Helmet>
       <Navigation />
 
