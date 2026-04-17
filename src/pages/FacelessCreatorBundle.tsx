@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Star, Check, Sparkles, ArrowRight, Quote } from "lucide-react";
+import { Star, Check, Sparkles, ArrowRight, Quote, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 // Lux palette
 const CREAM = "hsl(36 33% 96%)";
@@ -12,26 +15,45 @@ const CHARCOAL_SOFT = "hsl(30 10% 18%)";
 const ROSE_GOLD = "hsl(14 65% 55%)";
 const ROSE_GOLD_DEEP = "hsl(12 60% 42%)";
 
-const BUNDLE_URL = "https://www.moderntech.store/creator-bundle";
+const SITE = "https://moderntech.store";
 
-const products = [
+type ProductKey = "reels" | "canva" | "youtube" | "bundle";
+
+const products: {
+  key: ProductKey;
+  name: string;
+  tag: string;
+  price: string;
+  desc: string;
+  amount: number; // cents, 0 = free
+  slug: string;
+}[] = [
   {
+    key: "reels",
     name: "Faceless Instagram Reels",
     tag: "FREE",
     price: "Free",
     desc: "The exact framework to grow a faceless Reels page that pulls in followers while you sleep — no camera, no face, no fuss.",
+    amount: 0,
+    slug: "reels-master-class",
   },
   {
+    key: "canva",
     name: "Canva Master Class",
     tag: "$29",
     price: "$29",
     desc: "Design polished, scroll-stopping graphics in Canva. Templates, brand kits, and the visual system that makes your content look expensive.",
+    amount: 2900,
+    slug: "canva-masterclass",
   },
   {
+    key: "youtube",
     name: "Faceless YouTube Automation",
     tag: "$49",
     price: "$49",
     desc: "Build a hands-off YouTube channel using AI tools, voiceovers, and a content engine that runs without you on camera.",
+    amount: 4900,
+    slug: "faceless-youtube",
   },
 ];
 
@@ -62,6 +84,40 @@ const reviews = [
 ];
 
 const FacelessCreatorBundle = () => {
+  const [loading, setLoading] = useState<ProductKey | null>(null);
+
+  const startCheckout = async (
+    key: ProductKey,
+    name: string,
+    amount: number,
+    slug: string,
+  ) => {
+    if (amount === 0) {
+      // Free product → send to lead-magnet flow
+      window.location.href = `${SITE}/free-guide?product=${slug}`;
+      return;
+    }
+    setLoading(key);
+    try {
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: {
+          productName: name,
+          productSlug: slug,
+          amount,
+          successUrl: `${SITE}/creator-funnel/success?product=${slug}`,
+          cancelUrl: `${SITE}/faceless-creator-bundle`,
+        },
+      });
+      if (error) throw error;
+      if (data?.url) window.location.href = data.url;
+      else throw new Error("No checkout URL returned");
+    } catch (err) {
+      console.error("Checkout error:", err);
+      toast.error("Checkout failed. Please try again.");
+      setLoading(null);
+    }
+  };
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: CREAM, color: CHARCOAL }}>
       <Helmet>
@@ -94,17 +150,26 @@ const FacelessCreatorBundle = () => {
           Three master classes — Reels, Canva, and Faceless YouTube — bundled into one quiet, luxurious system for the creator who wants results without the spotlight.
         </p>
 
-        <a
-          href={BUNDLE_URL}
-          className="inline-flex items-center justify-center gap-2 font-mono text-[11px] tracking-[0.25em] uppercase px-10 py-5 rounded-sm transition-all hover:scale-[1.02] hover:shadow-2xl"
+        <button
+          onClick={() => startCheckout("bundle", "The Complete Creator Bundle", 5900, "creator-bundle")}
+          disabled={loading === "bundle"}
+          className="inline-flex items-center justify-center gap-2 font-mono text-[11px] tracking-[0.25em] uppercase px-10 py-5 rounded-sm transition-all hover:scale-[1.02] hover:shadow-2xl disabled:opacity-70 disabled:cursor-not-allowed"
           style={{
             background: `linear-gradient(135deg, ${ROSE_GOLD} 0%, ${ROSE_GOLD_DEEP} 100%)`,
             color: CREAM,
             boxShadow: `0 12px 40px -12px ${ROSE_GOLD_DEEP}`,
           }}
         >
-          Get the Bundle — $59 <Sparkles className="w-3.5 h-3.5" />
-        </a>
+          {loading === "bundle" ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" /> Redirecting…
+            </>
+          ) : (
+            <>
+              Get the Bundle — $59 <Sparkles className="w-3.5 h-3.5" />
+            </>
+          )}
+        </button>
         <p className="font-mono text-[10px] mt-5 tracking-[0.15em]" style={{ color: TAUPE }}>
           Save $19 • Lifetime access • Instant delivery
         </p>
@@ -165,11 +230,35 @@ const FacelessCreatorBundle = () => {
                 {p.name}
               </h3>
               <p
-                className="font-light text-sm sm:text-base leading-relaxed"
+                className="font-light text-sm sm:text-base leading-relaxed mb-5"
                 style={{ color: CHARCOAL_SOFT }}
               >
                 {p.desc}
               </p>
+              <button
+                onClick={() => startCheckout(p.key, p.name, p.amount, p.slug)}
+                disabled={loading === p.key}
+                className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase px-6 py-3 rounded-sm transition-all hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
+                style={{
+                  backgroundColor: p.amount === 0 ? "transparent" : CHARCOAL,
+                  color: p.amount === 0 ? CHARCOAL : CREAM,
+                  border: p.amount === 0 ? `1px solid ${CHARCOAL}` : "none",
+                }}
+              >
+                {loading === p.key ? (
+                  <>
+                    <Loader2 className="w-3 h-3 animate-spin" /> Redirecting…
+                  </>
+                ) : p.amount === 0 ? (
+                  <>
+                    Get it Free <ArrowRight className="w-3 h-3" />
+                  </>
+                ) : (
+                  <>
+                    Buy — {p.price} <ArrowRight className="w-3 h-3" />
+                  </>
+                )}
+              </button>
             </article>
           ))}
         </div>
@@ -314,17 +403,26 @@ const FacelessCreatorBundle = () => {
             Save $19 • One payment • Lifetime
           </p>
 
-          <a
-            href={BUNDLE_URL}
-            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto font-mono text-[11px] tracking-[0.25em] uppercase px-12 py-5 rounded-sm transition-all hover:scale-[1.02] hover:shadow-2xl"
+          <button
+            onClick={() => startCheckout("bundle", "The Complete Creator Bundle", 5900, "creator-bundle")}
+            disabled={loading === "bundle"}
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto font-mono text-[11px] tracking-[0.25em] uppercase px-12 py-5 rounded-sm transition-all hover:scale-[1.02] hover:shadow-2xl disabled:opacity-70 disabled:cursor-not-allowed"
             style={{
               background: `linear-gradient(135deg, ${ROSE_GOLD} 0%, ${ROSE_GOLD_DEEP} 100%)`,
               color: CREAM,
               boxShadow: `0 16px 50px -10px ${ROSE_GOLD_DEEP}`,
             }}
           >
-            Get the Bundle <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+            {loading === "bundle" ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" /> Redirecting…
+              </>
+            ) : (
+              <>
+                Get the Bundle <ArrowRight className="w-3.5 h-3.5" />
+              </>
+            )}
+          </button>
           <p
             className="font-mono text-[9px] tracking-[0.2em] uppercase mt-6"
             style={{ color: "hsl(36 25% 80%)" }}
