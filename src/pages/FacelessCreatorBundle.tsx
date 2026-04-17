@@ -296,7 +296,7 @@ const FacelessCreatorBundle = () => {
           <div className="flex items-baseline justify-center gap-3 mb-2">
             <span
               className="font-mono text-base line-through"
-              style={{ color: TAUPE }}
+              style={{ color: "hsl(36 20% 75%)" }}
             >
               $78
             </span>
@@ -309,7 +309,7 @@ const FacelessCreatorBundle = () => {
           </div>
           <p
             className="font-mono text-[10px] tracking-[0.2em] uppercase mb-8"
-            style={{ color: BLUSH }}
+            style={{ color: "hsl(36 30% 88%)" }}
           >
             Save $19 • One payment • Lifetime
           </p>
