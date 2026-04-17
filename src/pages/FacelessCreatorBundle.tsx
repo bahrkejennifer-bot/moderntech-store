@@ -230,11 +230,35 @@ const FacelessCreatorBundle = () => {
                 {p.name}
               </h3>
               <p
-                className="font-light text-sm sm:text-base leading-relaxed"
+                className="font-light text-sm sm:text-base leading-relaxed mb-5"
                 style={{ color: CHARCOAL_SOFT }}
               >
                 {p.desc}
               </p>
+              <button
+                onClick={() => startCheckout(p.key, p.name, p.amount, p.slug)}
+                disabled={loading === p.key}
+                className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase px-6 py-3 rounded-sm transition-all hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
+                style={{
+                  backgroundColor: p.amount === 0 ? "transparent" : CHARCOAL,
+                  color: p.amount === 0 ? CHARCOAL : CREAM,
+                  border: p.amount === 0 ? `1px solid ${CHARCOAL}` : "none",
+                }}
+              >
+                {loading === p.key ? (
+                  <>
+                    <Loader2 className="w-3 h-3 animate-spin" /> Redirecting…
+                  </>
+                ) : p.amount === 0 ? (
+                  <>
+                    Get it Free <ArrowRight className="w-3 h-3" />
+                  </>
+                ) : (
+                  <>
+                    Buy — {p.price} <ArrowRight className="w-3 h-3" />
+                  </>
+                )}
+              </button>
             </article>
           ))}
         </div>
