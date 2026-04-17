@@ -5,12 +5,12 @@ import { Star, Check, Sparkles, ArrowRight, Quote } from "lucide-react";
 const CREAM = "hsl(36 33% 96%)";
 const BLUSH = "hsl(12 45% 88%)";
 const BLUSH_DEEP = "hsl(8 40% 78%)";
-const TAUPE = "hsl(28 14% 62%)";
+const TAUPE = "hsl(28 18% 38%)";
 const LIGHT_GRAY = "hsl(30 8% 92%)";
-const CHARCOAL = "hsl(30 8% 14%)";
-const CHARCOAL_SOFT = "hsl(30 8% 28%)";
-const ROSE_GOLD = "hsl(14 55% 62%)";
-const ROSE_GOLD_DEEP = "hsl(12 50% 52%)";
+const CHARCOAL = "hsl(30 10% 6%)";
+const CHARCOAL_SOFT = "hsl(30 10% 18%)";
+const ROSE_GOLD = "hsl(14 65% 55%)";
+const ROSE_GOLD_DEEP = "hsl(12 60% 42%)";
 
 const BUNDLE_URL = "https://www.moderntech.store/creator-bundle";
 
