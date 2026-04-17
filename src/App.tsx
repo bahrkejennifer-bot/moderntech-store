@@ -140,6 +140,7 @@ const App = () => (
           <Route path="/canva-masterclass" element={<CanvaMasterclass />} />
           <Route path="/faceless-youtube" element={<FacelessYoutube />} />
           <Route path="/creator-bundle" element={<CreatorBundle />} />
+          <Route path="/faceless-creator-bundle" element={<FacelessCreatorBundle />} />
           <Route path="/free-amazon-associate-guide" element={<AmazonAssociateGuide />} />
           <Route path="/go/:slug" element={<ProductRedirect />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
