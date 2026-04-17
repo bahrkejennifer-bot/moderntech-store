@@ -54,6 +54,7 @@ import CreatorFunnelSuccess from "./pages/CreatorFunnelSuccess";
 import CanvaMasterclass from "./pages/CanvaMasterclass";
 import FacelessYoutube from "./pages/FacelessYoutube";
 import CreatorBundle from "./pages/CreatorBundle";
+import FacelessCreatorBundle from "./pages/FacelessCreatorBundle";
 import ProductRedirect from "./pages/ProductRedirect";
 import AdminLayout from "./components/AdminLayout";
 import AdminAccessButton from "./components/AdminAccessButton";
