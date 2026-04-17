@@ -54,6 +54,7 @@ import CreatorFunnelSuccess from "./pages/CreatorFunnelSuccess";
 import CanvaMasterclass from "./pages/CanvaMasterclass";
 import FacelessYoutube from "./pages/FacelessYoutube";
 import CreatorBundle from "./pages/CreatorBundle";
+import FacelessCreatorBundle from "./pages/FacelessCreatorBundle";
 import ProductRedirect from "./pages/ProductRedirect";
 import AdminLayout from "./components/AdminLayout";
 import AdminAccessButton from "./components/AdminAccessButton";
@@ -139,6 +140,7 @@ const App = () => (
           <Route path="/canva-masterclass" element={<CanvaMasterclass />} />
           <Route path="/faceless-youtube" element={<FacelessYoutube />} />
           <Route path="/creator-bundle" element={<CreatorBundle />} />
+          <Route path="/faceless-creator-bundle" element={<FacelessCreatorBundle />} />
           <Route path="/free-amazon-associate-guide" element={<AmazonAssociateGuide />} />
           <Route path="/go/:slug" element={<ProductRedirect />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
