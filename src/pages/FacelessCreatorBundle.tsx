@@ -403,17 +403,26 @@ const FacelessCreatorBundle = () => {
             Save $19 • One payment • Lifetime
           </p>
 
-          <a
-            href={BUNDLE_URL}
-            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto font-mono text-[11px] tracking-[0.25em] uppercase px-12 py-5 rounded-sm transition-all hover:scale-[1.02] hover:shadow-2xl"
+          <button
+            onClick={() => startCheckout("bundle", "The Complete Creator Bundle", 5900, "creator-bundle")}
+            disabled={loading === "bundle"}
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto font-mono text-[11px] tracking-[0.25em] uppercase px-12 py-5 rounded-sm transition-all hover:scale-[1.02] hover:shadow-2xl disabled:opacity-70 disabled:cursor-not-allowed"
             style={{
               background: `linear-gradient(135deg, ${ROSE_GOLD} 0%, ${ROSE_GOLD_DEEP} 100%)`,
               color: CREAM,
               boxShadow: `0 16px 50px -10px ${ROSE_GOLD_DEEP}`,
             }}
           >
-            Get the Bundle <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+            {loading === "bundle" ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" /> Redirecting…
+              </>
+            ) : (
+              <>
+                Get the Bundle <ArrowRight className="w-3.5 h-3.5" />
+              </>
+            )}
+          </button>
           <p
             className="font-mono text-[9px] tracking-[0.2em] uppercase mt-6"
             style={{ color: "hsl(36 25% 80%)" }}
