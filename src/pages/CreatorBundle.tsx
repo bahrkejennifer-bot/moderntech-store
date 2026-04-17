@@ -220,6 +220,10 @@ const CreatorBundle = () => {
           <p className="font-mono text-[10px] tracking-[0.25em] uppercase mt-6" style={{ color: "hsl(36 25% 85%)" }}>
             Instant delivery
           </p>
+          <p className="font-mono text-[9px] tracking-[0.15em] uppercase mt-4 leading-relaxed" style={{ color: "hsl(36 20% 70%)" }}>
+            On Instagram? Tap ⋯ and choose<br />
+            "Open in Safari / Chrome" for best checkout
+          </p>
         </div>
       </section>
 
