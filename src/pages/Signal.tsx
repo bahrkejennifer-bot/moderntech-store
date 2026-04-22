@@ -48,7 +48,7 @@ const Signal = () => {
               className="font-serif text-6xl md:text-8xl tracking-tight"
               style={{ fontWeight: 400 }}
             >
-              SIGNAL
+              The Art of Modern Tech Weekly Review
             </h1>
             <p
               className="font-mono mt-4 text-muted-foreground"
