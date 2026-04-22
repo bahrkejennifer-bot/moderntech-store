@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { ArrowRight, Play, Headphones, Youtube, Clock, Subtitles, FileText, Instagram, BookOpen } from "lucide-react";
+import { ArrowRight, Play, Headphones, Youtube, Clock, Subtitles, FileText, Instagram, BookOpen, Rss } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Navigation from "@/components/Navigation";
