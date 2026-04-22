@@ -80,11 +80,18 @@ const ArtOfModernTech = () => {
         .select("id, title, slug, excerpt, image_url, category, created_at")
         .eq("is_published", true)
         .order("created_at", { ascending: false })
-        .limit(4);
+        .limit(6);
       if (error) throw error;
       return data;
     },
   });
+
+  const formatDate = (iso: string) =>
+    new Date(iso).toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
 
   const makeEpisodeLink = (ep: any) =>
     `/media/${ep.episode_code.toLowerCase()}`;
@@ -128,6 +135,60 @@ const ArtOfModernTech = () => {
             </Link>
           </div>
         </div>
+      </section>
+
+      {/* LATEST WEEKLY REVIEWS */}
+      <section className="max-w-5xl mx-auto px-8 py-16 border-t border-border">
+        <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+          <div>
+            <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">Fresh off the press</p>
+            <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>
+              Latest Weekly Reviews
+            </h2>
+          </div>
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
+          >
+            View all <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+
+        <ul className="divide-y divide-border border-t border-b border-border">
+          {blogPosts.map((post: any, idx: number) => (
+            <li key={post.id}>
+              <Link
+                to={`/blog/${post.slug}`}
+                className="group grid grid-cols-12 gap-6 items-baseline py-6 hover:bg-accent/5 transition-colors px-2"
+              >
+                <span className="col-span-1 font-mono text-[10px] tracking-[0.2em] text-muted-foreground">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <div className="col-span-12 sm:col-span-8 -mt-1 sm:mt-0">
+                  {post.category && (
+                    <p className="font-mono text-[8px] tracking-[0.25em] uppercase text-muted-foreground mb-1">
+                      {post.category}
+                    </p>
+                  )}
+                  <h3 className="font-serif text-lg md:text-xl leading-snug tracking-tight group-hover:underline underline-offset-4" style={{ fontWeight: 500 }}>
+                    {post.title}
+                  </h3>
+                </div>
+                <time
+                  dateTime={post.created_at}
+                  className="col-span-12 sm:col-span-3 sm:text-right font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground"
+                >
+                  {formatDate(post.created_at)}
+                </time>
+              </Link>
+            </li>
+          ))}
+          {blogPosts.length === 0 && (
+            <li className="py-10 text-center font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+              No reviews yet — check back soon
+            </li>
+          )}
+        </ul>
       </section>
 
       {/* WEEKLY SCHEDULE */}
