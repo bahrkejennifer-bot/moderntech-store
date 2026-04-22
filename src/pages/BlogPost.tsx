@@ -792,43 +792,38 @@ const BlogPost = () => {
         <meta property="pin:media" content={staticOgImage} />
         <meta property="pin:description" content={staticOgDesc} />
         <link rel="canonical" href={`${SITE}/blog/${slug}`} />
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "Organization",
-              "@id": `${SITE}/#organization`,
-              "name": "Modern Tech LLC",
-              "url": SITE,
-              "logo": `${SITE}/lovable-uploads/modern-tech-logo.png`
-            },
-            {
-              "@type": "WebPage",
-              "@id": `${SITE}/blog/${slug}#webpage`,
-              "url": `${SITE}/blog/${slug}`,
-              "name": post!.title,
-              "description": staticOgDesc,
-              "inLanguage": "en-US",
-              "isPartOf": { "@id": `${SITE}/#website` },
-              "publisher": { "@id": `${SITE}/#organization` }
-            },
-            {
-              "@type": "BlogPosting",
-              "@id": `${SITE}/blog/${slug}#blogposting`,
-              "headline": post!.title,
-              "description": staticOgDesc,
-              "image": staticOgImage,
-              "datePublished": post!.date,
-              "dateModified": post!.date,
-              "articleSection": (post as any)!.category || "Tech",
-              "author": { "@type": "Organization", "name": "Modern Tech LLC", "url": SITE },
-              "publisher": { "@id": `${SITE}/#organization` },
-              "mainEntityOfPage": { "@id": `${SITE}/blog/${slug}#webpage` },
-              "url": `${SITE}/blog/${slug}`
-            }
-          ]
-        })}</script>
       </Helmet>
+      <StructuredData
+        title={post!.title}
+        description={staticOgDesc}
+        path={`/blog/${slug}`}
+        includeWebSite
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post!.title, path: `/blog/${slug}` },
+        ]}
+        extraGraph={[
+          {
+            "@type": "BlogPosting",
+            "@id": `${SITE}/blog/${slug}#blogposting`,
+            headline: post!.title,
+            description: staticOgDesc,
+            image: staticOgImage,
+            datePublished: new Date(post!.date).toISOString(),
+            dateModified: new Date(post!.date).toISOString(),
+            articleSection: (post as any)!.category || "Tech",
+            author: {
+              "@type": "Organization",
+              name: "Modern Tech LLC",
+              url: SITE,
+            },
+            publisher: { "@id": `${SITE}/#organization` },
+            mainEntityOfPage: { "@id": `${SITE}/blog/${slug}#webpage` },
+            url: `${SITE}/blog/${slug}`,
+          },
+        ]}
+      />
 
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 right-0 z-50 h-[3px] bg-transparent">
