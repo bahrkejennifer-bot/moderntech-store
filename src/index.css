@@ -19,8 +19,8 @@ Dark base, bold blue accents, crisp white type
        Blush pink · warm cream · soft white · charcoal
        ═══════════════════════════════════════════ */
 
-    /* Warm cream/ivory base */
-    --background: 30 25% 95%;
+    /* Soft white base — airy editorial off-white */
+    --background: 30 20% 98%;
     --foreground: 220 15% 14%;
 
     /* Blush pink card surface */
