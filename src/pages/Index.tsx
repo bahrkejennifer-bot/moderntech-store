@@ -86,16 +86,16 @@ const Index = () => {
           </div>
           <div className="px-12 md:px-16 lg:px-24 xl:px-32 py-12 md:py-0">
             <h1
-              className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[0.92] tracking-tight"
-              style={{ fontWeight: 400, color: 'hsl(40 10% 12%)' }}
+              className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[0.92] tracking-tight text-foreground"
+              style={{ fontWeight: 400 }}
             >
               <em>The Art of</em>
               <br />
               Modern Tech
             </h1>
             <h2
-              className="font-serif text-base md:text-lg leading-relaxed mt-8 max-w-[420px]"
-              style={{ fontStyle: 'italic', fontWeight: 400, color: 'hsl(40 10% 12% / 0.7)' }}
+              className="font-serif text-base md:text-lg leading-relaxed mt-8 max-w-[420px] text-foreground/70"
+              style={{ fontStyle: 'italic', fontWeight: 400 }}
             >
               Beyond the screen lies the human experience. We curate beautiful, reliable technology designed for the way you actually live—from securing your home to the seamless flow of a day well-lived.
             </h2>
@@ -137,8 +137,8 @@ const Index = () => {
       </section>
 
       {/* ── MARQUEE DIVIDER ── */}
-      <div className="overflow-hidden py-4" style={{ backgroundColor: 'hsl(40 10% 12%)' }}>
-        <p className="font-mono text-[9px] tracking-[0.5em] uppercase text-center" style={{ color: 'hsl(40 18% 91%)' }}>
+      <div className="overflow-hidden py-4 bg-foreground">
+        <p className="font-mono text-[9px] tracking-[0.5em] uppercase text-center text-background">
           Fresh Off The Press · Curated Selection · Spring 2026 · Fresh Off The Press · Curated Selection
         </p>
       </div>
@@ -274,20 +274,19 @@ const Index = () => {
           </p>
 
           {/* Featured Bundle */}
-          <div className="p-8 md:p-10 mb-12 text-center" style={{ backgroundColor: 'hsl(40 10% 12%)', color: 'hsl(40 18% 91%)' }}>
-            <span className="inline-block font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1 mb-4" style={{ backgroundColor: 'hsl(45 80% 55%)', color: 'hsl(40 10% 12%)' }}>
+          <div className="p-8 md:p-10 mb-12 text-center bg-foreground text-background">
+            <span className="inline-block font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1 mb-4 bg-accent text-accent-foreground">
               Best Value
             </span>
             <h3 className="font-serif text-2xl md:text-3xl mb-2" style={{ fontWeight: 400 }}>
               Get All 3 Master Classes for Just $59
             </h3>
-            <p className="font-mono text-[11px] mb-6 max-w-md mx-auto" style={{ color: 'hsl(40 18% 91% / 0.6)' }}>
+            <p className="font-mono text-[11px] mb-6 max-w-md mx-auto text-background/60">
               Save $19 when you bundle all three and get the full content creator toolkit.
             </p>
             <Link
               to="/creator-bundle"
-              className="inline-flex items-center gap-2 h-12 px-10 font-mono text-[10px] tracking-[0.2em] uppercase transition-all hover:opacity-90"
-              style={{ backgroundColor: 'hsl(45 80% 55%)', color: 'hsl(40 10% 12%)' }}
+              className="inline-flex items-center gap-2 h-12 px-10 font-mono text-[10px] tracking-[0.2em] uppercase transition-all hover:opacity-90 bg-accent text-accent-foreground"
             >
               Get the Bundle <ArrowRight className="h-3.5 w-3.5" />
             </Link>
