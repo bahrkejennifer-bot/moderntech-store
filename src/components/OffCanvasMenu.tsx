@@ -45,14 +45,14 @@ const OffCanvasMenu = ({ open, onClose }: OffCanvasMenuProps) => {
         className={`fixed top-0 left-0 z-[70] h-full w-[380px] max-w-[85vw] flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
-        style={{ backgroundColor: "hsl(40 18% 91%)" }}
+        style={{ backgroundColor: "hsl(30 25% 95%)" }}
       >
         {/* Close button */}
         <div className="flex justify-end p-8">
           <button
             onClick={onClose}
             className="font-mono text-[10px] tracking-[0.2em] uppercase flex items-center gap-2 hover:opacity-60 transition-opacity"
-            style={{ color: "hsl(40 10% 12%)" }}
+            style={{ color: "hsl(220 15% 14%)" }}
           >
             Close
             <X className="h-4 w-4" />
@@ -65,7 +65,7 @@ const OffCanvasMenu = ({ open, onClose }: OffCanvasMenuProps) => {
             <div key={item.label}>
               {/* Divider */}
               {i > 0 && (
-                <div className="h-px w-full" style={{ backgroundColor: "hsl(40 10% 12% / 0.12)" }} />
+                <div className="h-px w-full" style={{ backgroundColor: "hsl(220 15% 14% / 0.12)" }} />
               )}
 
               {item.hasSubmenu ? (
@@ -73,7 +73,7 @@ const OffCanvasMenu = ({ open, onClose }: OffCanvasMenuProps) => {
                   <button
                     onClick={() => setShopExpanded(!shopExpanded)}
                     className="w-full text-left py-6 font-serif text-3xl md:text-4xl tracking-tight transition-opacity hover:opacity-50"
-                    style={{ color: "hsl(40 10% 12%)", fontWeight: 400, fontStyle: "italic" }}
+                    style={{ color: "hsl(220 15% 14%)", fontWeight: 400, fontStyle: "italic" }}
                   >
                     {item.label}
                   </button>
@@ -85,7 +85,7 @@ const OffCanvasMenu = ({ open, onClose }: OffCanvasMenuProps) => {
                           to={cat.to}
                           onClick={onClose}
                           className="font-mono text-[10px] tracking-[0.15em] uppercase transition-opacity hover:opacity-50"
-                          style={{ color: "hsl(40 10% 12% / 0.55)" }}
+                          style={{ color: "hsl(220 15% 14% / 0.55)" }}
                         >
                           {cat.label}
                         </Link>
@@ -98,7 +98,7 @@ const OffCanvasMenu = ({ open, onClose }: OffCanvasMenuProps) => {
                   to={item.to}
                   onClick={onClose}
                   className="block py-6 font-serif text-3xl md:text-4xl tracking-tight transition-opacity hover:opacity-50"
-                  style={{ color: "hsl(40 10% 12%)", fontWeight: 400, fontStyle: "italic" }}
+                  style={{ color: "hsl(220 15% 14%)", fontWeight: 400, fontStyle: "italic" }}
                 >
                   {item.label}
                 </Link>
@@ -106,14 +106,14 @@ const OffCanvasMenu = ({ open, onClose }: OffCanvasMenuProps) => {
             </div>
           ))}
           {/* Final divider */}
-          <div className="h-px w-full" style={{ backgroundColor: "hsl(40 10% 12% / 0.12)" }} />
+          <div className="h-px w-full" style={{ backgroundColor: "hsl(220 15% 14% / 0.12)" }} />
         </nav>
 
         {/* Bottom branding */}
         <div className="px-10 pb-10">
           <p
             className="font-mono text-[9px] tracking-[0.3em] uppercase"
-            style={{ color: "hsl(40 10% 12% / 0.35)" }}
+            style={{ color: "hsl(220 15% 14% / 0.35)" }}
           >
             Modern Tech © 2026
           </p>

@@ -17,7 +17,7 @@ const PromoBanner = () => {
   return (
     <div
       className="relative z-[51] flex items-center justify-center px-4 py-2.5 font-mono text-[10px] md:text-[11px] tracking-[0.15em] uppercase"
-      style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}
+      style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(30 25% 95%)" }}
     >
       <Link to="/creator-bundle" className="hover:opacity-80 transition-opacity">
         ✨ New: The Faceless Creator Bundle — Get all 3 guides for $59 →

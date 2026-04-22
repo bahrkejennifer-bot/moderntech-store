@@ -45,7 +45,7 @@ const FreeGuide = () => {
   };
 
   return (
-    <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(40 18% 91%)", color: "hsl(40 10% 12%)" }}>
+    <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(30 25% 95%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
         <title>Free Amazon Affiliate Quick-Start Guide — ModernTech</title>
         <meta name="description" content="The 5-step checklist that shows you exactly how to set up your first affiliate site — completely free." />
@@ -54,13 +54,13 @@ const FreeGuide = () => {
 
       <section className="max-w-[600px] mx-auto px-8 pt-24 pb-20">
         <div className="text-center mb-12">
-          <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+          <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
             FREE DOWNLOAD
           </p>
           <h1 className="font-serif text-4xl md:text-5xl tracking-tight leading-[1.1] mb-4" style={{ fontWeight: 400 }}>
             Get the Free Amazon Affiliate Quick-Start Guide
           </h1>
-          <p className="font-serif text-lg leading-relaxed" style={{ fontWeight: 300, fontStyle: "italic", color: "hsl(40 10% 12% / 0.6)" }}>
+          <p className="font-serif text-lg leading-relaxed" style={{ fontWeight: 300, fontStyle: "italic", color: "hsl(220 15% 14% / 0.6)" }}>
             The 5-step checklist that shows you exactly how to set up your first affiliate site — free.
           </p>
         </div>
@@ -74,7 +74,7 @@ const FreeGuide = () => {
             placeholder="Your first name"
             required
             className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none transition-colors focus:border-current"
-            style={{ border: "0.5px solid hsl(40 10% 12% / 0.2)", color: "hsl(40 10% 12%)" }}
+            style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
           />
           <input
             type="email"
@@ -83,13 +83,13 @@ const FreeGuide = () => {
             placeholder="Your email address"
             required
             className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none transition-colors focus:border-current"
-            style={{ border: "0.5px solid hsl(40 10% 12% / 0.2)", color: "hsl(40 10% 12%)" }}
+            style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
           />
           <button
             type="submit"
             disabled={loading}
             className="w-full flex items-center justify-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-4 transition-all duration-200 hover:opacity-80 disabled:opacity-50"
-            style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}
+            style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(30 25% 95%)" }}
           >
             {loading ? "Sending..." : "Send My Free Guide"} <ArrowRight className="w-3 h-3" />
           </button>
@@ -99,10 +99,10 @@ const FreeGuide = () => {
         <div className="space-y-6">
           {benefits.map((b, i) => (
             <div key={i} className="flex gap-4 items-start">
-              <div className="shrink-0 w-5 h-5 flex items-center justify-center mt-0.5" style={{ border: "0.5px solid hsl(40 10% 12% / 0.2)" }}>
-                <Check className="w-3 h-3" style={{ color: "hsl(40 10% 12% / 0.5)" }} />
+              <div className="shrink-0 w-5 h-5 flex items-center justify-center mt-0.5" style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)" }}>
+                <Check className="w-3 h-3" style={{ color: "hsl(220 15% 14% / 0.5)" }} />
               </div>
-              <p className="font-serif text-sm leading-relaxed" style={{ color: "hsl(40 10% 12% / 0.65)", fontWeight: 300 }}>{b}</p>
+              <p className="font-serif text-sm leading-relaxed" style={{ color: "hsl(220 15% 14% / 0.65)", fontWeight: 300 }}>{b}</p>
             </div>
           ))}
         </div>

@@ -71,7 +71,7 @@ const DigitalProducts = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "hsl(40 18% 91%)", color: "hsl(40 10% 12%)" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "hsl(30 25% 95%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
         <title>Digital Products — Modern Tech</title>
         <meta name="description" content="Explore Modern Tech's digital guides designed to help creators, entrepreneurs, and beginners make better content, build stronger branding, and grow online." />
@@ -80,35 +80,35 @@ const DigitalProducts = () => {
 
       {/* Header */}
       <header className="max-w-4xl mx-auto px-8 pt-28 pb-10 text-center">
-        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
           Modern Tech
         </p>
         <h1 className="font-serif text-4xl md:text-5xl tracking-tight mb-6" style={{ fontWeight: 400 }}>
           Digital Products
         </h1>
-        <p className="font-mono text-[12px] tracking-[0.05em] leading-relaxed max-w-xl mx-auto" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+        <p className="font-mono text-[12px] tracking-[0.05em] leading-relaxed max-w-xl mx-auto" style={{ color: "hsl(220 15% 14% / 0.6)" }}>
           Explore Modern Tech's digital guides designed to help creators, entrepreneurs, and beginners make better content, build stronger branding, and grow online with practical tools and strategies.
         </p>
       </header>
 
       {/* Bundle Featured Section */}
       <section className="max-w-4xl mx-auto px-6 pb-16">
-        <div className="p-8 md:p-12 text-center" style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}>
-          <span className="inline-block font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1 mb-4" style={{ backgroundColor: "hsl(45 80% 55%)", color: "hsl(40 10% 12%)" }}>
+        <div className="p-8 md:p-12 text-center" style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(30 25% 95%)" }}>
+          <span className="inline-block font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1 mb-4" style={{ backgroundColor: "hsl(14 50% 88%)", color: "hsl(220 15% 14%)" }}>
             Best Value
           </span>
           <h2 className="font-serif text-2xl md:text-3xl mb-2" style={{ fontWeight: 400 }}>
             Start with the Full Bundle
           </h2>
-          <p className="font-mono text-[11px] leading-relaxed mb-6 max-w-lg mx-auto" style={{ color: "hsl(40 18% 91% / 0.6)" }}>
+          <p className="font-mono text-[11px] leading-relaxed mb-6 max-w-lg mx-auto" style={{ color: "hsl(30 25% 95% / 0.6)" }}>
             Want the complete system? Get all three master classes together for just $59. This bundle is perfect for anyone who wants to improve short-form content, design better visuals, and grow on YouTube while saving money.
           </p>
 
           <div className="flex items-center justify-center gap-4 mb-6">
-            <span className="font-mono text-[12px] line-through" style={{ color: "hsl(40 18% 91% / 0.4)" }}>$78</span>
-            <span className="font-serif text-4xl" style={{ color: "hsl(45 80% 55%)" }}>$59</span>
+            <span className="font-mono text-[12px] line-through" style={{ color: "hsl(30 25% 95% / 0.4)" }}>$78</span>
+            <span className="font-serif text-4xl" style={{ color: "hsl(14 50% 88%)" }}>$59</span>
           </div>
-          <p className="font-mono text-[10px] mb-6" style={{ color: "hsl(40 18% 91% / 0.5)" }}>
+          <p className="font-mono text-[10px] mb-6" style={{ color: "hsl(30 25% 95% / 0.5)" }}>
             Buy all 3 for $59 and save $19
           </p>
 
@@ -117,14 +117,14 @@ const DigitalProducts = () => {
               onClick={handleBundleCheckout}
               disabled={bundleLoading}
               className="inline-flex items-center gap-2 h-12 px-10 font-mono text-[10px] tracking-[0.2em] uppercase transition-all hover:opacity-90 disabled:opacity-50"
-              style={{ backgroundColor: "hsl(45 80% 55%)", color: "hsl(40 10% 12%)" }}
+              style={{ backgroundColor: "hsl(14 50% 88%)", color: "hsl(220 15% 14%)" }}
             >
               {bundleLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Get the Bundle <Sparkles className="w-3 h-3" /></>}
             </button>
             <Link
               to="/creator-bundle"
               className="font-mono text-[10px] tracking-[0.15em] uppercase transition-opacity hover:opacity-70"
-              style={{ color: "hsl(40 18% 91% / 0.5)" }}
+              style={{ color: "hsl(30 25% 95% / 0.5)" }}
             >
               See what's included →
             </Link>
@@ -134,7 +134,7 @@ const DigitalProducts = () => {
 
       {/* Individual Products */}
       <section className="max-w-4xl mx-auto px-6 pb-20">
-        <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-center mb-10" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+        <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-center mb-10" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
           Choose Your Master Class
         </p>
 
@@ -146,7 +146,7 @@ const DigitalProducts = () => {
                 key={product.title}
                 to={product.to}
                 className="group flex flex-col transition-all duration-300 hover:shadow-lg overflow-hidden"
-                style={{ backgroundColor: "hsl(40 18% 95%)", border: "0.5px solid hsl(40 10% 12% / 0.1)" }}
+                style={{ backgroundColor: "hsl(40 18% 95%)", border: "0.5px solid hsl(220 15% 14% / 0.1)" }}
               >
                 <div className="aspect-[3/4] overflow-hidden">
                   <img
@@ -160,22 +160,22 @@ const DigitalProducts = () => {
                 </div>
                 <div className="p-8">
                 <h3 className="font-serif text-xl mb-3" style={{ fontWeight: 400 }}>{product.title}</h3>
-                <p className="font-mono text-[11px] leading-relaxed mb-4 flex-1" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+                <p className="font-mono text-[11px] leading-relaxed mb-4 flex-1" style={{ color: "hsl(220 15% 14% / 0.6)" }}>
                   {product.desc}
                 </p>
 
-                <div className="pt-4 mb-4" style={{ borderTop: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
-                  <p className="font-mono text-[9px] tracking-[0.2em] uppercase mb-2" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+                <div className="pt-4 mb-4" style={{ borderTop: "0.5px solid hsl(220 15% 14% / 0.1)" }}>
+                  <p className="font-mono text-[9px] tracking-[0.2em] uppercase mb-2" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
                     What's included
                   </p>
-                  <p className="font-mono text-[10px] leading-relaxed" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
+                  <p className="font-mono text-[10px] leading-relaxed" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
                     {product.included}
                   </p>
                 </div>
 
                 <div className="flex items-center justify-between mt-auto pt-4">
                   <span className="font-serif text-2xl">{product.price}</span>
-                  <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.15em] uppercase group-hover:translate-x-1 transition-transform" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.15em] uppercase group-hover:translate-x-1 transition-transform" style={{ color: "hsl(220 15% 14% / 0.6)" }}>
                     {product.cta} <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
@@ -188,11 +188,11 @@ const DigitalProducts = () => {
 
       {/* Trust Section */}
       <section className="px-6 pb-16">
-        <div className="max-w-3xl mx-auto text-center py-16" style={{ borderTop: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
+        <div className="max-w-3xl mx-auto text-center py-16" style={{ borderTop: "0.5px solid hsl(220 15% 14% / 0.1)" }}>
           <h2 className="font-serif text-3xl md:text-4xl tracking-tight mb-4" style={{ fontWeight: 400 }}>
             Built for Real People Creating Real Content
           </h2>
-          <p className="font-mono text-[11px] leading-relaxed max-w-lg mx-auto" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
+          <p className="font-mono text-[11px] leading-relaxed max-w-lg mx-auto" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
             These guides are designed to be practical, easy to follow, and useful whether you're just starting out or ready to level up your content and brand.
           </p>
         </div>
@@ -204,14 +204,14 @@ const DigitalProducts = () => {
           <h2 className="font-serif text-3xl md:text-4xl tracking-tight mb-4" style={{ fontWeight: 400 }}>
             Start Building Better Content Today
           </h2>
-          <p className="font-mono text-[11px] leading-relaxed mb-8" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
+          <p className="font-mono text-[11px] leading-relaxed mb-8" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
             Choose the guide that fits your next step, or get the full bundle and save.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/creator-bundle"
               className="inline-flex items-center gap-2 h-12 px-10 font-mono text-[10px] tracking-[0.2em] uppercase transition-all hover:opacity-80"
-              style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}
+              style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(30 25% 95%)" }}
             >
               Get the Bundle <ArrowRight className="h-3.5 w-3.5" />
             </Link>
@@ -219,7 +219,7 @@ const DigitalProducts = () => {
               href="#"
               onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
               className="font-mono text-[10px] tracking-[0.15em] uppercase transition-opacity hover:opacity-60"
-              style={{ color: "hsl(40 10% 12% / 0.5)" }}
+              style={{ color: "hsl(220 15% 14% / 0.5)" }}
             >
               Shop Digital Products ↑
             </a>
