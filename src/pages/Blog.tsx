@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
+import StructuredData from "@/components/StructuredData";
 import { Link } from "react-router-dom";
 import { Calendar, ArrowRight, Sparkles, Clock, Search, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";

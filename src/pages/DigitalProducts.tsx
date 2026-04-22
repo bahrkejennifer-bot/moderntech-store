@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import StructuredData from "@/components/StructuredData";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, Video, Palette, Youtube, Sparkles, Loader2 } from "lucide-react";
 import Navigation from "@/components/Navigation";
