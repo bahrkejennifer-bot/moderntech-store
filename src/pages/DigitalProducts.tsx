@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import StructuredData from "@/components/StructuredData";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, Video, Palette, Youtube, Sparkles, Loader2 } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -76,6 +77,11 @@ const DigitalProducts = () => {
         <title>Digital Products — Modern Tech</title>
         <meta name="description" content="Explore Modern Tech's digital guides designed to help creators, entrepreneurs, and beginners make better content, build stronger branding, and grow online." />
       </Helmet>
+      <StructuredData
+        title="Digital Products — Modern Tech"
+        description="Explore Modern Tech's digital guides designed to help creators, entrepreneurs, and beginners make better content, build stronger branding, and grow online."
+        path="/digital-products"
+      />
       <Navigation />
 
       {/* Header */}

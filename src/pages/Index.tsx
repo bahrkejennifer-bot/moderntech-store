@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import StructuredData from "@/components/StructuredData";
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink, Loader2 } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -71,6 +72,12 @@ const Index = () => {
         <meta property="og:url" content="https://moderntech.store/" />
         <meta property="og:type" content="website" />
       </Helmet>
+      <StructuredData
+        title="Modern Tech — Curated Premium Technology for 2026"
+        description="A curated gallery of premium tech — wellness wearables, creator tools, and office essentials. Handpicked with editorial precision."
+        path="/"
+        includeWebSite
+      />
       <Navigation />
 
       {/* ── HERO — asymmetric editorial layout ── */}
