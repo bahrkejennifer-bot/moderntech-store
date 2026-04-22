@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Download, Printer } from "lucide-react";
+import AffiliateFooter from "@/components/AffiliateFooter";
 
 // Product images
 import airpodsImage from "@/assets/products/airpods-pro-2.jpg";
@@ -301,6 +302,9 @@ const TechGiftCheatsheet = () => {
           }
         }
       `}</style>
+      <div className="print:hidden">
+        <AffiliateFooter />
+      </div>
     </div>
   );
 };

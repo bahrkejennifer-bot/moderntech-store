@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Star, Check, Sparkles, ArrowRight, Quote, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import AffiliateFooter from "@/components/AffiliateFooter";
 
 // Lux palette
 const CREAM = "hsl(36 33% 96%)";
@@ -438,6 +439,7 @@ const FacelessCreatorBundle = () => {
           Modern Tech LLC · The Art of Modern Tech
         </p>
       </section>
+      <AffiliateFooter />
     </div>
   );
 };
