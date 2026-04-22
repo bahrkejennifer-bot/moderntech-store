@@ -45,7 +45,7 @@ const FreeGuide = () => {
   };
 
   return (
-    <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(30 25% 95%)", color: "hsl(220 15% 14%)" }}>
+    <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
         <title>Free Amazon Affiliate Quick-Start Guide — ModernTech</title>
         <meta name="description" content="The 5-step checklist that shows you exactly how to set up your first affiliate site — completely free." />

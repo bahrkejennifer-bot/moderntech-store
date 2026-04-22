@@ -6,7 +6,7 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 
 const BlueprintSuccess = () => {
   return (
-    <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(30 25% 95%)", color: "hsl(220 15% 14%)" }}>
+    <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
         <title>You're In! — Amazon Affiliate Blueprint 2026</title>
         <meta name="description" content="Thank you for your purchase. Check your email for your download link." />

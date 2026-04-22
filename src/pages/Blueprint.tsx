@@ -59,7 +59,7 @@ const Blueprint = () => {
   };
 
   return (
-    <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(30 25% 95%)", color: "hsl(220 15% 14%)" }}>
+    <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
         <title>Amazon Affiliate Blueprint 2026 — ModernTech</title>
         <meta name="description" content="The exact Amazon affiliate system that built ModernTech.store. 5 modules, bonus toolkit, and step-by-step guidance for $27." />

@@ -37,7 +37,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(30 25% 95%)", color: "hsl(220 15% 14%)" }}>
+    <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
         <title>Contact — ModernTech</title>
         <meta name="description" content="Get in touch with the Modern Tech team. General inquiries, business partnerships, podcast guest requests, and press." />
@@ -80,7 +80,7 @@ const ContactPage = () => {
             style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
           >
             {subjectOptions.map((opt) => (
-              <option key={opt} value={opt} style={{ backgroundColor: "hsl(30 25% 95%)" }}>{opt}</option>
+              <option key={opt} value={opt} style={{ backgroundColor: "hsl(0 0% 100%)" }}>{opt}</option>
             ))}
           </select>
           <textarea

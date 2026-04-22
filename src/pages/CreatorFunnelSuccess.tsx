@@ -16,7 +16,7 @@ const CreatorFunnelSuccess = () => {
   const label = productLabels[product] || "your guide";
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "hsl(30 25% 95%)", color: "hsl(220 15% 14%)" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
         <title>Thank You — ModernTech</title>
       </Helmet>
