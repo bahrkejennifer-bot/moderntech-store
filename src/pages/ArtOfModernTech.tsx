@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { ArrowRight, Play, Headphones, Youtube, Clock, Subtitles, FileText, Instagram, BookOpen } from "lucide-react";
+import { ArrowRight, Play, Headphones, Youtube, Clock, Subtitles, FileText, Instagram, BookOpen, Rss } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Navigation from "@/components/Navigation";
@@ -105,6 +105,12 @@ const ArtOfModernTech = () => {
         <meta property="og:description" content="Weekly tech videos, podcast, and editorial blog posts for women ready to lead the future." />
         <meta property="og:url" content="https://moderntech.store/the-art-of-modern-tech" />
         <meta property="og:type" content="website" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="The Art of Modern Tech — Weekly Review RSS"
+          href={`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID}.supabase.co/functions/v1/blog-rss-feed`}
+        />
       </Helmet>
       <Navigation />
 
@@ -146,12 +152,23 @@ const ArtOfModernTech = () => {
               Latest Weekly Reviews
             </h2>
           </div>
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
-          >
-            View all <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+          <div className="flex items-center gap-5">
+            <a
+              href={`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID}.supabase.co/functions/v1/blog-rss-feed`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
+              title="Subscribe to the Weekly Review RSS feed"
+            >
+              <Rss className="h-3.5 w-3.5" /> RSS
+            </a>
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
+            >
+              View all <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
         </div>
 
         <ul className="divide-y divide-border border-t border-b border-border">
