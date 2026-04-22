@@ -5,6 +5,7 @@ import { Calendar, ArrowLeft, ExternalLink, Download, Clock, ChevronUp, List } f
 import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import StructuredData from "@/components/StructuredData";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
