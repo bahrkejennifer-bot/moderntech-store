@@ -105,6 +105,12 @@ const ArtOfModernTech = () => {
         <meta property="og:description" content="Weekly tech videos, podcast, and editorial blog posts for women ready to lead the future." />
         <meta property="og:url" content="https://moderntech.store/the-art-of-modern-tech" />
         <meta property="og:type" content="website" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="The Art of Modern Tech — Weekly Review RSS"
+          href={`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID}.supabase.co/functions/v1/blog-rss-feed`}
+        />
       </Helmet>
       <Navigation />
 
