@@ -80,11 +80,18 @@ const ArtOfModernTech = () => {
         .select("id, title, slug, excerpt, image_url, category, created_at")
         .eq("is_published", true)
         .order("created_at", { ascending: false })
-        .limit(4);
+        .limit(6);
       if (error) throw error;
       return data;
     },
   });
+
+  const formatDate = (iso: string) =>
+    new Date(iso).toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
 
   const makeEpisodeLink = (ep: any) =>
     `/media/${ep.episode_code.toLowerCase()}`;
