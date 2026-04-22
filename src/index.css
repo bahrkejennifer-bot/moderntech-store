@@ -19,8 +19,8 @@ Dark base, bold blue accents, crisp white type
        Blush pink · warm cream · soft white · charcoal
        ═══════════════════════════════════════════ */
 
-    /* Warm cream/ivory base */
-    --background: 30 25% 95%;
+    /* Soft white base — airy editorial off-white */
+    --background: 30 20% 98%;
     --foreground: 220 15% 14%;
 
     /* Blush pink card surface */
@@ -82,7 +82,7 @@ Dark base, bold blue accents, crisp white type
     --shadow-blue: 0 10px 40px hsl(220 15% 14% / 0.1);
 
     /* Sidebar — charcoal on cream */
-    --sidebar-background: 30 25% 95%;
+    --sidebar-background: 30 20% 98%;
     --sidebar-foreground: 220 15% 14%;
     --sidebar-primary: 220 15% 14%;
     --sidebar-primary-foreground: 30 30% 97%;
@@ -90,7 +90,7 @@ Dark base, bold blue accents, crisp white type
     --sidebar-accent-foreground: 220 15% 14%;
     --sidebar-border: 22 18% 84%;
     --sidebar-ring: 220 15% 14%;
-    --sidebar: 30 25% 95%;
+    --sidebar: 30 20% 98%;
 
     --chart-1: 220 15% 14%;
     --chart-2: 14 50% 60%;
@@ -115,7 +115,7 @@ Dark base, bold blue accents, crisp white type
 
   .dark {
     /* Dark mode mirrors default — site is light Manhattan throughout */
-    --background: 30 25% 95%;
+    --background: 30 20% 98%;
     --foreground: 220 15% 14%;
     --card: 18 45% 93%;
     --card-foreground: 220 15% 14%;
