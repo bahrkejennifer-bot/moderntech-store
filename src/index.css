@@ -82,15 +82,15 @@ Dark base, bold blue accents, crisp white type
     --shadow-blue: 0 10px 40px hsl(220 15% 14% / 0.1);
 
     /* Sidebar — charcoal on cream */
-    --sidebar-background: 30 20% 98%;
+    --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 220 15% 14%;
     --sidebar-primary: 220 15% 14%;
-    --sidebar-primary-foreground: 30 30% 97%;
-    --sidebar-accent: 18 40% 90%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 18 50% 94%;
     --sidebar-accent-foreground: 220 15% 14%;
-    --sidebar-border: 22 18% 84%;
+    --sidebar-border: 24 20% 90%;
     --sidebar-ring: 220 15% 14%;
-    --sidebar: 30 20% 98%;
+    --sidebar: 0 0% 100%;
 
     --chart-1: 220 15% 14%;
     --chart-2: 14 50% 60%;
