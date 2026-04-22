@@ -13,7 +13,7 @@ const ChristmasMusic = () => {
     }
   }, []);
 
-  const toggleMusic = () => {
+  const toggleMusic = async () => {
     if (!audioRef.current) return;
 
     if (isPlaying) {
@@ -22,18 +22,21 @@ const ChristmasMusic = () => {
       return;
     }
 
-    // Force the audio element to reload the current src (helps with hot-reload/caching)
-    audioRef.current.load();
-    void audioRef.current.play();
-    setIsPlaying(true);
+    try {
+      await audioRef.current.play();
+      setIsPlaying(true);
+    } catch (err) {
+      console.error("Audio playback failed:", err);
+      setIsPlaying(false);
+    }
   };
 
   return (
     <>
       <audio
         ref={audioRef}
-        src="https://incompetech.com/music/royalty-free/mp3-royaltyfree/Jingle%20Bells%20Calm.mp3?v=2"
-        preload="none"
+        src="/audio/lofi-music.mp3"
+        preload="auto"
       />
       <Button
         onClick={toggleMusic}
