@@ -135,7 +135,7 @@ export default {
   		},
   		fontFamily: {
   			sans: [
-  				'Inter',
+  				'Montserrat',
   				'-apple-system',
   				'BlinkMacSystemFont',
   				'Segoe UI',
@@ -145,17 +145,18 @@ export default {
   				'sans-serif'
   			],
   			display: [
-  				'Inter',
-  				'-apple-system',
-  				'BlinkMacSystemFont',
-  				'sans-serif'
+  				'Playfair Display',
+  				'Georgia',
+  				'serif'
   			],
   			serif: [
+  				'Playfair Display',
   				'Cormorant Garamond',
   				'Georgia',
   				'serif'
   			],
   			mono: [
+  				'Montserrat',
   				'IBM Plex Mono',
   				'Menlo',
   				'monospace'
