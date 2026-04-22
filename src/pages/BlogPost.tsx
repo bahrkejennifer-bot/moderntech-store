@@ -610,14 +610,39 @@ const BlogPost = () => {
           <link rel="canonical" href={`https://moderntech.store/blog/${slug}`} />
           <script type="application/ld+json">{JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": ogTitle,
-            "description": ogDesc,
-            "image": ogImage,
-            "datePublished": dynamicPost.created_at,
-            "author": { "@type": "Organization", "name": "Modern Tech LLC" },
-            "publisher": { "@type": "Organization", "name": "Modern Tech LLC", "url": "https://moderntech.store" },
-            "mainEntityOfPage": { "@type": "WebPage", "@id": `https://moderntech.store/blog/${slug}` }
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": "https://moderntech.store/#organization",
+                "name": "Modern Tech LLC",
+                "url": "https://moderntech.store",
+                "logo": "https://moderntech.store/lovable-uploads/modern-tech-logo.png"
+              },
+              {
+                "@type": "WebPage",
+                "@id": `https://moderntech.store/blog/${slug}#webpage`,
+                "url": `https://moderntech.store/blog/${slug}`,
+                "name": ogTitle,
+                "description": ogDesc,
+                "inLanguage": "en-US",
+                "isPartOf": { "@id": "https://moderntech.store/#website" },
+                "publisher": { "@id": "https://moderntech.store/#organization" }
+              },
+              {
+                "@type": "BlogPosting",
+                "@id": `https://moderntech.store/blog/${slug}#blogposting`,
+                "headline": ogTitle,
+                "description": ogDesc,
+                "image": ogImage,
+                "datePublished": dynamicPost.created_at,
+                "dateModified": dynamicPost.updated_at || dynamicPost.created_at,
+                "articleSection": dynamicPost.category || "Tech",
+                "author": { "@type": "Organization", "name": "Modern Tech LLC", "url": "https://moderntech.store" },
+                "publisher": { "@id": "https://moderntech.store/#organization" },
+                "mainEntityOfPage": { "@id": `https://moderntech.store/blog/${slug}#webpage` },
+                "url": `https://moderntech.store/blog/${slug}`
+              }
+            ]
           })}</script>
         </Helmet>
         {/* Reading Progress Bar */}
@@ -773,14 +798,39 @@ const BlogPost = () => {
         <link rel="canonical" href={`${SITE}/blog/${slug}`} />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": post!.title,
-          "description": staticOgDesc,
-          "image": staticOgImage,
-          "datePublished": post!.date,
-          "author": { "@type": "Organization", "name": "Modern Tech LLC" },
-          "publisher": { "@type": "Organization", "name": "Modern Tech LLC", "url": SITE },
-          "mainEntityOfPage": { "@type": "WebPage", "@id": `${SITE}/blog/${slug}` }
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": `${SITE}/#organization`,
+              "name": "Modern Tech LLC",
+              "url": SITE,
+              "logo": `${SITE}/lovable-uploads/modern-tech-logo.png`
+            },
+            {
+              "@type": "WebPage",
+              "@id": `${SITE}/blog/${slug}#webpage`,
+              "url": `${SITE}/blog/${slug}`,
+              "name": post!.title,
+              "description": staticOgDesc,
+              "inLanguage": "en-US",
+              "isPartOf": { "@id": `${SITE}/#website` },
+              "publisher": { "@id": `${SITE}/#organization` }
+            },
+            {
+              "@type": "BlogPosting",
+              "@id": `${SITE}/blog/${slug}#blogposting`,
+              "headline": post!.title,
+              "description": staticOgDesc,
+              "image": staticOgImage,
+              "datePublished": post!.date,
+              "dateModified": post!.date,
+              "articleSection": (post as any)!.category || "Tech",
+              "author": { "@type": "Organization", "name": "Modern Tech LLC", "url": SITE },
+              "publisher": { "@id": `${SITE}/#organization` },
+              "mainEntityOfPage": { "@id": `${SITE}/blog/${slug}#webpage` },
+              "url": `${SITE}/blog/${slug}`
+            }
+          ]
         })}</script>
       </Helmet>
 
