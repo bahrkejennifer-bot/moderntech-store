@@ -48,7 +48,7 @@ const FacelessYoutube = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "hsl(30 25% 95%)", color: "hsl(220 15% 14%)" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
         <title>YouTube Master Class — Build & Grow Your Channel | Modern Tech</title>
         <meta name="description" content="The YouTube Master Class helps you build a smarter content strategy with practical guidance on planning, structuring, and growing your videos." />

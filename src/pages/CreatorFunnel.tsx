@@ -115,7 +115,7 @@ const CreatorFunnel = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "hsl(30 25% 95%)", color: "hsl(220 15% 14%)" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
         <title>Creator Content Bundle — ModernTech</title>
         <meta name="description" content="Get the complete faceless content creation system. Free Reels guide, Canva Masterclass, and Faceless YouTube Automation — or grab the bundle and save." />

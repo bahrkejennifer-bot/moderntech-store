@@ -47,7 +47,7 @@ const CanvaMasterclass = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "hsl(30 25% 95%)", color: "hsl(220 15% 14%)" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
         <title>Canva Master Class — Design Like a Pro | Modern Tech</title>
         <meta name="description" content="The Canva Master Class helps you design more polished content for your brand, products, and social media without wasting time guessing what looks good." />
