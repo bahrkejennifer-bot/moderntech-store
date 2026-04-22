@@ -146,12 +146,23 @@ const ArtOfModernTech = () => {
               Latest Weekly Reviews
             </h2>
           </div>
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
-          >
-            View all <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+          <div className="flex items-center gap-5">
+            <a
+              href={`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID}.supabase.co/functions/v1/blog-rss-feed`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
+              title="Subscribe to the Weekly Review RSS feed"
+            >
+              <Rss className="h-3.5 w-3.5" /> RSS
+            </a>
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
+            >
+              View all <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
         </div>
 
         <ul className="divide-y divide-border border-t border-b border-border">
