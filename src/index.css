@@ -19,37 +19,37 @@ Dark base, bold blue accents, crisp white type
        Blush pink · warm cream · soft white · charcoal
        ═══════════════════════════════════════════ */
 
-    /* Soft white base — airy editorial off-white */
-    --background: 30 20% 98%;
+    /* Pure soft white base — bright airy editorial */
+    --background: 0 0% 100%;
     --foreground: 220 15% 14%;
 
-    /* Blush pink card surface */
-    --card: 18 45% 93%;
+    /* Soft pale blush card surface (matches reference tulip blush) */
+    --card: 18 55% 96%;
     --card-foreground: 220 15% 14%;
 
-    --popover: 30 30% 97%;
+    --popover: 0 0% 100%;
     --popover-foreground: 220 15% 14%;
 
     /* Warm charcoal primary (near-black) */
     --primary: 220 15% 14%;
-    --primary-foreground: 30 30% 97%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Soft blush secondary */
-    --secondary: 18 40% 90%;
+    /* Soft pale blush secondary */
+    --secondary: 18 50% 94%;
     --secondary-foreground: 220 15% 14%;
 
-    --muted: 24 20% 92%;
+    --muted: 30 15% 96%;
     --muted-foreground: 220 8% 42%;
 
-    /* Warm blush accent */
-    --accent: 14 50% 88%;
+    /* Pale peachy blush accent — matches reference photo tulips */
+    --accent: 16 60% 92%;
     --accent-foreground: 220 15% 14%;
 
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 22 18% 84%;
-    --input: 22 18% 84%;
+    --border: 24 20% 90%;
+    --input: 24 20% 90%;
     --ring: 220 15% 14%;
 
     --radius: 0.625rem;
@@ -64,33 +64,33 @@ Dark base, bold blue accents, crisp white type
     --vibrant-coral: 10 60% 70%;
 
     /* Gradients — soft editorial */
-    --gradient-hero: linear-gradient(135deg, hsl(18 45% 93%), hsl(30 25% 95%));
-    --gradient-accent: linear-gradient(135deg, hsl(14 50% 88%), hsl(18 45% 93%));
-    --gradient-warm: linear-gradient(135deg, hsl(18 45% 93%), hsl(14 50% 88%));
+    --gradient-hero: linear-gradient(135deg, hsl(18 55% 96%), hsl(0 0% 100%));
+    --gradient-accent: linear-gradient(135deg, hsl(16 60% 92%), hsl(18 55% 96%));
+    --gradient-warm: linear-gradient(135deg, hsl(18 55% 96%), hsl(16 60% 92%));
     --gradient-vibrant: linear-gradient(135deg, hsl(220 15% 14%), hsl(220 15% 24%));
     --gradient-success: linear-gradient(135deg, hsl(155 40% 38%), hsl(175 35% 40%));
     --gradient-spotlight: radial-gradient(ellipse at center, hsl(220 15% 14% / 0.04), transparent 70%);
 
     /* Shadows — soft, paper-like */
     --shadow-elegant: 0 4px 30px hsl(220 15% 14% / 0.06);
-    --shadow-card: 0 1px 3px hsl(22 18% 84% / 0.5), 0 4px 16px hsl(22 18% 84% / 0.3);
-    --shadow-glow: 0 0 50px hsl(14 50% 88% / 0.4);
+    --shadow-card: 0 1px 3px hsl(24 20% 90% / 0.5), 0 4px 16px hsl(24 20% 90% / 0.3);
+    --shadow-glow: 0 0 50px hsl(16 60% 92% / 0.4);
     --shadow-soft: 0 2px 12px hsl(220 15% 14% / 0.04);
-    --shadow-pink: 0 10px 40px hsl(14 50% 88% / 0.5);
+    --shadow-pink: 0 10px 40px hsl(16 60% 92% / 0.5);
     --shadow-orange: 0 10px 40px hsl(18 55% 60% / 0.2);
     --shadow-green: 0 10px 40px hsl(155 40% 38% / 0.15);
     --shadow-blue: 0 10px 40px hsl(220 15% 14% / 0.1);
 
     /* Sidebar — charcoal on cream */
-    --sidebar-background: 30 20% 98%;
+    --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 220 15% 14%;
     --sidebar-primary: 220 15% 14%;
-    --sidebar-primary-foreground: 30 30% 97%;
-    --sidebar-accent: 18 40% 90%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 18 50% 94%;
     --sidebar-accent-foreground: 220 15% 14%;
-    --sidebar-border: 22 18% 84%;
+    --sidebar-border: 24 20% 90%;
     --sidebar-ring: 220 15% 14%;
-    --sidebar: 30 20% 98%;
+    --sidebar: 0 0% 100%;
 
     --chart-1: 220 15% 14%;
     --chart-2: 14 50% 60%;
@@ -115,24 +115,24 @@ Dark base, bold blue accents, crisp white type
 
   .dark {
     /* Dark mode mirrors default — site is light Manhattan throughout */
-    --background: 30 20% 98%;
+    --background: 0 0% 100%;
     --foreground: 220 15% 14%;
-    --card: 18 45% 93%;
+    --card: 18 55% 96%;
     --card-foreground: 220 15% 14%;
-    --popover: 30 30% 97%;
+    --popover: 0 0% 100%;
     --popover-foreground: 220 15% 14%;
     --primary: 220 15% 14%;
-    --primary-foreground: 30 30% 97%;
-    --secondary: 18 40% 90%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 18 50% 94%;
     --secondary-foreground: 220 15% 14%;
-    --muted: 24 20% 92%;
+    --muted: 30 15% 96%;
     --muted-foreground: 220 8% 42%;
-    --accent: 14 50% 88%;
+    --accent: 16 60% 92%;
     --accent-foreground: 220 15% 14%;
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 98%;
-    --border: 22 18% 84%;
-    --input: 22 18% 84%;
+    --border: 24 20% 90%;
+    --input: 24 20% 90%;
     --ring: 220 15% 14%;
     --radius: 0.625rem;
   }
