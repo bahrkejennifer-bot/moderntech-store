@@ -176,6 +176,20 @@ const Blog = () => {
         <meta property="og:url" content="https://moderntech.store/blog" />
         <meta property="og:type" content="website" />
       </Helmet>
+      <StructuredData
+        title="Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech"
+        description="Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly."
+        path="/blog"
+        extraGraph={[
+          {
+            "@type": "Blog",
+            "@id": "https://moderntech.store/blog#blog",
+            name: "Modern Tech Blog",
+            url: "https://moderntech.store/blog",
+            publisher: { "@id": "https://moderntech.store/#organization" },
+          },
+        ]}
+      />
       <Navigation />
 
       {/* ── Hero Section ── */}

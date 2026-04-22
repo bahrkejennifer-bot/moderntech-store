@@ -76,6 +76,11 @@ const DigitalProducts = () => {
         <title>Digital Products — Modern Tech</title>
         <meta name="description" content="Explore Modern Tech's digital guides designed to help creators, entrepreneurs, and beginners make better content, build stronger branding, and grow online." />
       </Helmet>
+      <StructuredData
+        title="Digital Products — Modern Tech"
+        description="Explore Modern Tech's digital guides designed to help creators, entrepreneurs, and beginners make better content, build stronger branding, and grow online."
+        path="/digital-products"
+      />
       <Navigation />
 
       {/* Header */}

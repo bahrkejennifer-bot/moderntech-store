@@ -71,6 +71,12 @@ const Index = () => {
         <meta property="og:url" content="https://moderntech.store/" />
         <meta property="og:type" content="website" />
       </Helmet>
+      <StructuredData
+        title="Modern Tech — Curated Premium Technology for 2026"
+        description="A curated gallery of premium tech — wellness wearables, creator tools, and office essentials. Handpicked with editorial precision."
+        path="/"
+        includeWebSite
+      />
       <Navigation />
 
       {/* ── HERO — asymmetric editorial layout ── */}
