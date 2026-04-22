@@ -45,10 +45,10 @@ const Signal = () => {
         <div className="border-t border-b border-foreground/20" style={{ borderWidth: "0.5px" }}>
           <div className="py-12 text-center">
             <h1
-              className="font-serif text-6xl md:text-8xl tracking-tight"
+              className="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tight leading-tight"
               style={{ fontWeight: 400 }}
             >
-              SIGNAL
+              The Art of Modern Tech Weekly Review
             </h1>
             <p
               className="font-mono mt-4 text-muted-foreground"
