@@ -61,13 +61,41 @@ const AffiliateFooter = () => {
           <div>
             <h3 className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(30 25% 95% / 0.4)" }}>Affiliate Disclosure</h3>
             <p className="font-mono text-[10px] leading-[1.8]" style={{ color: "hsl(30 25% 95% / 0.5)" }}>
-              Modern Tech LLC is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.
+              Modern Tech LLC is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases.
             </p>
+            <p className="font-mono text-[10px] leading-[1.8] mt-3" style={{ color: "hsl(30 25% 95% / 0.5)" }}>
+              Product prices and availability are accurate as of the date/time indicated and are subject to change. Any price and availability information displayed on Amazon at the time of purchase will apply.
+            </p>
+            <Link
+              to="/disclaimer"
+              className="font-mono text-[9px] tracking-[0.2em] uppercase mt-4 inline-block transition-colors"
+              style={{ color: "hsl(30 25% 95% / 0.7)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(30 25% 95%)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(30 25% 95% / 0.7)")}
+            >
+              Read full disclosure →
+            </Link>
           </div>
         </div>
 
+        {/* Compliance Bar */}
+        <div
+          className="mt-16 pt-8"
+          style={{ borderTop: "0.5px solid hsl(30 25% 95% / 0.15)" }}
+        >
+          <p
+            className="font-mono text-[10px] leading-[1.8] text-center max-w-3xl mx-auto"
+            style={{ color: "hsl(30 25% 95% / 0.55)" }}
+          >
+            <span className="tracking-[0.2em] uppercase" style={{ color: "hsl(30 25% 95% / 0.75)" }}>
+              FTC Disclosure:
+            </span>{" "}
+            Modern Tech LLC is reader-supported. When you buy through links on our site, we may earn an affiliate commission at no additional cost to you. As an Amazon Associate we earn from qualifying purchases. Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates.
+          </p>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 text-center" style={{ borderTop: "0.5px solid hsl(30 25% 95% / 0.15)" }}>
+        <div className="mt-8 pt-8 text-center" style={{ borderTop: "0.5px solid hsl(30 25% 95% / 0.15)" }}>
           <p className="font-mono text-[9px] tracking-[0.3em] uppercase" style={{ color: "hsl(30 25% 95% / 0.4)" }}>
             &copy; 2025 Modern Tech LLC — All rights reserved
           </p>
