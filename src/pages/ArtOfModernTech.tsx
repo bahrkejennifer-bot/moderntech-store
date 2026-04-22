@@ -113,6 +113,20 @@ const ArtOfModernTech = () => {
           <p className="mt-6 font-mono text-[11px] tracking-[0.15em] text-muted-foreground max-w-lg mx-auto leading-[2]">
             Weekly tech videos, podcast episodes & editorial blog posts for women ready to lead the future
           </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 bg-foreground text-background px-7 py-3 font-mono text-[10px] tracking-[0.25em] uppercase hover:bg-foreground/85 transition-colors"
+            >
+              <BookOpen className="h-4 w-4" /> Read the Weekly Review
+            </Link>
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
+            >
+              Browse all articles <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
         </div>
       </section>
 
