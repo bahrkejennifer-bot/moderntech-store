@@ -19,37 +19,37 @@ Dark base, bold blue accents, crisp white type
        Blush pink · warm cream · soft white · charcoal
        ═══════════════════════════════════════════ */
 
-    /* Soft white base — airy editorial off-white */
-    --background: 30 20% 98%;
+    /* Pure soft white base — bright airy editorial */
+    --background: 0 0% 100%;
     --foreground: 220 15% 14%;
 
-    /* Blush pink card surface */
-    --card: 18 45% 93%;
+    /* Soft pale blush card surface (matches reference tulip blush) */
+    --card: 18 55% 96%;
     --card-foreground: 220 15% 14%;
 
-    --popover: 30 30% 97%;
+    --popover: 0 0% 100%;
     --popover-foreground: 220 15% 14%;
 
     /* Warm charcoal primary (near-black) */
     --primary: 220 15% 14%;
-    --primary-foreground: 30 30% 97%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Soft blush secondary */
-    --secondary: 18 40% 90%;
+    /* Soft pale blush secondary */
+    --secondary: 18 50% 94%;
     --secondary-foreground: 220 15% 14%;
 
-    --muted: 24 20% 92%;
+    --muted: 30 15% 96%;
     --muted-foreground: 220 8% 42%;
 
-    /* Warm blush accent */
-    --accent: 14 50% 88%;
+    /* Pale peachy blush accent — matches reference photo tulips */
+    --accent: 16 60% 92%;
     --accent-foreground: 220 15% 14%;
 
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 22 18% 84%;
-    --input: 22 18% 84%;
+    --border: 24 20% 90%;
+    --input: 24 20% 90%;
     --ring: 220 15% 14%;
 
     --radius: 0.625rem;
