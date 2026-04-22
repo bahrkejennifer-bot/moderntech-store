@@ -181,6 +181,10 @@ const Blog = () => {
         title="Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech"
         description="Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly."
         path="/blog"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+        ]}
         extraGraph={[
           {
             "@type": "Blog",

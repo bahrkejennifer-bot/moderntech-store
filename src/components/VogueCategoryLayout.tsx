@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import StructuredData from "@/components/StructuredData";
 
 interface VogueCategoryLayoutProps {
   title: string;
@@ -11,8 +12,20 @@ interface VogueCategoryLayoutProps {
 }
 
 const VogueCategoryLayout = ({ title, subtitle, children }: VogueCategoryLayoutProps) => {
+  const { pathname } = useLocation();
+
   return (
     <>
+      <StructuredData
+        title={title}
+        description={subtitle}
+        path={pathname}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: title, path: pathname },
+        ]}
+      />
+
       <Navigation />
 
       {/* Back link */}

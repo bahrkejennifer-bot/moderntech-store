@@ -19,6 +19,12 @@ const ORG = {
   ],
 };
 
+interface BreadcrumbItem {
+  name: string;
+  /** Path relative to site root (e.g. "/blog") or full URL */
+  path: string;
+}
+
 interface StructuredDataProps {
   /** Page title (defaults to current document title at render time) */
   title?: string;
@@ -28,6 +34,8 @@ interface StructuredDataProps {
   path?: string;
   /** Optional: include WebSite schema with SearchAction (use on homepage) */
   includeWebSite?: boolean;
+  /** Optional: BreadcrumbList items in order from root to current page */
+  breadcrumbs?: BreadcrumbItem[];
   /** Optional: extra @graph nodes (e.g. BlogPosting) */
   extraGraph?: Record<string, unknown>[];
 }
@@ -41,6 +49,7 @@ const StructuredData = ({
   description,
   path = "/",
   includeWebSite = false,
+  breadcrumbs,
   extraGraph = [],
 }: StructuredDataProps) => {
   const url = `${SITE}${path}`;
@@ -74,7 +83,23 @@ const StructuredData = ({
       ]
     : [];
 
-  const graph = [ORG, ...webSite, webPage, ...extraGraph];
+  const breadcrumbNode =
+    breadcrumbs && breadcrumbs.length > 0
+      ? [
+          {
+            "@type": "BreadcrumbList",
+            "@id": `${url}#breadcrumb`,
+            itemListElement: breadcrumbs.map((b, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              name: b.name,
+              item: b.path.startsWith("http") ? b.path : `${SITE}${b.path}`,
+            })),
+          },
+        ]
+      : [];
+
+  const graph = [ORG, ...webSite, webPage, ...breadcrumbNode, ...extraGraph];
 
   return (
     <Helmet>

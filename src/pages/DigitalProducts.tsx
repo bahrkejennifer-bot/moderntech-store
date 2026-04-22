@@ -81,6 +81,10 @@ const DigitalProducts = () => {
         title="Digital Products — Modern Tech"
         description="Explore Modern Tech's digital guides designed to help creators, entrepreneurs, and beginners make better content, build stronger branding, and grow online."
         path="/digital-products"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Digital Products", path: "/digital-products" },
+        ]}
       />
       <Navigation />
 
