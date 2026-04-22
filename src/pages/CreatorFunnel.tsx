@@ -115,7 +115,7 @@ const CreatorFunnel = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "hsl(40 18% 91%)", color: "hsl(40 10% 12%)" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "hsl(30 25% 95%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
         <title>Creator Content Bundle — ModernTech</title>
         <meta name="description" content="Get the complete faceless content creation system. Free Reels guide, Canva Masterclass, and Faceless YouTube Automation — or grab the bundle and save." />
@@ -124,13 +124,13 @@ const CreatorFunnel = () => {
 
       {/* Hero */}
       <section className="pt-24 pb-16 px-6 text-center max-w-4xl mx-auto">
-        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+        <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
           MODERN TECH DIGITAL GUIDES
         </p>
         <h1 className="font-serif text-4xl md:text-6xl tracking-tight mb-6" style={{ fontWeight: 400 }}>
           Start Building Better<br />Content Today
         </h1>
-        <p className="font-mono text-[12px] tracking-[0.05em] max-w-xl mx-auto leading-relaxed" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+        <p className="font-mono text-[12px] tracking-[0.05em] max-w-xl mx-auto leading-relaxed" style={{ color: "hsl(220 15% 14% / 0.6)" }}>
           Get the Reels Master Class free — then unlock the full system to design, create, and grow your content with confidence.
         </p>
       </section>
@@ -138,17 +138,17 @@ const CreatorFunnel = () => {
       {step === "gate" ? (
         /* ── FREE EMAIL GATE ── */
         <section className="max-w-md mx-auto px-6 pb-20">
-          <div className="p-8 rounded-sm" style={{ backgroundColor: "hsl(40 18% 95%)", border: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
+          <div className="p-8 rounded-sm" style={{ backgroundColor: "hsl(40 18% 95%)", border: "0.5px solid hsl(220 15% 14% / 0.1)" }}>
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Video className="w-5 h-5" style={{ color: "hsl(40 10% 12% / 0.4)" }} />
-              <p className="font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+              <Video className="w-5 h-5" style={{ color: "hsl(220 15% 14% / 0.4)" }} />
+              <p className="font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
                 FREE DOWNLOAD
               </p>
             </div>
             <h2 className="font-serif text-2xl text-center mb-2" style={{ fontWeight: 400 }}>
               Reels Master Class
             </h2>
-            <p className="font-mono text-[11px] text-center mb-6 leading-relaxed" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
+            <p className="font-mono text-[11px] text-center mb-6 leading-relaxed" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
               The Reels Master Class helps you create stronger short-form videos with better hooks, clearer structure, and more engaging content ideas so you can show up with confidence.
             </p>
 
@@ -160,7 +160,7 @@ const CreatorFunnel = () => {
                 placeholder="Your first name"
                 required
                 className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none"
-                style={{ border: "0.5px solid hsl(40 10% 12% / 0.2)", color: "hsl(40 10% 12%)" }}
+                style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
               />
               <input
                 type="email"
@@ -169,13 +169,13 @@ const CreatorFunnel = () => {
                 placeholder="Your email"
                 required
                 className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none"
-                style={{ border: "0.5px solid hsl(40 10% 12% / 0.2)", color: "hsl(40 10% 12%)" }}
+                style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
               />
               <button
                 type="submit"
                 disabled={loading}
                 className="w-full flex items-center justify-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-4 transition-all duration-200 hover:opacity-80 disabled:opacity-50"
-                style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}
+                style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(30 25% 95%)" }}
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Get Your Free Guide <ArrowRight className="w-3 h-3" /></>}
               </button>
@@ -184,14 +184,14 @@ const CreatorFunnel = () => {
 
           {/* Preview of what's coming */}
           <div className="mt-12 text-center">
-            <p className="font-mono text-[10px] tracking-[0.2em] uppercase mb-4" style={{ color: "hsl(40 10% 12% / 0.3)" }}>
+            <p className="font-mono text-[10px] tracking-[0.2em] uppercase mb-4" style={{ color: "hsl(220 15% 14% / 0.3)" }}>
               WANT MORE? UNLOCK THE FULL SYSTEM ↓
             </p>
             <div className="flex items-center justify-center gap-6">
               {[Palette, Youtube, Gift].map((Icon, i) => (
                 <div key={i} className="flex flex-col items-center gap-1">
-                  <Icon className="w-5 h-5" style={{ color: "hsl(40 10% 12% / 0.25)" }} />
-                  <span className="font-mono text-[9px]" style={{ color: "hsl(40 10% 12% / 0.3)" }}>
+                  <Icon className="w-5 h-5" style={{ color: "hsl(220 15% 14% / 0.25)" }} />
+                  <span className="font-mono text-[9px]" style={{ color: "hsl(220 15% 14% / 0.3)" }}>
                     {["$29", "$49", "$59"][i]}
                   </span>
                 </div>
@@ -206,19 +206,19 @@ const CreatorFunnel = () => {
           <div className="text-center mb-12 p-6 rounded-sm" style={{ backgroundColor: "hsl(140 30% 92%)", border: "0.5px solid hsl(140 30% 70% / 0.3)" }}>
             <Check className="w-6 h-6 mx-auto mb-2" style={{ color: "hsl(140 40% 40%)" }} />
             <p className="font-serif text-lg mb-1">Your Reels Guide is on its way!</p>
-            <p className="font-mono text-[11px]" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
+            <p className="font-mono text-[11px]" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
               Check your inbox at <strong>{form.email}</strong>
             </p>
           </div>
 
           <div className="text-center mb-10">
-            <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+            <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
               LEVEL UP YOUR CREATOR GAME
             </p>
             <h2 className="font-serif text-3xl md:text-4xl tracking-tight mb-3" style={{ fontWeight: 400 }}>
               Go Further, Faster
             </h2>
-            <p className="font-mono text-[11px] max-w-lg mx-auto" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
+            <p className="font-mono text-[11px] max-w-lg mx-auto" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
               You've got the Reels guide — now unlock the full system.
             </p>
           </div>
@@ -238,25 +238,25 @@ const CreatorFunnel = () => {
               loading={checkoutLoading === "faceless-youtube-automation"}
             />
             {/* $59 Bundle */}
-            <div className="relative p-6 rounded-sm" style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)", border: "0.5px solid hsl(40 10% 12%)" }}>
+            <div className="relative p-6 rounded-sm" style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(30 25% 95%)", border: "0.5px solid hsl(220 15% 14%)" }}>
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                <span className="font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1 rounded-full" style={{ backgroundColor: "hsl(45 80% 55%)", color: "hsl(40 10% 12%)" }}>
+                <span className="font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1 rounded-full" style={{ backgroundColor: "hsl(14 50% 88%)", color: "hsl(220 15% 14%)" }}>
                   BEST VALUE
                 </span>
               </div>
-              <Gift className="w-6 h-6 mx-auto mb-3" style={{ color: "hsl(45 80% 55%)" }} />
+              <Gift className="w-6 h-6 mx-auto mb-3" style={{ color: "hsl(14 50% 88%)" }} />
               <h3 className="font-serif text-xl text-center mb-1">The Complete Bundle</h3>
-              <p className="font-mono text-[10px] text-center mb-4" style={{ color: "hsl(40 18% 91% / 0.5)" }}>
+              <p className="font-mono text-[10px] text-center mb-4" style={{ color: "hsl(30 25% 95% / 0.5)" }}>
                 All three guides — one price
               </p>
               <div className="text-center mb-4">
-                <span className="font-mono text-[11px] line-through mr-2" style={{ color: "hsl(40 18% 91% / 0.4)" }}>$78</span>
-                <span className="font-serif text-3xl" style={{ color: "hsl(45 80% 55%)" }}>$59</span>
+                <span className="font-mono text-[11px] line-through mr-2" style={{ color: "hsl(30 25% 95% / 0.4)" }}>$78</span>
+                <span className="font-serif text-3xl" style={{ color: "hsl(14 50% 88%)" }}>$59</span>
               </div>
               <ul className="space-y-2 mb-6">
                 {["Everything in Faceless Reels Guide", "Everything in Canva Masterclass", "Everything in YouTube Automation", "Save $19 vs buying separately"].map((f) => (
-                  <li key={f} className="flex items-start gap-2 font-mono text-[11px]" style={{ color: "hsl(40 18% 91% / 0.8)" }}>
-                    <Check className="w-3 h-3 mt-0.5 shrink-0" style={{ color: "hsl(45 80% 55%)" }} /> {f}
+                  <li key={f} className="flex items-start gap-2 font-mono text-[11px]" style={{ color: "hsl(30 25% 95% / 0.8)" }}>
+                    <Check className="w-3 h-3 mt-0.5 shrink-0" style={{ color: "hsl(14 50% 88%)" }} /> {f}
                   </li>
                 ))}
               </ul>
@@ -264,7 +264,7 @@ const CreatorFunnel = () => {
                 onClick={() => handleCheckout("creator-bundle", "The Complete Creator Bundle", 5900)}
                 disabled={checkoutLoading === "creator-bundle"}
                 className="w-full flex items-center justify-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-6 py-4 transition-all hover:opacity-90 disabled:opacity-50"
-                style={{ backgroundColor: "hsl(45 80% 55%)", color: "hsl(40 10% 12%)" }}
+                style={{ backgroundColor: "hsl(14 50% 88%)", color: "hsl(220 15% 14%)" }}
               >
                 {checkoutLoading === "creator-bundle" ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Get the Bundle <Sparkles className="w-3 h-3" /></>}
               </button>
@@ -272,11 +272,11 @@ const CreatorFunnel = () => {
           </div>
 
           {/* Guarantee */}
-          <div className="text-center pt-8" style={{ borderTop: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
-            <p className="font-mono text-[10px] tracking-[0.2em] uppercase mb-2" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+          <div className="text-center pt-8" style={{ borderTop: "0.5px solid hsl(220 15% 14% / 0.1)" }}>
+            <p className="font-mono text-[10px] tracking-[0.2em] uppercase mb-2" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
               30-DAY MONEY-BACK GUARANTEE
             </p>
-            <p className="font-mono text-[11px] max-w-md mx-auto" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
+            <p className="font-mono text-[11px] max-w-md mx-auto" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
               Not satisfied? We'll refund every penny — no questions asked.
             </p>
           </div>
@@ -298,10 +298,10 @@ interface TierCardProps {
 const TierCard = ({ tier, onCheckout, loading }: TierCardProps) => {
   const Icon = tier.icon;
   return (
-    <div className="p-6 rounded-sm flex flex-col" style={{ backgroundColor: "hsl(40 18% 95%)", border: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
-      <Icon className="w-6 h-6 mx-auto mb-3" style={{ color: "hsl(40 10% 12% / 0.4)" }} />
+    <div className="p-6 rounded-sm flex flex-col" style={{ backgroundColor: "hsl(40 18% 95%)", border: "0.5px solid hsl(220 15% 14% / 0.1)" }}>
+      <Icon className="w-6 h-6 mx-auto mb-3" style={{ color: "hsl(220 15% 14% / 0.4)" }} />
       <h3 className="font-serif text-xl text-center mb-1">{tier.name}</h3>
-      <p className="font-mono text-[10px] text-center mb-4" style={{ color: "hsl(40 10% 12% / 0.5)" }}>
+      <p className="font-mono text-[10px] text-center mb-4" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
         {tier.tagline}
       </p>
       <div className="text-center mb-4">
@@ -309,8 +309,8 @@ const TierCard = ({ tier, onCheckout, loading }: TierCardProps) => {
       </div>
       <ul className="space-y-2 mb-6 flex-1">
         {tier.features.map((f) => (
-          <li key={f} className="flex items-start gap-2 font-mono text-[11px]" style={{ color: "hsl(40 10% 12% / 0.7)" }}>
-            <Check className="w-3 h-3 mt-0.5 shrink-0" style={{ color: "hsl(40 10% 12% / 0.4)" }} /> {f}
+          <li key={f} className="flex items-start gap-2 font-mono text-[11px]" style={{ color: "hsl(220 15% 14% / 0.7)" }}>
+            <Check className="w-3 h-3 mt-0.5 shrink-0" style={{ color: "hsl(220 15% 14% / 0.4)" }} /> {f}
           </li>
         ))}
       </ul>
@@ -318,7 +318,7 @@ const TierCard = ({ tier, onCheckout, loading }: TierCardProps) => {
         onClick={onCheckout}
         disabled={loading}
         className="w-full flex items-center justify-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-6 py-4 transition-all hover:opacity-80 disabled:opacity-50"
-        style={{ backgroundColor: "hsl(40 10% 12%)", color: "hsl(40 18% 91%)" }}
+        style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(30 25% 95%)" }}
       >
         {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Get {tier.name} <ArrowRight className="w-3 h-3" /></>}
       </button>

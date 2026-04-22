@@ -11,27 +11,27 @@ import { FreeGuideModal } from "@/components/FreeGuideModal";
 const ProTipAccordion = ({ num, title, body }: { num: string; title: string; body: string }) => {
   const [open, setOpen] = useState(false);
   return (
-    <div style={{ borderBottom: "0.5px solid hsl(40 10% 12% / 0.1)" }}>
+    <div style={{ borderBottom: "0.5px solid hsl(220 15% 14% / 0.1)" }}>
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center gap-6 py-6 text-left group"
       >
-        <span className="font-serif text-2xl shrink-0" style={{ fontStyle: "italic", color: "hsl(40 10% 12% / 0.25)", width: 40 }}>
+        <span className="font-serif text-2xl shrink-0" style={{ fontStyle: "italic", color: "hsl(220 15% 14% / 0.25)", width: 40 }}>
           {num}
         </span>
-        <span className="font-mono text-[11px] tracking-[0.15em] uppercase flex-1" style={{ color: "hsl(40 10% 12%)" }}>
+        <span className="font-mono text-[11px] tracking-[0.15em] uppercase flex-1" style={{ color: "hsl(220 15% 14%)" }}>
           {title}
         </span>
         <ChevronDown
           className="h-4 w-4 shrink-0 transition-transform duration-300"
-          style={{ color: "hsl(40 10% 12% / 0.3)", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+          style={{ color: "hsl(220 15% 14% / 0.3)", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
         />
       </button>
       <div
         className="overflow-hidden transition-all duration-300 ease-in-out"
         style={{ maxHeight: open ? 400 : 0, opacity: open ? 1 : 0 }}
       >
-        <p className="font-mono text-[10px] leading-[2.2] pb-8 pl-[64px] pr-4" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+        <p className="font-mono text-[10px] leading-[2.2] pb-8 pl-[64px] pr-4" style={{ color: "hsl(220 15% 14% / 0.6)" }}>
           {body}
         </p>
       </div>
@@ -75,7 +75,7 @@ const AmazonAssociateGuide = () => {
   ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "hsl(38 20% 86%)", color: "hsl(40 10% 12%)" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "hsl(38 20% 86%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
         <title>Free Amazon Associate Quick-Start Guide 2026 | Modern Tech</title>
         <meta name="description" content="Everything you need to launch your Amazon affiliate journey — from signup to your first commission, in 5 actionable pages." />
@@ -98,13 +98,13 @@ const AmazonAssociateGuide = () => {
       <section className="max-w-5xl mx-auto px-8 pt-24 pb-20">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+            <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
               The Modern Tech Blueprint — Free 5-Page Guide
             </p>
             <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] mb-6" style={{ fontStyle: "italic", color: "hsl(40 10% 8%)", fontWeight: 500 }}>
               Amazon Associate<br />Quick-Start Guide
             </h1>
-            <p className="font-mono text-[11px] leading-[2] max-w-md mb-8" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+            <p className="font-mono text-[11px] leading-[2] max-w-md mb-8" style={{ color: "hsl(220 15% 14% / 0.6)" }}>
               From application to first commission — the definitive playbook for building an affiliate platform with editorial integrity.
             </p>
             <div className="mb-10 overflow-hidden shadow-lg border border-border/30 max-w-[240px]">
@@ -119,8 +119,8 @@ const AmazonAssociateGuide = () => {
               className="font-mono text-[10px] tracking-[0.2em] uppercase px-10 py-5 transition-all duration-300 hover:scale-[1.02]"
               style={{
                 backgroundColor: "transparent",
-                color: "hsl(40 10% 12%)",
-                border: "1px solid hsl(40 10% 12%)",
+                color: "hsl(220 15% 14%)",
+                border: "1px solid hsl(220 15% 14%)",
                 borderRadius: "0",
               }}
             >
@@ -140,19 +140,19 @@ const AmazonAssociateGuide = () => {
 
       {/* Industry Intelligence */}
       <section className="max-w-4xl mx-auto px-8 pb-24">
-        <div className="mb-16" style={{ borderTop: "0.5px solid hsl(40 10% 12% / 0.15)" }}>
-          <p className="font-mono text-[9px] tracking-[0.3em] uppercase pt-8 mb-12" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+        <div className="mb-16" style={{ borderTop: "0.5px solid hsl(220 15% 14% / 0.15)" }}>
+          <p className="font-mono text-[9px] tracking-[0.3em] uppercase pt-8 mb-12" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
             Industry Intelligence — What's Inside
           </p>
           <div className="space-y-12">
             {steps.map((step) => (
               <div key={step.number} className="grid grid-cols-[60px_1fr] gap-8">
-                <span className="font-serif text-3xl" style={{ fontStyle: "italic", color: "hsl(40 10% 12% / 0.25)" }}>
+                <span className="font-serif text-3xl" style={{ fontStyle: "italic", color: "hsl(220 15% 14% / 0.25)" }}>
                   {step.number}
                 </span>
                 <div>
                   <h3 className="font-serif text-xl mb-2">{step.title}</h3>
-                  <p className="font-mono text-[10px] leading-[2]" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+                  <p className="font-mono text-[10px] leading-[2]" style={{ color: "hsl(220 15% 14% / 0.6)" }}>
                     {step.desc}
                   </p>
                 </div>
@@ -162,8 +162,8 @@ const AmazonAssociateGuide = () => {
         </div>
 
         {/* Pro Tips — Expandable */}
-        <div className="mt-20" style={{ borderTop: "0.5px solid hsl(40 10% 12% / 0.15)" }}>
-          <p className="font-mono text-[9px] tracking-[0.3em] uppercase pt-8 mb-12" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+        <div className="mt-20" style={{ borderTop: "0.5px solid hsl(220 15% 14% / 0.15)" }}>
+          <p className="font-mono text-[9px] tracking-[0.3em] uppercase pt-8 mb-12" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
             Insider Playbook — Pro Tips
           </p>
           <div className="space-y-0">
@@ -202,14 +202,14 @@ const AmazonAssociateGuide = () => {
 
       {/* Download CTA */}
       <section className="max-w-4xl mx-auto px-8 pb-24">
-        <div className="text-center py-12" style={{ borderTop: "0.5px solid hsl(40 10% 12% / 0.15)" }}>
-          <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(40 10% 12% / 0.4)" }}>
+        <div className="text-center py-12" style={{ borderTop: "0.5px solid hsl(220 15% 14% / 0.15)" }}>
+          <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
             Ready to Begin?
           </p>
           <h2 className="font-serif text-3xl md:text-4xl mb-4" style={{ fontStyle: "italic", color: "hsl(40 10% 8%)" }}>
             Download Your Free Guide
           </h2>
-          <p className="font-mono text-[11px] leading-[2] max-w-md mx-auto mb-8" style={{ color: "hsl(40 10% 12% / 0.6)" }}>
+          <p className="font-mono text-[11px] leading-[2] max-w-md mx-auto mb-8" style={{ color: "hsl(220 15% 14% / 0.6)" }}>
             Get the complete 5-page blueprint as a beautifully formatted PDF — yours to keep.
           </p>
           <Button
@@ -217,9 +217,9 @@ const AmazonAssociateGuide = () => {
             disabled={downloading}
             className="font-mono text-[10px] tracking-[0.2em] uppercase px-10 py-5 transition-all duration-300 hover:scale-[1.02]"
             style={{
-              backgroundColor: "hsl(40 10% 12%)",
+              backgroundColor: "hsl(220 15% 14%)",
               color: "hsl(38 20% 86%)",
-              border: "1px solid hsl(40 10% 12%)",
+              border: "1px solid hsl(220 15% 14%)",
               borderRadius: "0",
             }}
           >

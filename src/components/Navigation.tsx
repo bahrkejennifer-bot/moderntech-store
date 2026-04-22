@@ -9,7 +9,7 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 glass-dark border-b border-border/50" style={{ color: 'hsl(40 18% 91%)' }}>
+      <nav className="sticky top-0 z-50 glass-dark border-b border-border/50" style={{ color: 'hsl(30 25% 95%)' }}>
         <div className="max-w-6xl mx-auto px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Left — MENU trigger */}
