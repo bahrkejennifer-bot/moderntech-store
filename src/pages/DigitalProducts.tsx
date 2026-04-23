@@ -8,6 +8,7 @@ import coverReels from "@/assets/cover-reels.jpg";
 import coverCanva from "@/assets/cover-canva.jpg";
 import coverYoutube from "@/assets/cover-youtube.jpg";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import JsonLdValidator from "@/components/JsonLdValidator";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -238,6 +239,7 @@ const DigitalProducts = () => {
       </section>
 
       <AffiliateFooter />
+      <JsonLdValidator />
     </div>
   );
 };

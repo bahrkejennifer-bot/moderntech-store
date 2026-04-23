@@ -367,6 +367,7 @@ const Blog = () => {
       </div>
 
       <AffiliateFooter />
+      <JsonLdValidator />
     </div>
   );
 };
