@@ -6,6 +6,7 @@ import { Calendar, ArrowRight, Sparkles, Clock, Search, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import JsonLdValidator from "@/components/JsonLdValidator";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -366,6 +367,7 @@ const Blog = () => {
       </div>
 
       <AffiliateFooter />
+      <JsonLdValidator />
     </div>
   );
 };
