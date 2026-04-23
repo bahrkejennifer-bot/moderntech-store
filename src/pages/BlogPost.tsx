@@ -957,6 +957,7 @@ const BlogPost = () => {
       )}
 
       <AffiliateFooter />
+      <JsonLdValidator />
     </div>
   );
 };
