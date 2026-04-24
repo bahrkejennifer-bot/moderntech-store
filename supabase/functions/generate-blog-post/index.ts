@@ -12,7 +12,17 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { products } = await req.json();
+    const { products, mode } = await req.json();
+    const isWeekly = mode === "weekly";
+
+    // ISO week number helper
+    function getIsoWeek(d: Date): number {
+      const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+      const dayNum = date.getUTCDay() || 7;
+      date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+      const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+      return Math.ceil(((date.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+    }
 
     if (!products || products.length === 0) {
       return new Response(
@@ -135,14 +145,19 @@ Remember: No prices. Use the exact affiliate links. Make it ~1,000 words. Includ
       titleMatch?.[1]?.replace(/<[^>]+>/g, "") ||
       `${monthName} ${year} Tech Roundup: Fresh Finds for Creators & Families`;
 
-    // Generate slug
-    const slug = `monthly-tech-roundup-${monthName.toLowerCase()}-${year}`;
+    // Generate slug — weekly uses ISO week, monthly uses month
+    const isoWeek = getIsoWeek(now);
+    const slug = isWeekly
+      ? `weekly-tech-roundup-week-${isoWeek}-${year}`
+      : `monthly-tech-roundup-${monthName.toLowerCase()}-${year}`;
 
     // Generate excerpt
     const excerptMatch = contentHtml.match(/<p[^>]*>(.*?)<\/p>/i);
     const excerpt =
       excerptMatch?.[1]?.replace(/<[^>]+>/g, "").substring(0, 200) ||
-      `Your ${monthName} ${year} roundup of the best tech for creators, home safety, and wellness.`;
+      (isWeekly
+        ? `This week's hottest Amazon tech finds — curated picks for creators, home, and wellness.`
+        : `Your ${monthName} ${year} roundup of the best tech for creators, home safety, and wellness.`);
 
     // Build products JSON for the blog_posts table
     const productsJson = products.map((p: any) => ({
