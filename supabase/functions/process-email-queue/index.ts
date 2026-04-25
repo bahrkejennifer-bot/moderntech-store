@@ -320,12 +320,13 @@ Deno.serve(async (req) => {
         )
 
         // Log success
-        await supabase.from('email_send_log').insert({
-          message_id: payload.message_id,
+        const sentLog: EmailSendLogInsert = {
+          message_id: payload.message_id ?? null,
           template_name: payload.label || queue,
           recipient_email: payload.to,
           status: 'sent',
-        })
+        }
+        await supabase.from('email_send_log').insert(sentLog)
 
         // Delete from queue
         const { error: delError } = await supabase.rpc('delete_email', {
