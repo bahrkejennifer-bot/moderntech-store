@@ -1,10 +1,9 @@
 // Shared zod schemas + types reused across edge functions.
 // Single source of truth so validation stays consistent across deployments.
 //
-// Note: Edge functions import via different specifier styles
-// (`npm:zod` vs `https://esm.sh/zod`). This module uses npm: to match the
-// runtime resolution used by all current callers.
-import { z } from "npm:zod@3.23.8";
+// Uses esm.sh so both Deno (https) and npm-style edge functions can import
+// without requiring a deno.json nodeModulesDir setting.
+import { z } from "https://esm.sh/zod@3.23.8";
 
 // ============================================================
 // scraped_products — used by webhook-ingest
