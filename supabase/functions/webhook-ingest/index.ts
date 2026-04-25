@@ -147,7 +147,13 @@ Deno.serve(async (req) => {
     }
 
     return new Response(
-      JSON.stringify({ success: true, saved: saved.length, updated: updated.length, skipped: skipped.length }),
+      JSON.stringify({
+        success: true,
+        saved: saved.length,
+        updated: updated.length,
+        skipped: skipped.length,
+        skipped_details: skipped,
+      }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (err) {
