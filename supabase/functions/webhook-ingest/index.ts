@@ -1,33 +1,13 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { z } from "https://esm.sh/zod@3.23.8";
+import {
+  IncomingProductSchema,
+  WebhookIngestBodySchema,
+  type ScrapedProductRow,
+} from "../_shared/schemas.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-webhook-secret",
-};
-
-// Schema for incoming product payloads — fail fast on missing/invalid fields
-const IncomingProductSchema = z.object({
-  title: z.string().trim().min(1, "title is required").max(500),
-  price: z.string().trim().max(50).optional().nullable(),
-  image_url: z.string().url("image_url must be a valid URL").max(2000).optional().nullable(),
-  product_url: z.string().url().max(2000).optional().nullable(),
-  affiliate_link: z.string().url().max(2000).optional().nullable(),
-  category: z.string().trim().max(100).optional().nullable(),
-});
-
-const RequestBodySchema = z.object({
-  products: z.array(z.unknown()).min(1, "products array is required").max(50),
-  url: z.string().url().max(2000).optional().nullable(),
-});
-
-// Typed row shape for scraped_products SELECT
-type ScrapedProductRow = {
-  id: string;
-  title: string;
-  affiliate_link: string;
-  price: string | null;
-  image_url: string | null;
 };
 
 Deno.serve(async (req) => {
