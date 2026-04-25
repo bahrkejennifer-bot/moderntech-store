@@ -47,7 +47,7 @@ Deno.serve(async (req) => {
     const skipped = [];
 
     // Fetch existing products for dedup / upsert
-    const { data: existing } = await supabase.from("scraped_products").select("id, title, affiliate_link");
+    const { data: existing } = await supabase.from("scraped_products").select("id, title, affiliate_link, price, image_url");
     const existingMap = new Map(
       (existing || []).map((p) => [p.title.toLowerCase().trim(), p])
     );
