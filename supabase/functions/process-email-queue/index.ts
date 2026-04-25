@@ -386,14 +386,15 @@ Deno.serve(async (req) => {
         }
 
         // Log non-429 failures to track real retry attempts.
-        await supabase.from('email_send_log').insert({
-          message_id: payload.message_id,
+        const failedLog: EmailSendLogInsert = {
+          message_id: payload.message_id ?? null,
           template_name: payload.label || queue,
           recipient_email: payload.to,
           status: 'failed',
           error_message: errorMsg.slice(0, 1000),
-        })
-        if (payload?.message_id && typeof payload.message_id === 'string') {
+        }
+        await supabase.from('email_send_log').insert(failedLog)
+        if (payload.message_id) {
           failedAttemptsByMessageId.set(payload.message_id, failedAttempts + 1)
         }
 
