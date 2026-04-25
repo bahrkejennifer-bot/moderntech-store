@@ -348,13 +348,14 @@ Deno.serve(async (req) => {
         })
 
         if (isRateLimited(error)) {
-          await supabase.from('email_send_log').insert({
-            message_id: payload.message_id,
+          const rateLimitedLog: EmailSendLogInsert = {
+            message_id: payload.message_id ?? null,
             template_name: payload.label || queue,
             recipient_email: payload.to,
             status: 'rate_limited',
             error_message: errorMsg.slice(0, 1000),
-          })
+          }
+          await supabase.from('email_send_log').insert(rateLimitedLog)
 
           const retryAfterSecs = getRetryAfterSeconds(error)
           await supabase
