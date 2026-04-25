@@ -222,11 +222,28 @@ Deno.serve(async (req) => {
 
     for (let i = 0; i < messages.length; i++) {
       const msg = messages[i]
-      const payload = msg.message
-      const failedAttempts =
-        payload?.message_id && typeof payload.message_id === 'string'
-          ? (failedAttemptsByMessageId.get(payload.message_id) ?? 0)
-          : msg.read_ct ?? 0
+      const rawPayload = msg.message
+
+      // Fail fast on malformed payloads — route directly to DLQ
+      const payloadResult = EmailPayloadSchema.safeParse(rawPayload)
+      if (!payloadResult.success) {
+        console.error('Invalid email payload — moving to DLQ', {
+          queue,
+          msg_id: msg.msg_id,
+          errors: payloadResult.error.flatten(),
+        })
+        await moveToDlq(
+          supabase,
+          queue,
+          msg,
+          `Invalid payload: ${JSON.stringify(payloadResult.error.flatten().fieldErrors)}`
+        )
+        continue
+      }
+      const payload: EmailPayload = payloadResult.data
+      const failedAttempts = payload.message_id
+        ? (failedAttemptsByMessageId.get(payload.message_id) ?? 0)
+        : msg.read_ct ?? 0
 
       // Drop expired messages (TTL exceeded).
       // Prefer payload.queued_at when present; fall back to PGMQ's enqueued_at
