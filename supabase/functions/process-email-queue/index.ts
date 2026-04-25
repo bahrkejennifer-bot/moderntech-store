@@ -12,12 +12,12 @@ const DEFAULT_TRANSACTIONAL_TTL_MINUTES = 60
 // Anything missing these → fail fast and route to DLQ.
 const EmailPayloadSchema = z.object({
   to: z.string().trim().email().max(320),
+  from: z.string().trim().min(1).max(320),
   subject: z.string().trim().min(1).max(998),
+  html: z.string().min(1),
+  text: z.string().min(1),
   message_id: z.string().trim().min(1).max(255).optional(),
   label: z.string().trim().max(100).optional(),
-  html: z.string().optional(),
-  text: z.string().optional(),
-  from: z.string().optional(),
   sender_domain: z.string().optional(),
   purpose: z.string().optional(),
   run_id: z.string().optional(),
