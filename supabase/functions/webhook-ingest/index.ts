@@ -37,7 +37,7 @@ Deno.serve(async (req) => {
     const supabase = createClient(supabaseUrl, serviceRoleKey);
 
     const rawBody = await req.json();
-    const bodyResult = RequestBodySchema.safeParse(rawBody);
+    const bodyResult = WebhookIngestBodySchema.safeParse(rawBody);
     if (!bodyResult.success) {
       return new Response(
         JSON.stringify({ error: "Invalid request body", details: bodyResult.error.flatten() }),
