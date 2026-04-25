@@ -1,11 +1,42 @@
 import { sendLovableEmail } from 'npm:@lovable.dev/email-js'
 import { createClient } from 'npm:@supabase/supabase-js@2'
+import { z } from 'npm:zod@3.23.8'
 
 const MAX_RETRIES = 5
 const DEFAULT_BATCH_SIZE = 10
 const DEFAULT_SEND_DELAY_MS = 200
 const DEFAULT_AUTH_TTL_MINUTES = 15
 const DEFAULT_TRANSACTIONAL_TTL_MINUTES = 60
+
+// Required fields for any email payload pulled off the queue.
+// Anything missing these → fail fast and route to DLQ.
+const EmailPayloadSchema = z.object({
+  to: z.string().trim().email().max(320),
+  subject: z.string().trim().min(1).max(998),
+  message_id: z.string().trim().min(1).max(255).optional(),
+  label: z.string().trim().max(100).optional(),
+  html: z.string().optional(),
+  text: z.string().optional(),
+  from: z.string().optional(),
+  sender_domain: z.string().optional(),
+  purpose: z.string().optional(),
+  run_id: z.string().optional(),
+  idempotency_key: z.string().optional(),
+  unsubscribe_token: z.string().optional(),
+  queued_at: z.string().optional(),
+}).passthrough()
+
+type EmailPayload = z.infer<typeof EmailPayloadSchema>
+
+// Typed shape for rows written to email_send_log
+type EmailSendLogInsert = {
+  message_id?: string | null
+  template_name: string
+  recipient_email: string
+  status: 'pending' | 'sent' | 'failed' | 'dlq' | 'rate_limited' | 'bounced' | 'complained'
+  error_message?: string | null
+}
+
 
 // Check if an error is a rate-limit (429) response.
 // Uses EmailAPIError.status when available (email-js >=0.x with structured errors),
