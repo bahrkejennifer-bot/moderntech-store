@@ -67,18 +67,33 @@ Deno.serve(async (req) => {
     const { products, url } = bodyResult.data;
 
     const affiliateTag = "moderntechs0c-20";
-    const saved = [];
-    const updated = [];
-    const skipped = [];
+    const saved: ScrapedProductRow[] = [];
+    const updated: string[] = [];
+    const skipped: { title?: string; errors: unknown }[] = [];
 
     // Fetch existing products for dedup / upsert
-    const { data: existing } = await supabase.from("scraped_products").select("id, title, affiliate_link, price, image_url");
-    const existingMap = new Map(
-      (existing || []).map((p) => [p.title.toLowerCase().trim(), p])
+    const { data: existing } = await supabase
+      .from("scraped_products")
+      .select("id, title, affiliate_link, price, image_url");
+    const existingMap = new Map<string, ScrapedProductRow>(
+      ((existing as ScrapedProductRow[] | null) || []).map((p) => [
+        p.title.toLowerCase().trim(),
+        p,
+      ])
     );
 
-    for (const product of products.slice(0, 10)) {
-      const title = product.title || "Untitled";
+    for (const rawProduct of products.slice(0, 10)) {
+      // Validate each product — fail fast, skip invalid entries
+      const productResult = IncomingProductSchema.safeParse(rawProduct);
+      if (!productResult.success) {
+        skipped.push({
+          title: (rawProduct as { title?: string })?.title,
+          errors: productResult.error.flatten(),
+        });
+        continue;
+      }
+      const product = productResult.data;
+      const title = product.title;
       const normalizedTitle = title.toLowerCase().trim();
 
       // Build affiliate link
@@ -125,8 +140,9 @@ Deno.serve(async (req) => {
         .single();
 
       if (!error && inserted) {
-        existingMap.set(normalizedTitle, inserted);
-        saved.push(inserted);
+        const insertedRow = inserted as ScrapedProductRow;
+        existingMap.set(normalizedTitle, insertedRow);
+        saved.push(insertedRow);
       }
     }
 
