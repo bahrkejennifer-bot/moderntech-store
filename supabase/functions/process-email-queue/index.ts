@@ -91,13 +91,14 @@ async function moveToDlq(
   reason: string
 ): Promise<void> {
   const payload = msg.message
-  await supabase.from('email_send_log').insert({
-    message_id: payload.message_id,
+  const dlqLog: EmailSendLogInsert = {
+    message_id: typeof payload.message_id === 'string' ? payload.message_id : null,
     template_name: (payload.label || queue) as string,
-    recipient_email: payload.to,
+    recipient_email: typeof payload.to === 'string' ? payload.to : 'unknown',
     status: 'dlq',
     error_message: reason,
-  })
+  }
+  await supabase.from('email_send_log').insert(dlqLog)
   const { error } = await supabase.rpc('move_to_dlq', {
     source_queue: queue,
     dlq_name: `${queue}_dlq`,
