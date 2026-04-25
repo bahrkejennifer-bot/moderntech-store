@@ -1,11 +1,42 @@
 import { sendLovableEmail } from 'npm:@lovable.dev/email-js'
 import { createClient } from 'npm:@supabase/supabase-js@2'
+import { z } from 'npm:zod@3.23.8'
 
 const MAX_RETRIES = 5
 const DEFAULT_BATCH_SIZE = 10
 const DEFAULT_SEND_DELAY_MS = 200
 const DEFAULT_AUTH_TTL_MINUTES = 15
 const DEFAULT_TRANSACTIONAL_TTL_MINUTES = 60
+
+// Required fields for any email payload pulled off the queue.
+// Anything missing these → fail fast and route to DLQ.
+const EmailPayloadSchema = z.object({
+  to: z.string().trim().email().max(320),
+  from: z.string().trim().min(1).max(320),
+  subject: z.string().trim().min(1).max(998),
+  html: z.string().min(1),
+  text: z.string().min(1),
+  message_id: z.string().trim().min(1).max(255).optional(),
+  label: z.string().trim().max(100).optional(),
+  sender_domain: z.string().optional(),
+  purpose: z.string().optional(),
+  run_id: z.string().optional(),
+  idempotency_key: z.string().optional(),
+  unsubscribe_token: z.string().optional(),
+  queued_at: z.string().optional(),
+}).passthrough()
+
+type EmailPayload = z.infer<typeof EmailPayloadSchema>
+
+// Typed shape for rows written to email_send_log
+type EmailSendLogInsert = {
+  message_id?: string | null
+  template_name: string
+  recipient_email: string
+  status: 'pending' | 'sent' | 'failed' | 'dlq' | 'rate_limited' | 'bounced' | 'complained'
+  error_message?: string | null
+}
+
 
 // Check if an error is a rate-limit (429) response.
 // Uses EmailAPIError.status when available (email-js >=0.x with structured errors),
@@ -60,13 +91,14 @@ async function moveToDlq(
   reason: string
 ): Promise<void> {
   const payload = msg.message
-  await supabase.from('email_send_log').insert({
-    message_id: payload.message_id,
+  const dlqLog: EmailSendLogInsert = {
+    message_id: typeof payload.message_id === 'string' ? payload.message_id : null,
     template_name: (payload.label || queue) as string,
-    recipient_email: payload.to,
+    recipient_email: typeof payload.to === 'string' ? payload.to : 'unknown',
     status: 'dlq',
     error_message: reason,
-  })
+  }
+  await supabase.from('email_send_log').insert(dlqLog)
   const { error } = await supabase.rpc('move_to_dlq', {
     source_queue: queue,
     dlq_name: `${queue}_dlq`,
@@ -191,11 +223,28 @@ Deno.serve(async (req) => {
 
     for (let i = 0; i < messages.length; i++) {
       const msg = messages[i]
-      const payload = msg.message
-      const failedAttempts =
-        payload?.message_id && typeof payload.message_id === 'string'
-          ? (failedAttemptsByMessageId.get(payload.message_id) ?? 0)
-          : msg.read_ct ?? 0
+      const rawPayload = msg.message
+
+      // Fail fast on malformed payloads — route directly to DLQ
+      const payloadResult = EmailPayloadSchema.safeParse(rawPayload)
+      if (!payloadResult.success) {
+        console.error('Invalid email payload — moving to DLQ', {
+          queue,
+          msg_id: msg.msg_id,
+          errors: payloadResult.error.flatten(),
+        })
+        await moveToDlq(
+          supabase,
+          queue,
+          msg,
+          `Invalid payload: ${JSON.stringify(payloadResult.error.flatten().fieldErrors)}`
+        )
+        continue
+      }
+      const payload: EmailPayload = payloadResult.data
+      const failedAttempts = payload.message_id
+        ? (failedAttemptsByMessageId.get(payload.message_id) ?? 0)
+        : msg.read_ct ?? 0
 
       // Drop expired messages (TTL exceeded).
       // Prefer payload.queued_at when present; fall back to PGMQ's enqueued_at
@@ -271,12 +320,13 @@ Deno.serve(async (req) => {
         )
 
         // Log success
-        await supabase.from('email_send_log').insert({
-          message_id: payload.message_id,
+        const sentLog: EmailSendLogInsert = {
+          message_id: payload.message_id ?? null,
           template_name: payload.label || queue,
           recipient_email: payload.to,
           status: 'sent',
-        })
+        }
+        await supabase.from('email_send_log').insert(sentLog)
 
         // Delete from queue
         const { error: delError } = await supabase.rpc('delete_email', {
@@ -298,13 +348,14 @@ Deno.serve(async (req) => {
         })
 
         if (isRateLimited(error)) {
-          await supabase.from('email_send_log').insert({
-            message_id: payload.message_id,
+          const rateLimitedLog: EmailSendLogInsert = {
+            message_id: payload.message_id ?? null,
             template_name: payload.label || queue,
             recipient_email: payload.to,
             status: 'rate_limited',
             error_message: errorMsg.slice(0, 1000),
-          })
+          }
+          await supabase.from('email_send_log').insert(rateLimitedLog)
 
           const retryAfterSecs = getRetryAfterSeconds(error)
           await supabase
@@ -335,14 +386,15 @@ Deno.serve(async (req) => {
         }
 
         // Log non-429 failures to track real retry attempts.
-        await supabase.from('email_send_log').insert({
-          message_id: payload.message_id,
+        const failedLog: EmailSendLogInsert = {
+          message_id: payload.message_id ?? null,
           template_name: payload.label || queue,
           recipient_email: payload.to,
           status: 'failed',
           error_message: errorMsg.slice(0, 1000),
-        })
-        if (payload?.message_id && typeof payload.message_id === 'string') {
+        }
+        await supabase.from('email_send_log').insert(failedLog)
+        if (payload.message_id) {
           failedAttemptsByMessageId.set(payload.message_id, failedAttempts + 1)
         }
 

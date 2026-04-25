@@ -1,8 +1,33 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { z } from "https://esm.sh/zod@3.23.8";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-webhook-secret",
+};
+
+// Schema for incoming product payloads — fail fast on missing/invalid fields
+const IncomingProductSchema = z.object({
+  title: z.string().trim().min(1, "title is required").max(500),
+  price: z.string().trim().max(50).optional().nullable(),
+  image_url: z.string().url("image_url must be a valid URL").max(2000).optional().nullable(),
+  product_url: z.string().url().max(2000).optional().nullable(),
+  affiliate_link: z.string().url().max(2000).optional().nullable(),
+  category: z.string().trim().max(100).optional().nullable(),
+});
+
+const RequestBodySchema = z.object({
+  products: z.array(z.unknown()).min(1, "products array is required").max(50),
+  url: z.string().url().max(2000).optional().nullable(),
+});
+
+// Typed row shape for scraped_products SELECT
+type ScrapedProductRow = {
+  id: string;
+  title: string;
+  affiliate_link: string;
+  price: string | null;
+  image_url: string | null;
 };
 
 Deno.serve(async (req) => {
@@ -31,29 +56,44 @@ Deno.serve(async (req) => {
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, serviceRoleKey);
 
-    const body = await req.json();
-    const { products, url } = body;
-
-    if (!products || !Array.isArray(products) || products.length === 0) {
-      return new Response(JSON.stringify({ error: "products array is required" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+    const rawBody = await req.json();
+    const bodyResult = RequestBodySchema.safeParse(rawBody);
+    if (!bodyResult.success) {
+      return new Response(
+        JSON.stringify({ error: "Invalid request body", details: bodyResult.error.flatten() }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
+    const { products, url } = bodyResult.data;
 
     const affiliateTag = "moderntechs0c-20";
-    const saved = [];
-    const updated = [];
-    const skipped = [];
+    const saved: ScrapedProductRow[] = [];
+    const updated: string[] = [];
+    const skipped: { title?: string; errors: unknown }[] = [];
 
     // Fetch existing products for dedup / upsert
-    const { data: existing } = await supabase.from("scraped_products").select("id, title, affiliate_link, price, image_url");
-    const existingMap = new Map(
-      (existing || []).map((p) => [p.title.toLowerCase().trim(), p])
+    const { data: existing } = await supabase
+      .from("scraped_products")
+      .select("id, title, affiliate_link, price, image_url");
+    const existingMap = new Map<string, ScrapedProductRow>(
+      ((existing as ScrapedProductRow[] | null) || []).map((p) => [
+        p.title.toLowerCase().trim(),
+        p,
+      ])
     );
 
-    for (const product of products.slice(0, 10)) {
-      const title = product.title || "Untitled";
+    for (const rawProduct of products.slice(0, 10)) {
+      // Validate each product — fail fast, skip invalid entries
+      const productResult = IncomingProductSchema.safeParse(rawProduct);
+      if (!productResult.success) {
+        skipped.push({
+          title: (rawProduct as { title?: string })?.title,
+          errors: productResult.error.flatten(),
+        });
+        continue;
+      }
+      const product = productResult.data;
+      const title = product.title;
       const normalizedTitle = title.toLowerCase().trim();
 
       // Build affiliate link
@@ -100,13 +140,20 @@ Deno.serve(async (req) => {
         .single();
 
       if (!error && inserted) {
-        existingMap.set(normalizedTitle, inserted);
-        saved.push(inserted);
+        const insertedRow = inserted as ScrapedProductRow;
+        existingMap.set(normalizedTitle, insertedRow);
+        saved.push(insertedRow);
       }
     }
 
     return new Response(
-      JSON.stringify({ success: true, saved: saved.length, updated: updated.length, skipped: skipped.length }),
+      JSON.stringify({
+        success: true,
+        saved: saved.length,
+        updated: updated.length,
+        skipped: skipped.length,
+        skipped_details: skipped,
+      }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (err) {
