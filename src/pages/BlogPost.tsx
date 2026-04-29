@@ -593,6 +593,20 @@ const BlogPost = () => {
     const ogImage = dynamicPost.image_url || techDefaultHeroImg;
     const ogTitle = dynamicPost.title;
     const ogDesc = dynamicPost.excerpt || `${dynamicPost.title} — Read on Modern Tech LLC`;
+    // SEO: derive plain-text body, word count, and keyword list for richer BlogPosting schema
+    const plainBody = (dynamicPost.content_html || "")
+      .replace(/<script[\s\S]*?<\/script>/gi, " ")
+      .replace(/<style[\s\S]*?<\/style>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    const wordCount = plainBody ? plainBody.split(" ").length : undefined;
+    const articleBodyExcerpt = plainBody.slice(0, 500);
+    const keywordList = [
+      dynamicPost.category || "Tech",
+      "Modern Tech LLC",
+      ...dynamicPost.title.toLowerCase().split(/[^a-z0-9]+/i).filter((w: string) => w.length > 3).slice(0, 6),
+    ].join(", ");
     return (
       <div className="min-h-screen vogue-theme bg-background text-foreground">
         <Helmet>
@@ -627,17 +641,24 @@ const BlogPost = () => {
               "@id": `https://moderntech.store/blog/${slug}#blogposting`,
               headline: ogTitle,
               description: ogDesc,
-              image: ogImage,
+              image: [ogImage],
               datePublished: dynamicPost.created_at,
               dateModified: dynamicPost.updated_at || dynamicPost.created_at,
               articleSection: dynamicPost.category || "Tech",
+              articleBody: articleBodyExcerpt,
+              ...(wordCount ? { wordCount } : {}),
+              keywords: keywordList,
+              inLanguage: "en-US",
               author: {
                 "@type": "Organization",
                 name: "Modern Tech LLC",
                 url: "https://moderntech.store",
               },
               publisher: { "@id": "https://moderntech.store/#organization" },
-              mainEntityOfPage: { "@id": `https://moderntech.store/blog/${slug}#webpage` },
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": `https://moderntech.store/blog/${slug}#webpage`,
+              },
               url: `https://moderntech.store/blog/${slug}`,
             },
           ]}
