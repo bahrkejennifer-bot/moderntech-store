@@ -593,6 +593,20 @@ const BlogPost = () => {
     const ogImage = dynamicPost.image_url || techDefaultHeroImg;
     const ogTitle = dynamicPost.title;
     const ogDesc = dynamicPost.excerpt || `${dynamicPost.title} — Read on Modern Tech LLC`;
+    // SEO: derive plain-text body, word count, and keyword list for richer BlogPosting schema
+    const plainBody = (dynamicPost.content_html || "")
+      .replace(/<script[\s\S]*?<\/script>/gi, " ")
+      .replace(/<style[\s\S]*?<\/style>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    const wordCount = plainBody ? plainBody.split(" ").length : undefined;
+    const articleBodyExcerpt = plainBody.slice(0, 500);
+    const keywordList = [
+      dynamicPost.category || "Tech",
+      "Modern Tech LLC",
+      ...dynamicPost.title.toLowerCase().split(/[^a-z0-9]+/i).filter((w: string) => w.length > 3).slice(0, 6),
+    ].join(", ");
     return (
       <div className="min-h-screen vogue-theme bg-background text-foreground">
         <Helmet>
