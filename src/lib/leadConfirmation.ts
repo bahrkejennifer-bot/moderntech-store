@@ -4,6 +4,8 @@ export interface RequestConfirmationInput {
   name?: string;
   email: string;
   lead_magnet?: string;
+  /** Optional override; defaults to current window.location.pathname + search */
+  source_path?: string;
 }
 
 export interface RequestConfirmationResult {
