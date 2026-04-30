@@ -64,13 +64,38 @@ const TechEssentialsSuccess = () => {
     "Modern Tech — Deliverability Card: how to whitelist info@moderntech.store and recover the 2026 Tech Essentials Guide.";
 
   const handleCopyShareLink = async () => {
+    // Primary: modern async clipboard API
     try {
-      await navigator.clipboard.writeText(SHARE_URL);
-      setShareCopied(true);
-      toast.success("Link copied — save it or email it to yourself for later.");
-      setTimeout(() => setShareCopied(false), 2500);
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(SHARE_URL);
+        setShareCopied(true);
+        toast.success("Link copied — save it or email it to yourself for later.");
+        setTimeout(() => setShareCopied(false), 2500);
+        return;
+      }
+      throw new Error("clipboard-unavailable");
     } catch {
-      toast.error("Couldn't copy. Use the Email Link option instead.");
+      // Secondary: legacy execCommand for older / insecure-context browsers
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = SHARE_URL;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "absolute";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        if (!ok) throw new Error("execCommand-failed");
+        setShareCopied(true);
+        toast.success("Link copied — save it or email it to yourself for later.");
+        setTimeout(() => setShareCopied(false), 2500);
+        return;
+      } catch {
+        // Final fallback: open mailto with the link pre-filled
+        toast.message("Clipboard blocked — opening your mail app with the link instead.");
+        handleEmailShareLink();
+      }
     }
   };
 
