@@ -84,6 +84,14 @@ Deno.serve(async (req) => {
     const cleanEmail = email.trim().toLowerCase();
     const cleanName = (typeof name === "string" && name.trim() ? name.trim() : cleanEmail.split("@")[0]).slice(0, 100);
     const magnet = (typeof lead_magnet === "string" && lead_magnet.length <= 100) ? lead_magnet : "90-day-amazon-associate-roadmap";
+    // Sanitize source_path: must be a same-site path beginning with "/", no protocol, no host, max 300 chars
+    let cleanSourcePath: string | null = null;
+    if (typeof source_path === "string") {
+      const sp = source_path.trim();
+      if (sp.startsWith("/") && !sp.startsWith("//") && !/[\r\n\t]/.test(sp) && sp.length <= 300) {
+        cleanSourcePath = sp;
+      }
+    }
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
