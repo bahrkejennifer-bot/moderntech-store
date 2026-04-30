@@ -62,3 +62,39 @@ export const CHECK_INBOX_MESSAGE =
   "Check your inbox — click the confirmation link to get your guide.";
 export const ALREADY_CONFIRMED_MESSAGE =
   "Welcome back! We've resent your guide to your inbox.";
+export const RESENT_CONFIRMATION_MESSAGE =
+  "We just sent a fresh confirmation link to your inbox.";
+
+export interface ResendConfirmationInput {
+  /** A token from a previously-sent confirmation email (preferred). */
+  token?: string;
+  /** Falls back to email lookup when no token is available. */
+  email?: string;
+}
+
+/**
+ * Generates a NEW confirmation token for an existing pending signup
+ * and re-sends the confirmation email — without asking the user
+ * to re-enter their email address.
+ */
+export async function resendLeadConfirmation(
+  input: ResendConfirmationInput
+): Promise<RequestConfirmationResult> {
+  const token = input.token?.trim();
+  const email = input.email?.trim().toLowerCase();
+  if (!token && !email) {
+    return { success: false, error: "Missing confirmation reference." };
+  }
+  try {
+    const { data, error } = await supabase.functions.invoke("resend-lead-confirmation", {
+      body: { token, email },
+    });
+    if (error || !data?.success) {
+      return { success: false, error: data?.error || error?.message || "Could not resend confirmation email." };
+    }
+    return { success: true, alreadyConfirmed: !!data.already_confirmed };
+  } catch (e) {
+    return { success: false, error: e instanceof Error ? e.message : "Network error" };
+  }
+}
+
