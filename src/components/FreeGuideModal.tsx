@@ -5,9 +5,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Shield, Rocket, ArrowLeft, Gem, Video, GraduationCap, Baby } from "lucide-react";
+import { Shield, Rocket, ArrowLeft, Gem, Video, GraduationCap, Baby, MailCheck } from "lucide-react";
+import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
 interface FreeGuideModalProps {
   open: boolean;
