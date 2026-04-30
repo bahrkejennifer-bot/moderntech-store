@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox, Send, AlertCircle } from "lucide-react";
+import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox, Send, AlertCircle, Copy } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
@@ -31,6 +31,20 @@ const TechEssentialsSuccess = () => {
   const [resendStatus, setResendStatus] = useState<ResendStatus>("idle");
   const [cooldown, setCooldown] = useState(0);
   const [resendCount, setResendCount] = useState(0);
+  const [copied, setCopied] = useState(false);
+
+  const SENDER_EMAIL = "info@moderntech.store";
+
+  const handleCopySender = async () => {
+    try {
+      await navigator.clipboard.writeText(SENDER_EMAIL);
+      setCopied(true);
+      toast.success("Copied — now paste into your contacts or safe-sender list.");
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      toast.error("Couldn't copy. Long-press the address to copy manually.");
+    }
+  };
 
   useEffect(() => {
     if (cooldown <= 0) return;
@@ -344,6 +358,51 @@ const TechEssentialsSuccess = () => {
             >
               FIX DELIVERY IN 60 SECONDS
             </p>
+
+            {/* Sender address — one-tap copy */}
+            <div
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-4 py-3 mb-5 rounded-sm"
+              style={{
+                backgroundColor: "hsl(0 0% 100%)",
+                border: "0.5px solid hsl(220 15% 14% / 0.15)",
+              }}
+            >
+              <div className="min-w-0">
+                <p
+                  className="font-mono text-[9px] tracking-[0.2em] uppercase mb-1"
+                  style={{ color: "hsl(220 15% 14% / 0.45)" }}
+                >
+                  SENDER ADDRESS
+                </p>
+                <p
+                  className="font-mono text-[12px] sm:text-[13px] truncate"
+                  style={{ color: "hsl(220 15% 14%)" }}
+                >
+                  {SENDER_EMAIL}
+                </p>
+              </div>
+              <button
+                onClick={handleCopySender}
+                aria-label="Copy sender email address"
+                className="shrink-0 flex items-center justify-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase px-4 py-2.5 transition-all duration-200 hover:opacity-85"
+                style={{
+                  backgroundColor: copied ? "hsl(140 40% 35%)" : "hsl(220 15% 14%)",
+                  color: "hsl(30 25% 95%)",
+                  minWidth: 130,
+                }}
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-3 h-3" /> COPIED
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3 h-3" /> COPY EMAIL
+                  </>
+                )}
+              </button>
+            </div>
+
             <ul className="space-y-2.5">
               {[
                 {
