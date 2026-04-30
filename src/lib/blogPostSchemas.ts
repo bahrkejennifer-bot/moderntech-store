@@ -185,6 +185,12 @@ const SCHEMA_MAP: Record<string, () => SchemaNode[]> = {
       {
         "@type": "FAQPage",
         "@id": `${url}#faq`,
+        isPartOf: { "@id": `${url}#blogposting` },
+        about: [
+          { "@id": `${url}#product-blue-yeti` },
+          { "@id": `${url}#product-sony-wh1000xm5` },
+          { "@id": `${url}#product-neewer-ring-light` },
+        ],
         mainEntity: [
           {
             "@type": "Question",
