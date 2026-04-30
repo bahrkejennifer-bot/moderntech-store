@@ -74,7 +74,7 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { name, email, lead_magnet } = await req.json();
+    const { name, email, lead_magnet, source_path } = await req.json();
 
     if (!email || typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255) {
       return new Response(JSON.stringify({ error: "Invalid email" }), {
