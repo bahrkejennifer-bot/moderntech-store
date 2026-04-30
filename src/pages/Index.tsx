@@ -8,6 +8,9 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import heroImg from "@/assets/hero-duality-editorial.jpg";
 import essentialsImg from "@/assets/hero-workspace-essentials.jpg";
+import coverReels from "@/assets/cover-reels.jpg";
+import coverCanva from "@/assets/cover-canva.jpg";
+import coverYoutube from "@/assets/cover-youtube.jpg";
 
 interface DBProduct {
   id: string;
