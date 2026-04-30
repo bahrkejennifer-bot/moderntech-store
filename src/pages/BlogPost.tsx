@@ -847,6 +847,7 @@ const BlogPost = () => {
             mainEntityOfPage: { "@id": `${SITE}/blog/${slug}#webpage` },
             url: `${SITE}/blog/${slug}`,
           },
+          ...getBlogPostExtraSchemas(slug || ""),
         ]}
       />
 
