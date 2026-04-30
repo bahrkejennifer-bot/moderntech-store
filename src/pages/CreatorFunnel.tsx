@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { ArrowRight, Check, Sparkles, Video, Palette, Youtube, Gift, Loader2 } from "lucide-react";
+import { z } from "zod";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+
+const leadSchema = z.object({
+  name: z.string().trim().min(1, "Please enter your first name").max(100, "Name is too long"),
+  email: z.string().trim().toLowerCase().email("Please enter a valid email").max(255, "Email is too long"),
+});
 
 const tiers = [
   {
