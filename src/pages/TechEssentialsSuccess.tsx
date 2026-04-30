@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox, Send, AlertCircle } from "lucide-react";
+import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox, Send, AlertCircle, Copy } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
