@@ -662,6 +662,7 @@ const BlogPost = () => {
               },
               url: `https://moderntech.store/blog/${slug}`,
             },
+            ...getBlogPostExtraSchemas(slug || ""),
           ]}
         />
         {/* Reading Progress Bar */}
