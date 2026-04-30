@@ -46,7 +46,10 @@ Deno.serve(async (req) => {
       });
     }
 
-    const guideRoute = GUIDE_ROUTES[pending.lead_magnet] || "/digital-products";
+    const mappedRoute = GUIDE_ROUTES[pending.lead_magnet] || "/digital-products";
+    // Prefer the original signup page if we captured it; fall back to the magnet→route map.
+    const sp = typeof pending.source_path === "string" ? pending.source_path.trim() : "";
+    const guideRoute = (sp.startsWith("/") && !sp.startsWith("//")) ? sp : mappedRoute;
 
     // Already confirmed — idempotent success
     if (pending.confirmed_at) {
