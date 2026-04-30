@@ -172,3 +172,102 @@ describe("JSON-LD validation — negative cases (regression guards)", () => {
     expect(checks.some((c) => c.severity === "warning" && c.message.includes("110"))).toBe(true);
   });
 });
+
+describe("JSON-LD validation — @id-only reference skipping at depth", () => {
+  it("skips a top-level @id-only publisher reference (no Organization required-field errors)", () => {
+    const checks: Check[] = [];
+    validateNode(
+      {
+        "@type": "BlogPosting",
+        headline: "Post",
+        datePublished: "2026-01-01",
+        author: { "@type": "Organization", name: "MT" },
+        image: ["https://example.com/x.jpg"],
+        publisher: { "@type": "Organization", "@id": "https://moderntech.store/#organization" },
+      },
+      checks,
+    );
+    expect(errors(checks)).toEqual([]);
+  });
+
+  it("skips @id-only references nested inside arrays (e.g. mentions/sameAs-as-objects)", () => {
+    const checks: Check[] = [];
+    validateNode(
+      {
+        "@type": "BlogPosting",
+        headline: "Post",
+        datePublished: "2026-01-01",
+        author: { "@type": "Organization", name: "MT" },
+        image: ["https://example.com/x.jpg"],
+        mentions: [
+          { "@type": "Organization", "@id": "https://moderntech.store/#organization" },
+          { "@type": "WebPage", "@id": "https://moderntech.store/blog#webpage" },
+        ],
+      },
+      checks,
+    );
+    expect(errors(checks)).toEqual([]);
+  });
+
+  it("skips deeply-nested @id-only references inside plain objects", () => {
+    const checks: Check[] = [];
+    validateNode(
+      {
+        "@type": "BlogPosting",
+        headline: "Post",
+        datePublished: "2026-01-01",
+        author: { "@type": "Organization", name: "MT" },
+        image: ["https://example.com/x.jpg"],
+        // Arbitrary nested wrapper containing a deep @id-only ref
+        isPartOf: {
+          collection: {
+            primary: { "@type": "Organization", "@id": "https://moderntech.store/#organization" },
+          },
+        },
+      },
+      checks,
+    );
+    expect(errors(checks)).toEqual([]);
+  });
+
+  it("still validates a nested object that has @id PLUS real fields (not a pure ref)", () => {
+    const checks: Check[] = [];
+    validateNode(
+      {
+        "@type": "BlogPosting",
+        headline: "Post",
+        datePublished: "2026-01-01",
+        author: { "@type": "Organization", name: "MT" },
+        image: ["https://example.com/x.jpg"],
+        // Has @id AND additional fields → NOT a pure ref → inline validation runs.
+        // BlogPosting's headline-length warning fires regardless of inline mode,
+        // so we use it as a probe to confirm recursion actually entered this node.
+        about: {
+          "@type": "BlogPosting",
+          "@id": "https://moderntech.store/blog/other#blogposting",
+          headline: "y".repeat(120),
+        },
+      },
+      checks,
+    );
+    expect(checks.some((c) => c.severity === "warning" && c.message.includes("110"))).toBe(true);
+  });
+
+  it("skips @id-only refs mixed with real nodes inside the same array", () => {
+    const checks: Check[] = [];
+    validateNode(
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://moderntech.store/" },
+          // Pure @id ref hiding inside the array — must be skipped
+          { "@id": "https://moderntech.store/#organization" },
+          { "@type": "ListItem", position: 2, name: "Blog", item: "https://moderntech.store/blog" },
+        ],
+      },
+      checks,
+    );
+    // Only real ListItems are validated; the @id-only entry shouldn't add errors.
+    expect(errors(checks)).toEqual([]);
+  });
+});
