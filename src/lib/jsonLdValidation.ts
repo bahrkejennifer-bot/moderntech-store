@@ -30,11 +30,15 @@ export const RICH_RESULT_RECOMMENDED: Record<string, string[]> = {
 export const validateNode = (
   node: Record<string, unknown>,
   checks: Check[],
+  inline = false,
 ): void => {
   const type = (node["@type"] as string) || "Unknown";
 
+  // Required fields only enforced on top-level @graph nodes.
+  // Inline objects (e.g. author Organization, mainEntityOfPage WebPage) often
+  // appear as light references; Schema.org doesn't require the full payload.
   const required = REQUIRED_FIELDS[type];
-  if (required) {
+  if (required && !inline) {
     for (const field of required) {
       const v = node[field];
       const empty = v === undefined || v === null || v === "" || (Array.isArray(v) && v.length === 0);
@@ -45,7 +49,7 @@ export const validateNode = (
   }
 
   const recommended = RICH_RESULT_RECOMMENDED[type];
-  if (recommended) {
+  if (recommended && !inline) {
     for (const field of recommended) {
       const v = node[field];
       if (v === undefined || v === null || v === "") {
