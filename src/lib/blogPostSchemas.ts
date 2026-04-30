@@ -187,9 +187,9 @@ const SCHEMA_MAP: Record<string, () => SchemaNode[]> = {
         "@id": `${url}#faq`,
         isPartOf: { "@id": `${url}#blogposting` },
         about: [
-          { "@id": `${url}#product-blue-yeti` },
-          { "@id": `${url}#product-sony-wh1000xm5` },
-          { "@id": `${url}#product-neewer-ring-light` },
+          { "@id": `${url}#product-blue-yeti-usb` },
+          { "@id": `${url}#product-sony-wh-1000xm5` },
+          { "@id": `${url}#product-neewer-18-ring-light` },
         ],
         mainEntity: [
           {
