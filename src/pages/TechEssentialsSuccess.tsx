@@ -333,6 +333,70 @@ const TechEssentialsSuccess = () => {
             </div>
           </div>
 
+          {/* ── Deliverability checklist ── */}
+          <div
+            className="mt-6 pt-6"
+            style={{ borderTop: "0.5px solid hsl(220 15% 14% / 0.1)" }}
+          >
+            <p
+              className="font-mono text-[10px] tracking-[0.25em] uppercase mb-4"
+              style={{ color: "hsl(220 15% 14% / 0.5)" }}
+            >
+              FIX DELIVERY IN 60 SECONDS
+            </p>
+            <ul className="space-y-2.5">
+              {[
+                {
+                  k: "01",
+                  t: "Check Promotions, Updates & Spam tabs",
+                  d: "Gmail and Outlook often filter first-time senders. Search for ‘moderntech’.",
+                },
+                {
+                  k: "02",
+                  t: "Add info@moderntech.store to your contacts",
+                  d: "This whitelists us so future Sunday edits land in your primary inbox.",
+                },
+                {
+                  k: "03",
+                  t: "In Gmail: ‘Mark as not spam’ + drag to Primary",
+                  d: "Open the email → tap the three dots → Move to Primary. Done forever.",
+                },
+                {
+                  k: "04",
+                  t: "In Outlook/Apple Mail: mark as ‘Not Junk’",
+                  d: "Right-click the message → Junk → Not Junk, then add us as a safe sender.",
+                },
+              ].map((step) => (
+                <li
+                  key={step.k}
+                  className="flex items-start gap-3 sm:gap-4 pb-2.5"
+                  style={{ borderBottom: "0.5px solid hsl(220 15% 14% / 0.06)" }}
+                >
+                  <span
+                    className="font-mono text-[10px] tracking-[0.15em] pt-0.5 shrink-0"
+                    style={{ color: "hsl(220 15% 14% / 0.35)" }}
+                  >
+                    {step.k}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p
+                      className="font-mono text-[11px] sm:text-[12px] leading-snug"
+                      style={{ color: "hsl(220 15% 14%)" }}
+                    >
+                      {step.t}
+                    </p>
+                    <p
+                      className="font-mono text-[10px] sm:text-[11px] leading-relaxed mt-1"
+                      style={{ color: "hsl(220 15% 14% / 0.55)" }}
+                    >
+                      {step.d}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <p
             className="font-mono text-[10px] tracking-[0.15em] mt-5 pt-5"
             style={{
