@@ -1,4 +1,4 @@
-// Per-post SEO schema enhancements (FAQ + HowTo) keyed by slug.
+// Per-post SEO schema enhancements (FAQ + HowTo + Product) keyed by slug.
 // Returned nodes are appended to StructuredData's @graph.
 
 type SchemaNode = Record<string, unknown>;
@@ -8,6 +8,77 @@ const SITE = "https://moderntech.store";
 export const getBlogPostExtraSchemas = (slug: string): SchemaNode[] => {
   const builder = SCHEMA_MAP[slug];
   return builder ? builder() : [];
+};
+
+export interface BlogProductInput {
+  id?: string;
+  title?: string;
+  description?: string;
+  image_url?: string;
+  affiliate_link?: string;
+  badge?: string;
+  brand?: string;
+  price?: string | number;
+  currency?: string;
+}
+
+/**
+ * Build Product + Offer JSON-LD nodes from a blog post's `products` JSONB array.
+ * Each affiliate item becomes a schema.org/Product with an Offer pointing at
+ * the affiliate URL so Google can attribute the recommendation.
+ */
+export const buildBlogProductSchemas = (
+  slug: string,
+  products: BlogProductInput[] | null | undefined,
+): SchemaNode[] => {
+  if (!Array.isArray(products) || products.length === 0) return [];
+  const postUrl = `${SITE}/blog/${slug}`;
+
+  return products
+    .filter((p) => p && (p.title || p.id) && p.affiliate_link)
+    .map((p, idx) => {
+      const productId = `${postUrl}#product-${p.id || idx + 1}`;
+      const node: SchemaNode = {
+        "@type": "Product",
+        "@id": productId,
+        name: p.title,
+        ...(p.description ? { description: p.description } : {}),
+        ...(p.image_url ? { image: p.image_url } : {}),
+        ...(p.brand
+          ? { brand: { "@type": "Brand", name: p.brand } }
+          : {}),
+        ...(p.badge ? { award: p.badge } : {}),
+        review: {
+          "@type": "Review",
+          author: {
+            "@type": "Organization",
+            name: "Modern Tech LLC",
+            url: SITE,
+          },
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: "5",
+            bestRating: "5",
+          },
+          publisher: { "@id": `${SITE}/#organization` },
+        },
+        offers: {
+          "@type": "Offer",
+          url: p.affiliate_link,
+          availability: "https://schema.org/InStock",
+          priceCurrency: p.currency || "USD",
+          ...(p.price !== undefined && p.price !== null && p.price !== ""
+            ? { price: String(p.price).replace(/[^0-9.]/g, "") || undefined }
+            : {}),
+          seller: {
+            "@type": "Organization",
+            name: "Amazon",
+          },
+        },
+        isRelatedTo: { "@id": `${postUrl}#blogposting` },
+      };
+      return node;
+    });
 };
 
 const SCHEMA_MAP: Record<string, () => SchemaNode[]> = {
