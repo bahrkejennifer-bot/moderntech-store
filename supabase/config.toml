@@ -35,6 +35,8 @@ project_id = "hvjhtfyxecnuehndnyrd"
     verify_jwt = false
   [functions.confirm-lead]
     verify_jwt = false
+  [functions.resend-lead-confirmation]
+    verify_jwt = false
   [functions.stripe-webhook]
     verify_jwt = false
   [functions.subscribe-newsletter]
