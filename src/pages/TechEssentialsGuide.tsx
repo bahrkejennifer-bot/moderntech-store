@@ -67,10 +67,9 @@ const FAQS = [
 ];
 
 const TechEssentialsGuide = () => {
-  const [step, setStep] = useState<"gate" | "upsell">("gate");
+  const navigate = useNavigate();
   const [form, setForm] = useState({ name: "", email: "" });
   const [loading, setLoading] = useState(false);
-  const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -92,32 +91,13 @@ const TechEssentialsGuide = () => {
       });
 
       toast.success("Check your inbox — your 2026 Tech Essentials guide is on its way.");
-      setStep("upsell");
+      navigate("/free-guide-tech-essentials/success", {
+        state: { email: form.email.trim(), name: form.name.trim() },
+      });
     } catch {
       toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleBundleCheckout = async () => {
-    setCheckoutLoading(true);
-    try {
-      const { data, error } = await supabase.functions.invoke("create-checkout", {
-        body: {
-          productName: "The Complete Creator Bundle",
-          productSlug: "creator-bundle",
-          amount: 5900,
-          successUrl: `${SITE}/creator-funnel/success?product=creator-bundle`,
-          cancelUrl: `${SITE}${PATH}`,
-        },
-      });
-      if (error) throw error;
-      if (data?.url) window.location.href = data.url;
-    } catch {
-      toast.error("Checkout failed. Please try again.");
-    } finally {
-      setCheckoutLoading(false);
     }
   };
 
