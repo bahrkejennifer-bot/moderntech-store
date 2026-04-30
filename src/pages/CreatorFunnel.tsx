@@ -79,23 +79,26 @@ const CreatorFunnel = () => {
       return;
     }
     setLoading(true);
+    const { name, email } = parsed.data;
     try {
       // Save lead capture
       await supabase.from("lead_captures").insert({
-        name: form.name.trim(),
-        email: form.email.trim(),
+        name,
+        email,
         lead_magnet: "faceless-reels-guide",
       });
 
       // Send welcome email with guide link
       await supabase.functions.invoke("send-welcome-email", {
         body: {
-          name: form.name.trim(),
-          email: form.email.trim(),
+          name,
+          email,
           lead_magnet: "faceless-reels-guide",
         },
       });
 
+      // Persist validated values (lowercased email) for the thank-you view
+      setForm({ name, email });
       toast.success("Check your email for your free Reels Guide!");
       setStep("upsell");
     } catch {
