@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { ArrowRight, Check, Sparkles, Video, Palette, Youtube, Gift, Loader2 } from "lucide-react";
+import { z } from "zod";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+
+const leadSchema = z.object({
+  name: z.string().trim().min(1, "Please enter your first name").max(100, "Name is too long"),
+  email: z.string().trim().toLowerCase().email("Please enter a valid email").max(255, "Email is too long"),
+});
 
 const tiers = [
   {
@@ -58,30 +64,41 @@ const tiers = [
 const CreatorFunnel = () => {
   const [step, setStep] = useState<"gate" | "upsell">("gate");
   const [form, setForm] = useState({ name: "", email: "" });
+  const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
   const [loading, setLoading] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
 
   const handleFreeDownload = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim()) return;
+    setErrors({});
+    const parsed = leadSchema.safeParse(form);
+    if (!parsed.success) {
+      const fieldErrors = parsed.error.flatten().fieldErrors;
+      setErrors({ name: fieldErrors.name?.[0], email: fieldErrors.email?.[0] });
+      toast.error(fieldErrors.email?.[0] || fieldErrors.name?.[0] || "Please check the form");
+      return;
+    }
     setLoading(true);
+    const { name, email } = parsed.data;
     try {
       // Save lead capture
       await supabase.from("lead_captures").insert({
-        name: form.name.trim(),
-        email: form.email.trim(),
+        name,
+        email,
         lead_magnet: "faceless-reels-guide",
       });
 
       // Send welcome email with guide link
       await supabase.functions.invoke("send-welcome-email", {
         body: {
-          name: form.name.trim(),
-          email: form.email.trim(),
+          name,
+          email,
           lead_magnet: "faceless-reels-guide",
         },
       });
 
+      // Persist validated values (lowercased email) for the thank-you view
+      setForm({ name, email });
       toast.success("Check your email for your free Reels Guide!");
       setStep("upsell");
     } catch {
@@ -152,25 +169,40 @@ const CreatorFunnel = () => {
               The Reels Master Class helps you create stronger short-form videos with better hooks, clearer structure, and more engaging content ideas so you can show up with confidence.
             </p>
 
-            <form onSubmit={handleFreeDownload} className="space-y-3">
-              <input
-                type="text"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="Your first name"
-                required
-                className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none"
-                style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
-              />
-              <input
-                type="email"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                placeholder="Your email"
-                required
-                className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none"
-                style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
-              />
+            <form onSubmit={handleFreeDownload} className="space-y-3" noValidate>
+              <div>
+                <input
+                  type="text"
+                  value={form.name}
+                  onChange={(e) => { setForm({ ...form, name: e.target.value }); if (errors.name) setErrors({ ...errors, name: undefined }); }}
+                  placeholder="Your first name"
+                  maxLength={100}
+                  autoComplete="given-name"
+                  aria-invalid={!!errors.name}
+                  className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none"
+                  style={{ border: `0.5px solid ${errors.name ? "hsl(0 65% 50%)" : "hsl(220 15% 14% / 0.2)"}`, color: "hsl(220 15% 14%)" }}
+                />
+                {errors.name && (
+                  <p className="font-mono text-[10px] mt-1" style={{ color: "hsl(0 65% 45%)" }}>{errors.name}</p>
+                )}
+              </div>
+              <div>
+                <input
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => { setForm({ ...form, email: e.target.value }); if (errors.email) setErrors({ ...errors, email: undefined }); }}
+                  placeholder="Your email"
+                  maxLength={255}
+                  autoComplete="email"
+                  inputMode="email"
+                  aria-invalid={!!errors.email}
+                  className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none"
+                  style={{ border: `0.5px solid ${errors.email ? "hsl(0 65% 50%)" : "hsl(220 15% 14% / 0.2)"}`, color: "hsl(220 15% 14%)" }}
+                />
+                {errors.email && (
+                  <p className="font-mono text-[10px] mt-1" style={{ color: "hsl(0 65% 45%)" }}>{errors.email}</p>
+                )}
+              </div>
               <button
                 type="submit"
                 disabled={loading}
@@ -179,6 +211,9 @@ const CreatorFunnel = () => {
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Get Your Free Guide <ArrowRight className="w-3 h-3" /></>}
               </button>
+              <p className="font-mono text-[9px] text-center" style={{ color: "hsl(220 15% 14% / 0.35)" }}>
+                We'll never share your email. Unsubscribe anytime.
+              </p>
             </form>
           </div>
 
