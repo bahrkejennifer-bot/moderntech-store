@@ -205,8 +205,8 @@ const TechEssentialsGuide = () => {
         </p>
       </section>
 
-      {step === "gate" ? (
-        <>
+      <>
+
           {/* ── Email Gate ── */}
           <section className="max-w-md mx-auto px-6 pb-20">
             <div
