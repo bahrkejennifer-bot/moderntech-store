@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox } from "lucide-react";
+import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox, Send, AlertCircle } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
@@ -10,17 +10,57 @@ import { toast } from "sonner";
 
 const SITE = "https://moderntech.store";
 const PATH = "/free-guide-tech-essentials/success";
+const LEAD_MAGNET_SLUG = "tech-essentials-2026";
+const RESEND_COOLDOWN_SECONDS = 60;
 
 interface LocationState {
   email?: string;
   name?: string;
 }
 
+type ResendStatus = "idle" | "sending" | "sent" | "error";
+
 const TechEssentialsSuccess = () => {
   const location = useLocation();
   const state = (location.state as LocationState | null) ?? null;
   const email = state?.email ?? "";
+  const name = state?.name ?? "";
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+
+  // ── Resend email state ──
+  const [resendStatus, setResendStatus] = useState<ResendStatus>("idle");
+  const [cooldown, setCooldown] = useState(0);
+  const [resendCount, setResendCount] = useState(0);
+
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const t = setTimeout(() => setCooldown((c) => c - 1), 1000);
+    return () => clearTimeout(t);
+  }, [cooldown]);
+
+  const handleResend = async () => {
+    if (!email) {
+      toast.error("We don't have your email on file. Please return to the guide page and submit again.");
+      return;
+    }
+    if (cooldown > 0 || resendStatus === "sending") return;
+
+    setResendStatus("sending");
+    try {
+      const { error } = await supabase.functions.invoke("send-welcome-email", {
+        body: { name: name || "there", email, lead_magnet: LEAD_MAGNET_SLUG },
+      });
+      if (error) throw error;
+      setResendStatus("sent");
+      setResendCount((c) => c + 1);
+      setCooldown(RESEND_COOLDOWN_SECONDS);
+      toast.success("Sent again. Give it a minute and check your inbox.");
+    } catch {
+      setResendStatus("error");
+      toast.error("We couldn't resend it. Please try again in a moment.");
+    }
+  };
+
 
   const handleBundleCheckout = async () => {
     setCheckoutLoading(true);
