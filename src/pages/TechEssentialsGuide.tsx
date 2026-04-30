@@ -7,6 +7,7 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
 const SITE = "https://moderntech.store";
 const PATH = "/free-guide-tech-essentials";
