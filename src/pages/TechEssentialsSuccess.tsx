@@ -46,6 +46,17 @@ const TechEssentialsSuccess = () => {
     }
   };
 
+  const handlePrintCard = () => {
+    document.body.classList.add("printing-deliverability");
+    const cleanup = () => {
+      document.body.classList.remove("printing-deliverability");
+      window.removeEventListener("afterprint", cleanup);
+    };
+    window.addEventListener("afterprint", cleanup);
+    // Defer to next tick so the class is applied before the print dialog snapshots layout
+    setTimeout(() => window.print(), 50);
+  };
+
   useEffect(() => {
     if (cooldown <= 0) return;
     const t = setTimeout(() => setCooldown((c) => c - 1), 1000);
