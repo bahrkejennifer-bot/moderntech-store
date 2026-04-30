@@ -18,6 +18,9 @@ import {
   buildPodcastDynamicGraph,
   buildSmartRingStaticGraph,
   buildCreatorGearDynamicGraph,
+  buildBlogIndexGraph,
+  buildSmartRingFreeGuideArticle,
+  buildAmazonAssociateFreeGuideArticle,
   PODCAST_POST_FAQ_HTML,
   PODCAST_SLUG,
 } from "./__snapshots__/blogPostJsonLd.fixtures";
