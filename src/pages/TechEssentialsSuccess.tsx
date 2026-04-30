@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox, Send, AlertCircle, Copy, Printer, Share2, Link2 } from "lucide-react";
+import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox, Send, AlertCircle, Copy, Printer, Link2 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
@@ -60,33 +60,28 @@ const TechEssentialsSuccess = () => {
     setTimeout(() => window.print(), 50);
   };
 
-  const handleShareCard = async () => {
-    const shareText =
-      "Modern Tech — Deliverability Card: how to whitelist info@moderntech.store and recover the 2026 Tech Essentials Guide.";
-    // Try native share first (mobile)
-    if (typeof navigator !== "undefined" && (navigator as Navigator & { share?: (data: ShareData) => Promise<void> }).share) {
-      try {
-        await (navigator as Navigator & { share: (data: ShareData) => Promise<void> }).share({
-          title: "Modern Tech · Deliverability Card",
-          text: shareText,
-          url: SHARE_URL,
-        });
-        return;
-      } catch {
-        /* user cancelled — fall through to clipboard */
-      }
-    }
+  const SHARE_TEXT =
+    "Modern Tech — Deliverability Card: how to whitelist info@moderntech.store and recover the 2026 Tech Essentials Guide.";
+
+  const handleCopyShareLink = async () => {
     try {
       await navigator.clipboard.writeText(SHARE_URL);
       setShareCopied(true);
       toast.success("Link copied — save it or email it to yourself for later.");
       setTimeout(() => setShareCopied(false), 2500);
     } catch {
-      // Final fallback: open mailto with everything pre-filled
-      const subject = encodeURIComponent("Modern Tech — Deliverability Card (save for later)");
-      const body = encodeURIComponent(`${shareText}\n\n${SHARE_URL}`);
-      window.location.href = `mailto:?subject=${subject}&body=${body}`;
+      toast.error("Couldn't copy. Use the Email Link option instead.");
     }
+  };
+
+  const handleEmailShareLink = () => {
+    const recipient = email ? encodeURIComponent(email) : "";
+    const subject = encodeURIComponent("Modern Tech — Deliverability Card (save for later)");
+    const body = encodeURIComponent(
+      `${SHARE_TEXT}\n\nOpen the card here:\n${SHARE_URL}\n\nSender to whitelist: info@moderntech.store`
+    );
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    toast.success(email ? `Opening your mail app — pre-addressed to ${email}.` : "Opening your mail app…");
   };
 
   // Auto-scroll into view when the page is opened with the deliverability anchor
@@ -424,9 +419,9 @@ const TechEssentialsSuccess = () => {
               >
                 FIX DELIVERY IN 60 SECONDS
               </p>
-              <div className="no-print flex items-center gap-2">
+              <div className="no-print flex flex-wrap items-center gap-2">
                 <button
-                  onClick={handleShareCard}
+                  onClick={handleCopyShareLink}
                   aria-label="Copy shareable link to deliverability card"
                   className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-2 transition-all duration-200 hover:opacity-85"
                   style={{
@@ -441,9 +436,21 @@ const TechEssentialsSuccess = () => {
                     </>
                   ) : (
                     <>
-                      <Share2 className="w-3 h-3" /> <Link2 className="w-3 h-3 -ml-1" /> SHARE LINK
+                      <Link2 className="w-3 h-3" /> COPY LINK
                     </>
                   )}
+                </button>
+                <button
+                  onClick={handleEmailShareLink}
+                  aria-label="Email the deliverability card link"
+                  className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-2 transition-all duration-200 hover:opacity-85"
+                  style={{
+                    border: "0.5px solid hsl(220 15% 14% / 0.4)",
+                    color: "hsl(220 15% 14%)",
+                    backgroundColor: "transparent",
+                  }}
+                >
+                  <Mail className="w-3 h-3" /> EMAIL LINK
                 </button>
                 <button
                   onClick={handlePrintCard}
