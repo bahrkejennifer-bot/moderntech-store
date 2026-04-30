@@ -31,6 +31,20 @@ const TechEssentialsSuccess = () => {
   const [resendStatus, setResendStatus] = useState<ResendStatus>("idle");
   const [cooldown, setCooldown] = useState(0);
   const [resendCount, setResendCount] = useState(0);
+  const [copied, setCopied] = useState(false);
+
+  const SENDER_EMAIL = "info@moderntech.store";
+
+  const handleCopySender = async () => {
+    try {
+      await navigator.clipboard.writeText(SENDER_EMAIL);
+      setCopied(true);
+      toast.success("Copied — now paste into your contacts or safe-sender list.");
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      toast.error("Couldn't copy. Long-press the address to copy manually.");
+    }
+  };
 
   useEffect(() => {
     if (cooldown <= 0) return;
