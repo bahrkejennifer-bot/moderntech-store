@@ -121,7 +121,7 @@ Deno.serve(async (req) => {
     const token = Array.from(tokenBytes).map((b) => b.toString(16).padStart(2, "0")).join("");
 
     const { error: insertErr } = await supabase.from("pending_lead_confirmations").insert({
-      token, email: cleanEmail, name: cleanName, lead_magnet: magnet,
+      token, email: cleanEmail, name: cleanName, lead_magnet: magnet, source_path: cleanSourcePath,
     });
     if (insertErr) {
       console.error("pending insert error", insertErr);
