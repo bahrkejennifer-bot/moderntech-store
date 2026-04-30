@@ -420,3 +420,153 @@ describe("BlogPost JSON-LD — golden snapshots: dynamic template (no embedded F
     expect(errorsOf(buildCreatorGearDynamicGraph())).toEqual([]);
   });
 });
+
+describe("BlogPost JSON-LD — golden snapshots: Blog index page", () => {
+  it("matches the full @graph snapshot (Blog node, no WebSite)", () => {
+    expect(stableSerialise(buildBlogIndexGraph())).toMatchInlineSnapshot(`
+      "{
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://moderntech.store/#organization",
+            "name": "Modern Tech LLC",
+            "url": "https://moderntech.store",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://moderntech.store/lovable-uploads/modern-tech-logo.png"
+            },
+            "sameAs": [
+              "https://www.pinterest.com/moderntechstore",
+              "https://www.youtube.com/@moderntechllc",
+              "https://www.instagram.com/moderntechllc"
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://moderntech.store/blog#webpage",
+            "url": "https://moderntech.store/blog",
+            "name": "Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech",
+            "description": "Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly.",
+            "isPartOf": {
+              "@id": "https://moderntech.store/#website"
+            },
+            "inLanguage": "en-US",
+            "publisher": {
+              "@id": "https://moderntech.store/#organization"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://moderntech.store/blog#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://moderntech.store/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://moderntech.store/blog"
+              }
+            ]
+          },
+          {
+            "@type": "Blog",
+            "@id": "https://moderntech.store/blog#blog",
+            "name": "Modern Tech Blog",
+            "url": "https://moderntech.store/blog",
+            "publisher": {
+              "@id": "https://moderntech.store/#organization"
+            }
+          }
+        ]
+      }"
+    `);
+  });
+
+  it("emits a Blog node and OMITS the WebSite node (index-page invariant)", () => {
+    const graph = buildBlogIndexGraph();
+    const types = (graph["@graph"] as Record<string, unknown>[]).map((n) => n["@type"]);
+    expect(types).toContain("Blog");
+    expect(types).not.toContain("WebSite");
+  });
+
+  it("validates with zero errors", () => {
+    expect(errorsOf(buildBlogIndexGraph())).toEqual([]);
+  });
+});
+
+describe("BlogPost JSON-LD — golden snapshots: free-guide Article landing pages", () => {
+  it("matches the Smart Ring free-guide Article snapshot", () => {
+    expect(stableSerialise(buildSmartRingFreeGuideArticle())).toMatchInlineSnapshot(`
+      "{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Free Smart Ring Buyer's Guide 2026",
+        "description": "Compare Oura Ring 4, sizing tips, sleep tracking explained & a 30-day biohacking challenge.",
+        "image": "https://moderntech.store/images/products/smart-ring-guide-cover.jpg",
+        "author": {
+          "@type": "Organization",
+          "name": "Modern Tech LLC"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Modern Tech LLC",
+          "url": "https://moderntech.store"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://moderntech.store/free-smart-ring-guide"
+        }
+      }"
+    `);
+  });
+
+  it("matches the Amazon Associate free-guide Article snapshot", () => {
+    expect(stableSerialise(buildAmazonAssociateFreeGuideArticle())).toMatchInlineSnapshot(`
+      "{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Free Amazon Associate Quick-Start Guide 2026",
+        "description": "Launch your Amazon affiliate journey — from signup to your first commission in 5 pages.",
+        "image": "https://moderntech.store/images/products/amazon-associate-guide-cover.jpg",
+        "author": {
+          "@type": "Organization",
+          "name": "Modern Tech LLC"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Modern Tech LLC",
+          "url": "https://moderntech.store"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://moderntech.store/amazon-associate-guide"
+        }
+      }"
+    `);
+  });
+
+  it("free-guide Articles use a flat Article node (no @graph wrapper)", () => {
+    // Lead-magnet pages emit a single standalone Article — not a graph.
+    const a = buildSmartRingFreeGuideArticle();
+    const b = buildAmazonAssociateFreeGuideArticle();
+    expect(a["@type"]).toBe("Article");
+    expect(b["@type"]).toBe("Article");
+    expect((a as Record<string, unknown>)["@graph"]).toBeUndefined();
+    expect((b as Record<string, unknown>)["@graph"]).toBeUndefined();
+  });
+
+  it("free-guide Articles validate with zero errors", () => {
+    // Article isn't in REQUIRED_FIELDS so this primarily proves nothing
+    // downstream throws — but it does catch malformed nested ImageObject etc.
+    const errs = (raw: unknown) =>
+      validateJsonLdStrings([JSON.stringify(raw)]).checks.filter((c) => c.severity === "error");
+    expect(errs(buildSmartRingFreeGuideArticle())).toEqual([]);
+    expect(errs(buildAmazonAssociateFreeGuideArticle())).toEqual([]);
+  });
+});
