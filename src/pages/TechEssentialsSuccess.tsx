@@ -32,6 +32,9 @@ const TechEssentialsSuccess = () => {
   const [cooldown, setCooldown] = useState(0);
   const [resendCount, setResendCount] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [shareCopied, setShareCopied] = useState(false);
+
+  const SHARE_URL = `${SITE}${PATH}#deliverability-card`;
 
   const SENDER_EMAIL = "info@moderntech.store";
 
