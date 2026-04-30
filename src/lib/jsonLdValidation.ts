@@ -113,7 +113,10 @@ export const validateNode = (
     });
   }
 
-  // Recurse into nested objects with @type
+  // Recurse into nested objects with @type — but skip @id-only references
+  // (e.g. mainEntityOfPage: { "@id": "..." }) and skip ImageObject/Answer
+  // which are validated in-context by their parent.
+  const SKIP_RECURSE = new Set(["ImageObject", "Answer", "Question", "ListItem"]);
   for (const value of Object.values(node)) {
     if (
       value &&
@@ -121,7 +124,12 @@ export const validateNode = (
       !Array.isArray(value) &&
       (value as Record<string, unknown>)["@type"]
     ) {
-      validateNode(value as Record<string, unknown>, checks);
+      const childType = (value as Record<string, unknown>)["@type"] as string;
+      const child = value as Record<string, unknown>;
+      const keys = Object.keys(child);
+      const isReferenceOnly = keys.length <= 2 && "@id" in child;
+      if (isReferenceOnly || SKIP_RECURSE.has(childType)) continue;
+      validateNode(child, checks);
     }
   }
 };
