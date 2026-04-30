@@ -10,6 +10,35 @@ export const getBlogPostExtraSchemas = (slug: string): SchemaNode[] => {
   return builder ? builder() : [];
 };
 
+/**
+ * Build a stable Product @id for a blog post product. Mirrors the convention
+ * used inside buildBlogProductSchemas so other nodes (HowTo, BlogPosting)
+ * can reference the same Product node in the @graph.
+ */
+export const blogProductId = (
+  slug: string,
+  product: BlogProductInput,
+  index: number,
+): string => `${SITE}/blog/${slug}#product-${product.id || index + 1}`;
+
+/**
+ * Build cross-reference nodes that explicitly link the BlogPosting to each
+ * Product in the @graph via `mentions` + `about`. Returns a partial node that
+ * the caller can spread/merge onto its BlogPosting (or a standalone patch
+ * node if you'd rather append it).
+ */
+export const buildBlogProductCrossRefs = (
+  slug: string,
+  products: BlogProductInput[] | null | undefined,
+): { mentions: { "@id": string }[] } | null => {
+  if (!Array.isArray(products) || products.length === 0) return null;
+  const refs = products
+    .filter((p) => p && (p.title || p.id) && p.affiliate_link)
+    .map((p, idx) => ({ "@id": blogProductId(slug, p, idx) }));
+  if (refs.length === 0) return null;
+  return { mentions: refs };
+};
+
 export interface BlogProductInput {
   id?: string;
   title?: string;
@@ -91,6 +120,13 @@ const SCHEMA_MAP: Record<string, () => SchemaNode[]> = {
         name: "How to Start a Podcast With Just 3 Pieces of Gear",
         description:
           "A 3-step Jen-Verified setup using a Blue Yeti USB mic, Sony WH-1000XM5 headphones, and a Neewer 18-inch ring light to launch a pro-sounding podcast on day one.",
+        // Anchor the HowTo back to the parent BlogPosting and the products it uses
+        isPartOf: { "@id": `${url}#blogposting` },
+        about: [
+          { "@id": `${url}#product-blue-yeti-usb` },
+          { "@id": `${url}#product-sony-wh-1000xm5` },
+          { "@id": `${url}#product-neewer-18-ring-light` },
+        ],
         totalTime: "PT30M",
         estimatedCost: {
           "@type": "MonetaryAmount",
@@ -106,16 +142,20 @@ const SCHEMA_MAP: Record<string, () => SchemaNode[]> = {
             "@type": "HowToTool",
             name: "Blue Yeti USB Podcast Microphone",
             url: "https://www.amazon.com/dp/B00N1YPXW2?tag=moderntechs0c-20",
+            // Cross-reference: same item exists as a Product node in the @graph
+            item: { "@id": `${url}#product-blue-yeti-usb` },
           },
           {
             "@type": "HowToTool",
             name: "Sony WH-1000XM5 Noise-Cancelling Headphones",
             url: "https://www.amazon.com/dp/B09XS7JWHH?tag=moderntechs0c-20",
+            item: { "@id": `${url}#product-sony-wh-1000xm5` },
           },
           {
             "@type": "HowToTool",
             name: "Neewer 18-inch Ring Light Kit",
             url: "https://www.amazon.com/dp/B0D451DGK8?tag=moderntechs0c-20",
+            item: { "@id": `${url}#product-neewer-18-ring-light` },
           },
         ],
         step: [
@@ -145,6 +185,12 @@ const SCHEMA_MAP: Record<string, () => SchemaNode[]> = {
       {
         "@type": "FAQPage",
         "@id": `${url}#faq`,
+        isPartOf: { "@id": `${url}#blogposting` },
+        about: [
+          { "@id": `${url}#product-blue-yeti-usb` },
+          { "@id": `${url}#product-sony-wh-1000xm5` },
+          { "@id": `${url}#product-neewer-18-ring-light` },
+        ],
         mainEntity: [
           {
             "@type": "Question",

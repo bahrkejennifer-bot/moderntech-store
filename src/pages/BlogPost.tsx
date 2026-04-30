@@ -7,7 +7,7 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
 import JsonLdValidator from "@/components/JsonLdValidator";
-import { getBlogPostExtraSchemas, buildBlogProductSchemas } from "@/lib/blogPostSchemas";
+import { getBlogPostExtraSchemas, buildBlogProductSchemas, buildBlogProductCrossRefs } from "@/lib/blogPostSchemas";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -661,6 +661,8 @@ const BlogPost = () => {
                 "@id": `https://moderntech.store/blog/${slug}#webpage`,
               },
               url: `https://moderntech.store/blog/${slug}`,
+              // Explicit @graph cross-references to each Product node below
+              ...(buildBlogProductCrossRefs(slug || "", dynamicPost.products as any) || {}),
             },
             ...getBlogPostExtraSchemas(slug || ""),
             ...buildBlogProductSchemas(slug || "", dynamicPost.products as any),
