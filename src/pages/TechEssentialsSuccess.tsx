@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox, Send, AlertCircle, Copy } from "lucide-react";
+import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox, Send, AlertCircle, Copy, Printer } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
@@ -44,6 +44,17 @@ const TechEssentialsSuccess = () => {
     } catch {
       toast.error("Couldn't copy. Long-press the address to copy manually.");
     }
+  };
+
+  const handlePrintCard = () => {
+    document.body.classList.add("printing-deliverability");
+    const cleanup = () => {
+      document.body.classList.remove("printing-deliverability");
+      window.removeEventListener("afterprint", cleanup);
+    };
+    window.addEventListener("afterprint", cleanup);
+    // Defer to next tick so the class is applied before the print dialog snapshots layout
+    setTimeout(() => window.print(), 50);
   };
 
   useEffect(() => {
@@ -347,17 +358,45 @@ const TechEssentialsSuccess = () => {
             </div>
           </div>
 
-          {/* ── Deliverability checklist ── */}
+          {/* ── Deliverability checklist (print-friendly) ── */}
           <div
-            className="mt-6 pt-6"
+            id="deliverability-card"
+            className="mt-6 pt-6 deliverability-card"
             style={{ borderTop: "0.5px solid hsl(220 15% 14% / 0.1)" }}
           >
-            <p
-              className="font-mono text-[10px] tracking-[0.25em] uppercase mb-4"
-              style={{ color: "hsl(220 15% 14% / 0.5)" }}
-            >
-              FIX DELIVERY IN 60 SECONDS
-            </p>
+            {/* Print-only header */}
+            <div className="print-only mb-6">
+              <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-2" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
+                MODERN TECH LLC · DELIVERABILITY CARD
+              </p>
+              <h2 className="font-serif text-3xl mb-1" style={{ fontWeight: 400, lineHeight: 1.1 }}>
+                Whitelist & Recover the 2026 Tech Essentials Guide
+              </h2>
+              <p className="font-mono text-[11px]" style={{ color: "hsl(220 15% 14% / 0.55)" }}>
+                Keep this for later — every step you need to fix inbox delivery in under a minute.
+              </p>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 mb-4 deliverability-card__header">
+              <p
+                className="font-mono text-[10px] tracking-[0.25em] uppercase"
+                style={{ color: "hsl(220 15% 14% / 0.5)" }}
+              >
+                FIX DELIVERY IN 60 SECONDS
+              </p>
+              <button
+                onClick={handlePrintCard}
+                aria-label="Print or save deliverability checklist"
+                className="no-print flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-2 transition-all duration-200 hover:opacity-85"
+                style={{
+                  border: "0.5px solid hsl(220 15% 14% / 0.4)",
+                  color: "hsl(220 15% 14%)",
+                  backgroundColor: "transparent",
+                }}
+              >
+                <Printer className="w-3 h-3" /> PRINT / SAVE
+              </button>
+            </div>
 
             {/* Sender address — one-tap copy */}
             <div
@@ -454,6 +493,16 @@ const TechEssentialsSuccess = () => {
                 </li>
               ))}
             </ul>
+
+            {/* Print-only footer */}
+            <div className="print-only mt-6 pt-4" style={{ borderTop: "0.5px solid hsl(220 15% 14% / 0.2)" }}>
+              <p className="font-mono text-[10px] leading-relaxed" style={{ color: "hsl(220 15% 14% / 0.65)" }}>
+                Still stuck after these steps? Email <strong>info@moderntech.store</strong> and we'll deliver the guide manually within one business day. Visit <strong>https://moderntech.store/free-guide-tech-essentials</strong> to request a fresh copy.
+              </p>
+              <p className="font-mono text-[9px] mt-3 tracking-[0.2em] uppercase" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
+                © Modern Tech LLC · moderntech.store
+              </p>
+            </div>
           </div>
 
           <p
