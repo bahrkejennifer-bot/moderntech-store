@@ -1,133 +1,21 @@
 import { useState } from "react";
 import { CheckCircle2, XCircle, AlertTriangle, ShieldCheck, X, Loader2 } from "lucide-react";
-
-type Severity = "error" | "warning" | "ok";
-type Check = { severity: Severity; type: string; message: string };
-
-const REQUIRED_FIELDS: Record<string, string[]> = {
-  Organization: ["name", "url", "logo"],
-  WebSite: ["url", "name"],
-  WebPage: ["url", "name"],
-  BlogPosting: ["headline", "datePublished", "author", "image"],
-  BreadcrumbList: ["itemListElement"],
-  ImageObject: ["url"],
-};
-
-const RICH_RESULT_RECOMMENDED: Record<string, string[]> = {
-  BlogPosting: ["dateModified", "publisher", "mainEntityOfPage", "description"],
-  Organization: ["sameAs"],
-  WebPage: ["description", "inLanguage"],
-};
-
-const validateNode = (node: Record<string, unknown>, checks: Check[]) => {
-  const type = (node["@type"] as string) || "Unknown";
-
-  const required = REQUIRED_FIELDS[type];
-  if (required) {
-    for (const field of required) {
-      if (node[field] === undefined || node[field] === null || node[field] === "") {
-        checks.push({
-          severity: "error",
-          type,
-          message: `Missing required field "${field}"`,
-        });
-      }
-    }
-  }
-
-  const recommended = RICH_RESULT_RECOMMENDED[type];
-  if (recommended) {
-    for (const field of recommended) {
-      if (node[field] === undefined || node[field] === null || node[field] === "") {
-        checks.push({
-          severity: "warning",
-          type,
-          message: `Missing recommended field "${field}" (Google Rich Results)`,
-        });
-      }
-    }
-  }
-
-  // BlogPosting headline length check (Google: <= 110 chars)
-  if (type === "BlogPosting" && typeof node.headline === "string" && node.headline.length > 110) {
-    checks.push({
-      severity: "warning",
-      type,
-      message: `headline exceeds 110 characters (${node.headline.length})`,
-    });
-  }
-
-  // BreadcrumbList items must have name + item + position
-  if (type === "BreadcrumbList" && Array.isArray(node.itemListElement)) {
-    node.itemListElement.forEach((item, i) => {
-      const li = item as Record<string, unknown>;
-      if (!li.name || !li.item || li.position === undefined) {
-        checks.push({
-          severity: "error",
-          type,
-          message: `BreadcrumbList item #${i + 1} missing name/item/position`,
-        });
-      }
-    });
-  }
-
-  // Recurse into nested objects with @type
-  for (const value of Object.values(node)) {
-    if (value && typeof value === "object" && !Array.isArray(value) && (value as Record<string, unknown>)["@type"]) {
-      validateNode(value as Record<string, unknown>, checks);
-    }
-  }
-};
+import { validateJsonLdStrings, type Check } from "@/lib/jsonLdValidation";
 
 const runValidation = (): { checks: Check[]; nodeCount: number; scriptCount: number } => {
   const scripts = document.querySelectorAll<HTMLScriptElement>('script[type="application/ld+json"]');
-  const checks: Check[] = [];
-  let nodeCount = 0;
-
   if (scripts.length === 0) {
-    checks.push({
-      severity: "error",
-      type: "Document",
-      message: "No JSON-LD script tags found on this page",
-    });
-    return { checks, nodeCount: 0, scriptCount: 0 };
+    return {
+      checks: [{ severity: "error", type: "Document", message: "No JSON-LD script tags found on this page" }],
+      nodeCount: 0,
+      scriptCount: 0,
+    };
   }
-
-  scripts.forEach((script, idx) => {
-    try {
-      const parsed = JSON.parse(script.textContent || "{}");
-      if (!parsed["@context"]) {
-        checks.push({
-          severity: "warning",
-          type: `Script #${idx + 1}`,
-          message: "Missing @context (should be https://schema.org)",
-        });
-      }
-      const nodes = Array.isArray(parsed["@graph"])
-        ? parsed["@graph"]
-        : [parsed];
-      nodes.forEach((n: Record<string, unknown>) => {
-        nodeCount += 1;
-        validateNode(n, checks);
-      });
-    } catch (e) {
-      checks.push({
-        severity: "error",
-        type: `Script #${idx + 1}`,
-        message: `Invalid JSON: ${(e as Error).message}`,
-      });
-    }
-  });
-
-  if (checks.length === 0) {
-    checks.push({
-      severity: "ok",
-      type: "All",
-      message: "No errors or warnings detected",
-    });
+  const result = validateJsonLdStrings(Array.from(scripts).map((s) => s.textContent || ""));
+  if (result.checks.length === 0) {
+    result.checks.push({ severity: "ok", type: "All", message: "No errors or warnings detected" });
   }
-
-  return { checks, nodeCount, scriptCount: scripts.length };
+  return { checks: result.checks, nodeCount: result.nodeCount, scriptCount: result.scriptCount };
 };
 
 const JsonLdValidator = () => {
