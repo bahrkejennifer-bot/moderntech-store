@@ -64,12 +64,20 @@ const tiers = [
 const CreatorFunnel = () => {
   const [step, setStep] = useState<"gate" | "upsell">("gate");
   const [form, setForm] = useState({ name: "", email: "" });
+  const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
   const [loading, setLoading] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
 
   const handleFreeDownload = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim()) return;
+    setErrors({});
+    const parsed = leadSchema.safeParse(form);
+    if (!parsed.success) {
+      const fieldErrors = parsed.error.flatten().fieldErrors;
+      setErrors({ name: fieldErrors.name?.[0], email: fieldErrors.email?.[0] });
+      toast.error(fieldErrors.email?.[0] || fieldErrors.name?.[0] || "Please check the form");
+      return;
+    }
     setLoading(true);
     try {
       // Save lead capture
