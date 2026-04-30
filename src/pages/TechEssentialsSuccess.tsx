@@ -419,9 +419,9 @@ const TechEssentialsSuccess = () => {
               >
                 FIX DELIVERY IN 60 SECONDS
               </p>
-              <div className="no-print flex items-center gap-2">
+              <div className="no-print flex flex-wrap items-center gap-2">
                 <button
-                  onClick={handleShareCard}
+                  onClick={handleCopyShareLink}
                   aria-label="Copy shareable link to deliverability card"
                   className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-2 transition-all duration-200 hover:opacity-85"
                   style={{
@@ -436,9 +436,21 @@ const TechEssentialsSuccess = () => {
                     </>
                   ) : (
                     <>
-                      <Share2 className="w-3 h-3" /> <Link2 className="w-3 h-3 -ml-1" /> SHARE LINK
+                      <Link2 className="w-3 h-3" /> COPY LINK
                     </>
                   )}
+                </button>
+                <button
+                  onClick={handleEmailShareLink}
+                  aria-label="Email the deliverability card link"
+                  className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-2 transition-all duration-200 hover:opacity-85"
+                  style={{
+                    border: "0.5px solid hsl(220 15% 14% / 0.4)",
+                    color: "hsl(220 15% 14%)",
+                    backgroundColor: "transparent",
+                  }}
+                >
+                  <Mail className="w-3 h-3" /> EMAIL LINK
                 </button>
                 <button
                   onClick={handlePrintCard}
