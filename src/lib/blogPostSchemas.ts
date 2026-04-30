@@ -10,6 +10,35 @@ export const getBlogPostExtraSchemas = (slug: string): SchemaNode[] => {
   return builder ? builder() : [];
 };
 
+/**
+ * Build a stable Product @id for a blog post product. Mirrors the convention
+ * used inside buildBlogProductSchemas so other nodes (HowTo, BlogPosting)
+ * can reference the same Product node in the @graph.
+ */
+export const blogProductId = (
+  slug: string,
+  product: BlogProductInput,
+  index: number,
+): string => `${SITE}/blog/${slug}#product-${product.id || index + 1}`;
+
+/**
+ * Build cross-reference nodes that explicitly link the BlogPosting to each
+ * Product in the @graph via `mentions` + `about`. Returns a partial node that
+ * the caller can spread/merge onto its BlogPosting (or a standalone patch
+ * node if you'd rather append it).
+ */
+export const buildBlogProductCrossRefs = (
+  slug: string,
+  products: BlogProductInput[] | null | undefined,
+): { mentions: { "@id": string }[] } | null => {
+  if (!Array.isArray(products) || products.length === 0) return null;
+  const refs = products
+    .filter((p) => p && (p.title || p.id) && p.affiliate_link)
+    .map((p, idx) => ({ "@id": blogProductId(slug, p, idx) }));
+  if (refs.length === 0) return null;
+  return { mentions: refs };
+};
+
 export interface BlogProductInput {
   id?: string;
   title?: string;
