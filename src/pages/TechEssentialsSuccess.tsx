@@ -493,6 +493,16 @@ const TechEssentialsSuccess = () => {
                 </li>
               ))}
             </ul>
+
+            {/* Print-only footer */}
+            <div className="print-only mt-6 pt-4" style={{ borderTop: "0.5px solid hsl(220 15% 14% / 0.2)" }}>
+              <p className="font-mono text-[10px] leading-relaxed" style={{ color: "hsl(220 15% 14% / 0.65)" }}>
+                Still stuck after these steps? Email <strong>info@moderntech.store</strong> and we'll deliver the guide manually within one business day. Visit <strong>https://moderntech.store/free-guide-tech-essentials</strong> to request a fresh copy.
+              </p>
+              <p className="font-mono text-[9px] mt-3 tracking-[0.2em] uppercase" style={{ color: "hsl(220 15% 14% / 0.4)" }}>
+                © Modern Tech LLC · moderntech.store
+              </p>
+            </div>
           </div>
 
           <p
