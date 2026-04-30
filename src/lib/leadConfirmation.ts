@@ -31,12 +31,22 @@ export async function requestLeadConfirmation(
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { success: false, error: "Please enter a valid email address." };
   }
+  // Capture the page the user signed up from so /confirm-email can return them there.
+  let sourcePath = input.source_path;
+  if (!sourcePath && typeof window !== "undefined") {
+    try {
+      sourcePath = `${window.location.pathname}${window.location.search || ""}`;
+    } catch {
+      sourcePath = undefined;
+    }
+  }
   try {
     const { data, error } = await supabase.functions.invoke("request-lead-confirmation", {
       body: {
         name: input.name?.trim() || email.split("@")[0],
         email,
         lead_magnet: input.lead_magnet || "90-day-amazon-associate-roadmap",
+        source_path: sourcePath,
       },
     });
     if (error || !data?.success) {
