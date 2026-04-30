@@ -120,6 +120,13 @@ const SCHEMA_MAP: Record<string, () => SchemaNode[]> = {
         name: "How to Start a Podcast With Just 3 Pieces of Gear",
         description:
           "A 3-step Jen-Verified setup using a Blue Yeti USB mic, Sony WH-1000XM5 headphones, and a Neewer 18-inch ring light to launch a pro-sounding podcast on day one.",
+        // Anchor the HowTo back to the parent BlogPosting and the products it uses
+        isPartOf: { "@id": `${url}#blogposting` },
+        about: [
+          { "@id": `${url}#product-blue-yeti` },
+          { "@id": `${url}#product-sony-wh1000xm5` },
+          { "@id": `${url}#product-neewer-ring-light` },
+        ],
         totalTime: "PT30M",
         estimatedCost: {
           "@type": "MonetaryAmount",
