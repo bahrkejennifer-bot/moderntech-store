@@ -60,33 +60,28 @@ const TechEssentialsSuccess = () => {
     setTimeout(() => window.print(), 50);
   };
 
-  const handleShareCard = async () => {
-    const shareText =
-      "Modern Tech — Deliverability Card: how to whitelist info@moderntech.store and recover the 2026 Tech Essentials Guide.";
-    // Try native share first (mobile)
-    if (typeof navigator !== "undefined" && (navigator as Navigator & { share?: (data: ShareData) => Promise<void> }).share) {
-      try {
-        await (navigator as Navigator & { share: (data: ShareData) => Promise<void> }).share({
-          title: "Modern Tech · Deliverability Card",
-          text: shareText,
-          url: SHARE_URL,
-        });
-        return;
-      } catch {
-        /* user cancelled — fall through to clipboard */
-      }
-    }
+  const SHARE_TEXT =
+    "Modern Tech — Deliverability Card: how to whitelist info@moderntech.store and recover the 2026 Tech Essentials Guide.";
+
+  const handleCopyShareLink = async () => {
     try {
       await navigator.clipboard.writeText(SHARE_URL);
       setShareCopied(true);
       toast.success("Link copied — save it or email it to yourself for later.");
       setTimeout(() => setShareCopied(false), 2500);
     } catch {
-      // Final fallback: open mailto with everything pre-filled
-      const subject = encodeURIComponent("Modern Tech — Deliverability Card (save for later)");
-      const body = encodeURIComponent(`${shareText}\n\n${SHARE_URL}`);
-      window.location.href = `mailto:?subject=${subject}&body=${body}`;
+      toast.error("Couldn't copy. Use the Email Link option instead.");
     }
+  };
+
+  const handleEmailShareLink = () => {
+    const recipient = email ? encodeURIComponent(email) : "";
+    const subject = encodeURIComponent("Modern Tech — Deliverability Card (save for later)");
+    const body = encodeURIComponent(
+      `${SHARE_TEXT}\n\nOpen the card here:\n${SHARE_URL}\n\nSender to whitelist: info@moderntech.store`
+    );
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    toast.success(email ? `Opening your mail app — pre-addressed to ${email}.` : "Opening your mail app…");
   };
 
   // Auto-scroll into view when the page is opened with the deliverability anchor
