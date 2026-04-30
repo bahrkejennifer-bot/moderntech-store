@@ -19,6 +19,7 @@ const GUIDE_ROUTES: Record<string, { url: string; label: string }> = {
   "screen-free-kids-tech-toys": { url: "https://moderntech.store/free-screen-free-kids-guide", label: "Screen-Free Kids Tech Guide" },
   "free-affiliate-quick-start": { url: "https://moderntech.store/amazon-associate-guide", label: "Amazon Affiliate Quick-Start Guide" },
   "faceless-reels-guide": { url: "https://www.dropbox.com/scl/fi/64k64w8tv4gx9xcbn3ycn/Copy-of-THE-FACELESS-REELS-GUIDE.pdf?rlkey=lqa72bclfozyyf6x8forzovrk&st=2jk0hgjd&dl=1", label: "The Faceless Reels Guide" },
+  "tech-essentials-2026": { url: "https://moderntech.store/digital-products", label: "2026 Tech Essentials Guide" },
 };
 
 const DEFAULT_GUIDE = { url: "https://moderntech.store/digital-products", label: "Your Free Guide" };

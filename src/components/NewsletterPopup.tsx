@@ -23,7 +23,7 @@ export const NewsletterPopup = () => {
 
   useEffect(() => {
     // Don't show popup on pages with their own CTAs
-    const suppressedPaths = ["/links", "/blueprint", "/free-guide"];
+    const suppressedPaths = ["/links", "/blueprint", "/free-guide", "/free-guide-tech-essentials"];
     if (suppressedPaths.includes(location.pathname)) return;
 
     // Check if user has already dismissed or subscribed

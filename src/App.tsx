@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import FreeGuide from "./pages/FreeGuide";
+import TechEssentialsGuide from "./pages/TechEssentialsGuide";
 import TheSignal from "./pages/TheSignal";
 import ContactPage from "./pages/ContactPage";
 import PromoBanner from "./components/PromoBanner";
@@ -80,6 +81,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/free-guide" element={<FreeGuide />} />
+          <Route path="/free-guide-tech-essentials" element={<TechEssentialsGuide />} />
           <Route path="/the-signal" element={<TheSignal />} />
           <Route path="/contact" element={<ContactPage />} />
 
