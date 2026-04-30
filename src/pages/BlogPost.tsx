@@ -7,6 +7,7 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
 import JsonLdValidator from "@/components/JsonLdValidator";
+import { getBlogPostExtraSchemas } from "@/lib/blogPostSchemas";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -661,6 +662,7 @@ const BlogPost = () => {
               },
               url: `https://moderntech.store/blog/${slug}`,
             },
+            ...getBlogPostExtraSchemas(slug || ""),
           ]}
         />
         {/* Reading Progress Bar */}
@@ -845,6 +847,7 @@ const BlogPost = () => {
             mainEntityOfPage: { "@id": `${SITE}/blog/${slug}#webpage` },
             url: `${SITE}/blog/${slug}`,
           },
+          ...getBlogPostExtraSchemas(slug || ""),
         ]}
       />
 
