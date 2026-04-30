@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, MailCheck } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
 const benefits = [
   "Learn the 5 essential steps to launch your first affiliate site — even with zero experience",
@@ -16,29 +16,24 @@ const FreeGuide = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState<null | "pending" | "already">(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !email.trim()) return;
     setLoading(true);
     try {
-      // Save to lead_captures
-      await supabase.from("lead_captures").insert({
+      const result = await requestLeadConfirmation({
         name: name.trim(),
         email: email.trim(),
         lead_magnet: "free-affiliate-quick-start",
       });
-
-      // Trigger email notification
-      await supabase.functions.invoke("send-welcome-email", {
-        body: { name: name.trim(), email: email.trim(), lead_magnet: "amazon-associate-guide" },
-      });
-
-      toast.success("Check your inbox! Your free guide is on the way.");
-      setName("");
-      setEmail("");
-    } catch {
-      toast.error("Something went wrong. Please try again.");
+      if (!result.success) {
+        toast.error(result.error || "Something went wrong. Please try again.");
+        return;
+      }
+      setSubmitted(result.alreadyConfirmed ? "already" : "pending");
+      toast.success(result.alreadyConfirmed ? ALREADY_CONFIRMED_MESSAGE : CHECK_INBOX_MESSAGE);
     } finally {
       setLoading(false);
     }
