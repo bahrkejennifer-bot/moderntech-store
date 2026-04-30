@@ -253,21 +253,24 @@ describe("JSON-LD validation — @id-only reference skipping at depth", () => {
     expect(checks.some((c) => c.severity === "warning" && c.message.includes("110"))).toBe(true);
   });
 
-  it("skips @id-only refs mixed with real nodes inside the same array", () => {
+  it("skips @id-only refs mixed with real-typed nodes inside the same array", () => {
     const checks: Check[] = [];
     validateNode(
       {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://moderntech.store/" },
+        "@type": "BlogPosting",
+        headline: "Post",
+        datePublished: "2026-01-01",
+        author: { "@type": "Organization", name: "MT" },
+        image: ["https://example.com/x.jpg"],
+        mentions: [
           // Pure @id ref hiding inside the array — must be skipped
           { "@id": "https://moderntech.store/#organization" },
-          { "@type": "ListItem", position: 2, name: "Blog", item: "https://moderntech.store/blog" },
+          // Real typed node alongside it — should validate inline without errors
+          { "@type": "Organization", name: "Modern Tech LLC", url: "https://moderntech.store" },
         ],
       },
       checks,
     );
-    // Only real ListItems are validated; the @id-only entry shouldn't add errors.
     expect(errors(checks)).toEqual([]);
   });
 });
