@@ -153,53 +153,58 @@ const Index = () => {
         </p>
       </div>
 
-      {/* ── FEATURED 3 — database-driven ── */}
+      {/* ── FEATURED 3 — Faceless Creator Bundle digital assets ── */}
       <section className="max-w-6xl mx-auto px-8 py-20">
-        {isLoading ? (
-          <div className="flex items-center justify-center py-20">
-            <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
-            {fallbackFeatured.map((product) => (
-              <a
-                key={product.id}
-                href={product.affiliate_link}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="group border-r last:border-r-0 border-border"
-              >
-                <div className="relative aspect-[4/5] overflow-hidden">
-                  <img
-                    src={product.image_url || "/placeholder.svg"}
-                    alt={product.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-8">
-                    {product.description && (
-                      <p className="font-mono text-xs text-background/80 text-center mb-6 line-clamp-3">{product.description}</p>
-                    )}
-                    {product.price && (
-                      <p className="font-mono text-lg font-medium text-background mb-6">{product.price}</p>
-                    )}
-                    <span className="inline-flex items-center gap-2 h-10 px-6 border border-background/30 text-background font-mono text-[10px] tracking-[0.15em] uppercase hover:bg-background hover:text-foreground transition-all duration-300">
-                      View Details <ExternalLink className="h-3 w-3" />
-                    </span>
-                  </div>
-                </div>
-                <div className="p-6 border-t border-border">
-                  <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground">{product.badge || product.category}</span>
-                  <h3 className="font-serif text-xl mt-1" style={{ fontStyle: "italic" }}>{product.title}</h3>
-                </div>
-              </a>
-            ))}
-          </div>
-        )}
+        <div className="text-center mb-12">
+          <p className="font-mono text-[9px] tracking-[0.4em] uppercase text-muted-foreground mb-4">
+            Featured · The Faceless Creator Bundle
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontWeight: 400 }}>
+            Three <em>Master Classes.</em> One Quiet Empire.
+          </h2>
+        </div>
 
-        <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground text-center mt-6">
-          As an Amazon Associate, I earn from qualifying purchases
-        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
+          {[
+            { cover: coverReels, badge: "Volume I · Free", title: "Reels Master Class", desc: "Stop-the-scroll mechanics for the faceless feed.", to: "/creator-funnel" },
+            { cover: coverCanva, badge: "Volume II · $29", title: "Canva Master Class", desc: "Branded graphics & digital products without the overwhelm.", to: "/canva-masterclass" },
+            { cover: coverYoutube, badge: "Volume III · $49", title: "YouTube Master Class", desc: "Faceless video systems built for compounding watch time.", to: "/faceless-youtube" },
+          ].map((item) => (
+            <Link
+              key={item.title}
+              to={item.to}
+              className="group border-r last:border-r-0 border-border bg-background"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden bg-[hsl(var(--muted))]">
+                <img
+                  src={item.cover}
+                  alt={`${item.title} — Faceless Creator Bundle digital asset cover`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-8">
+                  <p className="font-mono text-xs text-background/80 text-center mb-6 max-w-[220px]">{item.desc}</p>
+                  <span className="inline-flex items-center gap-2 h-10 px-6 border border-background/30 text-background font-mono text-[10px] tracking-[0.15em] uppercase hover:bg-background hover:text-foreground transition-all duration-300">
+                    Open Volume <ArrowRight className="h-3 w-3" />
+                  </span>
+                </div>
+              </div>
+              <div className="p-6 border-t border-border">
+                <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground">{item.badge}</span>
+                <h3 className="font-serif text-xl mt-1" style={{ fontStyle: "italic" }}>{item.title}</h3>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <Link
+            to="/creator-bundle"
+            className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+          >
+            See the Full Bundle — Save $19 <ArrowRight className="h-3 w-3" />
+          </Link>
+        </div>
       </section>
 
       {/* ── FULL-WIDTH STATEMENT ── */}
