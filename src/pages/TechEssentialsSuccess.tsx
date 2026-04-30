@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox, Send, AlertCircle, Copy, Printer } from "lucide-react";
+import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox, Send, AlertCircle, Copy, Printer, Share2, Link2 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
@@ -32,6 +32,9 @@ const TechEssentialsSuccess = () => {
   const [cooldown, setCooldown] = useState(0);
   const [resendCount, setResendCount] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [shareCopied, setShareCopied] = useState(false);
+
+  const SHARE_URL = `${SITE}${PATH}#deliverability-card`;
 
   const SENDER_EMAIL = "info@moderntech.store";
 
@@ -56,6 +59,43 @@ const TechEssentialsSuccess = () => {
     // Defer to next tick so the class is applied before the print dialog snapshots layout
     setTimeout(() => window.print(), 50);
   };
+
+  const handleShareCard = async () => {
+    const shareText =
+      "Modern Tech — Deliverability Card: how to whitelist info@moderntech.store and recover the 2026 Tech Essentials Guide.";
+    // Try native share first (mobile)
+    if (typeof navigator !== "undefined" && (navigator as Navigator & { share?: (data: ShareData) => Promise<void> }).share) {
+      try {
+        await (navigator as Navigator & { share: (data: ShareData) => Promise<void> }).share({
+          title: "Modern Tech · Deliverability Card",
+          text: shareText,
+          url: SHARE_URL,
+        });
+        return;
+      } catch {
+        /* user cancelled — fall through to clipboard */
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(SHARE_URL);
+      setShareCopied(true);
+      toast.success("Link copied — save it or email it to yourself for later.");
+      setTimeout(() => setShareCopied(false), 2500);
+    } catch {
+      // Final fallback: open mailto with everything pre-filled
+      const subject = encodeURIComponent("Modern Tech — Deliverability Card (save for later)");
+      const body = encodeURIComponent(`${shareText}\n\n${SHARE_URL}`);
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    }
+  };
+
+  // Auto-scroll into view when the page is opened with the deliverability anchor
+  useEffect(() => {
+    if (location.hash === "#deliverability-card") {
+      const el = document.getElementById("deliverability-card");
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+    }
+  }, [location.hash]);
 
   useEffect(() => {
     if (cooldown <= 0) return;
@@ -377,25 +417,47 @@ const TechEssentialsSuccess = () => {
               </p>
             </div>
 
-            <div className="flex items-center justify-between gap-3 mb-4 deliverability-card__header">
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-4 deliverability-card__header">
               <p
                 className="font-mono text-[10px] tracking-[0.25em] uppercase"
                 style={{ color: "hsl(220 15% 14% / 0.5)" }}
               >
                 FIX DELIVERY IN 60 SECONDS
               </p>
-              <button
-                onClick={handlePrintCard}
-                aria-label="Print or save deliverability checklist"
-                className="no-print flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-2 transition-all duration-200 hover:opacity-85"
-                style={{
-                  border: "0.5px solid hsl(220 15% 14% / 0.4)",
-                  color: "hsl(220 15% 14%)",
-                  backgroundColor: "transparent",
-                }}
-              >
-                <Printer className="w-3 h-3" /> PRINT / SAVE
-              </button>
+              <div className="no-print flex items-center gap-2">
+                <button
+                  onClick={handleShareCard}
+                  aria-label="Copy shareable link to deliverability card"
+                  className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-2 transition-all duration-200 hover:opacity-85"
+                  style={{
+                    border: "0.5px solid hsl(220 15% 14% / 0.4)",
+                    color: shareCopied ? "hsl(30 25% 95%)" : "hsl(220 15% 14%)",
+                    backgroundColor: shareCopied ? "hsl(140 40% 35%)" : "transparent",
+                  }}
+                >
+                  {shareCopied ? (
+                    <>
+                      <Check className="w-3 h-3" /> LINK COPIED
+                    </>
+                  ) : (
+                    <>
+                      <Share2 className="w-3 h-3" /> <Link2 className="w-3 h-3 -ml-1" /> SHARE LINK
+                    </>
+                  )}
+                </button>
+                <button
+                  onClick={handlePrintCard}
+                  aria-label="Print or save deliverability checklist"
+                  className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-2 transition-all duration-200 hover:opacity-85"
+                  style={{
+                    border: "0.5px solid hsl(220 15% 14% / 0.4)",
+                    color: "hsl(220 15% 14%)",
+                    backgroundColor: "transparent",
+                  }}
+                >
+                  <Printer className="w-3 h-3" /> PRINT / SAVE
+                </button>
+              </div>
             </div>
 
             {/* Sender address — one-tap copy */}
