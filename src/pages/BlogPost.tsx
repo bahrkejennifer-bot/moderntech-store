@@ -661,6 +661,8 @@ const BlogPost = () => {
                 "@id": `https://moderntech.store/blog/${slug}#webpage`,
               },
               url: `https://moderntech.store/blog/${slug}`,
+              // Explicit @graph cross-references to each Product node below
+              ...(buildBlogProductCrossRefs(slug || "", dynamicPost.products as any) || {}),
             },
             ...getBlogPostExtraSchemas(slug || ""),
             ...buildBlogProductSchemas(slug || "", dynamicPost.products as any),
