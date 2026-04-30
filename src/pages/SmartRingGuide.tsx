@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { requestLeadConfirmation } from "@/lib/leadConfirmation";
 import coverImg from "@/assets/pdf-covers/smart-ring-guide-cover.jpg";
 
 const benefits = [
