@@ -229,15 +229,125 @@ const TechEssentialsSuccess = () => {
           })}
         </div>
 
-        <p
-          className="font-mono text-[10px] tracking-[0.15em] mt-6 sm:mt-8"
-          style={{ color: "hsl(220 15% 14% / 0.4)" }}
+        {/* ── Resend Email — prominent, with countdown + status ── */}
+        <div
+          className="mt-8 sm:mt-10 p-6 sm:p-8 rounded-sm"
+          style={{
+            backgroundColor: "hsl(40 18% 95%)",
+            border: "0.5px solid hsl(220 15% 14% / 0.12)",
+          }}
         >
-          DIDN'T GET IT? CHECK SPAM OR EMAIL{" "}
-          <a href="mailto:info@moderntech.store" className="underline">
-            info@moderntech.store
-          </a>
-        </p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 sm:gap-8">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-2">
+                <AlertCircle className="w-3.5 h-3.5" style={{ color: "hsl(220 15% 14% / 0.5)" }} />
+                <p
+                  className="font-mono text-[10px] tracking-[0.25em] uppercase"
+                  style={{ color: "hsl(220 15% 14% / 0.5)" }}
+                >
+                  STILL NOTHING IN YOUR INBOX?
+                </p>
+              </div>
+              <h3 className="font-serif text-xl sm:text-2xl mb-2" style={{ fontWeight: 400 }}>
+                Resend the guide
+              </h3>
+              <p
+                className="font-mono text-[11px] sm:text-[12px] leading-relaxed"
+                style={{ color: "hsl(220 15% 14% / 0.6)" }}
+              >
+                {email ? (
+                  <>
+                    We'll send it again to{" "}
+                    <strong style={{ color: "hsl(220 15% 14%)" }}>{email}</strong>. Check your
+                    spam folder too — sometimes it hides there.
+                  </>
+                ) : (
+                  <>
+                    Check your spam folder, or email{" "}
+                    <a href="mailto:info@moderntech.store" className="underline">
+                      info@moderntech.store
+                    </a>{" "}
+                    and we'll resend manually.
+                  </>
+                )}
+              </p>
+            </div>
+
+            <div className="shrink-0 sm:min-w-[220px]">
+              <button
+                onClick={handleResend}
+                disabled={!email || cooldown > 0 || resendStatus === "sending"}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-6 py-3.5 transition-all duration-200 hover:opacity-85 disabled:opacity-40 disabled:cursor-not-allowed"
+                style={{
+                  backgroundColor: "hsl(220 15% 14%)",
+                  color: "hsl(30 25% 95%)",
+                  minWidth: 200,
+                }}
+              >
+                {resendStatus === "sending" ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" /> Sending…
+                  </>
+                ) : cooldown > 0 ? (
+                  <>
+                    Resend in {cooldown}s
+                  </>
+                ) : resendStatus === "sent" ? (
+                  <>
+                    <Send className="w-3 h-3" /> Send Again
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-3 h-3" /> Resend Email
+                  </>
+                )}
+              </button>
+
+              {/* Status line */}
+              <div className="mt-3 text-center sm:text-right min-h-[16px]">
+                {resendStatus === "sent" && cooldown > 0 && (
+                  <p
+                    className="font-mono text-[10px] tracking-[0.15em] uppercase flex items-center justify-center sm:justify-end gap-1.5"
+                    style={{ color: "hsl(140 40% 35%)" }}
+                  >
+                    <Check className="w-3 h-3" /> SENT{resendCount > 1 ? ` · ×${resendCount}` : ""}
+                  </p>
+                )}
+                {resendStatus === "error" && (
+                  <p
+                    className="font-mono text-[10px] tracking-[0.15em] uppercase"
+                    style={{ color: "hsl(0 60% 45%)" }}
+                  >
+                    FAILED — TRY AGAIN
+                  </p>
+                )}
+                {resendStatus === "idle" && !email && (
+                  <p
+                    className="font-mono text-[10px] tracking-[0.15em] uppercase"
+                    style={{ color: "hsl(220 15% 14% / 0.4)" }}
+                  >
+                    NO EMAIL ON FILE
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <p
+            className="font-mono text-[10px] tracking-[0.15em] mt-5 pt-5"
+            style={{
+              color: "hsl(220 15% 14% / 0.4)",
+              borderTop: "0.5px solid hsl(220 15% 14% / 0.1)",
+            }}
+          >
+            STILL STUCK? EMAIL{" "}
+            <a href="mailto:info@moderntech.store" className="underline">
+              info@moderntech.store
+            </a>{" "}
+            AND WE'LL DELIVER IT MANUALLY.
+          </p>
+        </div>
+
       </section>
 
       {/* ── Creator Bundle Upsell — editorial card ── */}
