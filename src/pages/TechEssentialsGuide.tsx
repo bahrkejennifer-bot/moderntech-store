@@ -5,7 +5,6 @@ import { ArrowRight, Loader2, Home, Heart, Briefcase, Baby } from "lucide-react"
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
