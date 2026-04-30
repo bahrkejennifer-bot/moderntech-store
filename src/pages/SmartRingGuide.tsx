@@ -55,28 +55,27 @@ const SmartRingGuide = () => {
 
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.from("lead_captures" as any).insert({
+      const result = await requestLeadConfirmation({
         name: name.trim(),
         email: email.trim().toLowerCase(),
         lead_magnet: "smart-ring-buyers-guide",
-      } as any);
+      });
 
-      if (error && error.code !== "23505") {
-        throw error;
+      if (!result.success) {
+        toast({
+          title: "Something went wrong",
+          description: result.error || "Please try again in a moment.",
+          variant: "destructive",
+        });
+        return;
       }
 
       setIsSuccess(true);
-
       toast({
-        title: "You're in! 💍",
-        description: "Your Smart Ring Buyer's Guide is ready to download.",
-      });
-    } catch (error) {
-      console.error("Lead capture error:", error);
-      toast({
-        title: "Something went wrong",
-        description: "Please try again in a moment.",
-        variant: "destructive",
+        title: result.alreadyConfirmed ? "Welcome back 💍" : "Check your inbox 💍",
+        description: result.alreadyConfirmed
+          ? "We've resent your guide — and it's also ready to download below."
+          : "Click the confirmation link in your email to unlock your guide.",
       });
     } finally {
       setIsSubmitting(false);
