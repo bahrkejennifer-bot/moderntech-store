@@ -133,7 +133,7 @@ export const validateNode = (
       const keys = Object.keys(child);
       const isReferenceOnly = keys.length <= 2 && "@id" in child;
       if (isReferenceOnly || SKIP_RECURSE.has(childType)) continue;
-      validateNode(child, checks);
+      validateNode(child, checks, true);
     }
   }
 };
