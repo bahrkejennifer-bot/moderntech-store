@@ -7,6 +7,7 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
 import JsonLdValidator from "@/components/JsonLdValidator";
+import { getBlogPostExtraSchemas } from "@/lib/blogPostSchemas";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
