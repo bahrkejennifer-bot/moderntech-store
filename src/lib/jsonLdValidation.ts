@@ -117,25 +117,34 @@ export const validateNode = (
     });
   }
 
-  // Recurse into nested objects with @type — but skip @id-only references
-  // (e.g. mainEntityOfPage: { "@id": "..." }) and skip ImageObject/Answer
-  // which are validated in-context by their parent.
+  // Recurse into nested objects/arrays — skipping @id-only references at any
+  // depth (e.g. publisher.logo: { "@id": "..." }, mainEntityOfPage refs) and
+  // skipping leaf types validated in-context by their parent.
   const SKIP_RECURSE = new Set(["ImageObject", "Answer", "Question", "ListItem"]);
-  for (const value of Object.values(node)) {
-    if (
-      value &&
-      typeof value === "object" &&
-      !Array.isArray(value) &&
-      (value as Record<string, unknown>)["@type"]
-    ) {
-      const childType = (value as Record<string, unknown>)["@type"] as string;
-      const child = value as Record<string, unknown>;
-      const keys = Object.keys(child);
-      const isReferenceOnly = keys.length <= 2 && "@id" in child;
-      if (isReferenceOnly || SKIP_RECURSE.has(childType)) continue;
-      validateNode(child, checks, true);
+  const walk = (value: unknown): void => {
+    if (!value || typeof value !== "object") return;
+    if (Array.isArray(value)) {
+      value.forEach(walk);
+      return;
     }
-  }
+    const child = value as Record<string, unknown>;
+    // @id-only reference (allow @type alongside @id) → skip at ANY depth
+    const keys = Object.keys(child);
+    if ("@id" in child) {
+      const nonRefKeys = keys.filter((k) => k !== "@id" && k !== "@type");
+      if (nonRefKeys.length === 0) return;
+    }
+    if (typeof child["@type"] === "string") {
+      const childType = child["@type"] as string;
+      if (!SKIP_RECURSE.has(childType)) {
+        validateNode(child, checks, true);
+        return; // validateNode will recurse into its own children
+      }
+    }
+    // Plain nested object without @type — keep walking for deep refs
+    for (const v of Object.values(child)) walk(v);
+  };
+  for (const value of Object.values(node)) walk(value);
 };
 
 export interface ValidationResult {
