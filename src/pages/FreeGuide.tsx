@@ -60,35 +60,57 @@ const FreeGuide = () => {
           </p>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4 mb-14">
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Your first name"
-            required
-            className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none transition-colors focus:border-current"
-            style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
-          />
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Your email address"
-            required
-            className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none transition-colors focus:border-current"
-            style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
-          />
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full flex items-center justify-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-4 transition-all duration-200 hover:opacity-80 disabled:opacity-50"
-            style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(30 25% 95%)" }}
-          >
-            {loading ? "Sending..." : "Send My Free Guide"} <ArrowRight className="w-3 h-3" />
-          </button>
-        </form>
+        {/* Form / Confirmation state */}
+        {submitted ? (
+          <div className="mb-14 p-8 text-center" style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)" }}>
+            <MailCheck className="w-8 h-8 mx-auto mb-4" style={{ color: "hsl(220 15% 14%)" }} />
+            <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-3" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
+              {submitted === "already" ? "Welcome back" : "One last step"}
+            </p>
+            <h2 className="font-serif text-2xl mb-3" style={{ fontWeight: 400 }}>
+              {submitted === "already" ? "We've resent your guide" : "Check your inbox"}
+            </h2>
+            <p className="font-serif text-sm leading-relaxed" style={{ color: "hsl(220 15% 14% / 0.6)" }}>
+              {submitted === "already"
+                ? `Your guide is on its way to ${email}.`
+                : `We just sent a confirmation link to ${email}. Click it to receive your free guide.`}
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4 mb-14">
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your first name"
+              required
+              maxLength={100}
+              className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none transition-colors focus:border-current"
+              style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
+            />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Your email address"
+              required
+              maxLength={255}
+              className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none transition-colors focus:border-current"
+              style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-2 font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-4 transition-all duration-200 hover:opacity-80 disabled:opacity-50"
+              style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(30 25% 95%)" }}
+            >
+              {loading ? "Sending..." : "Send Confirmation Link"} <ArrowRight className="w-3 h-3" />
+            </button>
+            <p className="font-mono text-[10px] tracking-[0.1em] text-center" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
+              We'll email you to confirm — your guide unlocks after one click.
+            </p>
+          </form>
+        )}
 
         {/* Benefits */}
         <div className="space-y-6">
