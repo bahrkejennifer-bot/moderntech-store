@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Sparkles, Download, ArrowRight } from "lucide-react";
+import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
 export const RoadmapSignup = () => {
   const [name, setName] = useState("");
@@ -16,29 +16,20 @@ export const RoadmapSignup = () => {
       toast.error("Please fill in all fields");
       return;
     }
-
     setIsLoading(true);
     try {
-      // Save to lead_captures table
-      const { error: dbError } = await supabase
-        .from("lead_captures")
-        .insert({ name: name.trim(), email: email.trim(), lead_magnet: "90-day-amazon-associate-roadmap" });
-
-      if (dbError) throw dbError;
-
-      // Trigger welcome email via edge function
-      const { error: fnError } = await supabase.functions.invoke("send-welcome-email", {
-        body: { name: name.trim(), email: email.trim() },
+      const result = await requestLeadConfirmation({
+        name: name.trim(),
+        email: email.trim(),
+        lead_magnet: "90-day-amazon-associate-roadmap",
       });
-
-      if (fnError) console.error("Welcome email error:", fnError);
-
-      toast.success("Welcome aboard! Check your inbox for the roadmap.");
+      if (!result.success) {
+        toast.error(result.error || "Something went wrong. Please try again.");
+        return;
+      }
+      toast.success(result.alreadyConfirmed ? ALREADY_CONFIRMED_MESSAGE : CHECK_INBOX_MESSAGE);
       setName("");
       setEmail("");
-    } catch (err) {
-      console.error("Signup error:", err);
-      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }

@@ -3,8 +3,8 @@ import { Helmet } from "react-helmet-async";
 import { Radio, ArrowRight, Headphones, Eye } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
 const TheSignal = () => {
   const [name, setName] = useState("");
@@ -16,16 +16,18 @@ const TheSignal = () => {
     if (!name.trim() || !email.trim()) return;
     setLoading(true);
     try {
-      await supabase.from("lead_captures").insert({
+      const result = await requestLeadConfirmation({
         name: name.trim(),
         email: email.trim(),
         lead_magnet: "the-signal-podcast",
       });
-      toast.success("You're in. Welcome to the investigation.");
+      if (!result.success) {
+        toast.error(result.error || "Something went wrong. Try again.");
+        return;
+      }
+      toast.success(result.alreadyConfirmed ? ALREADY_CONFIRMED_MESSAGE : CHECK_INBOX_MESSAGE);
       setName("");
       setEmail("");
-    } catch {
-      toast.error("Something went wrong. Try again.");
     } finally {
       setLoading(false);
     }
