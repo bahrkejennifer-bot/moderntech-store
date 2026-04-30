@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import FreeGuide from "./pages/FreeGuide";
+import ConfirmEmail from "./pages/ConfirmEmail";
 import TechEssentialsGuide from "./pages/TechEssentialsGuide";
 import TechEssentialsSuccess from "./pages/TechEssentialsSuccess";
 import TheSignal from "./pages/TheSignal";
@@ -82,6 +83,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/free-guide" element={<FreeGuide />} />
+          <Route path="/confirm-email" element={<ConfirmEmail />} />
           <Route path="/free-guide-tech-essentials" element={<TechEssentialsGuide />} />
           <Route path="/free-guide-tech-essentials/success" element={<TechEssentialsSuccess />} />
           <Route path="/the-signal" element={<TheSignal />} />
