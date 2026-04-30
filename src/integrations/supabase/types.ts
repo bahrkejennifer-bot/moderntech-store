@@ -281,6 +281,39 @@ export type Database = {
         }
         Relationships: []
       }
+      pending_lead_confirmations: {
+        Row: {
+          confirmed_at: string | null
+          created_at: string
+          email: string
+          expires_at: string
+          id: string
+          lead_magnet: string
+          name: string
+          token: string
+        }
+        Insert: {
+          confirmed_at?: string | null
+          created_at?: string
+          email: string
+          expires_at?: string
+          id?: string
+          lead_magnet?: string
+          name: string
+          token: string
+        }
+        Update: {
+          confirmed_at?: string | null
+          created_at?: string
+          email?: string
+          expires_at?: string
+          id?: string
+          lead_magnet?: string
+          name?: string
+          token?: string
+        }
+        Relationships: []
+      }
       pinterest_tokens: {
         Row: {
           access_token: string
