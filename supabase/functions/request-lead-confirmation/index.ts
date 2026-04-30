@@ -74,7 +74,7 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { name, email, lead_magnet } = await req.json();
+    const { name, email, lead_magnet, source_path } = await req.json();
 
     if (!email || typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255) {
       return new Response(JSON.stringify({ error: "Invalid email" }), {
@@ -84,6 +84,14 @@ Deno.serve(async (req) => {
     const cleanEmail = email.trim().toLowerCase();
     const cleanName = (typeof name === "string" && name.trim() ? name.trim() : cleanEmail.split("@")[0]).slice(0, 100);
     const magnet = (typeof lead_magnet === "string" && lead_magnet.length <= 100) ? lead_magnet : "90-day-amazon-associate-roadmap";
+    // Sanitize source_path: must be a same-site path beginning with "/", no protocol, no host, max 300 chars
+    let cleanSourcePath: string | null = null;
+    if (typeof source_path === "string") {
+      const sp = source_path.trim();
+      if (sp.startsWith("/") && !sp.startsWith("//") && !/[\r\n\t]/.test(sp) && sp.length <= 300) {
+        cleanSourcePath = sp;
+      }
+    }
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -113,7 +121,7 @@ Deno.serve(async (req) => {
     const token = Array.from(tokenBytes).map((b) => b.toString(16).padStart(2, "0")).join("");
 
     const { error: insertErr } = await supabase.from("pending_lead_confirmations").insert({
-      token, email: cleanEmail, name: cleanName, lead_magnet: magnet,
+      token, email: cleanEmail, name: cleanName, lead_magnet: magnet, source_path: cleanSourcePath,
     });
     if (insertErr) {
       console.error("pending insert error", insertErr);

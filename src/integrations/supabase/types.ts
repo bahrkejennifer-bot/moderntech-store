@@ -290,6 +290,7 @@ export type Database = {
           id: string
           lead_magnet: string
           name: string
+          source_path: string | null
           token: string
         }
         Insert: {
@@ -300,6 +301,7 @@ export type Database = {
           id?: string
           lead_magnet?: string
           name: string
+          source_path?: string | null
           token: string
         }
         Update: {
@@ -310,6 +312,7 @@ export type Database = {
           id?: string
           lead_magnet?: string
           name?: string
+          source_path?: string | null
           token?: string
         }
         Relationships: []
