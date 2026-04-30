@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { ArrowRight, Check, Loader2, Home, Heart, Briefcase, Baby, Sparkles, Gift } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight, Loader2, Home, Heart, Briefcase, Baby } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
