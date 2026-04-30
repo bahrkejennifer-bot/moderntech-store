@@ -417,25 +417,47 @@ const TechEssentialsSuccess = () => {
               </p>
             </div>
 
-            <div className="flex items-center justify-between gap-3 mb-4 deliverability-card__header">
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-4 deliverability-card__header">
               <p
                 className="font-mono text-[10px] tracking-[0.25em] uppercase"
                 style={{ color: "hsl(220 15% 14% / 0.5)" }}
               >
                 FIX DELIVERY IN 60 SECONDS
               </p>
-              <button
-                onClick={handlePrintCard}
-                aria-label="Print or save deliverability checklist"
-                className="no-print flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-2 transition-all duration-200 hover:opacity-85"
-                style={{
-                  border: "0.5px solid hsl(220 15% 14% / 0.4)",
-                  color: "hsl(220 15% 14%)",
-                  backgroundColor: "transparent",
-                }}
-              >
-                <Printer className="w-3 h-3" /> PRINT / SAVE
-              </button>
+              <div className="no-print flex items-center gap-2">
+                <button
+                  onClick={handleShareCard}
+                  aria-label="Copy shareable link to deliverability card"
+                  className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-2 transition-all duration-200 hover:opacity-85"
+                  style={{
+                    border: "0.5px solid hsl(220 15% 14% / 0.4)",
+                    color: shareCopied ? "hsl(30 25% 95%)" : "hsl(220 15% 14%)",
+                    backgroundColor: shareCopied ? "hsl(140 40% 35%)" : "transparent",
+                  }}
+                >
+                  {shareCopied ? (
+                    <>
+                      <Check className="w-3 h-3" /> LINK COPIED
+                    </>
+                  ) : (
+                    <>
+                      <Share2 className="w-3 h-3" /> <Link2 className="w-3 h-3 -ml-1" /> SHARE LINK
+                    </>
+                  )}
+                </button>
+                <button
+                  onClick={handlePrintCard}
+                  aria-label="Print or save deliverability checklist"
+                  className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.2em] uppercase px-3 py-2 transition-all duration-200 hover:opacity-85"
+                  style={{
+                    border: "0.5px solid hsl(220 15% 14% / 0.4)",
+                    color: "hsl(220 15% 14%)",
+                    backgroundColor: "transparent",
+                  }}
+                >
+                  <Printer className="w-3 h-3" /> PRINT / SAVE
+                </button>
+              </div>
             </div>
 
             {/* Sender address — one-tap copy */}
