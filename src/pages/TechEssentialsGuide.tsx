@@ -5,8 +5,8 @@ import { ArrowRight, Loader2, Home, Heart, Briefcase, Baby } from "lucide-react"
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
 const SITE = "https://moderntech.store";
 const PATH = "/free-guide-tech-essentials";
@@ -76,26 +76,23 @@ const TechEssentialsGuide = () => {
     if (!form.name.trim() || !form.email.trim()) return;
     setLoading(true);
     try {
-      await supabase.from("lead_captures").insert({
+      const result = await requestLeadConfirmation({
         name: form.name.trim(),
         email: form.email.trim(),
         lead_magnet: LEAD_MAGNET_SLUG,
       });
-
-      await supabase.functions.invoke("send-welcome-email", {
-        body: {
-          name: form.name.trim(),
+      if (!result.success) {
+        toast.error(result.error || "Something went wrong. Please try again.");
+        return;
+      }
+      toast.success(result.alreadyConfirmed ? ALREADY_CONFIRMED_MESSAGE : CHECK_INBOX_MESSAGE);
+      navigate("/free-guide-tech-essentials/success", {
+        state: {
           email: form.email.trim(),
-          lead_magnet: LEAD_MAGNET_SLUG,
+          name: form.name.trim(),
+          pendingConfirmation: !result.alreadyConfirmed,
         },
       });
-
-      toast.success("Check your inbox — your 2026 Tech Essentials guide is on its way.");
-      navigate("/free-guide-tech-essentials/success", {
-        state: { email: form.email.trim(), name: form.name.trim() },
-      });
-    } catch {
-      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }

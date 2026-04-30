@@ -5,9 +5,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Shield, Rocket, ArrowLeft, Gem, Video, GraduationCap, Baby } from "lucide-react";
+import { Shield, Rocket, ArrowLeft, Gem, Video, GraduationCap, Baby, MailCheck } from "lucide-react";
+import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
 interface FreeGuideModalProps {
   open: boolean;
@@ -69,6 +69,7 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [selectedGuide, setSelectedGuide] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState<null | "pending" | "already">(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,59 +77,63 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
 
     setLoading(true);
     try {
-      // Capture lead
-      const { error } = await supabase.from("lead_captures").insert({
+      const result = await requestLeadConfirmation({
         email,
         name: email.split("@")[0],
         lead_magnet: selectedGuide,
       });
 
-      if (error && error.code !== "23505") throw error;
-
-      // Trigger welcome email (fire-and-forget, don't block on failure)
-      supabase.functions.invoke("send-welcome-email", {
-        body: { name: email.split("@")[0], email, lead_magnet: selectedGuide },
-      }).catch(() => {});
-
-      // Navigate to the appropriate guide page
-      const guideRoutes: Record<string, string> = {
-        "amazon-associate-guide": "/amazon-associate-guide",
-        "parents-smart-home-safety-checklist": "/free-smart-home-checklist",
-        "smart-ring-buyers-guide": "/free-smart-ring-guide",
-        "creator-gear-starter-kit": "/free-creator-gear-guide",
-        "dorm-room-tech-setup": "/free-dorm-room-guide",
-        "screen-free-kids-tech-toys": "/free-screen-free-kids-guide",
-      };
-
-      const route = guideRoutes[selectedGuide];
-      if (route) {
-        window.location.href = route;
+      if (!result.success) {
+        toast.error(result.error || "Something went wrong. Please try again.");
+        return;
       }
 
-      toast.success("Your guide is ready! 🎉");
-      setEmail("");
-      setSelectedGuide(null);
-      onOpenChange(false);
-    } catch {
-      toast.error("Something went wrong. Please try again.");
+      setSubmitted(result.alreadyConfirmed ? "already" : "pending");
+      toast.success(result.alreadyConfirmed ? ALREADY_CONFIRMED_MESSAGE : CHECK_INBOX_MESSAGE);
     } finally {
       setLoading(false);
     }
   };
 
+  const reset = () => {
+    setEmail("");
+    setSelectedGuide(null);
+    setSubmitted(null);
+  };
+
   const activeGuide = guides.find((g) => g.id === selectedGuide);
 
   return (
-    <Dialog open={open} onOpenChange={(v) => { onOpenChange(v); if (!v) setSelectedGuide(null); }}>
+    <Dialog open={open} onOpenChange={(v) => { onOpenChange(v); if (!v) reset(); }}>
       <DialogContent className="sm:max-w-md border border-border bg-card p-10">
-        {!selectedGuide ? (
+        {submitted ? (
+          <div className="text-center py-4">
+            <div className="mx-auto w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <MailCheck className="h-7 w-7 text-primary" />
+            </div>
+            <DialogTitle className="text-2xl font-bold tracking-tight text-foreground mb-2">
+              {submitted === "already" ? "Welcome back" : "Check your inbox"}
+            </DialogTitle>
+            <p className="text-sm text-muted-foreground mb-6">
+              {submitted === "already"
+                ? `We just resent your guide to ${email}.`
+                : `We sent a confirmation link to ${email}. Click it to unlock your guide.`}
+            </p>
+            <button
+              onClick={() => { reset(); onOpenChange(false); }}
+              className="px-6 h-10 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition"
+            >
+              Done
+            </button>
+          </div>
+        ) : !selectedGuide ? (
           <>
             <DialogHeader>
               <DialogTitle className="text-2xl font-bold tracking-tight text-center text-foreground">
                 Choose Your Free Guide
               </DialogTitle>
               <p className="text-sm text-muted-foreground text-center mt-2">
-                Pick a guide and we'll send it straight to your inbox.
+                Pick a guide and we'll send a confirmation link to your inbox.
               </p>
             </DialogHeader>
 
@@ -170,7 +175,7 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
                 {activeGuide?.title}
               </DialogTitle>
               <p className="text-sm text-muted-foreground text-center mt-2">
-                Enter your email to get instant access.
+                Enter your email — we'll send a one-click confirmation link.
               </p>
             </DialogHeader>
 
@@ -189,8 +194,11 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
                 disabled={loading}
                 className="w-full h-11 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all duration-200 disabled:opacity-50 hover:shadow-elegant"
               >
-                {loading ? "Sending…" : "Get Free Guide"}
+                {loading ? "Sending…" : "Send Confirmation Link"}
               </button>
+              <p className="text-[11px] text-muted-foreground text-center">
+                We'll never share your email. Confirm to receive your guide.
+              </p>
             </form>
           </>
         )}

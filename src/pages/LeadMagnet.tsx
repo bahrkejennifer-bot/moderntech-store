@@ -5,8 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { requestLeadConfirmation } from "@/lib/leadConfirmation";
 
 const benefits = [
   "Week-by-week action plan from Day 1 to Day 90",
@@ -50,31 +50,23 @@ const LeadMagnet = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !email.trim()) return;
-
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.from("lead_captures" as any).insert({
+      const result = await requestLeadConfirmation({
         name: name.trim(),
         email: email.trim().toLowerCase(),
         lead_magnet: "90-day-amazon-associate-roadmap",
-      } as any);
-
-      if (error) {
-        if (error.code !== "23505") throw error;
-      }
-
-      setIsSuccess(true);
-
-      toast({
-        title: "You're in!",
-        description: "Your roadmap is ready to download.",
       });
-    } catch (error) {
-      console.error("Lead capture error:", error);
+      if (!result.success) {
+        toast({ title: "Something went wrong", description: result.error || "Please try again.", variant: "destructive" });
+        return;
+      }
+      setIsSuccess(true);
       toast({
-        title: "Something went wrong",
-        description: "Please try again in a moment.",
-        variant: "destructive",
+        title: result.alreadyConfirmed ? "Welcome back" : "Check your inbox",
+        description: result.alreadyConfirmed
+          ? "We've resent your roadmap — also ready to download below."
+          : "Click the confirmation link in your email to unlock your roadmap.",
       });
     } finally {
       setIsSubmitting(false);

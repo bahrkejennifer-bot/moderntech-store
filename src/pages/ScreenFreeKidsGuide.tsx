@@ -6,8 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { requestLeadConfirmation } from "@/lib/leadConfirmation";
 import coverImg from "@/assets/pdf-covers/screen-free-kids-cover.jpg";
 
 const benefits = [
@@ -54,17 +54,22 @@ const ScreenFreeKidsGuide = () => {
     if (!name.trim() || !email.trim()) return;
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.from("lead_captures" as any).insert({
+      const result = await requestLeadConfirmation({
         name: name.trim(),
         email: email.trim().toLowerCase(),
         lead_magnet: "screen-free-kids-tech-toys",
-      } as any);
-      if (error && error.code !== "23505") throw error;
+      });
+      if (!result.success) {
+        toast({ title: "Something went wrong", description: result.error || "Please try again.", variant: "destructive" });
+        return;
+      }
       setIsSuccess(true);
-      toast({ title: "You're in! 🧸", description: "Your Screen-Free Kids Guide is ready." });
-    } catch (error) {
-      console.error("Lead capture error:", error);
-      toast({ title: "Something went wrong", description: "Please try again.", variant: "destructive" });
+      toast({
+        title: result.alreadyConfirmed ? "Welcome back 🧸" : "Check your inbox 🧸",
+        description: result.alreadyConfirmed
+          ? "We've resent your guide — also ready to download below."
+          : "Click the confirmation link in your email to unlock your guide.",
+      });
     } finally {
       setIsSubmitting(false);
     }

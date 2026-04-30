@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { requestLeadConfirmation } from "@/lib/leadConfirmation";
 import { Helmet } from "react-helmet-async";
 
 const benefits = [
@@ -33,35 +33,23 @@ const FoundersTechStack = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !email.trim()) return;
-
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.from("lead_captures" as any).insert({
+      const result = await requestLeadConfirmation({
         name: name.trim(),
         email: email.trim().toLowerCase(),
         lead_magnet: "founders-tech-stack",
-      } as any);
-
-      if (error && error.code !== "23505") throw error;
-
-      // Trigger welcome email via edge function
-      try {
-        await supabase.functions.invoke("send-welcome-email", {
-          body: { name: name.trim(), email: email.trim().toLowerCase(), lead_magnet: "founders-tech-stack" },
-        });
-      } catch {}
-
+      });
+      if (!result.success) {
+        toast({ title: "Something went wrong", description: result.error || "Please try again.", variant: "destructive" });
+        return;
+      }
       setIsSuccess(true);
       toast({
-        title: "You're on the list!",
-        description: "We'll email you the moment the Founder's Tech Stack drops.",
-      });
-    } catch (error) {
-      console.error("Lead capture error:", error);
-      toast({
-        title: "Something went wrong",
-        description: "Please try again in a moment.",
-        variant: "destructive",
+        title: result.alreadyConfirmed ? "Welcome back" : "Check your inbox",
+        description: result.alreadyConfirmed
+          ? "We've resent the latest update — you're already on the list."
+          : "Click the confirmation link in your email to join the waiting list.",
       });
     } finally {
       setIsSubmitting(false);
