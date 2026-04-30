@@ -362,3 +362,34 @@ Dark base, bold blue accents, crisp white type
     animation: float-up linear infinite;
   }
 }
+
+/* ── Deliverability card — print-friendly ── */
+.print-only { display: none; }
+
+@media print {
+  /* When PRINT/SAVE is triggered, hide everything except the deliverability card */
+  body.printing-deliverability * { visibility: hidden !important; }
+  body.printing-deliverability #deliverability-card,
+  body.printing-deliverability #deliverability-card * { visibility: visible !important; }
+  body.printing-deliverability #deliverability-card {
+    position: absolute !important;
+    left: 0; top: 0;
+    width: 100%;
+    padding: 32px 40px !important;
+    margin: 0 !important;
+    background: #fff !important;
+    color: #1f2533 !important;
+    border: none !important;
+  }
+  body.printing-deliverability .no-print { display: none !important; }
+  body.printing-deliverability .print-only { display: block !important; }
+  /* Avoid awkward step splits */
+  body.printing-deliverability #deliverability-card li { break-inside: avoid; }
+  /* Force solid colors so checklist is legible on paper */
+  body.printing-deliverability #deliverability-card * {
+    color: #1f2533 !important;
+    background: transparent !important;
+    border-color: rgba(31, 37, 51, 0.25) !important;
+  }
+  @page { margin: 12mm; }
+}
