@@ -222,3 +222,55 @@ export const buildCreatorGearDynamicGraph = () => {
     ],
   });
 };
+
+// ── Template 5: Blog index page (/blog) ──────────────────────────────────
+// Emits a `Blog` node alongside the standard ORG + WebPage + Breadcrumb graph.
+// `includeWebSite` is intentionally NOT set on the Blog index in Blog.tsx.
+export const buildBlogIndexGraph = () =>
+  composeBlogPostGraph({
+    path: "/blog",
+    title: "Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech",
+    description:
+      "Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly.",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Blog", path: "/blog" },
+    ],
+    extraGraph: [
+      {
+        "@type": "Blog",
+        "@id": `${SITE}/blog#blog`,
+        name: "Modern Tech Blog",
+        url: `${SITE}/blog`,
+        publisher: { "@id": `${SITE}/#organization` },
+      },
+    ],
+  });
+
+// ── Template 6 + 7: Free guide landing pages (Article schema, no @graph) ─
+// SmartRingGuide.tsx and AmazonAssociateGuide.tsx emit a single `Article`
+// node directly via <script>, NOT through StructuredData. Snapshot the raw
+// payload so any drift in the lead-magnet SEO surface is caught.
+export const buildSmartRingFreeGuideArticle = () => ({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Free Smart Ring Buyer's Guide 2026",
+  description:
+    "Compare Oura Ring 4, sizing tips, sleep tracking explained & a 30-day biohacking challenge.",
+  image: `${SITE}/images/products/smart-ring-guide-cover.jpg`,
+  author: { "@type": "Organization", name: "Modern Tech LLC" },
+  publisher: { "@type": "Organization", name: "Modern Tech LLC", url: SITE },
+  mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/free-smart-ring-guide` },
+});
+
+export const buildAmazonAssociateFreeGuideArticle = () => ({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Free Amazon Associate Quick-Start Guide 2026",
+  description:
+    "Launch your Amazon affiliate journey — from signup to your first commission in 5 pages.",
+  image: `${SITE}/images/products/amazon-associate-guide-cover.jpg`,
+  author: { "@type": "Organization", name: "Modern Tech LLC" },
+  publisher: { "@type": "Organization", name: "Modern Tech LLC", url: SITE },
+  mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/amazon-associate-guide` },
+});
