@@ -58,7 +58,7 @@ serve(async (req) => {
     if (product.is_free) {
       const { data: signedUrl, error: storageError } = await supabaseAdmin.storage
         .from("digital-products")
-        .createSignedUrl(product.pdf_path, 3600);
+        .createSignedUrl(product.pdf_path, 86400);
 
       if (storageError || !signedUrl?.signedUrl) {
         console.error("Storage error:", storageError);
@@ -120,7 +120,7 @@ serve(async (req) => {
 
     const { data: signedUrl, error: storageError } = await supabaseAdmin.storage
       .from("digital-products")
-      .createSignedUrl(product.pdf_path, 3600);
+      .createSignedUrl(product.pdf_path, 86400);
 
     if (storageError || !signedUrl?.signedUrl) {
       console.error("Storage error:", storageError);
