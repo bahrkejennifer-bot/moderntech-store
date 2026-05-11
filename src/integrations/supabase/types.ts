@@ -570,21 +570,18 @@ export type Database = {
           id: string | null
           product_id: string | null
           purchased_at: string | null
-          stripe_session_id: string | null
           user_id: string | null
         }
         Insert: {
           id?: string | null
           product_id?: string | null
           purchased_at?: string | null
-          stripe_session_id?: string | null
           user_id?: string | null
         }
         Update: {
           id?: string | null
           product_id?: string | null
           purchased_at?: string | null
-          stripe_session_id?: string | null
           user_id?: string | null
         }
         Relationships: [
