@@ -386,6 +386,45 @@ export type Database = {
         }
         Relationships: []
       }
+      products_public: {
+        Row: {
+          created_at: string
+          description: string | null
+          display_order: number | null
+          id: string
+          is_free: boolean | null
+          pdf_path: string | null
+          price: number | null
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          id: string
+          is_free?: boolean | null
+          pdf_path?: string | null
+          price?: number | null
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          is_free?: boolean | null
+          pdf_path?: string | null
+          price?: number | null
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       purchases: {
         Row: {
           customer_email: string
@@ -417,13 +456,6 @@ export type Database = {
             columns: ["product_id"]
             isOneToOne: false
             referencedRelation: "digital_products"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "purchases_product_id_fkey"
-            columns: ["product_id"]
-            isOneToOne: false
-            referencedRelation: "products_public"
             referencedColumns: ["id"]
           },
         ]
@@ -570,21 +602,18 @@ export type Database = {
           id: string | null
           product_id: string | null
           purchased_at: string | null
-          stripe_session_id: string | null
           user_id: string | null
         }
         Insert: {
           id?: string | null
           product_id?: string | null
           purchased_at?: string | null
-          stripe_session_id?: string | null
           user_id?: string | null
         }
         Update: {
           id?: string | null
           product_id?: string | null
           purchased_at?: string | null
-          stripe_session_id?: string | null
           user_id?: string | null
         }
         Relationships: [
@@ -595,53 +624,7 @@ export type Database = {
             referencedRelation: "digital_products"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "purchases_product_id_fkey"
-            columns: ["product_id"]
-            isOneToOne: false
-            referencedRelation: "products_public"
-            referencedColumns: ["id"]
-          },
         ]
-      }
-      products_public: {
-        Row: {
-          created_at: string | null
-          description: string | null
-          display_order: number | null
-          id: string | null
-          is_free: boolean | null
-          pdf_path: string | null
-          price: number | null
-          slug: string | null
-          title: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          description?: string | null
-          display_order?: number | null
-          id?: string | null
-          is_free?: boolean | null
-          pdf_path?: never
-          price?: number | null
-          slug?: string | null
-          title?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          description?: string | null
-          display_order?: number | null
-          id?: string | null
-          is_free?: boolean | null
-          pdf_path?: never
-          price?: number | null
-          slug?: string | null
-          title?: string | null
-          updated_at?: string | null
-        }
-        Relationships: []
       }
     }
     Functions: {

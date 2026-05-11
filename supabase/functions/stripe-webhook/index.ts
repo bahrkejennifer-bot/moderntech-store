@@ -119,30 +119,35 @@ serve(async (req) => {
       if (customerEmail) {
         const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-        // Record the purchase
+        // Record the purchase. Bundle purchases grant access to all three included products.
         if (productSlug) {
           try {
-            const { data: product } = await supabase
+            const productSlugs = productSlug === "creator-bundle" ? BUNDLE_SLUGS : [productSlug];
+            const { data: products, error: productsError } = await supabase
               .from("digital_products")
               .select("id")
-              .eq("slug", productSlug)
-              .single();
+              .in("slug", productSlugs);
 
-            if (product) {
+            if (productsError) throw productsError;
+
+            if (products?.length) {
               const { data: authUser } = await supabase.auth.admin.listUsers();
               const matchingUser = authUser?.users?.find((u: { email?: string }) => u.email === customerEmail);
               const userId = matchingUser?.id || "00000000-0000-0000-0000-000000000000";
 
-              await supabase.from("purchases").upsert(
-                {
+              const purchaseRows = products.map((product) => ({
                   user_id: userId,
                   product_id: product.id,
                   customer_email: customerEmail,
                   stripe_session_id: session.id,
-                },
-                { onConflict: "stripe_session_id", ignoreDuplicates: true }
-              );
-              console.log("Purchase recorded for:", customerEmail);
+              }));
+
+              const { error: purchaseError } = await supabase
+                .from("purchases")
+                .upsert(purchaseRows, { onConflict: "stripe_session_id,product_id", ignoreDuplicates: true });
+
+              if (purchaseError) throw purchaseError;
+              console.log("Purchase recorded for:", customerEmail, "Products:", productSlugs.join(", "));
             }
           } catch (e) {
             console.error("Error recording purchase:", e);

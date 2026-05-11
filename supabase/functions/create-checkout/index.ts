@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@14.21.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -24,15 +25,58 @@ serve(async (req) => {
 
     const { priceId, productName, productSlug, amount, successUrl, cancelUrl } = await req.json();
 
+    if (!priceId && !productSlug) {
+      return new Response(JSON.stringify({ error: "Product is required" }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+
     const siteUrl = "https://moderntech.store";
-    console.log("Creating checkout session for:", { productName, productSlug, amount, priceId });
+    let verifiedName = productName || "Digital Product";
+    let verifiedAmount = typeof amount === "number" ? amount : 999;
+
+    if (!priceId && productSlug) {
+      const supabaseUrl = Deno.env.get("SUPABASE_URL");
+      const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+      if (!supabaseUrl || !supabaseServiceKey) {
+        throw new Error("Checkout database configuration is missing");
+      }
+
+      const supabase = createClient(supabaseUrl, supabaseServiceKey);
+      const { data: product, error: productError } = await supabase
+        .from("products_public")
+        .select("title, price, is_free")
+        .eq("slug", productSlug)
+        .maybeSingle();
+
+      if (productError) throw productError;
+      if (!product || product.is_free) {
+        return new Response(JSON.stringify({ error: "Product is not available for checkout" }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 404,
+        });
+      }
+
+      verifiedName = product.title;
+      verifiedAmount = Math.round(Number(product.price || 0) * 100);
+    }
+
+    if (!Number.isFinite(verifiedAmount) || verifiedAmount < 50) {
+      return new Response(JSON.stringify({ error: "Invalid product price" }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
+
+    console.log("Creating checkout session for:", { productName: verifiedName, productSlug, amount: verifiedAmount, priceId });
 
     let sessionConfig: Stripe.Checkout.SessionCreateParams = {
       mode: "payment",
       success_url: successUrl || `${siteUrl}/digital-products?success=true&product=${productSlug || ""}`,
       cancel_url: cancelUrl || `${siteUrl}/digital-products?canceled=true`,
       metadata: {
-        productName: productName || "Digital Product",
+        productName: verifiedName,
         productSlug: productSlug || "",
       },
     };
@@ -52,9 +96,9 @@ serve(async (req) => {
           price_data: {
             currency: "usd",
             product_data: {
-              name: productName || "Digital Product",
+              name: verifiedName,
             },
-            unit_amount: amount || 999, // Default to $9.99
+            unit_amount: verifiedAmount,
           },
           quantity: 1,
         },
