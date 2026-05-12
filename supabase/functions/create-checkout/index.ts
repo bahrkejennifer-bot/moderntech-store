@@ -119,6 +119,27 @@ serve(async (req) => {
   } catch (error: unknown) {
     console.error("Error creating checkout session:", error);
     const errorMessage = error instanceof Error ? error.message : "An error occurred";
+
+    // Log failure to checkout_errors for debugging
+    try {
+      const supabaseUrl = Deno.env.get("SUPABASE_URL");
+      const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+      if (supabaseUrl && supabaseServiceKey) {
+        let body: Record<string, unknown> = {};
+        try { body = await req.clone().json(); } catch { /* body already consumed */ }
+        const supabase = createClient(supabaseUrl, supabaseServiceKey);
+        await supabase.from("checkout_errors").insert({
+          stage: "create_checkout",
+          product_slug: typeof body.productSlug === "string" ? body.productSlug : null,
+          amount_cents: typeof body.amount === "number" ? body.amount : null,
+          error_message: errorMessage,
+          metadata: { input: body },
+        });
+      }
+    } catch (logErr) {
+      console.error("Failed to log checkout error:", logErr);
+    }
+
     return new Response(
       JSON.stringify({ error: errorMessage }),
       {
