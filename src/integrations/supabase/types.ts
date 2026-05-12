@@ -56,6 +56,45 @@ export type Database = {
         }
         Relationships: []
       }
+      checkout_errors: {
+        Row: {
+          amount_cents: number | null
+          created_at: string
+          customer_email: string | null
+          error_code: string | null
+          error_message: string | null
+          id: string
+          metadata: Json | null
+          product_slug: string | null
+          stage: string
+          stripe_session_id: string | null
+        }
+        Insert: {
+          amount_cents?: number | null
+          created_at?: string
+          customer_email?: string | null
+          error_code?: string | null
+          error_message?: string | null
+          id?: string
+          metadata?: Json | null
+          product_slug?: string | null
+          stage: string
+          stripe_session_id?: string | null
+        }
+        Update: {
+          amount_cents?: number | null
+          created_at?: string
+          customer_email?: string | null
+          error_code?: string | null
+          error_message?: string | null
+          id?: string
+          metadata?: Json | null
+          product_slug?: string | null
+          stage?: string
+          stripe_session_id?: string | null
+        }
+        Relationships: []
+      }
       digital_products: {
         Row: {
           created_at: string

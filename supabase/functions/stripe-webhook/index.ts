@@ -108,6 +108,42 @@ serve(async (req) => {
 
     console.log("Received Stripe event:", event.type);
 
+    // Log abandoned/failed checkouts to checkout_errors for debugging
+    if (event.type === "checkout.session.expired" || event.type === "checkout.session.async_payment_failed") {
+      const session = event.data.object as Stripe.Checkout.Session;
+      try {
+        const supabase = createClient(supabaseUrl, supabaseServiceKey);
+        await supabase.from("checkout_errors").insert({
+          stage: event.type === "checkout.session.expired" ? "session_expired" : "payment_failed",
+          product_slug: session.metadata?.productSlug || null,
+          customer_email: session.customer_details?.email || null,
+          stripe_session_id: session.id,
+          amount_cents: session.amount_total ?? null,
+          error_message: event.type,
+          metadata: { payment_status: session.payment_status, status: session.status },
+        });
+      } catch (logErr) {
+        console.error("Failed to log checkout failure:", logErr);
+      }
+    }
+
+    if (event.type === "payment_intent.payment_failed") {
+      const pi = event.data.object as Stripe.PaymentIntent;
+      try {
+        const supabase = createClient(supabaseUrl, supabaseServiceKey);
+        await supabase.from("checkout_errors").insert({
+          stage: "payment_failed",
+          customer_email: pi.receipt_email || null,
+          amount_cents: pi.amount ?? null,
+          error_code: pi.last_payment_error?.code || null,
+          error_message: pi.last_payment_error?.message || "payment_intent.payment_failed",
+          metadata: { payment_intent_id: pi.id, decline_code: pi.last_payment_error?.decline_code },
+        });
+      } catch (logErr) {
+        console.error("Failed to log payment failure:", logErr);
+      }
+    }
+
     if (event.type === "checkout.session.completed") {
       const session = event.data.object as Stripe.Checkout.Session;
       const customerEmail = session.customer_details?.email;
@@ -268,6 +304,15 @@ serve(async (req) => {
     });
   } catch (error: unknown) {
     console.error("Webhook error:", error);
+    try {
+      const supabase = createClient(supabaseUrl, supabaseServiceKey);
+      await supabase.from("checkout_errors").insert({
+        stage: "webhook_error",
+        error_message: error instanceof Error ? error.message : String(error),
+      });
+    } catch (logErr) {
+      console.error("Failed to log webhook error:", logErr);
+    }
     return new Response(
       JSON.stringify({ error: "Webhook processing failed" }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
