@@ -304,6 +304,15 @@ serve(async (req) => {
     });
   } catch (error: unknown) {
     console.error("Webhook error:", error);
+    try {
+      const supabase = createClient(supabaseUrl, supabaseServiceKey);
+      await supabase.from("checkout_errors").insert({
+        stage: "webhook_error",
+        error_message: error instanceof Error ? error.message : String(error),
+      });
+    } catch (logErr) {
+      console.error("Failed to log webhook error:", logErr);
+    }
     return new Response(
       JSON.stringify({ error: "Webhook processing failed" }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
