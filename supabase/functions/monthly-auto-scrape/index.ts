@@ -8,28 +8,47 @@ const corsHeaders = {
 
 const AMAZON_CATEGORY_URLS = [
   {
-    niche: "Health & Wellness",
+    niche: "Health & Wellness Tech",
     urls: [
-      "https://www.amazon.com/Best-Sellers-Sports-Outdoors-Exercise-Fitness/zgbs/sporting-goods/3407731",
-      "https://www.amazon.com/Best-Sellers-Health-Personal-Care/zgbs/hpc",
+      "https://www.amazon.com/s?k=smart+ring+health+tracker",
+      "https://www.amazon.com/s?k=fitness+recovery+wearable",
     ],
   },
   {
-    niche: "Home & Safety",
+    niche: "Smart Home & Security",
     urls: [
-      "https://www.amazon.com/Best-Sellers-Home-Security-Surveillance/zgbs/hi/2972638011",
-      "https://www.amazon.com/gp/new-releases/hi/2972638011",
+      "https://www.amazon.com/s?k=video+doorbell+camera",
+      "https://www.amazon.com/s?k=smart+home+security+system",
     ],
   },
   {
-    niche: "Content Creator Corner",
+    niche: "Creator & Office Tech",
     urls: [
-      "https://www.amazon.com/Best-Sellers-Computers-Accessories-Streaming-Media-Players/zgbs/pc/13Icons880011",
-      "https://www.amazon.com/Best-Sellers-Musical-Instruments-Microphones/zgbs/mi/11974561",
+      "https://www.amazon.com/s?k=usb+microphone+content+creator",
+      "https://www.amazon.com/s?k=webcam+ring+light+streaming",
     ],
   },
 ];
 const AFFILIATE_TAG = "moderntechs0c-20";
+
+const BLOCKED_TITLE_PATTERNS = [
+  /example\.com/i,
+  /^example product/i,
+  /^placeholder/i,
+  /^product\s*\d+$/i,
+  /\bant\b|\binsect\b|\bgnat\b|\bfly trap\b|\bpest control\b|\bbug spray\b/i,
+  /\bbiker shorts\b|\bgarden flag\b|\bmeat thermometer\b|\bcooling towel\b|\bweighted vest\b|\bpocket hose\b/i,
+];
+
+function isValidProduct(product: { title?: string; product_url?: string; image_url?: string }): boolean {
+  const title = (product.title || "").trim();
+  if (!title || title.toLowerCase() === "untitled product") return false;
+  if (BLOCKED_TITLE_PATTERNS.some((re) => re.test(title))) return false;
+  const url = product.product_url || "";
+  const img = product.image_url || "";
+  if (url.includes("example.com") || img.includes("example.com")) return false;
+  return true;
+}
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -52,7 +71,6 @@ Deno.serve(async (req) => {
 
     const supabase = createClient(supabaseUrl, serviceRoleKey);
 
-    // Load existing titles for duplicate detection
     const existingTitles = new Set<string>();
     const { data: existing } = await supabase
       .from("scraped_products")
@@ -68,7 +86,6 @@ Deno.serve(async (req) => {
     const pinResults: any[] = [];
 
     for (const category of AMAZON_CATEGORY_URLS) {
-      // Try each URL in the category (best sellers first, then new releases)
       for (const url of category.urls) {
         try {
           console.log(`Scraping ${category.niche}: ${url}`);
@@ -104,7 +121,7 @@ Deno.serve(async (req) => {
                     },
                   },
                   prompt:
-                    "Extract the top 5 best-selling products from this Amazon page. For each product get the title, price (including currency symbol), main image URL (high-res), and the product page URL (full Amazon URL).",
+                    "Extract the top 5 best-selling REAL products actually visible on this Amazon page. For each product get the title, price (including currency symbol), main image URL (high-res), and the product page URL (full Amazon URL). If the page did not load properly or you cannot find real products, return an empty products array — never invent, guess, or use example/placeholder data.",
                 },
                 waitFor: 3000,
               }),
@@ -127,12 +144,17 @@ Deno.serve(async (req) => {
           for (const product of products) {
             const title = product.title || "Untitled Product";
 
+            if (!isValidProduct(product)) {
+              console.warn(`Rejected fabricated/off-brand product: "${title}"`);
+              allSkipped.push(title);
+              continue;
+            }
+
             if (existingTitles.has(title.toLowerCase().trim())) {
               allSkipped.push(title);
               continue;
             }
 
-            // Build affiliate link
             let affiliateLink = product.product_url || "";
             if (affiliateLink && !affiliateLink.includes("tag=")) {
               const sep = affiliateLink.includes("?") ? "&" : "?";
@@ -162,7 +184,6 @@ Deno.serve(async (req) => {
             existingTitles.add(title.toLowerCase().trim());
             allSaved.push({ ...inserted, niche: category.niche });
 
-            // Auto-pin to Pinterest
             if (accessToken && boardId && product.image_url) {
               try {
                 const pinData = {
@@ -199,7 +220,6 @@ Deno.serve(async (req) => {
                   success: pinResponse.ok,
                 });
 
-                // Small delay to avoid rate limiting
                 await new Promise((r) => setTimeout(r, 1500));
               } catch (pinErr) {
                 console.error(`Pinterest error for "${title}":`, pinErr);
@@ -213,7 +233,6 @@ Deno.serve(async (req) => {
             }
           }
 
-          // If we got products from the first URL, skip the fallback
           if (products.length > 0) break;
         } catch (scrapeErr) {
           console.error(`Error scraping ${url}:`, scrapeErr);
@@ -221,7 +240,6 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Generate AI blog post from saved products
     let blogResult = null;
     if (allSaved.length > 0) {
       try {
@@ -244,7 +262,6 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Send webhook to Make.com if configured
     const webhookUrl = Deno.env.get("MAKECOM_WEBHOOK_URL");
     if (webhookUrl && allSaved.length > 0) {
       try {
