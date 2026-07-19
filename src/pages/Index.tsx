@@ -367,10 +367,10 @@ const Index = () => {
                 to={cat.to}
                 className="group border-b border-r border-border p-10 hover:bg-card transition-colors duration-300 [&:nth-child(3n)]:border-r-0"
               >
-                <h3 className="font-serif text-2xl mb-3 group-hover:translate-x-1 transition-transform duration-300" style={{ fontStyle: "italic" }}>
+                <h3 className="font-serif text-2xl mb-3 text-foreground group-hover:translate-x-1 transition-transform duration-300" style={{ fontStyle: "italic", fontWeight: 600, color: "hsl(220 15% 14%)" }}>
                   {cat.label}
                 </h3>
-                <p className="font-mono text-[10px] text-muted-foreground tracking-wide leading-relaxed">
+                <p className="font-mono text-[10px] tracking-wide leading-relaxed" style={{ color: "hsl(220 15% 30%)" }}>
                   {cat.desc}
                 </p>
                 <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground mt-6 transition-colors">

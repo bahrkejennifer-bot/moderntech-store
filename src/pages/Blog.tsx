@@ -170,10 +170,10 @@ const Blog = () => {
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
-        <title>Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech</title>
-        <meta name="description" content="Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly." />
-        <meta property="og:title" content="Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech" />
-        <meta property="og:description" content="Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM." />
+        <title>Modern Tech: Weekly Report | Smart Home, Wellness, Office & Kids Tech</title>
+        <meta name="description" content="Modern Tech: Weekly Report — expert tech reviews and buying guides for smart home & security, health & wellness, office essentials, and kids & STEM. Updated weekly." />
+        <meta property="og:title" content="Modern Tech: Weekly Report | Smart Home, Wellness, Office & Kids Tech" />
+        <meta property="og:description" content="Modern Tech: Weekly Report — expert tech reviews and buying guides across the four pillars of everyday tech." />
         <meta property="og:image" content={springDealsHeroImg} />
         <meta property="og:url" content="https://moderntech.store/blog" />
         <meta property="og:type" content="website" />
@@ -198,16 +198,25 @@ const Blog = () => {
       />
       <Navigation />
 
+      {/* ── Hero Image ── */}
+      <div className="w-full border-b border-border">
+        <img
+          src="https://moderntech-store.lovable.app/assets/hero-workspace-essentials-Clsssvo-.jpg"
+          alt="Modern Tech: Weekly Report — workspace essentials"
+          className="w-full h-[42vh] md:h-[56vh] object-cover"
+          loading="eager"
+        />
+      </div>
+
       {/* ── Hero Section ── */}
       <header className="border-b border-border">
-        <div className="max-w-5xl mx-auto px-8 pt-28 pb-10">
-          <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">MODERN TECH:WEEKLY REPORT</p>
+        <div className="max-w-5xl mx-auto px-8 pt-16 pb-10">
+          <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">MODERN TECH: WEEKLY REPORT</p>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl italic tracking-tight leading-[1.08] max-w-3xl" style={{ fontWeight: 700, color: '#000000' }}>
-            Smart Home & Security · Health &<br />
-            Wellness · Office · Kids & STEM
+            Modern Tech: Weekly Report
           </h1>
           <p className="mt-6 font-mono text-xs text-muted-foreground max-w-lg leading-relaxed">
-            Expert-tested tech recommendations to help you spend smarter and live better.
+            Expert-tested tech recommendations across Smart Home, Health & Wellness, Office, and Kids & STEM — to help you spend smarter and live better.
           </p>
         </div>
 

@@ -5,9 +5,8 @@ import { useState } from "react";
 const menuItems = [
   { to: "/", label: "Home" },
   { to: "#", label: "Shop", hasSubmenu: true },
-  { to: "/the-art-of-modern-tech", label: "The Art of Modern Tech" },
+  { to: "/the-signal", label: "The Art of Modern Tech" },
   { to: "/blog", label: "Modern Tech: Weekly Report" },
-  { to: "/the-signal", label: "The Art of Modern Tech Podcast" },
   { to: "/digital-products", label: "Downloads" },
   { to: "/free-guide", label: "Free Guide" },
   { to: "/contact", label: "Contact" },
@@ -82,8 +81,8 @@ const OffCanvasMenu = ({ open, onClose }: OffCanvasMenuProps) => {
                           key={cat.to}
                           to={cat.to}
                           onClick={onClose}
-                          className="font-mono text-[10px] tracking-[0.15em] uppercase transition-opacity hover:opacity-50"
-                          style={{ color: "hsl(220 15% 14% / 0.55)" }}
+                          className="font-mono text-[11px] font-semibold tracking-[0.15em] uppercase transition-opacity hover:opacity-70"
+                          style={{ color: "hsl(220 15% 14%)" }}
                         >
                           {cat.label}
                         </Link>
