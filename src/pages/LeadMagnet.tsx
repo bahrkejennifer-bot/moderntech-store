@@ -33,7 +33,7 @@ const LeadMagnet = () => {
       const opt = {
         margin: [0.5, 0.6, 0.5, 0.6] as [number, number, number, number],
         filename: "90-Day-Amazon-Associate-Roadmap-ModernTech.pdf",
-        image: { type: "jpeg", quality: 0.95 },
+        image: { type: "jpeg" as const, quality: 0.95 },
         html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
         pagebreak: { mode: ["css", "legacy"], before: ".pdf-page-break" },
