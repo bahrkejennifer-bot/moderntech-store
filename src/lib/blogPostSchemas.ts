@@ -141,20 +141,20 @@ const SCHEMA_MAP: Record<string, () => SchemaNode[]> = {
           {
             "@type": "HowToTool",
             name: "Blue Yeti USB Podcast Microphone",
-            url: "https://www.amazon.com/dp/B00N1YPXW2?tag=moderntechs0c-20",
+            url: "https://www.amazon.com/dp/B00N1YPXW2?tag=moderntechs04-20",
             // Cross-reference: same item exists as a Product node in the @graph
             item: { "@id": `${url}#product-blue-yeti-usb` },
           },
           {
             "@type": "HowToTool",
             name: "Sony WH-1000XM5 Noise-Cancelling Headphones",
-            url: "https://www.amazon.com/dp/B09XS7JWHH?tag=moderntechs0c-20",
+            url: "https://www.amazon.com/dp/B09XS7JWHH?tag=moderntechs04-20",
             item: { "@id": `${url}#product-sony-wh-1000xm5` },
           },
           {
             "@type": "HowToTool",
             name: "Neewer 18-inch Ring Light Kit",
-            url: "https://www.amazon.com/dp/B0D451DGK8?tag=moderntechs0c-20",
+            url: "https://www.amazon.com/dp/B0D451DGK8?tag=moderntechs04-20",
             item: { "@id": `${url}#product-neewer-18-ring-light` },
           },
         ],

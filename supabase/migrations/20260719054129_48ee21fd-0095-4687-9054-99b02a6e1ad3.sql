@@ -1,0 +1,3 @@
+UPDATE scraped_products SET affiliate_link = replace(affiliate_link, 'moderntechs0c-20', 'moderntechs04-20') WHERE affiliate_link LIKE '%moderntechs0c-20%';
+UPDATE blog_posts SET products = replace(products::text, 'moderntechs0c-20', 'moderntechs04-20')::jsonb WHERE products::text LIKE '%moderntechs0c-20%';
+UPDATE blog_posts SET content_html = replace(content_html, 'moderntechs0c-20', 'moderntechs04-20') WHERE content_html LIKE '%moderntechs0c-20%';
