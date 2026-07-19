@@ -20,6 +20,7 @@ import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
 import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
 import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
 import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
+import weeklyReportBeachHeroImg from "@/assets/heroes/weekly-report-beach-hero.jpg.asset.json";
 
 const staticBlogPosts = [
   {
@@ -201,8 +202,8 @@ const Blog = () => {
       {/* ── Hero Image ── */}
       <div className="w-full border-b border-border">
         <img
-          src="https://moderntech-store.lovable.app/assets/hero-workspace-essentials-Clsssvo-.jpg"
-          alt="Modern Tech: Weekly Report — workspace essentials"
+          src={weeklyReportBeachHeroImg.url}
+          alt="Welcome to the weekly Modern Tech Report — working from the beach"
           className="w-full h-[42vh] md:h-[56vh] object-cover"
           loading="eager"
         />
