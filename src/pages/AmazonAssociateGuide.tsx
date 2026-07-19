@@ -55,7 +55,7 @@ const AmazonAssociateGuide = () => {
         filename: "Amazon-Associate-Quick-Start-Guide-ModernTech.pdf",
         image: { type: "jpeg" as const, quality: 0.95 },
         html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" as const },
         pagebreak: { mode: ["css", "legacy"], before: ".pdf-page-break" },
       };
       await html2pdf().set(opt).from(contentRef.current).save();
