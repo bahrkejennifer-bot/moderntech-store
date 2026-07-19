@@ -84,7 +84,7 @@ const TermsOfService = () => {
             <p className="text-muted-foreground mb-4">
               Modern Tech LLC is a participant in the Amazon Services LLC Associates Program, an affiliate advertising
               program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.
-              Our Amazon Associates tag is <code className="px-1.5 py-0.5 rounded bg-muted text-foreground text-sm">moderntechs0c-20</code>.
+              Our Amazon Associates tag is <code className="px-1.5 py-0.5 rounded bg-muted text-foreground text-sm">moderntechs04-20</code>.
             </p>
             <p className="text-muted-foreground mb-4">
               We may also participate in other affiliate programs and earn commissions when you click certain links and
