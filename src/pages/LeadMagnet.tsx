@@ -31,7 +31,7 @@ const LeadMagnet = () => {
     try {
       const html2pdf = (await import("html2pdf.js")).default;
       const opt = {
-        margin: [0.5, 0.6, 0.5, 0.6],
+        margin: [0.5, 0.6, 0.5, 0.6] as [number, number, number, number],
         filename: "90-Day-Amazon-Associate-Roadmap-ModernTech.pdf",
         image: { type: "jpeg", quality: 0.95 },
         html2canvas: { scale: 2, useCORS: true },

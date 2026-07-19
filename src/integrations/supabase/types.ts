@@ -432,7 +432,6 @@ export type Database = {
           display_order: number | null
           id: string
           is_free: boolean | null
-          pdf_path: string | null
           price: number | null
           slug: string
           title: string
@@ -444,7 +443,6 @@ export type Database = {
           display_order?: number | null
           id: string
           is_free?: boolean | null
-          pdf_path?: string | null
           price?: number | null
           slug: string
           title: string
@@ -456,7 +454,6 @@ export type Database = {
           display_order?: number | null
           id?: string
           is_free?: boolean | null
-          pdf_path?: string | null
           price?: number | null
           slug?: string
           title?: string
