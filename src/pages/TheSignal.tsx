@@ -6,6 +6,8 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import { toast } from "sonner";
 import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 import { socialLinks } from "@/config/socialLinks";
+import signalHeroBanner from "@/assets/signal-hero-banner.jpg.asset.json";
+import afterDarkHero from "@/assets/after-dark-series.png.asset.json";
 
 const TheSignal = () => {
   const [name, setName] = useState("");
@@ -63,8 +65,18 @@ const TheSignal = () => {
       </Helmet>
       <Navigation />
 
+      {/* Hero Banner */}
+      <div className="w-full pt-24">
+        <img
+          src={signalHeroBanner.url}
+          alt="The Art of Modern Tech podcast and After Dark Sleep Series"
+          className="w-full h-auto block"
+          loading="eager"
+        />
+      </div>
+
       {/* Hero */}
-      <section className="max-w-[800px] mx-auto px-8 pt-32 pb-16 text-center">
+      <section className="max-w-[800px] mx-auto px-8 pt-16 pb-16 text-center">
         <div className="mb-8">
           <Radio className="w-6 h-6 mx-auto mb-6" style={{ color: "hsl(0 70% 45%)" }} />
           <p className="font-mono text-[9px] tracking-[0.4em] uppercase mb-2" style={{ color: "hsl(30 25% 95% / 0.3)" }}>
@@ -127,7 +139,15 @@ const TheSignal = () => {
       <div className="max-w-[200px] mx-auto h-px" style={{ backgroundColor: "hsl(0 70% 45% / 0.3)" }} />
 
       {/* Deep Sleep */}
-      <section className="max-w-[700px] mx-auto px-8 py-16">
+      <section className="max-w-[900px] mx-auto px-8 py-16">
+        <div className="mb-8 overflow-hidden" style={{ border: "0.5px solid hsl(30 25% 95% / 0.08)" }}>
+          <img
+            src={afterDarkHero.url}
+            alt="Modern Tech After Dark — Sleep Series"
+            className="w-full h-auto block"
+            loading="lazy"
+          />
+        </div>
         <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(30 25% 95% / 0.25)" }}>
           DEEP SLEEP VIDEOS
         </p>
