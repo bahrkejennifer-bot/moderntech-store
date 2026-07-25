@@ -316,23 +316,9 @@ const Blog = () => {
           </section>
         )}
 
-        {/* ── Newsletter CTA ── */}
-        {!isFiltering && (
-          <section className="mb-20 border border-border bg-card">
-            <div className="relative py-20 px-8 text-center">
-              <div className="relative z-10">
-                <p className="font-mono text-[9px] tracking-[0.4em] uppercase text-muted-foreground mb-6">Free Resource</p>
-                <h3 className="font-serif text-3xl md:text-4xl mb-4" style={{ fontStyle: "italic", fontWeight: 400 }}>90-Day Amazon Associate Roadmap</h3>
-                <p className="font-mono text-[11px] text-muted-foreground mb-10 max-w-md mx-auto leading-[1.8]">
-                  Go from zero to your first affiliate commission — step-by-step checklist included.
-                </p>
-                <Button asChild className="px-10 h-12 bg-foreground text-background hover:bg-foreground/90 font-mono text-[10px] tracking-[0.2em] uppercase rounded-none">
-                  <Link to="/free-roadmap">Download Free Roadmap <ArrowRight className="ml-2 h-3.5 w-3.5" /></Link>
-                </Button>
-              </div>
-            </div>
-          </section>
-        )}
+        {/* ── Newsletter CTA: The Modern Tech Edit ── */}
+        {!isFiltering && <ModernTechEditSignup />}
+
 
         {/* ── All Articles Grid ── */}
         <section>
