@@ -58,6 +58,7 @@ import CanvaMasterclass from "./pages/CanvaMasterclass";
 import FacelessYoutube from "./pages/FacelessYoutube";
 import CreatorBundle from "./pages/CreatorBundle";
 import FacelessCreatorBundle from "./pages/FacelessCreatorBundle";
+import TechOfTheMonth from "./pages/TechOfTheMonth";
 import ProductRedirect from "./pages/ProductRedirect";
 import AdminLayout from "./components/AdminLayout";
 import AdminAccessButton from "./components/AdminAccessButton";
