@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Radio, ArrowRight, Headphones, Eye } from "lucide-react";
+import { Radio, ArrowRight, Headphones, Moon, Youtube, Music, Podcast } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { toast } from "sonner";
 import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
+import { socialLinks } from "@/config/socialLinks";
 
 const TheSignal = () => {
   const [name, setName] = useState("");
@@ -33,23 +34,37 @@ const TheSignal = () => {
     }
   };
 
+  const platformLinks = [
+    {
+      name: "YouTube",
+      icon: Youtube,
+      description: "Watch every episode live and on demand.",
+      href: socialLinks.youtube,
+    },
+    {
+      name: "Apple Podcasts",
+      icon: Podcast,
+      description: "Subscribe and listen on the go.",
+      href: "#",
+    },
+    {
+      name: "Spotify",
+      icon: Music,
+      description: "Stream the full catalog in your feed.",
+      href: "#",
+    },
+  ];
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: "hsl(30 8% 8%)", color: "hsl(30 25% 95%)" }}>
       <Helmet>
-        <title>The Signal — Where Mystery Meets Reality</title>
-        <meta name="description" content="Hosted by Jennifer & Anita. Unexplained phenomena. Hidden truths. Real conversations. Every Wednesday night." />
+        <title>The Signal — The Art of Modern Tech Weekly Podcast</title>
+        <meta name="description" content="Follow The Art of Modern Tech weekly podcast every Monday night at 8 PM on YouTube, Apple Podcasts, and Spotify. Deep sleep videos every Tuesday and Saturday night." />
       </Helmet>
       <Navigation />
 
       {/* Hero */}
-      {/* Coming Soon Banner */}
-      <div className="text-center pt-20 pb-4">
-        <span className="inline-block font-mono text-[11px] tracking-[0.3em] uppercase px-6 py-2 rounded-full" style={{ backgroundColor: "hsl(0 70% 45% / 0.15)", color: "hsl(0 70% 55%)", border: "1px solid hsl(0 70% 45% / 0.3)" }}>
-          Coming Soon
-        </span>
-      </div>
-
-      <section className="max-w-[800px] mx-auto px-8 pt-24 pb-16 text-center">
+      <section className="max-w-[800px] mx-auto px-8 pt-32 pb-16 text-center">
         <div className="mb-8">
           <Radio className="w-6 h-6 mx-auto mb-6" style={{ color: "hsl(0 70% 45%)" }} />
           <p className="font-mono text-[9px] tracking-[0.4em] uppercase mb-2" style={{ color: "hsl(30 25% 95% / 0.3)" }}>
@@ -61,12 +76,12 @@ const TheSignal = () => {
           THE SIGNAL
         </h1>
         <p className="font-serif text-lg md:text-xl mb-6" style={{ fontWeight: 300, fontStyle: "italic", color: "hsl(30 25% 95% / 0.5)" }}>
-          Where Mystery Meets Reality — Every Wednesday Night
+          The Art of Modern Tech — Live Every Monday Night at 8 PM
         </p>
 
         <div className="max-w-[500px] mx-auto mt-10">
           <p className="font-mono text-[11px] leading-relaxed" style={{ color: "hsl(30 25% 95% / 0.45)" }}>
-            Hosted by Jennifer & Anita, live from Washington State. Unexplained phenomena. Hidden truths. Real conversations.
+            Hosted by Jennifer & Anita, live from Washington State. Join the conversation on YouTube, Apple Podcasts, and Spotify for tech, mystery, and the stories that matter.
           </p>
         </div>
       </section>
@@ -74,25 +89,62 @@ const TheSignal = () => {
       {/* Divider */}
       <div className="max-w-[200px] mx-auto h-px" style={{ backgroundColor: "hsl(0 70% 45% / 0.3)" }} />
 
-      {/* Episode 1 */}
+      {/* Watch & Listen */}
       <section className="max-w-[700px] mx-auto px-8 py-16">
         <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(30 25% 95% / 0.25)" }}>
-          EPISODE 01
+          FOLLOW THE PODCAST
+        </p>
+        <div className="grid gap-4">
+          {platformLinks.map((platform) => (
+            <a
+              key={platform.name}
+              href={platform.href}
+              target={platform.href === "#" ? undefined : "_blank"}
+              rel={platform.href === "#" ? undefined : "noopener noreferrer"}
+              className="group flex items-start gap-5 p-6 transition-all hover:opacity-90"
+              style={{ border: "0.5px solid hsl(30 25% 95% / 0.08)", backgroundColor: "hsl(30 8% 10%)" }}
+            >
+              <div className="shrink-0 p-3 rounded-full" style={{ backgroundColor: "hsl(0 70% 45% / 0.1)" }}>
+                <platform.icon className="w-5 h-5" style={{ color: "hsl(0 70% 45% / 0.8)" }} />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center justify-between mb-1">
+                  <h3 className="font-serif text-xl tracking-tight" style={{ fontWeight: 400 }}>
+                    {platform.name}
+                  </h3>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" style={{ color: "hsl(30 25% 95% / 0.3)" }} />
+                </div>
+                <p className="font-mono text-[10px] tracking-[0.1em]" style={{ color: "hsl(30 25% 95% / 0.35)" }}>
+                  {platform.description}
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Divider */}
+      <div className="max-w-[200px] mx-auto h-px" style={{ backgroundColor: "hsl(0 70% 45% / 0.3)" }} />
+
+      {/* Deep Sleep */}
+      <section className="max-w-[700px] mx-auto px-8 py-16">
+        <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(30 25% 95% / 0.25)" }}>
+          DEEP SLEEP VIDEOS
         </p>
         <div className="p-8" style={{ border: "0.5px solid hsl(30 25% 95% / 0.08)", backgroundColor: "hsl(30 8% 10%)" }}>
           <div className="flex items-start gap-4 mb-4">
-            <Eye className="w-5 h-5 shrink-0 mt-1" style={{ color: "hsl(0 70% 45% / 0.6)" }} />
+            <Moon className="w-5 h-5 shrink-0 mt-1" style={{ color: "hsl(0 70% 45% / 0.6)" }} />
             <div>
               <h3 className="font-serif text-xl tracking-tight mb-2" style={{ fontWeight: 400 }}>
-                ARE WE ALONE? The Evidence for Alien Life in 2026
+                For Restless Minds
               </h3>
               <p className="font-mono text-[10px] tracking-[0.1em]" style={{ color: "hsl(30 25% 95% / 0.35)" }}>
-                Season 1 · Coming Soon
+                New videos every Tuesday & Saturday night
               </p>
             </div>
           </div>
           <p className="font-serif text-sm leading-relaxed" style={{ color: "hsl(30 25% 95% / 0.5)", fontWeight: 300 }}>
-            From Pentagon UAP reports to deep-ocean anomalies — Jennifer & Anita examine the evidence that 2026 might be the year everything changes.
+            Wind down with calm, immersive sleep content designed to help you drift off. Twice a week — Tuesday and Saturday nights — we release gentle deep-sleep videos made for restless minds who need a little help unplugging.
           </p>
         </div>
       </section>
@@ -101,10 +153,10 @@ const TheSignal = () => {
       <section className="max-w-[500px] mx-auto px-8 py-16 text-center">
         <Headphones className="w-6 h-6 mx-auto mb-4" style={{ color: "hsl(0 70% 45% / 0.5)" }} />
         <h2 className="font-serif text-3xl tracking-tight mb-2" style={{ fontWeight: 400 }}>
-          Join the Investigation
+          Join the Signal
         </h2>
         <p className="font-mono text-[10px] tracking-[0.15em] mb-8" style={{ color: "hsl(30 25% 95% / 0.35)" }}>
-          Get notified when new episodes drop. No spam. Just signals.
+          Get episode reminders and deep sleep drops. No spam. Just signals.
         </p>
         <form onSubmit={handleSubmit} className="space-y-3">
           <input
