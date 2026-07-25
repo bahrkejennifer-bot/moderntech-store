@@ -22,6 +22,7 @@ import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
 import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
 import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
 import weeklyReportBeachHeroImg from "@/assets/heroes/weekly-report-beach-hero-v2.jpg.asset.json";
+import techOfTheMonthImg from "@/assets/heroes/tech-of-the-month-june-2026.jpg.asset.json";
 
 const staticBlogPosts = [
   {
@@ -261,6 +262,40 @@ const Blog = () => {
       </header>
 
       <div className="max-w-5xl mx-auto px-8 py-16 lg:py-20">
+        {/* ── Tech of the Month ── */}
+        <section className="mb-20">
+          <div className="flex items-center gap-6 mb-8">
+            <h2 className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground whitespace-nowrap">
+              Tech of the Month · June 2026
+            </h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 border border-border overflow-hidden">
+            <div className="lg:col-span-3 aspect-[16/10] lg:aspect-auto overflow-hidden">
+              <img
+                src={techOfTheMonthImg.url}
+                alt="June 2026 Tech of the Month — titanium smart ring, wireless earbuds, and marble workspace flat lay"
+                className="w-full h-full object-cover"
+                loading="lazy"
+                width={1600}
+                height={1008}
+              />
+            </div>
+            <div className="lg:col-span-2 p-10 lg:p-12 flex flex-col justify-center bg-[#F5F1EC]">
+              <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-4">
+                The Edit · June 2026
+              </p>
+              <h3 className="font-serif text-2xl lg:text-3xl italic leading-tight tracking-tight mb-4" style={{ fontWeight: 700, color: '#000000' }}>
+                Quiet Luxury, Loud Tech.
+              </h3>
+              <p className="font-mono text-xs text-muted-foreground leading-relaxed">
+                This month's obsession: the titanium smart ring, cinema-grade earbuds, and the marble-topped desk setup keeping the studio calm and the output sharp.
+              </p>
+            </div>
+          </div>
+        </section>
+
+
         {/* ── Featured Post (large hero card) ── */}
         {featuredPost && (
           <Link to={`/weekly-edit/${featuredPost.slug}`} className="group block mb-20">
