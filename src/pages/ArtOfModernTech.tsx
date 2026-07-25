@@ -108,7 +108,7 @@ const ArtOfModernTech = () => {
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="The Art of Modern Tech — Weekly Review RSS"
+          title="The Art of Modern Tech — Weekly Edit RSS"
           href={`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID}.supabase.co/functions/v1/blog-rss-feed`}
         />
       </Helmet>
@@ -131,7 +131,7 @@ const ArtOfModernTech = () => {
               to="/weekly-edit"
               className="inline-flex items-center gap-2 bg-foreground text-background px-7 py-3 font-mono text-[10px] tracking-[0.25em] uppercase hover:bg-foreground/85 transition-colors"
             >
-              <BookOpen className="h-4 w-4" /> Read the Weekly Review
+              <BookOpen className="h-4 w-4" /> Read the Weekly Edit
             </Link>
             <Link
               to="/weekly-edit"
@@ -143,13 +143,13 @@ const ArtOfModernTech = () => {
         </div>
       </section>
 
-      {/* LATEST WEEKLY REVIEWS */}
+      {/* LATEST WEEKLY EDIT */}
       <section className="max-w-5xl mx-auto px-8 py-16 border-t border-border">
         <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
           <div>
             <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">Fresh off the press</p>
             <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>
-              Latest Weekly Reviews
+              Latest Weekly Edit
             </h2>
           </div>
           <div className="flex items-center gap-5">
@@ -158,7 +158,7 @@ const ArtOfModernTech = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
-              title="Subscribe to the Weekly Review RSS feed"
+              title="Subscribe to the Weekly Edit RSS feed"
             >
               <Rss className="h-3.5 w-3.5" /> RSS
             </a>
