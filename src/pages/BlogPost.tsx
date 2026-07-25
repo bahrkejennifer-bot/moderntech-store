@@ -616,7 +616,7 @@ const BlogPost = () => {
           <meta property="og:title" content={ogTitle} />
           <meta property="og:description" content={ogDesc} />
           <meta property="og:image" content={ogImage} />
-          <meta property="og:url" content={`https://moderntech.store/blog/${slug}`} />
+          <meta property="og:url" content={`https://moderntech.store/weekly-edit/${slug}`} />
           <meta property="og:type" content="article" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={ogTitle} />
@@ -624,22 +624,22 @@ const BlogPost = () => {
           <meta name="twitter:image" content={ogImage} />
           <meta property="pin:media" content={ogImage} />
           <meta property="pin:description" content={ogDesc} />
-          <link rel="canonical" href={`https://moderntech.store/blog/${slug}`} />
+          <link rel="canonical" href={`https://moderntech.store/weekly-edit/${slug}`} />
         </Helmet>
         <StructuredData
           title={ogTitle}
           description={ogDesc}
-          path={`/blog/${slug}`}
+          path={`/weekly-edit/${slug}`}
           includeWebSite
           breadcrumbs={[
             { name: "Home", path: "/" },
-            { name: "Blog", path: "/blog" },
-            { name: dynamicPost.title, path: `/blog/${slug}` },
+            { name: "Modern Tech: Weekly Edit", path: "/weekly-edit" },
+            { name: dynamicPost.title, path: `/weekly-edit/${slug}` },
           ]}
           extraGraph={[
             {
               "@type": "BlogPosting",
-              "@id": `https://moderntech.store/blog/${slug}#blogposting`,
+              "@id": `https://moderntech.store/weekly-edit/${slug}#blogposting`,
               headline: ogTitle,
               description: ogDesc,
               image: [ogImage],
@@ -658,9 +658,9 @@ const BlogPost = () => {
               publisher: { "@id": "https://moderntech.store/#organization" },
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": `https://moderntech.store/blog/${slug}#webpage`,
+                "@id": `https://moderntech.store/weekly-edit/${slug}#webpage`,
               },
-              url: `https://moderntech.store/blog/${slug}`,
+              url: `https://moderntech.store/weekly-edit/${slug}`,
               // Explicit @graph cross-references to each Product node below
               ...(buildBlogProductCrossRefs(slug || "", dynamicPost.products as any) || {}),
             },
