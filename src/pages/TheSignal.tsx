@@ -65,8 +65,18 @@ const TheSignal = () => {
       </Helmet>
       <Navigation />
 
+      {/* Hero Banner */}
+      <div className="w-full pt-24">
+        <img
+          src={signalHeroBanner.url}
+          alt="The Art of Modern Tech podcast and After Dark Sleep Series"
+          className="w-full h-auto block"
+          loading="eager"
+        />
+      </div>
+
       {/* Hero */}
-      <section className="max-w-[800px] mx-auto px-8 pt-32 pb-16 text-center">
+      <section className="max-w-[800px] mx-auto px-8 pt-16 pb-16 text-center">
         <div className="mb-8">
           <Radio className="w-6 h-6 mx-auto mb-6" style={{ color: "hsl(0 70% 45%)" }} />
           <p className="font-mono text-[9px] tracking-[0.4em] uppercase mb-2" style={{ color: "hsl(30 25% 95% / 0.3)" }}>
