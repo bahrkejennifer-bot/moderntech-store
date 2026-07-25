@@ -321,7 +321,7 @@ const ArtOfModernTech = () => {
         <div className="flex items-center justify-between mb-10">
           <div>
             <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">From the Blog</p>
-            <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>Modern Tech: The Weekly Report</h2>
+            <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>Modern Tech: The Weekly Edit</h2>
           </div>
           <Link to="/blog" className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
             <BookOpen className="h-4 w-4" /> Read All
