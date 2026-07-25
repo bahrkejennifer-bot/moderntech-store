@@ -151,7 +151,7 @@ const TheSignal = () => {
           <div className="flex items-start gap-4 mb-4">
             <Moon className="w-5 h-5 shrink-0 mt-1" style={{ color: "hsl(var(--destructive) / 0.6)" }} />
             <div>
-              <h3 className="font-serif text-xl tracking-tight mb-2" style={{ fontWeight: 400 }}>
+              <h3 className="font-serif text-xl tracking-tight mb-2" style={{ fontWeight: 400, color: "hsl(var(--primary-foreground))" }}>
                 For Restless Minds
               </h3>
               <p className="font-mono text-[10px] tracking-[0.1em]" style={{ color: "hsl(var(--primary-foreground) / 0.45)" }}>
