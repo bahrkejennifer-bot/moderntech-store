@@ -6,6 +6,7 @@ import { Calendar, ArrowRight, Sparkles, Clock, Search, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
+import ModernTechEditSignup from "@/components/ModernTechEditSignup";
 import JsonLdValidator from "@/components/JsonLdValidator";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
