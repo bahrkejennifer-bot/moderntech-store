@@ -47,6 +47,57 @@ const TheSignal = () => {
         />
       </div>
 
+      {/* Deep Sleep Featured Intro */}
+      <section className="w-full px-4 md:px-8 pt-12 pb-8">
+        <div className="max-w-[1100px] mx-auto">
+          <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(var(--primary-foreground) / 0.35)" }}>
+            FOR RESTLESS MINDS
+          </p>
+          <div className="w-full overflow-hidden" style={{ border: "0.5px solid hsl(var(--primary-foreground) / 0.12)" }}>
+            <video
+              src={deepSleepIntro.url}
+              controls
+              preload="metadata"
+              className="w-full h-auto block"
+            />
+          </div>
+          <div className="mt-6 text-center">
+            <h2 className="font-serif text-2xl md:text-3xl tracking-tight mb-2" style={{ fontWeight: 400, color: "hsl(var(--primary-foreground))" }}>
+              Deep Sleep Intro
+            </h2>
+            <p className="font-mono text-[10px] tracking-[0.1em]" style={{ color: "hsl(var(--primary-foreground) / 0.45)" }}>
+              Calm, immersive sleep content for restless minds
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Deep Sleep */}
+      <section className="max-w-[900px] mx-auto px-4 md:px-8 pb-16">
+        <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(var(--primary-foreground) / 0.35)" }}>
+          DEEP SLEEP VIDEOS
+        </p>
+        <div className="p-8" style={{ border: "0.5px solid hsl(var(--primary-foreground) / 0.12)", backgroundColor: "hsl(var(--primary-foreground) / 0.05)" }}>
+          <div className="flex items-start gap-4 mb-4">
+            <Moon className="w-5 h-5 shrink-0 mt-1" style={{ color: "hsl(var(--destructive) / 0.6)" }} />
+            <div>
+              <h3 className="font-serif text-xl tracking-tight mb-2" style={{ fontWeight: 400, color: "hsl(var(--primary-foreground))" }}>
+                For Restless Minds
+              </h3>
+              <p className="font-mono text-[10px] tracking-[0.1em]" style={{ color: "hsl(var(--primary-foreground) / 0.45)" }}>
+                New videos every Tuesday & Saturday night
+              </p>
+            </div>
+          </div>
+          <p className="font-serif text-sm leading-relaxed" style={{ color: "hsl(var(--primary-foreground) / 0.6)", fontWeight: 300 }}>
+            Wind down with calm, immersive sleep content designed to help you drift off. Twice a week — Tuesday and Saturday nights — we release gentle deep-sleep videos made for restless minds who need a little help unplugging.
+          </p>
+        </div>
+      </section>
+
+      {/* Divider */}
+      <div className="max-w-[200px] mx-auto h-px" style={{ backgroundColor: "hsl(var(--primary-foreground) / 0.15)" }} />
+
       {/* Featured Podcast Episode */}
       <section className="w-full px-4 md:px-8 pt-12 pb-8">
         <div className="max-w-[1100px] mx-auto">
@@ -122,57 +173,6 @@ const TheSignal = () => {
               </div>
             </a>
           ))}
-        </div>
-      </section>
-
-      {/* Divider */}
-      <div className="max-w-[200px] mx-auto h-px" style={{ backgroundColor: "hsl(var(--primary-foreground) / 0.15)" }} />
-
-      {/* Deep Sleep Featured Intro */}
-      <section className="w-full px-4 md:px-8 pt-12 pb-8">
-        <div className="max-w-[1100px] mx-auto">
-          <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(var(--primary-foreground) / 0.35)" }}>
-            FOR RESTLESS MINDS
-          </p>
-          <div className="w-full overflow-hidden" style={{ border: "0.5px solid hsl(var(--primary-foreground) / 0.12)" }}>
-            <video
-              src={deepSleepIntro.url}
-              controls
-              preload="metadata"
-              className="w-full h-auto block"
-            />
-          </div>
-          <div className="mt-6 text-center">
-            <h2 className="font-serif text-2xl md:text-3xl tracking-tight mb-2" style={{ fontWeight: 400, color: "hsl(var(--primary-foreground))" }}>
-              Deep Sleep Intro
-            </h2>
-            <p className="font-mono text-[10px] tracking-[0.1em]" style={{ color: "hsl(var(--primary-foreground) / 0.45)" }}>
-              Calm, immersive sleep content for restless minds
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Deep Sleep */}
-      <section className="max-w-[900px] mx-auto px-4 md:px-8 py-16">
-        <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(var(--primary-foreground) / 0.35)" }}>
-          DEEP SLEEP VIDEOS
-        </p>
-        <div className="p-8" style={{ border: "0.5px solid hsl(var(--primary-foreground) / 0.12)", backgroundColor: "hsl(var(--primary-foreground) / 0.05)" }}>
-          <div className="flex items-start gap-4 mb-4">
-            <Moon className="w-5 h-5 shrink-0 mt-1" style={{ color: "hsl(var(--destructive) / 0.6)" }} />
-            <div>
-              <h3 className="font-serif text-xl tracking-tight mb-2" style={{ fontWeight: 400, color: "hsl(var(--primary-foreground))" }}>
-                For Restless Minds
-              </h3>
-              <p className="font-mono text-[10px] tracking-[0.1em]" style={{ color: "hsl(var(--primary-foreground) / 0.45)" }}>
-                New videos every Tuesday & Saturday night
-              </p>
-            </div>
-          </div>
-          <p className="font-serif text-sm leading-relaxed" style={{ color: "hsl(var(--primary-foreground) / 0.6)", fontWeight: 300 }}>
-            Wind down with calm, immersive sleep content designed to help you drift off. Twice a week — Tuesday and Saturday nights — we release gentle deep-sleep videos made for restless minds who need a little help unplugging.
-          </p>
         </div>
       </section>
 
