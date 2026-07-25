@@ -263,37 +263,51 @@ const Blog = () => {
 
       <div className="max-w-5xl mx-auto px-8 py-16 lg:py-20">
         {/* ── Tech of the Month ── */}
-        <section className="mb-20">
-          <div className="flex items-center gap-6 mb-8">
-            <h2 className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground whitespace-nowrap">
-              Tech of the Month · June 2026
-            </h2>
-            <div className="h-px flex-1 bg-border" />
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 border border-border overflow-hidden">
-            <div className="lg:col-span-3 aspect-[16/10] lg:aspect-auto overflow-hidden">
-              <img
-                src={techOfTheMonthImg.url}
-                alt="June 2026 Tech of the Month — titanium smart ring, wireless earbuds, and marble workspace flat lay"
-                className="w-full h-full object-cover"
-                loading="lazy"
-                width={1600}
-                height={1008}
-              />
-            </div>
-            <div className="lg:col-span-2 p-10 lg:p-12 flex flex-col justify-center bg-[#F5F1EC]">
-              <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-4">
-                The Edit · June 2026
-              </p>
-              <h3 className="font-serif text-2xl lg:text-3xl italic leading-tight tracking-tight mb-4" style={{ fontWeight: 700, color: '#000000' }}>
-                Quiet Luxury, Loud Tech.
-              </h3>
-              <p className="font-mono text-xs text-muted-foreground leading-relaxed">
-                This month's obsession: the titanium smart ring, cinema-grade earbuds, and the marble-topped desk setup keeping the studio calm and the output sharp.
-              </p>
-            </div>
-          </div>
-        </section>
+        {(() => {
+          const totm = getCurrentTechOfTheMonth();
+          return (
+            <section className="mb-20">
+              <div className="flex items-center gap-6 mb-8">
+                <h2 className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground whitespace-nowrap">
+                  Tech of the Month · {totm.monthLabel}
+                </h2>
+                <div className="h-px flex-1 bg-border" />
+              </div>
+              <Link
+                to={`/tech-of-the-month/${totm.slug}`}
+                className="group block border border-border overflow-hidden hover:shadow-elegant transition-all duration-500"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
+                  <div className="lg:col-span-3 aspect-[16/10] lg:aspect-auto overflow-hidden">
+                    <img
+                      src={totm.image.url}
+                      alt={totm.image.alt}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                      width={totm.image.width}
+                      height={totm.image.height}
+                    />
+                  </div>
+                  <div className="lg:col-span-2 p-10 lg:p-12 flex flex-col justify-center bg-[#F5F1EC]">
+                    <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-4">
+                      The Edit · {totm.monthLabel}
+                    </p>
+                    <h3 className="font-serif text-2xl lg:text-3xl italic leading-tight tracking-tight mb-4" style={{ fontWeight: 700, color: '#000000' }}>
+                      {totm.tagline}
+                    </h3>
+                    <p className="font-mono text-xs text-muted-foreground leading-relaxed mb-6">
+                      {totm.ogDescription}
+                    </p>
+                    <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.15em] uppercase text-foreground border-b border-foreground/30 pb-1 self-start group-hover:border-foreground transition-colors">
+                      Read the Edit <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </section>
+          );
+        })()}
+
 
 
         {/* ── Featured Post (large hero card) ── */}
