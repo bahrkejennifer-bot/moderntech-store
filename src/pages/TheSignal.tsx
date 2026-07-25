@@ -4,7 +4,6 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { socialLinks } from "@/config/socialLinks";
 import signalHeroBanner from "@/assets/signal-hero-banner.jpg.asset.json";
-import afterDarkIntro from "@/assets/after-dark-series-intro.png.asset.json";
 import podcastVideo from "@/assets/podcast-intro-ai-employment.mp4.asset.json";
 
 const platformLinks = [
