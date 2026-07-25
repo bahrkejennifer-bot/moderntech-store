@@ -151,7 +151,6 @@ const TheSignal = () => {
         <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(30 25% 95% / 0.25)" }}>
           DEEP SLEEP VIDEOS
         </p>
-        </p>
         <div className="p-8" style={{ border: "0.5px solid hsl(30 25% 95% / 0.08)", backgroundColor: "hsl(30 8% 10%)" }}>
           <div className="flex items-start gap-4 mb-4">
             <Moon className="w-5 h-5 shrink-0 mt-1" style={{ color: "hsl(0 70% 45% / 0.6)" }} />
