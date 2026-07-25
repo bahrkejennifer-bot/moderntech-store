@@ -22,6 +22,7 @@ const GUIDE_LABELS: Record<string, string> = {
   "creator-funnel": "Faceless Creator Bundle",
   "founders-tech-stack": "Founder's Sovereign Tech Stack",
   "90-day-amazon-associate-roadmap": "90-Day Amazon Associate Roadmap",
+  "modern-tech-edit": "The Modern Tech Edit — Weekly Newsletter",
 };
 
 function buildConfirmHtml(name: string, guideLabel: string, confirmUrl: string): string {
