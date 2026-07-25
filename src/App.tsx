@@ -114,6 +114,8 @@ const App = () => (
 
           <Route path="/weekly-edit" element={<Blog />} />
           <Route path="/weekly-edit/:slug" element={<BlogPost />} />
+          <Route path="/tech-of-the-month" element={<Navigate to="/weekly-edit" replace />} />
+          <Route path="/tech-of-the-month/:month" element={<TechOfTheMonth />} />
           <Route path="/blog" element={<Navigate to="/weekly-edit" replace />} />
           <Route path="/blog/:slug" element={<BlogPostRedirect />} />
           <Route path="/digital-products" element={<DigitalProducts />} />
