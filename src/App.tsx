@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import Index from "./pages/Index";
 import FreeGuide from "./pages/FreeGuide";
 import ConfirmEmail from "./pages/ConfirmEmail";
@@ -64,6 +64,11 @@ import AdminAccessButton from "./components/AdminAccessButton";
 import { NewsletterPopup } from "./components/NewsletterPopup";
 import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
 const queryClient = new QueryClient();
+
+const BlogPostRedirect = () => {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={`/weekly-edit/${slug}`} replace />;
+};
 
 const PinterestTracker = () => {
   usePinterestPageTracking();
