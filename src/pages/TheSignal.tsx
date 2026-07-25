@@ -139,9 +139,18 @@ const TheSignal = () => {
       <div className="max-w-[200px] mx-auto h-px" style={{ backgroundColor: "hsl(0 70% 45% / 0.3)" }} />
 
       {/* Deep Sleep */}
-      <section className="max-w-[700px] mx-auto px-8 py-16">
+      <section className="max-w-[900px] mx-auto px-8 py-16">
+        <div className="mb-8 overflow-hidden" style={{ border: "0.5px solid hsl(30 25% 95% / 0.08)" }}>
+          <img
+            src={afterDarkHero.url}
+            alt="Modern Tech After Dark — Sleep Series"
+            className="w-full h-auto block"
+            loading="lazy"
+          />
+        </div>
         <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(30 25% 95% / 0.25)" }}>
           DEEP SLEEP VIDEOS
+        </p>
         </p>
         <div className="p-8" style={{ border: "0.5px solid hsl(30 25% 95% / 0.08)", backgroundColor: "hsl(30 8% 10%)" }}>
           <div className="flex items-start gap-4 mb-4">
