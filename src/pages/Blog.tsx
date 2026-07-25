@@ -213,9 +213,9 @@ const Blog = () => {
       {/* ── Hero Section ── */}
       <header className="border-b border-border">
         <div className="max-w-5xl mx-auto px-8 pt-16 pb-10">
-          <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">MODERN TECH: WEEKLY REPORT</p>
+          <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">MODERN TECH: WEEKLY EDIT</p>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl italic tracking-tight leading-[1.08] max-w-3xl" style={{ fontWeight: 700, color: '#000000' }}>
-            Modern Tech: Weekly Report
+            Modern Tech: Weekly Edit
           </h1>
           <p className="mt-6 font-mono text-xs text-muted-foreground max-w-lg leading-relaxed">
             Expert-tested tech recommendations across Smart Home, Health & Wellness, Office, and Kids & STEM — to help you spend smarter and live better.
