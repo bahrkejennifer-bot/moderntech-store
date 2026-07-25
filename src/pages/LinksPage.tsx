@@ -63,7 +63,7 @@ const LinksPage = () => {
     <div className="links-page min-h-screen flex flex-col items-center relative overflow-hidden">
       <Helmet>
         <title>Links — Modern Tech LLC | Jennifer Bahrke</title>
-        <meta name="description" content="All links in one place. Smart tech picks, free guides, The Signal podcast, and more from Modern Tech LLC." />
+        <meta name="description" content="All links in one place. Smart tech picks, free guides, The Art of Modern Tech podcast, and more from Modern Tech LLC." />
       </Helmet>
 
       {/* Background */}
