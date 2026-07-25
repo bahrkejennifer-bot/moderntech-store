@@ -53,7 +53,7 @@ function buildEmailTemplate(subject: string, bodyHtml: string): string {
           <!-- CTA -->
           <tr>
             <td align="center" style="padding:36px 48px 0;">
-              <a href="https://moderntech.store/blog" style="display:inline-block;background-color:#1d1d1f;color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:500;letter-spacing:0.05em;text-decoration:none;padding:14px 36px;border-radius:8px;">
+              <a href="https://moderntech.store/weekly-edit" style="display:inline-block;background-color:#1d1d1f;color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:500;letter-spacing:0.05em;text-decoration:none;padding:14px 36px;border-radius:8px;">
                 Explore All Picks
               </a>
             </td>
@@ -168,9 +168,9 @@ Feature 2-3 products from our latest blog posts. Frame as: "You cannot run elite
 
 LATEST BLOG POSTS TO DRAW FROM:
 ${postSummaries.map((p, i) => `${i + 1}. "${p.title}" (${p.category}) — ${p.excerpt}
-   Link: https://moderntech.store/blog/${p.slug}`).join("\n")}
+   Link: https://moderntech.store/weekly-edit/${p.slug}`).join("\n")}
 
-${postSummaries.length === 0 ? "No new posts this week — use general 2026 tech trends and link to https://moderntech.store/blog" : ""}
+${postSummaries.length === 0 ? "No new posts this week — use general 2026 tech trends and link to https://moderntech.store/weekly-edit" : ""}
 
 ## 6. THE "NO-FLUFF" COMPARISON TABLE
 Create a simple HTML table with 4 columns: Category | The Problem | The Solution | The Outcome

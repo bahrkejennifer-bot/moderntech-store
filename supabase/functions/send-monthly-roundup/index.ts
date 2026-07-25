@@ -47,7 +47,7 @@ serve(async (req) => {
       });
     }
 
-    const postUrl = `https://moderntech-store.lovable.app/blog/${latestPost.slug}`;
+    const postUrl = `https://moderntech-store.lovable.app/weekly-edit/${latestPost.slug}`;
     const monthName = new Date().toLocaleString("en-US", { month: "long", year: "numeric" });
 
     let sent = 0;

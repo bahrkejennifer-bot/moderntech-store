@@ -205,7 +205,7 @@ Remember: No prices. Use the exact affiliate links. Make it ~1,000 words. Includ
             event: "new_blog_post",
             title,
             slug,
-            url: `https://moderntech-store.lovable.app/blog/${slug}`,
+            url: `https://moderntech-store.lovable.app/weekly-edit/${slug}`,
             excerpt,
             product_count: products.length,
             published_at: new Date().toISOString(),
@@ -224,7 +224,7 @@ Remember: No prices. Use the exact affiliate links. Make it ~1,000 words. Includ
           id: blogPost.id,
           title,
           slug,
-          url: `/blog/${slug}`,
+          url: `/weekly-edit/${slug}`,
         },
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
