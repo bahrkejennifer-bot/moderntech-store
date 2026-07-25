@@ -125,7 +125,7 @@ const TheSignal = () => {
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-1">
-                  <h3 className="font-serif text-xl tracking-tight" style={{ fontWeight: 400 }}>
+                  <h3 className="font-serif text-xl tracking-tight" style={{ fontWeight: 400, color: "hsl(var(--primary-foreground))" }}>
                     {platform.name}
                   </h3>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" style={{ color: "hsl(var(--primary-foreground) / 0.4)" }} />
