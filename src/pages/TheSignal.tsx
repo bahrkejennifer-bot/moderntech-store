@@ -4,7 +4,6 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { socialLinks } from "@/config/socialLinks";
 import signalHeroBanner from "@/assets/signal-hero-banner.jpg.asset.json";
-import afterDarkIntro from "@/assets/after-dark-series-intro.png.asset.json";
 import podcastVideo from "@/assets/podcast-intro-ai-employment.mp4.asset.json";
 
 const platformLinks = [
@@ -47,18 +46,28 @@ const TheSignal = () => {
         />
       </div>
 
-      {/* After Dark Sleep Series Intro */}
-      <section className="w-full px-4 md:px-8 py-12">
+      {/* Featured Podcast Episode */}
+      <section className="w-full px-4 md:px-8 pt-12 pb-8">
         <div className="max-w-[1100px] mx-auto">
           <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(var(--primary-foreground) / 0.35)" }}>
-            AFTER DARK SLEEP SERIES
+            FEATURED EPISODE
           </p>
-          <img
-            src={afterDarkIntro.url}
-            alt="After Dark Sleep Series intro"
-            className="w-full h-auto block"
-            loading="eager"
-          />
+          <div className="w-full overflow-hidden" style={{ border: "0.5px solid hsl(var(--primary-foreground) / 0.12)" }}>
+            <video
+              src={podcastVideo.url}
+              controls
+              preload="metadata"
+              className="w-full h-auto block"
+            />
+          </div>
+          <div className="mt-6 text-center">
+            <h2 className="font-serif text-2xl md:text-3xl tracking-tight mb-2" style={{ fontWeight: 400, color: "hsl(var(--primary-foreground))" }}>
+              Is AI Coming For Your Job? A Deep Dive Into AI Employment
+            </h2>
+            <p className="font-mono text-[10px] tracking-[0.1em]" style={{ color: "hsl(var(--primary-foreground) / 0.45)" }}>
+              The Art of Modern Tech · Monday Night Episode
+            </p>
+          </div>
         </div>
       </section>
 
@@ -76,30 +85,6 @@ const TheSignal = () => {
         <p className="font-mono text-[11px] leading-relaxed max-w-[540px] mx-auto" style={{ color: "hsl(var(--primary-foreground) / 0.55)" }}>
           Join Jennifer live every Monday night at 8 PM for honest tech talk, AI deep dives, and the stories that matter. Watch on YouTube or listen on Apple Podcasts and Spotify.
         </p>
-
-        {/* Featured Podcast Episode — placed under the podcast heading */}
-        <div className="mt-16 text-left">
-          <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(var(--primary-foreground) / 0.35)" }}>
-            FEATURED EPISODE
-          </p>
-          <div className="w-full overflow-hidden" style={{ border: "0.5px solid hsl(var(--primary-foreground) / 0.12)" }}>
-            <video
-              src={podcastVideo.url}
-              controls
-              preload="metadata"
-              className="w-full h-auto block"
-              poster={afterDarkIntro.url}
-            />
-          </div>
-          <div className="mt-6 text-center">
-            <h2 className="font-serif text-2xl md:text-3xl tracking-tight mb-2" style={{ fontWeight: 400, color: "hsl(var(--primary-foreground))" }}>
-              Is AI Coming For Your Job? A Deep Dive Into AI Employment
-            </h2>
-            <p className="font-mono text-[10px] tracking-[0.1em]" style={{ color: "hsl(var(--primary-foreground) / 0.45)" }}>
-              The Art of Modern Tech · Monday Night Episode
-            </p>
-          </div>
-        </div>
       </section>
 
       {/* Divider */}
