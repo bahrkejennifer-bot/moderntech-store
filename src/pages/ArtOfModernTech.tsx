@@ -128,13 +128,13 @@ const ArtOfModernTech = () => {
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
-              to="/blog"
+              to="/weekly-edit"
               className="inline-flex items-center gap-2 bg-foreground text-background px-7 py-3 font-mono text-[10px] tracking-[0.25em] uppercase hover:bg-foreground/85 transition-colors"
             >
               <BookOpen className="h-4 w-4" /> Read the Weekly Review
             </Link>
             <Link
-              to="/blog"
+              to="/weekly-edit"
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
             >
               Browse all articles <ArrowRight className="h-3.5 w-3.5" />
@@ -163,7 +163,7 @@ const ArtOfModernTech = () => {
               <Rss className="h-3.5 w-3.5" /> RSS
             </a>
             <Link
-              to="/blog"
+              to="/weekly-edit"
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
             >
               View all <ArrowRight className="h-3.5 w-3.5" />
@@ -175,7 +175,7 @@ const ArtOfModernTech = () => {
           {blogPosts.map((post: any, idx: number) => (
             <li key={post.id}>
               <Link
-                to={`/blog/${post.slug}`}
+                to={`/weekly-edit/${post.slug}`}
                 className="group grid grid-cols-12 gap-6 items-baseline py-6 hover:bg-accent/5 transition-colors px-2"
               >
                 <span className="col-span-1 font-mono text-[10px] tracking-[0.2em] text-muted-foreground">
@@ -323,13 +323,13 @@ const ArtOfModernTech = () => {
             <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">From the Blog</p>
             <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>Modern Tech: The Weekly Edit</h2>
           </div>
-          <Link to="/blog" className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/weekly-edit" className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
             <BookOpen className="h-4 w-4" /> Read All
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {blogPosts.map((post: any) => (
-            <Link key={post.id} to={`/blog/${post.slug}`} className="group block border border-border bg-card overflow-hidden hover:shadow-lg transition-all duration-300">
+            <Link key={post.id} to={`/weekly-edit/${post.slug}`} className="group block border border-border bg-card overflow-hidden hover:shadow-lg transition-all duration-300">
               {post.image_url && (
                 <div className="aspect-[3/2] overflow-hidden">
                   <img src={post.image_url} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
