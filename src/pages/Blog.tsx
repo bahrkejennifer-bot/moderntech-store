@@ -22,7 +22,7 @@ import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
 import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
 import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
 import weeklyReportBeachHeroImg from "@/assets/heroes/weekly-report-beach-hero-v2.jpg.asset.json";
-import techOfTheMonthImg from "@/assets/heroes/tech-of-the-month-june-2026.jpg.asset.json";
+import { getCurrentTechOfTheMonth } from "@/data/techOfTheMonth";
 
 const staticBlogPosts = [
   {
