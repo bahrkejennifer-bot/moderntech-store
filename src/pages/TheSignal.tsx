@@ -50,6 +50,9 @@ const TheSignal = () => {
       {/* After Dark Sleep Series Intro */}
       <section className="w-full px-4 md:px-8 py-12">
         <div className="max-w-[1100px] mx-auto">
+          <p className="font-mono text-[9px] tracking-[0.3em] uppercase mb-6" style={{ color: "hsl(30 25% 95% / 0.25)" }}>
+            AFTER DARK SLEEP SERIES
+          </p>
           <img
             src={afterDarkIntro.url}
             alt="After Dark Sleep Series intro"
