@@ -92,7 +92,7 @@ const TheSignal = () => {
             />
           </div>
           <div className="mt-6 text-center">
-            <h2 className="font-serif text-2xl md:text-3xl tracking-tight mb-2" style={{ fontWeight: 400 }}>
+            <h2 className="font-serif text-2xl md:text-3xl tracking-tight mb-2" style={{ fontWeight: 400, color: "hsl(var(--primary-foreground))" }}>
               Is AI Coming For Your Job? A Deep Dive Into AI Employment
             </h2>
             <p className="font-mono text-[10px] tracking-[0.1em]" style={{ color: "hsl(var(--primary-foreground) / 0.45)" }}>
