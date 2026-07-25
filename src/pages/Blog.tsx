@@ -203,7 +203,7 @@ const Blog = () => {
       {/* ── Hero Image ── */}
       <div className="w-full border-b border-border">
         <img
-          src={weeklyReportBeachHeroImg}
+          src={weeklyReportBeachHeroImg.url}
           alt="Welcome to the weekly Modern Tech: Weekly Edit — working from the beach"
           className="w-full h-[42vh] md:h-[56vh] object-cover"
           loading="eager"
