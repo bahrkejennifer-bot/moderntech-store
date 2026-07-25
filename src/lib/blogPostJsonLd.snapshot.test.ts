@@ -62,14 +62,14 @@ describe("BlogPost JSON-LD — golden snapshots: dynamic podcast post", () => {
             "inLanguage": "en-US",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://moderntech.store/blog?q={search_term_string}",
+              "target": "https://moderntech.store/weekly-edit?q={search_term_string}",
               "query-input": "required name=search_term_string"
             }
           },
           {
             "@type": "WebPage",
-            "@id": "https://moderntech.store/blog/how-to-start-your-first-podcast#webpage",
-            "url": "https://moderntech.store/blog/how-to-start-your-first-podcast",
+            "@id": "https://moderntech.store/weekly-edit/how-to-start-your-first-podcast#webpage",
+            "url": "https://moderntech.store/weekly-edit/how-to-start-your-first-podcast",
             "name": "How to Start Your First Podcast",
             "description": "Start your first podcast with 3 pieces of creator gear.",
             "isPartOf": {
@@ -82,7 +82,7 @@ describe("BlogPost JSON-LD — golden snapshots: dynamic podcast post", () => {
           },
           {
             "@type": "BreadcrumbList",
-            "@id": "https://moderntech.store/blog/how-to-start-your-first-podcast#breadcrumb",
+            "@id": "https://moderntech.store/weekly-edit/how-to-start-your-first-podcast#breadcrumb",
             "itemListElement": [
               {
                 "@type": "ListItem",
@@ -93,20 +93,20 @@ describe("BlogPost JSON-LD — golden snapshots: dynamic podcast post", () => {
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Blog",
-                "item": "https://moderntech.store/blog"
+                "name": "Modern Tech: Weekly Edit",
+                "item": "https://moderntech.store/weekly-edit"
               },
               {
                 "@type": "ListItem",
                 "position": 3,
                 "name": "How to Start Your First Podcast",
-                "item": "https://moderntech.store/blog/how-to-start-your-first-podcast"
+                "item": "https://moderntech.store/weekly-edit/how-to-start-your-first-podcast"
               }
             ]
           },
           {
             "@type": "BlogPosting",
-            "@id": "https://moderntech.store/blog/how-to-start-your-first-podcast#blogposting",
+            "@id": "https://moderntech.store/weekly-edit/how-to-start-your-first-podcast#blogposting",
             "headline": "How to Start Your First Podcast",
             "description": "Start your first podcast with 3 pieces of creator gear.",
             "image": [
@@ -129,9 +129,9 @@ describe("BlogPost JSON-LD — golden snapshots: dynamic podcast post", () => {
             },
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": "https://moderntech.store/blog/how-to-start-your-first-podcast#webpage"
+              "@id": "https://moderntech.store/weekly-edit/how-to-start-your-first-podcast#webpage"
             },
-            "url": "https://moderntech.store/blog/how-to-start-your-first-podcast"
+            "url": "https://moderntech.store/weekly-edit/how-to-start-your-first-podcast"
           }
         ]
       }"
@@ -218,14 +218,14 @@ describe("BlogPost JSON-LD — golden snapshots: static template (smart-ring gui
             "inLanguage": "en-US",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://moderntech.store/blog?q={search_term_string}",
+              "target": "https://moderntech.store/weekly-edit?q={search_term_string}",
               "query-input": "required name=search_term_string"
             }
           },
           {
             "@type": "WebPage",
-            "@id": "https://moderntech.store/blog/smart-ring-guide-valentines-2026#webpage",
-            "url": "https://moderntech.store/blog/smart-ring-guide-valentines-2026",
+            "@id": "https://moderntech.store/weekly-edit/smart-ring-guide-valentines-2026#webpage",
+            "url": "https://moderntech.store/weekly-edit/smart-ring-guide-valentines-2026",
             "name": "The Ultimate Smart Ring Guide for 2026",
             "description": "Smart rings have quietly become the most intimate wearable technology on the market. Unlike bulky smartwatches or intrusive fitness bands, a smart ring sits discreetly on yo…",
             "isPartOf": {
@@ -238,7 +238,7 @@ describe("BlogPost JSON-LD — golden snapshots: static template (smart-ring gui
           },
           {
             "@type": "BreadcrumbList",
-            "@id": "https://moderntech.store/blog/smart-ring-guide-valentines-2026#breadcrumb",
+            "@id": "https://moderntech.store/weekly-edit/smart-ring-guide-valentines-2026#breadcrumb",
             "itemListElement": [
               {
                 "@type": "ListItem",
@@ -249,20 +249,20 @@ describe("BlogPost JSON-LD — golden snapshots: static template (smart-ring gui
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Blog",
-                "item": "https://moderntech.store/blog"
+                "name": "Modern Tech: Weekly Edit",
+                "item": "https://moderntech.store/weekly-edit"
               },
               {
                 "@type": "ListItem",
                 "position": 3,
                 "name": "The Ultimate Smart Ring Guide for 2026",
-                "item": "https://moderntech.store/blog/smart-ring-guide-valentines-2026"
+                "item": "https://moderntech.store/weekly-edit/smart-ring-guide-valentines-2026"
               }
             ]
           },
           {
             "@type": "BlogPosting",
-            "@id": "https://moderntech.store/blog/smart-ring-guide-valentines-2026#blogposting",
+            "@id": "https://moderntech.store/weekly-edit/smart-ring-guide-valentines-2026#blogposting",
             "headline": "The Ultimate Smart Ring Guide for 2026",
             "description": "Smart rings have quietly become the most intimate wearable technology on the market. Unlike bulky smartwatches or intrusive fitness bands, a smart ring sits discreetly on yo…",
             "image": "https://moderntech.store/assets/smart-ring-hero.jpg",
@@ -278,9 +278,9 @@ describe("BlogPost JSON-LD — golden snapshots: static template (smart-ring gui
               "@id": "https://moderntech.store/#organization"
             },
             "mainEntityOfPage": {
-              "@id": "https://moderntech.store/blog/smart-ring-guide-valentines-2026#webpage"
+              "@id": "https://moderntech.store/weekly-edit/smart-ring-guide-valentines-2026#webpage"
             },
-            "url": "https://moderntech.store/blog/smart-ring-guide-valentines-2026"
+            "url": "https://moderntech.store/weekly-edit/smart-ring-guide-valentines-2026"
           }
         ]
       }"
@@ -332,14 +332,14 @@ describe("BlogPost JSON-LD — golden snapshots: dynamic template (no embedded F
             "inLanguage": "en-US",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://moderntech.store/blog?q={search_term_string}",
+              "target": "https://moderntech.store/weekly-edit?q={search_term_string}",
               "query-input": "required name=search_term_string"
             }
           },
           {
             "@type": "WebPage",
-            "@id": "https://moderntech.store/blog/top-creator-gear-2026#webpage",
-            "url": "https://moderntech.store/blog/top-creator-gear-2026",
+            "@id": "https://moderntech.store/weekly-edit/top-creator-gear-2026#webpage",
+            "url": "https://moderntech.store/weekly-edit/top-creator-gear-2026",
             "name": "Top Creator Gear of 2026",
             "description": "The 5 pieces of creator gear we actually use every day in 2026.",
             "isPartOf": {
@@ -352,7 +352,7 @@ describe("BlogPost JSON-LD — golden snapshots: dynamic template (no embedded F
           },
           {
             "@type": "BreadcrumbList",
-            "@id": "https://moderntech.store/blog/top-creator-gear-2026#breadcrumb",
+            "@id": "https://moderntech.store/weekly-edit/top-creator-gear-2026#breadcrumb",
             "itemListElement": [
               {
                 "@type": "ListItem",
@@ -363,20 +363,20 @@ describe("BlogPost JSON-LD — golden snapshots: dynamic template (no embedded F
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Blog",
-                "item": "https://moderntech.store/blog"
+                "name": "Modern Tech: Weekly Edit",
+                "item": "https://moderntech.store/weekly-edit"
               },
               {
                 "@type": "ListItem",
                 "position": 3,
                 "name": "Top Creator Gear of 2026",
-                "item": "https://moderntech.store/blog/top-creator-gear-2026"
+                "item": "https://moderntech.store/weekly-edit/top-creator-gear-2026"
               }
             ]
           },
           {
             "@type": "BlogPosting",
-            "@id": "https://moderntech.store/blog/top-creator-gear-2026#blogposting",
+            "@id": "https://moderntech.store/weekly-edit/top-creator-gear-2026#blogposting",
             "headline": "Top Creator Gear of 2026",
             "description": "The 5 pieces of creator gear we actually use every day in 2026.",
             "image": [
@@ -399,9 +399,9 @@ describe("BlogPost JSON-LD — golden snapshots: dynamic template (no embedded F
             },
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": "https://moderntech.store/blog/top-creator-gear-2026#webpage"
+              "@id": "https://moderntech.store/weekly-edit/top-creator-gear-2026#webpage"
             },
-            "url": "https://moderntech.store/blog/top-creator-gear-2026"
+            "url": "https://moderntech.store/weekly-edit/top-creator-gear-2026"
           }
         ]
       }"
@@ -444,9 +444,9 @@ describe("BlogPost JSON-LD — golden snapshots: Blog index page", () => {
           },
           {
             "@type": "WebPage",
-            "@id": "https://moderntech.store/blog#webpage",
-            "url": "https://moderntech.store/blog",
-            "name": "Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech",
+            "@id": "https://moderntech.store/weekly-edit#webpage",
+            "url": "https://moderntech.store/weekly-edit",
+            "name": "Modern Tech: Weekly Edit | Smart Home, Wellness, Office & Kids Tech",
             "description": "Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly.",
             "isPartOf": {
               "@id": "https://moderntech.store/#website"
@@ -458,7 +458,7 @@ describe("BlogPost JSON-LD — golden snapshots: Blog index page", () => {
           },
           {
             "@type": "BreadcrumbList",
-            "@id": "https://moderntech.store/blog#breadcrumb",
+            "@id": "https://moderntech.store/weekly-edit#breadcrumb",
             "itemListElement": [
               {
                 "@type": "ListItem",
@@ -469,16 +469,16 @@ describe("BlogPost JSON-LD — golden snapshots: Blog index page", () => {
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Blog",
-                "item": "https://moderntech.store/blog"
+                "name": "Modern Tech: Weekly Edit",
+                "item": "https://moderntech.store/weekly-edit"
               }
             ]
           },
           {
             "@type": "Blog",
-            "@id": "https://moderntech.store/blog#blog",
-            "name": "Modern Tech Blog",
-            "url": "https://moderntech.store/blog",
+            "@id": "https://moderntech.store/weekly-edit#blog",
+            "name": "Modern Tech: Weekly Edit",
+            "url": "https://moderntech.store/weekly-edit",
             "publisher": {
               "@id": "https://moderntech.store/#organization"
             }

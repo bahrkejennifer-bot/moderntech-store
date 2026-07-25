@@ -53,7 +53,7 @@ function buildEmailTemplate(subject: string, bodyHtml: string): string {
           <!-- CTA -->
           <tr>
             <td align="center" style="padding:36px 48px 0;">
-              <a href="https://moderntech.store/blog" style="display:inline-block;background-color:#1d1d1f;color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:500;letter-spacing:0.05em;text-decoration:none;padding:14px 36px;border-radius:8px;">
+              <a href="https://moderntech.store/weekly-edit" style="display:inline-block;background-color:#1d1d1f;color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:500;letter-spacing:0.05em;text-decoration:none;padding:14px 36px;border-radius:8px;">
                 Explore All Picks
               </a>
             </td>
@@ -136,7 +136,7 @@ Deno.serve(async (req) => {
       price: p.price,
     }));
 
-    const prompt = `You are the editor of "The Art of Modern Tech — Weekly Report" by Modern Tech LLC.
+    const prompt = `You are the editor of "The Art of Modern Tech — Weekly Edit" by Modern Tech LLC.
 
 BRAND IDENTITY: Apple-aesthetic. Monochromatic visuals, extreme white space, "less is more" editorial voice. Authoritative, witty, radically honest. You are an expert curator — never salesy, never fluffy. Short paragraphs. Never more than 3 sentences per paragraph.
 
@@ -168,9 +168,9 @@ Feature 2-3 products from our latest blog posts. Frame as: "You cannot run elite
 
 LATEST BLOG POSTS TO DRAW FROM:
 ${postSummaries.map((p, i) => `${i + 1}. "${p.title}" (${p.category}) — ${p.excerpt}
-   Link: https://moderntech.store/blog/${p.slug}`).join("\n")}
+   Link: https://moderntech.store/weekly-edit/${p.slug}`).join("\n")}
 
-${postSummaries.length === 0 ? "No new posts this week — use general 2026 tech trends and link to https://moderntech.store/blog" : ""}
+${postSummaries.length === 0 ? "No new posts this week — use general 2026 tech trends and link to https://moderntech.store/weekly-edit" : ""}
 
 ## 6. THE "NO-FLUFF" COMPARISON TABLE
 Create a simple HTML table with 4 columns: Category | The Problem | The Solution | The Outcome
@@ -214,7 +214,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
             type: "function",
             function: {
               name: "generate_newsletter",
-              description: "Generate The Art of Modern Tech Weekly Report newsletter",
+              description: "Generate The Art of Modern Tech Weekly Edit newsletter",
               parameters: {
                 type: "object",
                 properties: {
@@ -262,7 +262,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
 
     if (insertError) throw new Error(`Failed to save draft: ${insertError.message}`);
 
-    console.log("Art of Modern Tech Weekly Report draft generated:", spec.id);
+    console.log("Art of Modern Tech Weekly Edit draft generated:", spec.id);
 
     // Send notification email to admin with Approve button
     const approveUrl = `${supabaseUrl}/functions/v1/approve-tech-spec?spec_id=${spec.id}&action=approve`;

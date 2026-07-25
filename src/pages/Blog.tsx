@@ -177,23 +177,23 @@ const Blog = () => {
         <meta property="og:title" content="Modern Tech: Weekly Edit | Smart Home, Wellness, Office & Kids Tech" />
         <meta property="og:description" content="Modern Tech: Weekly Edit — expert tech reviews and buying guides across the four pillars of everyday tech." />
         <meta property="og:image" content={springDealsHeroImg} />
-        <meta property="og:url" content="https://moderntech.store/blog" />
+        <meta property="og:url" content="https://moderntech.store/weekly-edit" />
         <meta property="og:type" content="website" />
       </Helmet>
       <StructuredData
-        title="Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech"
+        title="Modern Tech: Weekly Edit | Smart Home, Wellness, Office & Kids Tech"
         description="Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly."
-        path="/blog"
+        path="/weekly-edit"
         breadcrumbs={[
           { name: "Home", path: "/" },
-          { name: "Blog", path: "/blog" },
+          { name: "Modern Tech: Weekly Edit", path: "/weekly-edit" },
         ]}
         extraGraph={[
           {
             "@type": "Blog",
-            "@id": "https://moderntech.store/blog#blog",
-            name: "Modern Tech Blog",
-            url: "https://moderntech.store/blog",
+            "@id": "https://moderntech.store/weekly-edit#blog",
+            name: "Modern Tech: Weekly Edit",
+            url: "https://moderntech.store/weekly-edit",
             publisher: { "@id": "https://moderntech.store/#organization" },
           },
         ]}
@@ -204,7 +204,7 @@ const Blog = () => {
       <div className="w-full border-b border-border">
         <img
           src={weeklyReportBeachHeroImg.url}
-          alt="Welcome to the weekly Modern Tech Report — working from the beach"
+          alt="Welcome to the weekly Modern Tech: Weekly Edit — working from the beach"
           className="w-full h-[42vh] md:h-[56vh] object-cover"
           loading="eager"
         />
@@ -263,7 +263,7 @@ const Blog = () => {
       <div className="max-w-5xl mx-auto px-8 py-16 lg:py-20">
         {/* ── Featured Post (large hero card) ── */}
         {featuredPost && (
-          <Link to={`/blog/${featuredPost.slug}`} className="group block mb-20">
+          <Link to={`/weekly-edit/${featuredPost.slug}`} className="group block mb-20">
             <article className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden border border-border hover:shadow-elegant transition-all duration-500">
               <div className="aspect-[16/10] lg:aspect-auto overflow-hidden relative">
                 <img
@@ -382,7 +382,7 @@ interface BlogPostItem {
 }
 
 const BlogCard = ({ post }: { post: BlogPostItem }) => (
-  <Link to={`/blog/${post.slug}`} className="group block h-full border-r border-b border-border">
+  <Link to={`/weekly-edit/${post.slug}`} className="group block h-full border-r border-b border-border">
     <article className="overflow-hidden h-full flex flex-col hover:bg-card transition-all duration-300">
       <div className="aspect-[4/3] overflow-hidden relative">
         <img

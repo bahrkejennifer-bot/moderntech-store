@@ -41,7 +41,7 @@ interface Breadcrumb {
  * `extraGraph` represents the page-specific BlogPosting node (and any siblings).
  */
 export const composeBlogPostGraph = (opts: {
-  path: string; // e.g. "/blog/some-slug"
+  path: string; // e.g. "/weekly-edit/some-slug"
   title: string;
   description: string;
   breadcrumbs: Breadcrumb[];
@@ -70,7 +70,7 @@ export const composeBlogPostGraph = (opts: {
           inLanguage: "en-US",
           potentialAction: {
             "@type": "SearchAction",
-            target: `${SITE}/blog?q={search_term_string}`,
+            target: `${SITE}/weekly-edit?q={search_term_string}`,
             "query-input": "required name=search_term_string",
           },
         },
@@ -97,19 +97,19 @@ export const PODCAST_SLUG = "how-to-start-your-first-podcast";
 
 export const buildPodcastDynamicGraph = (slug: string = PODCAST_SLUG) =>
   composeBlogPostGraph({
-    path: `/blog/${slug}`,
+    path: `/weekly-edit/${slug}`,
     title: "How to Start Your First Podcast",
     description: "Start your first podcast with 3 pieces of creator gear.",
     includeWebSite: true,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Blog", path: "/blog" },
-      { name: "How to Start Your First Podcast", path: `/blog/${slug}` },
+      { name: "Modern Tech: Weekly Edit", path: "/weekly-edit" },
+      { name: "How to Start Your First Podcast", path: `/weekly-edit/${slug}` },
     ],
     extraGraph: [
       {
         "@type": "BlogPosting",
-        "@id": `${SITE}/blog/${slug}#blogposting`,
+        "@id": `${SITE}/weekly-edit/${slug}#blogposting`,
         headline: "How to Start Your First Podcast",
         description: "Start your first podcast with 3 pieces of creator gear.",
         image: ["https://moderntech.store/podcast-hero.jpg"],
@@ -122,8 +122,8 @@ export const buildPodcastDynamicGraph = (slug: string = PODCAST_SLUG) =>
         inLanguage: "en-US",
         author: { "@type": "Organization", name: "Modern Tech LLC", url: SITE },
         publisher: { "@id": `${SITE}/#organization` },
-        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/blog/${slug}#webpage` },
-        url: `${SITE}/blog/${slug}`,
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/weekly-edit/${slug}#webpage` },
+        url: `${SITE}/weekly-edit/${slug}`,
       },
     ],
   });
@@ -137,7 +137,7 @@ export const PODCAST_POST_FAQ_HTML = `
   "mainEntity": [
     {"@type":"Question","name":"What gear do I need to start my first podcast?","acceptedAnswer":{"@type":"Answer","text":"USB mic, noise-cancelling headphones, ring light."}},
     {"@type":"Question","name":"Do I need an XLR microphone to start a podcast?","acceptedAnswer":{"@type":"Answer","text":"No. A USB mic delivers broadcast quality."}},
-    {"@type":"Question","name":"How much does it cost to start a podcast in 2026?","acceptedAnswer":{"@type":"Answer","text":"Roughly $400\u2013$600 in gear plus a free hosting tier."}}
+    {"@type":"Question","name":"How much does it cost to start a podcast in 2026?","acceptedAnswer":{"@type":"Answer","text":"Roughly $400–$600 in gear plus a free hosting tier."}}
   ]
 }
 </script>
@@ -155,19 +155,19 @@ export const buildSmartRingStaticGraph = () => {
     "Smart rings have quietly become the most intimate wearable technology on the market. Unlike bulky smartwatches or intrusive fitness bands, a smart ring sits discreetly on yo…";
   const isoDate = new Date("2026-02-02").toISOString();
   return composeBlogPostGraph({
-    path: `/blog/${slug}`,
+    path: `/weekly-edit/${slug}`,
     title,
     description,
     includeWebSite: true,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Blog", path: "/blog" },
-      { name: title, path: `/blog/${slug}` },
+      { name: "Modern Tech: Weekly Edit", path: "/weekly-edit" },
+      { name: title, path: `/weekly-edit/${slug}` },
     ],
     extraGraph: [
       {
         "@type": "BlogPosting",
-        "@id": `${SITE}/blog/${slug}#blogposting`,
+        "@id": `${SITE}/weekly-edit/${slug}#blogposting`,
         headline: title,
         description,
         image: `${SITE}/assets/smart-ring-hero.jpg`,
@@ -176,8 +176,8 @@ export const buildSmartRingStaticGraph = () => {
         articleSection: "Health & Wellness",
         author: { "@type": "Organization", name: "Modern Tech LLC", url: SITE },
         publisher: { "@id": `${SITE}/#organization` },
-        mainEntityOfPage: { "@id": `${SITE}/blog/${slug}#webpage` },
-        url: `${SITE}/blog/${slug}`,
+        mainEntityOfPage: { "@id": `${SITE}/weekly-edit/${slug}#webpage` },
+        url: `${SITE}/weekly-edit/${slug}`,
       },
     ],
   });
@@ -191,19 +191,19 @@ export const buildCreatorGearDynamicGraph = () => {
   const title = "Top Creator Gear of 2026";
   const description = "The 5 pieces of creator gear we actually use every day in 2026.";
   return composeBlogPostGraph({
-    path: `/blog/${slug}`,
+    path: `/weekly-edit/${slug}`,
     title,
     description,
     includeWebSite: true,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Blog", path: "/blog" },
-      { name: title, path: `/blog/${slug}` },
+      { name: "Modern Tech: Weekly Edit", path: "/weekly-edit" },
+      { name: title, path: `/weekly-edit/${slug}` },
     ],
     extraGraph: [
       {
         "@type": "BlogPosting",
-        "@id": `${SITE}/blog/${slug}#blogposting`,
+        "@id": `${SITE}/weekly-edit/${slug}#blogposting`,
         headline: title,
         description,
         image: ["https://moderntech.store/creator-gear-hero.jpg"],
@@ -216,32 +216,32 @@ export const buildCreatorGearDynamicGraph = () => {
         inLanguage: "en-US",
         author: { "@type": "Organization", name: "Modern Tech LLC", url: SITE },
         publisher: { "@id": `${SITE}/#organization` },
-        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/blog/${slug}#webpage` },
-        url: `${SITE}/blog/${slug}`,
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/weekly-edit/${slug}#webpage` },
+        url: `${SITE}/weekly-edit/${slug}`,
       },
     ],
   });
 };
 
-// ── Template 5: Blog index page (/blog) ──────────────────────────────────
+// ── Template 5: Blog index page (/weekly-edit) ──────────────────────────────────
 // Emits a `Blog` node alongside the standard ORG + WebPage + Breadcrumb graph.
 // `includeWebSite` is intentionally NOT set on the Blog index in Blog.tsx.
 export const buildBlogIndexGraph = () =>
   composeBlogPostGraph({
-    path: "/blog",
-    title: "Modern Tech Blog | Smart Home, Wellness, Office & Kids Tech",
+    path: "/weekly-edit",
+    title: "Modern Tech: Weekly Edit | Smart Home, Wellness, Office & Kids Tech",
     description:
       "Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly.",
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Blog", path: "/blog" },
+      { name: "Modern Tech: Weekly Edit", path: "/weekly-edit" },
     ],
     extraGraph: [
       {
         "@type": "Blog",
-        "@id": `${SITE}/blog#blog`,
-        name: "Modern Tech Blog",
-        url: `${SITE}/blog`,
+        "@id": `${SITE}/weekly-edit#blog`,
+        name: "Modern Tech: Weekly Edit",
+        url: `${SITE}/weekly-edit`,
         publisher: { "@id": `${SITE}/#organization` },
       },
     ],

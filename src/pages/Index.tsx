@@ -128,7 +128,7 @@ const Index = () => {
               The Essentials
             </p>
             <Link
-              to="/blog"
+              to="/weekly-edit"
               className="inline-flex items-center gap-2 font-serif text-lg tracking-tight hover:opacity-60 transition-opacity duration-300"
               style={{ fontStyle: "italic" }}
             >

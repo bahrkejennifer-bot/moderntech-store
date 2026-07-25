@@ -60,7 +60,7 @@ Deno.serve(async (req) => {
 
     // Static blog post URLs
     const staticBlogUrls = STATIC_BLOG_SLUGS.map((post) => `  <url>
-    <loc>${escapeXml(SITE_URL + "/blog/" + post.slug)}</loc>
+    <loc>${escapeXml(SITE_URL + "/weekly-edit/" + post.slug)}</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -80,7 +80,7 @@ Deno.serve(async (req) => {
     </image:image>`
         : "";
       return `  <url>
-    <loc>${escapeXml(SITE_URL + "/blog/" + post.slug)}</loc>
+    <loc>${escapeXml(SITE_URL + "/weekly-edit/" + post.slug)}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>${imageTag}
@@ -96,7 +96,7 @@ Deno.serve(async (req) => {
 
     // Blog index
     const blogIndexUrl = `  <url>
-    <loc>${escapeXml(SITE_URL + "/blog")}</loc>
+    <loc>${escapeXml(SITE_URL + "/weekly-edit")}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`;

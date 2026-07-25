@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import Index from "./pages/Index";
 import FreeGuide from "./pages/FreeGuide";
 import ConfirmEmail from "./pages/ConfirmEmail";
@@ -65,6 +65,11 @@ import { NewsletterPopup } from "./components/NewsletterPopup";
 import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
 const queryClient = new QueryClient();
 
+const BlogPostRedirect = () => {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={`/weekly-edit/${slug}`} replace />;
+};
+
 const PinterestTracker = () => {
   usePinterestPageTracking();
   return null;
@@ -107,8 +112,10 @@ const App = () => (
           <Route path="/college" element={<Navigate to="/kids-stem" replace />} />
           <Route path="/productivity-family" element={<Navigate to="/kids-stem" replace />} />
 
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/weekly-edit" element={<Blog />} />
+          <Route path="/weekly-edit/:slug" element={<BlogPost />} />
+          <Route path="/blog" element={<Navigate to="/weekly-edit" replace />} />
+          <Route path="/blog/:slug" element={<BlogPostRedirect />} />
           <Route path="/digital-products" element={<DigitalProducts />} />
           <Route path="/tech-gift-cheatsheet" element={<TechGiftCheatsheet />} />
           <Route path="/my-downloads" element={<MyDownloads />} />

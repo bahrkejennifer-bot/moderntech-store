@@ -115,7 +115,7 @@ const AdminTechSpec = () => {
               <ArrowLeft className="w-4 h-4" /> Back to Admin
             </button>
             <h1 className="font-serif text-3xl text-foreground">The Art of Modern Tech — Weekly Edit</h1>
-            <p className="text-muted-foreground mt-1">AI-generated weekly report drafts · Review & send</p>
+            <p className="text-muted-foreground mt-1">AI-generated weekly edit drafts · Review & send</p>
           </div>
           <Button onClick={handleGenerate} disabled={generating} className="bg-primary hover:bg-primary/90">
             {generating ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <RefreshCw className="w-4 h-4 mr-2" />}

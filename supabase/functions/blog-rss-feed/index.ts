@@ -112,11 +112,11 @@ Deno.serve(async (req) => {
     // Build items from static articles
     const staticItems = STATIC_ARTICLES.map((a) => `    <item>
       <title>${escapeXml(a.title)}</title>
-      <link>${escapeXml(SITE_URL + "/blog/" + a.slug)}</link>
+      <link>${escapeXml(SITE_URL + "/weekly-edit/" + a.slug)}</link>
       <description>${escapeXml(a.excerpt)}</description>
       <category>${escapeXml(a.category)}</category>
       <pubDate>${new Date(a.date).toUTCString()}</pubDate>
-      <guid isPermaLink="true">${escapeXml(SITE_URL + "/blog/" + a.slug)}</guid>
+      <guid isPermaLink="true">${escapeXml(SITE_URL + "/weekly-edit/" + a.slug)}</guid>
       <enclosure url="${escapeXml(a.image)}" type="image/jpeg" length="0" />
     </item>`).join("\n");
 
@@ -127,11 +127,11 @@ Deno.serve(async (req) => {
         : "";
       return `    <item>
       <title>${escapeXml(p.title)}</title>
-      <link>${escapeXml(SITE_URL + "/blog/" + p.slug)}</link>
+      <link>${escapeXml(SITE_URL + "/weekly-edit/" + p.slug)}</link>
       <description>${escapeXml(p.excerpt || p.title)}</description>
       <category>${escapeXml(p.category || "Tech")}</category>
       <pubDate>${new Date(p.created_at).toUTCString()}</pubDate>
-      <guid isPermaLink="true">${escapeXml(SITE_URL + "/blog/" + p.slug)}</guid>${imageTag}
+      <guid isPermaLink="true">${escapeXml(SITE_URL + "/weekly-edit/" + p.slug)}</guid>${imageTag}
     </item>`;
     }).join("\n");
 
@@ -149,7 +149,7 @@ Deno.serve(async (req) => {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${escapeXml(FEED_TITLE)}</title>
-    <link>${SITE_URL}/blog</link>
+    <link>${SITE_URL}/weekly-edit</link>
     <description>${escapeXml(FEED_DESCRIPTION)}</description>
     <language>en-us</language>
     <lastBuildDate>${now}</lastBuildDate>
