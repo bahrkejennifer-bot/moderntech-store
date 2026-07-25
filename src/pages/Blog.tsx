@@ -21,7 +21,7 @@ import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
 import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
 import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
 import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
-import weeklyReportBeachHeroImg from "@/assets/heroes/weekly-report-beach-hero-v2.jpg";
+import weeklyReportBeachHeroImg from "@/assets/heroes/weekly-report-beach-hero-v2.jpg.asset.json";
 
 const staticBlogPosts = [
   {
