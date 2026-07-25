@@ -21,7 +21,7 @@ import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
 import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
 import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
 import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
-import weeklyReportBeachHeroImg from "@/assets/heroes/weekly-report-beach-hero.jpg.asset.json";
+import weeklyReportBeachHeroImg from "@/assets/heroes/weekly-report-beach-hero-v2.jpg";
 
 const staticBlogPosts = [
   {
@@ -203,7 +203,7 @@ const Blog = () => {
       {/* ── Hero Image ── */}
       <div className="w-full border-b border-border">
         <img
-          src={weeklyReportBeachHeroImg.url}
+          src={weeklyReportBeachHeroImg}
           alt="Welcome to the weekly Modern Tech: Weekly Edit — working from the beach"
           className="w-full h-[42vh] md:h-[56vh] object-cover"
           loading="eager"
