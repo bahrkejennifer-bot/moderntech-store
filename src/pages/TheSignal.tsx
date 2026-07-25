@@ -18,13 +18,13 @@ const platformLinks = [
     name: "Apple Podcasts",
     icon: Podcast,
     description: "Subscribe and listen on the go.",
-    href: "#",
+    href: "https://rss.com/podcasts/art-of-modern-tech/",
   },
   {
     name: "Spotify",
     icon: Music,
     description: "Stream the full catalog in your feed.",
-    href: "#",
+    href: "https://rss.com/podcasts/art-of-modern-tech/",
   },
 ];
 
