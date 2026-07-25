@@ -6,6 +6,8 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import { toast } from "sonner";
 import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 import { socialLinks } from "@/config/socialLinks";
+import signalHeroBanner from "@/assets/signal-hero-banner.jpg.asset.json";
+import afterDarkHero from "@/assets/after-dark-series.png.asset.json";
 
 const TheSignal = () => {
   const [name, setName] = useState("");
