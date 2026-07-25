@@ -132,7 +132,7 @@ const Index = () => {
               className="inline-flex items-center gap-2 font-serif text-lg tracking-tight hover:opacity-60 transition-opacity duration-300"
               style={{ fontStyle: "italic" }}
             >
-              View Latest Weekly Report <ArrowRight className="h-4 w-4" />
+              View Latest Weekly Edit <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="overflow-hidden order-1 md:order-2">
