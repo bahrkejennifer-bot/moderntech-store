@@ -67,7 +67,7 @@ const TheSignal = () => {
         <p className="font-mono text-[9px] tracking-[0.4em] uppercase mb-6" style={{ color: "hsl(var(--primary-foreground) / 0.4)" }}>
           EVERY MONDAY NIGHT AT 8 PM
         </p>
-        <h1 className="font-serif text-5xl md:text-7xl tracking-tighter mb-4" style={{ fontWeight: 400, letterSpacing: "-0.04em" }}>
+        <h1 className="font-serif text-5xl md:text-7xl tracking-tighter mb-4" style={{ fontWeight: 400, letterSpacing: "-0.04em", color: "hsl(var(--primary-foreground))" }}>
           The Art of Modern Tech
         </h1>
         <p className="font-serif text-lg md:text-xl mb-8" style={{ fontWeight: 300, fontStyle: "italic", color: "hsl(var(--primary-foreground) / 0.6)" }}>
