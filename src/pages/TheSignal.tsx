@@ -18,13 +18,19 @@ const platformLinks = [
     name: "Apple Podcasts",
     icon: Podcast,
     description: "Subscribe and listen on the go.",
-    href: "#",
+    href: "https://podcasts.apple.com/us/podcast/how-to-start-a-podcast-the-easy-way/id1839349159",
   },
   {
     name: "Spotify",
     icon: Music,
     description: "Stream the full catalog in your feed.",
-    href: "#",
+    href: "https://open.spotify.com/show/art-of-modern-tech",
+  },
+  {
+    name: "RSS Feed",
+    icon: Music,
+    description: "All episodes and distribution hub.",
+    href: "https://rss.com/podcasts/art-of-modern-tech/",
   },
 ];
 
