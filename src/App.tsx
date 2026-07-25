@@ -58,6 +58,7 @@ import CanvaMasterclass from "./pages/CanvaMasterclass";
 import FacelessYoutube from "./pages/FacelessYoutube";
 import CreatorBundle from "./pages/CreatorBundle";
 import FacelessCreatorBundle from "./pages/FacelessCreatorBundle";
+import TechOfTheMonth from "./pages/TechOfTheMonth";
 import ProductRedirect from "./pages/ProductRedirect";
 import AdminLayout from "./components/AdminLayout";
 import AdminAccessButton from "./components/AdminAccessButton";
@@ -114,6 +115,8 @@ const App = () => (
 
           <Route path="/weekly-edit" element={<Blog />} />
           <Route path="/weekly-edit/:slug" element={<BlogPost />} />
+          <Route path="/tech-of-the-month" element={<Navigate to="/weekly-edit" replace />} />
+          <Route path="/tech-of-the-month/:month" element={<TechOfTheMonth />} />
           <Route path="/blog" element={<Navigate to="/weekly-edit" replace />} />
           <Route path="/blog/:slug" element={<BlogPostRedirect />} />
           <Route path="/digital-products" element={<DigitalProducts />} />
