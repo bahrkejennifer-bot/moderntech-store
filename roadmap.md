@@ -6,5 +6,5 @@
 - [x] Verify both paths, each offer destination, mobile layout, and report automation limitations without publishing.
 
 # Homepage launch presentation
-- [ ] Redesign the existing homepage with a cinematic product-led opening, accessible featured-product controls, curated tech and digital guides.
-- [ ] Preserve catalog-backed links and disclosures, verify mobile/desktop interactions and deep links, and leave the live site unpublished.
+- [x] Redesign the existing homepage with a cinematic product-led opening, accessible featured-product controls, curated tech and digital guides.
+- [x] Preserve catalog-backed links and disclosures, verify mobile/desktop interactions and deep links, and leave the live site unpublished.

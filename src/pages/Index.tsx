@@ -90,10 +90,15 @@ const Index = () => {
   useEffect(() => {
     const hash = window.location.hash.slice(1);
     const targetId = hash === "shop-downloads" ? "digital-products" : hash === "shop-tech" ? "selections" : hash;
+    const featuredTarget = featured.findIndex(({ selection }) => targetId === `product-${selection.slug}`);
+    if (featuredTarget !== -1 && featuredTarget !== featuredIndex) {
+      setFeaturedIndex(featuredTarget);
+      return;
+    }
     if (targetId && !isLoading && !digitalLoading) {
       requestAnimationFrame(() => document.getElementById(targetId)?.scrollIntoView());
     }
-  }, [isLoading, digitalLoading, location.hash]);
+  }, [isLoading, digitalLoading, location.hash, featuredIndex, products]);
 
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return;
