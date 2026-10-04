@@ -60,6 +60,7 @@ import CreatorBundle from "./pages/CreatorBundle";
 import FacelessCreatorBundle from "./pages/FacelessCreatorBundle";
 import TechOfTheMonth from "./pages/TechOfTheMonth";
 import ProductRedirect from "./pages/ProductRedirect";
+import ProductDetail from "./pages/ProductDetail";
 import AdminLayout from "./components/AdminLayout";
 import AdminAccessButton from "./components/AdminAccessButton";
 import { NewsletterPopup } from "./components/NewsletterPopup";
@@ -159,6 +160,7 @@ const App = () => (
           <Route path="/faceless-creator-bundle" element={<FacelessCreatorBundle />} />
           <Route path="/free-amazon-associate-guide" element={<AmazonAssociateGuide />} />
           <Route path="/go/:slug" element={<ProductRedirect />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

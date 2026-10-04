@@ -130,6 +130,7 @@ const ProductTile = ({ selection, product, featured, onOpen }: {
             View on Amazon <ExternalLink aria-hidden="true" />
           </a>
         </Button>
+        <Link to={`/product/${product.id}${window.location.search}`} className="mt-3 text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground">Product details</Link>
       </div>
     </div>
   </article>
