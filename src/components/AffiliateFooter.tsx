@@ -64,7 +64,7 @@ const AffiliateFooter = () => {
               Modern Tech LLC is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate we earn from qualifying purchases.
             </p>
             <p className="font-mono text-[10px] leading-[1.8] mt-3" style={{ color: "hsl(30 25% 95% / 0.5)" }}>
-              Product prices and availability are accurate as of the date/time indicated and are subject to change. Any price and availability information displayed on Amazon at the time of purchase will apply.
+              Prices and availability can change. Check Amazon for current details before purchasing.
             </p>
             <Link
               to="/disclaimer"
