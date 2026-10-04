@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, ExternalLink, Loader2 } from "lucide-react";
@@ -7,6 +8,9 @@ import { usePinterestEvent } from "@/hooks/usePinterestTracking";
 import { Button } from "@/components/ui/button";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
+import coverCanva from "@/assets/cover-canva.jpg";
+import coverYoutube from "@/assets/cover-youtube.jpg";
+import coverReels from "@/assets/cover-reels.jpg";
 
 interface CatalogProduct {
   id: string;
@@ -73,6 +77,16 @@ const selections = [
 
 type Selection = (typeof selections)[number];
 
+// Only offers with an existing purchase page and working fulfillment route are listed here.
+// Prices and public descriptions come from safe metadata, never from this presentation map.
+const digitalOffers = [
+  { slug: "creator-bundle", route: "/creator-bundle", cover: coverReels, included: "Reels, Canva, and YouTube creator guides together." },
+  { slug: "canva-masterclass", route: "/canva-masterclass", cover: coverCanva, included: "Branding guidance, layout ideas, and practical Canva design tips." },
+  { slug: "faceless-youtube-automation", route: "/faceless-youtube", cover: coverYoutube, included: "Planning, video structure, branding, and channel growth guidance." },
+] as const;
+
+const digitalHash = (hash: string) => hash === "#shop-downloads" || hash.startsWith("#digital-");
+
 const isEligible = (product: CatalogProduct) => {
   try {
     const url = new URL(product.affiliate_link);
@@ -131,8 +145,36 @@ const ProductTile = ({ selection, product, featured, onOpen }: {
 
 const Index = () => {
   const { data: products = [], isLoading, isError } = useSelections();
+  const { data: digitalProducts = [], isLoading: digitalLoading, isError: digitalError } = useQuery({
+    queryKey: ["homepage-digital-offers"],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("products_public")
+        .select("slug,title,description,price,is_free")
+        .in("slug", digitalOffers.map((offer) => offer.slug));
+      if (error) throw error;
+      return digitalOffers.flatMap((offer) => {
+        const product = data?.find((item) => item.slug === offer.slug && !item.is_free && Number(item.price) > 0);
+        return product ? [{ offer, product }] : [];
+      });
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+  const [path, setPath] = useState<"tech" | "downloads">(() => digitalHash(window.location.hash) ? "downloads" : "tech");
   const { trackEvent } = usePinterestEvent();
   const location = useLocation();
+
+  useEffect(() => {
+    const syncHash = () => setPath(digitalHash(window.location.hash) ? "downloads" : "tech");
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, []);
+
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (id && ((path === "downloads" && !digitalLoading) || (path === "tech" && !isLoading))) {
+      requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView());
+    }
+  }, [path, digitalLoading, isLoading]);
 
   const trackClick = (selection: Selection, product: CatalogProduct) => {
     const params = new URLSearchParams(location.search);
@@ -154,20 +196,19 @@ const Index = () => {
     <div className="min-h-screen vogue-theme bg-background text-foreground [&_footer_p]:!text-base [&_footer_a]:!text-base [&_footer_h3]:!text-base [&_footer_span]:!text-base">
       <Helmet>
         <title>Modern Tech | Useful tech. Clear choices.</title>
-        <meta name="description" content="Seven useful tech picks, with clear benefits, limitations and direct Amazon links. Curated by Modern Tech LLC." />
+        <meta name="description" content="Shop considered tech picks and practical digital creator guides from Modern Tech LLC." />
         <meta property="og:title" content="Modern Tech | Useful tech. Clear choices." />
-        <meta property="og:description" content="Useful tech picks with clear benefits, limitations and direct Amazon links." />
+        <meta property="og:description" content="Shop useful tech and practical digital creator guides in one place." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://moderntech.store/" />
       </Helmet>
-      <StructuredData title="Modern Tech | Useful tech. Clear choices." description="Useful tech picks with clear benefits, limitations and direct Amazon links." path="/" includeWebSite />
+      <StructuredData title="Modern Tech | Useful tech. Clear choices." description="Shop useful tech and practical digital creator guides in one place." path="/" includeWebSite />
       <header className="border-b border-border bg-background">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-4 md:px-8">
           <Link to="/" className="font-serif text-xl font-semibold text-foreground md:text-2xl">MODERN TECH</Link>
           <nav aria-label="Main navigation" className="flex items-center gap-4 text-base font-medium md:gap-7">
-            <a href="#selections" className="text-foreground hover:underline">The picks</a>
+            <a href="#shop-tech" className="text-foreground hover:underline">Shop</a>
             <Link to="/weekly-edit" className="text-foreground hover:underline">Weekly Edit</Link>
-            <Link to="/digital-products" className="text-foreground hover:underline">Guides</Link>
           </nav>
         </div>
       </header>
@@ -176,13 +217,19 @@ const Index = () => {
           <div className="mx-auto max-w-6xl px-5 pb-8 pt-9 md:px-8 md:pb-12 md:pt-14">
             <p className="mb-3 text-xs font-semibold uppercase text-muted-foreground">The Modern Tech selection</p>
             <h1 className="max-w-3xl font-serif text-4xl leading-tight md:text-6xl">Useful tech. Clear choices.</h1>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed md:text-lg">A small edit of tools worth considering, with the useful detail and the trade-off up front.</p>
-            <p className="mt-6 max-w-2xl border-l-2 border-primary pl-4 text-base leading-relaxed">
+            <p className="mt-4 max-w-2xl text-base leading-relaxed md:text-lg">Considered tech for everyday life. Practical downloads for making what comes next.</p>
+            <p className="mt-5 max-w-2xl border-l-2 border-primary pl-4 text-base leading-relaxed">
               <strong>Affiliate disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. Our Amazon links may earn us a commission at no additional cost to you.
             </p>
           </div>
         </section>
-        <section id="selections" className="mx-auto max-w-6xl px-5 py-9 md:px-8 md:py-14">
+        <section className="mx-auto max-w-6xl px-5 pt-7 md:px-8 md:pt-9" aria-label="Choose what to shop">
+          <div className="grid grid-cols-2 border-b border-border" role="group" aria-label="Shopping paths">
+            <Button id="shop-tech" type="button" variant="ghost" aria-pressed={path === "tech"} onClick={() => { setPath("tech"); window.location.hash = "shop-tech"; }} className={`h-auto min-h-14 rounded-none border-b-2 px-2 py-3 text-center text-base whitespace-normal sm:text-lg ${path === "tech" ? "border-primary bg-secondary/50 text-foreground" : "border-transparent text-muted-foreground"}`}>Shop useful tech</Button>
+            <Button id="shop-downloads" type="button" variant="ghost" aria-pressed={path === "downloads"} onClick={() => { setPath("downloads"); window.location.hash = "shop-downloads"; }} className={`h-auto min-h-14 rounded-none border-b-2 px-2 py-3 text-center text-base whitespace-normal sm:text-lg ${path === "downloads" ? "border-primary bg-secondary/50 text-foreground" : "border-transparent text-muted-foreground"}`}>Shop digital downloads</Button>
+          </div>
+        </section>
+        {path === "tech" ? <section id="selections" className="mx-auto max-w-6xl px-5 py-7 md:px-8 md:py-10">
           <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
             <div>
               <p className="text-xs font-semibold uppercase text-muted-foreground">Start here</p>
@@ -212,11 +259,30 @@ const Index = () => {
               )}
             </>
           )}
-          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-border pt-7 text-base">
-            <Link to="/weekly-edit" className="inline-flex items-center gap-2 underline underline-offset-4">Read the Weekly Edit <ArrowRight className="h-4 w-4" /></Link>
-            <Link to="/digital-products" className="inline-flex items-center gap-2 underline underline-offset-4">Browse digital guides <ArrowRight className="h-4 w-4" /></Link>
-          </div>
-        </section>
+        </section> : <section id="digital-selections" className="mx-auto max-w-6xl px-5 py-7 md:px-8 md:py-10">
+          <p className="text-xs font-semibold uppercase text-muted-foreground">For the things you make</p>
+          <h2 className="mt-1 font-serif text-3xl md:text-4xl">Digital downloads</h2>
+          <p className="mt-3 max-w-2xl text-base leading-relaxed">Choose a guide that fits your next project. Review the details, then purchase through the existing secure checkout.</p>
+          {digitalLoading ? <div role="status" className="flex items-center gap-3 py-16 text-base"><Loader2 className="h-5 w-5 animate-spin" /> Loading downloads…</div>
+            : digitalError ? <p role="alert" className="py-12 text-base">Downloads are unavailable right now. Please try again later.</p>
+            : digitalProducts.length === 0 ? <p className="py-12 text-base">No downloads are available right now.</p>
+            : <div className="mt-7 grid gap-x-9 md:grid-cols-3">
+              {digitalProducts.map(({ offer, product }) => <article key={offer.slug} id={`digital-${offer.slug}`} className="scroll-mt-6 border-t border-border py-6">
+                <div className="grid grid-cols-[90px_minmax(0,1fr)] gap-5 md:block">
+                  <div className="aspect-[3/4] max-h-64 overflow-hidden bg-muted md:w-40"><img src={offer.cover} alt={`${product.title} cover`} className="h-full w-full object-cover" loading="lazy" /></div>
+                  <div className="min-w-0 md:pt-5">
+                    <p className="text-xs font-semibold uppercase text-muted-foreground">Digital guide</p>
+                    <h3 className="mt-2 font-serif text-2xl leading-tight">{product.title}</h3>
+                    <p className="mt-3 text-base leading-relaxed">{product.description}</p>
+                    <p className="mt-2 text-base leading-relaxed text-muted-foreground"><span className="font-semibold text-foreground">Inside:</span> {offer.included}</p>
+                    <p className="mt-4 font-serif text-2xl">${Number(product.price).toFixed(2).replace(/\.00$/, "")}</p>
+                    <Button asChild size="lg" className="mt-4 min-h-11 rounded-sm text-base"><Link to={`${offer.route}${location.search}`}>See guide & buy <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link></Button>
+                  </div>
+                </div>
+              </article>)}
+            </div>}
+          <p className="mt-8 border-t border-border pt-6 text-base">Just looking? <Link to="/creator-funnel" className="underline underline-offset-4">Explore the free Reels guide</Link> — no free guide is required to buy.</p>
+        </section>}
       </main>
       <AffiliateFooter />
     </div>
