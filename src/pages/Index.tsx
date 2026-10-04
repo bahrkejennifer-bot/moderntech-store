@@ -269,7 +269,9 @@ const Index = () => {
             : <div className="mt-7 grid gap-x-9 md:grid-cols-3">
               {digitalProducts.map(({ offer, product }) => <article key={offer.slug} id={`digital-${offer.slug}`} className="scroll-mt-6 border-t border-border py-6">
                 <div className="grid grid-cols-[90px_minmax(0,1fr)] gap-5 md:block">
-                  <div className="aspect-[3/4] max-h-64 overflow-hidden bg-muted md:w-40"><img src={offer.cover} alt={`${product.title} cover`} className="h-full w-full object-cover" loading="lazy" /></div>
+                  {offer.slug === "creator-bundle" ? <div className="grid aspect-[3/4] max-h-64 grid-cols-3 gap-0.5 overflow-hidden bg-muted md:w-40" aria-label="Reels, Canva, and YouTube guide covers">
+                    {[coverReels, coverCanva, coverYoutube].map((cover, index) => <img key={cover} src={cover} alt={["Reels guide cover", "Canva guide cover", "YouTube guide cover"][index]} className="h-full w-full object-cover" loading="lazy" />)}
+                  </div> : <div className="aspect-[3/4] max-h-64 overflow-hidden bg-muted md:w-40"><img src={offer.cover} alt={`${product.title} cover`} className="h-full w-full object-cover" loading="lazy" /></div>}
                   <div className="min-w-0 md:pt-5">
                     <p className="text-xs font-semibold uppercase text-muted-foreground">Digital guide</p>
                     <h3 className="mt-2 font-serif text-2xl leading-tight">{product.title}</h3>
