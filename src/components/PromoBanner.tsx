@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { X } from "lucide-react";
 
 const PromoBanner = () => {
+  const location = useLocation();
   const [dismissed, setDismissed] = useState(() => {
     try { return sessionStorage.getItem("promo-banner-dismissed") === "true"; } catch { return false; }
   });
 
-  if (dismissed) return null;
+  if (dismissed || location.pathname === "/") return null;
 
   const handleDismiss = () => {
     setDismissed(true);

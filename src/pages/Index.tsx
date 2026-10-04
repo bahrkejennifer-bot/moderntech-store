@@ -1,387 +1,229 @@
 import { Helmet } from "react-helmet-async";
-import StructuredData from "@/components/StructuredData";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, ExternalLink, Loader2 } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import AffiliateFooter from "@/components/AffiliateFooter";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import heroImg from "@/assets/hero-duality-editorial.jpg";
-import essentialsImg from "@/assets/hero-workspace-essentials.jpg";
-import coverReels from "@/assets/cover-reels.jpg";
-import coverCanva from "@/assets/cover-canva.jpg";
-import coverYoutube from "@/assets/cover-youtube.jpg";
+import { usePinterestEvent } from "@/hooks/usePinterestTracking";
+import { Button } from "@/components/ui/button";
+import AffiliateFooter from "@/components/AffiliateFooter";
+import StructuredData from "@/components/StructuredData";
 
-interface DBProduct {
+interface CatalogProduct {
   id: string;
   title: string;
   description: string | null;
-  price: string | null;
-  rating: number | null;
-  badge: string | null;
   image_url: string | null;
   affiliate_link: string;
-  category: string | null;
-  display_order: number | null;
+  is_active: boolean;
 }
 
-const categories = [
-  { label: "Smart Home & Security", to: "/smart-home-security", desc: "Smart locks · Cameras · WiFi · Trackers" },
-  { label: "Health & Wellness Tech", to: "/health-wellness-tech", desc: "Smart rings · Sleep trackers · Recovery" },
-  { label: "Office Essentials", to: "/office-essentials", desc: "Creator gear · Gaming · Streaming" },
-  { label: "Kids & STEM", to: "/kids-stem", desc: "Kids tech · College · AI gadgets" },
-];
+// These IDs select existing catalog records; the name, image and outbound URL always come from the live record.
+// Keeping this list separate from the catalog makes a selection change reversible without changing old destinations.
+const selections = [
+  {
+    id: "b68d4132-35fd-48a6-afe1-a23c27d97ef9",
+    slug: "rocketbook-core",
+    audience: "For the note-taker who still likes a pen",
+    benefit: "Write by hand, scan your notes to the cloud, then wipe the pages clean for reuse.",
+    limitation: "Pages are reusable, not a permanent paper archive.",
+    group: "Work & create",
+  },
+  {
+    id: "12f82e99-c9b9-4a08-ba6a-af18ec1abca6",
+    slug: "soundcore-space-one",
+    audience: "For focus in shared spaces",
+    benefit: "Adaptive noise cancellation and a listed 40-hour battery make it a practical workday companion.",
+    limitation: "These are battery-powered headphones, so they still need charging.",
+    group: "Work & create",
+  },
+  {
+    id: "c54218bd-8361-40d4-ac72-f4027d508a5b",
+    slug: "benq-screenbar-halo-2",
+    audience: "For a monitor-based desk setup",
+    benefit: "A monitor light with glare-free desk lighting and a soft rear halo.",
+    limitation: "Designed for a monitor, not for lighting an entire room.",
+    group: "Work & create",
+  },
+  {
+    id: "f4828b84-e0c2-4b70-869f-a3bed7fb37c8",
+    slug: "renpho-elis-1",
+    audience: "For tracking wellness trends at home",
+    benefit: "Tracks 13 body-composition metrics in one scale.",
+    limitation: "A home scale is a trend tool, not a medical assessment.",
+    group: "Everyday life",
+  },
+  {
+    id: "961410f4-1bbe-4dec-8148-9741e236cdf4",
+    slug: "snap-circuits-jr-sc-100",
+    audience: "For hands-on circuit discovery",
+    benefit: "28 snap-together pieces can make more than 100 circuits.",
+    limitation: "A physical kit, not a screen-based course.",
+    group: "Everyday life",
+  },
+  {
+    id: "450e46a0-1080-4f7d-89ab-f97f3cce0ff5",
+    slug: "jbl-flip-6",
+    audience: "For music beyond the desk",
+    benefit: "A waterproof portable speaker with a listed 12-hour battery.",
+    limitation: "Portable battery power means it needs recharging.",
+    group: "Everyday life",
+  },
+  {
+    id: "e0aa4d9a-7a15-4c10-9dcb-b48999bdbd48",
+    slug: "anker-solix-c300-dc",
+    audience: "For portable power away from an outlet",
+    benefit: "A 288Wh portable power station with solar-ready charging.",
+    limitation: "The DC model is for compatible DC-powered devices; check ports before buying.",
+    group: "Everyday life",
+  },
+] as const;
 
-// Ebook cover images from Supabase Storage
-const COVER_REELS = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/product-images/cover-reels.jpg";
-const COVER_CANVA = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/product-images/cover-canva.jpg";
-const COVER_YOUTUBE = "https://hvjhtfyxecnuehndnyrd.supabase.co/storage/v1/object/public/product-images/cover-youtube.jpg";
+type Selection = (typeof selections)[number];
 
-const useHomepageProducts = () => {
-  return useQuery({
-    queryKey: ["homepage-products"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("scraped_products")
-        .select("*")
-        .in("category", ["homepage-featured", "homepage-collection", "health-wellness", "creator-gear", "gaming", "connectivity", "college", "kids-tech", "home-safety"])
-        .eq("is_active", true)
-        .order("display_order", { ascending: true });
-      if (error) throw error;
-      return data as unknown as DBProduct[];
-    },
-    staleTime: 5 * 60 * 1000,
-  });
+const isEligible = (product: CatalogProduct) => {
+  try {
+    const url = new URL(product.affiliate_link);
+    return product.is_active && Boolean(product.image_url) &&
+      /(^|\.)amazon\.com$/.test(url.hostname) &&
+      /\/dp\/[A-Z0-9]{10}(?:\/|$)/i.test(url.pathname) &&
+      url.searchParams.get("tag") === "moderntechs04-20";
+  } catch {
+    return false;
+  }
 };
 
+const useSelections = () => useQuery({
+  queryKey: ["homepage-curated-selections"],
+  queryFn: async () => {
+    const { data, error } = await supabase
+      .from("scraped_products")
+      .select("id,title,description,image_url,affiliate_link,is_active")
+      .in("id", selections.map((item) => item.id));
+    if (error) throw error;
+    const byId = new Map((data as CatalogProduct[]).filter(isEligible).map((item) => [item.id, item]));
+    return selections.flatMap((selection) => {
+      const product = byId.get(selection.id);
+      return product ? [{ selection, product }] : [];
+    });
+  },
+  staleTime: 5 * 60 * 1000,
+});
+
+const ProductTile = ({ selection, product, featured, onOpen }: {
+  selection: Selection;
+  product: CatalogProduct;
+  featured: boolean;
+  onOpen: (selection: Selection, product: CatalogProduct) => void;
+}) => (
+  <article id={`product-${selection.slug}`} className="scroll-mt-8 border-t border-border py-7 md:py-8">
+    <div className={`grid grid-cols-[104px_minmax(0,1fr)] gap-4 sm:grid-cols-[148px_minmax(0,1fr)] md:gap-7 ${featured ? "lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]" : "lg:grid-cols-[136px_minmax(0,1fr)]"}`}>
+      <div className={`flex items-center justify-center overflow-hidden bg-muted ${featured ? "aspect-square" : "aspect-square"}`}>
+        <img src={product.image_url || ""} alt={product.title} loading={featured ? "eager" : "lazy"} className="h-full w-full object-contain p-2 md:p-4" />
+      </div>
+      <div className="flex min-w-0 flex-col items-start justify-center">
+        <p className="text-xs font-semibold uppercase text-muted-foreground">{selection.audience}</p>
+        <h3 className={`mt-2 font-serif leading-tight ${featured ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"}`}>{product.title}</h3>
+        <p className="mt-3 text-base leading-relaxed text-foreground">{selection.benefit}</p>
+        <p className="mt-2 text-base leading-relaxed text-muted-foreground"><span className="font-semibold text-foreground">Good to know:</span> {selection.limitation}</p>
+        <Button asChild size="lg" className="mt-5 h-auto min-h-11 whitespace-normal rounded-sm px-5 py-3 text-sm">
+          <a href={product.affiliate_link} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => onOpen(selection, product)}>
+            View on Amazon <ExternalLink aria-hidden="true" />
+          </a>
+        </Button>
+      </div>
+    </div>
+  </article>
+);
+
 const Index = () => {
-  const { data: allProducts, isLoading } = useHomepageProducts();
+  const { data: products = [], isLoading, isError } = useSelections();
+  const { trackEvent } = usePinterestEvent();
+  const location = useLocation();
 
-  const featuredProducts = (allProducts || []).filter(p => p.category === "homepage-featured").slice(0, 3);
-  const collectionProducts = (allProducts || []).filter(p => p.category === "homepage-collection").slice(0, 6);
-
-  // Fallback: if no homepage-specific categories, show a mix from all categories
-  const fallbackFeatured = featuredProducts.length > 0 ? featuredProducts : (allProducts || []).slice(0, 3);
-  const fallbackCollection = collectionProducts.length > 0 ? collectionProducts : (allProducts || []).slice(3, 9);
+  const trackClick = (selection: Selection, product: CatalogProduct) => {
+    const params = new URLSearchParams(location.search);
+    const campaign = Object.fromEntries(
+      ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]
+        .filter((key) => params.has(key))
+        .map((key) => [key, params.get(key)?.slice(0, 150) || ""]),
+    );
+    trackEvent("custom", {
+      event_type: "amazon_product_click",
+      product_id: product.id,
+      product_name: product.title,
+      product_anchor: `product-${selection.slug}`,
+      ...campaign,
+    });
+  };
 
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
-        <title>Modern Tech — Curated Premium Technology for 2026</title>
-        <meta name="description" content="A curated gallery of premium tech — wellness wearables, creator tools, and office essentials. Handpicked with editorial precision." />
-        <meta property="og:title" content="Modern Tech — Curated Premium Technology for 2026" />
-        <meta property="og:description" content="A curated gallery of premium tech — wellness wearables, creator tools, and office essentials. Handpicked with editorial precision." />
-        <meta property="og:image" content="https://moderntech.store/images/products/oura-ring-4.jpg" />
-        <meta property="og:url" content="https://moderntech.store/" />
+        <title>Modern Tech | Useful tech. Clear choices.</title>
+        <meta name="description" content="Seven useful tech picks, with clear benefits, limitations and direct Amazon links. Curated by Modern Tech LLC." />
+        <meta property="og:title" content="Modern Tech | Useful tech. Clear choices." />
+        <meta property="og:description" content="Useful tech picks with clear benefits, limitations and direct Amazon links." />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://moderntech.store/" />
       </Helmet>
-      <StructuredData
-        title="Modern Tech — Curated Premium Technology for 2026"
-        description="A curated gallery of premium tech — wellness wearables, creator tools, and office essentials. Handpicked with editorial precision."
-        path="/"
-        includeWebSite
-      />
-      <Navigation />
-
-      {/* ── HERO — asymmetric editorial layout ── */}
-      <section className="relative py-12 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center">
-          <div className="overflow-hidden">
-            <img
-              src={heroImg}
-              alt="Editorial lifestyle — woman descending spiral staircase with tulips"
-              className="w-full h-auto object-cover"
-              style={{ maxHeight: '70vh' }}
-            />
-          </div>
-          <div className="px-12 md:px-16 lg:px-24 xl:px-32 py-12 md:py-0">
-            <h1
-              className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[0.92] tracking-tight text-foreground"
-              style={{ fontWeight: 400 }}
-            >
-              <em>The Art of</em>
-              <br />
-              Modern Tech
-            </h1>
-            <h2
-              className="font-serif text-base md:text-lg leading-relaxed mt-8 max-w-[420px] text-foreground/70"
-              style={{ fontStyle: 'italic', fontWeight: 400 }}
-            >
-              Beyond the screen lies the human experience. We curate beautiful, reliable technology designed for the way you actually live—from securing your home to the seamless flow of a day well-lived.
-            </h2>
-            <p
-              className="font-mono text-[10px] mt-8 text-muted-foreground"
-              style={{ letterSpacing: '0.25em', textTransform: 'uppercase' }}
-            >
-              Tech Today. Trend Tomorrow.<br />
-              Creating a Life We Have Yet to Imagine.
+      <StructuredData title="Modern Tech | Useful tech. Clear choices." description="Useful tech picks with clear benefits, limitations and direct Amazon links." path="/" includeWebSite />
+      <header className="border-b border-border bg-background">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-4 md:px-8">
+          <Link to="/" className="font-serif text-xl font-semibold text-foreground md:text-2xl">MODERN TECH</Link>
+          <nav aria-label="Main navigation" className="flex items-center gap-4 text-sm font-medium md:gap-7">
+            <a href="#selections" className="text-foreground hover:underline">The picks</a>
+            <Link to="/weekly-edit" className="text-foreground hover:underline">Weekly Edit</Link>
+            <Link to="/digital-products" className="text-foreground hover:underline">Guides</Link>
+          </nav>
+        </div>
+      </header>
+      <main>
+        <section className="border-b border-border bg-secondary/50">
+          <div className="mx-auto max-w-6xl px-5 pb-8 pt-9 md:px-8 md:pb-12 md:pt-14">
+            <p className="mb-3 text-xs font-semibold uppercase text-muted-foreground">The Modern Tech selection</p>
+            <h1 className="max-w-3xl font-serif text-4xl leading-tight md:text-6xl">Useful tech. Clear choices.</h1>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed md:text-lg">A small edit of tools worth considering, with the useful detail and the trade-off up front.</p>
+            <p className="mt-6 max-w-2xl border-l-2 border-primary pl-4 text-base leading-relaxed">
+              <strong>Affiliate disclosure:</strong> As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. Our Amazon links may earn us a commission at no additional cost to you.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* ── THE ESSENTIALS — zigzag section ── */}
-      <section className="relative py-16 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center">
-          <div className="px-12 md:px-16 lg:px-24 xl:px-32 py-12 md:py-0 order-2 md:order-1">
-            <p className="font-mono text-[9px] tracking-[0.4em] uppercase text-muted-foreground mb-10">
-              The Essentials
-            </p>
-            <Link
-              to="/weekly-edit"
-              className="inline-flex items-center gap-2 font-serif text-lg tracking-tight hover:opacity-60 transition-opacity duration-300"
-              style={{ fontStyle: "italic" }}
-            >
-              View Latest Weekly Edit <ArrowRight className="h-4 w-4" />
-            </Link>
+        </section>
+        <section id="selections" className="mx-auto max-w-6xl px-5 py-9 md:px-8 md:py-14">
+          <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase text-muted-foreground">Start here</p>
+              <h2 className="mt-1 font-serif text-3xl md:text-4xl">Three for the everyday desk</h2>
+            </div>
+            <p className="text-sm text-muted-foreground">Details and availability on Amazon</p>
           </div>
-          <div className="overflow-hidden order-1 md:order-2">
-            <img
-              src={essentialsImg}
-              alt="Top-down workspace with smart ring, laptop, headphones, and tulips"
-              className="w-full h-auto object-cover"
-              style={{ maxHeight: '65vh' }}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ── MARQUEE DIVIDER ── */}
-      <div className="overflow-hidden py-4 bg-foreground">
-        <p className="font-mono text-[9px] tracking-[0.5em] uppercase text-center text-background">
-          Fresh Off The Press · Curated Selection · Spring 2026 · Fresh Off The Press · Curated Selection
-        </p>
-      </div>
-
-      {/* ── FEATURED 3 — Faceless Creator Bundle digital assets ── */}
-      <section className="max-w-6xl mx-auto px-8 py-20">
-        <div className="text-center mb-12">
-          <p className="font-mono text-[9px] tracking-[0.4em] uppercase text-muted-foreground mb-4">
-            Featured · The Faceless Creator Bundle
-          </p>
-          <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontWeight: 400 }}>
-            Three <em>Master Classes.</em> One Quiet Empire.
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
-          {[
-            { cover: coverReels, badge: "Volume I · Free", title: "Reels Master Class", desc: "Stop-the-scroll mechanics for the faceless feed.", to: "/creator-funnel" },
-            { cover: coverCanva, badge: "Volume II · $29", title: "Canva Master Class", desc: "Branded graphics & digital products without the overwhelm.", to: "/canva-masterclass" },
-            { cover: coverYoutube, badge: "Volume III · $49", title: "YouTube Master Class", desc: "Faceless video systems built for compounding watch time.", to: "/faceless-youtube" },
-          ].map((item) => (
-            <Link
-              key={item.title}
-              to={item.to}
-              className="group border-r last:border-r-0 border-border bg-background"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden bg-[hsl(var(--muted))]">
-                <img
-                  src={item.cover}
-                  alt={`${item.title} — Faceless Creator Bundle digital asset cover`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-8">
-                  <p className="font-mono text-xs text-background/80 text-center mb-6 max-w-[220px]">{item.desc}</p>
-                  <span className="inline-flex items-center gap-2 h-10 px-6 border border-background/30 text-background font-mono text-[10px] tracking-[0.15em] uppercase hover:bg-background hover:text-foreground transition-all duration-300">
-                    Open Volume <ArrowRight className="h-3 w-3" />
-                  </span>
-                </div>
+          {isLoading ? (
+            <div className="flex items-center gap-3 py-16 text-muted-foreground" role="status"><Loader2 className="h-5 w-5 animate-spin" /> Loading selections…</div>
+          ) : isError ? (
+            <p className="py-12 text-base" role="alert">The product selection is unavailable right now. Please try again later.</p>
+          ) : products.length === 0 ? (
+            <p className="py-12 text-base">No eligible selections are available right now.</p>
+          ) : (
+            <>
+              <div className="grid gap-x-9 lg:grid-cols-3">
+                {products.slice(0, 3).map(({ selection, product }) => <ProductTile key={selection.id} selection={selection} product={product} featured onOpen={trackClick} />)}
               </div>
-              <div className="p-6 border-t border-border">
-                <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground">{item.badge}</span>
-                <h3 className="font-serif text-xl mt-1" style={{ fontStyle: "italic" }}>{item.title}</h3>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        <div className="text-center mt-8">
-          <Link
-            to="/creator-bundle"
-            className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors"
-          >
-            See the Full Bundle — Save $19 <ArrowRight className="h-3 w-3" />
-          </Link>
-        </div>
-      </section>
-
-      {/* ── FULL-WIDTH STATEMENT ── */}
-      <section className="border-y border-border py-24 px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="font-mono text-[9px] tracking-[0.4em] uppercase text-muted-foreground mb-6">You Know You're Meant For More</p>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight" style={{ fontWeight: 400 }}>
-            Ready to Upgrade<br />
-            to <em>Premium Tech?</em>
-          </h2>
-        </div>
-      </section>
-
-      {/* ── PRODUCT GRID — database-driven ── */}
-      <section className="max-w-6xl mx-auto px-8 py-20">
-        <div className="flex items-center gap-6 mb-14">
-          <div className="flex-1 h-px bg-border" />
-          <span className="font-mono text-[9px] tracking-[0.4em] uppercase text-muted-foreground">
-            The Collection
-          </span>
-          <div className="flex-1 h-px bg-border" />
-        </div>
-
-        {isLoading ? (
-          <div className="flex items-center justify-center py-20">
-            <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-border">
-            {fallbackCollection.map((product) => (
-              <a
-                key={product.id}
-                href={product.affiliate_link}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="group border-b border-r border-border last:border-r-0 [&:nth-child(3n)]:border-r-0"
-              >
-                <div className="relative aspect-square overflow-hidden">
-                  <img
-                    src={product.image_url || "/placeholder.svg"}
-                    alt={product.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-4 left-5">
-                    <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground bg-background/80 px-2.5 py-1">
-                      {product.badge || product.category}
-                    </span>
-                  </div>
-                  <div className="absolute inset-0 bg-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-6">
-                    {product.description && (
-                      <p className="font-mono text-xs text-background/80 text-center mb-4 line-clamp-3">{product.description}</p>
-                    )}
-                    {product.price && (
-                      <p className="font-mono text-lg font-medium text-background mb-6">{product.price}</p>
-                    )}
-                    <span className="inline-flex items-center gap-2 h-10 px-6 border border-background/30 text-background font-mono text-[10px] tracking-[0.15em] uppercase hover:bg-background hover:text-foreground transition-all duration-300">
-                      View Details <ExternalLink className="h-3 w-3" />
-                    </span>
+              {products.length > 3 && (
+                <div className="mt-12 border-t border-border pt-10 md:mt-16">
+                  <p className="text-xs font-semibold uppercase text-muted-foreground">More considered picks</p>
+                  <h2 className="mt-1 font-serif text-3xl md:text-4xl">For the rest of the day</h2>
+                  <div className="mt-5 grid gap-x-10 md:grid-cols-2">
+                    {products.slice(3).map(({ selection, product }) => <ProductTile key={selection.id} selection={selection} product={product} featured={false} onOpen={trackClick} />)}
                   </div>
                 </div>
-                <div className="p-5">
-                  <h3 className="font-serif text-lg" style={{ fontStyle: "italic" }}>{product.title}</h3>
-                </div>
-              </a>
-            ))}
+              )}
+            </>
+          )}
+          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-border pt-7 text-base">
+            <Link to="/weekly-edit" className="inline-flex items-center gap-2 underline underline-offset-4">Read the Weekly Edit <ArrowRight className="h-4 w-4" /></Link>
+            <Link to="/digital-products" className="inline-flex items-center gap-2 underline underline-offset-4">Browse digital guides <ArrowRight className="h-4 w-4" /></Link>
           </div>
-        )}
-      </section>
-
-      {/* ── DIGITAL PRODUCTS ── */}
-      <section className="border-t border-border">
-        <div className="max-w-6xl mx-auto px-8 py-20">
-          <p className="font-mono text-[9px] text-muted-foreground text-center tracking-[0.4em] uppercase mb-4">
-            Digital Products
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl text-center mb-3" style={{ fontStyle: "italic", fontWeight: 400 }}>
-            Learn the Skills to Grow Online
-          </h2>
-          <p className="font-mono text-[10px] text-muted-foreground text-center tracking-wide mb-12 max-w-lg mx-auto">
-            Practical digital guides to help you create better content, build your brand, and grow with confidence.
-          </p>
-
-          {/* Featured Bundle */}
-          <div className="p-8 md:p-10 mb-12 text-center bg-foreground text-background">
-            <span className="inline-block font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1 mb-4 bg-accent text-accent-foreground">
-              Best Value
-            </span>
-            <h3 className="font-serif text-2xl md:text-3xl mb-2" style={{ fontWeight: 400 }}>
-              Get All 3 Master Classes for Just $59
-            </h3>
-            <p className="font-mono text-[11px] mb-6 max-w-md mx-auto text-background/60">
-              Save $19 when you bundle all three and get the full content creator toolkit.
-            </p>
-            <Link
-              to="/creator-bundle"
-              className="inline-flex items-center gap-2 h-12 px-10 font-mono text-[10px] tracking-[0.2em] uppercase transition-all hover:opacity-90 bg-accent text-accent-foreground"
-            >
-              Get the Bundle <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-
-          {/* Individual Guides */}
-          <p className="font-mono text-[9px] text-muted-foreground text-center tracking-[0.3em] uppercase mb-8">
-            Choose Your Master Class
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { cover: COVER_REELS, title: "Reels Master Class", desc: "Learn how to create attention-grabbing reels that stop the scroll and help people notice your brand.", price: "FREE", to: "/creator-funnel", cta: "Get the Free Guide" },
-              { cover: COVER_CANVA, title: "Canva Master Class", desc: "Create polished graphics, digital products, and branded content in Canva without feeling overwhelmed.", price: "$29", to: "/canva-masterclass", cta: "Buy for $29" },
-              { cover: COVER_YOUTUBE, title: "YouTube Master Class", desc: "Build smarter YouTube content with practical strategies for video structure, branding, and audience growth.", price: "$49", to: "/faceless-youtube", cta: "Buy for $49" },
-            ].map((item, i) => (
-              <Link
-                key={i}
-                to={item.to}
-                className="group flex flex-col overflow-hidden border border-border hover:shadow-lg transition-all duration-300"
-              >
-                <div className="aspect-[3/4] overflow-hidden">
-                  <img src={item.cover} alt={`${item.title} cover`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-                </div>
-                <div className="p-8 text-center flex flex-col items-center">
-                  <h3 className="font-serif text-xl mb-2" style={{ fontStyle: "italic" }}>{item.title}</h3>
-                  <p className="font-mono text-[10px] text-muted-foreground tracking-wide leading-relaxed mb-6 max-w-[240px]">
-                    {item.desc}
-                  </p>
-                  <span className="font-mono text-lg font-medium mb-4">{item.price}</span>
-                  <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors">
-                    {item.cta} <ArrowRight className="h-3 w-3" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="text-center mt-8">
-            <Link
-              to="/digital-products"
-              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Shop Digital Products <ArrowRight className="h-3 w-3" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CATEGORIES — editorial grid ── */}
-      <section className="border-t border-border">
-        <div className="max-w-6xl mx-auto px-8 py-20">
-          <h2 className="font-serif text-4xl md:text-5xl text-center mb-4" style={{ fontStyle: "italic", fontWeight: 400 }}>
-            Explore by Category
-          </h2>
-          <p className="font-mono text-[9px] text-muted-foreground text-center tracking-[0.3em] uppercase mb-16">
-            Curated collections for every facet of modern life
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-border">
-            {categories.map((cat) => (
-              <Link
-                key={cat.to}
-                to={cat.to}
-                className="group border-b border-r border-border p-10 hover:bg-card transition-colors duration-300 [&:nth-child(3n)]:border-r-0"
-              >
-                <h3 className="font-serif text-2xl mb-3 text-foreground group-hover:translate-x-1 transition-transform duration-300" style={{ fontStyle: "italic", fontWeight: 600, color: "hsl(220 15% 14%)" }}>
-                  {cat.label}
-                </h3>
-                <p className="font-mono text-[10px] tracking-wide leading-relaxed" style={{ color: "hsl(220 15% 30%)" }}>
-                  {cat.desc}
-                </p>
-                <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground mt-6 transition-colors">
-                  Browse <ArrowRight className="h-3 w-3" />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
+        </section>
+      </main>
       <AffiliateFooter />
     </div>
   );
