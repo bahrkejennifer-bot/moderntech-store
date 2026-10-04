@@ -78,7 +78,7 @@ const selections = [
 type Selection = (typeof selections)[number];
 
 // Only offers with an existing purchase page and working fulfillment route are listed here.
-// Titles and public descriptions come from safe metadata; pricing belongs to checkout, not this preview.
+// Titles come from safe metadata; pricing belongs to checkout, not this preview.
 const digitalOffers = [
   { slug: "creator-bundle", route: "/creator-bundle", cover: coverReels, included: "Reels, Canva, and YouTube creator guides together." },
   { slug: "canva-masterclass", route: "/canva-masterclass", cover: coverCanva, included: "Branding guidance, layout ideas, and practical Canva design tips." },
@@ -149,7 +149,7 @@ const Index = () => {
     queryKey: ["homepage-digital-offers"],
     queryFn: async () => {
       const { data, error } = await supabase.from("products_public")
-        .select("slug,title,description")
+        .select("slug,title")
         .in("slug", digitalOffers.map((offer) => offer.slug));
       if (error) throw error;
       return digitalOffers.flatMap((offer) => {
