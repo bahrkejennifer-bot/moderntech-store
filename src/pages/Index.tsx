@@ -275,8 +275,7 @@ const Index = () => {
                   <div className="min-w-0 md:pt-5">
                     <p className="text-xs font-semibold uppercase text-muted-foreground">Digital guide</p>
                     <h3 className="mt-2 font-serif text-2xl leading-tight">{product.title}</h3>
-                    <p className="mt-3 text-base leading-relaxed">{product.description}</p>
-                    <p className="mt-2 text-base leading-relaxed text-muted-foreground"><span className="font-semibold text-foreground">Inside:</span> {offer.included}</p>
+                    <p className="mt-3 text-base leading-relaxed"><span className="font-semibold">Inside:</span> {offer.included}</p>
                     <p className="mt-4 text-base text-muted-foreground">See offer details</p>
                     <Button asChild size="lg" className="mt-4 min-h-11 rounded-sm text-base"><Link to={`${offer.route}${location.search}`}>View digital guide <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link></Button>
                   </div>
