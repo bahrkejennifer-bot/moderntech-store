@@ -78,7 +78,7 @@ const selections = [
 type Selection = (typeof selections)[number];
 
 // Only offers with an existing purchase page and working fulfillment route are listed here.
-// Prices and public descriptions come from safe metadata, never from this presentation map.
+// Titles and public descriptions come from safe metadata; pricing belongs to checkout, not this preview.
 const digitalOffers = [
   { slug: "creator-bundle", route: "/creator-bundle", cover: coverReels, included: "Reels, Canva, and YouTube creator guides together." },
   { slug: "canva-masterclass", route: "/canva-masterclass", cover: coverCanva, included: "Branding guidance, layout ideas, and practical Canva design tips." },
@@ -149,11 +149,11 @@ const Index = () => {
     queryKey: ["homepage-digital-offers"],
     queryFn: async () => {
       const { data, error } = await supabase.from("products_public")
-        .select("slug,title,description,price,is_free")
+        .select("slug,title,description")
         .in("slug", digitalOffers.map((offer) => offer.slug));
       if (error) throw error;
       return digitalOffers.flatMap((offer) => {
-        const product = data?.find((item) => item.slug === offer.slug && !item.is_free && Number(item.price) > 0);
+        const product = data?.find((item) => item.slug === offer.slug);
         return product ? [{ offer, product }] : [];
       });
     },
@@ -277,8 +277,8 @@ const Index = () => {
                     <h3 className="mt-2 font-serif text-2xl leading-tight">{product.title}</h3>
                     <p className="mt-3 text-base leading-relaxed">{product.description}</p>
                     <p className="mt-2 text-base leading-relaxed text-muted-foreground"><span className="font-semibold text-foreground">Inside:</span> {offer.included}</p>
-                    <p className="mt-4 font-serif text-2xl">${Number(product.price).toFixed(2).replace(/\.00$/, "")}</p>
-                    <Button asChild size="lg" className="mt-4 min-h-11 rounded-sm text-base"><Link to={`${offer.route}${location.search}`}>See guide & buy <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link></Button>
+                    <p className="mt-4 text-base text-muted-foreground">See offer details</p>
+                    <Button asChild size="lg" className="mt-4 min-h-11 rounded-sm text-base"><Link to={`${offer.route}${location.search}`}>View digital guide <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link></Button>
                   </div>
                 </div>
               </article>)}
