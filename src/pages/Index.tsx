@@ -151,7 +151,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen vogue-theme bg-background text-foreground">
+    <div className="min-h-screen vogue-theme bg-background text-foreground [&_footer_p]:!text-base [&_footer_a]:!text-base [&_footer_h3]:!text-base [&_footer_span]:!text-base">
       <Helmet>
         <title>Modern Tech | Useful tech. Clear choices.</title>
         <meta name="description" content="Seven useful tech picks, with clear benefits, limitations and direct Amazon links. Curated by Modern Tech LLC." />
@@ -164,7 +164,7 @@ const Index = () => {
       <header className="border-b border-border bg-background">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-4 md:px-8">
           <Link to="/" className="font-serif text-xl font-semibold text-foreground md:text-2xl">MODERN TECH</Link>
-          <nav aria-label="Main navigation" className="flex items-center gap-4 text-sm font-medium md:gap-7">
+          <nav aria-label="Main navigation" className="flex items-center gap-4 text-base font-medium md:gap-7">
             <a href="#selections" className="text-foreground hover:underline">The picks</a>
             <Link to="/weekly-edit" className="text-foreground hover:underline">Weekly Edit</Link>
             <Link to="/digital-products" className="text-foreground hover:underline">Guides</Link>
