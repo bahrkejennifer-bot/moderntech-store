@@ -26,7 +26,6 @@ const selections = [
     audience: "For the note-taker who still likes a pen",
     benefit: "Write by hand, scan your notes to the cloud, then wipe the pages clean for reuse.",
     limitation: "Pages are reusable, not a permanent paper archive.",
-    group: "Work & create",
   },
   {
     id: "12f82e99-c9b9-4a08-ba6a-af18ec1abca6",
@@ -34,7 +33,6 @@ const selections = [
     audience: "For focus in shared spaces",
     benefit: "Adaptive noise cancellation and a listed 40-hour battery make it a practical workday companion.",
     limitation: "These are battery-powered headphones, so they still need charging.",
-    group: "Work & create",
   },
   {
     id: "c54218bd-8361-40d4-ac72-f4027d508a5b",
@@ -42,7 +40,6 @@ const selections = [
     audience: "For a monitor-based desk setup",
     benefit: "A monitor light with glare-free desk lighting and a soft rear halo.",
     limitation: "Designed for a monitor, not for lighting an entire room.",
-    group: "Work & create",
   },
   {
     id: "f4828b84-e0c2-4b70-869f-a3bed7fb37c8",
@@ -50,7 +47,6 @@ const selections = [
     audience: "For tracking wellness trends at home",
     benefit: "Tracks 13 body-composition metrics in one scale.",
     limitation: "A home scale is a trend tool, not a medical assessment.",
-    group: "Everyday life",
   },
   {
     id: "961410f4-1bbe-4dec-8148-9741e236cdf4",
@@ -58,7 +54,6 @@ const selections = [
     audience: "For hands-on circuit discovery",
     benefit: "28 snap-together pieces can make more than 100 circuits.",
     limitation: "A physical kit, not a screen-based course.",
-    group: "Everyday life",
   },
   {
     id: "450e46a0-1080-4f7d-89ab-f97f3cce0ff5",
@@ -66,7 +61,6 @@ const selections = [
     audience: "For music beyond the desk",
     benefit: "A waterproof portable speaker with a listed 12-hour battery.",
     limitation: "Portable battery power means it needs recharging.",
-    group: "Everyday life",
   },
   {
     id: "e0aa4d9a-7a15-4c10-9dcb-b48999bdbd48",
@@ -74,7 +68,6 @@ const selections = [
     audience: "For portable power away from an outlet",
     benefit: "A 288Wh portable power station with solar-ready charging.",
     limitation: "The DC model is for compatible DC-powered devices; check ports before buying.",
-    group: "Everyday life",
   },
 ] as const;
 
@@ -116,11 +109,11 @@ const ProductTile = ({ selection, product, featured, onOpen }: {
   onOpen: (selection: Selection, product: CatalogProduct) => void;
 }) => (
   <article id={`product-${selection.slug}`} className="scroll-mt-8 border-t border-border py-7 md:py-8">
-    <div className={`grid grid-cols-[104px_minmax(0,1fr)] gap-4 sm:grid-cols-[148px_minmax(0,1fr)] md:gap-7 ${featured ? "lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]" : "lg:grid-cols-[136px_minmax(0,1fr)]"}`}>
-      <div className={`flex items-center justify-center overflow-hidden bg-muted ${featured ? "aspect-square" : "aspect-square"}`}>
+    <div className={`grid grid-cols-[104px_minmax(0,1fr)] gap-4 sm:grid-cols-[148px_minmax(0,1fr)] md:gap-7 ${featured ? "lg:block" : "lg:grid-cols-[136px_minmax(0,1fr)]"}`}>
+      <div className="flex aspect-square items-center justify-center overflow-hidden bg-muted">
         <img src={product.image_url || ""} alt={product.title} loading={featured ? "eager" : "lazy"} className="h-full w-full object-contain p-2 md:p-4" />
       </div>
-      <div className="flex min-w-0 flex-col items-start justify-center">
+      <div className={`flex min-w-0 flex-col items-start justify-center ${featured ? "lg:pt-5" : ""}`}>
         <p className="text-xs font-semibold uppercase text-muted-foreground">{selection.audience}</p>
         <h3 className={`mt-2 font-serif leading-tight ${featured ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"}`}>{product.title}</h3>
         <p className="mt-3 text-base leading-relaxed text-foreground">{selection.benefit}</p>

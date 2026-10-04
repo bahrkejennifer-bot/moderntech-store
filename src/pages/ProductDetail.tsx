@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { ExternalLink, ArrowLeft } from "lucide-react";
@@ -11,6 +12,7 @@ const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
   const { trackEvent } = usePinterestEvent();
+  useEffect(() => { window.scrollTo(0, 0); }, [id]);
   const { data: product, isLoading } = useQuery({
     queryKey: ["product-detail", id],
     enabled: Boolean(id && /^[0-9a-f-]{36}$/i.test(id)),
