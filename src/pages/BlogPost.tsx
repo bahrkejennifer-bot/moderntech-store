@@ -745,7 +745,7 @@ const BlogPost = () => {
                 className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
               >
                 <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                Back to Blog
+                All editions of The Signal
               </Link>
             </div>
           </article>
@@ -966,7 +966,7 @@ const BlogPost = () => {
               className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
             >
               <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-              Back to Blog
+              All editions of The Signal
             </Link>
           </div>
         </article>
