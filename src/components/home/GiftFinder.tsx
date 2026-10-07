@@ -65,7 +65,7 @@ const GiftFinder = ({ picks, renderCta, disclosure }: { picks: FinderPick[]; ren
 
   const run = (text: string) => {
     const q = text.trim().slice(0, 200);
-    if (!q) { setState({ kind: "empty" }); inputRef.current?.focus(); return; }
+    if (!q) { setState({ kind: "empty" }); setTick((t) => t + 1); return; }
     const results = matchGifts(q, picks);
     const recipient = findRecipient(q); const budget = findBudget(q); const budgetMentioned = budgetRe.test(q) || budget !== null;
     if (results.length) setState({ kind: "results", query: q, results, budget: budgetMentioned, budgetAmount: budget });
