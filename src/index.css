@@ -437,11 +437,13 @@ Dark base, bold blue accents, crisp white type
 }
 .launch-nav { background-color: hsl(var(--background) / .88); }
 .launch-hero-glow {
-  background: linear-gradient(125deg, hsl(220 10% 8%) 22%, hsl(347 24% 19%) 68%, hsl(350 37% 32%) 100%);
+  background: radial-gradient(60% 55% at 78% 40%, hsl(350 45% 90%) 0%, hsl(20 40% 96% / 0) 70%), linear-gradient(180deg, hsl(36 33% 97%) 0%, hsl(var(--background)) 100%);
 }
-.launch-hero-product { box-shadow: 0 30px 100px hsl(350 37% 6% / .35); animation: launch-breathe 9s ease-in-out infinite alternate; }
+.launch-hero-product { box-shadow: 0 40px 90px -30px hsl(350 30% 30% / .25); animation: launch-breathe 9s ease-in-out infinite alternate; }
 .launch-spotlight-image img { animation: launch-appear .45s ease-out both; }
-@keyframes launch-breathe { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+.launch-rail { scrollbar-width: none; }
+.launch-rail::-webkit-scrollbar { display: none; }
+@keyframes launch-breathe { from { transform: translateY(0) scale(1); } to { transform: translateY(-10px) scale(1.015); } }
 @keyframes launch-appear { from { opacity: .5; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: no-preference) {
   .launch-reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
