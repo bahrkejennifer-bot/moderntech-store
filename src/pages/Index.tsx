@@ -120,12 +120,12 @@ const Index = () => {
       <StructuredData title="Modern Tech | The Art of Modern Tech" description="Curated everyday tech and practical creator guides from Modern Tech LLC." path="/" includeWebSite />
       <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 md:h-20 md:px-10">
-          <Link to="/" className="shrink-0 text-xl text-foreground md:text-2xl" style={{ ...serif, fontStyle: "italic" }}>Modern Tech</Link>
-          <nav aria-label="Main navigation" className="flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] sm:gap-5 md:gap-8">
+          <Link to="/" className="shrink-0 text-lg text-foreground sm:text-xl md:text-2xl" style={{ ...serif, fontStyle: "italic" }}>Modern Tech</Link>
+          <nav aria-label="Main navigation" className="flex items-center gap-2.5 text-[11px] font-medium uppercase tracking-[0.12em] sm:gap-5 sm:tracking-[0.18em] md:gap-8">
             <a href="#gift-picks" className="hidden text-foreground/75 hover:text-foreground md:inline">Gifts</a>
             <a href="#digital-products" className="hidden text-foreground/75 hover:text-foreground sm:inline">Digital Products</a>
             <Link to="/the-signal" className="whitespace-nowrap text-foreground/75 hover:text-foreground">The Signal</Link>
-            <Button asChild size="lg" className="min-h-11 rounded-none px-3 text-[11px] uppercase tracking-[0.18em] sm:px-5"><a href="#selections">Shop Tech Finds</a></Button>
+            <Button asChild size="lg" className="min-h-11 rounded-none px-2.5 text-[11px] uppercase tracking-[0.12em] sm:px-5 sm:tracking-[0.18em]"><a href="#selections">Shop Tech Finds</a></Button>
           </nav>
         </div>
       </header>
