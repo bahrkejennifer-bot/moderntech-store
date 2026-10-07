@@ -264,7 +264,7 @@ const Blog = () => {
         </section>
       </main>
 
-      <AffiliateFooter />
+      <div className="print:hidden"><AffiliateFooter /></div>
     </div>
   );
 };
