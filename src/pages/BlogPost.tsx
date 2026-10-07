@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import { Calendar, ArrowLeft, ExternalLink, Download, Clock, ChevronUp, List } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import Navigation from "@/components/Navigation";
+import SignalHeader from "@/components/SignalHeader";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import StructuredData from "@/components/StructuredData";
 import JsonLdValidator from "@/components/JsonLdValidator";
@@ -676,7 +676,7 @@ const BlogPost = () => {
           />
         </div>
 
-        <Navigation />
+        <SignalHeader />
 
         {/* Nav separator */}
         <div className="border-b border-border/40" />
@@ -771,7 +771,7 @@ const BlogPost = () => {
   if (!post && isLoading) {
     return (
       <div className="min-h-screen vogue-theme bg-background text-foreground">
-        <Navigation />
+        <SignalHeader />
         <div className="container mx-auto px-4 py-24 text-center">
           <div className="animate-pulse space-y-4">
             <div className="h-8 w-48 bg-muted rounded mx-auto" />
@@ -786,7 +786,7 @@ const BlogPost = () => {
   if (!post && !dynamicPost) {
     return (
       <div className="min-h-screen vogue-theme bg-background text-foreground">
-        <Navigation />
+        <SignalHeader />
         <div className="container mx-auto px-4 py-24 text-center">
           <h1 className="text-4xl font-bold mb-4 tracking-tight">Post Not Found</h1>
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">The blog post you're looking for doesn't exist or has been moved.</p>
@@ -862,7 +862,7 @@ const BlogPost = () => {
         />
       </div>
 
-      <Navigation />
+      <SignalHeader />
 
       {/* Nav separator */}
       <div className="border-b border-border/40" />
