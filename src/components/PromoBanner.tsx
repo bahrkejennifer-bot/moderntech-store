@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { X } from "lucide-react";
+import { isSignalRoute } from "@/lib/quietRoutes";
 
 const PromoBanner = () => {
   const location = useLocation();
@@ -8,7 +9,7 @@ const PromoBanner = () => {
     try { return sessionStorage.getItem("promo-banner-dismissed") === "true"; } catch { return false; }
   });
 
-  if (dismissed || location.pathname === "/") return null;
+  if (dismissed || location.pathname === "/" || isSignalRoute(location.pathname)) return null;
 
   const handleDismiss = () => {
     setDismissed(true);
