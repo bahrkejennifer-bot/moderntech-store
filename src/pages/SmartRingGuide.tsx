@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
 import { Download, CheckCircle, ArrowRight, Gem, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ const benefits = [
 ];
 
 const SmartRingGuide = () => {
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -59,6 +61,7 @@ const SmartRingGuide = () => {
         name: name.trim(),
         email: email.trim().toLowerCase(),
         lead_magnet: "smart-ring-buyers-guide",
+        newsletter_opt_in: newsletterOptIn,
       });
 
       if (!result.success) {
@@ -195,6 +198,7 @@ const SmartRingGuide = () => {
                           className="h-12"
                           maxLength={255}
                         />
+                        <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="my-2" />
                         <Button
                           type="submit"
                           disabled={isSubmitting}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
 import { Star, Check, Sparkles, ArrowRight, Quote, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -85,6 +86,7 @@ const reviews = [
 ];
 
 const FacelessCreatorBundle = () => {
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [loading, setLoading] = useState<ProductKey | null>(null);
 
   const startCheckout = async (
@@ -107,6 +109,8 @@ const FacelessCreatorBundle = () => {
           amount,
           successUrl: `${SITE}/creator-funnel/success?product=${slug}`,
           cancelUrl: `${SITE}/faceless-creator-bundle`,
+          newsletterOptIn,
+          source: "/faceless-creator-bundle",
         },
       });
       if (error) throw error;
@@ -151,6 +155,7 @@ const FacelessCreatorBundle = () => {
           Three master classes — Reels, Canva, and Faceless YouTube — bundled into one quiet, luxurious system for the creator who wants results without the spotlight.
         </p>
 
+        <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="mb-4 mx-auto max-w-md" />
         <button
           onClick={() => startCheckout("bundle", "The Complete Creator Bundle", 5900, "creator-bundle")}
           disabled={loading === "bundle"}
@@ -236,6 +241,7 @@ const FacelessCreatorBundle = () => {
               >
                 {p.desc}
               </p>
+              <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="mb-4 mx-auto max-w-md" />
               <button
                 onClick={() => startCheckout(p.key, p.name, p.amount, p.slug)}
                 disabled={loading === p.key}
@@ -404,6 +410,7 @@ const FacelessCreatorBundle = () => {
             Save $19 • One payment • Lifetime
           </p>
 
+          <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="mb-4 mx-auto max-w-md" />
           <button
             onClick={() => startCheckout("bundle", "The Complete Creator Bundle", 5900, "creator-bundle")}
             disabled={loading === "bundle"}

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, Check, Loader2, Mail, Gift, Sparkles, Inbox, Send, AlertCircle, Copy, Printer, Link2 } from "lucide-react";
@@ -25,6 +26,7 @@ const TechEssentialsSuccess = () => {
   const state = (location.state as LocationState | null) ?? null;
   const email = state?.email ?? "";
   const name = state?.name ?? "";
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   // ── Resend email state ──
@@ -157,6 +159,8 @@ const TechEssentialsSuccess = () => {
           amount: 5900,
           successUrl: `${SITE}/creator-funnel/success?product=creator-bundle`,
           cancelUrl: `${SITE}${PATH}`,
+          newsletterOptIn,
+          source: "/tech-essentials-success",
         },
       });
       if (error) throw error;
@@ -715,6 +719,7 @@ const TechEssentialsSuccess = () => {
               ))}
             </ul>
 
+            <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="mb-4 mx-auto max-w-md" />
             <button
               onClick={handleBundleCheckout}
               disabled={checkoutLoading}
