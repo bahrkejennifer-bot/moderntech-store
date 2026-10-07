@@ -735,7 +735,6 @@ const BlogPost = () => {
               dangerouslySetInnerHTML={{ __html: rewriteAmazonLinks(dynamicPost.content_html) }}
             />
 
-            <DownloadCTA />
             <AffiliateDisclosure />
 
             {/* Back to Blog footer */}
@@ -956,7 +955,6 @@ const BlogPost = () => {
             {post!.sections.map((section, index) => renderSection(section, index))}
           </div>
 
-          <DownloadCTA />
           <AffiliateDisclosure />
 
           {/* Back to Blog footer */}
