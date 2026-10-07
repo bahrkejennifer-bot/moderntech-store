@@ -33,7 +33,7 @@ const Signal = () => {
     title: post.title,
     excerpt: post.excerpt ?? "",
     category: (post.category ?? "TECH").toUpperCase(),
-    slug: `/weekly-edit/${post.slug}`,
+    slug: `/the-signal/${post.slug}`,
   }));
 
   return (
@@ -48,7 +48,7 @@ const Signal = () => {
               className="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tight leading-tight"
               style={{ fontWeight: 400 }}
             >
-              The Art of Modern Tech Weekly Edit
+              The Signal
             </h1>
             <p
               className="font-mono mt-4 text-muted-foreground"

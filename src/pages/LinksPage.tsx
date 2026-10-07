@@ -24,7 +24,7 @@ const LINKS = [
   {
     emoji: "🎙️",
     label: "The Art of Modern Tech Podcast — Monday Nights",
-    url: "https://moderntech.store/the-signal",
+    url: "https://moderntech.store/podcast",
   },
   {
     emoji: "📺",

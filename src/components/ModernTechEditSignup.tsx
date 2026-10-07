@@ -59,7 +59,7 @@ export const ModernTechEditSignup = () => {
           className="font-serif text-3xl md:text-4xl mb-4"
           style={{ fontStyle: "italic", fontWeight: 500, color: "#000000" }}
         >
-          The Modern Tech Edit
+          The Signal
         </h3>
         <p className="font-mono text-[11px] text-muted-foreground mb-10 max-w-md mx-auto leading-[1.8]">
           A weekly, curated edit of the tech worth owning — reviews, buying guides,
@@ -101,7 +101,7 @@ export const ModernTechEditSignup = () => {
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
                 <>
-                  Subscribe to The Edit <ArrowRight className="ml-2 h-3.5 w-3.5" />
+                  Get The Signal by email <ArrowRight className="ml-2 h-3.5 w-3.5" />
                 </>
               )}
             </Button>

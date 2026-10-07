@@ -173,28 +173,28 @@ const Blog = () => {
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
-        <title>Modern Tech: Weekly Edit | Smart Home, Wellness, Office & Kids Tech</title>
-        <meta name="description" content="Modern Tech: Weekly Edit — expert tech reviews and buying guides for smart home & security, health & wellness, office essentials, and kids & STEM. Updated weekly." />
-        <meta property="og:title" content="Modern Tech: Weekly Edit | Smart Home, Wellness, Office & Kids Tech" />
-        <meta property="og:description" content="Modern Tech: Weekly Edit — expert tech reviews and buying guides across the four pillars of everyday tech." />
+        <title>The Signal | Smart Home, Wellness, Office & Kids Tech</title>
+        <meta name="description" content="The Signal — expert tech reviews and buying guides for smart home & security, health & wellness, office essentials, and kids & STEM. Updated weekly." />
+        <meta property="og:title" content="The Signal | Smart Home, Wellness, Office & Kids Tech" />
+        <meta property="og:description" content="The Signal — expert tech reviews and buying guides across the four pillars of everyday tech." />
         <meta property="og:image" content={springDealsHeroImg} />
-        <meta property="og:url" content="https://moderntech.store/weekly-edit" />
+        <meta property="og:url" content="https://moderntech.store/the-signal" />
         <meta property="og:type" content="website" />
       </Helmet>
       <StructuredData
-        title="Modern Tech: Weekly Edit | Smart Home, Wellness, Office & Kids Tech"
+        title="The Signal | Smart Home, Wellness, Office & Kids Tech"
         description="Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly."
-        path="/weekly-edit"
+        path="/the-signal"
         breadcrumbs={[
           { name: "Home", path: "/" },
-          { name: "Modern Tech: Weekly Edit", path: "/weekly-edit" },
+          { name: "The Signal", path: "/the-signal" },
         ]}
         extraGraph={[
           {
             "@type": "Blog",
-            "@id": "https://moderntech.store/weekly-edit#blog",
-            name: "Modern Tech: Weekly Edit",
-            url: "https://moderntech.store/weekly-edit",
+            "@id": "https://moderntech.store/the-signal#blog",
+            name: "The Signal",
+            url: "https://moderntech.store/the-signal",
             publisher: { "@id": "https://moderntech.store/#organization" },
           },
         ]}
@@ -205,7 +205,7 @@ const Blog = () => {
       <div className="w-full border-b border-border">
         <img
           src={weeklyReportBeachHeroImg.url}
-          alt="Welcome to the weekly Modern Tech: Weekly Edit — working from the beach"
+          alt="Welcome to the weekly The Signal — working from the beach"
           className="w-full h-[42vh] md:h-[56vh] object-cover"
           loading="eager"
         />
@@ -216,7 +216,7 @@ const Blog = () => {
         <div className="max-w-5xl mx-auto px-8 pt-16 pb-10">
           <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">MODERN TECH: WEEKLY EDIT</p>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl italic tracking-tight leading-[1.08] max-w-3xl" style={{ fontWeight: 700, color: '#000000' }}>
-            Modern Tech: Weekly Edit
+            The Signal
           </h1>
           <p className="mt-6 font-mono text-xs text-muted-foreground max-w-lg leading-relaxed">
             Expert-tested tech recommendations across Smart Home, Health & Wellness, Office, and Kids & STEM — to help you spend smarter and live better.
@@ -312,7 +312,7 @@ const Blog = () => {
 
         {/* ── Featured Post (large hero card) ── */}
         {featuredPost && (
-          <Link to={`/weekly-edit/${featuredPost.slug}`} className="group block mb-20">
+          <Link to={`/the-signal/${featuredPost.slug}`} className="group block mb-20">
             <article className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden border border-border hover:shadow-elegant transition-all duration-500">
               <div className="aspect-[16/10] lg:aspect-auto overflow-hidden relative">
                 <img
@@ -366,7 +366,7 @@ const Blog = () => {
           </section>
         )}
 
-        {/* ── Newsletter CTA: The Modern Tech Edit ── */}
+        {/* ── Newsletter CTA: The Signal ── */}
         {!isFiltering && <ModernTechEditSignup />}
 
 
@@ -431,7 +431,7 @@ interface BlogPostItem {
 }
 
 const BlogCard = ({ post }: { post: BlogPostItem }) => (
-  <Link to={`/weekly-edit/${post.slug}`} className="group block h-full border-r border-b border-border">
+  <Link to={`/the-signal/${post.slug}`} className="group block h-full border-r border-b border-border">
     <article className="overflow-hidden h-full flex flex-col hover:bg-card transition-all duration-300">
       <div className="aspect-[4/3] overflow-hidden relative">
         <img

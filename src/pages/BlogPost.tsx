@@ -616,7 +616,7 @@ const BlogPost = () => {
           <meta property="og:title" content={ogTitle} />
           <meta property="og:description" content={ogDesc} />
           <meta property="og:image" content={ogImage} />
-          <meta property="og:url" content={`https://moderntech.store/weekly-edit/${slug}`} />
+          <meta property="og:url" content={`https://moderntech.store/the-signal/${slug}`} />
           <meta property="og:type" content="article" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={ogTitle} />
@@ -624,22 +624,22 @@ const BlogPost = () => {
           <meta name="twitter:image" content={ogImage} />
           <meta property="pin:media" content={ogImage} />
           <meta property="pin:description" content={ogDesc} />
-          <link rel="canonical" href={`https://moderntech.store/weekly-edit/${slug}`} />
+          <link rel="canonical" href={`https://moderntech.store/the-signal/${slug}`} />
         </Helmet>
         <StructuredData
           title={ogTitle}
           description={ogDesc}
-          path={`/weekly-edit/${slug}`}
+          path={`/the-signal/${slug}`}
           includeWebSite
           breadcrumbs={[
             { name: "Home", path: "/" },
-            { name: "Modern Tech: Weekly Edit", path: "/weekly-edit" },
-            { name: dynamicPost.title, path: `/weekly-edit/${slug}` },
+            { name: "The Signal", path: "/the-signal" },
+            { name: dynamicPost.title, path: `/the-signal/${slug}` },
           ]}
           extraGraph={[
             {
               "@type": "BlogPosting",
-              "@id": `https://moderntech.store/weekly-edit/${slug}#blogposting`,
+              "@id": `https://moderntech.store/the-signal/${slug}#blogposting`,
               headline: ogTitle,
               description: ogDesc,
               image: [ogImage],
@@ -658,9 +658,9 @@ const BlogPost = () => {
               publisher: { "@id": "https://moderntech.store/#organization" },
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": `https://moderntech.store/weekly-edit/${slug}#webpage`,
+                "@id": `https://moderntech.store/the-signal/${slug}#webpage`,
               },
-              url: `https://moderntech.store/weekly-edit/${slug}`,
+              url: `https://moderntech.store/the-signal/${slug}`,
               // Explicit @graph cross-references to each Product node below
               ...(buildBlogProductCrossRefs(slug || "", dynamicPost.products as any) || {}),
             },
@@ -741,7 +741,7 @@ const BlogPost = () => {
             {/* Back to Blog footer */}
             <div className="mt-16 pt-8 border-t border-border text-center">
               <Link
-                to="/weekly-edit"
+                to="/the-signal"
                 className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
               >
                 <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
@@ -791,7 +791,7 @@ const BlogPost = () => {
           <h1 className="text-4xl font-bold mb-4 tracking-tight">Post Not Found</h1>
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">The blog post you're looking for doesn't exist or has been moved.</p>
           <Button asChild variant="cta" className="rounded-full px-8">
-            <Link to="/weekly-edit">Browse All Articles</Link>
+            <Link to="/the-signal">Browse All Articles</Link>
           </Button>
         </div>
         <AffiliateFooter />
@@ -811,7 +811,7 @@ const BlogPost = () => {
         <meta property="og:title" content={post!.title} />
         <meta property="og:description" content={staticOgDesc} />
         <meta property="og:image" content={staticOgImage} />
-          <meta property="og:url" content={`${SITE}/weekly-edit/${slug}`} />
+          <meta property="og:url" content={`${SITE}/the-signal/${slug}`} />
           <meta property="og:type" content="article" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={post!.title} />
@@ -819,22 +819,22 @@ const BlogPost = () => {
           <meta name="twitter:image" content={staticOgImage} />
           <meta property="pin:media" content={staticOgImage} />
           <meta property="pin:description" content={staticOgDesc} />
-          <link rel="canonical" href={`${SITE}/weekly-edit/${slug}`} />
+          <link rel="canonical" href={`${SITE}/the-signal/${slug}`} />
         </Helmet>
         <StructuredData
           title={post!.title}
           description={staticOgDesc}
-          path={`/weekly-edit/${slug}`}
+          path={`/the-signal/${slug}`}
           includeWebSite
           breadcrumbs={[
             { name: "Home", path: "/" },
-            { name: "Modern Tech: Weekly Edit", path: "/weekly-edit" },
-            { name: post!.title, path: `/weekly-edit/${slug}` },
+            { name: "The Signal", path: "/the-signal" },
+            { name: post!.title, path: `/the-signal/${slug}` },
           ]}
           extraGraph={[
             {
               "@type": "BlogPosting",
-              "@id": `${SITE}/weekly-edit/${slug}#blogposting`,
+              "@id": `${SITE}/the-signal/${slug}#blogposting`,
               headline: post!.title,
               description: staticOgDesc,
               image: staticOgImage,
@@ -847,8 +847,8 @@ const BlogPost = () => {
                 url: SITE,
               },
               publisher: { "@id": `${SITE}/#organization` },
-              mainEntityOfPage: { "@id": `${SITE}/weekly-edit/${slug}#webpage` },
-              url: `${SITE}/weekly-edit/${slug}`,
+              mainEntityOfPage: { "@id": `${SITE}/the-signal/${slug}#webpage` },
+              url: `${SITE}/the-signal/${slug}`,
           },
           ...getBlogPostExtraSchemas(slug || ""),
         ]}
@@ -962,7 +962,7 @@ const BlogPost = () => {
           {/* Back to Blog footer */}
           <div className="mt-16 pt-8 border-t border-border text-center">
             <Link
-              to="/weekly-edit"
+              to="/the-signal"
               className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
             >
               <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
