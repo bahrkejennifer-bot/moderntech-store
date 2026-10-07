@@ -137,7 +137,7 @@ const Blog = () => {
     readTime: "5 min read",
   }));
 
-  const allPosts = [...dynamicMapped, ...staticBlogPosts];
+  const allPosts = [...dynamicMapped, ...staticBlogPosts].sort((a, b) => +new Date(b.date) - +new Date(a.date));
   const latest = allPosts[0];
   const previous = allPosts.slice(1);
   const fmt = (d: string) => new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
