@@ -154,7 +154,7 @@ const Index = () => {
           <nav aria-label="Main navigation" className="flex items-center gap-3 text-sm font-medium md:gap-8 md:text-base">
             <a href="#gift-picks" className="hidden text-foreground/80 hover:text-foreground md:inline">Gifts</a>
             <a href="#digital-products" className="hidden text-foreground/80 hover:text-foreground sm:inline">Guides</a>
-            <Link to="/the-signal" className="hidden text-foreground/80 hover:text-foreground md:inline">The Signal</Link>
+            <Link to="/the-signal" className="whitespace-nowrap text-foreground/80 hover:text-foreground">The Signal</Link>
             <Button asChild size="lg" className="min-h-11 rounded-full px-5 text-sm md:text-base"><a href="#selections">Shop Tech Finds</a></Button>
           </nav>
         </div>
