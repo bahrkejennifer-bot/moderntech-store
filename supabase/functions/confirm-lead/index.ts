@@ -1,4 +1,5 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { recordDigitalSignup, NEWSLETTER_ONLY_MAGNETS } from "../_shared/digital-signup.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -80,15 +81,28 @@ Deno.serve(async (req) => {
       console.error("lead_captures insert error", leadErr);
     }
 
-    // Trigger welcome email with the actual guide link
+    // Trigger welcome email with the actual guide link (delivery never depends on newsletter consent)
     supabase.functions.invoke("send-welcome-email", {
       body: { name: pending.name, email: pending.email, lead_magnet: pending.lead_magnet },
     }).catch((e) => console.error("welcome email invoke failed", e));
 
-    // Forward to GetResponse via existing newsletter pipeline (best-effort)
-    supabase.functions.invoke("subscribe-newsletter", {
-      body: { name: pending.name, email: pending.email, source: pending.lead_magnet },
-    }).catch(() => {});
+    if (NEWSLETTER_ONLY_MAGNETS.has(pending.lead_magnet)) {
+      // Explicit newsletter signup — existing newsletter list flow.
+      supabase.functions.invoke("subscribe-newsletter", {
+        body: { name: pending.name, email: pending.email, source: pending.lead_magnet },
+      }).catch(() => {});
+    } else {
+      // Digital product signup: record + notify business inbox; enroll only with ticked consent.
+      try {
+        await recordDigitalSignup(supabase, {
+          kind: "free", email: pending.email, name: pending.name, productSlug: pending.lead_magnet,
+          productLabel: GUIDE_LABELS[pending.lead_magnet] ?? pending.lead_magnet,
+          source: pending.source_path ?? null,
+          newsletterOptIn: pending.newsletter_opt_in === true,
+          consentAt: pending.newsletter_consent_at ?? null,
+        });
+      } catch (e) { console.error("signup record failed", e); }
+    }
 
     return new Response(JSON.stringify({
       success: true, redirect: guideRoute, lead_magnet: pending.lead_magnet,
