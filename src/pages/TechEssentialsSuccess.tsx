@@ -160,7 +160,7 @@ const TechEssentialsSuccess = () => {
           successUrl: `${SITE}/creator-funnel/success?product=creator-bundle`,
           cancelUrl: `${SITE}${PATH}`,
           newsletterOptIn,
-          source: "/tech-essentials-success",
+          source: PATH,
         },
       });
       if (error) throw error;
