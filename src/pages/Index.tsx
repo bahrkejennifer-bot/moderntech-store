@@ -140,9 +140,9 @@ const Index = () => {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-5 md:h-20 md:px-9">
           <Link to="/" className="shrink-0 text-lg font-semibold text-foreground md:text-xl">MODERN TECH<span className="ml-1 text-accent">.</span></Link>
           <nav aria-label="Main navigation" className="flex items-center gap-3 text-sm font-medium md:gap-8 md:text-base">
-            <a href="#selections" className="text-foreground/80 hover:text-foreground">Tech</a>
-            <a href="#digital-products" className="text-foreground/80 hover:text-foreground">Guides</a>
+            <a href="#digital-products" className="hidden text-foreground/80 hover:text-foreground sm:inline">Guides</a>
             <Link to="/weekly-edit" className="hidden text-foreground/80 hover:text-foreground sm:inline">Weekly Edit</Link>
+            <Button asChild size="lg" className="min-h-11 rounded-full px-5 text-sm md:text-base"><a href="#selections">Shop Tech Finds</a></Button>
           </nav>
         </div>
       </header>
@@ -155,7 +155,7 @@ const Index = () => {
               <h1 id="launch-heading" className="mt-6 max-w-[850px] text-5xl font-semibold leading-[1.04] text-foreground sm:text-6xl md:text-7xl lg:text-8xl">Everyday tech.<br /><span className="text-accent">Beautifully simple.</span></h1>
               <p className="mt-7 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">A considered selection of the things worth making room for.</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild size="lg" className="min-h-12 rounded-full px-6 text-base"><a href="#selections">Explore tech picks <ArrowDown aria-hidden="true" className="ml-1 h-4 w-4" /></a></Button>
+                <Button asChild size="lg" className="min-h-12 rounded-full px-6 text-base"><a href="#selections">Shop Tech Finds <ArrowDown aria-hidden="true" className="ml-1 h-4 w-4" /></a></Button>
                 <Button asChild size="lg" variant="outline" className="min-h-12 rounded-full border-border bg-transparent px-6 text-base text-foreground hover:bg-secondary hover:text-foreground"><a href="#digital-products">Explore digital guides <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" /></a></Button>
               </div>
             </div>
