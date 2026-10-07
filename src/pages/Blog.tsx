@@ -1,16 +1,11 @@
-import { useState, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import StructuredData from "@/components/StructuredData";
 import { Link } from "react-router-dom";
-import { Calendar, ArrowRight, Sparkles, Clock, Search, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import Navigation from "@/components/Navigation";
+import SignalHeader from "@/components/SignalHeader";
 import AffiliateFooter from "@/components/AffiliateFooter";
-import ModernTechEditSignup from "@/components/ModernTechEditSignup";
-import JsonLdValidator from "@/components/JsonLdValidator";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
+import SignalSignup from "@/components/home/SignalSignup";
 import { supabase } from "@/integrations/supabase/client";
 import ouraRingHeroImg from "@/assets/heroes/oura-ring-hero.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
@@ -21,8 +16,6 @@ import gamingMonitorsHeroImg from "@/assets/blog/gaming-monitors-hero.jpg";
 import collegeTechHeroImg from "@/assets/blog/college-tech-hero.jpg";
 import kidsTechHeroImg from "@/assets/blog/kids-tech-hero.jpg";
 import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
-import weeklyReportBeachHeroImg from "@/assets/heroes/weekly-report-beach-hero-v2.jpg.asset.json";
-import { getCurrentTechOfTheMonth } from "@/data/techOfTheMonth";
 
 const staticBlogPosts = [
   {
@@ -117,11 +110,8 @@ const staticBlogPosts = [
   },
 ];
 
-const categories = ["All", "Deals", "Smart Home & Security", "Health & Wellness Tech", "Office Essentials", "Kids & STEM", "Gift Guides", "THE SIGNAL", "Deep Dive"];
 
 const Blog = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
 
   const { data: dynamicPosts } = useQuery({
     queryKey: ["blog-posts"],
@@ -148,42 +138,26 @@ const Blog = () => {
   }));
 
   const allPosts = [...dynamicMapped, ...staticBlogPosts];
-
-  const filteredPosts = useMemo(() => {
-    let posts = allPosts;
-    if (activeCategory !== "All") {
-      posts = posts.filter((p) => p.category === activeCategory);
-    }
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      posts = posts.filter(
-        (p) =>
-          p.title.toLowerCase().includes(q) ||
-          p.excerpt.toLowerCase().includes(q) ||
-          p.category.toLowerCase().includes(q)
-      );
-    }
-    return posts;
-  }, [allPosts, activeCategory, searchQuery]);
-
-  const isFiltering = activeCategory !== "All" || searchQuery.trim().length > 0;
-  const featuredPost = isFiltering ? null : allPosts[0];
-  const gridPosts = isFiltering ? filteredPosts : filteredPosts.slice(1);
+  const latest = allPosts[0];
+  const previous = allPosts.slice(1);
+  const fmt = (d: string) => new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  // Label honestly: a monthly roundup is not called a weekly issue.
+  const latestKind = latest && /month|roundup/i.test(latest.title) ? "Monthly roundup" : "Latest edition";
 
   return (
-    <div className="min-h-screen vogue-theme bg-background text-foreground">
+    <div className="launch-theme min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>The Signal | Smart Home, Wellness, Office & Kids Tech</title>
-        <meta name="description" content="The Signal — expert tech reviews and buying guides for smart home & security, health & wellness, office essentials, and kids & STEM. Updated weekly." />
-        <meta property="og:title" content="The Signal | Smart Home, Wellness, Office & Kids Tech" />
-        <meta property="og:description" content="The Signal — expert tech reviews and buying guides across the four pillars of everyday tech." />
-        <meta property="og:image" content={springDealsHeroImg} />
+        <title>The Signal — Weekly tech, explained simply | Modern Tech</title>
+        <meta name="description" content="The Signal is Modern Tech's weekly blog: honest, plain-language notes on everyday tech worth knowing about. Free to read — email is optional." />
+        <meta property="og:title" content="The Signal — Weekly tech, explained simply" />
+        <meta property="og:description" content="Modern Tech's weekly blog on everyday tech. Free to read; get it by email if you like." />
         <meta property="og:url" content="https://moderntech.store/the-signal" />
         <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://moderntech.store/the-signal" />
       </Helmet>
       <StructuredData
-        title="The Signal | Smart Home, Wellness, Office & Kids Tech"
-        description="Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly."
+        title="The Signal — Weekly tech, explained simply"
+        description="Modern Tech's weekly blog on everyday tech."
         path="/the-signal"
         breadcrumbs={[
           { name: "Home", path: "/" },
@@ -199,269 +173,64 @@ const Blog = () => {
           },
         ]}
       />
-      <Navigation />
+      <SignalHeader />
 
-      {/* ── Hero Image ── */}
-      <div className="w-full border-b border-border">
-        <img
-          src={weeklyReportBeachHeroImg.url}
-          alt="Welcome to the weekly The Signal — working from the beach"
-          className="w-full h-[42vh] md:h-[56vh] object-cover"
-          loading="eager"
-        />
-      </div>
-
-      {/* ── Hero Section ── */}
-      <header className="border-b border-border">
-        <div className="max-w-5xl mx-auto px-8 pt-16 pb-10">
-          <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">THE SIGNAL · WEEKLY BLOG</p>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl italic tracking-tight leading-[1.08] max-w-3xl" style={{ fontWeight: 700, color: '#000000' }}>
-            The Signal
-          </h1>
-          <p className="mt-6 font-mono text-xs text-muted-foreground max-w-lg leading-relaxed">
-            Expert-tested tech recommendations across Smart Home, Health & Wellness, Office, and Kids & STEM — to help you spend smarter and live better.
+      <main className="mx-auto max-w-3xl px-5 pb-24">
+        <header className="pt-14 pb-10 md:pt-20">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">Modern Tech's weekly blog</p>
+          <h1 className="mt-3 text-5xl font-semibold tracking-tight md:text-6xl">The Signal</h1>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            Each week, a short, honest read on everyday tech worth knowing about — what's new, what's useful, and what to skip. Free to read here.
           </p>
-        </div>
+        </header>
 
-        {/* Search bar + Category pills */}
-        <div className="max-w-5xl mx-auto px-8 pb-8 space-y-5">
-          <div className="relative max-w-sm">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search articles..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-11 pr-10 h-11 bg-transparent border-border font-mono text-xs placeholder:text-muted-foreground/50 focus-visible:ring-foreground/10"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <X className="h-4 w-4" />
-              </button>
+        {latest && (
+          <section aria-labelledby="latest-heading" className="border-t border-border pt-10">
+            <p className="text-sm text-muted-foreground">
+              <span className="font-medium text-foreground">{latestKind}</span> · <time dateTime={latest.date}>{fmt(latest.date)}</time>
+            </p>
+            <h2 id="latest-heading" className="mt-3 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
+              <Link to={`/the-signal/${latest.slug}`} className="hover:underline underline-offset-4">{latest.title}</Link>
+            </h2>
+            {latest.imageUrl && (
+              <img src={latest.imageUrl} alt="" className="mt-6 aspect-[16/9] w-full rounded-2xl object-cover" loading="eager" />
             )}
-          </div>
-
-          <div className="flex gap-2.5 overflow-x-auto scrollbar-hide pb-1">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`shrink-0 font-mono text-[10px] tracking-[0.1em] uppercase px-4 py-2 border transition-all duration-200 ${
-                  activeCategory === cat
-                    ? "bg-foreground text-background border-foreground"
-                    : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-      </header>
-
-      <div className="max-w-5xl mx-auto px-8 py-16 lg:py-20">
-        {/* ── Tech of the Month ── */}
-        {(() => {
-          const totm = getCurrentTechOfTheMonth();
-          return (
-            <section className="mb-20">
-              <div className="flex items-center gap-6 mb-8">
-                <h2 className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground whitespace-nowrap">
-                  Tech of the Month · {totm.monthLabel}
-                </h2>
-                <div className="h-px flex-1 bg-border" />
-              </div>
-              <Link
-                to={`/tech-of-the-month/${totm.slug}`}
-                className="group block border border-border overflow-hidden hover:shadow-elegant transition-all duration-500"
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
-                  <div className="lg:col-span-3 aspect-[16/10] lg:aspect-auto overflow-hidden">
-                    <img
-                      src={totm.image.url}
-                      alt={totm.image.alt}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                      width={totm.image.width}
-                      height={totm.image.height}
-                    />
-                  </div>
-                  <div className="lg:col-span-2 p-10 lg:p-12 flex flex-col justify-center bg-[#F5F1EC]">
-                    <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-4">
-                      The Edit · {totm.monthLabel}
-                    </p>
-                    <h3 className="font-serif text-2xl lg:text-3xl italic leading-tight tracking-tight mb-4" style={{ fontWeight: 700, color: '#000000' }}>
-                      {totm.tagline}
-                    </h3>
-                    <p className="font-mono text-xs text-muted-foreground leading-relaxed mb-6">
-                      {totm.ogDescription}
-                    </p>
-                    <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.15em] uppercase text-foreground border-b border-foreground/30 pb-1 self-start group-hover:border-foreground transition-colors">
-                      Read the Edit <ArrowRight className="h-3.5 w-3.5" />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </section>
-          );
-        })()}
-
-
-
-        {/* ── Featured Post (large hero card) ── */}
-        {featuredPost && (
-          <Link to={`/the-signal/${featuredPost.slug}`} className="group block mb-20">
-            <article className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden border border-border hover:shadow-elegant transition-all duration-500">
-              <div className="aspect-[16/10] lg:aspect-auto overflow-hidden relative">
-                <img
-                  src={featuredPost.imageUrl}
-                  alt={featuredPost.title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                {featuredPost.isGenerated && (
-                  <Badge className="absolute top-4 left-4 bg-foreground text-background gap-1 text-[10px]">
-                    <Sparkles className="h-3 w-3" /> AI Roundup
-                  </Badge>
-                )}
-              </div>
-              <div className="p-10 lg:p-14 flex flex-col justify-center">
-                <div className="flex items-center gap-3 font-mono text-[10px] text-muted-foreground mb-5">
-                  <span className="tracking-[0.2em] uppercase text-foreground/60">{featuredPost.category}</span>
-                  <span className="w-1 h-1 rounded-full bg-border" />
-                  <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(featuredPost.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
-                  <span className="w-1 h-1 rounded-full bg-border" />
-                  <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {featuredPost.readTime}</span>
-                </div>
-                <h2 className="font-serif text-2xl lg:text-4xl italic leading-tight tracking-tight mb-5 group-hover:text-foreground/70 transition-colors" style={{ fontWeight: 700, color: '#000000' }}>
-                  {featuredPost.title}
-                </h2>
-                <p className="font-mono text-xs text-muted-foreground leading-relaxed mb-8 line-clamp-3">
-                  {featuredPost.excerpt}
-                </p>
-                <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.15em] uppercase text-foreground border-b border-foreground/30 pb-1 self-start group-hover:border-foreground transition-colors">
-                  Read Article <ArrowRight className="h-3.5 w-3.5" />
-                </span>
-              </div>
-            </article>
-          </Link>
-        )}
-
-        {/* ── AI Roundup Section ── */}
-        {!isFiltering && dynamicMapped.length > 1 && (
-          <section className="mb-20">
-            <div className="flex items-center gap-6 mb-12">
-              <h2 className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground flex items-center gap-2 whitespace-nowrap">
-                <Sparkles className="h-3.5 w-3.5" />
-                Weekly Deep-Dive
-              </h2>
-              <div className="h-px flex-1 bg-border" />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
-              {dynamicMapped.slice(1, 4).map((post) => (
-                <BlogCard key={post.slug} post={post} />
-              ))}
-            </div>
+            {latest.excerpt && <p className="mt-6 text-lg leading-relaxed text-foreground/85">{latest.excerpt}</p>}
+            <Link
+              to={`/the-signal/${latest.slug}`}
+              className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 text-base font-medium text-background hover:opacity-90"
+            >
+              Read the full edition <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </section>
         )}
 
-        {/* ── Newsletter CTA: The Signal ── */}
-        {!isFiltering && <ModernTechEditSignup />}
-
-
-        {/* ── All Articles Grid ── */}
-        <section>
-          <div className="flex items-center gap-6 mb-12">
-            <h2 className="font-mono text-[9px] tracking-[0.3em] uppercase text-muted-foreground whitespace-nowrap">
-              {isFiltering
-                ? `${filteredPosts.length} result${filteredPosts.length !== 1 ? "s" : ""}`
-                : "All Articles"}
-            </h2>
-            <div className="h-px flex-1 bg-border" />
-            {isFiltering && (
-              <button
-                onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
-                className="font-mono text-[10px] tracking-[0.15em] uppercase text-foreground hover:underline whitespace-nowrap"
-              >
-                Clear filters
-              </button>
-            )}
-          </div>
-
-          {gridPosts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-border">
-              {gridPosts.map((post) => (
-                <BlogCard key={post.slug} post={post} />
+        {previous.length > 0 && (
+          <section aria-labelledby="previous-heading" className="mt-16 border-t border-border pt-10">
+            <h2 id="previous-heading" className="text-xl font-semibold tracking-tight">Previous editions</h2>
+            <ul className="mt-4 divide-y divide-border">
+              {previous.map((post) => (
+                <li key={post.slug}>
+                  <Link to={`/the-signal/${post.slug}`} className="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
+                    <time dateTime={post.date} className="shrink-0 text-sm text-muted-foreground sm:w-36">{fmt(post.date)}</time>
+                    <span className="text-base font-medium leading-snug group-hover:underline underline-offset-4">{post.title}</span>
+                  </Link>
+                </li>
               ))}
-            </div>
-          ) : (
-            <div className="text-center py-20">
-              <Search className="h-10 w-10 mx-auto text-muted-foreground/40 mb-4" />
-              <p className="font-serif text-xl italic text-foreground/70 mb-2">No articles found</p>
-              <p className="font-mono text-[11px] text-muted-foreground mb-8">Try a different search term or category.</p>
-              <Button
-                variant="outline"
-                className="rounded-none border-foreground/20 text-foreground hover:bg-foreground/5 font-mono text-[10px] tracking-[0.15em] uppercase"
-                onClick={() => { setActiveCategory("All"); setSearchQuery(""); }}
-              >
-                Clear filters
-              </Button>
-            </div>
-          )}
+            </ul>
+          </section>
+        )}
+
+        <section aria-labelledby="email-heading" className="mt-16 rounded-2xl border border-border bg-card p-6 md:p-8">
+          <h2 id="email-heading" className="text-xl font-semibold tracking-tight">Get The Signal by email</h2>
+          <p className="mt-2 mb-5 text-base text-muted-foreground">Optional. Everything above stays free to read here. Unsubscribe anytime.</p>
+          <SignalSignup />
         </section>
-      </div>
+      </main>
 
       <AffiliateFooter />
-      <JsonLdValidator />
     </div>
   );
 };
-
-/* ── Reusable Blog Card Component ── */
-interface BlogPostItem {
-  title: string;
-  excerpt: string;
-  date: string;
-  category: string;
-  imageUrl: string;
-  slug: string;
-  isGenerated: boolean;
-  readTime: string;
-}
-
-const BlogCard = ({ post }: { post: BlogPostItem }) => (
-  <Link to={`/the-signal/${post.slug}`} className="group block h-full border-r border-b border-border">
-    <article className="overflow-hidden h-full flex flex-col hover:bg-card transition-all duration-300">
-      <div className="aspect-[4/3] overflow-hidden relative">
-        <img
-          src={post.imageUrl}
-          alt={post.title}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        {post.isGenerated && (
-          <Badge className="absolute top-3 right-3 bg-foreground text-background gap-1 text-[9px] font-mono rounded-none px-2">
-            <Sparkles className="h-3 w-3" /> AI
-          </Badge>
-        )}
-      </div>
-      <div className="p-6 flex flex-col flex-1">
-        <div className="flex items-center gap-2 font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground mb-3">
-          <span>{post.category}</span>
-          <span className="ml-auto flex items-center gap-1"><Clock className="h-3 w-3" /> {post.readTime}</span>
-        </div>
-        <h3 className="font-serif text-xl leading-snug line-clamp-2 mb-3 group-hover:text-foreground/70 transition-colors" style={{ fontStyle: "italic", fontWeight: 700, color: '#000000' }}>
-          {post.title}
-        </h3>
-        <p className="font-mono text-[10px] text-muted-foreground line-clamp-2 leading-[1.7] flex-1">
-          {post.excerpt}
-        </p>
-        <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.2em] uppercase text-muted-foreground mt-5 group-hover:text-foreground transition-colors">
-          Read more <ArrowRight className="h-3 w-3" />
-        </span>
-      </div>
-    </article>
-  </Link>
-);
 
 export default Blog;
