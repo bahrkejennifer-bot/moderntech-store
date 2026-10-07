@@ -236,7 +236,7 @@ const Index = () => {
 
         <section id="digital-products" className="scroll-mt-20 bg-background px-5 py-20 md:px-9 md:py-28" aria-labelledby="digital-heading">
           <div className="mx-auto max-w-7xl">
-            <div className="launch-reveal mb-12 max-w-3xl"><p className="text-xs font-semibold uppercase text-muted-foreground">03 / MAKE SOMETHING</p><h2 id="digital-heading" className="mt-4 text-4xl font-semibold md:text-6xl">Ideas, ready to use.</h2><p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">Practical guides for the work you want to put into the world.</p></div>
+            <div className="launch-reveal mb-12 max-w-3xl"><p className="text-xs font-semibold uppercase text-muted-foreground">04 / DIGITAL GUIDES</p><h2 id="digital-heading" className="mt-4 text-4xl font-semibold md:text-6xl">Ideas, ready to use.</h2><p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">Practical guides for the work you want to put into the world.</p></div>
             {digitalLoading ? <p role="status" className="flex items-center gap-3 py-16"><Loader2 className="h-5 w-5 animate-spin" /> Loading guides…</p>
               : digitalError ? <p role="alert" className="py-12">Digital guides are unavailable right now. Please try again later.</p>
               : digitalProducts.length === 0 ? <p className="py-12">No guides are available right now.</p>
@@ -246,10 +246,17 @@ const Index = () => {
                     {offer.slug === "creator-bundle" ? <div className="grid h-full max-w-full grid-cols-3 gap-1" aria-label="Reels, Canva and YouTube guide covers">{[coverReels, coverCanva, coverYoutube].map((cover, index) => <img key={cover} src={cover} alt={["Reels guide cover", "Canva guide cover", "YouTube guide cover"][index]} loading="lazy" className="h-full min-w-0 object-contain" />)}</div>
                       : <img src={offer.cover} alt={`${product.title} cover`} loading="lazy" className="h-full max-w-full object-contain" />}
                   </div>
-                  <div className="flex flex-1 flex-col p-6 md:p-8"><p className="text-xs font-semibold uppercase text-muted-foreground">{offer.label}</p><h3 className="mt-4 text-2xl font-semibold leading-tight md:text-3xl">{product.title}</h3><p className="mt-4 flex-1 text-base leading-relaxed text-muted-foreground">{offer.included}</p><p className="mt-7 text-sm text-muted-foreground">See offer details</p><Button asChild size="lg" className="mt-4 min-h-12 rounded-full px-6 text-base"><Link to={`${offer.route}${location.search}`}>View digital guide <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" /></Link></Button></div>
+                  <div className="flex flex-1 flex-col p-6 md:p-8"><p className="text-xs font-semibold uppercase text-muted-foreground">{offer.label}</p><h3 className="mt-4 text-2xl font-semibold leading-tight md:text-3xl">{product.title}</h3><p className="mt-4 flex-1 text-base leading-relaxed text-muted-foreground">{offer.included}</p><p className="mt-7 text-sm text-muted-foreground">See offer details</p><Button asChild variant="outline" size="lg" className="mt-4 min-h-12 rounded-full px-6 text-base"><Link to={`${offer.route}${location.search}`}>View digital guide <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" /></Link></Button></div>
                 </article>)}
               </div>}
             <p className="mt-10 border-t border-border pt-7 text-base">Looking for a starting point? <Link to="/creator-funnel" className="font-medium underline underline-offset-4">Explore the free Reels guide.</Link> No free guide is required to buy.</p>
+          </div>
+        </section>
+
+        <section id="the-signal" className="scroll-mt-20 bg-secondary/60 px-5 py-20 md:px-9 md:py-24" aria-labelledby="signal-heading">
+          <div className="launch-reveal mx-auto grid max-w-5xl items-center gap-8 md:grid-cols-2 md:gap-14">
+            <div><p className="text-xs font-semibold uppercase text-muted-foreground">05 / THE SIGNAL</p><h2 id="signal-heading" className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">One clear email a week.</h2><p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">New tech finds, the Weekly Edit, and new guides from Modern Tech. No pressure to buy.</p></div>
+            <SignalSignup />
           </div>
         </section>
       </main>
