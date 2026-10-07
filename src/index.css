@@ -396,7 +396,7 @@ Dark base, bold blue accents, crisp white type
 
 /* Homepage-only launch palette and motion. Other editorial pages retain their existing theme. */
 .launch-theme {
-  --background: 0 0% 99%;
+  --background: 36 33% 97%;
   --foreground: 220 12% 12%;
   --card: 0 0% 100%;
   --card-foreground: 220 12% 12%;

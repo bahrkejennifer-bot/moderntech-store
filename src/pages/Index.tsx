@@ -208,16 +208,31 @@ const Index = () => {
             <div className="launch-reveal mb-9"><p className="text-xs font-semibold uppercase text-accent">02 / BEYOND THE DESK</p><h2 id="more-heading" className="mt-4 text-4xl font-semibold md:text-6xl">A little more to explore.</h2></div>
             <p className="mb-8 max-w-xl text-sm leading-relaxed text-muted-foreground">{affiliateDisclosure}</p>
             <div className="grid gap-3 md:grid-cols-2">
-              {products.slice(3).map(({ selection, product }) => <article id={`product-${selection.slug}`} key={selection.id} className="launch-reveal scroll-mt-24 overflow-hidden rounded-md bg-card p-5 text-card-foreground md:p-7">
+              {products.slice(3).map(({ selection, product }) => <article id={`product-${selection.slug}`} key={selection.id} className="launch-reveal scroll-mt-24 overflow-hidden rounded-2xl bg-card p-5 text-card-foreground md:p-7">
                 <div className="flex min-w-0 flex-col gap-5 sm:flex-row sm:items-center">
-                  <div className="flex aspect-square w-full shrink-0 items-center justify-center overflow-hidden rounded-sm bg-background p-4 sm:w-40"><img src={product.image_url || ""} alt={product.title} loading="lazy" className="h-full w-full object-contain" /></div>
+                  <div className="flex aspect-square w-full shrink-0 items-center justify-center overflow-hidden rounded-xl bg-background p-4 sm:w-40"><img src={product.image_url || ""} alt={product.title} loading="lazy" className="h-full w-full object-contain" /></div>
                   <div className="min-w-0"><p className="text-xs font-semibold uppercase text-muted-foreground">{selection.audience}</p><h3 className="mt-2 text-xl font-semibold leading-tight md:text-2xl">{product.title}</h3><p className="mt-3 text-base leading-relaxed">{selection.benefit}</p><p className="mt-2 text-sm leading-relaxed text-muted-foreground"><strong className="text-foreground">Good to know:</strong> {selection.limitation}</p></div>
                 </div>
-                <div className="mt-6 flex flex-wrap items-center gap-4">{amazonButton({ selection, product })}<Link to={`/product/${product.id}${location.search}`} className="text-sm underline underline-offset-4">Product details</Link></div>
+                <div className="mt-6">{amazonButton({ selection, product })}</div>
               </article>)}
             </div>
           </div>
         </section>
+
+        {products.length > 0 && <section id="gift-picks" className="scroll-mt-20 bg-secondary/60 px-5 py-20 md:px-9 md:py-28" aria-labelledby="gift-heading">
+          <div className="mx-auto max-w-7xl">
+            <div className="launch-reveal mb-8 max-w-3xl"><p className="text-xs font-semibold uppercase text-muted-foreground">03 / GIFT-WORTHY PICKS</p><h2 id="gift-heading" className="mt-4 text-4xl font-semibold md:text-6xl">Easy to give. Useful every day.</h2><p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">The same curated shortlist, gathered for gifting. Check current price and delivery on Amazon.</p></div>
+            <p className="mb-6 max-w-xl text-sm leading-relaxed text-muted-foreground">{affiliateDisclosure}</p>
+            <GiftRail label="Gift-worthy picks">
+              {products.map(({ selection, product }) => <article key={selection.id} data-rail-card className="flex w-[82%] shrink-0 snap-start flex-col rounded-2xl bg-card p-5 sm:w-[46%] lg:w-[31%]">
+                <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-background p-5"><img src={product.image_url || ""} alt={product.title} loading="lazy" className="h-full w-full object-contain" /></div>
+                <p className="mt-5 text-xs font-semibold uppercase text-muted-foreground">{selection.audience}</p>
+                <h3 className="mt-2 flex-1 text-lg font-semibold leading-snug">{product.title}</h3>
+                <div className="mt-5">{amazonButton({ selection, product })}</div>
+              </article>)}
+            </GiftRail>
+          </div>
+        </section>}
 
         <section id="digital-products" className="scroll-mt-20 bg-background px-5 py-20 md:px-9 md:py-28" aria-labelledby="digital-heading">
           <div className="mx-auto max-w-7xl">
