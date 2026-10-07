@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Search, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,7 +27,25 @@ const chips = ["Music", "Outdoors", "Gardening", "Home office", "Fitness", "Kids
 const budgetRe = /\$\s?\d|\d+\s?(dollars|bucks|usd)\b|\bbudget\b|\bunder\s+\d|\baround\s+\d|\bcheap\b|\baffordable\b/i;
 
 type Result = { pick: FinderPick; reasons: string[]; matched: string[] };
-type State = { kind: "idle" } | { kind: "empty" } | { kind: "none"; query: string } | { kind: "results"; query: string; results: Result[]; budget: boolean };
+type Recipient = { word: string; pronoun: "she" | "he" | "they" };
+type State = { kind: "idle" } | { kind: "empty" } | { kind: "none"; query: string }
+  | { kind: "needs"; query: string; recipient: Recipient | null; budget: number | null; budgetMentioned: boolean }
+  | { kind: "results"; query: string; results: Result[]; budget: boolean; budgetAmount: number | null };
+
+const recipients: Record<string, Recipient["pronoun"]> = {
+  mother: "she", mom: "she", mum: "she", mommy: "she", wife: "she", girlfriend: "she", sister: "she", daughter: "she", grandma: "she", grandmother: "she", aunt: "she", niece: "she", her: "she",
+  father: "he", dad: "he", daddy: "he", husband: "he", boyfriend: "he", brother: "he", son: "he", grandpa: "he", grandfather: "he", uncle: "he", nephew: "he", him: "he",
+  friend: "they", partner: "they", boss: "they", coworker: "they", colleague: "they", teacher: "they", parent: "they", parents: "they", teen: "they", teenager: "they", kid: "they", child: "they", someone: "they", spouse: "they",
+};
+export const findRecipient = (q: string): Recipient | null => {
+  const words = q.toLowerCase().replace(/[^a-z\s]/g, " ").split(/\s+/);
+  for (const w of words) if (recipients[w]) return { word: w, pronoun: recipients[w] };
+  return null;
+};
+export const findBudget = (q: string): number | null => {
+  const m = q.match(/\$\s?(\d[\d,]*(?:\.\d{1,2})?)/) || q.match(/(\d[\d,]*)\s?(?:dollars|bucks|usd)\b/i) || q.match(/\b(?:under|around|below|max|up to|less than)\s+(\d[\d,]*)/i);
+  return m ? Number(m[1].replace(/,/g, "")) : null;
+};
 
 export const matchGifts = (query: string, picks: FinderPick[]): Result[] => {
   const tokens = new Set(query.toLowerCase().replace(/[^a-z0-9\s-]/g, " ").split(/\s+/).filter(Boolean));
@@ -47,15 +65,30 @@ const GiftFinder = ({ picks, renderCta, disclosure }: { picks: FinderPick[]; ren
 
   const run = (text: string) => {
     const q = text.trim().slice(0, 200);
-    if (!q) { setState({ kind: "empty" }); inputRef.current?.focus(); return; }
+    if (!q) { setState({ kind: "empty" }); setTick((t) => t + 1); return; }
     const results = matchGifts(q, picks);
-    setState(results.length ? { kind: "results", query: q, results, budget: budgetRe.test(q) } : { kind: "none", query: q });
+    const recipient = findRecipient(q); const budget = findBudget(q); const budgetMentioned = budgetRe.test(q) || budget !== null;
+    if (results.length) setState({ kind: "results", query: q, results, budget: budgetMentioned, budgetAmount: budget });
+    else if (recipient || budgetMentioned) setState({ kind: "needs", query: q, recipient, budget, budgetMentioned });
+    else setState({ kind: "none", query: q });
+    setTick((t) => t + 1);
   };
+  const [tick, setTick] = useState(0);
+  const statusRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!tick || !statusRef.current) return;
+    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    statusRef.current.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" });
+  }, [tick]);
+  const budgetText = (amount: number | null) => amount !== null
+    ? `We don't have verified current prices, so we can't confirm any of these are $${amount.toLocaleString("en-US")} or less. Check current price on Amazon before buying.`
+    : "We don't have verified current prices, so we can't confirm these fit your budget. Check current price on Amazon before buying.";
   const addChip = (chip: string) => { const next = query.toLowerCase().includes(chip.toLowerCase()) ? query : `${query.trim()} ${chip}`.trim(); setQuery(next); run(next); };
   const reset = () => { setQuery(""); setState({ kind: "idle" }); inputRef.current?.focus(); };
 
   const announce = state.kind === "empty" ? "Tell us a little about who you're shopping for, such as their interests or hobbies."
     : state.kind === "none" ? "No curated pick matches that description yet."
+    : state.kind === "needs" ? `${state.recipient ? `Shopping for your ${state.recipient.word}` : "Got it"}${state.budget !== null ? ` with a budget of $${state.budget.toLocaleString("en-US")} or less` : ""}. What does ${state.recipient?.pronoun ?? "they"} enjoy?`
     : state.kind === "results" ? `${state.results.length} gift idea${state.results.length > 1 ? "s" : ""} found.` : "";
 
   return (
@@ -74,11 +107,32 @@ const GiftFinder = ({ picks, renderCta, disclosure }: { picks: FinderPick[]; ren
           {state.kind !== "idle" && <Button type="button" variant="ghost" className="min-h-10 rounded-full px-4" onClick={reset}><RotateCcw aria-hidden="true" className="mr-2 h-4 w-4" />Reset</Button>}
         </div>
       </form>
-      <p id="gift-status" role="status" aria-live="polite" className="mt-5 text-base font-medium">{announce}</p>
+      <div ref={statusRef} className="scroll-mt-24">
+      <p id="gift-status" role="status" aria-live="polite" className="mt-5 text-lg font-semibold">{announce}</p>
+      {state.kind === "needs" && <div className="mt-3">
+        <p className="text-base text-muted-foreground">Pick an interest to get matched ideas. We'll keep what you typed{state.budget !== null ? ", including your budget" : ""}.</p>
+        <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label={`What does ${state.recipient?.pronoun ?? "they"} enjoy?`}>
+          {chips.map((c) => <Button key={c} type="button" className="min-h-11 rounded-full px-4" onClick={() => addChip(c)}>{c}</Button>)}
+        </div>
+        {state.budgetMentioned && <p className="mt-4 max-w-2xl rounded-2xl border border-border bg-background p-4 text-sm leading-relaxed"><strong>About your budget:</strong> {budgetText(state.budget)}</p>}
+        <h4 className="mt-8 text-lg font-semibold">General gift ideas (not personalized)</h4>
+        <p className="mt-1 text-sm text-muted-foreground">Our full curated list in its usual order. Not ranked for this person.</p>
+        <p className="mt-3 max-w-xl text-sm text-muted-foreground">{disclosure}</p>
+        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {picks.map((pick) => <li key={pick.slug} className="flex flex-col rounded-2xl bg-background p-5">
+            {pick.imageUrl && <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-card p-4"><img src={pick.imageUrl} alt={pick.title} loading="lazy" className="h-full w-full object-contain" /></div>}
+            <h4 className="mt-4 text-lg font-semibold leading-snug">{pick.title}</h4>
+            <p className="mt-1 text-xs font-semibold uppercase text-muted-foreground">{pick.audience}</p>
+            <p className="mt-2 flex-1 text-sm text-muted-foreground">{pick.benefit}</p>
+            {state.budgetMentioned && <p className="mt-3 text-sm font-medium">Check current price on Amazon</p>}
+            <div className="mt-4">{renderCta(pick.slug)}</div>
+          </li>)}
+        </ul>
+      </div>}
 
       {state.kind === "none" && <p className="mt-2 max-w-2xl text-base text-muted-foreground">We couldn't match "{state.query}" to our curated picks. Try adding a hobby such as music, gardening, camping, fitness, a home office or kids' science, or browse the full list below.</p>}
       {state.kind === "results" && <>
-        {state.budget && <p className="mt-3 max-w-2xl rounded-2xl border border-border bg-background p-4 text-sm leading-relaxed"><strong>About your budget:</strong> we don't have verified current prices, so we can't confirm these fit your budget. Check current price on Amazon before buying.</p>}
+        {state.budget && <p className="mt-3 max-w-2xl rounded-2xl border border-border bg-background p-4 text-sm leading-relaxed"><strong>About your budget:</strong> {budgetText(state.budgetAmount)}</p>}
         <p className="mt-4 max-w-xl text-sm text-muted-foreground">{disclosure}</p>
         <ul className="mt-5 grid gap-4 md:grid-cols-3">
           {state.results.map(({ pick, reasons, matched }) => <li key={pick.slug} className="flex flex-col rounded-2xl bg-background p-5">
@@ -91,6 +145,7 @@ const GiftFinder = ({ picks, renderCta, disclosure }: { picks: FinderPick[]; ren
           </li>)}
         </ul>
       </>}
+      </div>
     </div>
   );
 };

@@ -412,7 +412,7 @@ Dark base, bold blue accents, crisp white type
   --ring: 350 34% 50%;
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
-.launch-theme h1, .launch-theme h2, .launch-theme h3 {
+.launch-theme h1, .launch-theme h2, .launch-theme h3, .launch-theme h4 {
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   letter-spacing: 0;
   color: inherit;
