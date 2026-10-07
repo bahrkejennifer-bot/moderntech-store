@@ -96,7 +96,7 @@ Deno.serve(async (req) => {
       try {
         await recordDigitalSignup(supabase, {
           kind: "free", email: pending.email, name: pending.name, productSlug: pending.lead_magnet,
-          productLabel: GUIDE_LABELS[pending.lead_magnet] ?? pending.lead_magnet,
+          productLabel: pending.lead_magnet,
           source: pending.source_path ?? null,
           newsletterOptIn: pending.newsletter_opt_in === true,
           consentAt: pending.newsletter_consent_at ?? null,
