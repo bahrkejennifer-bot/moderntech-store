@@ -161,17 +161,17 @@ const Blog = () => {
   return (
     <div className="launch-theme min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>The Signal — Weekly tech, explained simply | Modern Tech</title>
-        <meta name="description" content="The Signal is Modern Tech's weekly blog: honest, plain-language notes on everyday tech worth knowing about. Free to read — email is optional." />
-        <meta property="og:title" content="The Signal — Weekly tech, explained simply" />
-        <meta property="og:description" content="Modern Tech's weekly blog on everyday tech. Free to read; get it by email if you like." />
+        <title>The Signal — Modern Tech's weekly tech newsletter</title>
+        <meta name="description" content="The Signal is Modern Tech's weekly newsletter: honest, plain-language notes on everyday tech worth knowing about. Free to read — email is optional." />
+        <meta property="og:title" content="The Signal — Modern Tech's weekly tech newsletter" />
+        <meta property="og:description" content="Modern Tech's weekly tech newsletter. Free to read here; get it by email if you like." />
         <meta property="og:url" content="https://moderntech.store/the-signal" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://moderntech.store/the-signal" />
       </Helmet>
       <StructuredData
-        title="The Signal — Weekly tech, explained simply"
-        description="Modern Tech's weekly blog on everyday tech."
+        title="The Signal — Modern Tech's weekly tech newsletter"
+        description="Modern Tech's weekly tech newsletter."
         path="/the-signal"
         breadcrumbs={[
           { name: "Home", path: "/" },
@@ -191,7 +191,7 @@ const Blog = () => {
 
       <main className="mx-auto max-w-3xl px-5 pb-24 print:max-w-none print:px-0 print:pb-0">
         <header className="pt-14 pb-10 md:pt-20 print:pt-0 print:pb-3">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">Modern Tech's weekly blog</p>
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">The Signal · Weekly newsletter</p>
           <h1 className="mt-3 print:mt-1 print:text-3xl text-5xl font-semibold tracking-tight md:text-6xl">The Signal</h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Each week, a short, honest read on everyday tech worth knowing about — what's new, what's useful, and what to skip. Free to read here.
