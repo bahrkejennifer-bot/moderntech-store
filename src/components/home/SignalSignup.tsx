@@ -40,7 +40,7 @@ const SignalSignup = () => {
         </Button>
       </div>
       <p id="signal-help" role={status && !status.ok ? "alert" : undefined} className={`mt-3 text-sm ${status && !status.ok ? "text-destructive" : "text-muted-foreground"}`}>
-        {status && !status.ok ? status.msg : "One email a week. Confirm by email to join. Unsubscribe anytime."}
+        {status && !status.ok ? status.msg : "The Signal, our weekly tech newsletter: one email a week. Confirm by email to join. Unsubscribe anytime."}
       </p>
     </form>
   );

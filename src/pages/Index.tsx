@@ -246,12 +246,12 @@ const Index = () => {
 
         <section id="the-signal" className="scroll-mt-20 bg-secondary/60 px-5 py-20 md:px-9 md:py-24" aria-labelledby="signal-heading">
           <div className="launch-reveal mx-auto grid max-w-5xl items-center gap-8 md:grid-cols-2 md:gap-14">
-            <div><p className="text-xs font-semibold uppercase text-muted-foreground">05 / THE SIGNAL · WEEKLY BLOG</p><h2 id="signal-heading" className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">Read this week's Signal.</h2>
+            <div><p className="text-xs font-semibold uppercase text-muted-foreground">05 / THE SIGNAL · WEEKLY NEWSLETTER</p><h2 id="signal-heading" className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">Read this week's Signal.</h2>
               {latestPost ? <Link to={`/the-signal/${latestPost.slug}`} className="mt-6 block rounded-2xl bg-card p-6 transition-shadow hover:shadow-md">
                 <p className="text-xs font-semibold uppercase text-muted-foreground">Latest article · {new Date(latestPost.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</p>
                 <h3 className="mt-3 text-xl font-semibold leading-snug md:text-2xl">{latestPost.title}</h3>
                 {latestPost.excerpt && <p className="mt-3 line-clamp-3 text-base leading-relaxed text-muted-foreground">{latestPost.excerpt}</p>}
-              </Link> : <p className="mt-4 text-base leading-relaxed text-muted-foreground">Weekly notes on useful tech, buying guides and ideas worth keeping.</p>}
+              </Link> : <p className="mt-4 text-base leading-relaxed text-muted-foreground">Our weekly newsletter: useful tech, buying guides and ideas worth keeping. Free to read online.</p>}
               <Button asChild size="lg" className="mt-6 min-h-12 rounded-full px-6 text-base"><Link to="/the-signal">Read The Signal <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" /></Link></Button>
             </div>
             <div><h3 className="mb-4 text-lg font-semibold">Get The Signal by email</h3><SignalSignup /></div>
