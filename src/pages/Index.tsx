@@ -11,6 +11,8 @@ import StructuredData from "@/components/StructuredData";
 import coverCanva from "@/assets/cover-canva.jpg";
 import coverYoutube from "@/assets/cover-youtube.jpg";
 import coverReels from "@/assets/cover-reels.jpg";
+import GiftRail from "@/components/home/GiftRail";
+import SignalSignup from "@/components/home/SignalSignup";
 
 interface CatalogProduct {
   id: string;
@@ -140,30 +142,32 @@ const Index = () => {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-5 md:h-20 md:px-9">
           <Link to="/" className="shrink-0 text-lg font-semibold text-foreground md:text-xl">MODERN TECH<span className="ml-1 text-accent">.</span></Link>
           <nav aria-label="Main navigation" className="flex items-center gap-3 text-sm font-medium md:gap-8 md:text-base">
+            <a href="#gift-picks" className="hidden text-foreground/80 hover:text-foreground md:inline">Gifts</a>
             <a href="#digital-products" className="hidden text-foreground/80 hover:text-foreground sm:inline">Guides</a>
-            <Link to="/weekly-edit" className="hidden text-foreground/80 hover:text-foreground sm:inline">Weekly Edit</Link>
+            <a href="#the-signal" className="hidden text-foreground/80 hover:text-foreground md:inline">The Signal</a>
+            <Link to="/weekly-edit" className="hidden text-foreground/80 hover:text-foreground lg:inline">Weekly Edit</Link>
             <Button asChild size="lg" className="min-h-11 rounded-full px-5 text-sm md:text-base"><a href="#selections">Shop Tech Finds</a></Button>
           </nav>
         </div>
       </header>
       <main>
-        <section className="launch-dark launch-hero relative isolate overflow-hidden" aria-labelledby="launch-heading">
+        <section className="launch-hero relative isolate overflow-hidden bg-background" aria-labelledby="launch-heading">
           <div className="launch-hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
           <div className="relative mx-auto flex min-h-[620px] max-w-7xl flex-col justify-between px-5 pb-10 pt-14 md:min-h-[710px] md:px-9 md:pb-14 md:pt-20">
             <div className="relative z-10 max-w-4xl">
-              <p className="text-xs font-semibold uppercase text-accent md:text-sm">THE MODERN TECH EDIT</p>
-              <h1 id="launch-heading" className="mt-6 max-w-[850px] text-5xl font-semibold leading-[1.04] text-foreground sm:text-6xl md:text-7xl lg:text-8xl">Everyday tech.<br /><span className="text-accent">Beautifully simple.</span></h1>
-              <p className="mt-7 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">A considered selection of the things worth making room for.</p>
+              <p className="text-xs font-semibold uppercase text-muted-foreground md:text-sm">THE MODERN TECH EDIT</p>
+              <h1 id="launch-heading" className="mt-6 max-w-[850px] text-5xl font-semibold leading-[1.04] text-foreground sm:text-6xl md:text-7xl lg:text-8xl">Everyday tech.<br /><span className="text-ring">Beautifully simple.</span></h1>
+              <p className="mt-7 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">A short, curated list of useful things — each with one clear benefit and one honest limitation.</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild size="lg" className="min-h-12 rounded-full px-6 text-base"><a href="#selections">Shop Tech Finds <ArrowDown aria-hidden="true" className="ml-1 h-4 w-4" /></a></Button>
-                <Button asChild size="lg" variant="outline" className="min-h-12 rounded-full border-border bg-transparent px-6 text-base text-foreground hover:bg-secondary hover:text-foreground"><a href="#digital-products">Explore digital guides <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" /></a></Button>
+                <Button asChild size="lg" className="min-h-12 rounded-full px-7 text-base"><a href="#selections">Shop Tech Finds <ArrowDown aria-hidden="true" className="ml-1 h-4 w-4" /></a></Button>
+                <a href="#digital-products" className="inline-flex min-h-12 items-center px-2 text-base font-medium underline-offset-4 hover:underline">Digital guides <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" /></a>
               </div>
             </div>
-            {active?.product.image_url && <div className="launch-hero-product pointer-events-none relative mx-auto mt-7 flex h-52 w-full max-w-xl items-center justify-center overflow-hidden rounded-lg bg-card p-4 md:absolute md:bottom-12 md:right-9 md:mt-0 md:h-[380px] md:w-[39%] md:p-8">
+            {active?.product.image_url && <div className="launch-hero-product pointer-events-none relative mx-auto mt-7 flex h-56 w-full max-w-xl items-center justify-center overflow-hidden rounded-3xl bg-card p-4 md:absolute md:bottom-12 md:right-9 md:mt-0 md:h-[420px] md:w-[40%] md:p-8">
               <img src={active.product.image_url} alt={active.product.title} className="h-full w-full object-contain" />
             </div>}
-            <div className="relative z-10 mt-6 flex items-center justify-between gap-4 border-t border-border/40 pt-5 text-xs font-medium uppercase text-muted-foreground md:mt-16 md:max-w-[46%]">
-              <span>CURATED FOR REAL LIFE</span><span>01 / 03</span>
+            <div className="relative z-10 mt-6 flex items-center justify-between gap-4 border-t border-border pt-5 text-xs font-medium uppercase text-muted-foreground md:mt-16 md:max-w-[46%]">
+              <span>CURATED FOR REAL LIFE</span><span>{products.length} PICKS</span>
             </div>
           </div>
         </section>
@@ -191,7 +195,7 @@ const Index = () => {
                     <p className="mt-5 text-base leading-relaxed md:text-lg">{active.selection.benefit}</p>
                     <p className="mt-4 text-base leading-relaxed text-muted-foreground"><strong className="text-foreground">Good to know:</strong> {active.selection.limitation}</p>
                     <p className="mt-7 max-w-lg border-l-2 border-accent pl-4 text-sm leading-relaxed text-muted-foreground">{affiliateDisclosure}</p>
-                    <div className="mt-6 flex flex-wrap items-center gap-5">{amazonButton(active)}<Link className="text-base font-medium underline underline-offset-4" to={`/product/${active.product.id}${location.search}`}>Product details</Link></div>
+                    <div className="mt-6">{amazonButton(active)}</div>
                     <div className="mt-10 flex items-center gap-4" aria-label="Feature carousel controls">
                       <Button variant="outline" size="icon" className="h-12 w-12 rounded-full" aria-label="Previous featured product" onClick={() => setFeaturedIndex((featuredIndex + featured.length - 1) % featured.length)}><ArrowLeft className="h-5 w-5" /></Button>
                       <span className="text-sm tabular-nums text-muted-foreground">0{featuredIndex + 1} / 0{featured.length}</span>
