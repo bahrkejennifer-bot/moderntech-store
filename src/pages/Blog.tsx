@@ -131,7 +131,7 @@ const Blog = () => {
     excerpt: p.excerpt || "",
     date: p.created_at,
     category: !p.category || /weekly edit/i.test(p.category) ? "THE SIGNAL" : p.category,
-    imageUrl: p.image_url || techDefaultHeroImg,
+    imageUrl: p.image_url && !/images\.unsplash\.com/i.test(p.image_url) ? p.image_url : "",
     slug: p.slug,
     isGenerated: true,
     readTime: "5 min read",
@@ -193,7 +193,7 @@ const Blog = () => {
               <Link to={`/the-signal/${latest.slug}`} className="hover:underline underline-offset-4">{latest.title}</Link>
             </h2>
             {latest.imageUrl && (
-              <img src={latest.imageUrl} alt="" className="mt-6 aspect-[16/9] w-full rounded-2xl object-cover" loading="eager" />
+              <img src={latest.imageUrl} alt={latest.title} className="mt-6 aspect-[16/9] w-full rounded-2xl object-cover" loading="eager" />
             )}
             {latest.excerpt && <p className="mt-6 text-lg leading-relaxed text-foreground/85">{latest.excerpt}</p>}
             <Link
