@@ -6,6 +6,8 @@ export interface RequestConfirmationInput {
   lead_magnet?: string;
   /** Optional override; defaults to current window.location.pathname + search */
   source_path?: string;
+  /** Optional, unchecked by default: explicit consent to The Signal newsletter. */
+  newsletter_opt_in?: boolean;
 }
 
 export interface RequestConfirmationResult {
@@ -47,6 +49,7 @@ export async function requestLeadConfirmation(
         email,
         lead_magnet: input.lead_magnet || "90-day-amazon-associate-roadmap",
         source_path: sourcePath,
+        newsletter_opt_in: input.newsletter_opt_in === true,
       },
     });
     if (error || !data?.success) {

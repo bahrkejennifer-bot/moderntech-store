@@ -23,7 +23,10 @@ serve(async (req) => {
       apiVersion: "2023-10-16",
     });
 
-    const { priceId, productName, productSlug, amount, successUrl, cancelUrl } = await req.json();
+    const { priceId, productName, productSlug, amount, successUrl, cancelUrl, newsletterOptIn, source } = await req.json();
+    const optIn = newsletterOptIn === true; // unchecked unless explicitly true
+    const cleanSource = typeof source === "string" && source.startsWith("/") && !source.startsWith("//")
+      ? source.slice(0, 200) : "";
 
     if (!priceId && !productSlug) {
       return new Response(JSON.stringify({ error: "Product is required" }), {
@@ -78,6 +81,9 @@ serve(async (req) => {
       metadata: {
         productName: verifiedName,
         productSlug: productSlug || "",
+        newsletter_opt_in: optIn ? "true" : "false",
+        newsletter_consent_at: optIn ? new Date().toISOString() : "",
+        source: cleanSource,
       },
     };
 

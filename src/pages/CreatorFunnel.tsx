@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
 import { ArrowRight, Check, Sparkles, Video, Palette, Youtube, Gift, Loader2 } from "lucide-react";
 import { z } from "zod";
@@ -67,6 +68,7 @@ const CreatorFunnel = () => {
   const [form, setForm] = useState({ name: "", email: "" });
   const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
   const [loading, setLoading] = useState(false);
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
 
   const handleFreeDownload = async (e: React.FormEvent) => {
@@ -83,7 +85,7 @@ const CreatorFunnel = () => {
     const { name, email } = parsed.data;
     try {
       const result = await requestLeadConfirmation({
-        name, email, lead_magnet: "faceless-reels-guide",
+        name, email, lead_magnet: "faceless-reels-guide", newsletter_opt_in: newsletterOptIn,
       });
       if (!result.success) {
         toast.error(result.error || "Something went wrong. Please try again.");
@@ -107,6 +109,8 @@ const CreatorFunnel = () => {
           amount,
           successUrl: `https://moderntech.store/creator-funnel/success?product=${slug}`,
           cancelUrl: "https://moderntech.store/creator-funnel",
+          newsletterOptIn,
+          source: "/creator-funnel",
         },
       });
       if (error) throw error;
@@ -192,6 +196,7 @@ const CreatorFunnel = () => {
                   <p className="font-mono text-[10px] mt-1" style={{ color: "hsl(0 65% 45%)" }}>{errors.email}</p>
                 )}
               </div>
+              <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="py-1" />
               <button
                 type="submit"
                 disabled={loading}

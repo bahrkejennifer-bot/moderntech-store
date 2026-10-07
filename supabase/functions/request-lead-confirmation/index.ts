@@ -1,4 +1,5 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { recordDigitalSignup, NEWSLETTER_ONLY_MAGNETS } from "../_shared/digital-signup.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -75,7 +76,8 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { name, email, lead_magnet, source_path } = await req.json();
+    const { name, email, lead_magnet, source_path, newsletter_opt_in } = await req.json();
+    const optIn = newsletter_opt_in === true; // unchecked unless explicitly true
 
     if (!email || typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255) {
       return new Response(JSON.stringify({ error: "Invalid email" }), {
@@ -107,10 +109,18 @@ Deno.serve(async (req) => {
       .maybeSingle();
 
     if (existing) {
-      // Re-deliver the guide directly
+      // Re-deliver the guide directly (never depends on newsletter consent)
       await supabase.functions.invoke("send-welcome-email", {
         body: { name: cleanName, email: cleanEmail, lead_magnet: magnet },
       });
+      if (!NEWSLETTER_ONLY_MAGNETS.has(magnet)) {
+        try {
+          await recordDigitalSignup(supabase, {
+            kind: "free", email: cleanEmail, name: cleanName, productSlug: magnet,
+            productLabel: GUIDE_LABELS[magnet] || magnet, source: cleanSourcePath, newsletterOptIn: optIn,
+          });
+        } catch (e) { console.error("signup record failed", e); }
+      }
       return new Response(JSON.stringify({ success: true, already_confirmed: true }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -123,6 +133,8 @@ Deno.serve(async (req) => {
 
     const { error: insertErr } = await supabase.from("pending_lead_confirmations").insert({
       token, email: cleanEmail, name: cleanName, lead_magnet: magnet, source_path: cleanSourcePath,
+      newsletter_opt_in: optIn,
+      newsletter_consent_at: optIn ? new Date().toISOString() : null,
     });
     if (insertErr) {
       console.error("pending insert error", insertErr);

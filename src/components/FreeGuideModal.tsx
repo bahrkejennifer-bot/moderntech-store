@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import {
   Dialog,
   DialogContent,
@@ -68,6 +69,7 @@ const guides = [
 export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [selectedGuide, setSelectedGuide] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState<null | "pending" | "already">(null);
 
@@ -81,6 +83,7 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
         email,
         name: email.split("@")[0],
         lead_magnet: selectedGuide,
+        newsletter_opt_in: newsletterOptIn,
       });
 
       if (!result.success) {
@@ -189,6 +192,7 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
                 maxLength={255}
                 className="w-full h-11 px-4 rounded-lg bg-muted border border-border text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
               />
+              <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} />
               <button
                 type="submit"
                 disabled={loading}
