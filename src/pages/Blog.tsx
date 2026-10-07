@@ -187,41 +187,43 @@ const Blog = () => {
           },
         ]}
       />
-      <SignalHeader />
+      <div className="print:hidden"><SignalHeader /></div>
 
-      <main className="mx-auto max-w-3xl px-5 pb-24">
-        <header className="pt-14 pb-10 md:pt-20">
+      <main className="mx-auto max-w-3xl px-5 pb-24 print:max-w-none print:px-0 print:pb-0">
+        <header className="pt-14 pb-10 md:pt-20 print:pt-0 print:pb-3">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">Modern Tech's weekly blog</p>
-          <h1 className="mt-3 text-5xl font-semibold tracking-tight md:text-6xl">The Signal</h1>
+          <h1 className="mt-3 print:mt-1 print:text-3xl text-5xl font-semibold tracking-tight md:text-6xl">The Signal</h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Each week, a short, honest read on everyday tech worth knowing about — what's new, what's useful, and what to skip. Free to read here.
           </p>
         </header>
 
-        <section aria-labelledby="weekly-heading" className="border-t border-border pt-10">
+        <section aria-labelledby="weekly-heading" className="border-t border-border pt-10 print:pt-4">
           <p className="text-sm text-muted-foreground"><span className="font-medium text-foreground">This week's edition</span> · Week of <time dateTime={weeklyEdition.weekOf}>{fmt(weeklyEdition.weekOf + "T12:00:00")}</time></p>
-          <h2 id="weekly-heading" className="mt-3 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">{weeklyEdition.title}</h2>
-          {weeklyEdition.intro.map((para) => <p key={para} className="mt-5 text-lg leading-relaxed text-foreground/85">{para}</p>)}
-          <p className="mt-6 rounded-xl border border-border bg-card px-4 py-3 text-sm leading-relaxed text-muted-foreground">As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. Amazon links may earn us a commission at no additional cost to you.</p>
-          <ol className="mt-10 space-y-14">
+          <h2 id="weekly-heading" className="mt-3 print:mt-1 print:text-xl text-3xl font-semibold leading-tight tracking-tight md:text-4xl">{weeklyEdition.title}</h2>
+          {weeklyEdition.intro.map((para) => <p key={para} className="mt-5 print:mt-2 print:text-sm text-lg leading-relaxed text-foreground/85">{para}</p>)}
+          <p className="mt-6 print:mt-2 print:py-1 print:text-[10px] rounded-xl border border-border bg-card px-4 py-3 text-sm leading-relaxed text-muted-foreground">As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. Amazon links may earn us a commission at no additional cost to you.</p>
+          <ol className="mt-8 space-y-10 print:mt-4 print:space-y-3">
             {weeklyPicks.map(({ selection, product }, i) => (
-              <li key={selection.id} id={`pick-${selection.slug}`} data-weekly-pick>
+              <li key={selection.id} id={`pick-${selection.slug}`} data-weekly-pick className="sm:grid sm:grid-cols-[10rem_1fr] sm:gap-6 print:grid print:grid-cols-[6.5rem_1fr] print:gap-4 print:break-inside-avoid">
+                <img src={product.image_url!} alt={product.title} loading="lazy" className="aspect-square w-40 rounded-2xl bg-card object-contain p-3 print:w-[6.5rem] print:p-1" />
+                <div className="mt-4 sm:mt-0 print:mt-0">
                 <p className="font-mono text-xs text-muted-foreground">{String(i + 1).padStart(2, "0")}</p>
-                <h3 className="mt-2 text-2xl font-semibold tracking-tight">{product.title}</h3>
-                <img src={product.image_url!} alt={product.title} loading="lazy" className="mt-5 aspect-square w-full max-w-md rounded-2xl bg-card object-contain p-6" />
-                <p className="mt-5 text-base font-medium">{selection.audience}</p>
-                <p className="mt-2 text-lg leading-relaxed text-foreground/85">{selection.benefit}</p>
-                <p className="mt-2 text-base leading-relaxed text-muted-foreground"><span className="font-medium text-foreground">Good to know:</span> {selection.limitation}</p>
-                <a href={product.affiliate_link} target="_blank" rel="noopener noreferrer sponsored nofollow" className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 text-base font-medium text-background hover:opacity-90">
+                <h3 className="mt-1 text-2xl font-semibold tracking-tight print:text-base">{product.title}</h3>
+                <p className="mt-2 text-base font-medium print:mt-0.5 print:text-xs">{selection.audience}</p>
+                <p className="mt-1 text-lg leading-relaxed text-foreground/85 print:text-xs print:leading-snug">{selection.benefit}</p>
+                <p className="mt-1 text-base leading-relaxed text-muted-foreground print:text-xs print:leading-snug"><span className="font-medium text-foreground">Good to know:</span> {selection.limitation}</p>
+                <a href={product.affiliate_link} target="_blank" rel="noopener noreferrer sponsored nofollow" className="mt-4 inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 text-base font-medium text-background hover:opacity-90 print:mt-1 print:min-h-0 print:border print:border-foreground print:bg-transparent print:px-3 print:py-0.5 print:text-xs print:text-foreground">
                   View on Amazon <ArrowRight className="h-4 w-4" aria-hidden="true" /><span className="sr-only">(opens Amazon, affiliate link)</span>
                 </a>
+                </div>
               </li>
             ))}
           </ol>
         </section>
 
         {latest && (
-          <section aria-labelledby="latest-heading" className="mt-16 border-t border-border pt-10">
+          <section aria-labelledby="latest-heading" className="print:hidden mt-16 border-t border-border pt-10">
             <p className="text-sm text-muted-foreground">
               <span className="font-medium text-foreground">Latest article · {latestKind}</span> · <time dateTime={latest.date}>{fmt(latest.date)}</time>
             </p>
@@ -240,7 +242,7 @@ const Blog = () => {
         )}
 
         {previous.length > 0 && (
-          <section aria-labelledby="previous-heading" className="mt-16 border-t border-border pt-10">
+          <section aria-labelledby="previous-heading" className="print:hidden mt-16 border-t border-border pt-10">
             <h2 id="previous-heading" className="text-xl font-semibold tracking-tight">Previous editions</h2>
             <ul className="mt-4 divide-y divide-border">
               {previous.map((post) => (
@@ -255,7 +257,7 @@ const Blog = () => {
           </section>
         )}
 
-        <section aria-labelledby="email-heading" className="mt-16 rounded-2xl border border-border bg-card p-6 md:p-8">
+        <section aria-labelledby="email-heading" className="print:hidden mt-16 rounded-2xl border border-border bg-card p-6 md:p-8">
           <h2 id="email-heading" className="text-xl font-semibold tracking-tight">Get The Signal by email</h2>
           <p className="mt-2 mb-5 text-base text-muted-foreground">Optional. Everything above stays free to read here. Unsubscribe anytime.</p>
           <SignalSignup />
