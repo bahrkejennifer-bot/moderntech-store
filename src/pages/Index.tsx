@@ -11,6 +11,7 @@ import StructuredData from "@/components/StructuredData";
 import coverCanva from "@/assets/cover-canva.jpg";
 import coverYoutube from "@/assets/cover-youtube.jpg";
 import coverReels from "@/assets/cover-reels.jpg";
+import GiftFinder from "@/components/home/GiftFinder";
 import GiftRail from "@/components/home/GiftRail";
 import SignalSignup from "@/components/home/SignalSignup";
 
@@ -153,7 +154,7 @@ const Index = () => {
           <Link to="/" className="shrink-0 text-base font-semibold text-foreground sm:text-lg md:text-xl">MODERN TECH<span className="ml-1 text-accent">.</span></Link>
           <nav aria-label="Main navigation" className="flex items-center gap-2 text-sm font-medium sm:gap-3 md:gap-8 md:text-base">
             <a href="#gift-picks" className="hidden text-foreground/80 hover:text-foreground md:inline">Gifts</a>
-            <a href="#digital-products" className="hidden text-foreground/80 hover:text-foreground sm:inline">Guides</a>
+            <a href="#digital-products" className="hidden text-foreground/80 hover:text-foreground sm:inline">Digital Products</a>
             <Link to="/the-signal" className="whitespace-nowrap text-foreground/80 hover:text-foreground">The Signal</Link>
             <Button asChild size="lg" className="min-h-11 rounded-full px-3 text-sm sm:px-5 md:text-base"><a href="#selections">Shop Tech Finds</a></Button>
           </nav>
@@ -169,7 +170,7 @@ const Index = () => {
               <p className="mt-7 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">A short, curated list of useful things — each with one clear benefit and one honest limitation.</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="min-h-12 rounded-full px-7 text-base"><a href="#selections">Shop Tech Finds <ArrowDown aria-hidden="true" className="ml-1 h-4 w-4" /></a></Button>
-                <a href="#digital-products" className="inline-flex min-h-12 items-center px-2 text-base font-medium underline-offset-4 hover:underline">Digital guides <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" /></a>
+                <a href="#digital-products" className="inline-flex min-h-12 items-center px-2 text-base font-medium underline-offset-4 hover:underline">Digital Products <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" /></a>
               </div>
             </div>
             {active?.product.image_url && <div className="launch-hero-product pointer-events-none relative mx-auto mt-7 flex h-56 w-full max-w-xl items-center justify-center overflow-hidden rounded-3xl bg-card p-4 md:absolute md:bottom-12 md:right-9 md:mt-0 md:h-[420px] md:w-[40%] md:p-8">
@@ -236,6 +237,9 @@ const Index = () => {
           <div className="mx-auto max-w-7xl">
             <div className="launch-reveal mb-8 max-w-3xl"><p className="text-xs font-semibold uppercase text-muted-foreground">03 / GIFT-WORTHY PICKS</p><h2 id="gift-heading" className="mt-4 text-4xl font-semibold md:text-6xl">Easy to give. Useful every day.</h2><p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">The same curated shortlist, gathered for gifting. Check current price and delivery on Amazon.</p></div>
             <p className="mb-6 max-w-xl text-sm leading-relaxed text-muted-foreground">{affiliateDisclosure}</p>
+            <GiftFinder disclosure={affiliateDisclosure}
+              picks={products.map(({ selection, product }) => ({ slug: selection.slug, title: product.title, imageUrl: product.image_url, audience: selection.audience, benefit: selection.benefit, limitation: selection.limitation }))}
+              renderCta={(slug) => { const pick = products.find((p) => p.selection.slug === slug); return pick ? amazonButton(pick) : null; }} />
             <GiftRail label="Gift-worthy picks">
               {products.map(({ selection, product }) => <article key={selection.id} data-rail-card className="flex w-[82%] shrink-0 snap-start flex-col rounded-2xl bg-card p-5 sm:w-[46%] lg:w-[31%]">
                 <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-background p-5"><img src={product.image_url || ""} alt={product.title} loading="lazy" className="h-full w-full object-contain" /></div>
@@ -249,10 +253,10 @@ const Index = () => {
 
         <section id="digital-products" className="scroll-mt-20 bg-background px-5 py-20 md:px-9 md:py-28" aria-labelledby="digital-heading">
           <div className="mx-auto max-w-7xl">
-            <div className="launch-reveal mb-12 max-w-3xl"><p className="text-xs font-semibold uppercase text-muted-foreground">04 / DIGITAL GUIDES</p><h2 id="digital-heading" className="mt-4 text-4xl font-semibold md:text-6xl">Ideas, ready to use.</h2><p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">Practical guides for the work you want to put into the world.</p></div>
-            {digitalLoading ? <p role="status" className="flex items-center gap-3 py-16"><Loader2 className="h-5 w-5 animate-spin" /> Loading guides…</p>
-              : digitalError ? <p role="alert" className="py-12">Digital guides are unavailable right now. Please try again later.</p>
-              : digitalProducts.length === 0 ? <p className="py-12">No guides are available right now.</p>
+            <div className="launch-reveal mb-12 max-w-3xl"><p className="text-xs font-semibold uppercase text-muted-foreground">04 / DIGITAL PRODUCTS</p><h2 id="digital-heading" className="mt-4 text-4xl font-semibold md:text-6xl">Ideas, ready to use.</h2><p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">Practical guides for the work you want to put into the world.</p></div>
+            {digitalLoading ? <p role="status" className="flex items-center gap-3 py-16"><Loader2 className="h-5 w-5 animate-spin" /> Loading digital products…</p>
+              : digitalError ? <p role="alert" className="py-12">Digital products are unavailable right now. Please try again later.</p>
+              : digitalProducts.length === 0 ? <p className="py-12">No digital products are available right now.</p>
               : <div className="grid gap-5 md:grid-cols-3">
                 {digitalProducts.map(({ offer, product }) => <article key={offer.slug} id={`digital-${offer.slug}`} className="launch-reveal flex scroll-mt-24 flex-col overflow-hidden rounded-md bg-secondary/50">
                   <div className="flex h-64 items-center justify-center overflow-hidden bg-secondary p-8 md:h-72">
