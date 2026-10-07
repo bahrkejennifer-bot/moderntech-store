@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
 import StructuredData from "@/components/StructuredData";
 import { Link } from "react-router-dom";
@@ -49,6 +50,7 @@ const products = [
 ];
 
 const DigitalProducts = () => {
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [bundleLoading, setBundleLoading] = useState(false);
 
   const handleBundleCheckout = async () => {
@@ -61,6 +63,8 @@ const DigitalProducts = () => {
           amount: 5900,
           successUrl: "https://moderntech.store/creator-funnel/success?product=creator-bundle",
           cancelUrl: "https://moderntech.store/digital-products",
+          newsletterOptIn,
+          source: "/digital-products",
         },
       });
       if (error) throw error;
@@ -124,6 +128,7 @@ const DigitalProducts = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="mb-4 mx-auto max-w-md" />
             <button
               onClick={handleBundleCheckout}
               disabled={bundleLoading}

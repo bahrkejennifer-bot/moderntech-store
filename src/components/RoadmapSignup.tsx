@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -6,6 +7,7 @@ import { Sparkles, Download, ArrowRight } from "lucide-react";
 import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
 export const RoadmapSignup = () => {
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +24,7 @@ export const RoadmapSignup = () => {
         name: name.trim(),
         email: email.trim(),
         lead_magnet: "90-day-amazon-associate-roadmap",
+        newsletter_opt_in: newsletterOptIn,
       });
       if (!result.success) {
         toast.error(result.error || "Something went wrong. Please try again.");
@@ -78,6 +81,7 @@ export const RoadmapSignup = () => {
                   className="h-12 rounded-xl bg-background/80 backdrop-blur-sm border-border/50 focus:border-primary text-foreground placeholder:text-muted-foreground"
                   required
                 />
+                <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="my-2" />
                 <Button
                   type="submit"
                   disabled={isLoading}

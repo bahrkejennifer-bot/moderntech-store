@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { CheckCircle, ArrowRight, Cpu, Briefcase, Zap, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +25,7 @@ const pillars = [
 ];
 
 const FoundersTechStack = () => {
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,6 +41,7 @@ const FoundersTechStack = () => {
         name: name.trim(),
         email: email.trim().toLowerCase(),
         lead_magnet: "founders-tech-stack",
+        newsletter_opt_in: newsletterOptIn,
       });
       if (!result.success) {
         toast({ title: "Something went wrong", description: result.error || "Please try again.", variant: "destructive" });
@@ -148,6 +151,7 @@ const FoundersTechStack = () => {
                     className="h-12 bg-transparent border-border font-mono text-xs placeholder:text-muted-foreground/50 rounded-none focus-visible:ring-foreground/10"
                   />
                 </div>
+                <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="my-2" />
                 <Button
                   type="submit"
                   disabled={isSubmitting}

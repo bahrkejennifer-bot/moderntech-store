@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
 import { Download, CheckCircle, ArrowRight, GraduationCap, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ const benefits = [
 ];
 
 const DormRoomTechGuide = () => {
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,6 +60,7 @@ const DormRoomTechGuide = () => {
         name: name.trim(),
         email: email.trim().toLowerCase(),
         lead_magnet: "dorm-room-tech-setup",
+        newsletter_opt_in: newsletterOptIn,
       });
       if (!result.success) {
         toast({ title: "Something went wrong", description: result.error || "Please try again.", variant: "destructive" });
@@ -151,6 +154,7 @@ const DormRoomTechGuide = () => {
                       <form onSubmit={handleSubmit} className="space-y-4">
                         <Input placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} required className="h-12" maxLength={100} />
                         <Input type="email" placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-12" maxLength={255} />
+                        <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="my-2" />
                         <Button type="submit" disabled={isSubmitting} className="w-full h-12 rounded-full text-base font-semibold bg-teal-500 hover:bg-teal-600">
                           {isSubmitting ? "Processing..." : "Download Free Guide"}
                           <ArrowRight className="ml-2 h-4 w-4" />

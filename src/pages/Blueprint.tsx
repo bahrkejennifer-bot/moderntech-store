@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
 import { Check, Shield, ArrowRight, ChevronDown, Zap, BookOpen, Target, TrendingUp, Gift, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -29,6 +30,7 @@ const testimonials = [
 ];
 
 const Blueprint = () => {
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,6 +44,8 @@ const Blueprint = () => {
           amount: 2700,
           successUrl: "https://moderntech.store/blueprint/success",
           cancelUrl: "https://moderntech.store/blueprint",
+          newsletterOptIn,
+          source: "/blueprint",
         },
       });
       if (error) throw error;
@@ -78,6 +82,7 @@ const Blueprint = () => {
           The Exact Amazon Affiliate System That Built ModernTech.store — Now Yours for $27.
         </p>
         <div className="mt-10">
+          <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="mb-4 mx-auto max-w-md" />
           <button
             onClick={handleCheckout}
             disabled={isLoading}
@@ -207,6 +212,7 @@ const Blueprint = () => {
           <p className="font-serif text-sm mb-8" style={{ color: "hsl(30 25% 95% / 0.6)", fontWeight: 300 }}>
             One payment. Lifetime access. Zero risk.
           </p>
+          <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="mb-4 mx-auto max-w-md" />
           <button
             onClick={handleCheckout}
             disabled={isLoading}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
 import { Check, ArrowRight, MailCheck } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -13,6 +14,7 @@ const benefits = [
 ];
 
 const FreeGuide = () => {
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,6 +29,7 @@ const FreeGuide = () => {
         name: name.trim(),
         email: email.trim(),
         lead_magnet: "free-affiliate-quick-start",
+        newsletter_opt_in: newsletterOptIn,
       });
       if (!result.success) {
         toast.error(result.error || "Something went wrong. Please try again.");
@@ -98,6 +101,7 @@ const FreeGuide = () => {
               className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none transition-colors focus:border-current"
               style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
             />
+            <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="my-2" />
             <button
               type="submit"
               disabled={loading}

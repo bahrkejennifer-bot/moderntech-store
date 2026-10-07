@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Loader2, Home, Heart, Briefcase, Baby } from "lucide-react";
@@ -68,6 +69,7 @@ const FAQS = [
 
 const TechEssentialsGuide = () => {
   const navigate = useNavigate();
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [form, setForm] = useState({ name: "", email: "" });
   const [loading, setLoading] = useState(false);
 
@@ -80,6 +82,7 @@ const TechEssentialsGuide = () => {
         name: form.name.trim(),
         email: form.email.trim(),
         lead_magnet: LEAD_MAGNET_SLUG,
+        newsletter_opt_in: newsletterOptIn,
       });
       if (!result.success) {
         toast.error(result.error || "Something went wrong. Please try again.");
@@ -245,6 +248,7 @@ const TechEssentialsGuide = () => {
                   className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none"
                   style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
                 />
+                <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="my-2" />
                 <button
                   type="submit"
                   disabled={loading}

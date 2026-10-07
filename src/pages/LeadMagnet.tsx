@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Download, CheckCircle, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +18,7 @@ const benefits = [
 ];
 
 const LeadMagnet = () => {
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -56,6 +58,7 @@ const LeadMagnet = () => {
         name: name.trim(),
         email: email.trim().toLowerCase(),
         lead_magnet: "90-day-amazon-associate-roadmap",
+        newsletter_opt_in: newsletterOptIn,
       });
       if (!result.success) {
         toast({ title: "Something went wrong", description: result.error || "Please try again.", variant: "destructive" });
@@ -133,6 +136,7 @@ const LeadMagnet = () => {
                       <form onSubmit={handleSubmit} className="space-y-4">
                         <Input placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} required className="h-12" />
                         <Input type="email" placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-12" />
+                        <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="my-2" />
                         <Button type="submit" disabled={isSubmitting} className="w-full h-12 rounded-full text-base font-semibold">
                           {isSubmitting ? "Processing..." : "Download Free Roadmap"}
                           <ArrowRight className="ml-2 h-4 w-4" />
