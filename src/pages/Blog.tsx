@@ -131,7 +131,7 @@ const Blog = () => {
     excerpt: p.excerpt || "",
     date: p.created_at,
     category: !p.category || /weekly edit/i.test(p.category) ? "THE SIGNAL" : p.category,
-    imageUrl: p.image_url || techDefaultHeroImg,
+    imageUrl: p.image_url && !/images\.unsplash\.com/i.test(p.image_url) ? p.image_url : "",
     slug: p.slug,
     isGenerated: true,
     readTime: "5 min read",

@@ -83,23 +83,23 @@ const blogProductImageMap: Record<string, string> = {
   "etekcity smart body": etekcityScaleImg,
   "airpods 4": airpods4Img,
   "echo show 11": echoShow11Img,
-  "echo show": echoShow11Img,
   "ray-ban meta": raybanMetaImg,
   "fitbit charge 6": fitbitCharge6Img,
   "plaud note": plaudNoteImg,
   "sjcam c400": sjcamC400Img,
-  "ring light": ringLightImg,
-  "smart health ring": smartRingProductImg,
-  "prxxhri": smartRingProductImg,
 };
 
+// Only return a photo when the title names the exact model the photo shows; otherwise text-only.
 const findProductImage = (title: string): string => {
   const lower = title.toLowerCase();
   for (const [key, img] of Object.entries(blogProductImageMap)) {
     if (lower.includes(key)) return img;
   }
-  return techDefaultHeroImg;
+  return "";
 };
+
+// Generic stock photos (e.g. Unsplash desk shots) don't depict the products discussed.
+export const isGenericStockImage = (url?: string | null) => !url || /images\.unsplash\.com/i.test(url);
 
 // Amazon-to-redirect link mapping (ASIN → /go/ slug)
 const asinToSlug: Record<string, string> = {
@@ -228,7 +228,7 @@ const blogPostsData: Record<string, {
     title: "2026 Spring Gift Guide: Tech for Family Edition",
     date: "2026-02-02",
     category: "Gift Guides",
-    imageUrl: springDealsHeroImg,
+    imageUrl: "",
     intro: "We've all been there. You open the drawer in your home office or bedroom, and it's a graveyard of gadgets. The fitness tracker you wore twice. The smart speaker that never quite understood you. The novelty device that seemed brilliant at 2 AM while scrolling Amazon, but now just collects dust. Most tech gifts fail because they solve problems we don't actually have. They're novelties, not necessities. This year, give gifts that build connection, not clutter.",
     sections: [
       { type: 'heading', content: 'The Connection Crisis' },
@@ -257,10 +257,10 @@ const blogPostsData: Record<string, {
       { type: 'paragraph', content: "Don't just give a gift. Give presence. Give attention. Give the message that says: \"I see you. I value our time together. And I'm willing to invest in what we have.\" Because the best technology doesn't demand our attention—it gives us more capacity to give our attention to the people who matter most." }
     ],
     products: [
-      { title: "Oura Ring Gen 4", description: "Ultimate health tracker—tracks sleep, stress, and readiness without a screen", badge: "Top Pick", rating: 4.8, imageUrl: ouraRingImg, affiliateLink: "https://www.amazon.com/dp/B0DJMJNHWX?tag=moderntechs04-20" },
-      { title: "Hatch Restore 2", description: "Smart sleep assistant with gentle light and sound wake-up", badge: "Better Sleep", rating: 4.7, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0C5S7K1JK?tag=moderntechs04-20" },
+      { title: "Oura Ring Gen 4", description: "Ultimate health tracker—tracks sleep, stress, and readiness without a screen", badge: "Top Pick", rating: 4.8, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0DJMJNHWX?tag=moderntechs04-20" },
+      { title: "Hatch Restore 2", description: "Smart sleep assistant with gentle light and sound wake-up", badge: "Better Sleep", rating: 4.7, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0C5S7K1JK?tag=moderntechs04-20" },
       { title: "Therabody Theragun Prime", description: "Professional-grade massage tech made quiet and easy for home use", rating: 4.7, imageUrl: theragunImg, affiliateLink: "https://www.amazon.com/dp/B086Z6NZ2P?tag=moderntechs04-20" },
-      { title: "Apple Watch SE", description: "Family Setup lets parents stay connected to kids without a phone", badge: "Family Safety", rating: 4.8, imageUrl: fitbitImg, affiliateLink: "https://www.amazon.com/dp/B0CHX9N594?tag=moderntechs04-20" },
+      { title: "Apple Watch SE", description: "Family Setup lets parents stay connected to kids without a phone", badge: "Family Safety", rating: 4.8, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0CHX9N594?tag=moderntechs04-20" },
       { title: "Philips Hue White & Color Starter Kit", description: "Set the perfect romantic ambiance with millions of colors", rating: 4.8, imageUrl: philipsHueImg, affiliateLink: "https://www.amazon.com/dp/B09QZFVCL6?tag=moderntechs04-20" },
       { title: "August WiFi Smart Lock", description: "Peace of mind with keyless entry and remote access", rating: 4.5, imageUrl: augustLockImg, affiliateLink: "https://www.amazon.com/dp/B082VXK9CK?tag=moderntechs04-20" }
     ]
@@ -402,7 +402,7 @@ const blogPostsData: Record<string, {
       { title: "Ekrin Bantam Massage Gun", description: "Recovery tool, muscle relief, portable design", rating: 4.6, imageUrl: ekrinImg, affiliateLink: "https://www.amazon.com/dp/B087CKJ7GP?tag=moderntechs04-20" },
       { title: "Withings Body+ Smart Scale", description: "WiFi-connected scale, body composition, health tracking", rating: 4.5, imageUrl: withingsImg, affiliateLink: "https://www.amazon.com/dp/B071XW4C5Q?tag=moderntechs04-20" },
       { title: "Philips SmartSleep Wake-Up Light", description: "Sunrise simulation, better sleep quality, natural wake-up", rating: 4.5, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs04-20" },
-      { title: "Noise Blocking Sleep Earbuds", description: "Sleep, game & music modes, 7-hour battery, slim fit for side sleepers", rating: 4.3, imageUrl: boseSleepImg, affiliateLink: "https://www.amazon.com/dp/B0DCVX154M?tag=moderntechs04-20" }
+      { title: "Noise Blocking Sleep Earbuds", description: "Sleep, game & music modes, 7-hour battery, slim fit for side sleepers", rating: 4.3, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0DCVX154M?tag=moderntechs04-20" }
     ]
   },
   "educational-tech-kids-parents-guide": {
@@ -457,7 +457,7 @@ const blogPostsData: Record<string, {
       { type: 'paragraph', content: "Spring 2026 is shaping up to be one of the best early-year shopping events for tech. Whether you're treating yourself or getting a head start on gifts, these deals represent **real savings on products we've tested and recommend**. Don't wait for Prime Day — the savings are here right now." }
     ],
     products: [
-      { title: "Sony WH-1000XM5", description: "Industry-leading noise cancellation, 30-hour battery life", badge: "Best Deal", rating: 4.8, imageUrl: boseQcImg, affiliateLink: "https://www.amazon.com/dp/B0BX2L8PBS?tag=moderntechs04-20" },
+      { title: "Sony WH-1000XM5", description: "Industry-leading noise cancellation, 30-hour battery life", badge: "Best Deal", rating: 4.8, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0BX2L8PBS?tag=moderntechs04-20" },
       { title: "AirPods Pro 2 (USB-C)", description: "Adaptive transparency, spatial audio, USB-C charging", badge: "$50 Off", rating: 4.7, imageUrl: airpodsImg, affiliateLink: "https://amzn.to/4jN7yiK" },
       { title: "Philips Hue Starter Kit", description: "4 smart bulbs + bridge, 30% off this spring", badge: "30% Off", rating: 4.6, imageUrl: philipsHueImg, affiliateLink: "https://www.amazon.com/dp/B096YFWBYS?tag=moderntechs04-20" },
       { title: "Meta Quest 3", description: "Standalone VR headset with free game bundle included", rating: 4.7, imageUrl: metaQuestImg, affiliateLink: "https://www.amazon.com/dp/B0C8VKH1ZH?tag=moderntechs04-20" },
@@ -684,7 +684,7 @@ const BlogPost = () => {
         {/* Centered magazine column */}
         <div className="max-w-[800px] mx-auto px-6 pt-12 pb-20">
           {/* Featured Hero Image */}
-          {dynamicPost.image_url && (
+          {dynamicPost.image_url && !isGenericStockImage(dynamicPost.image_url) && (
             <div className="rounded-lg overflow-hidden mb-10">
               <div className="aspect-[3/2] w-full">
                 <img
@@ -869,7 +869,7 @@ const BlogPost = () => {
       {/* Centered magazine column */}
       <div className="max-w-[800px] mx-auto px-6 pt-12 pb-20">
         {/* Featured Hero Image — above title, 3:2 aspect ratio */}
-        <div className="rounded-lg overflow-hidden mb-10">
+        {post!.imageUrl && <div className="rounded-lg overflow-hidden mb-10">
           <div className="aspect-[3/2] w-full">
             <img
               src={post!.imageUrl}
@@ -877,7 +877,7 @@ const BlogPost = () => {
               className="w-full h-full object-cover"
             />
           </div>
-        </div>
+        </div>}
 
         {/* Category + Meta row */}
         <div className="flex items-center justify-center gap-3 text-xs text-muted-foreground mb-6 flex-wrap">
@@ -996,10 +996,12 @@ const ProductCard = ({ product }: { product: BlogProduct }) => (
     className="group block"
   >
     <div className="rounded-xl border border-border bg-card overflow-hidden h-full flex flex-col shadow-soft hover:shadow-elegant transition-all duration-300">
-      <div className="aspect-[4/3] overflow-hidden relative">
+      {product.imageUrl ? <div className="aspect-[4/3] overflow-hidden relative">
         <img
           src={product.imageUrl}
           alt={product.title}
+          loading="lazy"
+          onError={(e) => { (e.currentTarget.parentElement as HTMLElement).style.display = "none"; }}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         {product.badge && (
@@ -1007,7 +1009,7 @@ const ProductCard = ({ product }: { product: BlogProduct }) => (
             {product.badge}
           </span>
         )}
-      </div>
+      </div> : product.badge ? <div className="px-4 pt-4"><span className="inline-block bg-foreground text-background text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wide uppercase">{product.badge}</span></div> : null}
       <div className="p-4 flex flex-col flex-1">
         <h3 className="text-sm font-bold line-clamp-2 mb-1 group-hover:text-foreground/70 transition-colors text-foreground">{product.title}</h3>
         <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed flex-1">{product.description}</p>
