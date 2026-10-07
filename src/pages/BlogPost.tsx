@@ -127,6 +127,23 @@ const amznToSlug: Record<string, string> = {
   "4cmK0n7": "sjcam-c400", "4s8RqPr": "rgb-ring-light-18",
 };
 
+// Article photos: drop generic stock shots and any photo reused for different products in the same
+// post (it can't depict all of them); hide photos that fail to load instead of showing a substitute.
+const cleanArticleImages = (html: string): string => {
+  if (typeof DOMParser === "undefined") return html;
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const imgs = Array.from(doc.querySelectorAll("img"));
+  const counts = new Map<string, number>();
+  imgs.forEach((img) => { const src = img.getAttribute("src") || ""; counts.set(src, (counts.get(src) || 0) + 1); });
+  imgs.forEach((img) => {
+    const src = img.getAttribute("src") || "";
+    if (!src || (counts.get(src) || 0) > 1 || isGenericStockImage(src)) { img.remove(); return; }
+    img.setAttribute("onerror", "this.style.display='none'");
+    img.setAttribute("loading", "lazy");
+  });
+  return doc.body.innerHTML;
+};
+
 const rewriteAmazonLinks = (html: string): string => {
   // Replace amazon.com/dp/ASIN links
   let result = html.replace(
@@ -732,7 +749,7 @@ const BlogPost = () => {
 
             <div
               className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:text-muted-foreground prose-p:leading-[1.85] prose-img:hidden"
-              dangerouslySetInnerHTML={{ __html: rewriteAmazonLinks(dynamicPost.content_html) }}
+              dangerouslySetInnerHTML={{ __html: cleanArticleImages(rewriteAmazonLinks(dynamicPost.content_html)) }}
             />
 
             <AffiliateDisclosure />
