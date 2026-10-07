@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
 import { ArrowRight, Check, Youtube, Loader2, Star } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -25,6 +26,7 @@ const whoItsFor = [
 
 const FacelessYoutube = () => {
   const [loading, setLoading] = useState(false);
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
 
   const handleCheckout = async () => {
     setLoading(true);
@@ -36,6 +38,8 @@ const FacelessYoutube = () => {
           amount: 4900,
           successUrl: "https://moderntech.store/creator-funnel/success?product=faceless-youtube-automation",
           cancelUrl: "https://moderntech.store/faceless-youtube",
+          newsletterOptIn,
+          source: "/faceless-youtube",
         },
       });
       if (error) throw error;
@@ -86,6 +90,7 @@ const FacelessYoutube = () => {
               <span className="font-mono text-[11px]" style={{ color: "hsl(220 15% 14% / 0.4)" }}>one-time payment</span>
             </div>
 
+            <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="mb-4 mx-auto max-w-md" />
             <button
               onClick={handleCheckout}
               disabled={loading}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
 import { Check, Sparkles, Loader2, Star, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -59,6 +60,7 @@ const allFeatures = [
 
 const CreatorBundle = () => {
   const [loading, setLoading] = useState(false);
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
 
   const handleCheckout = async () => {
     setLoading(true);
@@ -70,6 +72,8 @@ const CreatorBundle = () => {
           amount: 5900,
           successUrl: "https://moderntech.store/creator-funnel/success?product=creator-bundle",
           cancelUrl: "https://moderntech.store/creator-bundle",
+          newsletterOptIn,
+          source: "/creator-bundle",
         },
       });
       if (error) throw error;
@@ -228,6 +232,7 @@ const CreatorBundle = () => {
             ))}
           </ul>
 
+          <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="mb-4 mx-auto max-w-md" />
           <button
             onClick={handleCheckout}
             disabled={loading}
