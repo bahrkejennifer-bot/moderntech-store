@@ -151,11 +151,11 @@ const Index = () => {
       <header className="launch-nav sticky top-0 z-50 border-b border-border/30 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:px-5 md:h-20 md:px-9">
           <Link to="/" className="shrink-0 text-base font-semibold text-foreground sm:text-lg md:text-xl">MODERN TECH<span className="ml-1 text-accent">.</span></Link>
-          <nav aria-label="Main navigation" className="flex items-center gap-3 text-sm font-medium md:gap-8 md:text-base">
+          <nav aria-label="Main navigation" className="flex items-center gap-2 text-sm font-medium sm:gap-3 md:gap-8 md:text-base">
             <a href="#gift-picks" className="hidden text-foreground/80 hover:text-foreground md:inline">Gifts</a>
             <a href="#digital-products" className="hidden text-foreground/80 hover:text-foreground sm:inline">Guides</a>
             <Link to="/the-signal" className="whitespace-nowrap text-foreground/80 hover:text-foreground">The Signal</Link>
-            <Button asChild size="lg" className="min-h-11 rounded-full px-4 text-sm sm:px-5 md:text-base"><a href="#selections">Shop Tech Finds</a></Button>
+            <Button asChild size="lg" className="min-h-11 rounded-full px-3 text-sm sm:px-5 md:text-base"><a href="#selections">Shop Tech Finds</a></Button>
           </nav>
         </div>
       </header>
