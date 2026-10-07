@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
-// Reuses the existing weekly newsletter list (same lead magnet as the Weekly Edit signup) with double opt-in.
+// Reuses the existing weekly newsletter list (same lead magnet as the The Signal signup) with double opt-in.
 const LEAD_MAGNET = "modern-tech-edit";
 const schema = z.object({ email: z.string().trim().email("Enter a valid email address.").max(255) });
 

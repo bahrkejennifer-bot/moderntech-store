@@ -69,7 +69,7 @@ const queryClient = new QueryClient();
 
 const BlogPostRedirect = () => {
   const { slug } = useParams<{ slug: string }>();
-  return <Navigate to={`/weekly-edit/${slug}`} replace />;
+  return <Navigate to={`/the-signal/${slug}`} replace />;
 };
 
 const PinterestTracker = () => {
@@ -93,7 +93,7 @@ const App = () => (
           <Route path="/confirm-email" element={<ConfirmEmail />} />
           <Route path="/free-guide-tech-essentials" element={<TechEssentialsGuide />} />
           <Route path="/free-guide-tech-essentials/success" element={<TechEssentialsSuccess />} />
-          <Route path="/the-signal" element={<TheSignal />} />
+          <Route path="/podcast" element={<TheSignal />} />
           <Route path="/contact" element={<ContactPage />} />
 
           {/* ── Master Category Pages ── */}
@@ -114,11 +114,13 @@ const App = () => (
           <Route path="/college" element={<Navigate to="/kids-stem" replace />} />
           <Route path="/productivity-family" element={<Navigate to="/kids-stem" replace />} />
 
-          <Route path="/weekly-edit" element={<Blog />} />
-          <Route path="/weekly-edit/:slug" element={<BlogPost />} />
-          <Route path="/tech-of-the-month" element={<Navigate to="/weekly-edit" replace />} />
+          <Route path="/the-signal" element={<Blog />} />
+          <Route path="/the-signal/:slug" element={<BlogPost />} />
+          <Route path="/weekly-edit" element={<Navigate to="/the-signal" replace />} />
+          <Route path="/weekly-edit/:slug" element={<BlogPostRedirect />} />
+          <Route path="/tech-of-the-month" element={<Navigate to="/the-signal" replace />} />
           <Route path="/tech-of-the-month/:month" element={<TechOfTheMonth />} />
-          <Route path="/blog" element={<Navigate to="/weekly-edit" replace />} />
+          <Route path="/blog" element={<Navigate to="/the-signal" replace />} />
           <Route path="/blog/:slug" element={<BlogPostRedirect />} />
           <Route path="/digital-products" element={<DigitalProducts />} />
           <Route path="/tech-gift-cheatsheet" element={<TechGiftCheatsheet />} />
@@ -141,7 +143,7 @@ const App = () => (
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/return-policy" element={<ReturnPolicy />} />
-          <Route path="/signal" element={<Signal />} />
+          <Route path="/signal" element={<Navigate to="/the-signal" replace />} />
           <Route path="/pinterest-callback" element={<PinterestCallback />} />
           <Route path="/admin/pinterest" element={<AdminLayout><AdminPinterest /></AdminLayout>} />
           <Route path="/admin/tech-spec" element={<AdminLayout><AdminTechSpec /></AdminLayout>} />
