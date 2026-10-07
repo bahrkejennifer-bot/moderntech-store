@@ -7,6 +7,8 @@ import SignalHeader from "@/components/SignalHeader";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import SignalSignup from "@/components/home/SignalSignup";
 import { supabase } from "@/integrations/supabase/client";
+import { selections, isEligible, type CatalogProduct } from "@/lib/curatedSelections";
+import { weeklyEdition, MAX_WEEKLY_PICKS } from "@/lib/signalWeeklyEdition";
 import ouraRingHeroImg from "@/assets/heroes/oura-ring-hero.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
 import springDealsHeroImg from "@/assets/blog/spring-deals-hero.jpg";
@@ -126,6 +128,18 @@ const Blog = () => {
     },
   });
 
+  const { data: weeklyPicks = [] } = useQuery({
+    queryKey: ["signal-weekly-picks", weeklyEdition.weekOf],
+    queryFn: async () => {
+      const chosen = weeklyEdition.pickSlugs.map((slug) => selections.find((s) => s.slug === slug)).filter(Boolean) as (typeof selections)[number][];
+      const { data, error } = await supabase.from("scraped_products").select("id,title,image_url,affiliate_link,is_active").in("id", chosen.map((c) => c.id));
+      if (error) throw error;
+      const byId = new Map((data as CatalogProduct[]).filter(isEligible).map((p) => [p.id, p]));
+      return chosen.flatMap((selection) => { const product = byId.get(selection.id); return product ? [{ selection, product }] : []; }).slice(0, MAX_WEEKLY_PICKS);
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+
   const dynamicMapped = (dynamicPosts || []).map((p) => ({
     title: p.title,
     excerpt: p.excerpt || "",
@@ -184,17 +198,37 @@ const Blog = () => {
           </p>
         </header>
 
+        <section aria-labelledby="weekly-heading" className="border-t border-border pt-10">
+          <p className="text-sm text-muted-foreground"><span className="font-medium text-foreground">This week's edition</span> · Week of <time dateTime={weeklyEdition.weekOf}>{fmt(weeklyEdition.weekOf + "T12:00:00")}</time></p>
+          <h2 id="weekly-heading" className="mt-3 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">{weeklyEdition.title}</h2>
+          {weeklyEdition.intro.map((para) => <p key={para} className="mt-5 text-lg leading-relaxed text-foreground/85">{para}</p>)}
+          <p className="mt-6 rounded-xl border border-border bg-card px-4 py-3 text-sm leading-relaxed text-muted-foreground">As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. Amazon links may earn us a commission at no additional cost to you.</p>
+          <ol className="mt-10 space-y-14">
+            {weeklyPicks.map(({ selection, product }, i) => (
+              <li key={selection.id} id={`pick-${selection.slug}`} data-weekly-pick>
+                <p className="font-mono text-xs text-muted-foreground">{String(i + 1).padStart(2, "0")}</p>
+                <h3 className="mt-2 text-2xl font-semibold tracking-tight">{product.title}</h3>
+                <img src={product.image_url!} alt={product.title} loading="lazy" className="mt-5 aspect-square w-full max-w-md rounded-2xl bg-card object-contain p-6" />
+                <p className="mt-5 text-base font-medium">{selection.audience}</p>
+                <p className="mt-2 text-lg leading-relaxed text-foreground/85">{selection.benefit}</p>
+                <p className="mt-2 text-base leading-relaxed text-muted-foreground"><span className="font-medium text-foreground">Good to know:</span> {selection.limitation}</p>
+                <a href={product.affiliate_link} target="_blank" rel="noopener noreferrer sponsored nofollow" className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 text-base font-medium text-background hover:opacity-90">
+                  View on Amazon <ArrowRight className="h-4 w-4" aria-hidden="true" /><span className="sr-only">(opens Amazon, affiliate link)</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+
         {latest && (
-          <section aria-labelledby="latest-heading" className="border-t border-border pt-10">
+          <section aria-labelledby="latest-heading" className="mt-16 border-t border-border pt-10">
             <p className="text-sm text-muted-foreground">
-              <span className="font-medium text-foreground">{latestKind}</span> · <time dateTime={latest.date}>{fmt(latest.date)}</time>
+              <span className="font-medium text-foreground">Latest article · {latestKind}</span> · <time dateTime={latest.date}>{fmt(latest.date)}</time>
             </p>
             <h2 id="latest-heading" className="mt-3 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
               <Link to={`/the-signal/${latest.slug}`} className="hover:underline underline-offset-4">{latest.title}</Link>
             </h2>
-            {latest.imageUrl && (
-              <img src={latest.imageUrl} alt={latest.title} className="mt-6 aspect-[16/9] w-full rounded-2xl object-cover" loading="eager" />
-            )}
+            
             {latest.excerpt && <p className="mt-6 text-lg leading-relaxed text-foreground/85">{latest.excerpt}</p>}
             <Link
               to={`/the-signal/${latest.slug}`}

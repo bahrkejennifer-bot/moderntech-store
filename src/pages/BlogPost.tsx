@@ -1031,10 +1031,7 @@ const ProductCard = ({ product }: { product: BlogProduct }) => (
         <h3 className="text-sm font-bold line-clamp-2 mb-1 group-hover:text-foreground/70 transition-colors text-foreground">{product.title}</h3>
         <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed flex-1">{product.description}</p>
         <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
-          <div className="flex items-center gap-1 text-xs">
-            <span className="text-amber-500">★</span>
-            <span className="font-medium text-foreground/70">{product.rating}/5</span>
-          </div>
+          <span className="sr-only">Opens Amazon</span>
           <span className="inline-flex items-center gap-1 text-xs font-medium text-foreground border-b border-foreground/20 pb-0.5 group-hover:border-foreground/50 transition-all">
             Shop <ExternalLink className="h-3 w-3" />
           </span>
