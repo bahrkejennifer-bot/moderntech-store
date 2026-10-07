@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { Mail, Sparkles, Loader2, X } from "lucide-react";
 import { z } from "zod";
+import { isSignalRoute } from "@/lib/quietRoutes";
 
 const emailSchema = z.object({
   email: z.string().trim().email({ message: "Please enter a valid email address" }).max(255),
@@ -24,6 +25,7 @@ export const NewsletterPopup = () => {
   useEffect(() => {
     // Don't show popup on pages with their own CTAs
     const suppressedPaths = ["/", "/links", "/blueprint", "/free-guide", "/free-guide-tech-essentials", "/free-guide-tech-essentials/success"];
+    if (isSignalRoute(location.pathname)) { setIsOpen(false); return; }
     if (suppressedPaths.includes(location.pathname)) return;
 
     // Check if user has already dismissed or subscribed

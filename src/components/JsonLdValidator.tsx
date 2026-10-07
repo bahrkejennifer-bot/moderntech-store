@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import { isSignalRoute } from "@/lib/quietRoutes";
 import { CheckCircle2, XCircle, AlertTriangle, ShieldCheck, X, Loader2 } from "lucide-react";
 import { validateJsonLdStrings, type Check } from "@/lib/jsonLdValidation";
 
@@ -19,6 +21,7 @@ const runValidation = (): { checks: Check[]; nodeCount: number; scriptCount: num
 };
 
 const JsonLdValidator = () => {
+  const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<{ checks: Check[]; nodeCount: number; scriptCount: number } | null>(null);
@@ -37,6 +40,7 @@ const JsonLdValidator = () => {
   const warnings = result?.checks.filter((c) => c.severity === "warning").length ?? 0;
   const passed = result && errors === 0;
 
+  if (isSignalRoute(pathname)) return null;
   return (
     <>
       <button
