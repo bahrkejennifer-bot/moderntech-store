@@ -2,6 +2,7 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@14.21.0";
 import { Resend } from "https://esm.sh/resend@2.0.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
+import { recordDigitalSignup } from "../_shared/digital-signup.ts";
 
 const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
   apiVersion: "2023-10-16",
@@ -187,6 +188,27 @@ serve(async (req) => {
             }
           } catch (e) {
             console.error("Error recording purchase:", e);
+          }
+        }
+
+        // Record signup + notify business inbox once per Stripe session (retries are deduped).
+        // Only for confirmed-paid sessions; never blocks the customer's receipt/download email.
+        if (session.payment_status === "paid") {
+          try {
+            await recordDigitalSignup(supabase, {
+              kind: "paid",
+              email: customerEmail,
+              name: session.customer_details?.name ?? null,
+              productSlug: productSlug ?? null,
+              productLabel: productName,
+              source: session.metadata?.source || null,
+              amountCents: session.amount_total ?? null,
+              stripeSessionId: session.id,
+              newsletterOptIn: session.metadata?.newsletter_opt_in === "true",
+              consentAt: session.metadata?.newsletter_consent_at || null,
+            });
+          } catch (e) {
+            console.error("Signup record/notification failed:", e);
           }
         }
 
