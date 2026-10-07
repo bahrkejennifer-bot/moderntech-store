@@ -83,6 +83,16 @@ const Index = () => {
     },
     staleTime: 5 * 60 * 1000,
   });
+  const { data: latestPost } = useQuery({
+    queryKey: ["homepage-latest-signal-post"],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("blog_posts").select("title,slug,excerpt,created_at")
+        .eq("is_published", true).order("created_at", { ascending: false }).limit(1).maybeSingle();
+      if (error) throw error;
+      return data;
+    },
+    staleTime: 5 * 60 * 1000,
+  });
   const [featuredIndex, setFeaturedIndex] = useState(0);
   const { trackEvent } = usePinterestEvent();
   const location = useLocation();
@@ -144,8 +154,7 @@ const Index = () => {
           <nav aria-label="Main navigation" className="flex items-center gap-3 text-sm font-medium md:gap-8 md:text-base">
             <a href="#gift-picks" className="hidden text-foreground/80 hover:text-foreground md:inline">Gifts</a>
             <a href="#digital-products" className="hidden text-foreground/80 hover:text-foreground sm:inline">Guides</a>
-            <a href="#the-signal" className="hidden text-foreground/80 hover:text-foreground md:inline">The Signal</a>
-            <Link to="/the-signal" className="hidden text-foreground/80 hover:text-foreground lg:inline">The Signal</Link>
+            <Link to="/the-signal" className="hidden text-foreground/80 hover:text-foreground md:inline">The Signal</Link>
             <Button asChild size="lg" className="min-h-11 rounded-full px-5 text-sm md:text-base"><a href="#selections">Shop Tech Finds</a></Button>
           </nav>
         </div>
@@ -259,8 +268,15 @@ const Index = () => {
 
         <section id="the-signal" className="scroll-mt-20 bg-secondary/60 px-5 py-20 md:px-9 md:py-24" aria-labelledby="signal-heading">
           <div className="launch-reveal mx-auto grid max-w-5xl items-center gap-8 md:grid-cols-2 md:gap-14">
-            <div><p className="text-xs font-semibold uppercase text-muted-foreground">05 / THE SIGNAL</p><h2 id="signal-heading" className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">One clear email a week.</h2><p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">New tech finds, the The Signal, and new guides from Modern Tech. No pressure to buy.</p></div>
-            <SignalSignup />
+            <div><p className="text-xs font-semibold uppercase text-muted-foreground">05 / THE SIGNAL · WEEKLY BLOG</p><h2 id="signal-heading" className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">Read this week's Signal.</h2>
+              {latestPost ? <Link to={`/the-signal/${latestPost.slug}`} className="mt-6 block rounded-2xl bg-card p-6 transition-shadow hover:shadow-md">
+                <p className="text-xs font-semibold uppercase text-muted-foreground">Latest article · {new Date(latestPost.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</p>
+                <h3 className="mt-3 text-xl font-semibold leading-snug md:text-2xl">{latestPost.title}</h3>
+                {latestPost.excerpt && <p className="mt-3 line-clamp-3 text-base leading-relaxed text-muted-foreground">{latestPost.excerpt}</p>}
+              </Link> : <p className="mt-4 text-base leading-relaxed text-muted-foreground">Weekly notes on useful tech, buying guides and ideas worth keeping.</p>}
+              <Button asChild size="lg" className="mt-6 min-h-12 rounded-full px-6 text-base"><Link to="/the-signal">Read The Signal <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" /></Link></Button>
+            </div>
+            <div><h3 className="mb-4 text-lg font-semibold">Get The Signal by email</h3><SignalSignup /></div>
           </div>
         </section>
       </main>
