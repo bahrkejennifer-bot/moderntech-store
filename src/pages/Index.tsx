@@ -155,7 +155,7 @@ const Index = () => {
           <div className="launch-hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
           <div className="relative mx-auto flex min-h-[620px] max-w-7xl flex-col justify-between px-5 pb-10 pt-14 md:min-h-[710px] md:px-9 md:pb-14 md:pt-20">
             <div className="relative z-10 max-w-4xl">
-              <p className="text-xs font-semibold uppercase text-muted-foreground md:text-sm">THE MODERN TECH EDIT</p>
+              <p className="text-xs font-semibold uppercase text-muted-foreground md:text-sm">MODERN TECH</p>
               <h1 id="launch-heading" className="mt-6 max-w-[850px] text-5xl font-semibold leading-[1.04] text-foreground sm:text-6xl md:text-7xl lg:text-8xl">Everyday tech.<br /><span className="text-ring">Beautifully simple.</span></h1>
               <p className="mt-7 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">A short, curated list of useful things — each with one clear benefit and one honest limitation.</p>
               <div className="mt-8 flex flex-wrap gap-3">

@@ -143,7 +143,7 @@ const ArtOfModernTech = () => {
         </div>
       </section>
 
-      {/* LATEST WEEKLY EDIT */}
+      {/* LATEST FROM THE SIGNAL */}
       <section className="max-w-5xl mx-auto px-8 py-16 border-t border-border">
         <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
           <div>
