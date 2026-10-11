@@ -15,6 +15,7 @@ export const weeklyEdition = {
     { label: "Family STEM", text: "Scratch's free Animate a Character activity was this week's hands-on idea. No purchase is required.", url: "https://www.scratchfoundation.org/learn/learning-library/animate-character" },
     { label: "Smart-home news", text: "Ring announced the Pan-Tilt Indoor Cam 2K with movement tracking and a physical privacy shutter. We do not yet have a verified Amazon affiliate URL for this exact model, so it is not included in the product cards.", url: "https://ring.com/products/pan-tilt-indoor-cam-2k" },
     { label: "Shopping-event status", text: "Amazon's Prime Big Deal Days ran October 6–7, 2026. The event is over; no expired deal claims appear here.", url: "https://www.aboutamazon.com/news/retail/amazon-prime-big-deals-day-2026-when-october-6-7" },
+    { label: "Holiday calendar", text: "Veterans Day is Wednesday, November 11, and Thanksgiving is Thursday, November 26. We are planning gift coverage without claiming an unannounced retailer sale window.", url: "https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/" },
   ] satisfies readonly NewsNote[],
   pickSlugs: ["renpho-elis-1", "snap-circuits-jr-sc-100", "anker-solix-c300-dc"],
 } as const;
