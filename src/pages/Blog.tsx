@@ -191,7 +191,7 @@ const Blog = () => {
 
       <main className="mx-auto max-w-3xl px-5 pb-24 print:max-w-none print:px-0 print:pb-0">
         <header className="pt-14 pb-10 md:pt-20 print:pt-0 print:pb-3">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">The Signal · Weekly newsletter</p>
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">The Signal · Weekly Newsletter</p>
           <h1 className="mt-3 print:mt-1 print:text-3xl text-5xl font-semibold tracking-tight md:text-6xl">The Signal</h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Each week, a short, honest read on everyday tech worth knowing about — what's new, what's useful, and what to skip. Free to read here.
@@ -202,6 +202,16 @@ const Blog = () => {
           <p className="text-sm text-muted-foreground"><span className="font-medium text-foreground">This week's edition</span> · Week of <time dateTime={weeklyEdition.weekOf}>{fmt(weeklyEdition.weekOf + "T12:00:00")}</time></p>
           <h2 id="weekly-heading" className="mt-3 print:mt-1 print:text-xl text-3xl font-semibold leading-tight tracking-tight md:text-4xl">{weeklyEdition.title}</h2>
           {weeklyEdition.intro.map((para) => <p key={para} className="mt-5 print:mt-2 print:text-sm text-lg leading-relaxed text-foreground/85">{para}</p>)}
+          <section aria-labelledby="signals-heading" className="mt-6 print:mt-2">
+            <h3 id="signals-heading" className="text-base font-semibold print:text-xs">This week's signals</h3>
+            <ul className="mt-3 space-y-3 print:mt-1 print:space-y-1">
+              {weeklyEdition.newsNotes.map((note) => (
+                <li key={note.label} className="text-sm leading-relaxed text-foreground/85 print:text-[10px] print:leading-snug">
+                  <a href={note.url} target="_blank" rel="noopener noreferrer" className="font-medium text-foreground underline underline-offset-4">{note.label}<span className="sr-only"> (opens official source in a new tab)</span></a>: {note.text}
+                </li>
+              ))}
+            </ul>
+          </section>
           <p className="mt-6 print:mt-2 print:py-1 print:text-[10px] rounded-xl border border-border bg-card px-4 py-3 text-sm leading-relaxed text-muted-foreground">As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. Amazon links may earn us a commission at no additional cost to you.</p>
           <ol className="mt-8 space-y-10 print:mt-4 print:space-y-3">
             {weeklyPicks.map(({ selection, product }, i) => (
