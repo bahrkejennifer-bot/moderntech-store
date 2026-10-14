@@ -23,6 +23,6 @@ export const isEligible = (product: CatalogProduct) => {
   try {
     const url = new URL(product.affiliate_link);
     return product.is_active && Boolean(product.image_url) && /(^|\.)amazon\.com$/.test(url.hostname) &&
-      /\/dp\/[A-Z0-9]{10}(?:\/|$)/i.test(url.pathname) && url.searchParams.get("tag") === "moderntechs04-20";
+      /\/dp\/[A-Z0-9]{10}(?:\/|$)/i.test(url.pathname) && url.searchParams.get("tag") === "moderntech02-20";
   } catch { return false; }
 };
