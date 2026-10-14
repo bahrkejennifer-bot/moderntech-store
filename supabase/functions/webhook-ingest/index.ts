@@ -46,7 +46,7 @@ Deno.serve(async (req) => {
     }
     const { products, url } = bodyResult.data;
 
-    const affiliateTag = "moderntechs04-20";
+    const affiliateTag = "moderntech02-20";
     const saved: ScrapedProductRow[] = [];
     const updated: string[] = [];
     const skipped: { title?: string; errors: unknown }[] = [];

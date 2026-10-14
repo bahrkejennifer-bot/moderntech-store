@@ -6,7 +6,7 @@
 
 **Other routes kept working** — Weekly Edit blog, 4 category pages, guide/lead pages, creator bundle + guide sales pages, The Signal (`/the-signal`), legal pages, admin, `/go/:slug` redirects, My Downloads.
 
-**Amazon tag** — every live link in pages and functions uses `moderntechs04-20`. The old tag only remains in a historical database script (harmless). Homepage only shows products whose link is a real amazon.com `/dp/` product page with that tag. Clicks are logged through Pinterest tracking; a click is not a sale.
+**Amazon tag** — every live link in pages and functions uses `moderntech02-20`. The old tag only remains in a historical database script (harmless). Homepage only shows products whose link is a real amazon.com `/dp/` product page with that tag. Clicks are logged through Pinterest tracking; a click is not a sale.
 
 **Digital products and prices** — three paid items plus one free:
 - Canva Master Class: page shows $29, checkout sends 2900

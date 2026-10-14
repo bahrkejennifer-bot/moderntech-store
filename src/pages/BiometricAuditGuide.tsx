@@ -9,7 +9,7 @@ import coverImg from "@/assets/pdf-covers/fitness-trackers-guide-cover.jpg";
 import { PinterestSaveButton } from "@/components/PinterestWidgets";
 import pinImage from "@/assets/pins/pin-biometric-audit-guide.jpg";
 
-const AFFILIATE_TAG = "moderntechs04-20";
+const AFFILIATE_TAG = "moderntech02-20";
 
 const BiometricAuditGuide = () => {
   const [downloading, setDownloading] = useState(false);

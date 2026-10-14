@@ -31,7 +31,7 @@ const ProductDetail = () => {
       const url = new URL(product.affiliate_link);
       return /(^|\.)amazon\.com$/.test(url.hostname) &&
         /\/dp\/[A-Z0-9]{10}(?:\/|$)/i.test(url.pathname) &&
-        url.searchParams.get("tag") === "moderntechs04-20";
+        url.searchParams.get("tag") === "moderntech02-20";
     } catch { return false; }
   })();
 
