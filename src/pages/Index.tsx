@@ -144,7 +144,7 @@ const Index = () => {
 
         <section id="selections" className="scroll-mt-20 border-t border-border px-5 py-16 md:px-10 md:py-24" aria-labelledby="selections-heading">
           <div className="mx-auto max-w-6xl">
-            <div className="launch-reveal mb-8 text-center"><p className={eyebrow}>01 · Tech Finds</p><h2 id="selections-heading" className="mt-3 text-4xl md:text-5xl" style={{ fontStyle: "italic", fontWeight: 400 }}>The Shortlist</h2></div>
+            <div className="launch-reveal mb-8 text-center"><p className={eyebrow}>01 · Holiday Gift Edit</p><h2 id="selections-heading" className="mt-3 text-4xl md:text-5xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Thoughtful tech, useful beyond the holidays.</h2></div>
             <p className="mx-auto mb-10 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">{affiliateDisclosure}</p>
             {isLoading ? <p role="status" className="flex items-center justify-center gap-3 py-16"><Loader2 className="h-5 w-5 animate-spin" /> Loading selections…</p>
               : isError ? <p role="alert" className="py-16 text-center">The product selection is unavailable right now. Please try again later.</p>
