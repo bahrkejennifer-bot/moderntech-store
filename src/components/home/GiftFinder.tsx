@@ -14,7 +14,7 @@ export interface FinderPick {
 
 // Local keyword matching over the existing curated catalog only. No live search, prices or AI.
 const interestMap: Record<string, { label: string; words: string[] }[]> = {
-  "rocketbook-core": [{ label: "note-taking", words: ["note", "notes", "notebook", "write", "writing", "writer", "journal", "journaling", "planner", "planning", "student", "school", "college", "teacher", "organized", "organize", "pen", "meetings"] }],
+  "rocketbook-core": [{ label: "note-taking", words: ["note", "notes", "note-taking", "notebook", "write", "writing", "writer", "journal", "journaling", "planner", "planning", "student", "school", "college", "teacher", "organized", "organize", "pen", "meetings"] }],
   "soundcore-space-one": [{ label: "listening & focus", words: ["music", "headphones", "headphone", "audio", "podcast", "podcasts", "focus", "study", "studying", "commute", "commuter", "travel", "traveler", "flight", "flying", "noise", "quiet", "audiobook", "audiobooks"] }],
   "benq-screenbar-halo-2": [{ label: "desk setup", words: ["desk", "monitor", "computer", "office", "wfh", "remote", "gaming", "gamer", "games", "coder", "coding", "programmer", "developer", "work", "workspace", "setup"] }],
   "renpho-elis-1": [{ label: "fitness & wellness", words: ["fitness", "health", "healthy", "wellness", "gym", "workout", "workouts", "exercise", "weight", "running", "runner", "athlete", "diet", "scale"] }],
