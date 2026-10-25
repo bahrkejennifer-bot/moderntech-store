@@ -117,7 +117,8 @@ export async function buildEditPdf(model: EditPdfModel): Promise<EditPdf> {
     }
     y += o.gap ?? 0;
   };
-  const heading = (text: string) => {
+  const heading = (text: string, keepWith = 0) => {
+    ensure(26 + keepWith);
     rule(14);
     para(text, { font: "times", style: "bold", size: 13.5, leading: 18, gap: 8 });
   };
@@ -180,7 +181,10 @@ export async function buildEditPdf(model: EditPdfModel): Promise<EditPdf> {
   disclosureLines.forEach((line, i) => doc.text(line, MARGIN + 11, y + 15 + i * 12));
   y += boxH + 16;
 
-  heading("This week's picks");
+  heading(
+    "This week's picks",
+    model.picks[0] ? Math.max(await measurePick(doc, model.picks[0]), PHOTO_BOX) + 18 : 0,
+  );
   for (const pick of model.picks) {
     const photo = pick.image_url ? await loadPhoto(pick.image_url) : null;
     const blockH = await measurePick(doc, pick);
