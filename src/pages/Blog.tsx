@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import SignalHeader from "@/components/SignalHeader";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import SignalSignup from "@/components/home/SignalSignup";
+import SignalPdfDownload from "@/components/SignalPdfDownload";
 import { supabase } from "@/integrations/supabase/client";
 import { selections, isEligible, type CatalogProduct } from "@/lib/curatedSelections";
 import { weeklyEdition, MAX_WEEKLY_PICKS } from "@/lib/signalWeeklyEdition";
@@ -231,6 +232,8 @@ const Blog = () => {
             ))}
           </ol>
         </section>
+
+        <SignalPdfDownload picks={weeklyPicks} />
 
         {latest && (
           <section aria-labelledby="latest-heading" className="print:hidden mt-16 border-t border-border pt-10">

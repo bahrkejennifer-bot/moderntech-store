@@ -17,6 +17,7 @@ const GUIDE_ROUTES: Record<string, string> = {
   "tech-essentials-2026": "/tech-essentials-success",
   "creator-funnel": "/creator-funnel",
   "founders-tech-stack": "/founders-tech-stack",
+  "the-edit-weekly-pdf": "/the-signal?pdf=1",
 };
 
 Deno.serve(async (req) => {
