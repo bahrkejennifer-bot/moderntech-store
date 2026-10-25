@@ -93,7 +93,7 @@ describe("BlogPost JSON-LD — golden snapshots: dynamic podcast post", () => {
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "The Signal",
+                "name": "The Edit",
                 "item": "https://moderntech.store/the-signal"
               },
               {
@@ -249,7 +249,7 @@ describe("BlogPost JSON-LD — golden snapshots: static template (smart-ring gui
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "The Signal",
+                "name": "The Edit",
                 "item": "https://moderntech.store/the-signal"
               },
               {
@@ -363,7 +363,7 @@ describe("BlogPost JSON-LD — golden snapshots: dynamic template (no embedded F
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "The Signal",
+                "name": "The Edit",
                 "item": "https://moderntech.store/the-signal"
               },
               {
@@ -446,7 +446,7 @@ describe("BlogPost JSON-LD — golden snapshots: Blog index page", () => {
             "@type": "WebPage",
             "@id": "https://moderntech.store/the-signal#webpage",
             "url": "https://moderntech.store/the-signal",
-            "name": "The Signal | Smart Home, Wellness, Office & Kids Tech",
+            "name": "The Edit | Smart Home, Wellness, Office & Kids Tech",
             "description": "Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly.",
             "isPartOf": {
               "@id": "https://moderntech.store/#website"
@@ -469,7 +469,7 @@ describe("BlogPost JSON-LD — golden snapshots: Blog index page", () => {
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "The Signal",
+                "name": "The Edit",
                 "item": "https://moderntech.store/the-signal"
               }
             ]
@@ -477,7 +477,7 @@ describe("BlogPost JSON-LD — golden snapshots: Blog index page", () => {
           {
             "@type": "Blog",
             "@id": "https://moderntech.store/the-signal#blog",
-            "name": "The Signal",
+            "name": "The Edit",
             "url": "https://moderntech.store/the-signal",
             "publisher": {
               "@id": "https://moderntech.store/#organization"

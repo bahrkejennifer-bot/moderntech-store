@@ -68,7 +68,7 @@ describe("digital signup", () => {
     const m = mockClient();
     const r = await recordDigitalSignup(m.client, { ...paid, newsletterOptIn: true, consentAt: "2026-10-07T00:00:00Z" });
     expect(r.enrolled).toBe(true);
-    expect(m.rows[0].newsletter_consent_text).toMatch(/The Signal/);
+    expect(m.rows[0].newsletter_consent_text).toMatch(/The Edit/);
     expect(m.rows[0].newsletter_consent_at).toBe("2026-10-07T00:00:00Z");
     expect(m.rows[0].newsletter_enrolled_at).toBeTruthy();
   });

@@ -48,7 +48,7 @@ const buildBlogPostingGraph = (slug: string) => ({
       "@id": `https://moderntech.store/the-signal/${slug}#breadcrumb`,
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: "https://moderntech.store/" },
-        { "@type": "ListItem", position: 2, name: "The Signal", item: "https://moderntech.store/the-signal" },
+        { "@type": "ListItem", position: 2, name: "The Edit", item: "https://moderntech.store/the-signal" },
         {
           "@type": "ListItem",
           position: 3,

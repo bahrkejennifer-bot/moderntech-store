@@ -103,7 +103,7 @@ export const buildPodcastDynamicGraph = (slug: string = PODCAST_SLUG) =>
     includeWebSite: true,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "The Signal", path: "/the-signal" },
+      { name: "The Edit", path: "/the-signal" },
       { name: "How to Start Your First Podcast", path: `/the-signal/${slug}` },
     ],
     extraGraph: [
@@ -161,7 +161,7 @@ export const buildSmartRingStaticGraph = () => {
     includeWebSite: true,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "The Signal", path: "/the-signal" },
+      { name: "The Edit", path: "/the-signal" },
       { name: title, path: `/the-signal/${slug}` },
     ],
     extraGraph: [
@@ -197,7 +197,7 @@ export const buildCreatorGearDynamicGraph = () => {
     includeWebSite: true,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "The Signal", path: "/the-signal" },
+      { name: "The Edit", path: "/the-signal" },
       { name: title, path: `/the-signal/${slug}` },
     ],
     extraGraph: [
@@ -229,18 +229,18 @@ export const buildCreatorGearDynamicGraph = () => {
 export const buildBlogIndexGraph = () =>
   composeBlogPostGraph({
     path: "/the-signal",
-    title: "The Signal | Smart Home, Wellness, Office & Kids Tech",
+    title: "The Edit | Smart Home, Wellness, Office & Kids Tech",
     description:
       "Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly.",
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "The Signal", path: "/the-signal" },
+      { name: "The Edit", path: "/the-signal" },
     ],
     extraGraph: [
       {
         "@type": "Blog",
         "@id": `${SITE}/the-signal#blog`,
-        name: "The Signal",
+        name: "The Edit",
         url: `${SITE}/the-signal`,
         publisher: { "@id": `${SITE}/#organization` },
       },

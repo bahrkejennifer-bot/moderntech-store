@@ -111,7 +111,7 @@ const Index = () => {
     <div className="vogue-theme min-h-screen bg-background text-foreground">
       <Helmet>
         <title>Modern Tech | The Art of Modern Tech</title>
-        <meta name="description" content="Curated everyday tech and practical creator guides from Modern Tech LLC. Shop tech finds on Amazon and read The Signal, our weekly tech newsletter." />
+        <meta name="description" content="Curated everyday tech and practical creator guides from Modern Tech LLC. Shop tech finds on Amazon and read The Edit, our weekly tech newsletter." />
         <meta property="og:title" content="Modern Tech | The Art of Modern Tech" />
         <meta property="og:description" content="Curated everyday tech and practical creator guides from Modern Tech LLC." />
         <meta property="og:type" content="website" />
@@ -124,7 +124,7 @@ const Index = () => {
           <nav aria-label="Main navigation" className="flex items-center gap-2.5 text-[11px] font-medium uppercase tracking-[0.12em] sm:gap-5 sm:tracking-[0.18em] md:gap-8">
             <a href="#gift-picks" className="hidden text-foreground/75 hover:text-foreground md:inline">Gifts</a>
             <a href="#digital-products" className="hidden text-foreground/75 hover:text-foreground sm:inline">Digital Products</a>
-            <Link to="/the-signal" className="whitespace-nowrap text-foreground/75 hover:text-foreground">The Signal</Link>
+            <Link to="/the-signal" className="whitespace-nowrap text-foreground/75 hover:text-foreground">The Edit</Link>
             <Button asChild size="lg" className="min-h-11 rounded-none px-2.5 text-[11px] uppercase tracking-[0.12em] sm:px-5 sm:tracking-[0.18em]"><a href="#selections">Shop Tech Finds</a></Button>
           </nav>
         </div>
@@ -192,12 +192,12 @@ const Index = () => {
 
         <section id="the-signal" className="scroll-mt-20 border-t border-border bg-card px-5 py-14 md:px-10 md:py-20" aria-labelledby="signal-heading">
           <div className="launch-reveal mx-auto grid max-w-5xl items-start gap-8 md:grid-cols-2 md:gap-14">
-            <div><p className={eyebrow}>04 · The Signal · Weekly Newsletter</p><h2 id="signal-heading" className="mt-3 text-3xl md:text-4xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Read this week's Signal.</h2>
+            <div><p className={eyebrow}>04 · The Edit · Weekly Newsletter</p><h2 id="signal-heading" className="mt-3 text-3xl md:text-4xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Read this week's Edit.</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">Our weekly newsletter: a few useful tech picks and plain-language notes. Free to read online.</p>
               {latestPost && <p className="mt-4 text-sm text-muted-foreground">Latest article: <Link to={`/the-signal/${latestPost.slug}`} className="text-foreground underline underline-offset-4">{latestPost.title}</Link></p>}
-              <Button asChild size="lg" className="mt-6 min-h-12 rounded-none px-6 text-xs uppercase tracking-[0.2em]"><Link to="/the-signal">Read The Signal <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" /></Link></Button>
+              <Button asChild size="lg" className="mt-6 min-h-12 rounded-none px-6 text-xs uppercase tracking-[0.2em]"><Link to="/the-signal">Read The Edit <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" /></Link></Button>
             </div>
-            <div><h3 className="mb-4 text-lg" style={{ fontStyle: "italic" }}>Get The Signal by email</h3><SignalSignup /></div>
+            <div><h3 className="mb-4 text-lg" style={{ fontStyle: "italic" }}>Get The Edit by email</h3><SignalSignup /></div>
           </div>
         </section>
       </main>

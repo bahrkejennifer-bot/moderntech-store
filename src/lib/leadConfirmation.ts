@@ -6,7 +6,7 @@ export interface RequestConfirmationInput {
   lead_magnet?: string;
   /** Optional override; defaults to current window.location.pathname + search */
   source_path?: string;
-  /** Optional, unchecked by default: explicit consent to The Signal newsletter. */
+  /** Optional, unchecked by default: explicit consent to the weekly newsletter. */
   newsletter_opt_in?: boolean;
 }
 
