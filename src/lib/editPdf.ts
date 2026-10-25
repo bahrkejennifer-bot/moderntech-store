@@ -1,4 +1,4 @@
-import { type EditPdfModel, type WeeklyPick } from "@/lib/signalPdf";
+import { type EditPdfModel, type EditPdfPick } from "@/lib/signalPdf";
 
 const INK = [28, 26, 23];
 const MUTED = [107, 101, 96];
@@ -248,7 +248,7 @@ export async function buildEditPdf(model: EditPdfModel): Promise<EditPdf> {
 }
 
 /** Height of a pick block, so a product never splits across two pages. */
-async function measurePick(doc: any, pick: WeeklyPick) {
+async function measurePick(doc: any, pick: EditPdfPick) {
   const lines = (text: string, font: string, style: string, size: number, width: number) => {
     doc.setFont(font, style);
     doc.setFontSize(size);
