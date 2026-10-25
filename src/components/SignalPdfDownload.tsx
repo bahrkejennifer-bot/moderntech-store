@@ -190,7 +190,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
             <p role="alert" className="mt-4 text-sm text-destructive">{pdfError}</p>
           )}
         </section>
-        <div ref={pdfRef} aria-hidden="true" className="fixed left-[-9999px] top-0 w-[8.5in] bg-white">
+        <div ref={pdfRef} aria-hidden="true" className="absolute left-[-10000px] top-0 w-[8.5in] bg-white">
           <PdfSheet model={model} />
         </div>
       </>
