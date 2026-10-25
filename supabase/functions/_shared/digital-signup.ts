@@ -10,7 +10,7 @@
 export const ADMIN_NOTIFICATION_EMAIL = "info@moderntech.store";
 export const SENDER_DOMAIN = "notify.www.moderntech.store";
 export const NEWSLETTER_CONSENT_TEXT =
-  "Send me The Signal, our weekly tech newsletter. Unsubscribe anytime.";
+  "Send me The Edit, our weekly tech newsletter. Unsubscribe anytime.";
 // Explicit newsletter signups (not digital products) — handled by the existing newsletter flow.
 export const NEWSLETTER_ONLY_MAGNETS = new Set(["modern-tech-edit"]);
 

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-/** Slim, familiar header for The Signal pages: logo home, Shop, The Signal. Nothing else. */
+/** Slim, familiar header for The Edit pages: logo home, Shop, The Edit. Nothing else. */
 const SignalHeader = () => {
   const { pathname } = useLocation();
   const onIndex = pathname === "/the-signal";
@@ -11,7 +11,7 @@ const SignalHeader = () => {
         <div className="flex items-center gap-5 text-sm">
           <Link to="/the-signal" aria-current={onIndex ? "page" : undefined}
             className={onIndex ? "font-semibold text-foreground" : "text-muted-foreground hover:text-foreground"}>
-            The Signal
+            The Edit
           </Link>
           <Link to="/#selections" className="text-muted-foreground hover:text-foreground">Shop</Link>
         </div>

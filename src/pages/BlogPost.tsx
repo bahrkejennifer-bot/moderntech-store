@@ -650,7 +650,7 @@ const BlogPost = () => {
           includeWebSite
           breadcrumbs={[
             { name: "Home", path: "/" },
-            { name: "The Signal", path: "/the-signal" },
+            { name: "The Edit", path: "/the-signal" },
             { name: dynamicPost.title, path: `/the-signal/${slug}` },
           ]}
           extraGraph={[
@@ -761,7 +761,7 @@ const BlogPost = () => {
                 className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
               >
                 <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                All editions of The Signal
+                All editions of The Edit
               </Link>
             </div>
           </article>
@@ -844,7 +844,7 @@ const BlogPost = () => {
           includeWebSite
           breadcrumbs={[
             { name: "Home", path: "/" },
-            { name: "The Signal", path: "/the-signal" },
+            { name: "The Edit", path: "/the-signal" },
             { name: post!.title, path: `/the-signal/${slug}` },
           ]}
           extraGraph={[
@@ -981,7 +981,7 @@ const BlogPost = () => {
               className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
             >
               <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-              All editions of The Signal
+              All editions of The Edit
             </Link>
           </div>
         </article>

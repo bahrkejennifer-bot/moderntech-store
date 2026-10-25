@@ -136,7 +136,7 @@ Deno.serve(async (req) => {
       price: p.price,
     }));
 
-    const prompt = `You are the editor of "The Art of Modern Tech — The Signal" by Modern Tech LLC.
+    const prompt = `You are the editor of "The Art of Modern Tech — The Edit" by Modern Tech LLC.
 
 BRAND IDENTITY: Apple-aesthetic. Monochromatic visuals, extreme white space, "less is more" editorial voice. Authoritative, witty, radically honest. You are an expert curator — never salesy, never fluffy. Short paragraphs. Never more than 3 sentences per paragraph.
 
@@ -214,7 +214,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
             type: "function",
             function: {
               name: "generate_newsletter",
-              description: "Generate The Signal newsletter",
+              description: "Generate The Edit newsletter",
               parameters: {
                 type: "object",
                 properties: {
@@ -262,7 +262,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
 
     if (insertError) throw new Error(`Failed to save draft: ${insertError.message}`);
 
-    console.log("Art of Modern Tech The Signal draft generated:", spec.id);
+    console.log("Art of Modern Tech The Edit draft generated:", spec.id);
 
     // Send notification email to admin with Approve button
     const approveUrl = `${supabaseUrl}/functions/v1/approve-tech-spec?spec_id=${spec.id}&action=approve`;
