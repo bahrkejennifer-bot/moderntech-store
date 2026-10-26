@@ -1,7 +1,7 @@
 import { useId } from "react";
 
 export const NEWSLETTER_CONSENT_LABEL =
-  "Send me The Edit, our weekly tech newsletter. Unsubscribe anytime.";
+  "Send me The Signal, our weekly tech newsletter. Unsubscribe anytime.";
 
 interface Props {
   checked: boolean;
