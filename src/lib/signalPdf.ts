@@ -57,7 +57,7 @@ export function buildEditPdfModel(picks: readonly WeeklyPick[]): EditPdfModel {
     year: "numeric",
   });
   return {
-    publication: "The Edit · Weekly Newsletter",
+    publication: "The Signal · Weekly Newsletter",
     brand: "Modern Tech LLC",
     siteUrl: "https://moderntech.store",
     weekOf: weeklyEdition.weekOf,

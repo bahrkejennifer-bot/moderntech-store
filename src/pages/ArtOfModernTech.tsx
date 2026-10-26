@@ -108,7 +108,7 @@ const ArtOfModernTech = () => {
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="The Art of Modern Tech — The Edit RSS"
+          title="The Art of Modern Tech — The Signal RSS"
           href={`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID}.supabase.co/functions/v1/blog-rss-feed`}
         />
       </Helmet>
@@ -131,7 +131,7 @@ const ArtOfModernTech = () => {
               to="/the-signal"
               className="inline-flex items-center gap-2 bg-foreground text-background px-7 py-3 font-mono text-[10px] tracking-[0.25em] uppercase hover:bg-foreground/85 transition-colors"
             >
-              <BookOpen className="h-4 w-4" /> Read The Edit
+              <BookOpen className="h-4 w-4" /> Read The Signal
             </Link>
             <Link
               to="/the-signal"
@@ -143,13 +143,13 @@ const ArtOfModernTech = () => {
         </div>
       </section>
 
-      {/* LATEST FROM THE EDIT */}
+      {/* LATEST FROM THE SIGNAL */}
       <section className="max-w-5xl mx-auto px-8 py-16 border-t border-border">
         <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
           <div>
             <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">Fresh off the press</p>
             <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>
-              Latest The Edit
+              Latest from The Signal
             </h2>
           </div>
           <div className="flex items-center gap-5">
@@ -158,7 +158,7 @@ const ArtOfModernTech = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
-              title="Subscribe to the The Edit RSS feed"
+              title="Subscribe to The Signal RSS feed"
             >
               <Rss className="h-3.5 w-3.5" /> RSS
             </a>
@@ -321,7 +321,7 @@ const ArtOfModernTech = () => {
         <div className="flex items-center justify-between mb-10">
           <div>
             <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">From the Blog</p>
-            <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>Modern Tech: The Edit</h2>
+            <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>Modern Tech: The Signal</h2>
           </div>
           <Link to="/the-signal" className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
             <BookOpen className="h-4 w-4" /> Read All
