@@ -145,7 +145,7 @@ const Blog = () => {
     title: p.title,
     excerpt: p.excerpt || "",
     date: p.created_at,
-    category: !p.category || /weekly edit/i.test(p.category) ? "THE EDIT" : p.category,
+    category: !p.category || /weekly edit/i.test(p.category) ? "THE SIGNAL" : p.category,
     imageUrl: p.image_url && !/images\.unsplash\.com/i.test(p.image_url) ? p.image_url : "",
     slug: p.slug,
     isGenerated: true,
@@ -162,27 +162,27 @@ const Blog = () => {
   return (
     <div className="launch-theme min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>The Edit — Modern Tech's weekly tech newsletter</title>
-        <meta name="description" content="The Edit is Modern Tech's weekly newsletter: honest, plain-language notes on everyday tech worth knowing about. Free to read — email is optional." />
-        <meta property="og:title" content="The Edit — Modern Tech's weekly tech newsletter" />
+        <title>The Signal — Modern Tech's weekly tech newsletter</title>
+        <meta name="description" content="The Signal is Modern Tech's weekly newsletter: honest, plain-language notes on everyday tech worth knowing about. Free to read — email is optional." />
+        <meta property="og:title" content="The Signal — Modern Tech's weekly tech newsletter" />
         <meta property="og:description" content="Modern Tech's weekly tech newsletter. Free to read here; get it by email if you like." />
         <meta property="og:url" content="https://moderntech.store/the-signal" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://moderntech.store/the-signal" />
       </Helmet>
       <StructuredData
-        title="The Edit — Modern Tech's weekly tech newsletter"
+        title="The Signal — Modern Tech's weekly tech newsletter"
         description="Modern Tech's weekly tech newsletter."
         path="/the-signal"
         breadcrumbs={[
           { name: "Home", path: "/" },
-          { name: "The Edit", path: "/the-signal" },
+          { name: "The Signal", path: "/the-signal" },
         ]}
         extraGraph={[
           {
             "@type": "Blog",
             "@id": "https://moderntech.store/the-signal#blog",
-            name: "The Edit",
+            name: "The Signal",
             url: "https://moderntech.store/the-signal",
             publisher: { "@id": "https://moderntech.store/#organization" },
           },
@@ -192,8 +192,8 @@ const Blog = () => {
 
       <main className="mx-auto max-w-3xl px-5 pb-24 print:max-w-none print:px-0 print:pb-0">
         <header className="pt-14 pb-10 md:pt-20 print:pt-0 print:pb-3">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">The Edit · Weekly Newsletter</p>
-          <h1 className="mt-3 print:mt-1 print:text-3xl text-5xl font-semibold tracking-tight md:text-6xl">The Edit</h1>
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">The Signal · Weekly Newsletter</p>
+          <h1 className="mt-3 print:mt-1 print:text-3xl text-5xl font-semibold tracking-tight md:text-6xl">The Signal</h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Each week, a short, honest read on everyday tech worth knowing about — what's new, what's useful, and what to skip. Free to read here.
           </p>
@@ -271,7 +271,7 @@ const Blog = () => {
         )}
 
         <section aria-labelledby="email-heading" className="print:hidden mt-16 rounded-2xl border border-border bg-card p-6 md:p-8">
-          <h2 id="email-heading" className="text-xl font-semibold tracking-tight">Get The Edit by email</h2>
+          <h2 id="email-heading" className="text-xl font-semibold tracking-tight">Get The Signal by email</h2>
           <p className="mt-2 mb-5 text-base text-muted-foreground">Optional. Everything above stays free to read here. Unsubscribe anytime.</p>
           <SignalSignup />
         </section>
