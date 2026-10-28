@@ -50,7 +50,7 @@ export const findBudget = (q: string): number | null => {
 export const amazonGiftSearchUrl = (query: string): string => {
   const url = new URL("https://www.amazon.com/s");
   url.searchParams.set("k", query.trim().slice(0, 200));
-  url.searchParams.set("tag", "moderntech02-20");
+  url.searchParams.set("tag", "moderntechs04-20");
   return url.toString();
 };
 
