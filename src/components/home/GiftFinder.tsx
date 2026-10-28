@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Search, RotateCcw } from "lucide-react";
+import { Search, RotateCcw, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -47,13 +47,28 @@ export const findBudget = (q: string): number | null => {
   return m ? Number(m[1].replace(/,/g, "")) : null;
 };
 
+export const amazonGiftSearchUrl = (query: string): string => {
+  const url = new URL("https://www.amazon.com/s");
+  url.searchParams.set("k", query.trim().slice(0, 200));
+  url.searchParams.set("tag", "moderntech02-20");
+  return url.toString();
+};
+
+const tokenize = (text: string) => text.toLowerCase().replace(/[^a-z0-9\s-]/g, " ").split(/\s+/).filter(Boolean);
+const genericTitleWords = new Set(["the", "a", "an", "and", "or", "for", "with", "in", "on", "to", "of", "by", "one", "core", "new", "pro", "jr", "dc"]);
+
 export const matchGifts = (query: string, picks: FinderPick[]): Result[] => {
-  const tokens = new Set(query.toLowerCase().replace(/[^a-z0-9\s-]/g, " ").split(/\s+/).filter(Boolean));
+  const tokens = new Set(tokenize(query).flatMap((word) => [word, ...word.split("-")]));
   if (tokens.has("home") && tokens.has("office")) tokens.add("office");
   return picks.flatMap((pick) => {
     const groups = interestMap[pick.slug] ?? [];
     const matched: string[] = []; const reasons: string[] = [];
     groups.forEach((g) => { const hits = g.words.filter((w) => tokens.has(w)); if (hits.length) { matched.push(...hits); reasons.push(g.label); } });
+    const titleHits = tokenize(pick.title).filter((word) => word.length > 2 && !genericTitleWords.has(word) && !/^\d+$/.test(word) && tokens.has(word));
+    if (titleHits.length) {
+      matched.push(...titleHits.filter((word) => !matched.includes(word)));
+      reasons.push("product name");
+    }
     return matched.length ? [{ pick, reasons, matched }] : [];
   }).sort((a, b) => b.matched.length - a.matched.length).slice(0, 3);
 };
@@ -94,7 +109,7 @@ const GiftFinder = ({ picks, renderCta, disclosure }: { picks: FinderPick[]; ren
   return (
     <div className="launch-reveal mb-14 rounded-3xl bg-card p-5 md:p-10">
       <h3 className="text-2xl font-semibold md:text-3xl">Gift finder</h3>
-      <p className="mt-2 max-w-2xl text-base text-muted-foreground">Describe the person and their interests. We'll match them to our short curated list. No live Amazon search, and no email needed.</p>
+      <p className="mt-2 max-w-2xl text-base text-muted-foreground">What item or gift are you looking for?</p>
       <form className="mt-6" onSubmit={(e) => { e.preventDefault(); run(query); }} noValidate>
         <label htmlFor="gift-query" className="mb-2 block text-base font-medium">Who are you shopping for?</label>
         <div className="flex flex-col gap-3 sm:flex-row">
@@ -130,7 +145,13 @@ const GiftFinder = ({ picks, renderCta, disclosure }: { picks: FinderPick[]; ren
         </ul>
       </div>}
 
-      {state.kind === "none" && <p className="mt-2 max-w-2xl text-base text-muted-foreground">We couldn't match "{state.query}" to our curated picks. Try adding a hobby such as music, gardening, camping, fitness, a home office or kids' science, or browse the full list below.</p>}
+      {(state.kind === "none" || state.kind === "needs") && <div className="mt-4">
+        <p className="max-w-2xl text-base text-muted-foreground">{state.kind === "none" ? `We couldn't match “${state.query}” to our curated picks.` : "Prefer to look beyond our curated picks?"} Search Amazon for what you entered. Check current prices and product details there.</p>
+        <p className="mt-3 max-w-xl text-sm text-muted-foreground">{disclosure}</p>
+        <Button asChild size="lg" className="mt-3 min-h-12 rounded-full px-6">
+          <a href={amazonGiftSearchUrl(state.query)} target="_blank" rel="sponsored noopener noreferrer">Search on Amazon<ExternalLink aria-hidden="true" className="ml-2 h-4 w-4" /></a>
+        </Button>
+      </div>}
       {state.kind === "results" && <>
         {state.budget && <p className="mt-3 max-w-2xl rounded-2xl border border-border bg-background p-4 text-sm leading-relaxed"><strong>About your budget:</strong> {budgetText(state.budgetAmount)}</p>}
         <p className="mt-4 max-w-xl text-sm text-muted-foreground">{disclosure}</p>

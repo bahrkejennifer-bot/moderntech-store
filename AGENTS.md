@@ -5,3 +5,4 @@
 - Record digital-product signups and newsletter consent through the shared server-side signup helper, deduped per Stripe session or product+email; delivery must never depend on marketing opt-in, and the business notification inbox stays server-side only.
 - The Edit's current weekly edition (published at route /the-signal) is an explicit list (max 4) of curated catalog slugs in one small module, rendered from live catalog data; picks without an eye-verified exact-model photo are dropped, never given a stand-in image.
 - Compose client-side PDFs with jsPDF's text engine instead of html2pdf.js/html2canvas, which silently produces blank pages here; the PDF is laid out from the same model the page reads, so it can never show a photo or claim the page does not.
+- Keep gift-finder matching local to eligible curated picks, with an explicit external Amazon search link for unmatched queries; this avoids fabricated inventory and unsolicited redirects.
