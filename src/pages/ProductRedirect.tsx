@@ -30,7 +30,7 @@ const ProductRedirect = () => {
 
       // Use amazon_url if available, otherwise fallback to search
       const targetUrl = data.amazon_url || data.search_fallback_url || 
-        `https://www.amazon.com/s?k=${encodeURIComponent(data.product_name)}&tag=moderntech02-20`;
+        `https://www.amazon.com/s?k=${encodeURIComponent(data.product_name)}&tag=moderntechs04-20`;
       
       window.location.href = targetUrl;
     };
