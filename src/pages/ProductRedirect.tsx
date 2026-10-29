@@ -21,7 +21,7 @@ const ProductRedirect = () => {
       if (dbError || !data) {
         // Fallback: generate an Amazon search URL from the slug
         const searchTerm = slug.replace(/-/g, " ");
-        window.location.href = `https://www.amazon.com/s?k=${encodeURIComponent(searchTerm)}&tag=moderntech02-20`;
+        window.location.href = `https://www.amazon.com/s?k=${encodeURIComponent(searchTerm)}&tag=moderntechs04-20`;
         return;
       }
 

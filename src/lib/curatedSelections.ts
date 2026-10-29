@@ -19,10 +19,23 @@ export const selections = [
 
 export type Selection = (typeof selections)[number];
 
+// The required Associates tracking ID for storefront Amazon links. Render-time normalization
+// keeps catalog rows reversible without editing database values.
+export const AFFILIATE_TAG = "moderntechs04-20";
+const legacyTags = ["moderntechs04-20", "moderntech02-20"];
+
+export const withAffiliateTag = (link: string) => {
+  try {
+    const url = new URL(link);
+    url.searchParams.set("tag", AFFILIATE_TAG);
+    return url.toString();
+  } catch { return link; }
+};
+
 export const isEligible = (product: CatalogProduct) => {
   try {
     const url = new URL(product.affiliate_link);
     return product.is_active && Boolean(product.image_url) && /(^|\.)amazon\.com$/.test(url.hostname) &&
-      /\/dp\/[A-Z0-9]{10}(?:\/|$)/i.test(url.pathname) && url.searchParams.get("tag") === "moderntech02-20";
+      /\/dp\/[A-Z0-9]{10}(?:\/|$)/i.test(url.pathname) && legacyTags.includes(url.searchParams.get("tag") ?? "");
   } catch { return false; }
 };

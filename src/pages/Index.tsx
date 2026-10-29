@@ -15,7 +15,7 @@ import GiftFinder from "@/components/home/GiftFinder";
 import heroImg from "@/assets/hero-duality-editorial.jpg";
 import SignalSignup from "@/components/home/SignalSignup";
 
-import { selections, isEligible, type CatalogProduct, type Selection } from "@/lib/curatedSelections";
+import { selections, isEligible, withAffiliateTag, type CatalogProduct, type Selection } from "@/lib/curatedSelections";
 
 type Pick = { selection: Selection; product: CatalogProduct };
 
