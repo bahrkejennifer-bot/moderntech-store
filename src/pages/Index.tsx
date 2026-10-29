@@ -15,7 +15,7 @@ import GiftFinder from "@/components/home/GiftFinder";
 import heroImg from "@/assets/hero-duality-editorial.jpg";
 import SignalSignup from "@/components/home/SignalSignup";
 
-import { selections, isEligible, type CatalogProduct, type Selection } from "@/lib/curatedSelections";
+import { selections, isEligible, withAffiliateTag, type CatalogProduct, type Selection } from "@/lib/curatedSelections";
 
 type Pick = { selection: Selection; product: CatalogProduct };
 
@@ -98,7 +98,7 @@ const Index = () => {
 
   const amazonButton = ({ selection, product }: Pick) => (
     <Button asChild size="lg" className="min-h-12 rounded-none px-7 text-xs font-medium uppercase tracking-[0.2em]">
-      <a href={product.affiliate_link} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => trackClick(selection, product)}>
+      <a href={withAffiliateTag(product.affiliate_link)} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => trackClick(selection, product)}>
         View on Amazon <ExternalLink aria-hidden="true" className="ml-2 h-4 w-4" />
       </a>
     </Button>
