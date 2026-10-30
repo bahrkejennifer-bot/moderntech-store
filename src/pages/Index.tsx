@@ -146,7 +146,7 @@ const Index = () => {
           <div className="mx-auto max-w-6xl">
             <div className="launch-reveal mb-8 text-center"><p className={eyebrow}>01 · Holiday Gift Edit</p><h2 id="selections-heading" className="mt-3 text-4xl md:text-5xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Thoughtful tech, useful beyond the holidays.</h2></div>
             <div className="mx-auto mb-8 max-w-2xl border border-border bg-secondary/50 px-5 py-4 text-center">
-              <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-foreground/80">DATES TO KNOW · BLACK FRIDAY NOVEMBER 27 · CYBER MONDAY NOVEMBER 30</p>
+              <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-foreground/80">DATES TO KNOW · <span className="whitespace-nowrap">BLACK FRIDAY NOVEMBER 27</span> · <span className="whitespace-nowrap">CYBER MONDAY NOVEMBER 30</span></p>
               <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Deal details are not yet announced. We&rsquo;ll only label a deal when Amazon confirms it.</p>
             </div>
             <p className="mx-auto mb-10 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">{affiliateDisclosure}</p>
