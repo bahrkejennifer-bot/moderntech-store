@@ -1009,7 +1009,7 @@ const ProductCard = ({ product }: { product: BlogProduct }) => (
   <a
     href={product.affiliateLink}
     target="_blank"
-    rel="noopener noreferrer nofollow"
+    rel="sponsored noopener noreferrer nofollow"
     className="group block"
   >
     <div className="rounded-xl border border-border bg-card overflow-hidden h-full flex flex-col shadow-soft hover:shadow-elegant transition-all duration-300">
