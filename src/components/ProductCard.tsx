@@ -55,7 +55,7 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
         <a
           href={affiliateLink}
           target="_blank"
-          rel="noopener noreferrer nofollow"
+          rel="sponsored noopener noreferrer nofollow"
           onClick={() => trackEvent("checkout", { product_name: title, value: 0, currency: "USD" })}
           className="block w-full h-full"
         >
