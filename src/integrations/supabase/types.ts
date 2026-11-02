@@ -544,6 +544,39 @@ export type Database = {
         }
         Relationships: []
       }
+      subscribers: {
+        Row: {
+          consent: boolean
+          consent_text: string | null
+          email: string
+          freebie: string | null
+          id: string
+          name: string | null
+          signup_date: string
+          source_page: string | null
+        }
+        Insert: {
+          consent?: boolean
+          consent_text?: string | null
+          email: string
+          freebie?: string | null
+          id?: string
+          name?: string | null
+          signup_date?: string
+          source_page?: string | null
+        }
+        Update: {
+          consent?: boolean
+          consent_text?: string | null
+          email?: string
+          freebie?: string | null
+          id?: string
+          name?: string | null
+          signup_date?: string
+          source_page?: string | null
+        }
+        Relationships: []
+      }
       support_conversations: {
         Row: {
           created_at: string
