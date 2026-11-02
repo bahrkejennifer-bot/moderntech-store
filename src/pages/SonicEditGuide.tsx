@@ -182,7 +182,7 @@ const SonicEditGuide = () => {
               <strong>The Human Element:</strong> Conversation Awareness drops your music the moment you speak. No buttons. No gestures. Just human intuition, engineered.
             </p>
             <a
-              href={`https://www.amazon.com/Apple-AirPods-Pro-2nd-Generation/dp/B0D1XD1ZV3?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/dp/B0D1XD1ZV3?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}
@@ -209,7 +209,7 @@ const SonicEditGuide = () => {
               <strong>The Human Element:</strong> The V2 processor analyses ambient noise 700 times per second. It's not noise cancelling; it's acoustic architecture.
             </p>
             <a
-              href={`https://www.amazon.com/Sony-WF-1000XM5-Bluetooth-Canceling-Headphones/dp/B0C33XXS56?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/dp/B0C33XXS56?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}
@@ -236,7 +236,7 @@ const SonicEditGuide = () => {
               <strong>The Human Element:</strong> Voice Detect switches modes automatically - fitness mode during runs, conversation mode at the café. It reads your life, not just your playlist.
             </p>
             <a
-              href={`https://www.amazon.com/SAMSUNG-Galaxy-Buds2-Pro-Bluetooth/dp/B0B8J28VMV?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/dp/B0B8J28VMV?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}

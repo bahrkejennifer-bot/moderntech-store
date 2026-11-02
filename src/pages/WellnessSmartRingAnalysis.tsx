@@ -172,7 +172,7 @@ const WellnessSmartRingAnalysis = () => {
               <strong>The Human Element:</strong> It knows when you're stressed before you do, whispering data through your phone without ever needing a screen.
             </p>
             <a
-              href={`https://www.amazon.com/Oura-Ring-Gen-3-Horizon/dp/B0D9WVSZ56?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/dp/B0D9WVSZ56?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}
@@ -199,7 +199,7 @@ const WellnessSmartRingAnalysis = () => {
               <strong>The Human Element:</strong> Focuses on your "Metabolic Map." It helps you time your caffeine and your rest so your creative output remains peaked.
             </p>
             <a
-              href={`https://www.amazon.com/Ultrahuman-Ring-AIR-Comfortable-Titanium/dp/B0CYD62LP6?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/dp/B0CYD62LP6?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}
@@ -226,7 +226,7 @@ const WellnessSmartRingAnalysis = () => {
               <strong>The Human Element:</strong> Uses AI to predict your energy levels for the day, ensuring your appointments and your recovery are always in sync.
             </p>
             <a
-              href={`https://www.amazon.com/SAMSUNG-Galaxy-Titanium-Tracking-Improved/dp/B0D7DMP2V9?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/dp/B0D7DMP2V9?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}

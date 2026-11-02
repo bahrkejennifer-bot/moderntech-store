@@ -182,7 +182,7 @@ const BiometricAuditGuide = () => {
               <strong>The Human Element:</strong> The new depth gauge and water temperature sensor aren't gimmicks - they're Apple's signal that this watch goes wherever you go. Mountain trail, ocean dive, or Monday morning commute.
             </p>
             <a
-              href={`https://www.amazon.com/Apple-Watch-Smartwatch-Fitness-Tracker/dp/B0FQFJ4V5M?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/dp/B0FQFJ4V5M?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}
@@ -209,7 +209,7 @@ const BiometricAuditGuide = () => {
               <strong>The Human Element:</strong> The Daily Readiness Score tells you when to push and when to rest. It's like having a coach who actually understands periodization - at a fraction of the WHOOP price.
             </p>
             <a
-              href={`https://www.amazon.com/Fitbit-Fitness-Tracker-Heart-Built/dp/B0CC62ZG1M?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/dp/B0CC62ZG1M?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}
@@ -236,7 +236,7 @@ const BiometricAuditGuide = () => {
               <strong>The Human Element:</strong> Sleep Coach doesn't just track your sleep - it prescribes exactly how much you need based on your next-day goals. Tell it you're running a half-marathon tomorrow and it calculates your ideal bedtime to the minute.
             </p>
             <a
-              href={`https://www.amazon.com/WHOOP-4-0-Month-Subscription-Optimization/dp/B0F7NJJL8T?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/dp/B0F7NJJL8T?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}
