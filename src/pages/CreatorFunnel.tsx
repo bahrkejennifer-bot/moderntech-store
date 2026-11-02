@@ -169,7 +169,7 @@ const CreatorFunnel = () => {
                   type="text"
                   value={form.name}
                   onChange={(e) => { setForm({ ...form, name: e.target.value }); if (errors.name) setErrors({ ...errors, name: undefined }); }}
-                  placeholder="Your first name"
+                  placeholder="First name (optional)"
                   maxLength={100}
                   autoComplete="given-name"
                   aria-invalid={!!errors.name}
