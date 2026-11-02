@@ -9,6 +9,7 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { useToast } from "@/hooks/use-toast";
 import { requestLeadConfirmation } from "@/lib/leadConfirmation";
+import { isFreebieUnlocked } from "@/lib/freebies";
 import coverImg from "@/assets/pdf-covers/screen-free-kids-cover.jpg";
 
 const benefits = [
@@ -24,7 +25,7 @@ const ScreenFreeKidsGuide = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(() => isFreebieUnlocked("screen-free-kids-tech-toys"));
   const [downloading, setDownloading] = useState(false);
   const { toast } = useToast();
   const contentRef = useRef<HTMLDivElement>(null);
@@ -53,7 +54,7 @@ const ScreenFreeKidsGuide = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) return;
+    if (!email.trim()) return;
     setIsSubmitting(true);
     try {
       const result = await requestLeadConfirmation({
@@ -68,10 +69,8 @@ const ScreenFreeKidsGuide = () => {
       }
       setIsSuccess(true);
       toast({
-        title: result.alreadyConfirmed ? "Welcome back 🧸" : "Check your inbox 🧸",
-        description: result.alreadyConfirmed
-          ? "We've resent your guide — also ready to download below."
-          : "Click the confirmation link in your email to unlock your guide.",
+        title: "You\'re in 🧸",
+        description: "Your download is ready below. A copy is on its way to your inbox too.",
       });
     } finally {
       setIsSubmitting(false);
@@ -150,7 +149,7 @@ const ScreenFreeKidsGuide = () => {
                       </div>
                       <p className="text-sm text-muted-foreground mb-6">Enter your details for instant access to the Screen-Free Kids guide.</p>
                       <form onSubmit={handleSubmit} className="space-y-4">
-                        <Input placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} required className="h-12" maxLength={100} />
+                        <Input placeholder="First name (optional)" value={name} onChange={(e) => setName(e.target.value)} className="h-12" maxLength={100} />
                         <Input type="email" placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-12" maxLength={255} />
                         <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="my-2" />
                         <Button type="submit" disabled={isSubmitting} className="w-full h-12 rounded-full text-base font-semibold bg-yellow-500 hover:bg-yellow-600 text-black">

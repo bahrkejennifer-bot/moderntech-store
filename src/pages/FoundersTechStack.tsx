@@ -34,7 +34,7 @@ const FoundersTechStack = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) return;
+    if (!email.trim()) return;
     setIsSubmitting(true);
     try {
       const result = await requestLeadConfirmation({
@@ -49,10 +49,8 @@ const FoundersTechStack = () => {
       }
       setIsSuccess(true);
       toast({
-        title: result.alreadyConfirmed ? "Welcome back" : "Check your inbox",
-        description: result.alreadyConfirmed
-          ? "We've resent the latest update — you're already on the list."
-          : "Click the confirmation link in your email to join the waiting list.",
+        title: "You\'re in",
+        description: "You're on the list. We'll keep you posted by email.",
       });
     } finally {
       setIsSubmitting(false);
@@ -136,10 +134,9 @@ const FoundersTechStack = () => {
                 </p>
                 <div className="space-y-3 mb-6">
                   <Input
-                    placeholder="First name"
+                    placeholder="First name (optional)"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    required
                     className="h-12 bg-transparent border-border font-mono text-xs placeholder:text-muted-foreground/50 rounded-none focus-visible:ring-foreground/10"
                   />
                   <Input

@@ -9,6 +9,7 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { useToast } from "@/hooks/use-toast";
 import { requestLeadConfirmation } from "@/lib/leadConfirmation";
+import { isFreebieUnlocked } from "@/lib/freebies";
 import coverImg from "@/assets/pdf-covers/smart-ring-guide-cover.jpg";
 
 const benefits = [
@@ -24,7 +25,7 @@ const SmartRingGuide = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(() => isFreebieUnlocked("smart-ring-buyers-guide"));
   const [downloading, setDownloading] = useState(false);
   const { toast } = useToast();
   const contentRef = useRef<HTMLDivElement>(null);
@@ -53,7 +54,7 @@ const SmartRingGuide = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) return;
+    if (!email.trim()) return;
 
     setIsSubmitting(true);
     try {
@@ -75,10 +76,8 @@ const SmartRingGuide = () => {
 
       setIsSuccess(true);
       toast({
-        title: result.alreadyConfirmed ? "Welcome back 💍" : "Check your inbox 💍",
-        description: result.alreadyConfirmed
-          ? "We've resent your guide — and it's also ready to download below."
-          : "Click the confirmation link in your email to unlock your guide.",
+        title: "You\'re in 💍",
+        description: "Your download is ready below. A copy is on its way to your inbox too.",
       });
     } finally {
       setIsSubmitting(false);
@@ -182,10 +181,9 @@ const SmartRingGuide = () => {
                       </p>
                       <form onSubmit={handleSubmit} className="space-y-4">
                         <Input
-                          placeholder="Your first name"
+                          placeholder="First name (optional)"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          required
                           className="h-12"
                           maxLength={100}
                         />
