@@ -97,7 +97,7 @@ const AffiliateFooter = () => {
         {/* Bottom Bar */}
         <div className="mt-8 pt-8 text-center" style={{ borderTop: "0.5px solid hsl(30 25% 95% / 0.15)" }}>
           <p className="font-mono text-[9px] tracking-[0.3em] uppercase" style={{ color: "hsl(30 25% 95% / 0.4)" }}>
-            &copy; 2025 Modern Tech LLC — All rights reserved
+            &copy; 2026 Modern Tech LLC - All rights reserved
           </p>
         </div>
       </div>

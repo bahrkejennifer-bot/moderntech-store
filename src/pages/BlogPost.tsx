@@ -104,7 +104,7 @@ export const isGenericStockImage = (url?: string | null) => !url || /images\.uns
 const asinToSlug: Record<string, string> = {
   "B0002E4Z8M": "shure-sm7b", "B082QHRZFW": "elgato-key-light-air", "B0BDKML2JZ": "dji-osmo-mobile-6",
   "B0D9WVSZ56": "oura-ring-4", "B0D9WVWXR1": "oura-sizing-kit", "B0DV7JN7ZD": "theragun-mini-2",
-  "B0C3JNJPZ7": "withings-body-smart", "B0093162RM": "philips-smartsleep", "B0F7NJJL8T": "whoop-4",
+  "B0C3JNJPZ7": "withings-body-smart", "B0093162RM": "philips-smartsleep",
   "B0DGJ7QCS2": "apple-watch-series-10", "B09WZBPX7K": "ring-doorbell-plus", "B0B1N5HW22": "blink-outdoor-4",
   "B0C7C69FPS": "eufy-smart-lock", "B0D9B9LK9F": "roborock-s8", "B0DC91H3JK": "echo-show-8",
   "B07C38HT49": "simplisafe-security", "B0DJY8R8ZP": "shure-mv7-plus", "B09738CV2G": "elgato-stream-deck",
