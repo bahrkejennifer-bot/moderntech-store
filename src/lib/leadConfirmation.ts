@@ -1,4 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
+import { saveSubscriber } from "@/lib/subscribers";
+import { markFreebieUnlocked } from "@/lib/freebies";
 
 export interface RequestConfirmationInput {
   name?: string;
@@ -8,6 +10,8 @@ export interface RequestConfirmationInput {
   source_path?: string;
   /** Optional, unchecked by default: explicit consent to the weekly newsletter. */
   newsletter_opt_in?: boolean;
+  /** Set for newsletter-only forms, where signing up is itself the consent. */
+  consent?: boolean;
 }
 
 export interface RequestConfirmationResult {
@@ -22,9 +26,9 @@ export interface RequestConfirmationResult {
  * creating a lead_captures row or delivering the guide.
  *
  * Returns:
- *   { success: true, alreadyConfirmed: false } — confirmation email sent
- *   { success: true, alreadyConfirmed: true }  — email already verified, guide re-sent
- *   { success: false, error }                  — failure
+ *   { success: true, alreadyConfirmed: false } - confirmation email sent
+ *   { success: true, alreadyConfirmed: true }  - email already verified, guide re-sent
+ *   { success: false, error }                  - failure
  */
 export async function requestLeadConfirmation(
   input: RequestConfirmationInput
@@ -42,29 +46,36 @@ export async function requestLeadConfirmation(
       sourcePath = undefined;
     }
   }
-  try {
-    const { data, error } = await supabase.functions.invoke("request-lead-confirmation", {
+  const leadMagnet = input.lead_magnet || "90-day-amazon-associate-roadmap";
+  // 1) Save to the single subscribers list. This is what unlocks the freebie.
+  const saved = await saveSubscriber({
+    email,
+    name: input.name,
+    freebie: leadMagnet,
+    consent: input.newsletter_opt_in === true || input.consent === true,
+    sourcePage: sourcePath?.split("?")[0],
+  });
+  if (!saved.ok) return { success: false, error: saved.error };
+  markFreebieUnlocked(leadMagnet);
+  // 2) Email a copy through the existing flow in the background. Delivery on
+  //    screen never waits on it, and a failure here doesn't block the visitor.
+  void supabase.functions
+    .invoke("request-lead-confirmation", {
       body: {
         name: input.name?.trim() || email.split("@")[0],
         email,
-        lead_magnet: input.lead_magnet || "90-day-amazon-associate-roadmap",
+        lead_magnet: leadMagnet,
         source_path: sourcePath,
         newsletter_opt_in: input.newsletter_opt_in === true,
       },
-    });
-    if (error || !data?.success) {
-      return { success: false, error: data?.error || error?.message || "Could not send confirmation email." };
-    }
-    return { success: true, alreadyConfirmed: !!data.already_confirmed };
-  } catch (e) {
-    return { success: false, error: e instanceof Error ? e.message : "Network error" };
-  }
+    })
+    .catch(() => undefined);
+  return { success: true, alreadyConfirmed: true };
 }
 
 export const CHECK_INBOX_MESSAGE =
-  "Check your inbox — click the confirmation link to get your guide.";
-export const ALREADY_CONFIRMED_MESSAGE =
-  "Welcome back! We've resent your guide to your inbox.";
+  "You're in. Your freebie is ready on this page.";
+export const ALREADY_CONFIRMED_MESSAGE = CHECK_INBOX_MESSAGE;
 export const RESENT_CONFIRMATION_MESSAGE =
   "We just sent a fresh confirmation link to your inbox.";
 
@@ -77,7 +88,7 @@ export interface ResendConfirmationInput {
 
 /**
  * Generates a NEW confirmation token for an existing pending signup
- * and re-sends the confirmation email — without asking the user
+ * and re-sends the confirmation email - without asking the user
  * to re-enter their email address.
  */
 export async function resendLeadConfirmation(
