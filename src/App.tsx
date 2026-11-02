@@ -64,6 +64,7 @@ import ProductDetail from "./pages/ProductDetail";
 import AdminLayout from "./components/AdminLayout";
 import AdminAccessButton from "./components/AdminAccessButton";
 import { NewsletterPopup } from "./components/NewsletterPopup";
+import SupportChat from "./components/SupportChat";
 import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
 const queryClient = new QueryClient();
 
@@ -84,6 +85,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <NewsletterPopup />
+        <SupportChat />
         <PromoBanner />
         <PinterestTracker />
         <AdminAccessButton />

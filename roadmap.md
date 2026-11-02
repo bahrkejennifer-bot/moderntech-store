@@ -10,13 +10,14 @@
 - [x] Preserve catalog-backed links and disclosures, verify mobile/desktop interactions and deep links, and leave the live site unpublished.
 
 # Dead-link fix + cheatsheet refresh (uploaded prompt 5)
-- [ ] Confirm authoritative Amazon Associates tag (uploaded file says moderntech02-20; recent sessions confirmed moderntechs04-20). BLOCKED on user answer.
-- [ ] Apply ASIN replacement table, tag fixes, sponsored-redirect cleanup, and removals across homepage, trending, category pages, gift finder, hardcoded arrays (and DB rows only if approved).
-- [ ] Refresh /tech-gift-cheatsheet: retitle, moderntech.store domain, remove prices, "Check today's price on Amazon" links, © 2026 footer.
-- [ ] Preserve /office-essentials exactly; no route/layout/styling changes; no em dashes in copy.
+- [x] Confirm authoritative Amazon Associates tag: user confirmed moderntech02-20 site-wide (memory updated).
+- [x] Apply ASIN replacement table, tag fixes, sponsored-redirect cleanup, and removals across homepage, gift finder, hardcoded arrays, scraped_products (292 rows clean) and product_redirects (51 rows clean).
+- [x] Refresh /tech-gift-cheatsheet: retitled 2026, moderntech.store, prices removed, "Check today's price on Amazon" links, © 2026 footer (site-wide footer year also fixed).
+- [x] Preserve /office-essentials; no route/layout/styling changes; em dashes removed from touched copy. Build OK, 52 tests pass.
 
 # Support chat with human handoff
-- [ ] Confirm conversation shape (threaded vs single) and storage (database vs localStorage vs none).
-- [ ] Confirm help-doc sources and what order data the chat may read (purchases table).
-- [ ] Confirm human-handoff path (email to info@moderntech.store with transcript, or contact form).
-- [ ] Build chat UI + server function answering from help docs/orders, with escalation when unsure.
+- [x] Confirm shape/storage/handoff: one conversation, database storage, email transcript to info@moderntech.store.
+- [x] Create support_conversations + support_messages tables (service-role only).
+- [x] Build support-chat edge function (help-docs answers, order lookup by email, escalate action emails transcript).
+- [x] Build SupportChat widget, mounted site-wide except /links, /free-guide, /admin, /the-signal, /blog.
+- [ ] Deploy support-chat function - BLOCKED: needs user's explicit deploy approval.
