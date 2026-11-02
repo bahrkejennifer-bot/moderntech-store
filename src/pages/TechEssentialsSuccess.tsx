@@ -1,3 +1,4 @@
+import { FREEBIE_DESTINATIONS } from "@/lib/freebies";
 import { useState, useEffect } from "react";
 import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
@@ -223,7 +224,7 @@ const TechEssentialsSuccess = () => {
           className="font-serif text-4xl sm:text-5xl md:text-7xl tracking-tight mb-6 sm:mb-8 max-w-3xl"
           style={{ fontWeight: 400, lineHeight: 1.05 }}
         >
-          You're in.<br />The guide<br />is on its way.
+          You're in.<br />The guide<br />is ready.
         </h1>
 
         <div
@@ -244,6 +245,13 @@ const TechEssentialsSuccess = () => {
             )}{" "}
             right now. It usually arrives within 2–3 minutes.
           </p>
+          <a
+            href={FREEBIE_DESTINATIONS["tech-essentials-2026"].href}
+            className="mt-6 inline-block px-8 py-3 font-mono text-[11px] tracking-[0.2em] uppercase"
+            style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(0 0% 100%)" }}
+          >
+            Open your guide now
+          </a>
         </div>
       </section>
 
