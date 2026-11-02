@@ -48,7 +48,6 @@ import ekrinImg from "@/assets/products/ekrin-bantam.jpg";
 import withingsImg from "@/assets/products/withings-scale.jpg";
 import boseSleepImg from "@/assets/products/bose-sleepbuds.jpg";
 import metaQuestImg from "@/assets/products/meta-quest-3.jpg";
-import fireKidsImg from "@/assets/products/fire-hd-10-kids-pro.jpg";
 import jblKidsImg from "@/assets/products/jbl-jr310bt-headphones.jpg";
 import osmoImg from "@/assets/products/osmo-genius-kit.jpg";
 import leapfrogImg from "@/assets/products/leapfrog-learning-friends.jpg";

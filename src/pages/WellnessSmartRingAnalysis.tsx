@@ -39,8 +39,8 @@ const WellnessSmartRingAnalysis = () => {
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>The Architecture of Wellness: 2026 Smart Ring Analysis | Modern Tech</title>
-        <meta name="description" content="A curated analysis of the three smart rings that meet the Modern Tech standard — Oura Ring 4, Ultrahuman Ring Air & Samsung Galaxy Ring." />
-        <meta property="og:title" content="The Architecture of Wellness — 2026 Smart Ring Analysis" />
+        <meta name="description" content="A curated analysis of the three smart rings that meet the Modern Tech standard - Oura Ring 4, Ultrahuman Ring Air & Samsung Galaxy Ring." />
+        <meta property="og:title" content="The Architecture of Wellness - 2026 Smart Ring Analysis" />
         <meta property="og:description" content="A study in the intersection of biological data and high-end jewelry. Three rings. One standard." />
         <meta property="og:image" content="https://moderntech.store/images/products/smart-ring-guide-cover.jpg" />
         <meta property="og:url" content="https://moderntech.store/wellness-smart-ring-analysis" />
@@ -172,7 +172,7 @@ const WellnessSmartRingAnalysis = () => {
               <strong>The Human Element:</strong> It knows when you're stressed before you do, whispering data through your phone without ever needing a screen.
             </p>
             <a
-              href={`https://www.amazon.com/Oura-Ring-Gen-3-Horizon/dp/B0CSQFRKPC?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/Oura-Ring-Gen-3-Horizon/dp/B0D9WVSZ56?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}
@@ -275,7 +275,7 @@ const WellnessSmartRingAnalysis = () => {
           </p>
           <div style={{ width: 40, height: 0.5, backgroundColor: "#d4d0c8", margin: "0 auto 32px" }} />
           <p style={{ fontSize: 14, fontStyle: "italic", color: "#8a8578" }}>
-            Coming Next Tuesday: <em>The Architecture of Recovery</em> — Is the High Peak Massage Chair worth the investment?
+            Coming Next Tuesday: <em>The Architecture of Recovery</em> - Is the High Peak Massage Chair worth the investment?
           </p>
         </div>
       </div>

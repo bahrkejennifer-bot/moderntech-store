@@ -41,8 +41,8 @@ const SonicEditGuide = () => {
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>THE SONIC EDIT: 2026 Wireless Earbuds Analysis | Modern Tech</title>
-        <meta name="description" content="A curated analysis of the wireless earbuds that meet the Modern Tech standard — AirPods Pro 2, Sony WH-1000XM5 & Samsung Galaxy Buds2 Pro." />
-        <meta property="og:title" content="THE SONIC EDIT — 2026 Wireless Earbuds Analysis" />
+        <meta name="description" content="A curated analysis of the wireless earbuds that meet the Modern Tech standard - AirPods Pro 2, Sony WH-1000XM5 & Samsung Galaxy Buds2 Pro." />
+        <meta property="og:title" content="THE SONIC EDIT - 2026 Wireless Earbuds Analysis" />
         <meta property="og:description" content="A study in the intersection of acoustic engineering and daily ritual. Three picks. One standard." />
         <meta property="og:image" content="https://moderntech.store/images/products/airpods-pro-2.jpg" />
         <meta property="og:url" content="https://moderntech.store/sonic-edit" />
@@ -106,7 +106,7 @@ const SonicEditGuide = () => {
             <PinterestSaveButton
               url="https://moderntech.store/sonic-edit"
               media={`https://moderntech.store${pinImage}`}
-              description="THE SONIC EDIT — 2026 Premium Audio Guide. A curated analysis of the wireless earbuds that meet the Modern Tech standard. AirPods Pro 2, Sony WH-1000XM5 & Samsung Galaxy Buds2 Pro. #WirelessEarbuds #AudioGuide #TechReview2026"
+              description="THE SONIC EDIT - 2026 Premium Audio Guide. A curated analysis of the wireless earbuds that meet the Modern Tech standard. AirPods Pro 2, Sony WH-1000XM5 & Samsung Galaxy Buds2 Pro. #WirelessEarbuds #AudioGuide #TechReview2026"
             />
           </div>
         </div>
@@ -150,7 +150,7 @@ const SonicEditGuide = () => {
           </h3>
           <div style={{ width: 40, height: 0.5, backgroundColor: "#1a1a18", marginBottom: 24 }} />
           <p style={{ fontSize: 16, color: "#3a3a35", marginBottom: 16 }}>
-            The best earbuds don't just cancel noise — they curate silence. They transform your commute into a private studio, your morning run into a meditation, and your work session into a flow state.
+            The best earbuds don't just cancel noise - they curate silence. They transform your commute into a private studio, your morning run into a meditation, and your work session into a flow state.
           </p>
           <p style={{ fontSize: 16, color: "#3a3a35" }}>
             We've tested the 2026 wireless earbuds market to find the three that meet the Modern Tech standard for acoustic fidelity, comfort, and design that doesn't compromise your aesthetic.
@@ -176,7 +176,7 @@ const SonicEditGuide = () => {
               The Ecosystem Standard
             </p>
             <p style={{ fontSize: 15, color: "#3a3a35", marginBottom: 8 }}>
-              <strong>The Vibe:</strong> Seamless integration. If you're in the Apple ecosystem, these aren't optional — they're infrastructure. Adaptive Audio blends transparency and noise cancellation in real-time, reading your environment so you don't have to.
+              <strong>The Vibe:</strong> Seamless integration. If you're in the Apple ecosystem, these aren't optional - they're infrastructure. Adaptive Audio blends transparency and noise cancellation in real-time, reading your environment so you don't have to.
             </p>
             <p style={{ fontSize: 15, color: "#3a3a35", marginBottom: 16 }}>
               <strong>The Human Element:</strong> Conversation Awareness drops your music the moment you speak. No buttons. No gestures. Just human intuition, engineered.
@@ -203,7 +203,7 @@ const SonicEditGuide = () => {
               The Sound Purist
             </p>
             <p style={{ fontSize: 15, color: "#3a3a35", marginBottom: 8 }}>
-              <strong>The Vibe:</strong> Studio-grade in your pocket. Sony's LDAC codec delivers Hi-Res Audio wirelessly — the kind of detail that makes you rediscover songs you've heard a thousand times.
+              <strong>The Vibe:</strong> Studio-grade in your pocket. Sony's LDAC codec delivers Hi-Res Audio wirelessly - the kind of detail that makes you rediscover songs you've heard a thousand times.
             </p>
             <p style={{ fontSize: 15, color: "#3a3a35", marginBottom: 16 }}>
               <strong>The Human Element:</strong> The V2 processor analyses ambient noise 700 times per second. It's not noise cancelling; it's acoustic architecture.
@@ -233,10 +233,10 @@ const SonicEditGuide = () => {
               <strong>The Vibe:</strong> The smallest premium buds on the market. 360 Audio with head tracking creates a spatial soundstage that makes podcasts feel like private conversations and albums feel like concerts.
             </p>
             <p style={{ fontSize: 15, color: "#3a3a35", marginBottom: 16 }}>
-              <strong>The Human Element:</strong> Voice Detect switches modes automatically — fitness mode during runs, conversation mode at the café. It reads your life, not just your playlist.
+              <strong>The Human Element:</strong> Voice Detect switches modes automatically - fitness mode during runs, conversation mode at the café. It reads your life, not just your playlist.
             </p>
             <a
-              href={`https://www.amazon.com/SAMSUNG-Galaxy-Buds2-Pro-Bluetooth/dp/B0B3RMVNXB?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/SAMSUNG-Galaxy-Buds2-Pro-Bluetooth/dp/B0B8J28VMV?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}
@@ -257,7 +257,7 @@ const SonicEditGuide = () => {
           </h3>
           <div style={{ width: 40, height: 0.5, backgroundColor: "#1a1a18", marginBottom: 24 }} />
           <p style={{ fontSize: 16, color: "#3a3a35", marginBottom: 16 }}>
-            <strong>For the Apple purist:</strong> AirPods Pro 2. The integration alone justifies the investment — Adaptive Audio is genuinely transformative.
+            <strong>For the Apple purist:</strong> AirPods Pro 2. The integration alone justifies the investment - Adaptive Audio is genuinely transformative.
           </p>
           <p style={{ fontSize: 16, color: "#3a3a35", marginBottom: 16 }}>
             <strong>For the sound obsessive:</strong> Sony WF-1000XM5. If you can hear the difference between 320kbps and LDAC, these are non-negotiable.
