@@ -13,7 +13,7 @@ import type { CatalogProduct, Selection } from "./curatedSelections";
 export const EDIT_PDF_MAGNET = "the-edit-weekly-pdf";
 
 /** The confirmation link returns here; this query is what reveals the download. */
-export const EDIT_PDF_DELIVERY_PATH = "/the-signal?pdf=1";
+export const EDIT_PDF_DELIVERY_PATH = "/the-edit?pdf=1";
 export const EDIT_PDF_DELIVERY_PARAM = "pdf";
 export const EDIT_PDF_DELIVERY_VALUE = "1";
 
@@ -57,7 +57,7 @@ export function buildEditPdfModel(picks: readonly WeeklyPick[]): EditPdfModel {
     year: "numeric",
   });
   return {
-    publication: "The Signal · Weekly Newsletter",
+    publication: "The Edit · Weekly Newsletter",
     brand: "Modern Tech LLC",
     siteUrl: "https://moderntech.store",
     weekOf: weeklyEdition.weekOf,

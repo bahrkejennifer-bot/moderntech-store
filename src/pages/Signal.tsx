@@ -33,7 +33,7 @@ const Signal = () => {
     title: post.title,
     excerpt: post.excerpt ?? "",
     category: (post.category ?? "TECH").toUpperCase(),
-    slug: `/the-signal/${post.slug}`,
+    slug: `/the-edit/${post.slug}`,
   }));
 
   return (
