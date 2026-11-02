@@ -63,7 +63,7 @@ export const ModernTechEditSignup = () => {
           The Edit
         </h3>
         <p className="font-mono text-[11px] text-muted-foreground mb-10 max-w-md mx-auto leading-[1.8]">
-          A weekly, curated edit of the tech worth owning — reviews, buying guides,
+          A weekly, curated edit of the tech worth owning, reviews, buying guides,
           and the deals we actually recommend. Confirm your email to join.
         </p>
 

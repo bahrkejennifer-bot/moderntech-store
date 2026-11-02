@@ -16,7 +16,7 @@ const benefits = [
   "Mic, camera & lighting picks at 3 budget levels ($200 / $500 / $1,000)",
   "Studio layout diagrams for small spaces & apartments",
   "OBS & Stream Deck setup walkthrough with screenshots",
-  "Audio optimization checklist — sound pro on Day 1",
+  "Audio optimization checklist, sound pro on Day 1",
   "Bonus: 7-day content launch challenge to get your first video live",
 ];
 
@@ -81,8 +81,8 @@ const CreatorGearGuide = () => {
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Free Creator Gear Starter Kit 2026 | Modern Tech LLC</title>
-        <meta name="description" content="Download the free Creator Gear Starter Kit — mic, camera & lighting picks at every budget. By Modern Tech LLC." />
-        <meta property="og:title" content="Free Creator Gear Starter Kit 2026 — by Modern Tech LLC" />
+        <meta name="description" content="Download the free Creator Gear Starter Kit, mic, camera & lighting picks at every budget. By Modern Tech LLC." />
+        <meta property="og:title" content="Free Creator Gear Starter Kit 2026, by Modern Tech LLC" />
         <meta property="og:description" content="Mic, camera & lighting picks at every budget, studio layout guides & OBS setup walkthrough." />
         <link rel="canonical" href="https://moderntech.store/free-creator-gear-guide" />
         <meta name="author" content="Modern Tech LLC" />
@@ -98,7 +98,7 @@ const CreatorGearGuide = () => {
               <div>
                 <div className="inline-flex items-center gap-2 bg-orange-500/10 text-orange-400 px-3 py-1.5 rounded-full text-sm font-semibold mb-6">
                   <Video className="h-4 w-4" />
-                  Free Download — Creator Tools
+                  Free Download: Creator Tools
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-foreground">
                   Creator Gear{" "}
@@ -107,7 +107,7 @@ const CreatorGearGuide = () => {
                 </h1>
                 <p className="text-sm text-muted-foreground mb-4 font-medium">by Modern Tech LLC</p>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Everything you need to build a pro content creator setup — mic, camera, lighting & software picks at every budget. Start creating today, not someday.
+                  Everything you need to build a pro content creator setup, mic, camera, lighting & software picks at every budget. Start creating today, not someday.
                 </p>
                 <div className="mb-8 rounded-2xl overflow-hidden shadow-xl border border-border/50 max-w-xs">
                   <img src={coverImg} alt="Creator Gear Starter Kit 2026 PDF guide cover" className="w-full h-auto" />
@@ -171,26 +171,26 @@ const CreatorGearGuide = () => {
       <div ref={contentRef} style={{ position: "absolute", left: "-9999px", top: 0, width: "8.5in", background: "#fff", color: "#1a1a1a", fontFamily: "Georgia, serif", fontSize: "12pt", lineHeight: "1.8" }}>
         <div style={{ padding: "60px 50px", textAlign: "center", borderBottom: "2px solid #f97316" }}>
           <h1 style={{ fontSize: "28pt", fontWeight: "bold", marginBottom: 8, color: "#f97316" }}>Creator Gear Starter Kit 2026</h1>
-          <p style={{ fontSize: "11pt", color: "#666" }}>by Modern Tech LLC — moderntech.store</p>
+          <p style={{ fontSize: "11pt", color: "#666" }}>by Modern Tech LLC, moderntech.store</p>
         </div>
         <div style={{ padding: "40px 50px" }}>
           <h2 style={{ fontSize: "18pt", color: "#f97316", marginBottom: 16 }}>Your Creator Setup at Every Budget</h2>
 
           <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>🎤 Microphones</h3>
-          <p><strong>$50 — Fifine K669:</strong> USB plug-and-play. Great starter mic for podcasts and voiceovers.</p>
-          <p><strong>$100 — Blue Yeti:</strong> Multi-pattern USB mic. The classic choice for beginners.</p>
-          <p><strong>$270 — Shure MV7+:</strong> USB/XLR hybrid with auto-leveling. The 2026 gold standard.</p>
+          <p><strong>$50: Fifine K669:</strong> USB plug-and-play. Great starter mic for podcasts and voiceovers.</p>
+          <p><strong>$100: Blue Yeti:</strong> Multi-pattern USB mic. The classic choice for beginners.</p>
+          <p><strong>$270: Shure MV7+:</strong> USB/XLR hybrid with auto-leveling. The 2026 gold standard.</p>
 
           <h3 style={{ fontSize: "14pt", marginTop: 24, marginBottom: 8 }}>📷 Cameras</h3>
-          <p><strong>$70 — Logitech C920:</strong> 1080p webcam. Reliable for Zoom calls and simple videos.</p>
-          <p><strong>$200 — Elgato Facecam:</strong> Uncompressed 1080p60. Built for streamers.</p>
-          <p><strong>$500+ — Sony ZV-1 II:</strong> Vlog camera with flip screen, autofocus, and cinematic quality.</p>
+          <p><strong>$70: Logitech C920:</strong> 1080p webcam. Reliable for Zoom calls and simple videos.</p>
+          <p><strong>$200: Elgato Facecam:</strong> Uncompressed 1080p60. Built for streamers.</p>
+          <p><strong>$500+: Sony ZV-1 II:</strong> Vlog camera with flip screen, autofocus, and cinematic quality.</p>
 
           <div className="pdf-page-break" />
           <h3 style={{ fontSize: "14pt", marginTop: 24, marginBottom: 8 }}>💡 Lighting</h3>
-          <p><strong>$25 — Ring light (10"):</strong> Basic, effective. Clips to your desk or monitor.</p>
-          <p><strong>$60 — Elgato Key Light Mini:</strong> App-controlled, color temperature adjustable.</p>
-          <p><strong>$200 — Elgato Key Light (pair):</strong> Professional 2-light setup. Eliminates shadows.</p>
+          <p><strong>$25: Ring light (10"):</strong> Basic, effective. Clips to your desk or monitor.</p>
+          <p><strong>$60: Elgato Key Light Mini:</strong> App-controlled, color temperature adjustable.</p>
+          <p><strong>$200: Elgato Key Light (pair):</strong> Professional 2-light setup. Eliminates shadows.</p>
 
           <h2 style={{ fontSize: "18pt", color: "#f97316", marginTop: 32, marginBottom: 16 }}>Studio Layout for Small Spaces</h2>
           <p><strong>The Desktop Setup:</strong> Mic on a boom arm, camera on a mini tripod behind the monitor, ring light clamped to the desk edge. Total footprint: 3 sq ft.</p>
@@ -208,17 +208,17 @@ const CreatorGearGuide = () => {
 
           <h2 style={{ fontSize: "18pt", color: "#f97316", marginTop: 32, marginBottom: 16 }}>Audio Optimization Checklist</h2>
           <ul style={{ paddingLeft: 20 }}>
-            <li>☐ Position mic 4–6 inches from your mouth at a 45° angle</li>
+            <li>☐ Position mic 4-6 inches from your mouth at a 45° angle</li>
             <li>☐ Add a pop filter or foam windscreen</li>
             <li>☐ Close windows and doors to reduce ambient noise</li>
             <li>☐ Enable noise suppression in OBS (or use Krisp for all apps)</li>
-            <li>☐ Test audio levels — peaks should hit -6dB to -12dB</li>
+            <li>☐ Test audio levels, peaks should hit -6dB to -12dB</li>
             <li>☐ Record a 30-second test and listen back with headphones</li>
           </ul>
 
           <div className="pdf-page-break" />
           <h2 style={{ fontSize: "18pt", color: "#f97316", marginTop: 32, marginBottom: 16 }}>7-Day Content Launch Challenge</h2>
-          <p><strong>Day 1:</strong> Set up your gear and record a 60-second test video. Don't publish — just practice.</p>
+          <p><strong>Day 1:</strong> Set up your gear and record a 60-second test video. Don't publish, just practice.</p>
           <p><strong>Day 2:</strong> Script a 3-minute "about me" or niche intro video.</p>
           <p><strong>Day 3:</strong> Record and edit your intro video. Use CapCut or DaVinci Resolve (both free).</p>
           <p><strong>Day 4:</strong> Create a YouTube channel or TikTok account. Upload your intro.</p>
@@ -228,7 +228,7 @@ const CreatorGearGuide = () => {
 
           <div style={{ marginTop: 40, padding: 20, background: "#fff7ed", borderRadius: 8 }}>
             <p style={{ textAlign: "center", fontSize: "10pt", color: "#666" }}>
-              © 2026 Modern Tech LLC — moderntech.store<br />
+              © 2026 Modern Tech LLC, moderntech.store<br />
               This guide contains affiliate links. We may earn a commission at no extra cost to you.
             </p>
           </div>

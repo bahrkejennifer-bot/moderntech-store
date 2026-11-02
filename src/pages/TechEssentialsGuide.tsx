@@ -19,7 +19,7 @@ const PILLARS = [
     label: "SMART HOME",
     title: "Calmer, Safer Living Spaces",
     blurb:
-      "Hub-agnostic picks for lighting, locks, and ambient sensors that disappear into your home — no app fatigue.",
+      "Hub-agnostic picks for lighting, locks, and ambient sensors that disappear into your home, no app fatigue.",
     items: ["Matter-ready hubs", "Apple Home / Alexa picks", "Family-safe cameras"],
   },
   {
@@ -27,7 +27,7 @@ const PILLARS = [
     label: "HEALTH & WELLNESS",
     title: "Quiet Biometrics, Loud Insight",
     blurb:
-      "Smart rings, recovery wearables, and circadian lighting curated by a registered nurse — no hype, only signal.",
+      "Smart rings, recovery wearables, and circadian lighting curated by a registered nurse, no hype, only signal.",
     items: ["Oura Ring 4 deep-dive", "HRV trackers worth the data", "Red-light & sleep stack"],
   },
   {
@@ -43,7 +43,7 @@ const PILLARS = [
     label: "KIDS & STEM",
     title: "Screen-Optional Learning",
     blurb:
-      "Educational tech vetted for ages 3–18 — gadgets that build curiosity without melting attention spans.",
+      "Educational tech vetted for ages 3-18, gadgets that build curiosity without melting attention spans.",
     items: ["Coding kits by age", "Read-aloud devices", "Family-safe wearables"],
   },
 ];
@@ -51,11 +51,11 @@ const PILLARS = [
 const FAQS = [
   {
     q: "Is this guide really free?",
-    a: "Yes. Drop your email and we send the 2026 Tech Essentials guide instantly — no card, no trial, no upsell required.",
+    a: "Yes. Drop your email and we send the 2026 Tech Essentials guide instantly, no card, no trial, no upsell required.",
   },
   {
     q: "Who curates the picks?",
-    a: "Every product is Jen-Verified by Modern Tech LLC. We're an independent affiliate publisher, not a brand — we only feature gear we'd put in our own home.",
+    a: "Every product is Jen-Verified by Modern Tech LLC. We're an independent affiliate publisher, not a brand, we only feature gear we'd put in our own home.",
   },
   {
     q: "Will you spam me?",
@@ -63,7 +63,7 @@ const FAQS = [
   },
   {
     q: "Are the product links affiliate links?",
-    a: "Most are. We earn a small commission when you buy through Amazon and partner brands — at no extra cost to you. That funds the editorial work.",
+    a: "Most are. We earn a small commission when you buy through Amazon and partner brands, at no extra cost to you. That funds the editorial work.",
   },
 ];
 
@@ -105,13 +105,13 @@ const TechEssentialsGuide = () => {
   const itemListGraph = {
     "@type": "ItemList",
     "@id": `${SITE}${PATH}#itemlist`,
-    name: "2026 Tech Essentials — Four-Category Edit",
+    name: "2026 Tech Essentials: Four-Category Edit",
     numberOfItems: PILLARS.length,
     itemListOrder: "https://schema.org/ItemListOrderAscending",
     itemListElement: PILLARS.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      name: `${p.label.replace(/\b\w/g, (c) => c.toUpperCase())} — ${p.title}`,
+      name: `${p.label.replace(/\b\w/g, (c) => c.toUpperCase())}: ${p.title}`,
       description: p.blurb,
     })),
   };
@@ -140,10 +140,10 @@ const TechEssentialsGuide = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
-        <title>Free 2026 Tech Essentials Guide — Smart Home, Health, Office, Kids | Modern Tech</title>
+        <title>Free 2026 Tech Essentials Guide: Smart Home, Health, Office, Kids | Modern Tech</title>
         <meta
           name="description"
-          content="The free Jen-Verified 2026 Tech Essentials Guide — curated picks across smart home, health, office, and kids tech. Editorial, independent, no fluff."
+          content="The free Jen-Verified 2026 Tech Essentials Guide, curated picks across smart home, health, office, and kids tech. Editorial, independent, no fluff."
         />
         <link rel="canonical" href={`${SITE}${PATH}`} />
         <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -151,10 +151,10 @@ const TechEssentialsGuide = () => {
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Modern Tech LLC" />
-        <meta property="og:title" content="Free 2026 Tech Essentials Guide — Modern Tech" />
+        <meta property="og:title" content="Free 2026 Tech Essentials Guide: Modern Tech" />
         <meta
           property="og:description"
-          content="Curated 2026 tech across smart home, health, office, and kids — by Modern Tech LLC. Free, instant download."
+          content="Curated 2026 tech across smart home, health, office, and kids, by Modern Tech LLC. Free, instant download."
         />
         <meta property="og:url" content={`${SITE}${PATH}`} />
         <meta property="og:image" content={`${SITE}/lovable-uploads/modern-tech-logo.png`} />
@@ -164,13 +164,13 @@ const TechEssentialsGuide = () => {
         <meta name="twitter:title" content="Free 2026 Tech Essentials Guide" />
         <meta
           name="twitter:description"
-          content="Smart home, health, office, kids — Jen-Verified picks for 2026. Free instant download."
+          content="Smart home, health, office, kids: Jen-Verified picks for 2026. Free instant download."
         />
       </Helmet>
 
       <StructuredData
         title="Free 2026 Tech Essentials Guide"
-        description="Curated 2026 tech across smart home, health, office, and kids — by Modern Tech LLC."
+        description="Curated 2026 tech across smart home, health, office, and kids, by Modern Tech LLC."
         path={PATH}
         breadcrumbs={[
           { name: "Home", path: "/" },
@@ -201,7 +201,7 @@ const TechEssentialsGuide = () => {
           style={{ color: "hsl(220 15% 14% / 0.6)" }}
         >
           One free guide. Four categories. Zero filler. Smart home, health &amp; wellness, office,
-          and kids — curated, tested, and Jen-Verified for the year ahead.
+          and kids, curated, tested, and Jen-Verified for the year ahead.
         </p>
       </section>
 
@@ -272,7 +272,7 @@ const TechEssentialsGuide = () => {
               className="font-mono text-[10px] tracking-[0.3em] uppercase mb-10 text-center"
               style={{ color: "hsl(220 15% 14% / 0.4)" }}
             >
-              WHAT'S INSIDE — FOUR EDITS
+              WHAT'S INSIDE: FOUR EDITS
             </p>
             <div className="grid md:grid-cols-2 gap-px" style={{ backgroundColor: "hsl(220 15% 14% / 0.1)" }}>
               {PILLARS.map((p, i) => {
@@ -314,7 +314,7 @@ const TechEssentialsGuide = () => {
                           className="flex items-start gap-2 font-mono text-[11px]"
                           style={{ color: "hsl(220 15% 14% / 0.7)" }}
                         >
-                          <span style={{ color: "hsl(14 50% 60%)" }}>—</span> {it}
+                          <span style={{ color: "hsl(14 50% 60%)" }}>, </span> {it}
                         </li>
                       ))}
                     </ul>

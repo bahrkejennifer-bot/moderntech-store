@@ -128,8 +128,8 @@ const CreatorFunnel = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
-        <title>Creator Content Bundle — ModernTech</title>
-        <meta name="description" content="Get the complete faceless content creation system. Free Reels guide, Canva Masterclass, and Faceless YouTube Automation — or grab the bundle and save." />
+        <title>Creator Content Bundle: ModernTech</title>
+        <meta name="description" content="Get the complete faceless content creation system. Free Reels guide, Canva Masterclass, and Faceless YouTube Automation, or grab the bundle and save." />
       </Helmet>
       <Navigation />
 
@@ -142,7 +142,7 @@ const CreatorFunnel = () => {
           Start Building Better<br />Content Today
         </h1>
         <p className="font-mono text-[12px] tracking-[0.05em] max-w-xl mx-auto leading-relaxed" style={{ color: "hsl(220 15% 14% / 0.6)" }}>
-          Get the Reels Master Class free — then unlock the full system to design, create, and grow your content with confidence.
+          Get the Reels Master Class free, then unlock the full system to design, create, and grow your content with confidence.
         </p>
       </section>
 
@@ -252,7 +252,7 @@ const CreatorFunnel = () => {
               Go Further, Faster
             </h2>
             <p className="font-mono text-[11px] max-w-lg mx-auto" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
-              You've got the Reels guide — now unlock the full system.
+              You've got the Reels guide, now unlock the full system.
             </p>
           </div>
 
@@ -280,7 +280,7 @@ const CreatorFunnel = () => {
               <Gift className="w-6 h-6 mx-auto mb-3" style={{ color: "hsl(14 50% 88%)" }} />
               <h3 className="font-serif text-xl text-center mb-1">The Complete Bundle</h3>
               <p className="font-mono text-[10px] text-center mb-4" style={{ color: "hsl(30 25% 95% / 0.5)" }}>
-                All three guides — one price
+                All three guides, one price
               </p>
               <div className="text-center mb-4">
                 <span className="font-mono text-[11px] line-through mr-2" style={{ color: "hsl(30 25% 95% / 0.4)" }}>$78</span>
@@ -310,7 +310,7 @@ const CreatorFunnel = () => {
               30-DAY MONEY-BACK GUARANTEE
             </p>
             <p className="font-mono text-[11px] max-w-md mx-auto" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
-              Not satisfied? We'll refund every penny — no questions asked.
+              Not satisfied? We'll refund every penny, no questions asked.
             </p>
           </div>
         </section>

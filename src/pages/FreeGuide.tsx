@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
 const benefits = [
-  "Learn the 5 essential steps to launch your first affiliate site — even with zero experience",
+  "Learn the 5 essential steps to launch your first affiliate site, even with zero experience",
   "Get our plug-and-play niche validation template so you pick a winner on day one",
   "Discover the #1 traffic source most beginners ignore (hint: it's not SEO)",
 ];
@@ -46,8 +46,8 @@ const FreeGuide = () => {
   return (
     <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
-        <title>Free Amazon Affiliate Quick-Start Guide — ModernTech</title>
-        <meta name="description" content="The 5-step checklist that shows you exactly how to set up your first affiliate site — completely free." />
+        <title>Free Amazon Affiliate Quick-Start Guide: ModernTech</title>
+        <meta name="description" content="The 5-step checklist that shows you exactly how to set up your first affiliate site, completely free." />
       </Helmet>
       <Navigation />
 
@@ -60,7 +60,7 @@ const FreeGuide = () => {
             Get the Free Amazon Affiliate Quick-Start Guide
           </h1>
           <p className="font-serif text-lg leading-relaxed" style={{ fontWeight: 300, fontStyle: "italic", color: "hsl(220 15% 14% / 0.6)" }}>
-            The 5-step checklist that shows you exactly how to set up your first affiliate site — free.
+            The 5-step checklist that shows you exactly how to set up your first affiliate site, free.
           </p>
         </div>
 
@@ -112,7 +112,7 @@ const FreeGuide = () => {
               {loading ? "Sending..." : "Send Confirmation Link"} <ArrowRight className="w-3 h-3" />
             </button>
             <p className="font-mono text-[10px] tracking-[0.1em] text-center" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
-              We'll email you to confirm — your guide unlocks after one click.
+              We'll email you to confirm, your guide unlocks after one click.
             </p>
           </form>
         )}

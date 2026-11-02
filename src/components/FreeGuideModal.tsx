@@ -60,7 +60,7 @@ const guides = [
   {
     id: "screen-free-kids-tech-toys",
     title: "Screen-Free Kids: 10 Toys That Teach",
-    description: "Parent-approved STEM toys, coding robots & audio players for ages 3–12.",
+    description: "Parent-approved STEM toys, coding robots & audio players for ages 3-12.",
     icon: Baby,
     accentClass: "text-yellow-500",
     bgClass: "bg-yellow-500/10",
