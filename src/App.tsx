@@ -68,6 +68,12 @@ import SupportChat from "./components/SupportChat";
 import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
 const queryClient = new QueryClient();
 
+// Keeps ?pdf=1 from older confirmation emails when moving /the-signal to /the-edit.
+const LegacyEditRedirect = () => {
+  const { search } = useLocation();
+  return <Navigate to={`/the-edit${search}`} replace />;
+};
+
 const BlogPostRedirect = () => {
   const { slug } = useParams<{ slug: string }>();
   return <Navigate to={`/the-edit/${slug}`} replace />;
@@ -117,7 +123,7 @@ const App = () => (
           <Route path="/productivity-family" element={<Navigate to="/kids-stem" replace />} />
 
           <Route path="/the-edit" element={<Blog />} />
-          <Route path="/the-signal" element={<Navigate to="/the-edit" replace />} />
+          <Route path="/the-signal" element={<LegacyEditRedirect />} />
           <Route path="/the-signal/:slug" element={<BlogPostRedirect />} />
           <Route path="/the-edit/:slug" element={<BlogPost />} />
           <Route path="/weekly-edit" element={<Navigate to="/the-edit" replace />} />
