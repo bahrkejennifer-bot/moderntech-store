@@ -9,6 +9,7 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { useToast } from "@/hooks/use-toast";
 import { requestLeadConfirmation } from "@/lib/leadConfirmation";
+import { isFreebieUnlocked } from "@/lib/freebies";
 import coverImg from "@/assets/pdf-covers/smart-home-safety-checklist-cover.jpg";
 
 const benefits = [
@@ -24,7 +25,7 @@ const SmartHomeSafetyChecklist = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(() => isFreebieUnlocked("parents-smart-home-safety-checklist"));
   const [downloading, setDownloading] = useState(false);
   const { toast } = useToast();
   const contentRef = useRef<HTMLDivElement>(null);
@@ -53,7 +54,7 @@ const SmartHomeSafetyChecklist = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) return;
+    if (!email.trim()) return;
     setIsSubmitting(true);
     try {
       const result = await requestLeadConfirmation({
@@ -68,10 +69,8 @@ const SmartHomeSafetyChecklist = () => {
       }
       setIsSuccess(true);
       toast({
-        title: result.alreadyConfirmed ? "Welcome back 🛡️" : "Check your inbox 🛡️",
-        description: result.alreadyConfirmed
-          ? "We've resent your checklist — also ready to download below."
-          : "Click the confirmation link in your email to unlock your checklist.",
+        title: "You\'re in 🛡️",
+        description: "Your download is ready below. A copy is on its way to your inbox too.",
       });
     } finally {
       setIsSubmitting(false);
@@ -82,8 +81,8 @@ const SmartHomeSafetyChecklist = () => {
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Free Parent's Smart Home Safety Checklist 2026 | Modern Tech LLC</title>
-        <meta name="description" content="Download your free Smart Home Safety Checklist — a room-by-room guide to protecting your family with smart cameras, locks, sensors & more. By Modern Tech LLC." />
-        <meta property="og:title" content="Free Parent's Smart Home Safety Checklist 2026 — by Modern Tech LLC" />
+        <meta name="description" content="Download your free Smart Home Safety Checklist, a room-by-room guide to protecting your family with smart cameras, locks, sensors & more. By Modern Tech LLC." />
+        <meta property="og:title" content="Free Parent's Smart Home Safety Checklist 2026, by Modern Tech LLC" />
         <meta property="og:description" content="Room-by-room guide to protecting your family with smart cameras, locks, sensors & more." />
         <link rel="canonical" href="https://moderntech.store/free-smart-home-checklist" />
         <meta name="author" content="Modern Tech LLC" />
@@ -99,7 +98,7 @@ const SmartHomeSafetyChecklist = () => {
               <div>
                 <div className="inline-flex items-center gap-2 bg-blue-500/10 text-blue-400 px-3 py-1.5 rounded-full text-sm font-semibold mb-6">
                   <Shield className="h-4 w-4" />
-                  Free Download — Family Safety
+                  Free Download: Family Safety
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-foreground">
                   The Parent's{" "}
@@ -108,7 +107,7 @@ const SmartHomeSafetyChecklist = () => {
                 </h1>
                 <p className="text-sm text-muted-foreground mb-4 font-medium">by Modern Tech LLC</p>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  A room-by-room guide to protecting your family with smart tech — cameras, locks, sensors & more. Written by parents, for parents. No jargon, no overwhelm.
+                  A room-by-room guide to protecting your family with smart tech, cameras, locks, sensors & more. Written by parents, for parents. No jargon, no overwhelm.
                 </p>
                 <div className="mb-8 rounded-2xl overflow-hidden shadow-xl border border-border/50 max-w-xs">
                   <img src={coverImg} alt="The Parent's Smart Home Safety Checklist PDF guide cover" className="w-full h-auto" />
@@ -150,7 +149,7 @@ const SmartHomeSafetyChecklist = () => {
                       </div>
                       <p className="text-sm text-muted-foreground mb-6">Enter your details below and we'll send you the complete room-by-room safety checklist instantly.</p>
                       <form onSubmit={handleSubmit} className="space-y-4">
-                        <Input placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} required className="h-12" maxLength={100} />
+                        <Input placeholder="First name (optional)" value={name} onChange={(e) => setName(e.target.value)} className="h-12" maxLength={100} />
                         <Input type="email" placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-12" maxLength={255} />
                         <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="my-2" />
                         <Button type="submit" disabled={isSubmitting} className="w-full h-12 rounded-full text-base font-semibold bg-blue-500 hover:bg-blue-600">
@@ -172,29 +171,29 @@ const SmartHomeSafetyChecklist = () => {
       <div ref={contentRef} style={{ position: "absolute", left: "-9999px", top: 0, width: "8.5in", background: "#fff", color: "#1a1a1a", fontFamily: "Georgia, serif", fontSize: "12pt", lineHeight: "1.8" }}>
         <div style={{ padding: "60px 50px", textAlign: "center", borderBottom: "2px solid #3b82f6" }}>
           <h1 style={{ fontSize: "26pt", fontWeight: "bold", marginBottom: 8, color: "#3b82f6" }}>The Parent's Smart Home Safety Checklist 2026</h1>
-          <p style={{ fontSize: "11pt", color: "#666" }}>by Modern Tech LLC — moderntech.store</p>
+          <p style={{ fontSize: "11pt", color: "#666" }}>by Modern Tech LLC, moderntech.store</p>
         </div>
         <div style={{ padding: "40px 50px" }}>
           <h2 style={{ fontSize: "18pt", color: "#3b82f6", marginBottom: 16 }}>🚪 Front Door & Entry</h2>
           <ul style={{ paddingLeft: 20 }}>
-            <li>☐ Video doorbell installed (Ring, Blink, or eufy) — see who's at the door from anywhere</li>
-            <li>☐ Smart lock with auto-lock enabled — no more "did I lock the door?" anxiety</li>
-            <li>☐ Motion-activated porch light — deters package theft and nighttime visitors</li>
-            <li>☐ Door/window sensor on front door — instant alerts when opened</li>
+            <li>☐ Video doorbell installed (Ring, Blink, or eufy), see who's at the door from anywhere</li>
+            <li>☐ Smart lock with auto-lock enabled, no more "did I lock the door?" anxiety</li>
+            <li>☐ Motion-activated porch light, deters package theft and nighttime visitors</li>
+            <li>☐ Door/window sensor on front door, instant alerts when opened</li>
           </ul>
 
           <h2 style={{ fontSize: "18pt", color: "#3b82f6", marginTop: 32, marginBottom: 16 }}>🏠 Living Room & Common Areas</h2>
           <ul style={{ paddingLeft: 20 }}>
             <li>☐ Indoor security camera in main living area (with privacy mode for home time)</li>
-            <li>☐ Smart smoke/CO detector — sends phone alerts, not just alarms</li>
-            <li>☐ Smart plug on space heaters and irons — auto-off after 30 minutes</li>
+            <li>☐ Smart smoke/CO detector, sends phone alerts, not just alarms</li>
+            <li>☐ Smart plug on space heaters and irons, auto-off after 30 minutes</li>
             <li>☐ Voice assistant for quick emergency calls ("Alexa, call 911")</li>
           </ul>
 
           <div className="pdf-page-break" />
           <h2 style={{ fontSize: "18pt", color: "#3b82f6", marginTop: 32, marginBottom: 16 }}>🛏️ Kids' Bedrooms</h2>
           <ul style={{ paddingLeft: 20 }}>
-            <li>☐ Smart night light with motion sensor — safe path to bathroom</li>
+            <li>☐ Smart night light with motion sensor, safe path to bathroom</li>
             <li>☐ Window sensors on all accessible windows</li>
             <li>☐ Smart speaker for white noise and wake-up alarms</li>
             <li>☐ Baby monitor with room temperature alerts (for infants)</li>
@@ -212,7 +211,7 @@ const SmartHomeSafetyChecklist = () => {
           <h2 style={{ fontSize: "18pt", color: "#3b82f6", marginTop: 32, marginBottom: 16 }}>🏡 Backyard & Garage</h2>
           <ul style={{ paddingLeft: 20 }}>
             <li>☐ Outdoor security camera covering backyard and driveway</li>
-            <li>☐ Smart garage door controller — close it from anywhere</li>
+            <li>☐ Smart garage door controller, close it from anywhere</li>
             <li>☐ Motion-sensor floodlights on all exterior corners</li>
             <li>☐ Pool alarm or gate sensor (if applicable)</li>
           </ul>
@@ -270,7 +269,7 @@ const SmartHomeSafetyChecklist = () => {
 
           <div style={{ marginTop: 40, padding: 20, background: "#eff6ff", borderRadius: 8 }}>
             <p style={{ textAlign: "center", fontSize: "10pt", color: "#666" }}>
-              © 2026 Modern Tech LLC — moderntech.store<br />
+              © 2026 Modern Tech LLC, moderntech.store<br />
               This guide contains affiliate links. We may earn a commission at no extra cost to you.
             </p>
           </div>

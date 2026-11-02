@@ -1,3 +1,4 @@
+import { saveSubscriber } from "@/lib/subscribers";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,6 +44,8 @@ export const NewsletterSignup = ({ campaignId, className }: NewsletterSignupProp
       });
 
       if (error) throw error;
+
+      await saveSubscriber({ email: validation.data.email, name: validation.data.name, freebie: "newsletter", consent: true });
 
       // Fire-and-forget welcome email via Cloud pipeline
       supabase.functions.invoke("send-welcome-email", {

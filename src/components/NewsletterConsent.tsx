@@ -1,7 +1,8 @@
 import { useId } from "react";
 
-export const NEWSLETTER_CONSENT_LABEL =
-  "Send me The Edit, our weekly tech newsletter. Unsubscribe anytime.";
+import { SUBSCRIBE_CONSENT_LINE } from "@/lib/subscribers";
+
+export const NEWSLETTER_CONSENT_LABEL = SUBSCRIBE_CONSENT_LINE;
 
 interface Props {
   checked: boolean;

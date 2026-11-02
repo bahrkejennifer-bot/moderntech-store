@@ -11,11 +11,12 @@ export const RoadmapSignup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) {
-      toast.error("Please fill in all fields");
+    if (!email.trim()) {
+      toast.error("Please enter your email");
       return;
     }
     setIsLoading(true);
@@ -33,6 +34,7 @@ export const RoadmapSignup = () => {
       toast.success(result.alreadyConfirmed ? ALREADY_CONFIRMED_MESSAGE : CHECK_INBOX_MESSAGE);
       setName("");
       setEmail("");
+      setUnlocked(true);
     } finally {
       setIsLoading(false);
     }
@@ -64,14 +66,18 @@ export const RoadmapSignup = () => {
                 The exact step-by-step checklist to launch, grow, and monetize your Amazon affiliate business in 90 days.
               </p>
 
+              {unlocked && (
+                <a href="/free-roadmap" className="mb-6 inline-flex h-12 items-center justify-center rounded-xl bg-primary px-8 font-bold text-primary-foreground hover:bg-primary/90">
+                  Open your roadmap
+                </a>
+              )}
               <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
                 <Input
                   type="text"
-                  placeholder="Your first name"
+                  placeholder="First name (optional)"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="h-12 rounded-xl bg-background/80 backdrop-blur-sm border-border/50 focus:border-primary text-foreground placeholder:text-muted-foreground"
-                  required
                 />
                 <Input
                   type="email"

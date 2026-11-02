@@ -8,6 +8,7 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { useToast } from "@/hooks/use-toast";
 import { requestLeadConfirmation } from "@/lib/leadConfirmation";
+import { isFreebieUnlocked } from "@/lib/freebies";
 
 const benefits = [
   "Week-by-week action plan from Day 1 to Day 90",
@@ -22,7 +23,7 @@ const LeadMagnet = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(() => isFreebieUnlocked("90-day-amazon-associate-roadmap"));
   const [downloading, setDownloading] = useState(false);
   const { toast } = useToast();
   const contentRef = useRef<HTMLDivElement>(null);
@@ -51,7 +52,7 @@ const LeadMagnet = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) return;
+    if (!email.trim()) return;
     setIsSubmitting(true);
     try {
       const result = await requestLeadConfirmation({
@@ -66,10 +67,8 @@ const LeadMagnet = () => {
       }
       setIsSuccess(true);
       toast({
-        title: result.alreadyConfirmed ? "Welcome back" : "Check your inbox",
-        description: result.alreadyConfirmed
-          ? "We've resent your roadmap — also ready to download below."
-          : "Click the confirmation link in your email to unlock your roadmap.",
+        title: "You\'re in",
+        description: "Your download is ready below. A copy is on its way to your inbox too.",
       });
     } finally {
       setIsSubmitting(false);
@@ -134,7 +133,7 @@ const LeadMagnet = () => {
                         Enter your details below and start building your affiliate income today.
                       </p>
                       <form onSubmit={handleSubmit} className="space-y-4">
-                        <Input placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} required className="h-12" />
+                        <Input placeholder="First name (optional)" value={name} onChange={(e) => setName(e.target.value)} className="h-12" />
                         <Input type="email" placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-12" />
                         <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="my-2" />
                         <Button type="submit" disabled={isSubmitting} className="w-full h-12 rounded-full text-base font-semibold">
@@ -156,16 +155,16 @@ const LeadMagnet = () => {
       <div ref={contentRef} style={{ position: "absolute", left: "-9999px", top: 0, width: "8.5in", background: "#fff", color: "#1a1a1a", fontFamily: "Georgia, serif", fontSize: "12pt", lineHeight: "1.8" }}>
         <div style={{ padding: "60px 50px", textAlign: "center", borderBottom: "2px solid #10b981" }}>
           <h1 style={{ fontSize: "28pt", fontWeight: "bold", marginBottom: 8, color: "#10b981" }}>90-Day Amazon Associate Roadmap</h1>
-          <p style={{ fontSize: "11pt", color: "#666" }}>by Modern Tech LLC — moderntech.store</p>
+          <p style={{ fontSize: "11pt", color: "#666" }}>by Modern Tech LLC, moderntech.store</p>
         </div>
         <div style={{ padding: "40px 50px" }}>
-          <h2 style={{ fontSize: "18pt", color: "#10b981", marginBottom: 16 }}>Days 1–30: The Foundation</h2>
+          <h2 style={{ fontSize: "18pt", color: "#10b981", marginBottom: 16 }}>Days 1-30: The Foundation</h2>
 
           <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>Week 1: Niche Selection</h3>
           <ul style={{ paddingLeft: 20 }}>
             <li>☐ Brainstorm 10 niches you're passionate about (tech, fitness, home, cooking, etc.)</li>
-            <li>☐ Research competition on Amazon — look for categories with $50–$500 products</li>
-            <li>☐ Validate with Google Trends — is interest growing or declining?</li>
+            <li>☐ Research competition on Amazon, look for categories with $50-$500 products</li>
+            <li>☐ Validate with Google Trends, is interest growing or declining?</li>
             <li>☐ Pick ONE niche. Commit for 90 days. You can always expand later.</li>
           </ul>
 
@@ -177,41 +176,41 @@ const LeadMagnet = () => {
             <li>☐ Install Google Analytics to track your traffic from day one</li>
           </ul>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>Weeks 3–4: First Content</h3>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>Weeks 3-4: First Content</h3>
           <ul style={{ paddingLeft: 20 }}>
-            <li>☐ Write 5 product review articles (1,500–2,000 words each)</li>
+            <li>☐ Write 5 product review articles (1,500-2,000 words each)</li>
             <li>☐ Create 1 "Best of" roundup post (e.g., "Best Wireless Earbuds Under $100")</li>
             <li>☐ Add affiliate links naturally within your content</li>
             <li>☐ Include comparison tables and pros/cons lists</li>
           </ul>
 
           <div className="pdf-page-break" />
-          <h2 style={{ fontSize: "18pt", color: "#10b981", marginTop: 32, marginBottom: 16 }}>Days 31–60: Traffic & SEO</h2>
+          <h2 style={{ fontSize: "18pt", color: "#10b981", marginTop: 32, marginBottom: 16 }}>Days 31-60: Traffic & SEO</h2>
 
           <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>SEO Checklist for Every Article</h3>
           <ul style={{ paddingLeft: 20 }}>
-            <li>☐ Target keyword in title, first paragraph, and 2–3 subheadings</li>
+            <li>☐ Target keyword in title, first paragraph, and 2-3 subheadings</li>
             <li>☐ Write a meta description under 160 characters with your target keyword</li>
             <li>☐ Add alt text to all images with descriptive, keyword-rich descriptions</li>
             <li>☐ Internal link to at least 2 other articles on your site</li>
-            <li>☐ Aim for 1,500+ words per article — longer content ranks better</li>
+            <li>☐ Aim for 1,500+ words per article, longer content ranks better</li>
           </ul>
 
           <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>Traffic Sources to Build</h3>
           <ul style={{ paddingLeft: 20 }}>
-            <li>☐ Pinterest — create pins for every article (use Canva for free templates)</li>
-            <li>☐ YouTube — film simple product demos with your phone</li>
-            <li>☐ Reddit — share genuine recommendations in relevant subreddits</li>
-            <li>☐ Email list — start collecting emails with a free guide (like this one!)</li>
+            <li>☐ Pinterest, create pins for every article (use Canva for free templates)</li>
+            <li>☐ YouTube, film simple product demos with your phone</li>
+            <li>☐ Reddit, share genuine recommendations in relevant subreddits</li>
+            <li>☐ Email list, start collecting emails with a free guide (like this one!)</li>
           </ul>
 
           <div className="pdf-page-break" />
-          <h2 style={{ fontSize: "18pt", color: "#10b981", marginTop: 32, marginBottom: 16 }}>Days 61–90: Scale & Monetize</h2>
+          <h2 style={{ fontSize: "18pt", color: "#10b981", marginTop: 32, marginBottom: 16 }}>Days 61-90: Scale & Monetize</h2>
 
           <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>Content Templates That Convert</h3>
-          <p><strong>"Best X for Y" posts:</strong> "Best Laptops for College Students 2026" — these rank well and convert at 3–5%.</p>
-          <p><strong>"X vs. Y" comparisons:</strong> "AirPods Pro 2 vs. Sony WF-1000XM5" — high purchase intent keywords.</p>
-          <p><strong>"How to" guides:</strong> "How to Set Up a Smart Home Under $500" — builds trust, then converts via product links.</p>
+          <p><strong>"Best X for Y" posts:</strong> "Best Laptops for College Students 2026", these rank well and convert at 3-5%.</p>
+          <p><strong>"X vs. Y" comparisons:</strong> "AirPods Pro 2 vs. Sony WF-1000XM5", high purchase intent keywords.</p>
+          <p><strong>"How to" guides:</strong> "How to Set Up a Smart Home Under $500", builds trust, then converts via product links.</p>
 
           <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>Email Funnel Blueprint</h3>
           <ol style={{ paddingLeft: 20 }}>
@@ -219,7 +218,7 @@ const LeadMagnet = () => {
             <li style={{ marginBottom: 8 }}>Set up an email capture form on every article page</li>
             <li style={{ marginBottom: 8 }}>Welcome email with your guide + your top 3 product recommendations</li>
             <li style={{ marginBottom: 8 }}>Weekly email with new reviews, deals, and seasonal roundups</li>
-            <li style={{ marginBottom: 8 }}>Track which emails drive the most clicks — double down on winners</li>
+            <li style={{ marginBottom: 8 }}>Track which emails drive the most clicks, double down on winners</li>
           </ol>
 
           <h2 style={{ fontSize: "18pt", color: "#10b981", marginTop: 32, marginBottom: 16 }}>Your 90-Day Milestones</h2>
@@ -250,7 +249,7 @@ const LeadMagnet = () => {
 
           <div style={{ marginTop: 40, padding: 20, background: "#ecfdf5", borderRadius: 8 }}>
             <p style={{ textAlign: "center", fontSize: "10pt", color: "#666" }}>
-              © 2026 Modern Tech LLC — moderntech.store<br />
+              © 2026 Modern Tech LLC, moderntech.store<br />
               This guide contains affiliate links. We may earn a commission at no extra cost to you.
             </p>
           </div>

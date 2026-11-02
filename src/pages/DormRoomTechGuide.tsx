@@ -9,10 +9,11 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { useToast } from "@/hooks/use-toast";
 import { requestLeadConfirmation } from "@/lib/leadConfirmation";
+import { isFreebieUnlocked } from "@/lib/freebies";
 import coverImg from "@/assets/pdf-covers/dorm-room-tech-cover.jpg";
 
 const benefits = [
-  "Complete dorm tech checklist — laptop, headphones, charger & more",
+  "Complete dorm tech checklist, laptop, headphones, charger & more",
   "Best picks at 3 budgets: $300 / $600 / $1,000 total setup",
   "WiFi optimization tips for shared dorm networks",
   "Desk layout diagrams for tiny dorm spaces",
@@ -24,7 +25,7 @@ const DormRoomTechGuide = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(() => isFreebieUnlocked("dorm-room-tech-setup"));
   const [downloading, setDownloading] = useState(false);
   const { toast } = useToast();
   const contentRef = useRef<HTMLDivElement>(null);
@@ -53,7 +54,7 @@ const DormRoomTechGuide = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) return;
+    if (!email.trim()) return;
     setIsSubmitting(true);
     try {
       const result = await requestLeadConfirmation({
@@ -68,10 +69,8 @@ const DormRoomTechGuide = () => {
       }
       setIsSuccess(true);
       toast({
-        title: result.alreadyConfirmed ? "Welcome back 🎓" : "Check your inbox 🎓",
-        description: result.alreadyConfirmed
-          ? "We've resent your guide — also ready to download below."
-          : "Click the confirmation link in your email to unlock your guide.",
+        title: "You\'re in 🎓",
+        description: "Your download is ready below. A copy is on its way to your inbox too.",
       });
     } finally {
       setIsSubmitting(false);
@@ -82,8 +81,8 @@ const DormRoomTechGuide = () => {
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Free Dorm Room Tech Setup Guide 2026 | Modern Tech LLC</title>
-        <meta name="description" content="Download the free Dorm Room Tech Setup Guide — complete checklist for college students. By Modern Tech LLC." />
-        <meta property="og:title" content="Free Dorm Room Tech Setup Guide 2026 — by Modern Tech LLC" />
+        <meta name="description" content="Download the free Dorm Room Tech Setup Guide, complete checklist for college students. By Modern Tech LLC." />
+        <meta property="og:title" content="Free Dorm Room Tech Setup Guide 2026, by Modern Tech LLC" />
         <meta property="og:description" content="Complete checklist for college students with laptop, headphones, charger picks at every budget." />
         <meta property="og:image" content="https://moderntech.store/images/products/dorm-room-tech-cover.jpg" />
         <meta property="og:url" content="https://moderntech.store/free-dorm-room-guide" />
@@ -102,7 +101,7 @@ const DormRoomTechGuide = () => {
               <div>
                 <div className="inline-flex items-center gap-2 bg-teal-500/10 text-teal-400 px-3 py-1.5 rounded-full text-sm font-semibold mb-6">
                   <GraduationCap className="h-4 w-4" />
-                  Free Download — College Tech
+                  Free Download: College Tech
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-foreground">
                   Ultimate Dorm Room{" "}
@@ -110,7 +109,7 @@ const DormRoomTechGuide = () => {
                 </h1>
                 <p className="text-sm text-muted-foreground mb-4 font-medium">by Modern Tech LLC</p>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  The complete tech checklist for college students — every gadget, app, and desk hack you need to crush your semester. Built for small spaces and tight budgets.
+                  The complete tech checklist for college students, every gadget, app, and desk hack you need to crush your semester. Built for small spaces and tight budgets.
                 </p>
                 <div className="mb-8 rounded-2xl overflow-hidden shadow-xl border border-border/50 max-w-xs">
                   <img src={coverImg} alt="Ultimate Dorm Room Tech Setup Guide 2026 cover" className="w-full h-auto" />
@@ -152,7 +151,7 @@ const DormRoomTechGuide = () => {
                       </div>
                       <p className="text-sm text-muted-foreground mb-6">Enter your details for instant access to the complete dorm tech checklist.</p>
                       <form onSubmit={handleSubmit} className="space-y-4">
-                        <Input placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} required className="h-12" maxLength={100} />
+                        <Input placeholder="First name (optional)" value={name} onChange={(e) => setName(e.target.value)} className="h-12" maxLength={100} />
                         <Input type="email" placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-12" maxLength={255} />
                         <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="my-2" />
                         <Button type="submit" disabled={isSubmitting} className="w-full h-12 rounded-full text-base font-semibold bg-teal-500 hover:bg-teal-600">
@@ -174,30 +173,30 @@ const DormRoomTechGuide = () => {
       <div ref={contentRef} style={{ position: "absolute", left: "-9999px", top: 0, width: "8.5in", background: "#fff", color: "#1a1a1a", fontFamily: "Georgia, serif", fontSize: "12pt", lineHeight: "1.8" }}>
         <div style={{ padding: "60px 50px", textAlign: "center", borderBottom: "2px solid #14b8a6" }}>
           <h1 style={{ fontSize: "28pt", fontWeight: "bold", marginBottom: 8, color: "#14b8a6" }}>Ultimate Dorm Room Tech Setup Guide 2026</h1>
-          <p style={{ fontSize: "11pt", color: "#666" }}>by Modern Tech LLC — moderntech.store</p>
+          <p style={{ fontSize: "11pt", color: "#666" }}>by Modern Tech LLC, moderntech.store</p>
         </div>
         <div style={{ padding: "40px 50px" }}>
           <h2 style={{ fontSize: "18pt", color: "#14b8a6", marginBottom: 16 }}>The Essential Dorm Tech Checklist</h2>
-          <p>Moving into your dorm? Here's every piece of tech you need — organized by priority so you can build your setup at any budget.</p>
+          <p>Moving into your dorm? Here's every piece of tech you need, organized by priority so you can build your setup at any budget.</p>
 
           <h3 style={{ fontSize: "14pt", color: "#14b8a6", marginTop: 24, marginBottom: 12 }}>Must-Have Tier (Start Here)</h3>
           <ul style={{ paddingLeft: 20 }}>
-            <li>✅ Laptop — MacBook Air M4 or Dell XPS 14 (our top picks)</li>
-            <li>✅ Noise-cancelling headphones — Sony WH-1000XM5 or AirPods Pro 2</li>
-            <li>✅ USB-C hub — at least 3 ports + HDMI for presentations</li>
-            <li>✅ Surge protector with USB-C PD — protect your gear & charge everything</li>
-            <li>✅ Portable charger — 10,000mAh minimum for all-day classes</li>
+            <li>✅ Laptop: MacBook Air M4 or Dell XPS 14 (our top picks)</li>
+            <li>✅ Noise-cancelling headphones: Sony WH-1000XM5 or AirPods Pro 2</li>
+            <li>✅ USB-C hub, at least 3 ports + HDMI for presentations</li>
+            <li>✅ Surge protector with USB-C PD, protect your gear & charge everything</li>
+            <li>✅ Portable charger: 10,000mAh minimum for all-day classes</li>
           </ul>
 
           <div className="pdf-page-break" />
           <h2 style={{ fontSize: "18pt", color: "#14b8a6", marginTop: 32, marginBottom: 16 }}>Budget Builds</h2>
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>$300 Budget — The Essentials</h3>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>$300 Budget: The Essentials</h3>
           <p>Chromebook ($200) + wired earbuds ($30) + USB-C hub ($25) + surge protector ($20) + phone stand ($15) + cable organizer ($10)</p>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>$600 Budget — The Sweet Spot</h3>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>$600 Budget: The Sweet Spot</h3>
           <p>Refurbished MacBook Air ($450) + AirPods ($80) + USB-C hub ($35) + LED desk lamp ($25) + portable charger ($20)</p>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>$1,000 Budget — The Full Setup</h3>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>$1,000 Budget: The Full Setup</h3>
           <p>MacBook Air M4 ($700) + Sony WH-1000XM5 ($180) + 27" monitor ($120) + webcam ($40) + mechanical keyboard ($60)</p>
 
           <div className="pdf-page-break" />
@@ -219,17 +218,17 @@ const DormRoomTechGuide = () => {
           <div className="pdf-page-break" />
           <h2 style={{ fontSize: "18pt", color: "#14b8a6", marginTop: 32, marginBottom: 16 }}>Semester Survival Apps</h2>
           <ul style={{ paddingLeft: 20 }}>
-            <li><strong>Notion</strong> — Notes, calendar, and project tracking in one app (free for students)</li>
-            <li><strong>Forest</strong> — Focus timer that gamifies studying (plant trees while you work)</li>
-            <li><strong>Quizlet</strong> — Flashcard system with AI-powered study modes</li>
-            <li><strong>Grammarly</strong> — Essay writing assistant (free tier is solid)</li>
-            <li><strong>Todoist</strong> — Task management that syncs across all devices</li>
-            <li><strong>Canva</strong> — Presentations that don't look like everyone else's (free for students)</li>
+            <li><strong>Notion</strong>: Notes, calendar, and project tracking in one app (free for students)</li>
+            <li><strong>Forest</strong>: Focus timer that gamifies studying (plant trees while you work)</li>
+            <li><strong>Quizlet</strong>: Flashcard system with AI-powered study modes</li>
+            <li><strong>Grammarly</strong>: Essay writing assistant (free tier is solid)</li>
+            <li><strong>Todoist</strong>: Task management that syncs across all devices</li>
+            <li><strong>Canva</strong>: Presentations that don't look like everyone else's (free for students)</li>
           </ul>
 
           <div style={{ marginTop: 40, padding: 20, background: "#f0fdfa", borderRadius: 8 }}>
             <p style={{ textAlign: "center", fontSize: "10pt", color: "#666" }}>
-              © 2026 Modern Tech LLC — moderntech.store<br />
+              © 2026 Modern Tech LLC, moderntech.store<br />
               This guide contains affiliate links. We may earn a commission at no extra cost to you.
             </p>
           </div>

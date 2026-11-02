@@ -82,7 +82,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
     }
     if (res.alreadyConfirmed) {
       setReady(true);
-      setStatus({ ok: true, msg: "You're already on the list. Your PDF is ready below, and a copy is on its way to your inbox." });
+      setStatus({ ok: true, msg: "You're in. Your PDF is ready below, and a copy is on its way to your inbox." });
       return;
     }
     setStatus({ ok: true, msg: "Check your inbox. Click the confirmation link and we'll bring you straight back here with your PDF." });
@@ -135,7 +135,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
         Get this week's edition as a PDF
       </h2>
       <p className="mt-2 mb-5 text-base text-muted-foreground">
-        Optional. Leave your email and we'll send a one-click confirmation, then the PDF is yours. Everything above stays
+        Optional. Leave your email and the PDF is yours right away. Everything above stays
         free to read here.
       </p>
 
@@ -169,7 +169,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
               ) : (
                 <MailCheck className="mr-2 h-4 w-4" aria-hidden="true" />
               )}
-              Send confirmation link
+              Get the PDF
             </Button>
           </div>
           <NewsletterConsent checked={optIn} onChange={setOptIn} className="mt-4" />
@@ -178,7 +178,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
             role={status && !status.ok ? "alert" : undefined}
             className={`mt-3 text-sm ${status && !status.ok ? "text-destructive" : "text-muted-foreground"}`}
           >
-            {status && !status.ok ? status.msg : "We'll email you to confirm. The PDF unlocks after one click."}
+            {status && !status.ok ? status.msg : "Your PDF unlocks as soon as you enter your email."}
           </p>
         </form>
       )}

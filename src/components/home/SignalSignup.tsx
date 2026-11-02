@@ -1,3 +1,4 @@
+import { SUBSCRIBE_CONSENT_LINE } from "@/lib/subscribers";
 import { useState } from "react";
 import { z } from "zod";
 import { Check, Loader2 } from "lucide-react";
@@ -20,10 +21,10 @@ const SignalSignup = () => {
     const parsed = schema.safeParse({ email });
     if (!parsed.success) { setStatus({ ok: false, msg: parsed.error.errors[0]?.message || "Check your email." }); return; }
     setLoading(true);
-    const res = await requestLeadConfirmation({ email: parsed.data.email, lead_magnet: LEAD_MAGNET });
+    const res = await requestLeadConfirmation({ email: parsed.data.email, lead_magnet: LEAD_MAGNET, consent: true });
     setLoading(false);
     if (!res.success) { setStatus({ ok: false, msg: res.error || "Something went wrong. Please try again." }); return; }
-    setStatus({ ok: true, msg: res.alreadyConfirmed ? ALREADY_CONFIRMED_MESSAGE : CHECK_INBOX_MESSAGE });
+    setStatus({ ok: true, msg: "You're on the list for The Edit. Watch your inbox for a quick confirmation email." });
     setEmail("");
   };
 
@@ -40,7 +41,7 @@ const SignalSignup = () => {
         </Button>
       </div>
       <p id="signal-help" role={status && !status.ok ? "alert" : undefined} className={`mt-3 text-sm ${status && !status.ok ? "text-destructive" : "text-muted-foreground"}`}>
-        {status && !status.ok ? status.msg : "The Edit, our weekly tech newsletter: one email a week. Confirm by email to join. Unsubscribe anytime."}
+        {status && !status.ok ? status.msg : SUBSCRIBE_CONSENT_LINE}
       </p>
     </form>
   );

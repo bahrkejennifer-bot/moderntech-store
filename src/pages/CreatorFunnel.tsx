@@ -1,3 +1,4 @@
+import { FREEBIE_DESTINATIONS } from "@/lib/freebies";
 import { useState } from "react";
 import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
@@ -10,7 +11,7 @@ import { toast } from "sonner";
 import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
 const leadSchema = z.object({
-  name: z.string().trim().min(1, "Please enter your first name").max(100, "Name is too long"),
+  name: z.string().trim().max(100, "Name is too long"),
   email: z.string().trim().toLowerCase().email("Please enter a valid email").max(255, "Email is too long"),
 });
 
@@ -127,8 +128,8 @@ const CreatorFunnel = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
-        <title>Creator Content Bundle — ModernTech</title>
-        <meta name="description" content="Get the complete faceless content creation system. Free Reels guide, Canva Masterclass, and Faceless YouTube Automation — or grab the bundle and save." />
+        <title>Creator Content Bundle: ModernTech</title>
+        <meta name="description" content="Get the complete faceless content creation system. Free Reels guide, Canva Masterclass, and Faceless YouTube Automation, or grab the bundle and save." />
       </Helmet>
       <Navigation />
 
@@ -141,7 +142,7 @@ const CreatorFunnel = () => {
           Start Building Better<br />Content Today
         </h1>
         <p className="font-mono text-[12px] tracking-[0.05em] max-w-xl mx-auto leading-relaxed" style={{ color: "hsl(220 15% 14% / 0.6)" }}>
-          Get the Reels Master Class free — then unlock the full system to design, create, and grow your content with confidence.
+          Get the Reels Master Class free, then unlock the full system to design, create, and grow your content with confidence.
         </p>
       </section>
 
@@ -168,7 +169,7 @@ const CreatorFunnel = () => {
                   type="text"
                   value={form.name}
                   onChange={(e) => { setForm({ ...form, name: e.target.value }); if (errors.name) setErrors({ ...errors, name: undefined }); }}
-                  placeholder="Your first name"
+                  placeholder="First name (optional)"
                   maxLength={100}
                   autoComplete="given-name"
                   aria-invalid={!!errors.name}
@@ -234,9 +235,12 @@ const CreatorFunnel = () => {
           {/* Success banner */}
           <div className="text-center mb-12 p-6 rounded-sm" style={{ backgroundColor: "hsl(140 30% 92%)", border: "0.5px solid hsl(140 30% 70% / 0.3)" }}>
             <Check className="w-6 h-6 mx-auto mb-2" style={{ color: "hsl(140 40% 40%)" }} />
-            <p className="font-serif text-lg mb-1">Your Reels Guide is on its way!</p>
-            <p className="font-mono text-[11px]" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
-              Check your inbox at <strong>{form.email}</strong>
+            <p className="font-serif text-lg mb-1">Your Reels Guide is ready.</p>
+            <a href={FREEBIE_DESTINATIONS["faceless-reels-guide"].href} className="mt-2 inline-block px-6 py-2.5 font-mono text-[11px] tracking-[0.2em] uppercase" style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(0 0% 100%)" }}>
+              Download the guide now
+            </a>
+            <p className="mt-3 font-mono text-[11px]" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
+              A copy is on its way to <strong>{form.email}</strong> too.
             </p>
           </div>
 
@@ -248,7 +252,7 @@ const CreatorFunnel = () => {
               Go Further, Faster
             </h2>
             <p className="font-mono text-[11px] max-w-lg mx-auto" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
-              You've got the Reels guide — now unlock the full system.
+              You've got the Reels guide, now unlock the full system.
             </p>
           </div>
 
@@ -276,7 +280,7 @@ const CreatorFunnel = () => {
               <Gift className="w-6 h-6 mx-auto mb-3" style={{ color: "hsl(14 50% 88%)" }} />
               <h3 className="font-serif text-xl text-center mb-1">The Complete Bundle</h3>
               <p className="font-mono text-[10px] text-center mb-4" style={{ color: "hsl(30 25% 95% / 0.5)" }}>
-                All three guides — one price
+                All three guides, one price
               </p>
               <div className="text-center mb-4">
                 <span className="font-mono text-[11px] line-through mr-2" style={{ color: "hsl(30 25% 95% / 0.4)" }}>$78</span>
@@ -306,7 +310,7 @@ const CreatorFunnel = () => {
               30-DAY MONEY-BACK GUARANTEE
             </p>
             <p className="font-mono text-[11px] max-w-md mx-auto" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
-              Not satisfied? We'll refund every penny — no questions asked.
+              Not satisfied? We'll refund every penny, no questions asked.
             </p>
           </div>
         </section>

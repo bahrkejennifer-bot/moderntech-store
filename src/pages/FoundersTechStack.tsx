@@ -18,7 +18,7 @@ const benefits = [
 ];
 
 const pillars = [
-  { icon: Cpu, label: "Hardware", desc: "Laptop, monitor, peripherals — the physical foundation" },
+  { icon: Cpu, label: "Hardware", desc: "Laptop, monitor, peripherals, the physical foundation" },
   { icon: Briefcase, label: "Software", desc: "SaaS, AI tools, and automations that run the business" },
   { icon: Zap, label: "Workflows", desc: "Step-by-step systems connecting every tool" },
   { icon: Shield, label: "Security", desc: "VPN, password manager, backup strategy" },
@@ -34,7 +34,7 @@ const FoundersTechStack = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) return;
+    if (!email.trim()) return;
     setIsSubmitting(true);
     try {
       const result = await requestLeadConfirmation({
@@ -49,10 +49,8 @@ const FoundersTechStack = () => {
       }
       setIsSuccess(true);
       toast({
-        title: result.alreadyConfirmed ? "Welcome back" : "Check your inbox",
-        description: result.alreadyConfirmed
-          ? "We've resent the latest update — you're already on the list."
-          : "Click the confirmation link in your email to join the waiting list.",
+        title: "You\'re in",
+        description: "You're on the list. We'll keep you posted by email.",
       });
     } finally {
       setIsSubmitting(false);
@@ -62,9 +60,9 @@ const FoundersTechStack = () => {
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
-        <title>Founder's Tech Stack — The Tools Behind Modern Tech | Free Guide</title>
-        <meta name="description" content="Get the exact hardware, software, and AI workflows powering a modern solopreneur business. Free guide coming soon — join the waitlist." />
-        <meta property="og:title" content="Founder's Tech Stack — Free Guide" />
+        <title>Founder's Tech Stack: The Tools Behind Modern Tech | Free Guide</title>
+        <meta name="description" content="Get the exact hardware, software, and AI workflows powering a modern solopreneur business. Free guide coming soon, join the waitlist." />
+        <meta property="og:title" content="Founder's Tech Stack: Free Guide" />
         <meta property="og:description" content="The exact tools, hardware, and AI workflows behind a profitable solo tech business." />
         <meta property="og:url" content="https://moderntech.store/founders-tech-stack" />
         <meta property="og:type" content="website" />
@@ -79,7 +77,7 @@ const FoundersTechStack = () => {
         <div className="relative max-w-3xl mx-auto px-8 pt-28 pb-24">
           {/* Pre-heading */}
           <p className="font-mono text-[9px] tracking-[0.4em] uppercase text-muted-foreground mb-8 text-center">
-            Coming Soon — Join the Waitlist
+            Coming Soon: Join the Waitlist
           </p>
 
           {/* Headline */}
@@ -92,7 +90,7 @@ const FoundersTechStack = () => {
           </h1>
 
           <p className="font-mono text-xs text-muted-foreground text-center max-w-lg mx-auto leading-relaxed mb-16">
-            Every tool, app, and piece of hardware I use to run Modern Tech LLC as a one-person operation — from the $12/mo AI tool that replaced three freelancers to the exact monitor-keyboard-mouse setup on my desk right now.
+            Every tool, app, and piece of hardware I use to run Modern Tech LLC as a one-person operation, from the $12/mo AI tool that replaced three freelancers to the exact monitor-keyboard-mouse setup on my desk right now.
           </p>
 
           {/* Pillars grid */}
@@ -136,10 +134,9 @@ const FoundersTechStack = () => {
                 </p>
                 <div className="space-y-3 mb-6">
                   <Input
-                    placeholder="First name"
+                    placeholder="First name (optional)"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    required
                     className="h-12 bg-transparent border-border font-mono text-xs placeholder:text-muted-foreground/50 rounded-none focus-visible:ring-foreground/10"
                   />
                   <Input

@@ -9,6 +9,7 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { useToast } from "@/hooks/use-toast";
 import { requestLeadConfirmation } from "@/lib/leadConfirmation";
+import { isFreebieUnlocked } from "@/lib/freebies";
 import coverImg from "@/assets/pdf-covers/screen-free-kids-cover.jpg";
 
 const benefits = [
@@ -24,7 +25,7 @@ const ScreenFreeKidsGuide = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(() => isFreebieUnlocked("screen-free-kids-tech-toys"));
   const [downloading, setDownloading] = useState(false);
   const { toast } = useToast();
   const contentRef = useRef<HTMLDivElement>(null);
@@ -53,7 +54,7 @@ const ScreenFreeKidsGuide = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) return;
+    if (!email.trim()) return;
     setIsSubmitting(true);
     try {
       const result = await requestLeadConfirmation({
@@ -68,10 +69,8 @@ const ScreenFreeKidsGuide = () => {
       }
       setIsSuccess(true);
       toast({
-        title: result.alreadyConfirmed ? "Welcome back 🧸" : "Check your inbox 🧸",
-        description: result.alreadyConfirmed
-          ? "We've resent your guide — also ready to download below."
-          : "Click the confirmation link in your email to unlock your guide.",
+        title: "You\'re in 🧸",
+        description: "Your download is ready below. A copy is on its way to your inbox too.",
       });
     } finally {
       setIsSubmitting(false);
@@ -82,8 +81,8 @@ const ScreenFreeKidsGuide = () => {
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>Free Screen-Free Kids Guide 2026 | Modern Tech LLC</title>
-        <meta name="description" content="Download the free Screen-Free Kids Guide — 10 parent-approved tech toys that teach coding, STEM & creativity. By Modern Tech LLC." />
-        <meta property="og:title" content="Free Screen-Free Kids Guide 2026 — by Modern Tech LLC" />
+        <meta name="description" content="Download the free Screen-Free Kids Guide: 10 parent-approved tech toys that teach coding, STEM & creativity. By Modern Tech LLC." />
+        <meta property="og:title" content="Free Screen-Free Kids Guide 2026, by Modern Tech LLC" />
         <meta property="og:description" content="10 parent-approved tech toys that teach coding, STEM & creativity without screens." />
         <link rel="canonical" href="https://moderntech.store/free-screen-free-kids-guide" />
         <meta name="author" content="Modern Tech LLC" />
@@ -99,7 +98,7 @@ const ScreenFreeKidsGuide = () => {
               <div>
                 <div className="inline-flex items-center gap-2 bg-yellow-500/10 text-yellow-500 px-3 py-1.5 rounded-full text-sm font-semibold mb-6">
                   <Baby className="h-4 w-4" />
-                  Free Download — Family Tech
+                  Free Download: Family Tech
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-foreground">
                   Screen-Free Kids:{" "}
@@ -108,7 +107,7 @@ const ScreenFreeKidsGuide = () => {
                 </h1>
                 <p className="text-sm text-muted-foreground mb-4 font-medium">by Modern Tech LLC</p>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Parent-approved educational tech for ages 3–12. Coding robots, audio players, STEM kits & more — no screens required. Written by parents, for parents.
+                  Parent-approved educational tech for ages 3-12. Coding robots, audio players, STEM kits & more, no screens required. Written by parents, for parents.
                 </p>
                 <div className="mb-8 rounded-2xl overflow-hidden shadow-xl border border-border/50 max-w-xs">
                   <img src={coverImg} alt="Screen-Free Kids 10 Tech Toys That Actually Teach guide cover" className="w-full h-auto" />
@@ -150,7 +149,7 @@ const ScreenFreeKidsGuide = () => {
                       </div>
                       <p className="text-sm text-muted-foreground mb-6">Enter your details for instant access to the Screen-Free Kids guide.</p>
                       <form onSubmit={handleSubmit} className="space-y-4">
-                        <Input placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} required className="h-12" maxLength={100} />
+                        <Input placeholder="First name (optional)" value={name} onChange={(e) => setName(e.target.value)} className="h-12" maxLength={100} />
                         <Input type="email" placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-12" maxLength={255} />
                         <NewsletterConsent checked={newsletterOptIn} onChange={setNewsletterOptIn} className="my-2" />
                         <Button type="submit" disabled={isSubmitting} className="w-full h-12 rounded-full text-base font-semibold bg-yellow-500 hover:bg-yellow-600 text-black">
@@ -172,45 +171,45 @@ const ScreenFreeKidsGuide = () => {
       <div ref={contentRef} style={{ position: "absolute", left: "-9999px", top: 0, width: "8.5in", background: "#fff", color: "#1a1a1a", fontFamily: "Georgia, serif", fontSize: "12pt", lineHeight: "1.8" }}>
         <div style={{ padding: "60px 50px", textAlign: "center", borderBottom: "2px solid #eab308" }}>
           <h1 style={{ fontSize: "26pt", fontWeight: "bold", marginBottom: 8, color: "#eab308" }}>Screen-Free Kids: 10 Tech Toys That Actually Teach</h1>
-          <p style={{ fontSize: "11pt", color: "#666" }}>by Modern Tech LLC — moderntech.store</p>
+          <p style={{ fontSize: "11pt", color: "#666" }}>by Modern Tech LLC, moderntech.store</p>
         </div>
         <div style={{ padding: "40px 50px" }}>
-          <h2 style={{ fontSize: "18pt", color: "#eab308", marginBottom: 16 }}>Ages 3–5: Early Learners</h2>
+          <h2 style={{ fontSize: "18pt", color: "#eab308", marginBottom: 16 }}>Ages 3-5: Early Learners</h2>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>1. Botley 2.0 Coding Robot — $45</h3>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>1. Botley 2.0 Coding Robot: $45</h3>
           <p>Screen-free coding for preschoolers. Kids press buttons on the remote to program Botley's movements, teaching sequencing and logic through play.</p>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>2. Toniebox Audio Player — $100</h3>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>2. Toniebox Audio Player: $100</h3>
           <p>A squeezable, screen-free speaker. Kids place figurines ("Tonies") on top to play stories, songs, and educational content. Perfect for bedtime and car rides.</p>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>3. LeapFrog Learning Drum — $25</h3>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>3. LeapFrog Learning Drum: $25</h3>
           <p>Musical toy that teaches numbers, letters, and rhythm. Durable, battery-powered, and engaging for toddlers who love to bang on things.</p>
 
           <div className="pdf-page-break" />
-          <h2 style={{ fontSize: "18pt", color: "#eab308", marginTop: 32, marginBottom: 16 }}>Ages 6–8: Curious Builders</h2>
+          <h2 style={{ fontSize: "18pt", color: "#eab308", marginTop: 32, marginBottom: 16 }}>Ages 6-8: Curious Builders</h2>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>4. LEGO Spike Essential — $280</h3>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>4. LEGO Spike Essential: $280</h3>
           <p>Combines LEGO building with basic coding. Kids build robots and program them with a simple drag-and-drop app. STEM learning that feels like play.</p>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>5. VTech KidiZoom Smartwatch DX3 — $45</h3>
-          <p>Dual cameras, games, fitness tracking, and a monster detector. No internet, no social media — just kid-friendly fun on their wrist.</p>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>5. VTech KidiZoom Smartwatch DX3: $45</h3>
+          <p>Dual cameras, games, fitness tracking, and a monster detector. No internet, no social media, just kid-friendly fun on their wrist.</p>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>6. Osmo Genius Starter Kit — $80</h3>
-          <p>Turns an iPad into a hands-on learning station. Physical tiles interact with the screen for math, spelling, and drawing — the best of both worlds.</p>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>6. Osmo Genius Starter Kit: $80</h3>
+          <p>Turns an iPad into a hands-on learning station. Physical tiles interact with the screen for math, spelling, and drawing, the best of both worlds.</p>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>7. Snap Circuits Jr. — $30</h3>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>7. Snap Circuits Jr.: $30</h3>
           <p>Build 100+ electronic projects with snap-together components. Kids learn about circuits, switches, and motors without soldering or screens.</p>
 
           <div className="pdf-page-break" />
-          <h2 style={{ fontSize: "18pt", color: "#eab308", marginTop: 32, marginBottom: 16 }}>Ages 9–12: Future Engineers</h2>
+          <h2 style={{ fontSize: "18pt", color: "#eab308", marginTop: 32, marginBottom: 16 }}>Ages 9-12: Future Engineers</h2>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>8. Raspberry Pi 400 Kit — $100</h3>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>8. Raspberry Pi 400 Kit: $100</h3>
           <p>A full computer built into a keyboard. Kids learn real Python programming, build games, and explore electronics. The ultimate gateway to computer science.</p>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>9. littleBits Rule Your Room Kit — $60</h3>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>9. littleBits Rule Your Room Kit: $60</h3>
           <p>Electronic building blocks that snap together magnetically. Kids create inventions like automatic door openers, room alarms, and party machines.</p>
 
-          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>10. National Geographic Mega Science Kit — $35</h3>
+          <h3 style={{ fontSize: "14pt", marginTop: 16, marginBottom: 8 }}>10. National Geographic Mega Science Kit: $35</h3>
           <p>15 hands-on science experiments including crystal growing, volcanoes, and slime. Real lab equipment and a learning guide included.</p>
 
           <div className="pdf-page-break" />
@@ -246,7 +245,7 @@ const ScreenFreeKidsGuide = () => {
 
           <div style={{ marginTop: 40, padding: 20, background: "#fef9c3", borderRadius: 8 }}>
             <p style={{ textAlign: "center", fontSize: "10pt", color: "#666" }}>
-              © 2026 Modern Tech LLC — moderntech.store<br />
+              © 2026 Modern Tech LLC, moderntech.store<br />
               This guide contains affiliate links. We may earn a commission at no extra cost to you.
             </p>
           </div>

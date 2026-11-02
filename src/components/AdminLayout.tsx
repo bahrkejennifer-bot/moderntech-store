@@ -15,8 +15,7 @@ import {
 import { NavLink } from "@/components/NavLink";
 import {
   Mail, Upload, Rocket, Play, Pin, Cpu,
-  ShoppingBag, Newspaper, Mic, Package, Settings,
-} from "lucide-react";
+  ShoppingBag, Newspaper, Mic, Package, Settings, Users } from "lucide-react";
 
 const boardroomItems = [
   { title: "Art of Modern Tech", url: "/admin/command-center", icon: Newspaper, description: "Approve & blast emails" },
@@ -26,6 +25,7 @@ const boardroomItems = [
 
 const operationsItems = [
   { title: "Email Dashboard", url: "/admin/emails", icon: Mail },
+  { title: "Subscribers", url: "/admin/subscribers", icon: Users },
   { title: "Command Center", url: "/admin/command-center", icon: Rocket },
   { title: "Episode Manager", url: "/admin/episodes", icon: Play },
   { title: "Pinterest", url: "/admin/pinterest", icon: Pin },

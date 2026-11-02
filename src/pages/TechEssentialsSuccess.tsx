@@ -1,3 +1,4 @@
+import { FREEBIE_DESTINATIONS } from "@/lib/freebies";
 import { useState, useEffect } from "react";
 import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
@@ -44,7 +45,7 @@ const TechEssentialsSuccess = () => {
     try {
       await navigator.clipboard.writeText(SENDER_EMAIL);
       setCopied(true);
-      toast.success("Copied — now paste into your contacts or safe-sender list.");
+      toast.success("Copied, now paste into your contacts or safe-sender list.");
       setTimeout(() => setCopied(false), 2500);
     } catch {
       toast.error("Couldn't copy. Long-press the address to copy manually.");
@@ -63,7 +64,7 @@ const TechEssentialsSuccess = () => {
   };
 
   const SHARE_TEXT =
-    "Modern Tech — Deliverability Card: how to whitelist info@moderntech.store and recover the 2026 Tech Essentials Guide.";
+    "Modern Tech: Deliverability Card: how to whitelist info@moderntech.store and recover the 2026 Tech Essentials Guide.";
 
   const handleCopyShareLink = async () => {
     // Primary: modern async clipboard API
@@ -71,7 +72,7 @@ const TechEssentialsSuccess = () => {
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(SHARE_URL);
         setShareCopied(true);
-        toast.success("Link copied — save it or email it to yourself for later.");
+        toast.success("Link copied, save it or email it to yourself for later.");
         setTimeout(() => setShareCopied(false), 2500);
         return;
       }
@@ -90,12 +91,12 @@ const TechEssentialsSuccess = () => {
         document.body.removeChild(ta);
         if (!ok) throw new Error("execCommand-failed");
         setShareCopied(true);
-        toast.success("Link copied — save it or email it to yourself for later.");
+        toast.success("Link copied, save it or email it to yourself for later.");
         setTimeout(() => setShareCopied(false), 2500);
         return;
       } catch {
         // Final fallback: open mailto with the link pre-filled
-        toast.message("Clipboard blocked — opening your mail app with the link instead.");
+        toast.message("Clipboard blocked, opening your mail app with the link instead.");
         handleEmailShareLink();
       }
     }
@@ -103,12 +104,12 @@ const TechEssentialsSuccess = () => {
 
   const handleEmailShareLink = () => {
     const recipient = email ? encodeURIComponent(email) : "";
-    const subject = encodeURIComponent("Modern Tech — Deliverability Card (save for later)");
+    const subject = encodeURIComponent("Modern Tech: Deliverability Card (save for later)");
     const body = encodeURIComponent(
       `${SHARE_TEXT}\n\nOpen the card here:\n${SHARE_URL}\n\nSender to whitelist: info@moderntech.store`
     );
     window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-    toast.success(email ? `Opening your mail app — pre-addressed to ${email}.` : "Opening your mail app…");
+    toast.success(email ? `Opening your mail app, pre-addressed to ${email}.` : "Opening your mail app…");
   };
 
   // Auto-scroll into view when the page is opened with the deliverability anchor
@@ -175,21 +176,21 @@ const TechEssentialsSuccess = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
-        <title>You're In — 2026 Tech Essentials Guide is on its way | Modern Tech</title>
+        <title>You're In: 2026 Tech Essentials Guide is on its way | Modern Tech</title>
         <meta
           name="description"
-          content="Your free 2026 Tech Essentials guide is on its way. Check your inbox — and unlock the Complete Creator Bundle while you're here."
+          content="Your free 2026 Tech Essentials guide is on its way. Check your inbox, and unlock the Complete Creator Bundle while you're here."
         />
         <link rel="canonical" href={`${SITE}${PATH}`} />
         <meta name="robots" content="noindex, follow" />
-        <meta property="og:title" content="You're In — 2026 Tech Essentials Guide" />
+        <meta property="og:title" content="You're In: 2026 Tech Essentials Guide" />
         <meta property="og:description" content="Your free guide is on its way. Check your inbox." />
         <meta property="og:url" content={`${SITE}${PATH}`} />
         <meta property="og:type" content="website" />
       </Helmet>
 
       <StructuredData
-        title="2026 Tech Essentials — Confirmation"
+        title="2026 Tech Essentials: Confirmation"
         description="Confirmation page for the free 2026 Tech Essentials guide email delivery."
         path={PATH}
         breadcrumbs={[
@@ -223,7 +224,7 @@ const TechEssentialsSuccess = () => {
           className="font-serif text-4xl sm:text-5xl md:text-7xl tracking-tight mb-6 sm:mb-8 max-w-3xl"
           style={{ fontWeight: 400, lineHeight: 1.05 }}
         >
-          You're in.<br />The guide<br />is on its way.
+          You're in.<br />The guide<br />is ready.
         </h1>
 
         <div
@@ -242,12 +243,19 @@ const TechEssentialsSuccess = () => {
             ) : (
               "to your inbox"
             )}{" "}
-            right now. It usually arrives within 2–3 minutes.
+            right now. It usually arrives within 2-3 minutes.
           </p>
+          <a
+            href={FREEBIE_DESTINATIONS["tech-essentials-2026"].href}
+            className="mt-6 inline-block px-8 py-3 font-mono text-[11px] tracking-[0.2em] uppercase"
+            style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(0 0% 100%)" }}
+          >
+            Open your guide now
+          </a>
         </div>
       </section>
 
-      {/* ── What to do next — hairline grid ── */}
+      {/* ── What to do next, hairline grid ── */}
       <section className="max-w-5xl mx-auto px-5 sm:px-6 pb-12 sm:pb-20">
         <div className="flex items-baseline justify-between mb-6 sm:mb-10">
           <p
@@ -318,7 +326,7 @@ const TechEssentialsSuccess = () => {
           })}
         </div>
 
-        {/* ── Resend Email — prominent, with countdown + status ── */}
+        {/* ── Resend Email, prominent, with countdown + status ── */}
         <div
           className="mt-8 sm:mt-10 p-6 sm:p-8 rounded-sm"
           style={{
@@ -348,7 +356,7 @@ const TechEssentialsSuccess = () => {
                   <>
                     We'll send it again to{" "}
                     <strong style={{ color: "hsl(220 15% 14%)" }}>{email}</strong>. Check your
-                    spam folder too — sometimes it hides there.
+                    spam folder too, sometimes it hides there.
                   </>
                 ) : (
                   <>
@@ -407,7 +415,7 @@ const TechEssentialsSuccess = () => {
                     className="font-mono text-[10px] tracking-[0.15em] uppercase"
                     style={{ color: "hsl(0 60% 45%)" }}
                   >
-                    FAILED — TRY AGAIN
+                    FAILED: TRY AGAIN
                   </p>
                 )}
                 {resendStatus === "idle" && !email && (
@@ -437,7 +445,7 @@ const TechEssentialsSuccess = () => {
                 Whitelist & Recover the 2026 Tech Essentials Guide
               </h2>
               <p className="font-mono text-[11px]" style={{ color: "hsl(220 15% 14% / 0.55)" }}>
-                Keep this for later — every step you need to fix inbox delivery in under a minute.
+                Keep this for later, every step you need to fix inbox delivery in under a minute.
               </p>
             </div>
 
@@ -496,7 +504,7 @@ const TechEssentialsSuccess = () => {
               </div>
             </div>
 
-            {/* Sender address — one-tap copy */}
+            {/* Sender address, one-tap copy */}
             <div
               className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-4 py-3 mb-5 rounded-sm"
               style={{
@@ -620,7 +628,7 @@ const TechEssentialsSuccess = () => {
 
       </section>
 
-      {/* ── Creator Bundle Upsell — editorial card ── */}
+      {/* ── Creator Bundle Upsell, editorial card ── */}
       <section className="max-w-5xl mx-auto px-5 sm:px-6 pb-20 sm:pb-28">
         <div
           className="pt-10 sm:pt-16"
@@ -646,7 +654,7 @@ const TechEssentialsSuccess = () => {
                 className="font-mono text-[12px] leading-relaxed"
                 style={{ color: "hsl(220 15% 14% / 0.6)" }}
               >
-                The Complete Creator Bundle — Reels, Canva, and YouTube master classes — for
+                The Complete Creator Bundle: Reels, Canva, and YouTube master classes, for
                 everyone ready to monetize taste, not just consume it.
               </p>
             </div>
@@ -700,9 +708,9 @@ const TechEssentialsSuccess = () => {
               style={{ borderTop: "0.5px solid hsl(30 25% 95% / 0.12)" }}
             >
               {[
-                "Reels Master Class — short-form that converts",
-                "Canva Master Class — design like a brand",
-                "YouTube Master Class — long-form growth system",
+                "Reels Master Class, short-form that converts",
+                "Canva Master Class, design like a brand",
+                "YouTube Master Class, long-form growth system",
                 "30-day money-back guarantee",
               ].map((f) => (
                 <li
@@ -742,7 +750,7 @@ const TechEssentialsSuccess = () => {
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
               style={{ color: "hsl(220 15% 14% / 0.5)" }}
             >
-              NO THANKS — BACK TO HOMEPAGE <ArrowRight className="w-3 h-3" />
+              NO THANKS: BACK TO HOMEPAGE <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
         </div>
