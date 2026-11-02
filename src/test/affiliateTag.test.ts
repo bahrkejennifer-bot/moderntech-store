@@ -12,11 +12,11 @@ const product = (affiliate_link: string, overrides: Partial<CatalogProduct> = {}
 
 describe("storefront affiliate tag", () => {
   it("rewrites the tag to the required ID while preserving the ASIN and path", () => {
-    const link = "https://www.amazon.com/dp/B0D62PMB3R?tag=moderntech02-20";
+    const link = "https://www.amazon.com/dp/B0D62PMB3R?tag=moderntechs04-20";
     const url = new URL(withAffiliateTag(link));
-    expect(url.searchParams.get("tag")).toBe("moderntechs04-20");
+    expect(url.searchParams.get("tag")).toBe("moderntech02-20");
     expect(url.pathname).toBe("/dp/B0D62PMB3R");
-    expect(url.searchParams.get("tag")).not.toBe("moderntech02-20");
+    expect(url.searchParams.get("tag")).not.toBe("moderntechs04-20");
   });
 
   it("keeps other parameters intact when rewriting the tag", () => {
