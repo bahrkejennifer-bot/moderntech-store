@@ -33,7 +33,7 @@ const Signal = () => {
     title: post.title,
     excerpt: post.excerpt ?? "",
     category: (post.category ?? "TECH").toUpperCase(),
-    slug: `/the-signal/${post.slug}`,
+    slug: `/the-edit/${post.slug}`,
   }));
 
   return (
@@ -79,7 +79,7 @@ const Signal = () => {
           </div>
         ) : entries.length === 0 ? (
           <p className="font-mono text-muted-foreground text-center" style={{ fontSize: "11px", letterSpacing: "0.15em" }}>
-            NO SIGNALS YET — CHECK BACK SOON
+            NO SIGNALS YET: CHECK BACK SOON
           </p>
         ) : (
           <div className="flex flex-col">

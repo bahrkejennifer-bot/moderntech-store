@@ -30,7 +30,7 @@ const picks = [pick("renpho-elis-1", "B01N1UX8RW"), pick("snap-circuits-jr-sc-10
 describe("The Signal PDF model", () => {
   it("maps the live edition without inventing anything", () => {
     const model = buildEditPdfModel(picks);
-    expect(model.publication).toBe("The Signal · Weekly Newsletter");
+    expect(model.publication).toBe("The Edit · Weekly Newsletter");
     expect(model.weekOf).toBe(weeklyEdition.weekOf);
     expect(model.weekOfLabel).toBe("October 11, 2026");
     expect(model.title).toBe(weeklyEdition.title);
@@ -66,7 +66,7 @@ describe("The Signal PDF model", () => {
   });
 
   it("wires the download to the route the confirmation link returns to", () => {
-    expect(EDIT_PDF_DELIVERY_PATH).toBe(`/the-signal?${EDIT_PDF_DELIVERY_PARAM}=${EDIT_PDF_DELIVERY_VALUE}`);
+    expect(EDIT_PDF_DELIVERY_PATH).toBe(`/the-edit?${EDIT_PDF_DELIVERY_PARAM}=${EDIT_PDF_DELIVERY_VALUE}`);
     // The edge function only accepts a magnet that is a short lowercase slug.
     expect(EDIT_PDF_MAGNET).toMatch(/^[a-z0-9-]{1,100}$/);
   });

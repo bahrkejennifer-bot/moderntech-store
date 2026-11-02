@@ -69,11 +69,11 @@ export async function buildEditPdf(model: EditPdfModel): Promise<EditPdf> {
   const { jsPDF } = await import("jspdf");
   const doc = new jsPDF({ unit: "pt", format: "letter", orientation: "portrait", compress: true });
   doc.setProperties({
-    title: `${model.publication} — ${model.title}`,
+    title: `${model.publication}: ${model.title}`,
     subject: `Week of ${model.weekOfLabel}`,
     author: "Modern Tech LLC",
     creator: "Modern Tech LLC",
-    keywords: "Modern Tech, The Signal, weekly newsletter, tech picks",
+    keywords: "Modern Tech, The Edit, weekly newsletter, tech picks",
   });
 
   let y = MARGIN;
@@ -148,7 +148,7 @@ export async function buildEditPdf(model: EditPdfModel): Promise<EditPdf> {
   ink(doc, FAINT);
   doc.text("MODERN TECH LLC", MARGIN, y + 7);
   y += 13;
-  doc.text("THE SIGNAL  ·  WEEKLY NEWSLETTER", MARGIN, y + 7);
+  doc.text("THE EDIT  ·  WEEKLY NEWSLETTER", MARGIN, y + 7);
   doc.setCharSpace(0);
   y += 10;
   rule(18);
