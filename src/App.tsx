@@ -62,6 +62,7 @@ import TechOfTheMonth from "./pages/TechOfTheMonth";
 import ProductRedirect from "./pages/ProductRedirect";
 import ProductDetail from "./pages/ProductDetail";
 import AdminLayout from "./components/AdminLayout";
+import AdminSubscribers from "./pages/AdminSubscribers";
 import AdminAccessButton from "./components/AdminAccessButton";
 import { NewsletterPopup } from "./components/NewsletterPopup";
 import SupportChat from "./components/SupportChat";
@@ -158,6 +159,7 @@ const App = () => (
           <Route path="/admin/pinterest" element={<AdminLayout><AdminPinterest /></AdminLayout>} />
           <Route path="/admin/tech-spec" element={<AdminLayout><AdminTechSpec /></AdminLayout>} />
           <Route path="/admin/emails" element={<AdminLayout><AdminEmails /></AdminLayout>} />
+          <Route path="/admin/subscribers" element={<AdminLayout><AdminSubscribers /></AdminLayout>} />
           <Route path="/admin/command-center" element={<AdminLayout><AdminCommandCenter /></AdminLayout>} />
           <Route path="/admin/episodes" element={<AdminLayout><AdminEpisodes /></AdminLayout>} />
           <Route path="/the-art-of-modern-tech" element={<ArtOfModernTech />} />
