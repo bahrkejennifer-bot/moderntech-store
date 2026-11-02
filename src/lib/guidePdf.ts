@@ -19,7 +19,8 @@ type Block =
 
 const clean = (s: string) =>
   s
-    .replace(/[\u2014\u2013]/g, ", ")
+    .replace(/\s*\u2014\s*/g, ", ")
+    .replace(/\u2013/g, "-")
     .replace(/[★]/g, "*")
     .replace(/[☆]/g, "-")
     .replace(/[\u2018\u2019]/g, "'")
@@ -100,7 +101,7 @@ export async function buildGuidePdf(root: Element, opts: { title: string }) {
 
   for (const b of blocks) {
     if (b.kind === "break") {
-      if (y > MARGIN + 120) newPage();
+      // Flow content continuously; html2pdf-era forced breaks left near-empty pages.
       continue;
     }
     if (b.kind === "h1") {
