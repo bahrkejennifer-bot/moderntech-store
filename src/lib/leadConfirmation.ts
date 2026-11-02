@@ -21,7 +21,8 @@ export interface RequestConfirmationResult {
 }
 
 /**
- * Double opt-in entry point for free guide signups.
+ * Free signup entry point: saves the email to the subscribers list, unlocks
+ * the freebie on screen right away, and emails a copy in the background.
  * Sends a confirmation email to the user instead of immediately
  * creating a lead_captures row or delivering the guide.
  *
