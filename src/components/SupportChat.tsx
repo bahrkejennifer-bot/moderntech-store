@@ -40,24 +40,27 @@ const SupportChat = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const loadedRef = useRef(false);
 
+  const GREETING: ChatMessage = {
+    role: "assistant",
+    content: "Hi! I'm the Modern Tech support assistant. Ask me about our guides, downloads, returns, or anything else - and if I can't help, I'll hand you over to a real person.",
+  };
+
   const openChat = () => {
     tokenRef.current = getVisitorToken();
     setIsOpen(true);
   };
 
-  // Load history once per open session
+  // Load history once per open session; greet optimistically so the panel never looks broken
   useEffect(() => {
     if (!isOpen || loadedRef.current || !tokenRef.current) return;
     loadedRef.current = true;
+    setMessages((prev) => (prev.length ? prev : [GREETING]));
     supabase.functions
       .invoke("support-chat", { body: { action: "history", visitorToken: tokenRef.current } })
       .then(({ data, error: err }) => {
         if (err) return;
         const history = (data?.messages ?? []) as ChatMessage[];
-        setMessages(history.length ? history : [{
-          role: "assistant",
-          content: "Hi! I'm the Modern Tech support assistant. Ask me about our guides, downloads, returns, or anything else - and if I can't help, I'll hand you over to a real person.",
-        }]);
+        if (history.length) setMessages(history);
         if (data?.status === "escalated") setEscalated(true);
       });
   }, [isOpen]);
