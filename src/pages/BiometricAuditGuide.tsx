@@ -41,8 +41,8 @@ const BiometricAuditGuide = () => {
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
         <title>THE BIOMETRIC AUDIT: 2026 Fitness Tracker Analysis | Modern Tech</title>
-        <meta name="description" content="A curated analysis of the fitness trackers that meet the Modern Tech standard — Apple Watch Series 10, Fitbit Charge 6 & WHOOP 4.0." />
-        <meta property="og:title" content="THE BIOMETRIC AUDIT — 2026 Fitness Tracker Analysis" />
+        <meta name="description" content="A curated analysis of the fitness trackers that meet the Modern Tech standard - Apple Watch Series 11, Fitbit Charge 6 & WHOOP 4.0." />
+        <meta property="og:title" content="THE BIOMETRIC AUDIT - 2026 Fitness Tracker Analysis" />
         <meta property="og:description" content="A study in the intersection of human performance data and wearable design. Three trackers. One standard." />
         <meta property="og:image" content="https://moderntech.store/images/products/oura-ring-4.jpg" />
         <meta property="og:url" content="https://moderntech.store/biometric-audit" />
@@ -106,7 +106,7 @@ const BiometricAuditGuide = () => {
             <PinterestSaveButton
               url="https://moderntech.store/biometric-audit"
               media={`https://moderntech.store${pinImage}`}
-              description="THE BIOMETRIC AUDIT — 2026 Wearable Health Guide. A curated analysis of the fitness trackers that meet the Modern Tech standard. Apple Watch Series 10, Fitbit Charge 6 & WHOOP 4.0. #FitnessTracker #WearableTech #Biohacking2026"
+              description="THE BIOMETRIC AUDIT - 2026 Wearable Health Guide. A curated analysis of the fitness trackers that meet the Modern Tech standard. Apple Watch Series 11, Fitbit Charge 6 & WHOOP 4.0. #FitnessTracker #WearableTech #Biohacking2026"
             />
           </div>
         </div>
@@ -150,7 +150,7 @@ const BiometricAuditGuide = () => {
           </h3>
           <div style={{ width: 40, height: 0.5, backgroundColor: "#1a1a18", marginBottom: 24 }} />
           <p style={{ fontSize: 16, color: "#3a3a35", marginBottom: 16 }}>
-            The fitness tracker market is flooded with devices that count steps and flash notifications. We're not interested in those. We're interested in the ones that understand recovery science, HRV trends, and sleep architecture — the devices that make you a better human, not just a more informed one.
+            The fitness tracker market is flooded with devices that count steps and flash notifications. We're not interested in those. We're interested in the ones that understand recovery science, HRV trends, and sleep architecture - the devices that make you a better human, not just a more informed one.
           </p>
           <p style={{ fontSize: 16, color: "#3a3a35" }}>
             We've audited the 2026 wearables market to find the only three trackers that meet the Modern Tech standard for data integrity, design, and actionable intelligence.
@@ -170,19 +170,19 @@ const BiometricAuditGuide = () => {
               01 &nbsp;// &nbsp;THE COMMAND CENTER
             </p>
             <h4 style={{ fontSize: 26, fontWeight: 400, fontStyle: "italic", marginBottom: 12 }}>
-              Apple Watch Series 10
+              Apple Watch Series 11
             </h4>
             <p style={{ fontSize: 13, fontStyle: "italic", color: "#8a8578", marginBottom: 12 }}>
               The Ecosystem Powerhouse
             </p>
             <p style={{ fontSize: 15, color: "#3a3a35", marginBottom: 8 }}>
-              <strong>The Vibe:</strong> It's not a fitness tracker — it's a health platform on your wrist. Blood oxygen, ECG, temperature sensing, crash detection. It doesn't just track your workout; it might save your life.
+              <strong>The Vibe:</strong> It's not a fitness tracker - it's a health platform on your wrist. Blood oxygen, ECG, temperature sensing, crash detection. It doesn't just track your workout; it might save your life.
             </p>
             <p style={{ fontSize: 15, color: "#3a3a35", marginBottom: 16 }}>
-              <strong>The Human Element:</strong> The new depth gauge and water temperature sensor aren't gimmicks — they're Apple's signal that this watch goes wherever you go. Mountain trail, ocean dive, or Monday morning commute.
+              <strong>The Human Element:</strong> The new depth gauge and water temperature sensor aren't gimmicks - they're Apple's signal that this watch goes wherever you go. Mountain trail, ocean dive, or Monday morning commute.
             </p>
             <a
-              href={`https://www.amazon.com/Apple-Watch-Smartwatch-Fitness-Tracker/dp/B0DGJ67YQ4?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/dp/B0FQFJ4V5M?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}
@@ -203,13 +203,13 @@ const BiometricAuditGuide = () => {
               The Value Proposition
             </p>
             <p style={{ fontSize: 15, color: "#3a3a35", marginBottom: 8 }}>
-              <strong>The Vibe:</strong> Google's first real influence on Fitbit shows. YouTube Music controls, Google Maps navigation, and Google Wallet — all on a band-style tracker that lasts 7 days. It's the smartwatch disguised as a fitness band.
+              <strong>The Vibe:</strong> Google's first real influence on Fitbit shows. YouTube Music controls, Google Maps navigation, and Google Wallet - all on a band-style tracker that lasts 7 days. It's the smartwatch disguised as a fitness band.
             </p>
             <p style={{ fontSize: 15, color: "#3a3a35", marginBottom: 16 }}>
-              <strong>The Human Element:</strong> The Daily Readiness Score tells you when to push and when to rest. It's like having a coach who actually understands periodization — at a fraction of the WHOOP price.
+              <strong>The Human Element:</strong> The Daily Readiness Score tells you when to push and when to rest. It's like having a coach who actually understands periodization - at a fraction of the WHOOP price.
             </p>
             <a
-              href={`https://www.amazon.com/Fitbit-Fitness-Tracker-Heart-Built/dp/B0CC62MKWF?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/dp/B0CC62ZG1M?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}
@@ -233,10 +233,10 @@ const BiometricAuditGuide = () => {
               <strong>The Vibe:</strong> No screen. No notifications. Just data. WHOOP strips away every distraction and focuses on one thing: optimizing your strain-recovery balance. It's the anti-smartwatch for people who are serious about performance.
             </p>
             <p style={{ fontSize: 15, color: "#3a3a35", marginBottom: 16 }}>
-              <strong>The Human Element:</strong> Sleep Coach doesn't just track your sleep — it prescribes exactly how much you need based on your next-day goals. Tell it you're running a half-marathon tomorrow and it calculates your ideal bedtime to the minute.
+              <strong>The Human Element:</strong> Sleep Coach doesn't just track your sleep - it prescribes exactly how much you need based on your next-day goals. Tell it you're running a half-marathon tomorrow and it calculates your ideal bedtime to the minute.
             </p>
             <a
-              href={`https://www.amazon.com/WHOOP-4-0-Month-Subscription-Optimization/dp/B0BXBFHWB6?tag=${AFFILIATE_TAG}`}
+              href={`https://www.amazon.com/dp/B0F7NJJL8T?tag=${AFFILIATE_TAG}`}
               target="_blank"
               rel="noopener noreferrer nofollow"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 11, letterSpacing: "0.1em", textDecoration: "underline", textUnderlineOffset: 4, color: "#1a1a18" }}
@@ -257,7 +257,7 @@ const BiometricAuditGuide = () => {
           </h3>
           <div style={{ width: 40, height: 0.5, backgroundColor: "#1a1a18", marginBottom: 24 }} />
           <p style={{ fontSize: 16, color: "#3a3a35", marginBottom: 16 }}>
-            <strong>For the all-rounder:</strong> Apple Watch Series 10. If you want health tracking, smart features, and safety tools in one device, nothing competes.
+            <strong>For the all-rounder:</strong> Apple Watch Series 11. If you want health tracking, smart features, and safety tools in one device, nothing competes.
           </p>
           <p style={{ fontSize: 16, color: "#3a3a35", marginBottom: 16 }}>
             <strong>For the budget-conscious optimizer:</strong> Fitbit Charge 6. Seven-day battery, Google integration, and genuine health insights at under $160.

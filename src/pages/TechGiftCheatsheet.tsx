@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { Download, Printer } from "lucide-react";
+import { Printer } from "lucide-react";
 import AffiliateFooter from "@/components/AffiliateFooter";
 
 // Product images
@@ -21,14 +21,16 @@ import withingsScaleImage from "@/assets/products/withings-scale.jpg";
 import jblKidsImage from "@/assets/products/jbl-jr310bt-headphones.jpg";
 import osmoImage from "@/assets/products/osmo-genius-kit.jpg";
 import vtechWatchImage from "@/assets/products/vtech-kidizoom-dx3.jpg";
-import fireTabletImage from "@/assets/products/fire-hd-10-kids-pro.jpg";
 import rocketbookImage from "@/assets/products/rocketbook-flex-planner.jpg";
 import logitechKeyboardImage from "@/assets/products/logitech-mx-keys-combo.jpg";
+
+const AFFILIATE_TAG = "moderntech02-20";
+const amazonLink = (asin: string) => `https://www.amazon.com/dp/${asin}?tag=${AFFILIATE_TAG}`;
 
 interface GiftItem {
   name: string;
   image: string;
-  price: string;
+  asin: string;
 }
 
 interface BudgetCategory {
@@ -41,77 +43,78 @@ interface BudgetCategory {
 
 const giftData: BudgetCategory[] = [
   {
-    budget: "Under $50",
+    budget: "Budget-Friendly Picks",
     forHim: [
-      { name: "Tile Pro Tracker", image: tileImage, price: "$35" },
-      { name: "Anker Power Bank", image: ankerPowerBankImage, price: "$40" },
+      { name: "Tile Pro Tracker", image: tileImage, asin: "B0D636MDW7" },
+      { name: "Anker 335 Power Bank", image: ankerPowerBankImage, asin: "B09SFS9J2K" },
     ],
     forHer: [
-      { name: "Tile Pro Tracker", image: tileImage, price: "$35" },
-      { name: "Rocketbook Planner", image: rocketbookImage, price: "$37" },
+      { name: "Tile Pro Tracker", image: tileImage, asin: "B0D636MDW7" },
+      { name: "Rocketbook Pro Planner Page Pack", image: rocketbookImage, asin: "B0B48K5SF8" },
     ],
     forKids: [
-      { name: "JBL Jr310BT Headphones", image: jblKidsImage, price: "$40" },
+      { name: "JBL JR310BT Kids Headphones", image: jblKidsImage, asin: "B08T6H648Z" },
     ],
     forCollege: [
-      { name: "Anker Power Bank", image: ankerPowerBankImage, price: "$40" },
-      { name: "Rocketbook Planner", image: rocketbookImage, price: "$37" },
+      { name: "Anker 335 Power Bank", image: ankerPowerBankImage, asin: "B09SFS9J2K" },
+      { name: "Rocketbook Pro Planner Page Pack", image: rocketbookImage, asin: "B0B48K5SF8" },
     ],
   },
   {
-    budget: "Under $100",
+    budget: "Mid-Range Picks",
     forHim: [
-      { name: "Logitech G Pro Mouse", image: logitechMouseImage, price: "$90" },
-      { name: "Fitbit Charge 6", image: fitbitImage, price: "$99" },
+      { name: "Logitech G PRO X Superlight 2", image: logitechMouseImage, asin: "B09NBWL8J5" },
+      { name: "Fitbit Charge 6", image: fitbitImage, asin: "B0CC62ZG1M" },
     ],
     forHer: [
-      { name: "Fitbit Charge 6", image: fitbitImage, price: "$99" },
-      { name: "Philips Wake-Up Light", image: philipsWakeupImage, price: "$80" },
+      { name: "Fitbit Charge 6", image: fitbitImage, asin: "B0CC62ZG1M" },
+      { name: "Philips SmartSleep Wake-Up Light", image: philipsWakeupImage, asin: "B0093162RM" },
     ],
     forKids: [
-      { name: "VTech Kidizoom DX3", image: vtechWatchImage, price: "$65" },
-      { name: "Osmo Genius Kit", image: osmoImage, price: "$99" },
+      { name: "VTech KidiZoom Smartwatch DX4", image: vtechWatchImage, asin: "B0CSCZC4GK" },
+      { name: "Osmo Genius Starter Kit", image: osmoImage, asin: "B07NHS4D4T" },
     ],
     forCollege: [
-      { name: "Echo Show 8", image: echoShowImage, price: "$85" },
-      { name: "Fitbit Charge 6", image: fitbitImage, price: "$99" },
+      { name: "Echo Show 11", image: echoShowImage, asin: "B0DC91H3JK" },
+      { name: "Fitbit Charge 6", image: fitbitImage, asin: "B0CC62ZG1M" },
     ],
   },
   {
-    budget: "Under $200",
+    budget: "Premium Picks",
     forHim: [
-      { name: "AirPods Pro 2", image: airpodsImage, price: "$189" },
-      { name: "Theragun Prime", image: theragunImage, price: "$199" },
+      { name: "AirPods Pro 2", image: airpodsImage, asin: "B0CHWRXH8B" },
+      { name: "Theragun Prime 6th Gen", image: theragunImage, asin: "B0FKCJNHWB" },
     ],
     forHer: [
-      { name: "AirPods Pro 2", image: airpodsImage, price: "$189" },
-      { name: "Withings Smart Scale", image: withingsScaleImage, price: "$100" },
+      { name: "AirPods Pro 2", image: airpodsImage, asin: "B0CHWRXH8B" },
+      { name: "Withings Body Smart Scale", image: withingsScaleImage, asin: "B0C3JNJPZ7" },
     ],
     forKids: [
-      { name: "Fire HD 10 Kids Pro", image: fireTabletImage, price: "$190" },
+      { name: "Osmo Genius Starter Kit", image: osmoImage, asin: "B07NHS4D4T" },
+      { name: "JBL JR310BT Kids Headphones", image: jblKidsImage, asin: "B08T6H648Z" },
     ],
     forCollege: [
-      { name: "AirPods Pro 2", image: airpodsImage, price: "$189" },
-      { name: "Logitech MX Keys Combo", image: logitechKeyboardImage, price: "$180" },
+      { name: "AirPods Pro 2", image: airpodsImage, asin: "B0CHWRXH8B" },
+      { name: "Logitech MX Keys S Combo", image: logitechKeyboardImage, asin: "B0BKVY4WKT" },
     ],
   },
   {
-    budget: "$200+",
+    budget: "Splurge Picks",
     forHim: [
-      { name: "Sony WH-1000XM5", image: sonyHeadphonesImage, price: "$350" },
-      { name: "Meta Quest 3", image: metaQuestImage, price: "$500" },
+      { name: "Sony WH-1000XM5", image: sonyHeadphonesImage, asin: "B09XS7JWHH" },
+      { name: "Meta Quest 3 512GB", image: metaQuestImage, asin: "B0CD1JTBSC" },
     ],
     forHer: [
-      { name: "Sony WH-1000XM5", image: sonyHeadphonesImage, price: "$350" },
-      { name: "iPad 10th Gen", image: ipadImage, price: "$349" },
+      { name: "Sony WH-1000XM5", image: sonyHeadphonesImage, asin: "B09XS7JWHH" },
+      { name: "iPad 10th Gen", image: ipadImage, asin: "B0BJLXMVMV" },
     ],
     forKids: [
-      { name: "iPad 10th Gen", image: ipadImage, price: "$349" },
-      { name: "Meta Quest 3", image: metaQuestImage, price: "$500" },
+      { name: "iPad 10th Gen", image: ipadImage, asin: "B0BJLXMVMV" },
+      { name: "Meta Quest 3 512GB", image: metaQuestImage, asin: "B0CD1JTBSC" },
     ],
     forCollege: [
-      { name: "MacBook Air M4", image: macbookImage, price: "$999" },
-      { name: "Bose QC45 Headphones", image: boseHeadphonesImage, price: "$329" },
+      { name: "MacBook Air 13-inch M4", image: macbookImage, asin: "B0DZDCLHF2" },
+      { name: "Bose QuietComfort 45", image: boseHeadphonesImage, asin: "B098FKXT8L" },
     ],
   },
 ];
@@ -121,7 +124,25 @@ const GiftCard = ({ item }: { item: GiftItem }) => (
     <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded" />
     <div className="flex-1 min-w-0">
       <p className="text-xs font-medium text-foreground truncate">{item.name}</p>
-      <p className="text-xs text-christmas-red font-semibold">{item.price}</p>
+      <a
+        href={amazonLink(item.asin)}
+        target="_blank"
+        rel="sponsored noopener noreferrer"
+        className="text-xs text-christmas-red font-semibold underline underline-offset-2"
+      >
+        Check today's price on Amazon
+      </a>
+    </div>
+  </div>
+);
+
+const AudienceColumn = ({ title, colorClass, items }: { title: string; colorClass: string; items: GiftItem[] }) => (
+  <div>
+    <h3 className={`text-sm font-semibold ${colorClass} mb-2 text-center`}>{title}</h3>
+    <div className="space-y-2">
+      {items.map((item, idx) => (
+        <GiftCard key={idx} item={item} />
+      ))}
     </div>
   </div>
 );
@@ -134,10 +155,10 @@ const TechGiftCheatsheet = () => {
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
-        <title>Tech Gift Cheatsheet 2026 | Modern Tech</title>
-        <meta name="description" content="The ultimate printable tech gift cheatsheet — top picks for him, her, kids, college students and more at every budget." />
-        <meta property="og:title" content="Tech Gift Cheatsheet 2026" />
-        <meta property="og:description" content="Printable tech gift guide with top picks for him, her, kids & college students at every budget." />
+        <title>The Ultimate 2026 Tech Gift Cheatsheet | Modern Tech</title>
+        <meta name="description" content="The ultimate printable 2026 tech gift cheatsheet - top picks for him, her, kids, college students and more at every budget." />
+        <meta property="og:title" content="The Ultimate 2026 Tech Gift Cheatsheet" />
+        <meta property="og:description" content="Printable 2026 tech gift guide with top picks for him, her, kids & college students at every budget." />
         <meta property="og:image" content="https://moderntech.store/images/products/airpods-pro-2.jpg" />
         <meta property="og:url" content="https://moderntech.store/tech-gift-cheatsheet" />
         <meta property="og:type" content="article" />
@@ -164,7 +185,7 @@ const TechGiftCheatsheet = () => {
                 🎁 Modern Tech LLC
               </div>
               <h1 className="text-3xl print:text-2xl font-bold text-foreground mb-2">
-                The Ultimate 2025 Tech Gift Cheatsheet
+                The Ultimate 2026 Tech Gift Cheatsheet
               </h1>
               <p className="text-muted-foreground">
                 Find the perfect tech gift for everyone on your list
@@ -179,38 +200,10 @@ const TechGiftCheatsheet = () => {
                     {category.budget}
                   </div>
                   <div className="grid grid-cols-4 gap-4 p-4 print:gap-2 print:p-3">
-                    <div>
-                      <h3 className="text-sm font-semibold text-christmas-green mb-2 text-center">👨 For Him</h3>
-                      <div className="space-y-2">
-                        {category.forHim.map((item, idx) => (
-                          <GiftCard key={idx} item={item} />
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-christmas-red mb-2 text-center">👩 For Her</h3>
-                      <div className="space-y-2">
-                        {category.forHer.map((item, idx) => (
-                          <GiftCard key={idx} item={item} />
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-christmas-green mb-2 text-center">👶 For Kids</h3>
-                      <div className="space-y-2">
-                        {category.forKids.map((item, idx) => (
-                          <GiftCard key={idx} item={item} />
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-christmas-red mb-2 text-center">🎓 College</h3>
-                      <div className="space-y-2">
-                        {category.forCollege.map((item, idx) => (
-                          <GiftCard key={idx} item={item} />
-                        ))}
-                      </div>
-                    </div>
+                    <AudienceColumn title="👨 For Him" colorClass="text-christmas-green" items={category.forHim} />
+                    <AudienceColumn title="👩 For Her" colorClass="text-christmas-red" items={category.forHer} />
+                    <AudienceColumn title="👶 For Kids" colorClass="text-christmas-green" items={category.forKids} />
+                    <AudienceColumn title="🎓 College" colorClass="text-christmas-red" items={category.forCollege} />
                   </div>
                 </div>
               ))}
@@ -236,38 +229,10 @@ const TechGiftCheatsheet = () => {
                     {category.budget}
                   </div>
                   <div className="grid grid-cols-4 gap-4 p-4 print:gap-2 print:p-3">
-                    <div>
-                      <h3 className="text-sm font-semibold text-christmas-green mb-2 text-center">👨 For Him</h3>
-                      <div className="space-y-2">
-                        {category.forHim.map((item, idx) => (
-                          <GiftCard key={idx} item={item} />
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-christmas-red mb-2 text-center">👩 For Her</h3>
-                      <div className="space-y-2">
-                        {category.forHer.map((item, idx) => (
-                          <GiftCard key={idx} item={item} />
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-christmas-green mb-2 text-center">👶 For Kids</h3>
-                      <div className="space-y-2">
-                        {category.forKids.map((item, idx) => (
-                          <GiftCard key={idx} item={item} />
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-christmas-red mb-2 text-center">🎓 College</h3>
-                      <div className="space-y-2">
-                        {category.forCollege.map((item, idx) => (
-                          <GiftCard key={idx} item={item} />
-                        ))}
-                      </div>
-                    </div>
+                    <AudienceColumn title="👨 For Him" colorClass="text-christmas-green" items={category.forHim} />
+                    <AudienceColumn title="👩 For Her" colorClass="text-christmas-red" items={category.forHer} />
+                    <AudienceColumn title="👶 For Kids" colorClass="text-christmas-green" items={category.forKids} />
+                    <AudienceColumn title="🎓 College" colorClass="text-christmas-red" items={category.forCollege} />
                   </div>
                 </div>
               ))}
@@ -279,10 +244,13 @@ const TechGiftCheatsheet = () => {
                 Visit us for more gift ideas and reviews
               </p>
               <p className="text-lg font-bold text-christmas-red">
-                moderntechllc.com
+                moderntech.store
               </p>
               <p className="text-xs text-muted-foreground mt-2">
                 As an Amazon Associate, I earn from qualifying purchases.
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                © 2026 Modern Tech LLC
               </p>
             </div>
           </div>
