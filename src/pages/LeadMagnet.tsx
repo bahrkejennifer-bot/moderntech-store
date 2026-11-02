@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { downloadGuidePdf } from "@/lib/guidePdf";
 import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Download, CheckCircle, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -32,16 +33,7 @@ const LeadMagnet = () => {
     if (!contentRef.current) return;
     setDownloading(true);
     try {
-      const html2pdf = (await import("html2pdf.js")).default;
-      const opt = {
-        margin: [0.5, 0.6, 0.5, 0.6] as [number, number, number, number],
-        filename: "90-Day-Amazon-Associate-Roadmap-ModernTech.pdf",
-        image: { type: "jpeg" as const, quality: 0.95 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: "in", format: "letter", orientation: "portrait" as const },
-        pagebreak: { mode: ["css", "legacy"], before: ".pdf-page-break" },
-      };
-      await html2pdf().set(opt).from(contentRef.current).save();
+      await downloadGuidePdf(contentRef.current, { title: "90 Day Amazon Associate Roadmap", filename: "90-Day-Amazon-Associate-Roadmap-ModernTech.pdf" });
       toast({ title: "Download complete", description: "Your roadmap has been saved as a PDF." });
     } catch {
       toast({ title: "Download failed", description: "Please try again.", variant: "destructive" });

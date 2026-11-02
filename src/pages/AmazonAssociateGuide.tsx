@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { downloadGuidePdf } from "@/lib/guidePdf";
 import { Helmet } from "react-helmet-async";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -49,16 +50,7 @@ const AmazonAssociateGuide = () => {
     setDownloading(true);
 
     try {
-      const html2pdf = (await import("html2pdf.js")).default;
-      const opt = {
-        margin: [0.5, 0.6, 0.5, 0.6] as [number, number, number, number],
-        filename: "Amazon-Associate-Quick-Start-Guide-ModernTech.pdf",
-        image: { type: "jpeg" as const, quality: 0.95 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: "in", format: "letter", orientation: "portrait" as const },
-        pagebreak: { mode: ["css", "legacy"], before: ".pdf-page-break" },
-      };
-      await html2pdf().set(opt).from(contentRef.current).save();
+      await downloadGuidePdf(contentRef.current, { title: "Amazon Associate Quick Start Guide", filename: "Amazon-Associate-Quick-Start-Guide-ModernTech.pdf" });
     } catch (err) {
       console.error("PDF generation error:", err);
     } finally {
