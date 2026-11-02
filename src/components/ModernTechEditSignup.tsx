@@ -35,6 +35,7 @@ export const ModernTechEditSignup = () => {
       name: parsed.data.name,
       email: parsed.data.email,
       lead_magnet: LEAD_MAGNET,
+      consent: true,
     });
     setLoading(false);
     if (!res.success) {
@@ -43,7 +44,7 @@ export const ModernTechEditSignup = () => {
     }
     setStatus({
       ok: true,
-      msg: res.alreadyConfirmed ? ALREADY_CONFIRMED_MESSAGE : CHECK_INBOX_MESSAGE,
+      msg: "You're on the list for The Edit. Watch your inbox for a quick confirmation email.",
     });
     setName("");
     setEmail("");
