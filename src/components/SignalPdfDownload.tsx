@@ -82,10 +82,10 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
     }
     if (res.alreadyConfirmed) {
       setReady(true);
-      setStatus({ ok: true, msg: "You're already on the list — your PDF is ready below, and a copy is on its way to your inbox." });
+      setStatus({ ok: true, msg: "You're already on the list. Your PDF is ready below, and a copy is on its way to your inbox." });
       return;
     }
-    setStatus({ ok: true, msg: "Check your inbox — click the confirmation link and we'll bring you straight back here with your PDF." });
+    setStatus({ ok: true, msg: "Check your inbox. Click the confirmation link and we'll bring you straight back here with your PDF." });
     setEmail("");
   };
 
@@ -96,7 +96,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
           Your PDF is ready
         </h2>
         <p className="mt-2 text-base text-muted-foreground">
-          A clean copy of this week's edition — the same picks, notes and links you're reading now.
+          A clean copy of this week's edition: the same picks, notes and links you're reading now.
         </p>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Button
@@ -135,7 +135,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
         Get this week's edition as a PDF
       </h2>
       <p className="mt-2 mb-5 text-base text-muted-foreground">
-        Optional. Leave your email and we'll send a one-click confirmation — then the PDF is yours. Everything above stays
+        Optional. Leave your email and we'll send a one-click confirmation, then the PDF is yours. Everything above stays
         free to read here.
       </p>
 
@@ -178,7 +178,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
             role={status && !status.ok ? "alert" : undefined}
             className={`mt-3 text-sm ${status && !status.ok ? "text-destructive" : "text-muted-foreground"}`}
           >
-            {status && !status.ok ? status.msg : "We'll email you to confirm — the PDF unlocks after one click."}
+            {status && !status.ok ? status.msg : "We'll email you to confirm. The PDF unlocks after one click."}
           </p>
         </form>
       )}

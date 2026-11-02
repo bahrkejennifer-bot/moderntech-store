@@ -117,6 +117,8 @@ const App = () => (
           <Route path="/productivity-family" element={<Navigate to="/kids-stem" replace />} />
 
           <Route path="/the-edit" element={<Blog />} />
+          <Route path="/the-signal" element={<Navigate to="/the-edit" replace />} />
+          <Route path="/the-signal/:slug" element={<BlogPostRedirect />} />
           <Route path="/the-edit/:slug" element={<BlogPost />} />
           <Route path="/weekly-edit" element={<Navigate to="/the-edit" replace />} />
           <Route path="/weekly-edit/:slug" element={<BlogPostRedirect />} />

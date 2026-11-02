@@ -139,7 +139,7 @@ const Index = () => {
               : <img src={heroImg} alt="Editorial lifestyle photo: a woman descending a spiral staircase carrying tulips" className="h-auto max-h-[70vh] w-full object-cover" />}</div>
             <div className="px-6 py-10 sm:px-12 md:px-16 md:py-0 lg:px-24">
               <h1 id="hero-heading" className="text-5xl leading-[0.95] tracking-tight md:text-6xl lg:text-7xl" style={{ fontWeight: 400 }}><em>The Art of</em><br />Modern Tech</h1>
-              <p className="mt-7 max-w-[420px] text-base leading-relaxed text-foreground/70 md:text-lg" style={{ ...serif, fontStyle: "italic" }}>A short, curated list of everyday tech — each with one clear benefit and one honest limitation.</p>
+              <p className="mt-7 max-w-[420px] text-base leading-relaxed text-foreground/70 md:text-lg" style={{ ...serif, fontStyle: "italic" }}>A short, curated list of everyday tech, each with one clear benefit and one honest limitation.</p>
               <Button asChild size="lg" className="mt-8 min-h-12 rounded-none px-8 text-xs uppercase tracking-[0.2em]"><a href="#selections">Shop Tech Finds <ArrowDown aria-hidden="true" className="ml-2 h-4 w-4" /></a></Button>
               <p className="mt-8 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Tech Today. Trend Tomorrow.</p>
             </div>

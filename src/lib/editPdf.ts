@@ -69,7 +69,7 @@ export async function buildEditPdf(model: EditPdfModel): Promise<EditPdf> {
   const { jsPDF } = await import("jspdf");
   const doc = new jsPDF({ unit: "pt", format: "letter", orientation: "portrait", compress: true });
   doc.setProperties({
-    title: `${model.publication} — ${model.title}`,
+    title: `${model.publication}: ${model.title}`,
     subject: `Week of ${model.weekOfLabel}`,
     author: "Modern Tech LLC",
     creator: "Modern Tech LLC",
