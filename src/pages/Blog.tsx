@@ -195,7 +195,7 @@ const Blog = () => {
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">The Edit · Weekly Newsletter</p>
           <h1 className="mt-3 print:mt-1 print:text-3xl text-5xl font-semibold tracking-tight md:text-6xl">The Edit</h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            Each week, a short, honest read on everyday tech worth knowing about — what's new, what's useful, and what to skip. Free to read here.
+            Each week, a short, honest read on everyday tech worth knowing about: what's new, what's useful, and what to skip. Free to read here.
           </p>
         </header>
 

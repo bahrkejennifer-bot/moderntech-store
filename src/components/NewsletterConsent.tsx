@@ -23,7 +23,7 @@ export function NewsletterConsent({ checked, onChange, className = "" }: Props) 
       />
       <label htmlFor={id} className="cursor-pointer text-sm leading-snug text-foreground/80">
         {NEWSLETTER_CONSENT_LABEL}
-        <span className="block text-xs text-muted-foreground">Optional — your purchase or download doesn't depend on this.</span>
+        <span className="block text-xs text-muted-foreground">Optional. Your purchase or download doesn't depend on this.</span>
       </label>
     </div>
   );
