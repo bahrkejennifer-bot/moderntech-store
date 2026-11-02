@@ -75,7 +75,7 @@ const TechEssentialsGuide = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim()) return;
+    if (!form.email.trim()) return;
     setLoading(true);
     try {
       const result = await requestLeadConfirmation({
@@ -234,7 +234,7 @@ const TechEssentialsGuide = () => {
                   type="text"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder="Your first name"
+                  placeholder="First name (optional)"
                   required
                   className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none"
                   style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}

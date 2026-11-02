@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import { requestLeadConfirmation, CHECK_INBOX_MESSAGE, ALREADY_CONFIRMED_MESSAGE } from "@/lib/leadConfirmation";
 
 const leadSchema = z.object({
-  name: z.string().trim().min(1, "Please enter your first name").max(100, "Name is too long"),
+  name: z.string().trim().max(100, "Name is too long"),
   email: z.string().trim().toLowerCase().email("Please enter a valid email").max(255, "Email is too long"),
 });
 

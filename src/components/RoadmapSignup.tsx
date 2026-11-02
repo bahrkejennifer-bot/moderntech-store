@@ -66,14 +66,18 @@ export const RoadmapSignup = () => {
                 The exact step-by-step checklist to launch, grow, and monetize your Amazon affiliate business in 90 days.
               </p>
 
+              {unlocked && (
+                <a href="/free-roadmap" className="mb-6 inline-flex h-12 items-center justify-center rounded-xl bg-primary px-8 font-bold text-primary-foreground hover:bg-primary/90">
+                  Open your roadmap
+                </a>
+              )}
               <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
                 <Input
                   type="text"
-                  placeholder="Your first name"
+                  placeholder="First name (optional)"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="h-12 rounded-xl bg-background/80 backdrop-blur-sm border-border/50 focus:border-primary text-foreground placeholder:text-muted-foreground"
-                  required
                 />
                 <Input
                   type="email"
