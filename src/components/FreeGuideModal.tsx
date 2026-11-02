@@ -1,3 +1,4 @@
+import { FREEBIE_DESTINATIONS } from "@/lib/freebies";
 import { useState } from "react";
 import { NewsletterConsent } from "@/components/NewsletterConsent";
 import {
@@ -72,6 +73,7 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
   const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [selectedGuide, setSelectedGuide] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState<null | "pending" | "already">(null);
+  const [submittedGuide, setSubmittedGuide] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,6 +93,7 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
         return;
       }
 
+      setSubmittedGuide(selectedGuide);
       setSubmitted(result.alreadyConfirmed ? "already" : "pending");
       toast.success(result.alreadyConfirmed ? ALREADY_CONFIRMED_MESSAGE : CHECK_INBOX_MESSAGE);
     } finally {
@@ -102,6 +105,7 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
     setEmail("");
     setSelectedGuide(null);
     setSubmitted(null);
+    setSubmittedGuide(null);
   };
 
   const activeGuide = guides.find((g) => g.id === selectedGuide);
@@ -115,13 +119,19 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
               <MailCheck className="h-7 w-7 text-primary" />
             </div>
             <DialogTitle className="text-2xl font-bold tracking-tight text-foreground mb-2">
-              {submitted === "already" ? "Welcome back" : "Check your inbox"}
+              Your guide is ready
             </DialogTitle>
             <p className="text-sm text-muted-foreground mb-6">
-              {submitted === "already"
-                ? `We just resent your guide to ${email}.`
-                : `We sent a confirmation link to ${email}. Click it to unlock your guide.`}
+              Open it now. A copy is on its way to {email} too.
             </p>
+            {submittedGuide && FREEBIE_DESTINATIONS[submittedGuide] && (
+              <a
+                href={FREEBIE_DESTINATIONS[submittedGuide].href}
+                className="mb-3 flex h-10 w-full items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition"
+              >
+                Open your guide
+              </a>
+            )}
             <button
               onClick={() => { reset(); onOpenChange(false); }}
               className="px-6 h-10 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition"
@@ -136,7 +146,7 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
                 Choose Your Free Guide
               </DialogTitle>
               <p className="text-sm text-muted-foreground text-center mt-2">
-                Pick a guide and we'll send a confirmation link to your inbox.
+                Pick a guide. Enter your email and it opens right away.
               </p>
             </DialogHeader>
 
@@ -178,7 +188,7 @@ export const FreeGuideModal = ({ open, onOpenChange }: FreeGuideModalProps) => {
                 {activeGuide?.title}
               </DialogTitle>
               <p className="text-sm text-muted-foreground text-center mt-2">
-                Enter your email — we'll send a one-click confirmation link.
+                Enter your email and your guide opens right away.
               </p>
             </DialogHeader>
 

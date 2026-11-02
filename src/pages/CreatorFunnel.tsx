@@ -1,3 +1,4 @@
+import { FREEBIE_DESTINATIONS } from "@/lib/freebies";
 import { useState } from "react";
 import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
@@ -234,9 +235,12 @@ const CreatorFunnel = () => {
           {/* Success banner */}
           <div className="text-center mb-12 p-6 rounded-sm" style={{ backgroundColor: "hsl(140 30% 92%)", border: "0.5px solid hsl(140 30% 70% / 0.3)" }}>
             <Check className="w-6 h-6 mx-auto mb-2" style={{ color: "hsl(140 40% 40%)" }} />
-            <p className="font-serif text-lg mb-1">Your Reels Guide is on its way!</p>
-            <p className="font-mono text-[11px]" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
-              Check your inbox at <strong>{form.email}</strong>
+            <p className="font-serif text-lg mb-1">Your Reels Guide is ready.</p>
+            <a href={FREEBIE_DESTINATIONS["faceless-reels-guide"].href} className="mt-2 inline-block px-6 py-2.5 font-mono text-[11px] tracking-[0.2em] uppercase" style={{ backgroundColor: "hsl(220 15% 14%)", color: "hsl(0 0% 100%)" }}>
+              Download the guide now
+            </a>
+            <p className="mt-3 font-mono text-[11px]" style={{ color: "hsl(220 15% 14% / 0.5)" }}>
+              A copy is on its way to <strong>{form.email}</strong> too.
             </p>
           </div>
 

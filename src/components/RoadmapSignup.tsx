@@ -11,11 +11,12 @@ export const RoadmapSignup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) {
-      toast.error("Please fill in all fields");
+    if (!email.trim()) {
+      toast.error("Please enter your email");
       return;
     }
     setIsLoading(true);
@@ -33,6 +34,7 @@ export const RoadmapSignup = () => {
       toast.success(result.alreadyConfirmed ? ALREADY_CONFIRMED_MESSAGE : CHECK_INBOX_MESSAGE);
       setName("");
       setEmail("");
+      setUnlocked(true);
     } finally {
       setIsLoading(false);
     }
