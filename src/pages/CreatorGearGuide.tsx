@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { downloadGuidePdf } from "@/lib/guidePdf";
 import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { Helmet } from "react-helmet-async";
 import { Download, CheckCircle, ArrowRight, Video, Sparkles } from "lucide-react";
@@ -34,16 +35,7 @@ const CreatorGearGuide = () => {
     if (!contentRef.current) return;
     setDownloading(true);
     try {
-      const html2pdf = (await import("html2pdf.js")).default;
-      const opt = {
-        margin: [0.5, 0.6, 0.5, 0.6] as [number, number, number, number],
-        filename: "Creator-Gear-Starter-Kit-2026-ModernTech.pdf",
-        image: { type: "jpeg" as const, quality: 0.95 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: "in", format: "letter", orientation: "portrait" as const },
-        pagebreak: { mode: ["css", "legacy"], before: ".pdf-page-break" },
-      };
-      await html2pdf().set(opt).from(contentRef.current).save();
+      await downloadGuidePdf(contentRef.current, { title: "Creator Gear Starter Kit 2026", filename: "Creator-Gear-Starter-Kit-2026-ModernTech.pdf" });
       toast({ title: "Download complete", description: "Your guide has been saved as a PDF." });
     } catch {
       toast({ title: "Download failed", description: "Please try again.", variant: "destructive" });
