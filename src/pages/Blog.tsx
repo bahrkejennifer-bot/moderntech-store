@@ -8,7 +8,7 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import SignalSignup from "@/components/home/SignalSignup";
 import SignalPdfDownload from "@/components/SignalPdfDownload";
 import { supabase } from "@/integrations/supabase/client";
-import { selections, isEligible, withAffiliateTag, type CatalogProduct } from "@/lib/curatedSelections";
+import { selections, isEligible, withAffiliateTag, withVerifiedImage, type CatalogProduct } from "@/lib/curatedSelections";
 import { weeklyEdition, MAX_WEEKLY_PICKS } from "@/lib/signalWeeklyEdition";
 import ouraRingHeroImg from "@/assets/heroes/oura-ring-hero.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
@@ -126,7 +126,7 @@ const Blog = () => {
       const { data, error } = await supabase.from("scraped_products").select("id,title,image_url,affiliate_link,is_active").in("id", chosen.map((c) => c.id));
       if (error) throw error;
       const byId = new Map((data as CatalogProduct[]).filter(isEligible).map((p) => [p.id, p]));
-      return chosen.flatMap((selection) => { const product = byId.get(selection.id); return product ? [{ selection, product }] : []; }).slice(0, MAX_WEEKLY_PICKS);
+      return chosen.flatMap((selection) => { const product = byId.get(selection.id); return product ? [{ selection, product: withVerifiedImage(selection.slug, product) }] : []; }).slice(0, MAX_WEEKLY_PICKS);
     },
     staleTime: 5 * 60 * 1000,
   });

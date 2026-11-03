@@ -15,7 +15,7 @@ import GiftFinder from "@/components/home/GiftFinder";
 import heroImg from "@/assets/hero-duality-editorial.jpg";
 import SignalSignup from "@/components/home/SignalSignup";
 
-import { selections, isEligible, withAffiliateTag, type CatalogProduct, type Selection } from "@/lib/curatedSelections";
+import { selections, isEligible, withAffiliateTag, withVerifiedImage, type CatalogProduct, type Selection } from "@/lib/curatedSelections";
 
 type Pick = { selection: Selection; product: CatalogProduct };
 
@@ -35,7 +35,7 @@ const useSelections = () => useQuery({
     const byId = new Map((data as CatalogProduct[]).filter(isEligible).map((item) => [item.id, item]));
     return selections.flatMap((selection) => {
       const product = byId.get(selection.id);
-      return product ? [{ selection, product }] : [];
+      return product ? [{ selection, product: withVerifiedImage(selection.slug, product) }] : [];
     });
   },
   staleTime: 5 * 60 * 1000,
