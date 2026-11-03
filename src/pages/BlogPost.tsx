@@ -232,12 +232,12 @@ const blogPostsData: Record<string, {
       { type: 'paragraph', content: "Whatever you choose, you're giving more than a gadget-you're giving the gift of self-knowledge and the tools to live a healthier, more intentional life." }
     ],
     products: [
-      { title: "Oura Ring Gen 4", description: "Best-in-class sleep tracking with Readiness Score and 7-day battery life", badge: "Editor's Choice", rating: 4.8, imageUrl: ouraRing4BlogImg, affiliateLink: "https://www.amazon.com/dp/B0D9WVSZ56?tag=moderntech02-20" },
-      { title: "Samsung Galaxy Ring", description: "No subscription required, seamless Samsung Health integration", badge: "Best Value", rating: 4.6, imageUrl: samsungGalaxyRingImg, affiliateLink: "https://www.amazon.com/dp/B0D3JGJ24Z?tag=moderntech02-20" },
-      { title: "Ultrahuman Ring PRO", description: "Metabolic health focus with glucose monitoring compatibility", rating: 4.5, imageUrl: ultrahumanRingImg, affiliateLink: "https://www.amazon.com/dp/B0H1N3BNJ4?tag=moderntech02-20" },
-      { title: "Withings Body Smart Scale", description: "Wi-Fi body composition scale - pairs perfectly with smart rings", rating: 4.7, imageUrl: withingsImg, affiliateLink: "https://www.amazon.com/dp/B0C3JNJPZ7?tag=moderntech02-20" },
-      { title: "Ozlo Sleepbuds 2", description: "Enhance your sleep data with better actual sleep quality", rating: 4.3, imageUrl: boseSleepImg, affiliateLink: "https://www.amazon.com/dp/B0GZSMBDYZ?tag=moderntech02-20" },
-      { title: "Philips SmartSleep Wake-up Light", description: "Sunrise alarm that works with your ring's sleep insights", rating: 4.6, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntech02-20" }
+      { title: "Oura Ring Gen 4", description: "Best-in-class sleep tracking with Readiness Score and 7-day battery life", badge: "Editor's Choice", rating: 4.8, imageUrl: ouraRing4BlogImg, affiliateLink: "https://www.amazon.com/dp/B0D9WVSZ56?tag=moderntechs04-20" },
+      { title: "Samsung Galaxy Ring", description: "No subscription required, seamless Samsung Health integration", badge: "Best Value", rating: 4.6, imageUrl: samsungGalaxyRingImg, affiliateLink: "https://www.amazon.com/dp/B0D3JGJ24Z?tag=moderntechs04-20" },
+      { title: "Ultrahuman Ring PRO", description: "Metabolic health focus with glucose monitoring compatibility", rating: 4.5, imageUrl: ultrahumanRingImg, affiliateLink: "https://www.amazon.com/dp/B0H1N3BNJ4?tag=moderntechs04-20" },
+      { title: "Withings Body Smart Scale", description: "Wi-Fi body composition scale - pairs perfectly with smart rings", rating: 4.7, imageUrl: withingsImg, affiliateLink: "https://www.amazon.com/dp/B0C3JNJPZ7?tag=moderntechs04-20" },
+      { title: "Ozlo Sleepbuds 2", description: "Enhance your sleep data with better actual sleep quality", rating: 4.3, imageUrl: boseSleepImg, affiliateLink: "https://www.amazon.com/dp/B0GZSMBDYZ?tag=moderntechs04-20" },
+      { title: "Philips SmartSleep Wake-up Light", description: "Sunrise alarm that works with your ring's sleep insights", rating: 4.6, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs04-20" }
     ]
   },
   "valentine-gift-guide-family-tech-2026": {
@@ -273,12 +273,12 @@ const blogPostsData: Record<string, {
       { type: 'paragraph', content: "Don't just give a gift. Give presence. Give attention. Give the message that says: \"I see you. I value our time together. And I'm willing to invest in what we have.\" Because the best technology doesn't demand our attention-it gives us more capacity to give our attention to the people who matter most." }
     ],
     products: [
-      { title: "Oura Ring Gen 4", description: "Ultimate health tracker-tracks sleep, stress, and readiness without a screen", badge: "Top Pick", rating: 4.8, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0D9WVSZ56?tag=moderntech02-20" },
-      { title: "Hatch Restore 2", description: "Smart sleep assistant with gentle light and sound wake-up", badge: "Better Sleep", rating: 4.7, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0C5S7K1JK?tag=moderntech02-20" },
-      { title: "Theragun Prime 6th Gen", description: "Professional-grade massage tech made quiet and easy for home use", rating: 4.7, imageUrl: theragunImg, affiliateLink: "https://www.amazon.com/dp/B0FKCJNHWB?tag=moderntech02-20" },
-      { title: "Apple Watch SE 3", description: "Family Setup lets parents stay connected to kids without a phone", badge: "Family Safety", rating: 4.8, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0HJ9ZNRKT?tag=moderntech02-20" },
-      { title: "Philips Hue White & Color Starter Kit", description: "Set the perfect romantic ambiance with millions of colors", rating: 4.8, imageUrl: philipsHueImg, affiliateLink: "https://www.amazon.com/dp/B082S4871Z?tag=moderntech02-20" },
-      { title: "August WiFi Smart Lock", description: "Peace of mind with keyless entry and remote access", rating: 4.5, imageUrl: augustLockImg, affiliateLink: "https://www.amazon.com/dp/B082VXK9CK?tag=moderntech02-20" }
+      { title: "Oura Ring Gen 4", description: "Ultimate health tracker-tracks sleep, stress, and readiness without a screen", badge: "Top Pick", rating: 4.8, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0D9WVSZ56?tag=moderntechs04-20" },
+      { title: "Hatch Restore 2", description: "Smart sleep assistant with gentle light and sound wake-up", badge: "Better Sleep", rating: 4.7, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0C5S7K1JK?tag=moderntechs04-20" },
+      { title: "Theragun Prime 6th Gen", description: "Professional-grade massage tech made quiet and easy for home use", rating: 4.7, imageUrl: theragunImg, affiliateLink: "https://www.amazon.com/dp/B0FKCJNHWB?tag=moderntechs04-20" },
+      { title: "Apple Watch SE 3", description: "Family Setup lets parents stay connected to kids without a phone", badge: "Family Safety", rating: 4.8, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0HJ9ZNRKT?tag=moderntechs04-20" },
+      { title: "Philips Hue White & Color Starter Kit", description: "Set the perfect romantic ambiance with millions of colors", rating: 4.8, imageUrl: philipsHueImg, affiliateLink: "https://www.amazon.com/dp/B082S4871Z?tag=moderntechs04-20" },
+      { title: "August WiFi Smart Lock", description: "Peace of mind with keyless entry and remote access", rating: 4.5, imageUrl: augustLockImg, affiliateLink: "https://www.amazon.com/dp/B082VXK9CK?tag=moderntechs04-20" }
     ]
   },
   "top-10-smart-home-devices-2025": {
@@ -303,16 +303,16 @@ const blogPostsData: Record<string, {
       { type: 'paragraph', content: "Embarking on your smart home journey can feel overwhelming given the vast array of devices available. However, the best approach is often to start small and strategically, based on your most pressing needs or desired benefits. If security is your top priority, a smart video doorbell or a robust security camera system is an excellent starting point." }
     ],
     products: [
-      { title: "Ring Battery Doorbell Pro", description: "1536p HD video, 3D motion detection, bird's eye view", badge: "Best Overall", rating: 4.7, imageUrl: ringDoorbellImg, affiliateLink: "https://www.amazon.com/dp/B086Q54K53?tag=moderntech02-20" },
-      { title: "Wyze Cam v3", description: "Color night vision, weather-resistant, affordable", badge: "Best Budget", rating: 4.6, imageUrl: wyzeCamImg, affiliateLink: "https://www.amazon.com/dp/B08R59YH7W?tag=moderntech02-20" },
-      { title: "Amazon Echo Show 11", description: "Smart display features, Alexa integration, home control hub", rating: 4.7, imageUrl: echoShowImg, affiliateLink: "https://www.amazon.com/dp/B0DC91H3JK?tag=moderntech02-20" },
-      { title: "Arlo Pro 4 Spotlight Camera", description: "Wire-free, 2K HDR, color night vision, integrated spotlight", rating: 4.5, imageUrl: arloProImg, affiliateLink: "https://www.amazon.com/dp/B08L75YWZK?tag=moderntech02-20" },
-      { title: "August WiFi Smart Lock", description: "Keyless entry, remote access, auto-lock features", rating: 4.5, imageUrl: augustLockImg, affiliateLink: "https://www.amazon.com/dp/B082VXK9CK?tag=moderntech02-20" },
-      { title: "Kidde Smart CO Detector & Air Monitor", description: "WiFi smart alerts, Alexa compatible, voice warnings", badge: "Safety Essential", rating: 4.7, imageUrl: kiddeDetectorImg, affiliateLink: "https://www.amazon.com/dp/B0BZQFGG64?tag=moderntech02-20" },
-      { title: "Google Nest Protect", description: "Split-spectrum sensor, app alerts, pathway lighting", rating: 4.8, imageUrl: nestProtectImg, affiliateLink: "https://www.amazon.com/dp/B00XV1RCRY?tag=moderntech02-20" },
-      { title: "Philips Hue White & Color Starter Kit", description: "Millions of colors, voice control, schedules, smart hub included", badge: "Smart Lighting", rating: 4.8, imageUrl: philipsHueImg, affiliateLink: "https://www.amazon.com/dp/B082S4871Z?tag=moderntech02-20" },
-      { title: "Philips SmartSleep Wake-Up Light", description: "Sunrise simulation, natural wake-up, sleep sounds", rating: 4.5, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntech02-20" },
-      { title: "TP-Link WiFi 6 Router AX3000", description: "Fast connectivity, whole-home coverage, mesh capable", rating: 4.6, imageUrl: tplinkRouterImg, affiliateLink: "https://www.amazon.com/dp/B09G5W9R6R?tag=moderntech02-20" }
+      { title: "Ring Battery Doorbell Pro", description: "1536p HD video, 3D motion detection, bird's eye view", badge: "Best Overall", rating: 4.7, imageUrl: ringDoorbellImg, affiliateLink: "https://www.amazon.com/dp/B086Q54K53?tag=moderntechs04-20" },
+      { title: "Wyze Cam v3", description: "Color night vision, weather-resistant, affordable", badge: "Best Budget", rating: 4.6, imageUrl: wyzeCamImg, affiliateLink: "https://www.amazon.com/dp/B08R59YH7W?tag=moderntechs04-20" },
+      { title: "Amazon Echo Show 11", description: "Smart display features, Alexa integration, home control hub", rating: 4.7, imageUrl: echoShowImg, affiliateLink: "https://www.amazon.com/dp/B0DC91H3JK?tag=moderntechs04-20" },
+      { title: "Arlo Pro 4 Spotlight Camera", description: "Wire-free, 2K HDR, color night vision, integrated spotlight", rating: 4.5, imageUrl: arloProImg, affiliateLink: "https://www.amazon.com/dp/B08L75YWZK?tag=moderntechs04-20" },
+      { title: "August WiFi Smart Lock", description: "Keyless entry, remote access, auto-lock features", rating: 4.5, imageUrl: augustLockImg, affiliateLink: "https://www.amazon.com/dp/B082VXK9CK?tag=moderntechs04-20" },
+      { title: "Kidde Smart CO Detector & Air Monitor", description: "WiFi smart alerts, Alexa compatible, voice warnings", badge: "Safety Essential", rating: 4.7, imageUrl: kiddeDetectorImg, affiliateLink: "https://www.amazon.com/dp/B0BZQFGG64?tag=moderntechs04-20" },
+      { title: "Google Nest Protect", description: "Split-spectrum sensor, app alerts, pathway lighting", rating: 4.8, imageUrl: nestProtectImg, affiliateLink: "https://www.amazon.com/dp/B00XV1RCRY?tag=moderntechs04-20" },
+      { title: "Philips Hue White & Color Starter Kit", description: "Millions of colors, voice control, schedules, smart hub included", badge: "Smart Lighting", rating: 4.8, imageUrl: philipsHueImg, affiliateLink: "https://www.amazon.com/dp/B082S4871Z?tag=moderntechs04-20" },
+      { title: "Philips SmartSleep Wake-Up Light", description: "Sunrise simulation, natural wake-up, sleep sounds", rating: 4.5, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs04-20" },
+      { title: "TP-Link WiFi 6 Router AX3000", description: "Fast connectivity, whole-home coverage, mesh capable", rating: 4.6, imageUrl: tplinkRouterImg, affiliateLink: "https://www.amazon.com/dp/B09G5W9R6R?tag=moderntechs04-20" }
     ]
   },
   "best-gaming-monitors-under-500": {
@@ -336,12 +336,12 @@ const blogPostsData: Record<string, {
       { type: 'paragraph', content: "While response time measures pixel transitions, input lag measures the entire chain of events from your action to the screen response. For competitive gaming, low input lag is paramount-even a few milliseconds of extra delay can mean the difference between landing a headshot or being eliminated." }
     ],
     products: [
-      { title: "Samsung Odyssey OLED G9", description: "Ultra-wide curved OLED, 240Hz refresh rate, stunning visuals", badge: "Premium Choice", rating: 4.8, imageUrl: samsungOdysseyImg, affiliateLink: "https://www.amazon.com/dp/B0DSGJRKCR?tag=moderntech02-20" },
-      { title: "ASUS ROG PG27AQDP", description: "Fast response time, vibrant OLED display, competitive gaming", rating: 4.7, imageUrl: asusRogImg, affiliateLink: "https://www.amazon.com/dp/B0D7NXSQ44?tag=moderntech02-20" },
-      { title: "Razer Basilisk V3 35K Mouse", description: "Precision gaming mouse, customizable buttons, high DPI", rating: 4.6, imageUrl: razerMouseImg, affiliateLink: "https://www.amazon.com/dp/B0DG7LDR38?tag=moderntech02-20" },
-      { title: "SteelSeries Arctis Nova Pro Wireless", description: "Premium gaming headset, spatial audio, comfort", rating: 4.7, imageUrl: steelseriesImg, affiliateLink: "https://www.amazon.com/dp/B09ZYC22HZ?tag=moderntech02-20" },
-      { title: "Logitech G PRO X Superlight 2", description: "Ultra-lightweight wireless gaming mouse, pro-level performance", rating: 4.8, imageUrl: logitechMouseImg, affiliateLink: "https://www.amazon.com/dp/B09NBWL8J5?tag=moderntech02-20" },
-      { title: "Xbox Series X Bundle", description: "Next-gen console gaming, Game Pass, powerful hardware", rating: 4.8, imageUrl: xboxImg, affiliateLink: "https://www.amazon.com/dp/B08H75RTZ8?tag=moderntech02-20" }
+      { title: "Samsung Odyssey OLED G9", description: "Ultra-wide curved OLED, 240Hz refresh rate, stunning visuals", badge: "Premium Choice", rating: 4.8, imageUrl: samsungOdysseyImg, affiliateLink: "https://www.amazon.com/dp/B0DSGJRKCR?tag=moderntechs04-20" },
+      { title: "ASUS ROG PG27AQDP", description: "Fast response time, vibrant OLED display, competitive gaming", rating: 4.7, imageUrl: asusRogImg, affiliateLink: "https://www.amazon.com/dp/B0D7NXSQ44?tag=moderntechs04-20" },
+      { title: "Razer Basilisk V3 35K Mouse", description: "Precision gaming mouse, customizable buttons, high DPI", rating: 4.6, imageUrl: razerMouseImg, affiliateLink: "https://www.amazon.com/dp/B0DG7LDR38?tag=moderntechs04-20" },
+      { title: "SteelSeries Arctis Nova Pro Wireless", description: "Premium gaming headset, spatial audio, comfort", rating: 4.7, imageUrl: steelseriesImg, affiliateLink: "https://www.amazon.com/dp/B09ZYC22HZ?tag=moderntechs04-20" },
+      { title: "Logitech G PRO X Superlight 2", description: "Ultra-lightweight wireless gaming mouse, pro-level performance", rating: 4.8, imageUrl: logitechMouseImg, affiliateLink: "https://www.amazon.com/dp/B09NBWL8J5?tag=moderntechs04-20" },
+      { title: "Xbox Series X Bundle", description: "Next-gen console gaming, Game Pass, powerful hardware", rating: 4.8, imageUrl: xboxImg, affiliateLink: "https://www.amazon.com/dp/B08H75RTZ8?tag=moderntechs04-20" }
     ]
   },
   "wireless-earbuds-comparison-2025": {
@@ -366,12 +366,12 @@ const blogPostsData: Record<string, {
       { type: 'list', items: ["**IPX4**: Splash-proof, handles sweat and light rain", "**IPX5**: Resistant to sustained low-pressure water jets", "**IPX7**: Can be submerged up to 1 meter for 30 minutes"] }
     ],
     products: [
-      { title: "Apple AirPods Pro (2nd Gen)", description: "Active noise cancellation, spatial audio, seamless Apple integration", badge: "Best for iPhone", rating: 4.8, imageUrl: airpodsImg, affiliateLink: "https://www.amazon.com/dp/B0D1XD1ZV3?tag=moderntech02-20" },
-      { title: "Samsung Galaxy Buds2 Pro", description: "Intelligent ANC, 360 audio, Android optimization", badge: "Best for Samsung", rating: 4.6, imageUrl: galaxyBudsImg, affiliateLink: "https://www.amazon.com/dp/B0B2SH4CN6?tag=moderntech02-20" },
-      { title: "Google Nest WiFi Pro 6E", description: "Next-gen WiFi, whole-home coverage, easy setup", rating: 4.5, imageUrl: nestWifiImg, affiliateLink: "https://www.amazon.com/dp/B0BCQS55N6?tag=moderntech02-20" },
-      { title: "Acer S2 3-in-1 Charging Station", description: "Wireless charging for multiple devices simultaneously", rating: 4.4, imageUrl: acerChargingImg, affiliateLink: "https://www.amazon.com/dp/B0F1CRLQPN?tag=moderntech02-20" },
-      { title: "TP-Link WiFi 6 Router AX3000", description: "Fast connectivity for all devices, mesh capability", rating: 4.6, imageUrl: tplinkRouterImg, affiliateLink: "https://www.amazon.com/dp/B09G5W9R6R?tag=moderntech02-20" },
-      { title: "Tile Pro 2024 Bluetooth Tracker", description: "Powerful key finder, long range, iOS & Android compatible", rating: 4.5, imageUrl: tileProImg, affiliateLink: "https://www.amazon.com/dp/B0D636MDW7?tag=moderntech02-20" }
+      { title: "Apple AirPods Pro (2nd Gen)", description: "Active noise cancellation, spatial audio, seamless Apple integration", badge: "Best for iPhone", rating: 4.8, imageUrl: airpodsImg, affiliateLink: "https://www.amazon.com/dp/B0D1XD1ZV3?tag=moderntechs04-20" },
+      { title: "Samsung Galaxy Buds2 Pro", description: "Intelligent ANC, 360 audio, Android optimization", badge: "Best for Samsung", rating: 4.6, imageUrl: galaxyBudsImg, affiliateLink: "https://www.amazon.com/dp/B0B2SH4CN6?tag=moderntechs04-20" },
+      { title: "Google Nest WiFi Pro 6E", description: "Next-gen WiFi, whole-home coverage, easy setup", rating: 4.5, imageUrl: nestWifiImg, affiliateLink: "https://www.amazon.com/dp/B0BCQS55N6?tag=moderntechs04-20" },
+      { title: "Acer S2 3-in-1 Charging Station", description: "Wireless charging for multiple devices simultaneously", rating: 4.4, imageUrl: acerChargingImg, affiliateLink: "https://www.amazon.com/dp/B0F1CRLQPN?tag=moderntechs04-20" },
+      { title: "TP-Link WiFi 6 Router AX3000", description: "Fast connectivity for all devices, mesh capability", rating: 4.6, imageUrl: tplinkRouterImg, affiliateLink: "https://www.amazon.com/dp/B09G5W9R6R?tag=moderntechs04-20" },
+      { title: "Tile Pro 2024 Bluetooth Tracker", description: "Powerful key finder, long range, iOS & Android compatible", rating: 4.5, imageUrl: tileProImg, affiliateLink: "https://www.amazon.com/dp/B0D636MDW7?tag=moderntechs04-20" }
     ]
   },
   "tech-essentials-college-students": {
@@ -389,12 +389,12 @@ const blogPostsData: Record<string, {
       { type: 'list', items: ["**Cloud Storage**: Google Drive, Dropbox, or OneDrive for backup and access from any device", "**Note-Taking Apps**: OneNote, Evernote, or Apple Notes for organizing lecture notes", "**Reference Managers**: Zotero or Mendeley for organizing research papers and citations", "**Collaboration Tools**: Google Docs, Microsoft Office Online, or Slack for group projects", "**Calendar & Task Management**: Google Calendar, Todoist, or Apple Reminders for deadlines"] }
     ],
     products: [
-      { title: "MacBook Air 13-inch M4", description: "Powerful M4 chip, all-day battery, lightweight design", badge: "Best Laptop", rating: 4.9, imageUrl: macbookImg, affiliateLink: "https://www.amazon.com/dp/B0DZDCLHF2?tag=moderntech02-20" },
-      { title: "Apple iPad 10th Generation", description: "Versatile tablet, note-taking, digital textbooks", badge: "Perfect for Lectures", rating: 4.7, imageUrl: ipadImg, affiliateLink: "https://www.amazon.com/dp/B0BJLXMVMV?tag=moderntech02-20" },
-      { title: "Logitech MX Keys Combo", description: "Keyboard and mouse combo, ergonomic, productivity boost", rating: 4.7, imageUrl: logitechKeysImg, affiliateLink: "https://www.amazon.com/dp/B0BKVY4WKT?tag=moderntech02-20" },
-      { title: "Rocketbook Pro Planner", description: "Scannable reusable planner, cloud sync, eco-friendly", rating: 4.5, imageUrl: rocketbookImg, affiliateLink: "https://www.amazon.com/dp/B0B48K5SF8?tag=moderntech02-20" },
-      { title: "Anker 335 Power Bank 20,000mAh", description: "High-capacity portable charger, multiple devices, fast charging", rating: 4.7, imageUrl: ankerPowerImg, affiliateLink: "https://www.amazon.com/dp/B09SFS9J2K?tag=moderntech02-20" },
-      { title: "Bose QuietComfort 45", description: "Premium noise-canceling headphones, study focus, comfort", rating: 4.7, imageUrl: boseQcImg, affiliateLink: "https://www.amazon.com/dp/B098FKXT8L?tag=moderntech02-20" }
+      { title: "MacBook Air 13-inch M4", description: "Powerful M4 chip, all-day battery, lightweight design", badge: "Best Laptop", rating: 4.9, imageUrl: macbookImg, affiliateLink: "https://www.amazon.com/dp/B0DZDCLHF2?tag=moderntechs04-20" },
+      { title: "Apple iPad 10th Generation", description: "Versatile tablet, note-taking, digital textbooks", badge: "Perfect for Lectures", rating: 4.7, imageUrl: ipadImg, affiliateLink: "https://www.amazon.com/dp/B0BJLXMVMV?tag=moderntechs04-20" },
+      { title: "Logitech MX Keys Combo", description: "Keyboard and mouse combo, ergonomic, productivity boost", rating: 4.7, imageUrl: logitechKeysImg, affiliateLink: "https://www.amazon.com/dp/B0BKVY4WKT?tag=moderntechs04-20" },
+      { title: "Rocketbook Pro Planner", description: "Scannable reusable planner, cloud sync, eco-friendly", rating: 4.5, imageUrl: rocketbookImg, affiliateLink: "https://www.amazon.com/dp/B0B48K5SF8?tag=moderntechs04-20" },
+      { title: "Anker 335 Power Bank 20,000mAh", description: "High-capacity portable charger, multiple devices, fast charging", rating: 4.7, imageUrl: ankerPowerImg, affiliateLink: "https://www.amazon.com/dp/B09SFS9J2K?tag=moderntechs04-20" },
+      { title: "Bose QuietComfort 45", description: "Premium noise-canceling headphones, study focus, comfort", rating: 4.7, imageUrl: boseQcImg, affiliateLink: "https://www.amazon.com/dp/B098FKXT8L?tag=moderntechs04-20" }
     ]
   },
   "best-fitness-trackers-every-budget": {
@@ -414,11 +414,11 @@ const blogPostsData: Record<string, {
       { type: 'list', items: ["**Running/Cycling**: Prioritize GPS accuracy and pace metrics", "**Weight Training**: Look for rep counting and workout logging", "**General Wellness**: Focus on sleep tracking and stress monitoring", "**Weight Loss**: Choose accurate calorie tracking and food logging integration"] }
     ],
     products: [
-      { title: "Fitbit Charge 6", description: "Affordable fitness tracking, heart rate, sleep monitoring", badge: "Best Value", rating: 4.5, imageUrl: fitbitImg, affiliateLink: "https://www.amazon.com/dp/B0CC62ZG1M?tag=moderntech02-20" },
-      { title: "Bantam Mini Massage Gun", description: "Recovery tool, muscle relief, portable design", rating: 4.6, imageUrl: ekrinImg, affiliateLink: "https://www.amazon.com/dp/B08M8P7ZVD?tag=moderntech02-20" },
-      { title: "Withings Body+ Smart Scale", description: "WiFi-connected scale, body composition, health tracking", rating: 4.5, imageUrl: withingsImg, affiliateLink: "https://www.amazon.com/dp/B071XW4C5Q?tag=moderntech02-20" },
-      { title: "Philips SmartSleep Wake-Up Light", description: "Sunrise simulation, better sleep quality, natural wake-up", rating: 4.5, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntech02-20" },
-      { title: "Noise Blocking Sleep Earbuds", description: "Sleep, game & music modes, 7-hour battery, slim fit for side sleepers", rating: 4.3, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0DCVX154M?tag=moderntech02-20" }
+      { title: "Fitbit Charge 6", description: "Affordable fitness tracking, heart rate, sleep monitoring", badge: "Best Value", rating: 4.5, imageUrl: fitbitImg, affiliateLink: "https://www.amazon.com/dp/B0CC62ZG1M?tag=moderntechs04-20" },
+      { title: "Bantam Mini Massage Gun", description: "Recovery tool, muscle relief, portable design", rating: 4.6, imageUrl: ekrinImg, affiliateLink: "https://www.amazon.com/dp/B08M8P7ZVD?tag=moderntechs04-20" },
+      { title: "Withings Body+ Smart Scale", description: "WiFi-connected scale, body composition, health tracking", rating: 4.5, imageUrl: withingsImg, affiliateLink: "https://www.amazon.com/dp/B071XW4C5Q?tag=moderntechs04-20" },
+      { title: "Philips SmartSleep Wake-Up Light", description: "Sunrise simulation, better sleep quality, natural wake-up", rating: 4.5, imageUrl: philipsWakeupImg, affiliateLink: "https://www.amazon.com/dp/B0093162RM?tag=moderntechs04-20" },
+      { title: "Noise Blocking Sleep Earbuds", description: "Sleep, game & music modes, 7-hour battery, slim fit for side sleepers", rating: 4.3, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B0DCVX154M?tag=moderntechs04-20" }
     ]
   },
   "educational-tech-kids-parents-guide": {
@@ -438,11 +438,11 @@ const blogPostsData: Record<string, {
       { type: 'paragraph', content: "Educational tech that incorporates Science, Technology, Engineering, and Math (STEM) concepts prepares children for future careers while developing critical thinking, problem-solving, and creativity. Coding toys, robotics kits, and science experiments make learning hands-on and engaging." }
     ],
     products: [
-      { title: "JBL JR310BT Kids Headphones", description: "Volume-limited, wireless, comfortable for small ears", badge: "Safe Listening", rating: 4.6, imageUrl: jblKidsImg, affiliateLink: "https://www.amazon.com/dp/B08T6H648Z?tag=moderntech02-20" },
-      { title: "Osmo Genius Starter Kit", description: "Interactive learning, combines physical and digital play", badge: "STEM Learning", rating: 4.7, imageUrl: osmoImg, affiliateLink: "https://www.amazon.com/dp/B07NHS4D4T?tag=moderntech02-20" },
-      { title: "LeapFrog Learning Friends 100 Words Book", description: "Educational tablet for toddlers, songs and games", rating: 4.5, imageUrl: leapfrogImg, affiliateLink: "https://www.amazon.com/dp/B07B6ZN7P8?tag=moderntech02-20" },
-      { title: "VTech KidiZoom Smartwatch DX4", description: "Kids smartwatch, games, camera, learning activities", rating: 4.4, imageUrl: vtechImg, affiliateLink: "https://www.amazon.com/dp/B0CSCZC4GK?tag=moderntech02-20" },
-      { title: "Ruko 1088 Smart Robot", description: "Programmable robot, STEM learning, voice control", rating: 4.5, imageUrl: rukoRobotImg, affiliateLink: "https://www.amazon.com/dp/B085WPHTHW?tag=moderntech02-20" }
+      { title: "JBL JR310BT Kids Headphones", description: "Volume-limited, wireless, comfortable for small ears", badge: "Safe Listening", rating: 4.6, imageUrl: jblKidsImg, affiliateLink: "https://www.amazon.com/dp/B08T6H648Z?tag=moderntechs04-20" },
+      { title: "Osmo Genius Starter Kit", description: "Interactive learning, combines physical and digital play", badge: "STEM Learning", rating: 4.7, imageUrl: osmoImg, affiliateLink: "https://www.amazon.com/dp/B07NHS4D4T?tag=moderntechs04-20" },
+      { title: "LeapFrog Learning Friends 100 Words Book", description: "Educational tablet for toddlers, songs and games", rating: 4.5, imageUrl: leapfrogImg, affiliateLink: "https://www.amazon.com/dp/B07B6ZN7P8?tag=moderntechs04-20" },
+      { title: "VTech KidiZoom Smartwatch DX4", description: "Kids smartwatch, games, camera, learning activities", rating: 4.4, imageUrl: vtechImg, affiliateLink: "https://www.amazon.com/dp/B0CSCZC4GK?tag=moderntechs04-20" },
+      { title: "Ruko 1088 Smart Robot", description: "Programmable robot, STEM learning, voice control", rating: 4.5, imageUrl: rukoRobotImg, affiliateLink: "https://www.amazon.com/dp/B085WPHTHW?tag=moderntechs04-20" }
     ]
   },
   "st-patricks-day-tech-deals-2026": {
@@ -472,12 +472,12 @@ const blogPostsData: Record<string, {
       { type: 'paragraph', content: "Spring 2026 is shaping up to be one of the best early-year shopping events for tech. Whether you're treating yourself or getting a head start on gifts, these deals represent **real savings on products we've tested and recommend**. Don't wait for Prime Day - the savings are here right now." }
     ],
     products: [
-      { title: "Sony WH-1000XM5", description: "Industry-leading noise cancellation, 30-hour battery life", badge: "Best Deal", rating: 4.8, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B09XS7JWHH?tag=moderntech02-20" },
-      { title: "AirPods Pro 2 (USB-C)", description: "Adaptive transparency, spatial audio, USB-C charging", badge: "$50 Off", rating: 4.7, imageUrl: airpodsImg, affiliateLink: "https://www.amazon.com/dp/B0CHWRXH8B?tag=moderntech02-20" },
-      { title: "Philips Hue Starter Kit", description: "4 smart bulbs + bridge, 30% off this spring", badge: "30% Off", rating: 4.6, imageUrl: philipsHueImg, affiliateLink: "https://www.amazon.com/dp/B082S4871Z?tag=moderntech02-20" },
-      { title: "Meta Quest 3 512GB", description: "Standalone VR headset with free game bundle included", rating: 4.7, imageUrl: metaQuestImg, affiliateLink: "https://www.amazon.com/dp/B0CD1JTBSC?tag=moderntech02-20" },
-      { title: "Fitbit Charge 6", description: "Advanced health tracking with built-in GPS, 25% off", badge: "25% Off", rating: 4.5, imageUrl: fitbitImg, affiliateLink: "https://www.amazon.com/dp/B0CC62ZG1M?tag=moderntech02-20" },
-      { title: "Logitech G PRO X Superlight 2", description: "Ultra-lightweight wireless gaming mouse, lowest price of 2026", rating: 4.8, imageUrl: logitechMouseImg, affiliateLink: "https://www.amazon.com/dp/B09NBWL8J5?tag=moderntech02-20" }
+      { title: "Sony WH-1000XM5", description: "Industry-leading noise cancellation, 30-hour battery life", badge: "Best Deal", rating: 4.8, imageUrl: "", affiliateLink: "https://www.amazon.com/dp/B09XS7JWHH?tag=moderntechs04-20" },
+      { title: "AirPods Pro 2 (USB-C)", description: "Adaptive transparency, spatial audio, USB-C charging", badge: "$50 Off", rating: 4.7, imageUrl: airpodsImg, affiliateLink: "https://www.amazon.com/dp/B0CHWRXH8B?tag=moderntechs04-20" },
+      { title: "Philips Hue Starter Kit", description: "4 smart bulbs + bridge, 30% off this spring", badge: "30% Off", rating: 4.6, imageUrl: philipsHueImg, affiliateLink: "https://www.amazon.com/dp/B082S4871Z?tag=moderntechs04-20" },
+      { title: "Meta Quest 3 512GB", description: "Standalone VR headset with free game bundle included", rating: 4.7, imageUrl: metaQuestImg, affiliateLink: "https://www.amazon.com/dp/B0CD1JTBSC?tag=moderntechs04-20" },
+      { title: "Fitbit Charge 6", description: "Advanced health tracking with built-in GPS, 25% off", badge: "25% Off", rating: 4.5, imageUrl: fitbitImg, affiliateLink: "https://www.amazon.com/dp/B0CC62ZG1M?tag=moderntechs04-20" },
+      { title: "Logitech G PRO X Superlight 2", description: "Ultra-lightweight wireless gaming mouse, lowest price of 2026", rating: 4.8, imageUrl: logitechMouseImg, affiliateLink: "https://www.amazon.com/dp/B09NBWL8J5?tag=moderntechs04-20" }
     ]
   }
 };
@@ -631,7 +631,7 @@ const BlogPost = () => {
           <meta property="og:title" content={ogTitle} />
           <meta property="og:description" content={ogDesc} />
           <meta property="og:image" content={ogImage} />
-          <meta property="og:url" content={`https://moderntech.store/the-edit/${slug}`} />
+          <meta property="og:url" content={`https://moderntech.store/the-signal/${slug}`} />
           <meta property="og:type" content="article" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={ogTitle} />
@@ -639,22 +639,22 @@ const BlogPost = () => {
           <meta name="twitter:image" content={ogImage} />
           <meta property="pin:media" content={ogImage} />
           <meta property="pin:description" content={ogDesc} />
-          <link rel="canonical" href={`https://moderntech.store/the-edit/${slug}`} />
+          <link rel="canonical" href={`https://moderntech.store/the-signal/${slug}`} />
         </Helmet>
         <StructuredData
           title={ogTitle}
           description={ogDesc}
-          path={`/the-edit/${slug}`}
+          path={`/the-signal/${slug}`}
           includeWebSite
           breadcrumbs={[
             { name: "Home", path: "/" },
-            { name: "The Edit", path: "/the-edit" },
-            { name: dynamicPost.title, path: `/the-edit/${slug}` },
+            { name: "The Signal", path: "/the-signal" },
+            { name: dynamicPost.title, path: `/the-signal/${slug}` },
           ]}
           extraGraph={[
             {
               "@type": "BlogPosting",
-              "@id": `https://moderntech.store/the-edit/${slug}#blogposting`,
+              "@id": `https://moderntech.store/the-signal/${slug}#blogposting`,
               headline: ogTitle,
               description: ogDesc,
               image: [ogImage],
@@ -673,9 +673,9 @@ const BlogPost = () => {
               publisher: { "@id": "https://moderntech.store/#organization" },
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": `https://moderntech.store/the-edit/${slug}#webpage`,
+                "@id": `https://moderntech.store/the-signal/${slug}#webpage`,
               },
-              url: `https://moderntech.store/the-edit/${slug}`,
+              url: `https://moderntech.store/the-signal/${slug}`,
               // Explicit @graph cross-references to each Product node below
               ...(buildBlogProductCrossRefs(slug || "", dynamicPost.products as any) || {}),
             },
@@ -755,11 +755,11 @@ const BlogPost = () => {
             {/* Back to Blog footer */}
             <div className="mt-16 pt-8 border-t border-border text-center">
               <Link
-                to="/the-edit"
+                to="/the-signal"
                 className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
               >
                 <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                All editions of The Edit
+                All editions of The Signal
               </Link>
             </div>
           </article>
@@ -805,7 +805,7 @@ const BlogPost = () => {
           <h1 className="text-4xl font-bold mb-4 tracking-tight">Post Not Found</h1>
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">The blog post you're looking for doesn't exist or has been moved.</p>
           <Button asChild variant="cta" className="rounded-full px-8">
-            <Link to="/the-edit">Browse All Articles</Link>
+            <Link to="/the-signal">Browse All Articles</Link>
           </Button>
         </div>
         <AffiliateFooter />
@@ -825,7 +825,7 @@ const BlogPost = () => {
         <meta property="og:title" content={post!.title} />
         <meta property="og:description" content={staticOgDesc} />
         <meta property="og:image" content={staticOgImage} />
-          <meta property="og:url" content={`${SITE}/the-edit/${slug}`} />
+          <meta property="og:url" content={`${SITE}/the-signal/${slug}`} />
           <meta property="og:type" content="article" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={post!.title} />
@@ -833,22 +833,22 @@ const BlogPost = () => {
           <meta name="twitter:image" content={staticOgImage} />
           <meta property="pin:media" content={staticOgImage} />
           <meta property="pin:description" content={staticOgDesc} />
-          <link rel="canonical" href={`${SITE}/the-edit/${slug}`} />
+          <link rel="canonical" href={`${SITE}/the-signal/${slug}`} />
         </Helmet>
         <StructuredData
           title={post!.title}
           description={staticOgDesc}
-          path={`/the-edit/${slug}`}
+          path={`/the-signal/${slug}`}
           includeWebSite
           breadcrumbs={[
             { name: "Home", path: "/" },
-            { name: "The Edit", path: "/the-edit" },
-            { name: post!.title, path: `/the-edit/${slug}` },
+            { name: "The Signal", path: "/the-signal" },
+            { name: post!.title, path: `/the-signal/${slug}` },
           ]}
           extraGraph={[
             {
               "@type": "BlogPosting",
-              "@id": `${SITE}/the-edit/${slug}#blogposting`,
+              "@id": `${SITE}/the-signal/${slug}#blogposting`,
               headline: post!.title,
               description: staticOgDesc,
               image: staticOgImage,
@@ -861,8 +861,8 @@ const BlogPost = () => {
                 url: SITE,
               },
               publisher: { "@id": `${SITE}/#organization` },
-              mainEntityOfPage: { "@id": `${SITE}/the-edit/${slug}#webpage` },
-              url: `${SITE}/the-edit/${slug}`,
+              mainEntityOfPage: { "@id": `${SITE}/the-signal/${slug}#webpage` },
+              url: `${SITE}/the-signal/${slug}`,
           },
           ...getBlogPostExtraSchemas(slug || ""),
         ]}
@@ -975,11 +975,11 @@ const BlogPost = () => {
           {/* Back to Blog footer */}
           <div className="mt-16 pt-8 border-t border-border text-center">
             <Link
-              to="/the-edit"
+              to="/the-signal"
               className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
             >
               <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-              All editions of The Edit
+              All editions of The Signal
             </Link>
           </div>
         </article>

@@ -19,7 +19,7 @@ const pick = (slug: string, dp: string): WeeklyPick => {
       id: selection.id,
       title: `${selection.slug} — exact model`,
       image_url: `https://m.media-amazon.com/images/I/${dp}.jpg`,
-      affiliate_link: `https://www.amazon.com/dp/${dp}?tag=moderntech02-20`,
+      affiliate_link: `https://www.amazon.com/dp/${dp}?tag=moderntechs04-20`,
       is_active: true,
     },
   };
@@ -30,7 +30,7 @@ const picks = [pick("renpho-elis-1", "B01N1UX8RW"), pick("snap-circuits-jr-sc-10
 describe("The Signal PDF model", () => {
   it("maps the live edition without inventing anything", () => {
     const model = buildEditPdfModel(picks);
-    expect(model.publication).toBe("The Edit · Weekly Newsletter");
+    expect(model.publication).toBe("The Signal · Weekly Newsletter");
     expect(model.weekOf).toBe(weeklyEdition.weekOf);
     expect(model.weekOfLabel).toBe("October 11, 2026");
     expect(model.title).toBe(weeklyEdition.title);
@@ -40,7 +40,7 @@ describe("The Signal PDF model", () => {
     expect(model.picks[0].title).toBe("renpho-elis-1 — exact model");
     expect(model.picks[0].audience).toBe("For tracking wellness trends at home");
     expect(model.picks[0].image_url).toBe("https://m.media-amazon.com/images/I/B01N1UX8RW.jpg");
-    expect(model.picks[2].affiliate_link).toBe("https://www.amazon.com/dp/B0D62PMB3R?tag=moderntech02-20");
+    expect(model.picks[2].affiliate_link).toBe("https://www.amazon.com/dp/B0D62PMB3R?tag=moderntechs04-20");
   });
 
   it("keeps the required disclosure in the PDF and every link tagged and direct", () => {
@@ -51,7 +51,7 @@ describe("The Signal PDF model", () => {
       const url = new URL(p.affiliate_link);
       expect(url.hostname).toBe("www.amazon.com");
       expect(url.pathname).toMatch(/^\/dp\/[A-Z0-9]{10}$/);
-      expect(url.searchParams.get("tag")).toBe("moderntech02-20");
+      expect(url.searchParams.get("tag")).toBe("moderntechs04-20");
     }
   });
 
@@ -66,7 +66,7 @@ describe("The Signal PDF model", () => {
   });
 
   it("wires the download to the route the confirmation link returns to", () => {
-    expect(EDIT_PDF_DELIVERY_PATH).toBe(`/the-edit?${EDIT_PDF_DELIVERY_PARAM}=${EDIT_PDF_DELIVERY_VALUE}`);
+    expect(EDIT_PDF_DELIVERY_PATH).toBe(`/the-signal?${EDIT_PDF_DELIVERY_PARAM}=${EDIT_PDF_DELIVERY_VALUE}`);
     // The edge function only accepts a magnet that is a short lowercase slug.
     expect(EDIT_PDF_MAGNET).toMatch(/^[a-z0-9-]{1,100}$/);
   });

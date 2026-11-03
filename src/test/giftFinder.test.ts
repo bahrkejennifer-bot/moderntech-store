@@ -47,7 +47,7 @@ describe("gift finder matching", () => {
     expect(url.origin).toBe("https://www.amazon.com");
     expect(url.pathname).toBe("/s");
     expect(url.searchParams.get("k")).toBe(query);
-    expect(url.searchParams.get("tag")).toBe("moderntech02-20");
+    expect(url.searchParams.get("tag")).toBe("moderntechs04-20");
   });
 
   it("preserves the recipient and budget in the Amazon search", () => {
@@ -58,7 +58,7 @@ describe("gift finder matching", () => {
   it("encodes input without allowing it to change the destination or tag", () => {
     const url = new URL(amazonGiftSearchUrl("camera &tag=other https://example.com"));
     expect(url.hostname).toBe("www.amazon.com");
-    expect(url.searchParams.getAll("tag")).toEqual(["moderntech02-20"]);
+    expect(url.searchParams.getAll("tag")).toEqual(["moderntechs04-20"]);
     expect(url.searchParams.get("k")).toBe("camera &tag=other https://example.com");
   });
 });

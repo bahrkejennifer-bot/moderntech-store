@@ -20,7 +20,7 @@ const getVisitorToken = (): string => {
   return token;
 };
 
-const SUPPRESSED_PREFIXES = ["/links", "/free-guide", "/admin", "/the-edit", "/blog"];
+const SUPPRESSED_PREFIXES = ["/links", "/free-guide", "/admin", "/the-signal", "/blog"];
 
 const SupportChat = () => {
   const location = useLocation();

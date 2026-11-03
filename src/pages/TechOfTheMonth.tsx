@@ -15,7 +15,7 @@ export default function TechOfTheMonth() {
   const { month } = useParams<{ month: string }>();
   const entry = useMemo(() => (month ? getTechOfTheMonth(month) : undefined), [month]);
 
-  if (!entry) return <Navigate to="/the-edit" replace />;
+  if (!entry) return <Navigate to="/the-signal" replace />;
 
   const canonical = canonicalTechOfTheMonthUrl(entry.slug);
   const ogImage = `https://moderntech.store${entry.image.url}`;
@@ -46,7 +46,7 @@ export default function TechOfTheMonth() {
         path={`/tech-of-the-month/${entry.slug}`}
         breadcrumbs={[
           { name: "Home", path: "/" },
-          { name: "The Edit", path: "/the-edit" },
+          { name: "The Signal", path: "/the-signal" },
           { name: `Tech of the Month · ${entry.monthLabel}`, path: `/tech-of-the-month/${entry.slug}` },
         ]}
         extraGraph={[
@@ -81,10 +81,10 @@ export default function TechOfTheMonth() {
       <header className="border-b border-border">
         <div className="max-w-4xl mx-auto px-8 pt-16 pb-10">
           <Link
-            to="/the-edit"
+            to="/the-signal"
             className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
-            <ArrowLeft className="h-3 w-3" /> The Edit
+            <ArrowLeft className="h-3 w-3" /> The Signal
           </Link>
           <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">
             Tech of the Month · {entry.monthLabel}

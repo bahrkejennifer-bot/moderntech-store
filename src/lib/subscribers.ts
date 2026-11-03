@@ -1,7 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
 
 /** The one consent line shown next to every email signup. */
-export const SUBSCRIBE_CONSENT_LINE = "Get The Edit every week. Unsubscribe anytime.";
+export const SUBSCRIBE_CONSENT_LINE = "Get The Signal every week. Unsubscribe anytime.";
 
 export interface SaveSubscriberInput {
   email: string;
