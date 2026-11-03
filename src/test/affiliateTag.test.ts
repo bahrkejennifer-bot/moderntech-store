@@ -26,9 +26,20 @@ describe("storefront affiliate tag", () => {
     expect(url.searchParams.get("tag")).toBe(AFFILIATE_TAG);
   });
 
-  it("accepts catalog rows tagged with either known Modern Tech ID", () => {
+  it("accepts catalog rows tagged with any known Modern Tech ID", () => {
+    expect(isEligible(product("https://www.amazon.com/dp/B0D62PMB3R?tag=moderntech02-20"))).toBe(true);
     expect(isEligible(product("https://www.amazon.com/dp/B0D62PMB3R?tag=moderntechs04-20"))).toBe(true);
-    expect(isEligible(product("https://www.amazon.com/dp/B0D62PMB3R?tag=moderntechs04-20"))).toBe(true);
+    expect(isEligible(product("https://www.amazon.com/dp/B0D62PMB3R?tag=moderntechs0c-20"))).toBe(true);
+  });
+
+  it("keeps a moderntech02-20 catalog row eligible and renders it with the required tag", () => {
+    const stored = "https://www.amazon.com/dp/B0D62PMB3R?tag=moderntech02-20";
+    expect(isEligible(product(stored))).toBe(true);
+    const rendered = new URL(withAffiliateTag(stored));
+    expect(rendered.searchParams.get("tag")).toBe("moderntechs04-20");
+    expect(rendered.searchParams.get("tag")).toBe(AFFILIATE_TAG);
+    expect(rendered.pathname).toBe("/dp/B0D62PMB3R");
+    expect(rendered.toString()).not.toContain("moderntech02-20");
   });
 
   it("rejects links without a known Modern Tech tag, a non-product path, or an inactive row", () => {

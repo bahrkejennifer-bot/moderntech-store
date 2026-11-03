@@ -8,7 +8,7 @@ import AffiliateFooter from "@/components/AffiliateFooter";
 import SignalSignup from "@/components/home/SignalSignup";
 import SignalPdfDownload from "@/components/SignalPdfDownload";
 import { supabase } from "@/integrations/supabase/client";
-import { selections, isEligible, type CatalogProduct } from "@/lib/curatedSelections";
+import { selections, isEligible, withAffiliateTag, type CatalogProduct } from "@/lib/curatedSelections";
 import { weeklyEdition, MAX_WEEKLY_PICKS } from "@/lib/signalWeeklyEdition";
 import ouraRingHeroImg from "@/assets/heroes/oura-ring-hero.jpg";
 import fitnessTrackersHeroImg from "@/assets/blog/fitness-trackers-hero.jpg";
@@ -214,7 +214,7 @@ const Blog = () => {
                 <p className="mt-2 text-base font-medium print:mt-0.5 print:text-xs">{selection.audience}</p>
                 <p className="mt-1 text-lg leading-relaxed text-foreground/85 print:text-xs print:leading-snug">{selection.benefit}</p>
                 <p className="mt-1 text-base leading-relaxed text-muted-foreground print:text-xs print:leading-snug"><span className="font-medium text-foreground">Good to know:</span> {selection.limitation}</p>
-                <a href={product.affiliate_link} target="_blank" rel="noopener noreferrer sponsored nofollow" className="mt-4 inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 text-base font-medium text-background hover:opacity-90 print:mt-1 print:min-h-0 print:border print:border-foreground print:bg-transparent print:px-3 print:py-0.5 print:text-xs print:text-foreground">
+                <a href={withAffiliateTag(product.affiliate_link)} target="_blank" rel="noopener noreferrer sponsored nofollow" className="mt-4 inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 text-base font-medium text-background hover:opacity-90 print:mt-1 print:min-h-0 print:border print:border-foreground print:bg-transparent print:px-3 print:py-0.5 print:text-xs print:text-foreground">
                   View on Amazon <ArrowRight className="h-4 w-4" aria-hidden="true" /><span className="sr-only">(opens Amazon, affiliate link)</span>
                 </a>
                 </div>

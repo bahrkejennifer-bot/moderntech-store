@@ -22,7 +22,7 @@ export type Selection = (typeof selections)[number];
 // The required Associates tracking ID for storefront Amazon links. Render-time normalization
 // keeps catalog rows reversible without editing database values.
 export const AFFILIATE_TAG = "moderntechs04-20";
-const legacyTags = ["moderntechs04-20", "moderntechs04-20", "moderntechs0c-20"];
+const legacyTags = ["moderntech02-20", "moderntechs04-20", "moderntechs0c-20"];
 
 export const withAffiliateTag = (link: string) => {
   try {
