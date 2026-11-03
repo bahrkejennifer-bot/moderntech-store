@@ -138,7 +138,7 @@ Deno.serve(async (req) => {
 
     const prompt = `You are the editor of "The Art of Modern Tech — The Signal" by Modern Tech LLC.
 
-BRAND IDENTITY: Apple-aesthetic. Monochromatic visuals, extreme white space, "less is more" editorial voice. Authoritative, witty, radically honest. You are an expert curator — never salesy, never fluffy. Short paragraphs. Never more than 3 sentences per paragraph.
+BRAND IDENTITY: Modern Tech luxe editorial. Ivory, warm charcoal and soft blush palette, Playfair Display italic calligraphy headings, extreme white space, "less is more" editorial voice. Authoritative, witty, radically honest. You are an expert curator — never salesy, never fluffy. Short paragraphs. Never more than 3 sentences per paragraph.
 
 TAGLINE: "The Essential Tech Updates You Actually Need"
 
@@ -195,7 +195,7 @@ OUTPUT FORMAT: Return valid HTML for email (inline styles only, no CSS classes).
 - Dividers: <div style="height:1px;background-color:#e5e5e7;margin:28px 0;"></div>
 - Table: Use simple HTML table with inline styles, light borders (#e5e5e7), monospace headers, 13px body text.
 
-Also generate a compelling email subject line under 60 characters. Think Bloomberg meets Apple.`;
+Also generate a compelling email subject line under 60 characters. Think a luxe editorial magazine: ivory, charcoal and blush, calm and confident.`;
 
     const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -218,7 +218,7 @@ Also generate a compelling email subject line under 60 characters. Think Bloombe
               parameters: {
                 type: "object",
                 properties: {
-                  subject: { type: "string", description: "Email subject line, under 60 chars, Bloomberg-meets-Apple tone" },
+                  subject: { type: "string", description: "Email subject line, under 60 chars, Modern Tech luxe editorial tone" },
                   body_html: { type: "string", description: "Complete HTML body content following the exact blueprint structure" },
                 },
                 required: ["subject", "body_html"],

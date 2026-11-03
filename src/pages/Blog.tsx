@@ -22,16 +22,6 @@ import techDefaultHeroImg from "@/assets/blog/tech-default-hero.jpg";
 
 const staticBlogPosts = [
   {
-    title: "🔥 Best Spring Tech Deals 2026",
-    excerpt: "We've rounded up the best tech deals and discounts this spring — from smart home bundles to gaming gear, these prices can't be beat.",
-    date: "2026-02-19",
-    category: "Deals",
-    imageUrl: springDealsHeroImg,
-    slug: "st-patricks-day-tech-deals-2026",
-    isGenerated: false,
-    readTime: "8 min read",
-  },
-  {
     title: "The Ultimate Smart Ring Guide for 2026",
     excerpt: "Oura, Samsung Galaxy Ring, or Ultrahuman? We compare the top smart rings, breaking down sleep tracking accuracy, heart rate monitoring, sizing, and whether they're worth the investment.",
     date: "2026-02-02",
