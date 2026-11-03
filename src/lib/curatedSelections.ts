@@ -17,6 +17,26 @@ export const selections = [
   { id: "e0aa4d9a-7a15-4c10-9dcb-b48999bdbd48", slug: "anker-solix-c300-dc", audience: "For portable power away from an outlet", benefit: "A 288Wh portable power station with solar-ready charging.", limitation: "The DC model is for compatible DC-powered devices; check ports before buying." },
 ] as const;
 
+
+// Reversible, code-level image override: Amazon main images verified against each live listing on 2026-11-03.
+// Keyed by selection slug and pinned to its ASIN; applied only when the catalog link points at that ASIN.
+export const verifiedImages: Record<string, { asin: string; imageUrl: string }> = {
+  "rocketbook-core": { asin: "B0DP3HRDC2", imageUrl: "https://m.media-amazon.com/images/I/71lZL1GA+AL._AC_SL1500_.jpg" },
+  "soundcore-space-one": { asin: "B0C6KFZC9Z", imageUrl: "https://m.media-amazon.com/images/I/71hpOPfOGoL._AC_SL1500_.jpg" },
+  "benq-screenbar-halo-2": { asin: "B0DK59YKRS", imageUrl: "https://m.media-amazon.com/images/I/41fmQI53UNL._AC_SL1000_.jpg" },
+  "renpho-elis-1": { asin: "B01N1UX8RW", imageUrl: "https://m.media-amazon.com/images/I/61KqTsLN+pL._SL1500_.jpg" },
+  "snap-circuits-jr-sc-100": { asin: "B00008BFZH", imageUrl: "https://m.media-amazon.com/images/I/71wjLjOAVBL._AC_SL1500_.jpg" },
+  "jbl-flip-6": { asin: "B09GJVTRNZ", imageUrl: "https://m.media-amazon.com/images/I/61Eaj593GtL._AC_SL1500_.jpg" },
+  "anker-solix-c300-dc": { asin: "B0D62PMB3R", imageUrl: "https://m.media-amazon.com/images/I/71PJvyNWf7L._AC_SL1500_.jpg" },
+};
+
+export const asinOf = (link: string) => link.match(/\/dp\/([A-Z0-9]{10})/i)?.[1]?.toUpperCase() ?? null;
+
+export const withVerifiedImage = <T extends CatalogProduct>(slug: string, product: T): T => {
+  const v = verifiedImages[slug];
+  return v && asinOf(product.affiliate_link) === v.asin ? { ...product, image_url: v.imageUrl } : product;
+};
+
 export type Selection = (typeof selections)[number];
 
 // The required Associates tracking ID for storefront Amazon links. Render-time normalization
