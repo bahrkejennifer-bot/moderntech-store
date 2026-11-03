@@ -19,7 +19,7 @@ import {
 const schema = z.object({ email: z.string().trim().email("Enter a valid email address.").max(255) });
 
 /**
- * The Edit's PDF download, gated behind the existing double opt-in: a visitor leaves an
+ * The Signal's PDF download, gated behind the existing double opt-in: a visitor leaves an
  * email, confirms it, and the confirmation returns them here with the download revealed.
  * The edition itself stays readable without signing up for anything.
  */
@@ -50,7 +50,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
         setBuilding(false);
       })
       .catch((err) => {
-        console.error("The Edit PDF generation error:", err);
+        console.error("The Signal PDF generation error:", err);
         if (!alive) return;
         setBuilding(false);
         setPdfError("The PDF couldn't be built in this browser. Your Print dialog can save the same page as a PDF.");
@@ -145,7 +145,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
           {status.msg}
         </p>
       ) : (
-        <form onSubmit={onSubmit} noValidate aria-label="Get The Edit as a PDF" className="w-full">
+        <form onSubmit={onSubmit} noValidate aria-label="Get The Signal as a PDF" className="w-full">
           <label htmlFor="edit-pdf-email" className="mb-2 block text-sm font-medium">
             Email address
           </label>

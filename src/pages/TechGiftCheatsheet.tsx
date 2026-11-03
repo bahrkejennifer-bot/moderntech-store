@@ -24,7 +24,7 @@ import vtechWatchImage from "@/assets/products/vtech-kidizoom-dx3.jpg";
 import rocketbookImage from "@/assets/products/rocketbook-flex-planner.jpg";
 import logitechKeyboardImage from "@/assets/products/logitech-mx-keys-combo.jpg";
 
-const AFFILIATE_TAG = "moderntech02-20";
+const AFFILIATE_TAG = "moderntechs04-20";
 const amazonLink = (asin: string) => `https://www.amazon.com/dp/${asin}?tag=${AFFILIATE_TAG}`;
 
 interface GiftItem {

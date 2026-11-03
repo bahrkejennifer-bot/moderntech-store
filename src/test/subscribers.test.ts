@@ -13,7 +13,7 @@ describe("subscribers list", () => {
   });
 
   it("records the consent line only when consent is given", () => {
-    expect(normalizeSubscriber({ email: "a@b.co", consent: true, sourcePage: "/" })?.consent_text).toBe("Get The Edit every week. Unsubscribe anytime.");
+    expect(normalizeSubscriber({ email: "a@b.co", consent: true, sourcePage: "/" })?.consent_text).toBe("Get The Signal every week. Unsubscribe anytime.");
     expect(normalizeSubscriber({ email: "a@b.co", sourcePage: "/" })?.consent).toBe(false);
     expect(SUBSCRIBE_CONSENT_LINE).not.toContain("—");
   });

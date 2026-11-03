@@ -13,7 +13,6 @@ import coverYoutube from "@/assets/cover-youtube.jpg";
 import coverReels from "@/assets/cover-reels.jpg";
 import GiftFinder from "@/components/home/GiftFinder";
 import heroImg from "@/assets/hero-duality-editorial.jpg";
-import { isHolidayActive } from "@/holiday/holidayConfig";
 import SignalSignup from "@/components/home/SignalSignup";
 
 import { selections, isEligible, withAffiliateTag, type CatalogProduct, type Selection } from "@/lib/curatedSelections";
@@ -107,13 +106,12 @@ const Index = () => {
 
   const eyebrow = "text-[11px] font-medium uppercase tracking-[0.25em] text-muted-foreground";
   const serif = { fontFamily: "var(--font-serif)" } as const;
-  const holiday = isHolidayActive();
 
   return (
     <div className="vogue-theme min-h-screen bg-background text-foreground">
       <Helmet>
         <title>Modern Tech | The Art of Modern Tech</title>
-        <meta name="description" content="Curated everyday tech and practical creator guides from Modern Tech LLC. Shop tech finds on Amazon and read The Edit, our weekly tech newsletter." />
+        <meta name="description" content="Curated everyday tech and practical creator guides from Modern Tech LLC. Shop tech finds on Amazon and read The Signal, our weekly tech newsletter." />
         <meta property="og:title" content="Modern Tech | The Art of Modern Tech" />
         <meta property="og:description" content="Curated everyday tech and practical creator guides from Modern Tech LLC." />
         <meta property="og:type" content="website" />
@@ -126,7 +124,7 @@ const Index = () => {
           <nav aria-label="Main navigation" className="flex items-center gap-2.5 text-[11px] font-medium uppercase tracking-[0.12em] sm:gap-5 sm:tracking-[0.18em] md:gap-8">
             <a href="#gift-picks" className="hidden text-foreground/75 hover:text-foreground md:inline">Gifts</a>
             <a href="#digital-products" className="hidden text-foreground/75 hover:text-foreground sm:inline">Digital Products</a>
-            <Link to="/the-edit" className="whitespace-nowrap text-foreground/75 hover:text-foreground">The Edit</Link>
+            <Link to="/the-signal" className="whitespace-nowrap text-foreground/75 hover:text-foreground">The Signal</Link>
             <Button asChild size="lg" className="min-h-11 rounded-none px-2.5 text-[11px] uppercase tracking-[0.12em] sm:px-5 sm:tracking-[0.18em]"><a href="#selections">Shop Tech Finds</a></Button>
           </nav>
         </div>
@@ -134,9 +132,7 @@ const Index = () => {
       <main>
         <section className="relative py-10 md:py-16" aria-labelledby="hero-heading">
           <div className="grid grid-cols-1 items-center md:grid-cols-2">
-            <div className="overflow-hidden">{holiday
-              ? <img src="/holiday/holiday-hero.jpg" alt="Smiling shopper leaving a festive shop with gifts in the snow" className="h-auto max-h-[70vh] w-full object-cover object-[58%_38%]" />
-              : <img src={heroImg} alt="Editorial lifestyle photo: a woman descending a spiral staircase carrying tulips" className="h-auto max-h-[70vh] w-full object-cover" />}</div>
+            <div className="overflow-hidden"><img src={heroImg} alt="Editorial lifestyle photo: a woman descending a spiral staircase carrying tulips" className="h-auto max-h-[70vh] w-full object-cover" /></div>
             <div className="px-6 py-10 sm:px-12 md:px-16 md:py-0 lg:px-24">
               <h1 id="hero-heading" className="text-5xl leading-[0.95] tracking-tight md:text-6xl lg:text-7xl" style={{ fontWeight: 400 }}><em>The Art of</em><br />Modern Tech</h1>
               <p className="mt-7 max-w-[420px] text-base leading-relaxed text-foreground/70 md:text-lg" style={{ ...serif, fontStyle: "italic" }}>A short, curated list of everyday tech, each with one clear benefit and one honest limitation.</p>
@@ -150,8 +146,7 @@ const Index = () => {
           <div className="mx-auto max-w-6xl">
             <div className="launch-reveal mb-8 text-center"><p className={eyebrow}>01 · Holiday Gift Edit</p><h2 id="selections-heading" className="mt-3 text-4xl md:text-5xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Thoughtful tech, useful beyond the holidays.</h2></div>
             <div className="mx-auto mb-8 max-w-2xl border border-border bg-secondary/50 px-5 py-4 text-center">
-              <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-foreground/80">DATES TO KNOW · <span className="whitespace-nowrap">BLACK FRIDAY NOVEMBER 27</span> · <span className="whitespace-nowrap">CYBER MONDAY NOVEMBER 30</span></p>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Deal details are not yet announced. We&rsquo;ll only label a deal when Amazon confirms it.</p>
+              <p className="text-sm leading-relaxed text-foreground/80">Black Friday is November 27. Cyber Monday is November 30. Browse current details on <a href="https://www.aboutamazon.com/news/retail/when-is-amazon-black-friday-faq" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-foreground">Amazon</a>.</p>
             </div>
             <p className="mx-auto mb-10 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">{affiliateDisclosure}</p>
             {isLoading ? <p role="status" className="flex items-center justify-center gap-3 py-16"><Loader2 className="h-5 w-5 animate-spin" /> Loading selections…</p>
@@ -173,9 +168,8 @@ const Index = () => {
         {products.length > 0 && <section id="gift-picks" className="scroll-mt-20 border-t border-border bg-secondary/60 px-5 py-16 md:px-10 md:py-24" aria-labelledby="gift-heading">
           <div className="mx-auto max-w-6xl">
             <div className="launch-reveal mb-8 max-w-3xl"><p className={eyebrow}>02 · Gift Finder</p><h2 id="gift-heading" className="mt-3 text-4xl md:text-5xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Easy to give. Useful every day.</h2></div>
-            <div className={holiday ? "grid items-center gap-8 md:grid-cols-5" : undefined}>
-              {holiday && <img src="/holiday/iphone-gift.jpg" alt="Smartphone wrapped with a gold bow on a cozy knit blanket" loading="lazy" className="h-56 w-full rounded-2xl object-cover shadow-lg md:order-last md:col-span-2 md:h-auto md:max-h-[28rem]" />}
-              <div className={holiday ? "md:col-span-3" : undefined}>
+            <div>
+              <div>
                 <GiftFinder disclosure={affiliateDisclosure}
                   picks={products.map(({ selection, product }) => ({ slug: selection.slug, title: product.title, imageUrl: product.image_url, audience: selection.audience, benefit: selection.benefit, limitation: selection.limitation }))}
                   renderCta={(slug) => { const pick = products.find((p) => p.selection.slug === slug); return pick ? amazonButton(pick) : null; }} />
@@ -205,12 +199,12 @@ const Index = () => {
 
         <section id="the-edit" className="scroll-mt-20 border-t border-border bg-card px-5 py-14 md:px-10 md:py-20" aria-labelledby="signal-heading">
           <div className="launch-reveal mx-auto grid max-w-5xl items-start gap-8 md:grid-cols-2 md:gap-14">
-            <div><p className={eyebrow}>04 · The Edit · Weekly Newsletter</p><h2 id="signal-heading" className="mt-3 text-3xl md:text-4xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Read this week's Edit.</h2>
+            <div><p className={eyebrow}>04 · The Signal · Weekly Newsletter</p><h2 id="signal-heading" className="mt-3 text-3xl md:text-4xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Read this week's Edit.</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">Our weekly newsletter: a few useful tech picks and plain-language notes. Free to read online.</p>
-              {latestPost && <p className="mt-4 text-sm text-muted-foreground">Latest article: <Link to={`/the-edit/${latestPost.slug}`} className="text-foreground underline underline-offset-4">{latestPost.title}</Link></p>}
-              <Button asChild size="lg" className="mt-6 min-h-12 rounded-none px-6 text-xs uppercase tracking-[0.2em]"><Link to="/the-edit">Read The Edit <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" /></Link></Button>
+              {latestPost && <p className="mt-4 text-sm text-muted-foreground">Latest article: <Link to={`/the-signal/${latestPost.slug}`} className="text-foreground underline underline-offset-4">{latestPost.title}</Link></p>}
+              <Button asChild size="lg" className="mt-6 min-h-12 rounded-none px-6 text-xs uppercase tracking-[0.2em]"><Link to="/the-signal">Read The Signal <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" /></Link></Button>
             </div>
-            <div><h3 className="mb-4 text-lg" style={{ fontStyle: "italic" }}>Get The Edit by email</h3><SignalSignup /></div>
+            <div><h3 className="mb-4 text-lg" style={{ fontStyle: "italic" }}>Get The Signal by email</h3><SignalSignup /></div>
           </div>
         </section>
       </main>
