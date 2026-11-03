@@ -199,7 +199,7 @@ const Index = () => {
 
         <section id="the-edit" className="scroll-mt-20 border-t border-border bg-card px-5 py-14 md:px-10 md:py-20" aria-labelledby="signal-heading">
           <div className="launch-reveal mx-auto grid max-w-5xl items-start gap-8 md:grid-cols-2 md:gap-14">
-            <div><p className={eyebrow}>04 · The Signal · Weekly Newsletter</p><h2 id="signal-heading" className="mt-3 text-3xl md:text-4xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Read this week's Edit.</h2>
+            <div><p className={eyebrow}>04 · The Signal · Weekly Newsletter</p><h2 id="signal-heading" className="mt-3 text-3xl md:text-4xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Read this week's Signal.</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">Our weekly newsletter: a few useful tech picks and plain-language notes. Free to read online.</p>
               {latestPost && <p className="mt-4 text-sm text-muted-foreground">Latest article: <Link to={`/the-signal/${latestPost.slug}`} className="text-foreground underline underline-offset-4">{latestPost.title}</Link></p>}
               <Button asChild size="lg" className="mt-6 min-h-12 rounded-none px-6 text-xs uppercase tracking-[0.2em]"><Link to="/the-signal">Read The Signal <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" /></Link></Button>
