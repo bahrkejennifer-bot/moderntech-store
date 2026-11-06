@@ -47,4 +47,11 @@ describe("storefront maintenance guards", () => {
       expect(read(f)).not.toMatch(/Christmas Amazon finds/);
     }
   });
+
+  it("points the shopping-event note at Amazon's current Cyber Monday FAQ, not the expired October event", () => {
+    const edition = read("src/lib/signalWeeklyEdition.ts");
+    expect(edition).not.toMatch(/amazon-prime-big-deals-day-2026-when-october-6-7/);
+    expect(edition).toMatch(/Cyber Monday is November 30\. Amazon has not announced specific offers yet\./);
+    expect(edition).toMatch(/https:\/\/www\.aboutamazon\.com\/news\/retail\/when-is-amazon-cyber-monday-faq/);
+  });
 });
