@@ -204,7 +204,7 @@ const Index = () => {
               {latestPost && <p className="mt-4 text-sm text-muted-foreground">Latest article: <Link to={`/the-signal/${latestPost.slug}`} className="text-foreground underline underline-offset-4">{latestPost.title}</Link></p>}
               <Button asChild size="lg" className="mt-6 min-h-12 rounded-none px-6 text-xs uppercase tracking-[0.2em]"><Link to="/the-signal">Read The Signal <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" /></Link></Button>
             </div>
-            <div><h3 className="mb-4 text-lg" style={{ fontStyle: "italic" }}>Get our weekly Christmas Amazon finds.</h3><SignalSignup /></div>
+            <div><h3 className="mb-4 text-lg" style={{ fontStyle: "italic" }}>Get The Signal by email</h3><SignalSignup /></div>
           </div>
         </section>
       </main>
