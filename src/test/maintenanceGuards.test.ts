@@ -40,4 +40,11 @@ describe("storefront maintenance guards", () => {
     expect(index).not.toMatch(/holiday-hero\.jpg|iphone-gift\.jpg/);
     expect(index).toMatch(/src=\{heroImg\}/);
   });
+
+  it("keeps the email signup heading exactly 'Get The Signal by email'", () => {
+    for (const f of ["src/pages/Index.tsx", "src/pages/Blog.tsx"]) {
+      expect(read(f)).toMatch(/>Get The Signal by email</);
+      expect(read(f)).not.toMatch(/Christmas Amazon finds/);
+    }
+  });
 });

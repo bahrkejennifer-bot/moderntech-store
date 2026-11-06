@@ -261,7 +261,7 @@ const Blog = () => {
         )}
 
         <section aria-labelledby="email-heading" className="print:hidden mt-16 rounded-2xl border border-border bg-card p-6 md:p-8">
-          <h2 id="email-heading" className="text-xl font-semibold tracking-tight">Get our weekly Christmas Amazon finds.</h2>
+          <h2 id="email-heading" className="text-xl font-semibold tracking-tight">Get The Signal by email</h2>
           <p className="mt-2 mb-5 text-base text-muted-foreground">Optional. Everything above stays free to read here. Unsubscribe anytime.</p>
           <SignalSignup />
         </section>
