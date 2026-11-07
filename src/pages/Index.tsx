@@ -227,10 +227,10 @@ const Index = () => {
                     {playing ? <Pause aria-hidden="true" className="h-4 w-4" /> : <Music aria-hidden="true" className="h-4 w-4" />}
                     {playing ? "Pause the Christmas music" : "Play a calm Christmas song"}
                   </button>
-                  <p className="mt-2 text-xs text-muted-foreground">Silent Night, played by the United States Air Force Band. Public domain recording.</p>
+                  <p className="mt-2 text-xs text-muted-foreground">Our calm lofi Christmas track, looped softly while you browse.</p>
                   <audio
                     ref={audioRef}
-                    src="/holiday/calm-christmas.mp3"
+                    src="/audio/lofi-music.mp3"
                     preload="none"
                     loop
                     onPlay={() => setPlaying(true)}
