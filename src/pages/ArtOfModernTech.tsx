@@ -108,7 +108,7 @@ const ArtOfModernTech = () => {
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="The Art of Modern Tech: The Signal RSS"
+          title="The Art of Modern Tech: The Edit RSS"
           href={`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID}.supabase.co/functions/v1/blog-rss-feed`}
         />
       </Helmet>
@@ -128,13 +128,13 @@ const ArtOfModernTech = () => {
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
-              to="/the-signal"
+              to="/the-edit"
               className="inline-flex items-center gap-2 bg-foreground text-background px-7 py-3 font-mono text-[10px] tracking-[0.25em] uppercase hover:bg-foreground/85 transition-colors"
             >
-              <BookOpen className="h-4 w-4" /> Read The Signal
+              <BookOpen className="h-4 w-4" /> Read The Edit
             </Link>
             <Link
-              to="/the-signal"
+              to="/the-edit"
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
             >
               Browse all articles <ArrowRight className="h-3.5 w-3.5" />
@@ -149,7 +149,7 @@ const ArtOfModernTech = () => {
           <div>
             <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">Fresh off the press</p>
             <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>
-              Latest from The Signal
+              Latest from The Edit
             </h2>
           </div>
           <div className="flex items-center gap-5">
@@ -158,12 +158,12 @@ const ArtOfModernTech = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
-              title="Subscribe to The Signal RSS feed"
+              title="Subscribe to The Edit RSS feed"
             >
               <Rss className="h-3.5 w-3.5" /> RSS
             </a>
             <Link
-              to="/the-signal"
+              to="/the-edit"
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
             >
               View all <ArrowRight className="h-3.5 w-3.5" />
@@ -175,7 +175,7 @@ const ArtOfModernTech = () => {
           {blogPosts.map((post: any, idx: number) => (
             <li key={post.id}>
               <Link
-                to={`/the-signal/${post.slug}`}
+                to={`/the-edit/${post.slug}`}
                 className="group grid grid-cols-12 gap-6 items-baseline py-6 hover:bg-accent/5 transition-colors px-2"
               >
                 <span className="col-span-1 font-mono text-[10px] tracking-[0.2em] text-muted-foreground">
@@ -321,15 +321,15 @@ const ArtOfModernTech = () => {
         <div className="flex items-center justify-between mb-10">
           <div>
             <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">From the Blog</p>
-            <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>Modern Tech: The Signal</h2>
+            <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>Modern Tech: The Edit</h2>
           </div>
-          <Link to="/the-signal" className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/the-edit" className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
             <BookOpen className="h-4 w-4" /> Read All
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {blogPosts.map((post: any) => (
-            <Link key={post.id} to={`/the-signal/${post.slug}`} className="group block border border-border bg-card overflow-hidden hover:shadow-lg transition-all duration-300">
+            <Link key={post.id} to={`/the-edit/${post.slug}`} className="group block border border-border bg-card overflow-hidden hover:shadow-lg transition-all duration-300">
               {post.image_url && (
                 <div className="aspect-[3/2] overflow-hidden">
                   <img src={post.image_url} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />

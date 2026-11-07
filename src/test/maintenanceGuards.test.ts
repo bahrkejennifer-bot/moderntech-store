@@ -18,15 +18,15 @@ describe("storefront maintenance guards", () => {
     expect(bad).toEqual([]);
   });
 
-  it("brands the newsletter as The Signal, never The Edit", () => {
-    const bad = files.filter((f) => /\bThe Edit\b(?!orial)|Weekly Blog/.test(read(f)));
+  it("brands the newsletter as The Edit, never The Signal", () => {
+    const bad = files.filter((f) => /\bThe Signal\b|Weekly Blog/.test(read(f)));
     expect(bad).toEqual([]);
   });
 
-  it("keeps /the-signal canonical and redirects /the-edit to it", () => {
+  it("keeps /the-edit canonical and redirects /the-signal to it", () => {
     const app = read("src/App.tsx");
-    expect(app).toMatch(/path="\/the-signal" element=\{<Blog \/>\}/);
-    expect(app).toMatch(/path="\/the-edit" element=\{<LegacyEditRedirect \/>\}/);
+    expect(app).toMatch(/path="\/the-edit" element=\{<Blog \/>\}/);
+    expect(app).toMatch(/path="\/the-signal" element=\{<LegacySignalRedirect \/>\}/);
   });
 
   it("does not show the stale Spring deals card on the newsletter landing", () => {
@@ -41,9 +41,9 @@ describe("storefront maintenance guards", () => {
     expect(index).toMatch(/src=\{heroImg\}/);
   });
 
-  it("keeps the email signup heading exactly 'Get The Signal by email'", () => {
+  it("keeps the email signup heading exactly 'Get The Edit by email'", () => {
     for (const f of ["src/pages/Index.tsx", "src/pages/Blog.tsx"]) {
-      expect(read(f)).toMatch(/>Get The Signal by email</);
+      expect(read(f)).toMatch(/>Get The Edit by email</);
       expect(read(f)).not.toMatch(/Christmas Amazon finds/);
     }
   });
