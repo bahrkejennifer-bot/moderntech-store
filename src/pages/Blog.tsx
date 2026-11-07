@@ -152,28 +152,28 @@ const Blog = () => {
   return (
     <div className="launch-theme min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>The Signal: Modern Tech's weekly tech newsletter</title>
-        <meta name="description" content="The Signal is Modern Tech's weekly newsletter: honest, plain-language notes on everyday tech worth knowing about. Free to read; email is optional." />
-        <meta property="og:title" content="The Signal: Modern Tech's weekly tech newsletter" />
+        <title>The Edit: Modern Tech's weekly tech newsletter</title>
+        <meta name="description" content="The Edit is Modern Tech's weekly newsletter: honest, plain-language notes on everyday tech worth knowing about. Free to read; email is optional." />
+        <meta property="og:title" content="The Edit: Modern Tech's weekly tech newsletter" />
         <meta property="og:description" content="Modern Tech's weekly tech newsletter. Free to read here; get it by email if you like." />
-        <meta property="og:url" content="https://moderntech.store/the-signal" />
+        <meta property="og:url" content="https://moderntech.store/the-edit" />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://moderntech.store/the-signal" />
+        <link rel="canonical" href="https://moderntech.store/the-edit" />
       </Helmet>
       <StructuredData
-        title="The Signal: Modern Tech's weekly tech newsletter"
+        title="The Edit: Modern Tech's weekly tech newsletter"
         description="Modern Tech's weekly tech newsletter."
-        path="/the-signal"
+        path="/the-edit"
         breadcrumbs={[
           { name: "Home", path: "/" },
-          { name: "The Signal", path: "/the-signal" },
+          { name: "The Edit", path: "/the-edit" },
         ]}
         extraGraph={[
           {
             "@type": "Blog",
-            "@id": "https://moderntech.store/the-signal#blog",
-            name: "The Signal",
-            url: "https://moderntech.store/the-signal",
+            "@id": "https://moderntech.store/the-edit#blog",
+            name: "The Edit",
+            url: "https://moderntech.store/the-edit",
             publisher: { "@id": "https://moderntech.store/#organization" },
           },
         ]}
@@ -182,8 +182,8 @@ const Blog = () => {
 
       <main className="mx-auto max-w-3xl px-5 pb-24 print:max-w-none print:px-0 print:pb-0">
         <header className="pt-14 pb-10 md:pt-20 print:pt-0 print:pb-3">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">The Signal · Weekly Newsletter</p>
-          <h1 className="mt-3 print:mt-1 print:text-3xl text-5xl font-semibold tracking-tight md:text-6xl">The Signal</h1>
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">The Edit · Weekly Newsletter</p>
+          <h1 className="mt-3 print:mt-1 print:text-3xl text-5xl font-semibold tracking-tight md:text-6xl">The Edit</h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Each week, a short, honest read on everyday tech worth knowing about: what's new, what's useful, and what to skip. Free to read here.
           </p>
@@ -231,12 +231,12 @@ const Blog = () => {
               <span className="font-medium text-foreground">Latest article · {latestKind}</span> · <time dateTime={latest.date}>{fmt(latest.date)}</time>
             </p>
             <h2 id="latest-heading" className="mt-3 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
-              <Link to={`/the-signal/${latest.slug}`} className="hover:underline underline-offset-4">{latest.title}</Link>
+              <Link to={`/the-edit/${latest.slug}`} className="hover:underline underline-offset-4">{latest.title}</Link>
             </h2>
             
             {latest.excerpt && <p className="mt-6 text-lg leading-relaxed text-foreground/85">{latest.excerpt}</p>}
             <Link
-              to={`/the-signal/${latest.slug}`}
+              to={`/the-edit/${latest.slug}`}
               className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 text-base font-medium text-background hover:opacity-90"
             >
               Read the full edition <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -250,7 +250,7 @@ const Blog = () => {
             <ul className="mt-4 divide-y divide-border">
               {previous.map((post) => (
                 <li key={post.slug}>
-                  <Link to={`/the-signal/${post.slug}`} className="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
+                  <Link to={`/the-edit/${post.slug}`} className="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
                     <time dateTime={post.date} className="shrink-0 text-sm text-muted-foreground sm:w-36">{fmt(post.date)}</time>
                     <span className="text-base font-medium leading-snug group-hover:underline underline-offset-4">{post.title}</span>
                   </Link>
@@ -261,7 +261,7 @@ const Blog = () => {
         )}
 
         <section aria-labelledby="email-heading" className="print:hidden mt-16 rounded-2xl border border-border bg-card p-6 md:p-8">
-          <h2 id="email-heading" className="text-xl font-semibold tracking-tight">Get The Signal by email</h2>
+          <h2 id="email-heading" className="text-xl font-semibold tracking-tight">Get The Edit by email</h2>
           <p className="mt-2 mb-5 text-base text-muted-foreground">Optional. Everything above stays free to read here. Unsubscribe anytime.</p>
           <SignalSignup />
         </section>

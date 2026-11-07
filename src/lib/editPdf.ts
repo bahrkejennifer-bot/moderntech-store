@@ -61,7 +61,7 @@ async function loadPhoto(url: string) {
 }
 
 /**
- * Composes The Signal's weekly edition into a US Letter PDF with jsPDF's own text engine.
+ * Composes The Edit's weekly edition into a US Letter PDF with jsPDF's own text engine.
  * html2pdf.js (html2canvas) silently produces blank pages in this project, so the PDF is
  * laid out from the same model the page reads — no screenshots of the DOM.
  */
@@ -73,7 +73,7 @@ export async function buildEditPdf(model: EditPdfModel): Promise<EditPdf> {
     subject: `Week of ${model.weekOfLabel}`,
     author: "Modern Tech LLC",
     creator: "Modern Tech LLC",
-    keywords: "Modern Tech, The Signal, weekly newsletter, tech picks",
+    keywords: "Modern Tech, The Edit, weekly newsletter, tech picks",
   });
 
   let y = MARGIN;

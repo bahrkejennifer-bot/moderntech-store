@@ -69,15 +69,15 @@ import SupportChat from "./components/SupportChat";
 import { usePinterestPageTracking } from "./hooks/usePinterestTracking";
 const queryClient = new QueryClient();
 
-// Keeps ?pdf=1 from older confirmation emails when moving /the-edit back to /the-signal.
+// Keeps ?pdf=1 from older confirmation emails when moving /the-edit back to /the-edit.
 const LegacyEditRedirect = () => {
   const { search } = useLocation();
-  return <Navigate to={`/the-signal${search}`} replace />;
+  return <Navigate to={`/the-edit${search}`} replace />;
 };
 
 const BlogPostRedirect = () => {
   const { slug } = useParams<{ slug: string }>();
-  return <Navigate to={`/the-signal/${slug}`} replace />;
+  return <Navigate to={`/the-edit/${slug}`} replace />;
 };
 
 const PinterestTracker = () => {
@@ -123,15 +123,15 @@ const App = () => (
           <Route path="/college" element={<Navigate to="/kids-stem" replace />} />
           <Route path="/productivity-family" element={<Navigate to="/kids-stem" replace />} />
 
-          <Route path="/the-signal" element={<Blog />} />
+          <Route path="/the-edit" element={<Blog />} />
           <Route path="/the-edit" element={<LegacyEditRedirect />} />
           <Route path="/the-edit/:slug" element={<BlogPostRedirect />} />
-          <Route path="/the-signal/:slug" element={<BlogPost />} />
-          <Route path="/weekly-edit" element={<Navigate to="/the-signal" replace />} />
+          <Route path="/the-edit/:slug" element={<BlogPost />} />
+          <Route path="/weekly-edit" element={<Navigate to="/the-edit" replace />} />
           <Route path="/weekly-edit/:slug" element={<BlogPostRedirect />} />
-          <Route path="/tech-of-the-month" element={<Navigate to="/the-signal" replace />} />
+          <Route path="/tech-of-the-month" element={<Navigate to="/the-edit" replace />} />
           <Route path="/tech-of-the-month/:month" element={<TechOfTheMonth />} />
-          <Route path="/blog" element={<Navigate to="/the-signal" replace />} />
+          <Route path="/blog" element={<Navigate to="/the-edit" replace />} />
           <Route path="/blog/:slug" element={<BlogPostRedirect />} />
           <Route path="/digital-products" element={<DigitalProducts />} />
           <Route path="/tech-gift-cheatsheet" element={<TechGiftCheatsheet />} />
@@ -154,7 +154,7 @@ const App = () => (
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/return-policy" element={<ReturnPolicy />} />
-          <Route path="/signal" element={<Navigate to="/the-signal" replace />} />
+          <Route path="/signal" element={<Navigate to="/the-edit" replace />} />
           <Route path="/pinterest-callback" element={<PinterestCallback />} />
           <Route path="/admin/pinterest" element={<AdminLayout><AdminPinterest /></AdminLayout>} />
           <Route path="/admin/tech-spec" element={<AdminLayout><AdminTechSpec /></AdminLayout>} />

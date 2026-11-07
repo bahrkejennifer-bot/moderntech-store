@@ -24,20 +24,20 @@ const SignalSignup = () => {
     const res = await requestLeadConfirmation({ email: parsed.data.email, lead_magnet: LEAD_MAGNET, consent: true });
     setLoading(false);
     if (!res.success) { setStatus({ ok: false, msg: res.error || "Something went wrong. Please try again." }); return; }
-    setStatus({ ok: true, msg: "You're on the list for The Signal. Watch your inbox for a quick confirmation email." });
+    setStatus({ ok: true, msg: "You're on the list for The Edit. Watch your inbox for a quick confirmation email." });
     setEmail("");
   };
 
   if (status?.ok) return <p role="status" className="flex items-start gap-3 rounded-2xl bg-card p-5 text-base"><Check aria-hidden="true" className="mt-1 h-4 w-4 shrink-0" />{status.msg}</p>;
 
   return (
-    <form onSubmit={onSubmit} noValidate aria-label="Join The Signal newsletter" className="w-full">
+    <form onSubmit={onSubmit} noValidate aria-label="Join The Edit newsletter" className="w-full">
       <label htmlFor="signal-email" className="mb-2 block text-sm font-medium">Email address</label>
       <div className="flex flex-col gap-3 sm:flex-row">
         <Input id="signal-email" type="email" autoComplete="email" placeholder="you@email.com" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={255} disabled={loading}
           aria-invalid={status && !status.ok ? true : undefined} aria-describedby="signal-help" className="h-12 rounded-full bg-card px-5 text-base" />
         <Button type="submit" variant="outline" size="lg" disabled={loading} className="min-h-12 rounded-full px-6 text-base">
-          {loading ? <Loader2 className="h-4 w-4 animate-spin" aria-label="Sending" /> : "Join The Signal"}
+          {loading ? <Loader2 className="h-4 w-4 animate-spin" aria-label="Sending" /> : "Join The Edit"}
         </Button>
       </div>
       <p id="signal-help" role={status && !status.ok ? "alert" : undefined} className={`mt-3 text-sm ${status && !status.ok ? "text-destructive" : "text-muted-foreground"}`}>

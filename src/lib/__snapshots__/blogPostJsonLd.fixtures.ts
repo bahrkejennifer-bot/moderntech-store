@@ -41,7 +41,7 @@ interface Breadcrumb {
  * `extraGraph` represents the page-specific BlogPosting node (and any siblings).
  */
 export const composeBlogPostGraph = (opts: {
-  path: string; // e.g. "/the-signal/some-slug"
+  path: string; // e.g. "/the-edit/some-slug"
   title: string;
   description: string;
   breadcrumbs: Breadcrumb[];
@@ -70,7 +70,7 @@ export const composeBlogPostGraph = (opts: {
           inLanguage: "en-US",
           potentialAction: {
             "@type": "SearchAction",
-            target: `${SITE}/the-signal?q={search_term_string}`,
+            target: `${SITE}/the-edit?q={search_term_string}`,
             "query-input": "required name=search_term_string",
           },
         },
@@ -97,19 +97,19 @@ export const PODCAST_SLUG = "how-to-start-your-first-podcast";
 
 export const buildPodcastDynamicGraph = (slug: string = PODCAST_SLUG) =>
   composeBlogPostGraph({
-    path: `/the-signal/${slug}`,
+    path: `/the-edit/${slug}`,
     title: "How to Start Your First Podcast",
     description: "Start your first podcast with 3 pieces of creator gear.",
     includeWebSite: true,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "The Signal", path: "/the-signal" },
-      { name: "How to Start Your First Podcast", path: `/the-signal/${slug}` },
+      { name: "The Edit", path: "/the-edit" },
+      { name: "How to Start Your First Podcast", path: `/the-edit/${slug}` },
     ],
     extraGraph: [
       {
         "@type": "BlogPosting",
-        "@id": `${SITE}/the-signal/${slug}#blogposting`,
+        "@id": `${SITE}/the-edit/${slug}#blogposting`,
         headline: "How to Start Your First Podcast",
         description: "Start your first podcast with 3 pieces of creator gear.",
         image: ["https://moderntech.store/podcast-hero.jpg"],
@@ -122,8 +122,8 @@ export const buildPodcastDynamicGraph = (slug: string = PODCAST_SLUG) =>
         inLanguage: "en-US",
         author: { "@type": "Organization", name: "Modern Tech LLC", url: SITE },
         publisher: { "@id": `${SITE}/#organization` },
-        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/the-signal/${slug}#webpage` },
-        url: `${SITE}/the-signal/${slug}`,
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/the-edit/${slug}#webpage` },
+        url: `${SITE}/the-edit/${slug}`,
       },
     ],
   });
@@ -155,19 +155,19 @@ export const buildSmartRingStaticGraph = () => {
     "Smart rings have quietly become the most intimate wearable technology on the market. Unlike bulky smartwatches or intrusive fitness bands, a smart ring sits discreetly on yo…";
   const isoDate = new Date("2026-02-02").toISOString();
   return composeBlogPostGraph({
-    path: `/the-signal/${slug}`,
+    path: `/the-edit/${slug}`,
     title,
     description,
     includeWebSite: true,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "The Signal", path: "/the-signal" },
-      { name: title, path: `/the-signal/${slug}` },
+      { name: "The Edit", path: "/the-edit" },
+      { name: title, path: `/the-edit/${slug}` },
     ],
     extraGraph: [
       {
         "@type": "BlogPosting",
-        "@id": `${SITE}/the-signal/${slug}#blogposting`,
+        "@id": `${SITE}/the-edit/${slug}#blogposting`,
         headline: title,
         description,
         image: `${SITE}/assets/smart-ring-hero.jpg`,
@@ -176,8 +176,8 @@ export const buildSmartRingStaticGraph = () => {
         articleSection: "Health & Wellness",
         author: { "@type": "Organization", name: "Modern Tech LLC", url: SITE },
         publisher: { "@id": `${SITE}/#organization` },
-        mainEntityOfPage: { "@id": `${SITE}/the-signal/${slug}#webpage` },
-        url: `${SITE}/the-signal/${slug}`,
+        mainEntityOfPage: { "@id": `${SITE}/the-edit/${slug}#webpage` },
+        url: `${SITE}/the-edit/${slug}`,
       },
     ],
   });
@@ -191,19 +191,19 @@ export const buildCreatorGearDynamicGraph = () => {
   const title = "Top Creator Gear of 2026";
   const description = "The 5 pieces of creator gear we actually use every day in 2026.";
   return composeBlogPostGraph({
-    path: `/the-signal/${slug}`,
+    path: `/the-edit/${slug}`,
     title,
     description,
     includeWebSite: true,
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "The Signal", path: "/the-signal" },
-      { name: title, path: `/the-signal/${slug}` },
+      { name: "The Edit", path: "/the-edit" },
+      { name: title, path: `/the-edit/${slug}` },
     ],
     extraGraph: [
       {
         "@type": "BlogPosting",
-        "@id": `${SITE}/the-signal/${slug}#blogposting`,
+        "@id": `${SITE}/the-edit/${slug}#blogposting`,
         headline: title,
         description,
         image: ["https://moderntech.store/creator-gear-hero.jpg"],
@@ -216,32 +216,32 @@ export const buildCreatorGearDynamicGraph = () => {
         inLanguage: "en-US",
         author: { "@type": "Organization", name: "Modern Tech LLC", url: SITE },
         publisher: { "@id": `${SITE}/#organization` },
-        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/the-signal/${slug}#webpage` },
-        url: `${SITE}/the-signal/${slug}`,
+        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/the-edit/${slug}#webpage` },
+        url: `${SITE}/the-edit/${slug}`,
       },
     ],
   });
 };
 
-// ── Template 5: Blog index page (/the-signal) ──────────────────────────────────
+// ── Template 5: Blog index page (/the-edit) ──────────────────────────────────
 // Emits a `Blog` node alongside the standard ORG + WebPage + Breadcrumb graph.
 // `includeWebSite` is intentionally NOT set on the Blog index in Blog.tsx.
 export const buildBlogIndexGraph = () =>
   composeBlogPostGraph({
-    path: "/the-signal",
-    title: "The Signal | Smart Home, Wellness, Office & Kids Tech",
+    path: "/the-edit",
+    title: "The Edit | Smart Home, Wellness, Office & Kids Tech",
     description:
       "Expert tech reviews and buying guides for smart home & security, health & wellness tech, office essentials, and kids & STEM. Updated weekly.",
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "The Signal", path: "/the-signal" },
+      { name: "The Edit", path: "/the-edit" },
     ],
     extraGraph: [
       {
         "@type": "Blog",
-        "@id": `${SITE}/the-signal#blog`,
-        name: "The Signal",
-        url: `${SITE}/the-signal`,
+        "@id": `${SITE}/the-edit#blog`,
+        name: "The Edit",
+        url: `${SITE}/the-edit`,
         publisher: { "@id": `${SITE}/#organization` },
       },
     ],

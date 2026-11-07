@@ -1,4 +1,4 @@
-// The Signal's current weekly edition. Max 4 picks, chosen from the curated homepage catalog
+// The Edit's current weekly edition. Max 4 picks, chosen from the curated homepage catalog
 // (the products social posts link to via /#product-<slug>). No separate campaign schedule is
 // configured, so this explicit list IS the record of the week's selection. Each pick's photo was
 // checked by eye against its exact model; a pick without a matching photo is dropped, never substituted.
