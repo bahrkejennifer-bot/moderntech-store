@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowDown, ArrowRight, ExternalLink, Loader2 } from "lucide-react";
+import { ArrowDown, ArrowRight, ChevronDown, ExternalLink, Loader2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { usePinterestEvent } from "@/hooks/usePinterestTracking";
@@ -18,6 +18,15 @@ import SignalSignup from "@/components/home/SignalSignup";
 import { selections, isEligible, withAffiliateTag, withVerifiedImage, type CatalogProduct, type Selection } from "@/lib/curatedSelections";
 
 type Pick = { selection: Selection; product: CatalogProduct };
+
+// Store category dropdown: existing master category pages only.
+const shopCategories = [
+  { to: "/smart-home-security", label: "Home & Safety" },
+  { to: "/health-wellness-tech", label: "Health & Wellness" },
+  { to: "/office-essentials", label: "Tech" },
+  { to: "/kids-stem", label: "Children's STEM Tech" },
+  { to: "/trending-products", label: "Off-Grid Tech" },
+] as const;
 
 // Existing offer routes only. No homepage prices until the catalog/checkout price audit is complete.
 const digitalOffers = [
@@ -44,6 +53,7 @@ const useSelections = () => useQuery({
 const affiliateDisclosure = "As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. Amazon links may earn us a commission at no additional cost to you.";
 
 const Index = () => {
+  const [shopOpen, setShopOpen] = useState(false);
   const { data: products = [], isLoading, isError } = useSelections();
   const { data: digitalProducts = [], isLoading: digitalLoading, isError: digitalError } = useQuery({
     queryKey: ["homepage-digital-offers"],
@@ -122,6 +132,32 @@ const Index = () => {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 md:h-20 md:px-10">
           <Link to="/" className="shrink-0 text-lg text-foreground sm:text-xl md:text-2xl" style={{ ...serif, fontStyle: "italic" }}>Modern Tech</Link>
           <nav aria-label="Main navigation" className="flex items-center gap-2.5 text-[11px] font-medium uppercase tracking-[0.12em] sm:gap-5 sm:tracking-[0.18em] md:gap-8">
+            <div className="relative">
+              <button
+                type="button"
+                aria-expanded={shopOpen}
+                aria-haspopup="true"
+                onClick={() => setShopOpen((o) => !o)}
+                onBlur={(e) => { if (!e.currentTarget.parentElement?.contains(e.relatedTarget as Node)) setShopOpen(false); }}
+                className="flex min-h-11 items-center gap-1 whitespace-nowrap text-foreground/75 hover:text-foreground"
+              >
+                Shop <ChevronDown aria-hidden="true" className={`h-3.5 w-3.5 transition-transform ${shopOpen ? "rotate-180" : ""}`} />
+              </button>
+              {shopOpen && (
+                <div className="absolute left-0 top-full z-50 mt-1 w-56 border border-border bg-background py-2 shadow-lg">
+                  {shopCategories.map((cat) => (
+                    <Link
+                      key={cat.to}
+                      to={cat.to}
+                      onClick={() => setShopOpen(false)}
+                      className="block px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.12em] text-foreground/75 hover:bg-card hover:text-foreground"
+                    >
+                      {cat.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
             <a href="#gift-picks" className="hidden text-foreground/75 hover:text-foreground md:inline">Gifts</a>
             <a href="#digital-products" className="hidden text-foreground/75 hover:text-foreground sm:inline">Digital Products</a>
             <Link to="/the-edit" className="whitespace-nowrap text-foreground/75 hover:text-foreground">The Edit</Link>
