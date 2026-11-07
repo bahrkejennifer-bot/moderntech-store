@@ -215,7 +215,31 @@ const Index = () => {
 
         {products.length > 0 && <section id="gift-picks" className="scroll-mt-20 border-t border-border bg-secondary/60 px-5 py-16 md:px-10 md:py-24" aria-labelledby="gift-heading">
           <div className="mx-auto max-w-6xl">
-            <div className="launch-reveal mb-8 max-w-3xl"><p className={eyebrow}>02 · Gift Finder</p><h2 id="gift-heading" className="mt-3 text-4xl md:text-5xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Easy to give. Useful every day.</h2></div>
+            <div className="launch-reveal mb-8 max-w-3xl"><p className={eyebrow}>02 · Gift Finder</p><h2 id="gift-heading" className="mt-3 text-4xl md:text-5xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Easy to give. Useful every day.</h2>
+              {holiday && (
+                <div className="mt-5">
+                  <button
+                    type="button"
+                    onClick={toggleMusic}
+                    aria-pressed={playing}
+                    className="inline-flex min-h-11 items-center gap-2.5 border border-border bg-background px-5 text-[11px] font-medium uppercase tracking-[0.18em] text-foreground/75 transition-colors hover:text-foreground"
+                  >
+                    {playing ? <Pause aria-hidden="true" className="h-4 w-4" /> : <Music aria-hidden="true" className="h-4 w-4" />}
+                    {playing ? "Pause the Christmas music" : "Play a calm Christmas song"}
+                  </button>
+                  <p className="mt-2 text-xs text-muted-foreground">Silent Night, played by the United States Air Force Band. Public domain recording.</p>
+                  <audio
+                    ref={audioRef}
+                    src="/holiday/calm-christmas.mp3"
+                    preload="none"
+                    loop
+                    onPlay={() => setPlaying(true)}
+                    onPause={() => setPlaying(false)}
+                    onEnded={() => setPlaying(false)}
+                  />
+                </div>
+              )}
+            </div>
             <div className={holiday ? "grid items-center gap-8 md:grid-cols-2" : ""}>
               {holiday && <div className="overflow-hidden"><img src="/holiday/iphone-gift.jpg" alt="iPhone wrapped as a holiday gift" loading="lazy" className="h-auto w-full object-cover" /></div>}
               <div>
