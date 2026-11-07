@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowDown, ArrowRight, ChevronDown, ExternalLink, Loader2 } from "lucide-react";
+import { ArrowDown, ArrowRight, ChevronDown, ExternalLink, Loader2, Music, Pause } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { usePinterestEvent } from "@/hooks/usePinterestTracking";
@@ -57,6 +57,13 @@ const affiliateDisclosure = "As an Amazon Associate, Modern Tech LLC earns from 
 const Index = () => {
   const [shopOpen, setShopOpen] = useState(false);
   const holiday = isHolidayActive();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [playing, setPlaying] = useState(false);
+  const toggleMusic = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (playing) { audio.pause(); } else { void audio.play(); }
+  };
   const { data: products = [], isLoading, isError } = useSelections();
   const { data: digitalProducts = [], isLoading: digitalLoading, isError: digitalError } = useQuery({
     queryKey: ["homepage-digital-offers"],
