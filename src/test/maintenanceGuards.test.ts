@@ -12,6 +12,17 @@ const files = [...walk("src"), ...walk("supabase/functions"), "public/sitemap.xm
 const read = (p: string) => readFileSync(p, "utf8");
 
 describe("storefront maintenance guards", () => {
+  it("uses the recovered Jingle Bells Calm recording for Christmas playback, not the lofi track", () => {
+    const asset = JSON.parse(read("src/assets/jingle-bells-calm.mp3.asset.json"));
+    expect(asset.original_filename).toBe("jingle-bells-calm.mp3");
+    expect(asset.content_type).toBe("audio/mpeg");
+    for (const file of ["src/pages/Index.tsx", "src/components/ChristmasMusic.tsx"]) {
+      expect(read(file)).toContain('import christmasSong from "@/assets/jingle-bells-calm.mp3.asset.json"');
+      expect(read(file)).toContain("src={christmasSong.url}");
+      expect(read(file)).not.toContain('src="/audio/lofi-music.mp3"');
+    }
+  });
+
   it("uses only the moderntechs04-20 Amazon tag", () => {
     const bad = files.flatMap((f) =>
       [...read(f).matchAll(/amazon\.com[^"'`\s]*[?&]tag=([A-Za-z0-9-]+)/g)].map((m) => m[1]).filter((t) => t !== "moderntechs04-20").map((t) => `${f}: ${t}`));
