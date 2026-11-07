@@ -17,7 +17,7 @@ import SignalSignup from "@/components/home/SignalSignup";
 
 import { selections, isEligible, withAffiliateTag, withVerifiedImage, type CatalogProduct, type Selection } from "@/lib/curatedSelections";
 import { isHolidayActive } from "@/holiday/holidayConfig";
-import christmasSong from "@/assets/jingle-bells-calm.mp3.asset.json";
+import christmasSong from "@/assets/silent-night-piano.mp3.asset.json";
 
 type Pick = { selection: Selection; product: CatalogProduct };
 
@@ -231,7 +231,7 @@ const Index = () => {
                     {playing ? <Pause aria-hidden="true" className="h-4 w-4" /> : <Music aria-hidden="true" className="h-4 w-4" />}
                     {playing ? "Pause the Christmas music" : "Play a calm Christmas song"}
                   </button>
-                  <p className="mt-2 text-xs text-muted-foreground">“Jingle Bells Calm” by <a href="https://incompetech.com/" target="_blank" rel="noopener noreferrer" className="underline">Kevin MacLeod</a>, licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline">CC BY 4.0</a>.</p>
+                  <p className="mt-2 text-xs text-muted-foreground">“Silent Night” by <a href="https://incompetech.com/" target="_blank" rel="noopener noreferrer" className="underline">Kevin MacLeod</a>, licensed under <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer" className="underline">CC BY 3.0</a>.</p>
                   <audio
                     ref={audioRef}
                     src={christmasSong.url}
