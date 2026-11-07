@@ -16,6 +16,7 @@ import heroImg from "@/assets/hero-duality-editorial.jpg";
 import SignalSignup from "@/components/home/SignalSignup";
 
 import { selections, isEligible, withAffiliateTag, withVerifiedImage, type CatalogProduct, type Selection } from "@/lib/curatedSelections";
+import { isHolidayActive } from "@/holiday/holidayConfig";
 
 type Pick = { selection: Selection; product: CatalogProduct };
 
@@ -55,6 +56,7 @@ const affiliateDisclosure = "As an Amazon Associate, Modern Tech LLC earns from 
 
 const Index = () => {
   const [shopOpen, setShopOpen] = useState(false);
+  const holiday = isHolidayActive();
   const { data: products = [], isLoading, isError } = useSelections();
   const { data: digitalProducts = [], isLoading: digitalLoading, isError: digitalError } = useQuery({
     queryKey: ["homepage-digital-offers"],
@@ -169,7 +171,9 @@ const Index = () => {
       <main>
         <section className="relative py-10 md:py-16" aria-labelledby="hero-heading">
           <div className="grid grid-cols-1 items-center md:grid-cols-2">
-            <div className="overflow-hidden"><img src={heroImg} alt="Editorial lifestyle photo: a woman descending a spiral staircase carrying tulips" className="h-auto max-h-[70vh] w-full object-cover" /></div>
+            <div className="overflow-hidden">{holiday
+              ? <img src="/holiday/holiday-hero.jpg" alt="Holiday editorial photo: a woman with Christmas gifts" className="h-auto max-h-[70vh] w-full object-cover object-[center_30%]" />
+              : <img src={heroImg} alt="Editorial lifestyle photo: a woman descending a spiral staircase carrying tulips" className="h-auto max-h-[70vh] w-full object-cover" />}</div>
             <div className="px-6 py-10 sm:px-12 md:px-16 md:py-0 lg:px-24">
               <h1 id="hero-heading" className="text-5xl leading-[0.95] tracking-tight md:text-6xl lg:text-7xl" style={{ fontWeight: 400 }}><em>The Art of</em><br />Modern Tech</h1>
               <p className="mt-7 max-w-[420px] text-base leading-relaxed text-foreground/70 md:text-lg" style={{ ...serif, fontStyle: "italic" }}>A short, curated list of everyday tech, each with one clear benefit and one honest limitation.</p>
@@ -205,7 +209,8 @@ const Index = () => {
         {products.length > 0 && <section id="gift-picks" className="scroll-mt-20 border-t border-border bg-secondary/60 px-5 py-16 md:px-10 md:py-24" aria-labelledby="gift-heading">
           <div className="mx-auto max-w-6xl">
             <div className="launch-reveal mb-8 max-w-3xl"><p className={eyebrow}>02 · Gift Finder</p><h2 id="gift-heading" className="mt-3 text-4xl md:text-5xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Easy to give. Useful every day.</h2></div>
-            <div>
+            <div className={holiday ? "grid items-center gap-8 md:grid-cols-2" : ""}>
+              {holiday && <div className="overflow-hidden"><img src="/holiday/iphone-gift.jpg" alt="iPhone wrapped as a holiday gift" loading="lazy" className="h-auto w-full object-cover" /></div>}
               <div>
                 <GiftFinder disclosure={affiliateDisclosure}
                   picks={products.map(({ selection, product }) => ({ slug: selection.slug, title: product.title, imageUrl: product.image_url, audience: selection.audience, benefit: selection.benefit, limitation: selection.limitation }))}
