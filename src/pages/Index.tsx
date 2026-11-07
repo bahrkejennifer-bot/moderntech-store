@@ -24,6 +24,7 @@ const shopCategories = [
   { to: "/smart-home-security", label: "Home & Safety" },
   { to: "/health-wellness-tech", label: "Health & Wellness" },
   { to: "/office-essentials", label: "Tech" },
+  { to: "/office-essentials", label: "Home Office" },
   { to: "/kids-stem", label: "Children's STEM Tech" },
   { to: "/trending-products", label: "Off-Grid Tech" },
 ] as const;
