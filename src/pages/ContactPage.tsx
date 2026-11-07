@@ -73,7 +73,7 @@ const ContactPage = () => {
             className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none"
             style={{ border: "0.5px solid hsl(220 15% 14% / 0.2)", color: "hsl(220 15% 14%)" }}
           />
-          <select
+          <select aria-label="Inquiry subject"
             value={form.subject}
             onChange={(e) => setForm({ ...form, subject: e.target.value })}
             className="w-full px-4 py-3 font-mono text-[12px] tracking-[0.05em] bg-transparent outline-none appearance-none cursor-pointer"
