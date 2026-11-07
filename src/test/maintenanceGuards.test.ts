@@ -35,9 +35,11 @@ describe("storefront maintenance guards", () => {
     expect(blog).not.toMatch(/can.t be beat/);
   });
 
-  it("restores the original editorial hero without holiday image swaps", () => {
+  it("gates holiday images on the holiday switch and keeps the original hero as fallback", () => {
     const index = read("src/pages/Index.tsx");
-    expect(index).not.toMatch(/holiday-hero\.jpg|iphone-gift\.jpg/);
+    expect(index).toMatch(/isHolidayActive/);
+    expect(index).toMatch(/holiday-hero\.jpg/);
+    expect(index).toMatch(/iphone-gift\.jpg/);
     expect(index).toMatch(/src=\{heroImg\}/);
   });
 
