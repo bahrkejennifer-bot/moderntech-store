@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowDown, ArrowRight, ExternalLink, Loader2 } from "lucide-react";
+import { ArrowDown, ArrowRight, ChevronDown, ExternalLink, Loader2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { usePinterestEvent } from "@/hooks/usePinterestTracking";
@@ -18,6 +18,15 @@ import SignalSignup from "@/components/home/SignalSignup";
 import { selections, isEligible, withAffiliateTag, withVerifiedImage, type CatalogProduct, type Selection } from "@/lib/curatedSelections";
 
 type Pick = { selection: Selection; product: CatalogProduct };
+
+// Store category dropdown: existing master category pages only.
+const shopCategories = [
+  { to: "/smart-home-security", label: "Home & Safety" },
+  { to: "/health-wellness-tech", label: "Health & Wellness" },
+  { to: "/office-essentials", label: "Tech" },
+  { to: "/kids-stem", label: "Children's STEM Tech" },
+  { to: "/trending-products", label: "Off-Grid Tech" },
+] as const;
 
 // Existing offer routes only. No homepage prices until the catalog/checkout price audit is complete.
 const digitalOffers = [
