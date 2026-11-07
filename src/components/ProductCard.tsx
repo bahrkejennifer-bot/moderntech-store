@@ -10,12 +10,15 @@ interface ProductCardProps {
   rating: number;
   imageUrl: string;
   affiliateLink: string;
+  omitUnavailableImage?: boolean;
 }
 
-const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: ProductCardProps) => {
+const ProductCard = ({ title, description, rating, imageUrl, affiliateLink, omitUnavailableImage = false }: ProductCardProps) => {
   const { toast } = useToast();
   const { trackEvent } = usePinterestEvent();
   const [pinning, setPinning] = useState(false);
+  const [failedImage, setFailedImage] = useState<string | null>(null);
+  const showImage = !omitUnavailableImage || Boolean(imageUrl && failedImage !== imageUrl);
 
   const handlePinToPinterest = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -51,7 +54,7 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
   return (
     <div className="group relative border-r border-b border-border">
       {/* Image with hover overlay */}
-      <div className="relative aspect-square overflow-hidden">
+      {showImage && <div className="relative aspect-square overflow-hidden">
         <a
           href={affiliateLink}
           target="_blank"
@@ -64,6 +67,7 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
             alt={title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
+            onError={() => { if (omitUnavailableImage) setFailedImage(imageUrl); }}
           />
         </a>
 
@@ -87,7 +91,7 @@ const ProductCard = ({ title, description, rating, imageUrl, affiliateLink }: Pr
             <ExternalLink className="h-3 w-3" />
           </a>
         </div>
-      </div>
+      </div>}
 
       {/* Product title & actions */}
       <div className="p-5">
