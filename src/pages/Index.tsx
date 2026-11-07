@@ -53,6 +53,7 @@ const useSelections = () => useQuery({
 const affiliateDisclosure = "As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. Amazon links may earn us a commission at no additional cost to you.";
 
 const Index = () => {
+  const [shopOpen, setShopOpen] = useState(false);
   const { data: products = [], isLoading, isError } = useSelections();
   const { data: digitalProducts = [], isLoading: digitalLoading, isError: digitalError } = useQuery({
     queryKey: ["homepage-digital-offers"],
