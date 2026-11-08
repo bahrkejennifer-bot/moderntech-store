@@ -39,7 +39,8 @@ const ContactPage = () => {
   return (
     <div className="vogue-theme min-h-screen" style={{ backgroundColor: "hsl(0 0% 100%)", color: "hsl(220 15% 14%)" }}>
       <Helmet>
-        <title>Contact — ModernTech</title>
+        <title>Contact | Modern Tech</title>
+        <link rel="canonical" href="https://moderntech.store/contact" />
         <meta name="description" content="Get in touch with the Modern Tech team. General inquiries, business partnerships, podcast guest requests, and press." />
       </Helmet>
       <Navigation />
