@@ -1,9 +1,15 @@
+import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 
 const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
+      <Helmet>
+        <title>Privacy Policy | Modern Tech</title>
+        <meta name="description" content="How Modern Tech LLC collects, uses and protects your information on moderntech.store." />
+        <link rel="canonical" href="https://moderntech.store/privacy-policy" />
+      </Helmet>
       <Navigation />
       <main className="container mx-auto px-4 py-12 max-w-4xl">
         <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>

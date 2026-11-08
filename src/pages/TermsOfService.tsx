@@ -1,9 +1,15 @@
+import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 
 const TermsOfService = () => {
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
+      <Helmet>
+        <title>Terms of Service | Modern Tech</title>
+        <meta name="description" content="The terms for using moderntech.store, Modern Tech newsletters, downloads and related services." />
+        <link rel="canonical" href="https://moderntech.store/terms-of-service" />
+      </Helmet>
       <Navigation />
       <main className="container mx-auto px-4 py-12 max-w-4xl">
         <h1 className="text-4xl font-bold mb-2">Terms of Service</h1>
