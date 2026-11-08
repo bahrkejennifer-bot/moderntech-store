@@ -21,3 +21,6 @@
 - [x] Build support-chat edge function (help-docs answers, order lookup by email, escalate action emails transcript).
 - [x] Build SupportChat widget, mounted site-wide except /links, /free-guide, /admin, /the-signal, /blog.
 - [ ] Deploy support-chat function - BLOCKED: needs user's explicit deploy approval.
+
+- [ ] Finish Google Search Console: publish (tag added to index.html), verify, add site, submit sitemap
+- [x] Add Nov 8 2026 "The Modern Tech Edit: A Full Week of Useful Tech" article as featured + collection links
