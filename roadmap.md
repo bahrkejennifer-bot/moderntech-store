@@ -23,4 +23,4 @@
 - [ ] Deploy support-chat function - BLOCKED: needs user's explicit deploy approval.
 
 - [ ] Finish Google Search Console: publish (tag added to index.html), verify, add site, submit sitemap
-- [ ] Add Nov 8 2026 "The Modern Tech Edit: A Full Week of Useful Tech" article as featured + collection links
+- [x] Add Nov 8 2026 "The Modern Tech Edit: A Full Week of Useful Tech" article as featured + collection links
