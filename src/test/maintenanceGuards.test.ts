@@ -64,7 +64,8 @@ describe("storefront maintenance guards", () => {
 
   it("keeps the homepage holiday note on the Amazon event page with a verified-offers qualifier", () => {
     const index = read("src/pages/Index.tsx");
-    const note = index.slice(index.indexOf('id="selections"'), index.indexOf("affiliateDisclosure"));
+    const start = index.indexOf('id="selections"');
+    const note = index.slice(start, index.indexOf("affiliateDisclosure", start));
     expect(note).toContain("https://www.aboutamazon.com/news/retail/amazon-black-friday-cyber-monday-deals-2026");
     expect(note).toContain("Official Amazon event details");
     expect(note).toMatch(/Amazon's Black Friday Week and Cyber Monday event runs November 19 to 30\./);
