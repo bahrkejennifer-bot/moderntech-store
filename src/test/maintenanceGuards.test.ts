@@ -62,6 +62,21 @@ describe("storefront maintenance guards", () => {
     }
   });
 
+  it("keeps the homepage holiday note on the Amazon event page with a verified-offers qualifier", () => {
+    const index = read("src/pages/Index.tsx");
+    const start = index.indexOf('id="selections"');
+    const note = index.slice(start, index.indexOf("affiliateDisclosure", start));
+    expect(note).toContain("https://www.aboutamazon.com/news/retail/amazon-black-friday-cyber-monday-deals-2026");
+    expect(note).toContain("Official Amazon event details");
+    expect(note).toMatch(/Amazon's Black Friday Week and Cyber Monday event runs November 19 to 30\./);
+    expect(note).toMatch(/Offers on these exact featured products are shown only when verified\./);
+    expect(note).not.toContain("amazon-black-friday-faq");
+    expect(note).not.toMatch(/Black Friday is November 27/);
+    for (const banned of [/best deal/i, /save \d/i, /% off/i, /discount/i, /limited/i, /only \d+ left/i, /expires/i, /countdown/i, /\$\d/]) {
+      expect(note).not.toMatch(banned);
+    }
+  });
+
   it("points the shopping-event note at Amazon's current Cyber Monday FAQ, not the expired October event", () => {
     const edition = read("src/lib/signalWeeklyEdition.ts");
     expect(edition).not.toMatch(/amazon-prime-big-deals-day-2026-when-october-6-7/);
