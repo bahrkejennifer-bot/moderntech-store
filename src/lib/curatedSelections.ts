@@ -19,6 +19,7 @@ export const selections = [
 
 
 // Reversible, code-level image override: Amazon main images verified against each live listing on 2026-11-03.
+// Anker SOLIX C300 DC image replaced 2026-11-11 with official Anker product page photo (Amazon image removed from listing).
 // Keyed by selection slug and pinned to its ASIN; applied only when the catalog link points at that ASIN.
 export const verifiedImages: Record<string, { asin: string; imageUrl: string }> = {
   "rocketbook-core": { asin: "B0DP3HRDC2", imageUrl: "https://m.media-amazon.com/images/I/71lZL1GA+AL._AC_SL1500_.jpg" },
@@ -27,7 +28,7 @@ export const verifiedImages: Record<string, { asin: string; imageUrl: string }> 
   "renpho-elis-1": { asin: "B01N1UX8RW", imageUrl: "https://m.media-amazon.com/images/I/61KqTsLN+pL._SL1500_.jpg" },
   "snap-circuits-jr-sc-100": { asin: "B00008BFZH", imageUrl: "https://m.media-amazon.com/images/I/71wjLjOAVBL._AC_SL1500_.jpg" },
   "jbl-flip-6": { asin: "B09GJVTRNZ", imageUrl: "https://m.media-amazon.com/images/I/61Eaj593GtL._AC_SL1500_.jpg" },
-  "anker-solix-c300-dc": { asin: "B0D62PMB3R", imageUrl: "https://m.media-amazon.com/images/I/71PJvyNWf7L._AC_SL1500_.jpg" },
+  "anker-solix-c300-dc": { asin: "B0D62PMB3R", imageUrl: "https://cdn.shopify.com/s/files/1/0854/3820/2186/files/20240604-1523121_3765ef84-9811-4315-b372-8e82f5fcb598_1000x.png?v=1733919246" },
 };
 
 export const asinOf = (link: string) => link.match(/\/dp\/([A-Z0-9]{10})/i)?.[1]?.toUpperCase() ?? null;

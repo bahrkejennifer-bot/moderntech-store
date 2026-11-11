@@ -8,7 +8,7 @@ const expected: Record<string, [string, string]> = {
   "renpho-elis-1": ["B01N1UX8RW", "61KqTsLN+pL"],
   "snap-circuits-jr-sc-100": ["B00008BFZH", "71wjLjOAVBL"],
   "jbl-flip-6": ["B09GJVTRNZ", "61Eaj593GtL"],
-  "anker-solix-c300-dc": ["B0D62PMB3R", "71PJvyNWf7L"],
+  "anker-solix-c300-dc": ["B0D62PMB3R", "20240604-1523121"],
 };
 
 describe("verified product images", () => {
@@ -18,7 +18,7 @@ describe("verified product images", () => {
   for (const [slug, [asin, token]] of Object.entries(expected)) {
     it(`${slug} maps to ${asin} with image token ${token}`, () => {
       expect(verifiedImages[slug].asin).toBe(asin);
-      expect(verifiedImages[slug].imageUrl).toContain(`/images/I/${token}.`);
+      expect(verifiedImages[slug].imageUrl).toContain(token);
       const sel = selections.find((s) => s.slug === slug)!;
       const row = { id: sel.id, title: "T", image_url: "https://old.example/x.jpg", affiliate_link: `https://www.amazon.com/dp/${asin}?tag=moderntech02-20`, is_active: true };
       const out = withVerifiedImage(slug, row);
