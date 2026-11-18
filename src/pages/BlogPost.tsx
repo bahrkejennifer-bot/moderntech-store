@@ -1,3 +1,5 @@
+import November18Article from "@/components/November18Article";
+import { november18Edition } from "@/lib/november18Edition";
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { Helmet } from "react-helmet-async";
@@ -509,7 +511,7 @@ const BlogPost = () => {
       if (error) throw error;
       return data;
     },
-    enabled: !post && !!slug,
+    enabled: !post && !!slug && slug !== november18Edition.slug,
   });
 
   // Reading progress
@@ -603,6 +605,8 @@ const BlogPost = () => {
         return null;
     }
   };
+
+  if (slug === november18Edition.slug) return <November18Article />;
 
   // ── Dynamic (AI-generated) post ──
   if (!post && dynamicPost) {

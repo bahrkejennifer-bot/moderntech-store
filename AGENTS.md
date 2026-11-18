@@ -8,3 +8,5 @@
 - Compose client-side PDFs with jsPDF's text engine instead of html2pdf.js/html2canvas, which silently produces blank pages here; the PDF is laid out from the same model the page reads, so it can never show a photo or claim the page does not.
 - Keep gift-finder matching local to eligible curated picks, with an explicit external Amazon search link for unmatched queries; this avoids fabricated inventory and unsolicited redirects.
 - All free email signups go through `saveSubscriber` (one row per email in the subscribers list; anon insert-only, admin-only read) before anything else, and freebies unlock on screen immediately; the confirmation/welcome email runs in the background and never gates delivery.
+
+- Keep the November 18 owner-supplied edition and collection additions in a shared code-level module, separate from live catalog records; scoped figures and affiliate destinations stay reversible without changing global policies or data.

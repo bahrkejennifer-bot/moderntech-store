@@ -24,3 +24,8 @@
 
 - [ ] Finish Google Search Console: publish (tag added to index.html), verify, add site, submit sitemap
 - [x] Add Nov 8 2026 "The Modern Tech Edit: A Full Week of Useful Tech" article as featured + collection links
+
+# November 18 Weekly Edit (preview only)
+- [x] Add the supplied five-section, 19-product edition and feature it before existing editions.
+- [x] Add matching picks to existing collection destinations without changing routes or catalog data.
+- [x] Verify supplied figures, destinations, photos and mobile/desktop presentation; do not publish.

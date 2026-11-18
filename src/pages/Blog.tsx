@@ -1,3 +1,4 @@
+import { november18Edition } from "@/lib/november18Edition";
 import { Helmet } from "react-helmet-async";
 import StructuredData from "@/components/StructuredData";
 import { Link } from "react-router-dom";
@@ -142,9 +143,10 @@ const Blog = () => {
     readTime: "5 min read",
   }));
 
-  const allPosts = [...dynamicMapped, ...staticBlogPosts].sort((a, b) => +new Date(b.date) - +new Date(a.date));
-  const latest = allPosts[0];
-  const previous = allPosts.slice(1);
+  const newEdition = { ...november18Edition, category: "THE EDIT", imageUrl: "", isGenerated: false, readTime: "8 min read" };
+  const allPosts = [newEdition, ...dynamicMapped.filter(post => post.slug !== newEdition.slug), ...staticBlogPosts].sort((a, b) => +new Date(b.date) - +new Date(a.date));
+  const latest = newEdition;
+  const previous = allPosts.filter(post => post.slug !== newEdition.slug);
   const fmt = (d: string) => new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   // Label honestly: a monthly roundup is not called a weekly issue.
   const latestKind = latest && /month|roundup/i.test(latest.title) ? "Monthly roundup" : "Latest edition";
@@ -189,6 +191,24 @@ const Blog = () => {
           </p>
         </header>
 
+        {latest && (
+          <section aria-labelledby="latest-heading" className="print:hidden mt-16 border-t border-border pt-10">
+            <p className="text-sm text-muted-foreground">
+              <span className="font-medium text-foreground">Latest article · {latestKind}</span> · <time dateTime={latest.date}>{fmt(latest.date)}</time>
+            </p>
+            <h2 id="latest-heading" className="mt-3 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
+              <Link to={`/the-edit/${latest.slug}`} className="hover:underline underline-offset-4">{latest.title}</Link>
+            </h2>
+            {latest.excerpt && <p className="mt-6 text-lg leading-relaxed text-foreground/85">{latest.excerpt}</p>}
+            <Link
+              to={`/the-edit/${latest.slug}`}
+              className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 text-base font-medium text-background hover:opacity-90"
+            >
+              Read the full edition <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </section>
+        )}
+
         <section aria-labelledby="weekly-heading" className="border-t border-border pt-10 print:pt-4">
           <p className="text-sm text-muted-foreground"><span className="font-medium text-foreground">This week's edition</span> · Week of <time dateTime={weeklyEdition.weekOf}>{fmt(weeklyEdition.weekOf + "T12:00:00")}</time></p>
           <h2 id="weekly-heading" className="mt-3 print:mt-1 print:text-xl text-3xl font-semibold leading-tight tracking-tight md:text-4xl">{weeklyEdition.title}</h2>
@@ -224,25 +244,6 @@ const Blog = () => {
         </section>
 
         <SignalPdfDownload picks={weeklyPicks} />
-
-        {latest && (
-          <section aria-labelledby="latest-heading" className="print:hidden mt-16 border-t border-border pt-10">
-            <p className="text-sm text-muted-foreground">
-              <span className="font-medium text-foreground">Latest article · {latestKind}</span> · <time dateTime={latest.date}>{fmt(latest.date)}</time>
-            </p>
-            <h2 id="latest-heading" className="mt-3 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
-              <Link to={`/the-edit/${latest.slug}`} className="hover:underline underline-offset-4">{latest.title}</Link>
-            </h2>
-            
-            {latest.excerpt && <p className="mt-6 text-lg leading-relaxed text-foreground/85">{latest.excerpt}</p>}
-            <Link
-              to={`/the-edit/${latest.slug}`}
-              className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 text-base font-medium text-background hover:opacity-90"
-            >
-              Read the full edition <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </section>
-        )}
 
         {previous.length > 0 && (
           <section aria-labelledby="previous-heading" className="print:hidden mt-16 border-t border-border pt-10">

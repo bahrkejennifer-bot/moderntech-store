@@ -1,3 +1,4 @@
+import November18CollectionPicks from "@/components/November18CollectionPicks";
 import { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -56,6 +57,8 @@ const VogueCategoryLayout = ({ title, subtitle, children }: VogueCategoryLayoutP
       <div className="max-w-5xl mx-auto px-8 pb-12">
         <div className="h-px bg-border" />
       </div>
+
+      <November18CollectionPicks path={pathname} />
 
       {/* Product grid */}
       <section className="max-w-6xl mx-auto px-8 pb-20">

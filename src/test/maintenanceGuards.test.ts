@@ -24,9 +24,9 @@ describe("storefront maintenance guards", () => {
     }
   });
 
-  it("uses only the moderntechs04-20 Amazon tag", () => {
+  it("uses the default moderntechs04-20 tag outside the owner-supplied November 18 edition", () => {
     const bad = files.flatMap((f) =>
-      [...read(f).matchAll(/amazon\.com[^"'`\s]*[?&]tag=([A-Za-z0-9-]+)/g)].map((m) => m[1]).filter((t) => t !== "moderntechs04-20").map((t) => `${f}: ${t}`));
+      [...read(f).matchAll(/amazon\.com[^"'`\s]*[?&]tag=([A-Za-z0-9-]+)/g)].map((m) => m[1]).filter((t) => t !== (f === "src/lib/november18Edition.ts" ? "moderntech02-20" : "moderntechs04-20")).map((t) => `${f}: ${t}`));
     expect(bad).toEqual([]);
   });
 
