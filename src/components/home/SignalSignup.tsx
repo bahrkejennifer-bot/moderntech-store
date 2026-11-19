@@ -1,4 +1,3 @@
-import { editorialText } from "@/lib/editorialPresentation";
 import { SUBSCRIBE_CONSENT_LINE } from "@/lib/subscribers";
 import { useState } from "react";
 import { z } from "zod";
@@ -42,7 +41,7 @@ const SignalSignup = () => {
         </Button>
       </div>
       <p id="signal-help" role={status && !status.ok ? "alert" : undefined} className={`mt-3 text-sm ${status && !status.ok ? "text-destructive" : "text-muted-foreground"}`}>
-        {status && !status.ok ? status.msg : editorialText(SUBSCRIBE_CONSENT_LINE)}
+        {status && !status.ok ? status.msg : SUBSCRIBE_CONSENT_LINE}
       </p>
     </form>
   );

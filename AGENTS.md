@@ -10,5 +10,5 @@
 - All free email signups go through `saveSubscriber` (one row per email in the subscribers list; anon insert-only, admin-only read) before anything else, and freebies unlock on screen immediately; the confirmation/welcome email runs in the background and never gates delivery.
 
 - Keep the November 18 edition and collection additions in their shared code-level module behind one default-off publication flag checked by listing, article and collection presentation; this preserves draft assets without exposing unreviewed content.
-- Apply editorial brand and volatile-claim corrections through a render-only helper, never historical database edits, to keep maintenance reversible.
+- Render stored editorial titles, excerpts and body text directly without the editorialPresentation helper; this preserves owner-approved live content without historical database edits.
 - Derive queued email text from its HTML through the shared email-content helper; remove Amazon destinations from email bodies so multipart content stays aligned without changing template design.

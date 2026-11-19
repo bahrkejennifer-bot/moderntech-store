@@ -1,4 +1,3 @@
-import { editorialText, compactArchivePreview } from "@/lib/editorialPresentation";
 import { Button } from "@/components/ui/button";
 import { november18Edition } from "@/lib/november18Edition";
 import { Helmet } from "react-helmet-async";
@@ -135,18 +134,18 @@ const Blog = () => {
   });
 
   const dynamicMapped = (dynamicPosts || []).map((p) => ({
-    title: editorialText(p.title),
-    excerpt: compactArchivePreview(p.excerpt || ""),
+    title: p.title,
+    excerpt: p.excerpt || "",
     date: p.created_at,
-    category: !p.category || /weekly edit/i.test(p.category) ? "THE EDIT" : editorialText(p.category),
+    category: !p.category || /weekly edit/i.test(p.category) ? "THE EDIT" : p.category,
     imageUrl: p.image_url && !/images\.unsplash\.com/i.test(p.image_url) ? p.image_url : "",
     slug: p.slug,
     isGenerated: true,
     readTime: "5 min read",
   }));
 
-  const newEdition = { ...november18Edition, title: editorialText(november18Edition.title), category: "THE EDIT", imageUrl: "", isGenerated: false, readTime: "8 min read" };
-  const allPosts = [...(november18Edition.published ? [newEdition] : []), ...dynamicMapped.filter(post => post.slug !== newEdition.slug), ...staticBlogPosts.map(post => ({ ...post, title: editorialText(post.title), excerpt: compactArchivePreview(post.excerpt) }))].sort((a, b) => +new Date(b.date) - +new Date(a.date));
+  const newEdition = { ...november18Edition, title: november18Edition.title, category: "THE EDIT", imageUrl: "", isGenerated: false, readTime: "8 min read" };
+  const allPosts = [...(november18Edition.published ? [newEdition] : []), ...dynamicMapped.filter(post => post.slug !== newEdition.slug), ...staticBlogPosts].sort((a, b) => +new Date(b.date) - +new Date(a.date));
   const latest = allPosts[0];
   const previous = allPosts.filter(post => post.slug !== latest?.slug);
   const fmt = (d: string) => new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });

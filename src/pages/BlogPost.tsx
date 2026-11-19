@@ -1,4 +1,3 @@
-import { editorialText, editorialHtml } from "@/lib/editorialPresentation";
 import November18Article from "@/components/November18Article";
 import { november18Edition } from "@/lib/november18Edition";
 import { useParams, Link } from "react-router-dom";
@@ -499,7 +498,7 @@ const parseMarkdownBold = (text: string): React.ReactNode[] => {
 const BlogPost = () => {
   const { slug } = useParams();
   const storedPost = slug ? blogPostsData[slug] : null;
-  const post = storedPost ? { ...storedPost, title: editorialText(storedPost.title), intro: editorialText(storedPost.intro), sections: storedPost.sections.map(section => ({ ...section, content: section.content ? editorialText(section.content) : undefined, items: section.items?.map(editorialText) })) } : null;
+  const post = storedPost;
 
   const { data: storedDynamicPost, isLoading } = useQuery({
     queryKey: ["blog-post", slug],
@@ -516,7 +515,7 @@ const BlogPost = () => {
     enabled: !post && !!slug && (!november18Edition.published || slug !== november18Edition.slug),
   });
 
-  const dynamicPost = storedDynamicPost ? { ...storedDynamicPost, title: editorialText(storedDynamicPost.title), excerpt: editorialText(storedDynamicPost.excerpt || ""), category: /weekly edit|weekly newsletter|the signal/i.test(storedDynamicPost.category || "") ? "THE EDIT" : editorialText(storedDynamicPost.category || "Tech"), content_html: editorialHtml(storedDynamicPost.content_html || "") } : null;
+  const dynamicPost = storedDynamicPost;
 
   // Reading progress
   const [progress, setProgress] = useState(0);
@@ -1023,7 +1022,7 @@ const ProductCard = ({ product }: { product: BlogProduct }) => (
       {product.imageUrl ? <div className="aspect-[4/3] overflow-hidden relative">
         <img
           src={product.imageUrl}
-          alt={editorialText(product.title)}
+          alt={product.title}
           loading="lazy"
           onError={(e) => { (e.currentTarget.parentElement as HTMLElement).style.display = "none"; }}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -1035,8 +1034,8 @@ const ProductCard = ({ product }: { product: BlogProduct }) => (
         )}
       </div> : product.badge ? <div className="px-4 pt-4"><span className="inline-block bg-foreground text-background text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wide uppercase">{product.badge}</span></div> : null}
       <div className="p-4 flex flex-col flex-1">
-        <h3 className="text-sm font-bold line-clamp-2 mb-1 group-hover:text-foreground/70 transition-colors text-foreground">{editorialText(product.title)}</h3>
-        <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed flex-1">{editorialText(product.description)}</p>
+        <h3 className="text-sm font-bold line-clamp-2 mb-1 group-hover:text-foreground/70 transition-colors text-foreground">{product.title}</h3>
+        <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed flex-1">{product.description}</p>
         <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
           <span className="sr-only">Opens Amazon</span>
           <span className="inline-flex items-center gap-1 text-xs font-medium text-foreground border-b border-foreground/20 pb-0.5 group-hover:border-foreground/50 transition-all">

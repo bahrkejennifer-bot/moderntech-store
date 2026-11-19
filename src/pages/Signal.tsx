@@ -1,4 +1,3 @@
-import { editorialText } from "@/lib/editorialPresentation";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Link } from "react-router-dom";
@@ -31,9 +30,9 @@ const Signal = () => {
   const entries = (posts ?? []).map((post, i) => ({
     log: `LOG ${String((posts?.length ?? 0) - i).padStart(3, "0")}`,
     date: formatLogDate(post.created_at),
-    title: editorialText(post.title),
-    excerpt: editorialText(post.excerpt ?? ""),
-    category: editorialText(post.category ?? "TECH").toUpperCase(),
+    title: post.title,
+    excerpt: post.excerpt ?? "",
+    category: (post.category ?? "TECH").toUpperCase(),
     slug: `/the-edit/${post.slug}`,
   }));
 

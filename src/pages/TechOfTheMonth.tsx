@@ -1,4 +1,3 @@
-import { editorialText } from "@/lib/editorialPresentation";
 import { useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useParams, Navigate } from "react-router-dom";
@@ -24,11 +23,11 @@ export default function TechOfTheMonth() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>{editorialText(entry.title)}</title>
-        <meta name="description" content={editorialText(entry.metaDescription)} />
+        <title>{entry.title}</title>
+        <meta name="description" content={entry.metaDescription} />
         <link rel="canonical" href={canonical} />
-        <meta property="og:title" content={editorialText(entry.ogTitle)} />
-        <meta property="og:description" content={editorialText(entry.ogDescription)} />
+        <meta property="og:title" content={entry.ogTitle} />
+        <meta property="og:description" content={entry.ogDescription} />
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="article" />
         <meta property="og:image" content={ogImage} />
@@ -37,13 +36,13 @@ export default function TechOfTheMonth() {
         <meta property="article:section" content="Tech of the Month" />
         <meta property="article:published_time" content={entry.publishedDate} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={editorialText(entry.ogTitle)} />
-        <meta name="twitter:description" content={editorialText(entry.ogDescription)} />
+        <meta name="twitter:title" content={entry.ogTitle} />
+        <meta name="twitter:description" content={entry.ogDescription} />
         <meta name="twitter:image" content={ogImage} />
       </Helmet>
       <StructuredData
-        title={editorialText(entry.ogTitle)}
-        description={editorialText(entry.metaDescription)}
+        title={entry.ogTitle}
+        description={entry.metaDescription}
         path={`/tech-of-the-month/${entry.slug}`}
         breadcrumbs={[
           { name: "Home", path: "/" },
@@ -94,7 +93,7 @@ export default function TechOfTheMonth() {
             className="font-serif text-4xl md:text-5xl lg:text-6xl italic tracking-tight leading-[1.08] max-w-3xl"
             style={{ fontWeight: 700, color: "#000000" }}
           >
-            {editorialText(entry.tagline)}
+            {entry.tagline}
           </h1>
           <p className="mt-6 font-mono text-xs text-muted-foreground max-w-xl leading-relaxed flex items-center gap-2">
             <Calendar className="h-3 w-3" />
@@ -108,7 +107,7 @@ export default function TechOfTheMonth() {
 
       <article className="max-w-3xl mx-auto px-8 py-16 lg:py-20">
         <p className="font-serif text-lg md:text-xl leading-relaxed text-foreground mb-14">
-          {editorialText(entry.intro)}
+          {entry.intro}
         </p>
 
         <section>
@@ -132,7 +131,7 @@ export default function TechOfTheMonth() {
                     {pick.name}
                   </h3>
                   <p className="font-mono text-xs text-muted-foreground leading-relaxed">
-                    {editorialText(pick.why)}
+                    {pick.why}
                   </p>
                 </div>
               </li>
@@ -154,7 +153,7 @@ export default function TechOfTheMonth() {
                       to={`/tech-of-the-month/${e.slug}`}
                       className="font-mono text-xs text-foreground/80 hover:text-foreground underline underline-offset-4"
                     >
-                      {e.monthLabel} · {editorialText(e.tagline)}
+                      {e.monthLabel} · {e.tagline}
                     </Link>
                   </li>
                 ))}

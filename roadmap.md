@@ -43,3 +43,7 @@
 - [x] Restore The Edit public newsletter labels, canonical routes and approved signup headline.
 - [x] Gate the unreviewed November 18 article and collection additions behind a default-off published flag.
 - [x] Run the full tests and preview checks; preserve music, affiliate logic, email payloads and mobile header layout; do not publish.
+
+# Four live-parity reversions (preview only)
+- [x] Restore the supplied live holiday note, weekly intro/four notes and Anker image.
+- [x] Remove editorial helper calls from public rendering, run all tests and preserve protected work without publishing.

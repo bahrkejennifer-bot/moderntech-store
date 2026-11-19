@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { weeklyEdition } from "@/lib/signalWeeklyEdition";
 
 const walk = (dir: string): string[] =>
   readdirSync(dir).flatMap((f) => {
@@ -80,25 +81,31 @@ describe("storefront maintenance guards", () => {
     expect(read("src/components/ModernTechEditSignup.tsx")).toMatch(/Get our weekly Christmas Amazon finds\s*<\/h3>/);
   });
 
-  it("keeps the homepage holiday note on the Amazon event page with a verified-offers qualifier", () => {
+  it("keeps the supplied live homepage holiday note and FAQ", () => {
     const index = read("src/pages/Index.tsx");
     const start = index.indexOf('id="selections"');
     const note = index.slice(start, index.indexOf("affiliateDisclosure", start));
-    expect(note).toContain("https://www.aboutamazon.com/news/retail/amazon-black-friday-cyber-monday-deals-2026");
-    expect(note).toContain("Official Amazon event details");
-    expect(note).toMatch(/Amazon's Black Friday Week and Cyber Monday event runs November 19 to 30\./);
-    expect(note).toMatch(/Offers on these exact featured products are shown only when verified\./);
-    expect(note).not.toContain("amazon-black-friday-faq");
-    expect(note).not.toMatch(/Black Friday is November 27/);
+    expect(note).toContain("https://www.aboutamazon.com/news/retail/when-is-amazon-black-friday-faq");
+    expect(note).toContain("Black Friday is November 27. Cyber Monday is November 30.");
+    expect(note).toContain('>Amazon</a>.');
+    expect(note).not.toContain("amazon-black-friday-cyber-monday-deals-2026");
+    expect(note).not.toContain("Official Amazon event details");
     for (const banned of [/best deal/i, /save \d/i, /% off/i, /discount/i, /limited/i, /only \d+ left/i, /expires/i, /countdown/i, /\$\d/]) {
       expect(note).not.toMatch(banned);
     }
   });
 
-  it("uses neutral official-source shopping guidance", () => {
-    const edition = read("src/lib/signalWeeklyEdition.ts");
-    expect(edition).not.toMatch(/amazon-prime-big-deals-day-2026-when-october-6-7/);
-    expect(edition).not.toMatch(/has not announced|unannounced retailer sale window/);
-    expect(edition).toContain("https://www.aboutamazon.com/news/retail/amazon-black-friday-cyber-monday-deals-2026");
+  it("retains the four supplied live edition notes in order", () => {
+    expect(weeklyEdition.intro).toEqual([
+      "This week's Modern Tech rhythm moved from wellness to hands-on family learning and a quieter Sunday reset. The three picks below solve practical problems without turning the page into a catalog.",
+      "Prime Big Deal Days ran October 6–7 and is over, so this edition contains no event pricing or urgency. Check the current price and delivery date on Amazon before buying.",
+    ]);
+    expect(weeklyEdition.newsNotes).toEqual([
+      { label: "Family STEM", text: "Scratch's free Animate a Character activity was this week's hands-on idea. No purchase is required.", url: "https://www.scratchfoundation.org/learn/learning-library/animate-character" },
+      { label: "Smart-home news", text: "Ring announced the Pan-Tilt Indoor Cam 2K with movement tracking and a physical privacy shutter. We do not yet have a verified Amazon affiliate URL for this exact model, so it is not included in the product cards.", url: "https://ring.com/products/pan-tilt-indoor-cam-2k" },
+      { label: "Shopping-event status", text: "Cyber Monday is November 30. Amazon has not announced specific offers yet.", url: "https://www.aboutamazon.com/news/retail/when-is-amazon-cyber-monday-faq" },
+      { label: "Holiday calendar", text: "Veterans Day is Wednesday, November 11, and Thanksgiving is Thursday, November 26. We are planning gift coverage without claiming an unannounced retailer sale window.", url: "https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/" },
+    ]);
+    expect(read("src/lib/signalWeeklyEdition.ts")).not.toMatch(/amazon-prime-big-deals-day-2026-when-october-6-7|amazon-black-friday-cyber-monday-deals-2026/);
   });
 });

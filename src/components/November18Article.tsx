@@ -1,4 +1,3 @@
-import { editorialText } from "@/lib/editorialPresentation";
 import { withAffiliateTag } from "@/lib/curatedSelections";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -12,9 +11,9 @@ export default function November18Article() {
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
-        <title>{editorialText(edition.title)} | Modern Tech LLC</title>
+        <title>{edition.title} | Modern Tech LLC</title>
         <meta name="description" content={edition.excerpt} />
-        <meta property="og:title" content={editorialText(edition.title)} />
+        <meta property="og:title" content={edition.title} />
         <meta property="og:description" content={edition.excerpt} />
         <meta property="og:type" content="article" />
         <meta property="article:published_time" content={edition.date} />
@@ -27,13 +26,13 @@ export default function November18Article() {
           <p className="text-sm leading-relaxed text-muted-foreground">{edition.disclosure}</p>
           <header className="border-b border-border pb-10 mt-6">
             <time dateTime={edition.date} className="text-sm text-muted-foreground">November 18, 2026</time>
-            <h1 className="font-serif italic font-normal text-3xl md:text-5xl leading-tight mt-4 break-words">{editorialText(edition.title)}</h1>
+            <h1 className="font-serif italic font-normal text-3xl md:text-5xl leading-tight mt-4 break-words">{edition.title}</h1>
             <p className="mt-6 text-lg leading-relaxed">{edition.excerpt}</p>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed">Archived November 18 edition. Check current product details, compatibility and manufacturer guidance on Amazon before buying.</p>
           </header>
           {november18Sections.map(section => (
             <section key={section.id} aria-labelledby={`theme-${section.id}`} className="pt-12">
-              <h2 id={`theme-${section.id}`} className="font-serif italic text-3xl leading-tight">{editorialText(section.title)}</h2>
+              <h2 id={`theme-${section.id}`} className="font-serif italic text-3xl leading-tight">{section.title}</h2>
               <div className="mt-8 space-y-10">
                 {november18Products.filter(product => product.group === section.id).map(product => (
                   <section key={product.asin} data-edition-product={product.asin} className="border-b border-border pb-10 sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-6">

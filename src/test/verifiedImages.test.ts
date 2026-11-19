@@ -8,17 +8,17 @@ const expected: Record<string, [string, string]> = {
   "renpho-elis-1": ["B01N1UX8RW", "61KqTsLN+pL"],
   "snap-circuits-jr-sc-100": ["B00008BFZH", "71wjLjOAVBL"],
   "jbl-flip-6": ["B09GJVTRNZ", "61Eaj593GtL"],
-  "anker-solix-c300-dc": ["B0D62PMB3R", "20240604-1523121"],
+  "anker-solix-c300-dc": ["B0D62PMB3R", "71PJvyNWf7L"],
 };
 
 describe("verified product images", () => {
   it("covers all seven selections in unchanged order", () => {
     expect(selections.map((s) => s.slug)).toEqual(Object.keys(expected));
   });
-  it("retains the exact official Anker C300 DC image source", () => {
+  it("retains the exact live Anker C300 DC image source", () => {
     expect(verifiedImages["anker-solix-c300-dc"]).toEqual({
       asin: "B0D62PMB3R",
-      imageUrl: "https://cdn.shopify.com/s/files/1/0854/3820/2186/files/20240604-1523121_3765ef84-9811-4315-b372-8e82f5fcb598_1000x.png?v=1733919246",
+      imageUrl: "https://m.media-amazon.com/images/I/71PJvyNWf7L._AC_SL1500_.jpg",
     });
   });
   for (const [slug, [asin, token]] of Object.entries(expected)) {

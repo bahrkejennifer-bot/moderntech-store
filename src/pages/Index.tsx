@@ -1,4 +1,3 @@
-import { editorialText } from "@/lib/editorialPresentation";
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
@@ -200,7 +199,7 @@ const Index = () => {
           <div className="mx-auto max-w-6xl">
             <div className="launch-reveal mb-8 text-center"><p className={eyebrow}>01 · Holiday Gift Edit</p><h2 id="selections-heading" className="mt-3 text-4xl md:text-5xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Thoughtful tech, useful beyond the holidays.</h2></div>
             <div className="mx-auto mb-8 max-w-2xl border border-border bg-secondary/50 px-5 py-4 text-center">
-              <p className="text-sm leading-relaxed text-foreground/80">Amazon's Black Friday Week and Cyber Monday event runs November 19 to 30. Explore thoughtful tech gifts, and see <a href="https://www.aboutamazon.com/news/retail/amazon-black-friday-cyber-monday-deals-2026" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-foreground">Official Amazon event details</a>. Offers on these exact featured products are shown only when verified.</p>
+              <p className="text-sm leading-relaxed text-foreground/80">Black Friday is November 27. Cyber Monday is November 30. Browse current details on <a href="https://www.aboutamazon.com/news/retail/when-is-amazon-black-friday-faq" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-foreground">Amazon</a>.</p>
             </div>
             <p className="mx-auto mb-10 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">{affiliateDisclosure}</p>
             {isLoading ? <p role="status" className="flex items-center justify-center gap-3 py-16"><Loader2 className="h-5 w-5 animate-spin" /> Loading selections…</p>
@@ -280,7 +279,7 @@ const Index = () => {
           <div className="launch-reveal mx-auto grid max-w-5xl items-start gap-8 md:grid-cols-2 md:gap-14">
             <div><p className={eyebrow}>04 · The Edit · Weekly Newsletter</p><h2 id="signal-heading" className="mt-3 text-3xl md:text-4xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Read The Edit.</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">Our weekly newsletter: a few useful tech picks and plain-language notes. Free to read online.</p>
-              {latestPost && <p className="mt-4 text-sm text-muted-foreground">Latest article: <Link to={`/the-edit/${latestPost.slug}`} className="text-foreground underline underline-offset-4">{editorialText(latestPost.title)}</Link></p>}
+              {latestPost && <p className="mt-4 text-sm text-muted-foreground">Latest article: <Link to={`/the-edit/${latestPost.slug}`} className="text-foreground underline underline-offset-4">{latestPost.title}</Link></p>}
               <Button asChild size="lg" className="mt-6 min-h-12 rounded-none px-6 text-xs uppercase tracking-[0.2em]"><Link to="/the-edit">Read The Edit <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" /></Link></Button>
             </div>
             <div><h3 className="mb-4 text-lg" style={{ fontStyle: "italic" }}>Get our weekly Christmas Amazon finds</h3><SignalSignup /></div>

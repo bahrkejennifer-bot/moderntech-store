@@ -1,5 +1,4 @@
 import { useId } from "react";
-import { editorialText } from "@/lib/editorialPresentation";
 
 import { SUBSCRIBE_CONSENT_LINE } from "@/lib/subscribers";
 
@@ -24,7 +23,7 @@ export function NewsletterConsent({ checked, onChange, className = "" }: Props) 
         className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer accent-primary"
       />
       <label htmlFor={id} className="cursor-pointer text-sm leading-snug text-foreground/80">
-        {editorialText(NEWSLETTER_CONSENT_LABEL)}
+        {NEWSLETTER_CONSENT_LABEL}
         <span className="block text-xs text-muted-foreground">Optional. Your purchase or download doesn't depend on this.</span>
       </label>
     </div>

@@ -1,4 +1,3 @@
-import { editorialText } from "@/lib/editorialPresentation";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ArrowRight, Play, Headphones, Youtube, Clock, Subtitles, FileText, Instagram, BookOpen, Rss } from "lucide-react";
@@ -185,11 +184,11 @@ const ArtOfModernTech = () => {
                 <div className="col-span-12 sm:col-span-8 -mt-1 sm:mt-0">
                   {post.category && (
                     <p className="font-mono text-[8px] tracking-[0.25em] uppercase text-muted-foreground mb-1">
-                      {editorialText(post.category)}
+                      {post.category}
                     </p>
                   )}
                   <h3 className="font-serif text-lg md:text-xl leading-snug tracking-tight group-hover:underline underline-offset-4" style={{ fontWeight: 500 }}>
-                    {editorialText(post.title)}
+                    {post.title}
                   </h3>
                 </div>
                 <time
@@ -333,16 +332,16 @@ const ArtOfModernTech = () => {
             <Link key={post.id} to={`/the-edit/${post.slug}`} className="group block border border-border bg-card overflow-hidden hover:shadow-lg transition-all duration-300">
               {post.image_url && (
                 <div className="aspect-[3/2] overflow-hidden">
-                  <img src={post.image_url} alt={editorialText(post.title)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <img src={post.image_url} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 </div>
               )}
               <div className="p-5">
                 {post.category && (
-                  <span className="font-mono text-[8px] tracking-[0.2em] uppercase text-muted-foreground">{editorialText(post.category)}</span>
+                  <span className="font-mono text-[8px] tracking-[0.2em] uppercase text-muted-foreground">{post.category}</span>
                 )}
-                <h3 className="font-serif text-base leading-snug tracking-tight mt-1" style={{ fontWeight: 500 }}>{editorialText(post.title)}</h3>
+                <h3 className="font-serif text-base leading-snug tracking-tight mt-1" style={{ fontWeight: 500 }}>{post.title}</h3>
                 {post.excerpt && (
-                  <p className="mt-2 font-mono text-[10px] text-muted-foreground leading-[1.8] line-clamp-2">{editorialText(post.excerpt)}</p>
+                  <p className="mt-2 font-mono text-[10px] text-muted-foreground leading-[1.8] line-clamp-2">{post.excerpt}</p>
                 )}
               </div>
             </Link>
