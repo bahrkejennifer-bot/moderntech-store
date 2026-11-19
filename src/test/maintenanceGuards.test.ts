@@ -95,6 +95,21 @@ describe("storefront maintenance guards", () => {
     }
   });
 
+  it("shows the homepage Prime trial strip with the exact link, disclosure and new-tab rel", () => {
+    const index = read("src/pages/Index.tsx");
+    const strip = index.slice(index.indexOf("<main>"), index.indexOf('aria-labelledby="hero-heading"'));
+    expect(strip).toContain("https://www.amazon.com/prime?tag=moderntech02-20");
+    expect(strip).toContain(">New to Prime? Start a free trial</a>");
+    expect(strip).toContain('target="_blank"');
+    const rel = strip.match(/rel="([^"]+)"/)?.[1] ?? "";
+    expect(rel.split(/\s+/)).toEqual(expect.arrayContaining(["sponsored", "noopener"]));
+    expect(strip).toContain("As an Amazon Associate, I earn from qualifying purchases.");
+    expect(strip).not.toContain("\u2014");
+    // Homepage-only: no other source file carries the Prime trial URL.
+    const elsewhere = files.filter((f) => f !== "src/pages/Index.tsx").filter((f) => read(f).includes("amazon.com/prime?tag="));
+    expect(elsewhere).toEqual([]);
+  });
+
   it("retains the four supplied live edition notes in order", () => {
     expect(weeklyEdition.intro).toEqual([
       "This week's Modern Tech rhythm moved from wellness to hands-on family learning and a quieter Sunday reset. The three picks below solve practical problems without turning the page into a catalog.",
