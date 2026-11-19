@@ -95,8 +95,7 @@ describe("storefront maintenance guards", () => {
     }
   });
 
-  // Prime strip temporarily removed before publish; restore with the strip.
-  it.skip("shows the homepage Prime trial strip with the exact link, disclosure and new-tab rel", () => {
+  it("shows the homepage Prime trial strip with the exact link, disclosure and new-tab rel", () => {
     const index = read("src/pages/Index.tsx");
     const strip = index.slice(index.indexOf("<main>"), index.indexOf('aria-labelledby="hero-heading"'));
     expect(strip).toContain("https://www.amazon.com/prime?tag=moderntech02-20");
