@@ -1,4 +1,6 @@
 -- STAGED, NOT YET APPLIED. Apply only after the owner approves the backend rollout.
+-- NOTE: the two pending_lead_confirmations consent columns below were already applied
+-- separately via drizzle/migrations/0002_add_newsletter_consent_columns_to_pending_lead_confirmations.sql.
 ALTER TABLE public.pending_lead_confirmations
   ADD COLUMN IF NOT EXISTS newsletter_opt_in boolean NOT NULL DEFAULT false,
   ADD COLUMN IF NOT EXISTS newsletter_consent_at timestamptz;

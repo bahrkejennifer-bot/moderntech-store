@@ -15,6 +15,13 @@
       "when": 1793653042010,
       "tag": "0001_create_subscribers",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795086143708,
+      "tag": "0002_add_newsletter_consent_columns_to_pending_lead_confirmations",
+      "breakpoints": true
     }
   ]
 }

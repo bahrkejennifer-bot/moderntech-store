@@ -90,7 +90,7 @@ Deno.serve(async (req) => {
     // Look up the most recent pending row by token (preferred) or email.
     let query = supabase
       .from("pending_lead_confirmations")
-      .select("email, name, lead_magnet, source_path, confirmed_at")
+      .select("email, name, lead_magnet, source_path, confirmed_at, newsletter_opt_in, newsletter_consent_at")
       .order("created_at", { ascending: false })
       .limit(1);
     query = previousToken ? query.eq("token", previousToken) : query.eq("email", emailInput);
@@ -150,6 +150,9 @@ Deno.serve(async (req) => {
       name: cleanName,
       lead_magnet: magnet,
       source_path: pending.source_path ?? null,
+      // Preserve newsletter consent from the prior row so a resend never drops it.
+      newsletter_opt_in: pending.newsletter_opt_in ?? false,
+      newsletter_consent_at: pending.newsletter_consent_at ?? null,
     });
     if (insertErr) {
       console.error("pending insert error", insertErr);
