@@ -1,3 +1,5 @@
+import { editorialText, compactArchivePreview } from "@/lib/editorialPresentation";
+import { Button } from "@/components/ui/button";
 import { november18Edition } from "@/lib/november18Edition";
 import { Helmet } from "react-helmet-async";
 import StructuredData from "@/components/StructuredData";
@@ -133,49 +135,49 @@ const Blog = () => {
   });
 
   const dynamicMapped = (dynamicPosts || []).map((p) => ({
-    title: p.title,
-    excerpt: p.excerpt || "",
+    title: editorialText(p.title),
+    excerpt: compactArchivePreview(p.excerpt || ""),
     date: p.created_at,
-    category: !p.category || /weekly edit/i.test(p.category) ? "THE EDIT" : p.category,
+    category: !p.category || /weekly edit/i.test(p.category) ? "THE SIGNAL" : editorialText(p.category),
     imageUrl: p.image_url && !/images\.unsplash\.com/i.test(p.image_url) ? p.image_url : "",
     slug: p.slug,
     isGenerated: true,
     readTime: "5 min read",
   }));
 
-  const newEdition = { ...november18Edition, category: "THE EDIT", imageUrl: "", isGenerated: false, readTime: "8 min read" };
-  const allPosts = [newEdition, ...dynamicMapped.filter(post => post.slug !== newEdition.slug), ...staticBlogPosts].sort((a, b) => +new Date(b.date) - +new Date(a.date));
-  const latest = newEdition;
-  const previous = allPosts.filter(post => post.slug !== newEdition.slug);
+  const newEdition = { ...november18Edition, title: editorialText(november18Edition.title), category: "THE SIGNAL", imageUrl: "", isGenerated: false, readTime: "8 min read" };
+  const allPosts = [newEdition, ...dynamicMapped.filter(post => post.slug !== newEdition.slug), ...staticBlogPosts.map(post => ({ ...post, title: editorialText(post.title), excerpt: compactArchivePreview(post.excerpt) }))].sort((a, b) => +new Date(b.date) - +new Date(a.date));
+  const latest = allPosts[0];
+  const previous = allPosts.filter(post => post.slug !== latest?.slug);
   const fmt = (d: string) => new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   // Label honestly: a monthly roundup is not called a weekly issue.
-  const latestKind = latest && /month|roundup/i.test(latest.title) ? "Monthly roundup" : "Latest edition";
+  const latestKind = latest && /month|roundup/i.test(latest.title) ? "Monthly roundup" : "Dated archive preview";
 
   return (
     <div className="launch-theme min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>The Edit: Modern Tech's weekly tech newsletter</title>
-        <meta name="description" content="The Edit is Modern Tech's weekly newsletter: honest, plain-language notes on everyday tech worth knowing about. Free to read; email is optional." />
-        <meta property="og:title" content="The Edit: Modern Tech's weekly tech newsletter" />
+        <title>The Signal: Modern Tech's weekly tech newsletter</title>
+        <meta name="description" content="The Signal is Modern Tech's weekly newsletter: honest, plain-language notes on everyday tech worth knowing about. Free to read; email is optional." />
+        <meta property="og:title" content="The Signal: Modern Tech's weekly tech newsletter" />
         <meta property="og:description" content="Modern Tech's weekly tech newsletter. Free to read here; get it by email if you like." />
-        <meta property="og:url" content="https://moderntech.store/the-edit" />
+        <meta property="og:url" content="https://moderntech.store/the-signal" />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://moderntech.store/the-edit" />
+        <link rel="canonical" href="https://moderntech.store/the-signal" />
       </Helmet>
       <StructuredData
-        title="The Edit: Modern Tech's weekly tech newsletter"
+        title="The Signal: Modern Tech's weekly tech newsletter"
         description="Modern Tech's weekly tech newsletter."
-        path="/the-edit"
+        path="/the-signal"
         breadcrumbs={[
           { name: "Home", path: "/" },
-          { name: "The Edit", path: "/the-edit" },
+          { name: "The Signal", path: "/the-signal" },
         ]}
         extraGraph={[
           {
             "@type": "Blog",
-            "@id": "https://moderntech.store/the-edit#blog",
-            name: "The Edit",
-            url: "https://moderntech.store/the-edit",
+            "@id": "https://moderntech.store/the-signal#blog",
+            name: "The Signal",
+            url: "https://moderntech.store/the-signal",
             publisher: { "@id": "https://moderntech.store/#organization" },
           },
         ]}
@@ -184,8 +186,8 @@ const Blog = () => {
 
       <main className="mx-auto max-w-3xl px-5 pb-24 print:max-w-none print:px-0 print:pb-0">
         <header className="pt-14 pb-10 md:pt-20 print:pt-0 print:pb-3">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">The Edit · Weekly Newsletter</p>
-          <h1 className="mt-3 print:mt-1 print:text-3xl text-5xl font-semibold tracking-tight md:text-6xl">The Edit</h1>
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">The Signal · Weekly Newsletter</p>
+          <h1 className="mt-3 print:mt-1 print:text-3xl text-5xl font-semibold tracking-tight md:text-6xl">The Signal</h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Each week, a short, honest read on everyday tech worth knowing about: what's new, what's useful, and what to skip. Free to read here.
           </p>
@@ -194,27 +196,27 @@ const Blog = () => {
         {latest && (
           <section aria-labelledby="latest-heading" className="print:hidden mt-16 border-t border-border pt-10">
             <p className="text-sm text-muted-foreground">
-              <span className="font-medium text-foreground">Latest article · {latestKind}</span> · <time dateTime={latest.date}>{fmt(latest.date)}</time>
+              <span className="font-medium text-foreground">{latestKind}</span> · <time dateTime={latest.date}>{fmt(latest.date)}</time>
             </p>
             <h2 id="latest-heading" className="mt-3 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
-              <Link to={`/the-edit/${latest.slug}`} className="hover:underline underline-offset-4">{latest.title}</Link>
+              <Link to={`/the-signal/${latest.slug}`} className="hover:underline underline-offset-4">{latest.title}</Link>
             </h2>
             {latest.excerpt && <p className="mt-6 text-lg leading-relaxed text-foreground/85">{latest.excerpt}</p>}
-            <Link
-              to={`/the-edit/${latest.slug}`}
+            <Button asChild><Link
+              to={`/the-signal/${latest.slug}`}
               className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-full bg-foreground px-6 text-base font-medium text-background hover:opacity-90"
             >
-              Read the full edition <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
+              Read the full archived article <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link></Button>
           </section>
         )}
 
         <section aria-labelledby="weekly-heading" className="border-t border-border pt-10 print:pt-4">
-          <p className="text-sm text-muted-foreground"><span className="font-medium text-foreground">This week's edition</span> · Week of <time dateTime={weeklyEdition.weekOf}>{fmt(weeklyEdition.weekOf + "T12:00:00")}</time></p>
+          <p className="text-sm text-muted-foreground"><span className="font-medium text-foreground">Archived edition</span> · Week of <time dateTime={weeklyEdition.weekOf}>{fmt(weeklyEdition.weekOf + "T12:00:00")}</time></p>
           <h2 id="weekly-heading" className="mt-3 print:mt-1 print:text-xl text-3xl font-semibold leading-tight tracking-tight md:text-4xl">{weeklyEdition.title}</h2>
           {weeklyEdition.intro.map((para) => <p key={para} className="mt-5 print:mt-2 print:text-sm text-lg leading-relaxed text-foreground/85">{para}</p>)}
           <section aria-labelledby="signals-heading" className="mt-6 print:mt-2">
-            <h3 id="signals-heading" className="text-base font-semibold print:text-xs">This week's signals</h3>
+            <h3 id="signals-heading" className="text-base font-semibold print:text-xs">Edition notes</h3>
             <ul className="mt-3 space-y-3 print:mt-1 print:space-y-1">
               {weeklyEdition.newsNotes.map((note) => (
                 <li key={note.label} className="text-sm leading-relaxed text-foreground/85 print:text-[10px] print:leading-snug">
@@ -227,7 +229,7 @@ const Blog = () => {
           <ol className="mt-8 space-y-10 print:mt-4 print:space-y-3">
             {weeklyPicks.map(({ selection, product }, i) => (
               <li key={selection.id} id={`pick-${selection.slug}`} data-weekly-pick className="sm:grid sm:grid-cols-[10rem_1fr] sm:gap-6 print:grid print:grid-cols-[6.5rem_1fr] print:gap-4 print:break-inside-avoid">
-                <img src={product.image_url!} alt={product.title} loading="lazy" className="aspect-square w-40 rounded-2xl bg-card object-contain p-3 print:w-[6.5rem] print:p-1" />
+                <img src={product.image_url || undefined} alt={product.title} loading="lazy" className="aspect-square w-40 rounded-2xl bg-card object-contain p-3 print:w-[6.5rem] print:p-1" />
                 <div className="mt-4 sm:mt-0 print:mt-0">
                 <p className="font-mono text-xs text-muted-foreground">{String(i + 1).padStart(2, "0")}</p>
                 <h3 className="mt-1 text-2xl font-semibold tracking-tight print:text-base">{product.title}</h3>
@@ -251,7 +253,7 @@ const Blog = () => {
             <ul className="mt-4 divide-y divide-border">
               {previous.map((post) => (
                 <li key={post.slug}>
-                  <Link to={`/the-edit/${post.slug}`} className="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
+                  <Link to={`/the-signal/${post.slug}`} className="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
                     <time dateTime={post.date} className="shrink-0 text-sm text-muted-foreground sm:w-36">{fmt(post.date)}</time>
                     <span className="text-base font-medium leading-snug group-hover:underline underline-offset-4">{post.title}</span>
                   </Link>
@@ -262,7 +264,7 @@ const Blog = () => {
         )}
 
         <section aria-labelledby="email-heading" className="print:hidden mt-16 rounded-2xl border border-border bg-card p-6 md:p-8">
-          <h2 id="email-heading" className="text-xl font-semibold tracking-tight">Get The Edit by email</h2>
+          <h2 id="email-heading" className="text-xl font-semibold tracking-tight">Get The Signal by email</h2>
           <p className="mt-2 mb-5 text-base text-muted-foreground">Optional. Everything above stays free to read here. Unsubscribe anytime.</p>
           <SignalSignup />
         </section>

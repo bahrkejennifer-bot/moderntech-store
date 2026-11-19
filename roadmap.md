@@ -29,3 +29,8 @@
 - [x] Add the supplied five-section, 19-product edition and feature it before existing editions.
 - [x] Add matching picks to existing collection destinations without changing routes or catalog data.
 - [x] Verify supplied figures, destinations, photos and mobile/desktop presentation; do not publish.
+
+# Black Friday readiness (preview only)
+- [x] Repair narrow header, restore newsletter branding/canonical redirects, and remove volatile rendered editorial claims.
+- [x] Preserve seven campaign picks, verify images/links and dated compact archive presentation.
+- [x] Compare November 18 preview/live state, run tests and visual checks, and report pending deployment differences.

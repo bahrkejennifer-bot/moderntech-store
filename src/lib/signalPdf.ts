@@ -1,7 +1,7 @@
-// The Edit's weekly PDF. Pure mapping only: every field is read from the live weekly edition
+// The Signal's weekly PDF. Pure mapping only: every field is read from the live weekly edition
 // module and the curated catalog rows already shown on the page — nothing is invented here.
 import { weeklyEdition } from "./signalWeeklyEdition";
-import type { CatalogProduct, Selection } from "./curatedSelections";
+import { withAffiliateTag, type CatalogProduct, type Selection } from "./curatedSelections";
 
 /**
  * Lead-magnet slug for the gated PDF download. Kept out of NEWSLETTER_ONLY_MAGNETS so the
@@ -13,7 +13,7 @@ import type { CatalogProduct, Selection } from "./curatedSelections";
 export const EDIT_PDF_MAGNET = "the-edit-weekly-pdf";
 
 /** The confirmation link returns here; this query is what reveals the download. */
-export const EDIT_PDF_DELIVERY_PATH = "/the-edit?pdf=1";
+export const EDIT_PDF_DELIVERY_PATH = "/the-signal?pdf=1";
 export const EDIT_PDF_DELIVERY_PARAM = "pdf";
 export const EDIT_PDF_DELIVERY_VALUE = "1";
 
@@ -57,21 +57,21 @@ export function buildEditPdfModel(picks: readonly WeeklyPick[]): EditPdfModel {
     year: "numeric",
   });
   return {
-    publication: "The Edit · Weekly Newsletter",
+    publication: "The Signal · Weekly Newsletter",
     brand: "Modern Tech LLC",
     siteUrl: "https://moderntech.store",
     weekOf: weeklyEdition.weekOf,
     weekOfLabel,
     title: weeklyEdition.title,
     intro: weeklyEdition.intro,
-    newsHeading: "This week's signals",
+    newsHeading: "Edition notes",
     newsNotes: weeklyEdition.newsNotes,
     disclosure: EDIT_PDF_DISCLOSURE,
     picks: picks.map((p, i) => ({
       index: String(i + 1).padStart(2, "0"),
       title: p.product.title,
       image_url: p.product.image_url ?? "",
-      affiliate_link: p.product.affiliate_link,
+      affiliate_link: withAffiliateTag(p.product.affiliate_link),
       audience: p.selection.audience,
       benefit: p.selection.benefit,
       limitation: p.selection.limitation,

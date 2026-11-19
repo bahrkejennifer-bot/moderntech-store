@@ -1,3 +1,4 @@
+import { editorialText } from "@/lib/editorialPresentation";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ArrowRight, Play, Headphones, Youtube, Clock, Subtitles, FileText, Instagram, BookOpen, Rss } from "lucide-react";
@@ -108,7 +109,7 @@ const ArtOfModernTech = () => {
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="The Art of Modern Tech: The Edit RSS"
+          title="The Art of Modern Tech: The Signal RSS"
           href={`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID}.supabase.co/functions/v1/blog-rss-feed`}
         />
       </Helmet>
@@ -128,13 +129,13 @@ const ArtOfModernTech = () => {
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
-              to="/the-edit"
+              to="/the-signal"
               className="inline-flex items-center gap-2 bg-foreground text-background px-7 py-3 font-mono text-[10px] tracking-[0.25em] uppercase hover:bg-foreground/85 transition-colors"
             >
-              <BookOpen className="h-4 w-4" /> Read The Edit
+              <BookOpen className="h-4 w-4" /> Read The Signal
             </Link>
             <Link
-              to="/the-edit"
+              to="/the-signal"
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
             >
               Browse all articles <ArrowRight className="h-3.5 w-3.5" />
@@ -143,13 +144,13 @@ const ArtOfModernTech = () => {
         </div>
       </section>
 
-      {/* LATEST FROM THE EDIT */}
+      {/* LATEST FROM THE SIGNAL */}
       <section className="max-w-5xl mx-auto px-8 py-16 border-t border-border">
         <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
           <div>
             <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">Fresh off the press</p>
             <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>
-              Latest from The Edit
+              Latest from The Signal
             </h2>
           </div>
           <div className="flex items-center gap-5">
@@ -158,12 +159,12 @@ const ArtOfModernTech = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
-              title="Subscribe to The Edit RSS feed"
+              title="Subscribe to The Signal RSS feed"
             >
               <Rss className="h-3.5 w-3.5" /> RSS
             </a>
             <Link
-              to="/the-edit"
+              to="/the-signal"
               className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors border-b border-foreground/30 pb-1"
             >
               View all <ArrowRight className="h-3.5 w-3.5" />
@@ -175,7 +176,7 @@ const ArtOfModernTech = () => {
           {blogPosts.map((post: any, idx: number) => (
             <li key={post.id}>
               <Link
-                to={`/the-edit/${post.slug}`}
+                to={`/the-signal/${post.slug}`}
                 className="group grid grid-cols-12 gap-6 items-baseline py-6 hover:bg-accent/5 transition-colors px-2"
               >
                 <span className="col-span-1 font-mono text-[10px] tracking-[0.2em] text-muted-foreground">
@@ -184,11 +185,11 @@ const ArtOfModernTech = () => {
                 <div className="col-span-12 sm:col-span-8 -mt-1 sm:mt-0">
                   {post.category && (
                     <p className="font-mono text-[8px] tracking-[0.25em] uppercase text-muted-foreground mb-1">
-                      {post.category}
+                      {editorialText(post.category)}
                     </p>
                   )}
                   <h3 className="font-serif text-lg md:text-xl leading-snug tracking-tight group-hover:underline underline-offset-4" style={{ fontWeight: 500 }}>
-                    {post.title}
+                    {editorialText(post.title)}
                   </h3>
                 </div>
                 <time
@@ -321,27 +322,27 @@ const ArtOfModernTech = () => {
         <div className="flex items-center justify-between mb-10">
           <div>
             <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-2">From the Blog</p>
-            <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>Modern Tech: The Edit</h2>
+            <h2 className="font-serif text-3xl md:text-4xl tracking-tight" style={{ fontStyle: "italic", fontWeight: 400 }}>Modern Tech: The Signal</h2>
           </div>
-          <Link to="/the-edit" className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/the-signal" className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
             <BookOpen className="h-4 w-4" /> Read All
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {blogPosts.map((post: any) => (
-            <Link key={post.id} to={`/the-edit/${post.slug}`} className="group block border border-border bg-card overflow-hidden hover:shadow-lg transition-all duration-300">
+            <Link key={post.id} to={`/the-signal/${post.slug}`} className="group block border border-border bg-card overflow-hidden hover:shadow-lg transition-all duration-300">
               {post.image_url && (
                 <div className="aspect-[3/2] overflow-hidden">
-                  <img src={post.image_url} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <img src={post.image_url} alt={editorialText(post.title)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 </div>
               )}
               <div className="p-5">
                 {post.category && (
-                  <span className="font-mono text-[8px] tracking-[0.2em] uppercase text-muted-foreground">{post.category}</span>
+                  <span className="font-mono text-[8px] tracking-[0.2em] uppercase text-muted-foreground">{editorialText(post.category)}</span>
                 )}
-                <h3 className="font-serif text-base leading-snug tracking-tight mt-1" style={{ fontWeight: 500 }}>{post.title}</h3>
+                <h3 className="font-serif text-base leading-snug tracking-tight mt-1" style={{ fontWeight: 500 }}>{editorialText(post.title)}</h3>
                 {post.excerpt && (
-                  <p className="mt-2 font-mono text-[10px] text-muted-foreground leading-[1.8] line-clamp-2">{post.excerpt}</p>
+                  <p className="mt-2 font-mono text-[10px] text-muted-foreground leading-[1.8] line-clamp-2">{editorialText(post.excerpt)}</p>
                 )}
               </div>
             </Link>

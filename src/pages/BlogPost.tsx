@@ -1,3 +1,4 @@
+import { editorialText, editorialHtml } from "@/lib/editorialPresentation";
 import November18Article from "@/components/November18Article";
 import { november18Edition } from "@/lib/november18Edition";
 import { useParams, Link } from "react-router-dom";
@@ -497,15 +498,16 @@ const parseMarkdownBold = (text: string): React.ReactNode[] => {
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const post = slug && blogPostsData[slug] ? blogPostsData[slug] : null;
+  const storedPost = slug ? blogPostsData[slug] : null;
+  const post = storedPost ? { ...storedPost, title: editorialText(storedPost.title), intro: editorialText(storedPost.intro), sections: storedPost.sections.map(section => ({ ...section, content: section.content ? editorialText(section.content) : undefined, items: section.items?.map(editorialText) })) } : null;
 
-  const { data: dynamicPost, isLoading } = useQuery({
+  const { data: storedDynamicPost, isLoading } = useQuery({
     queryKey: ["blog-post", slug],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("blog_posts")
         .select("*")
-        .eq("slug", slug!)
+        .eq("slug", slug || "")
         .eq("is_published", true)
         .maybeSingle();
       if (error) throw error;
@@ -513,6 +515,8 @@ const BlogPost = () => {
     },
     enabled: !post && !!slug && slug !== november18Edition.slug,
   });
+
+  const dynamicPost = storedDynamicPost ? { ...storedDynamicPost, title: editorialText(storedDynamicPost.title), excerpt: editorialText(storedDynamicPost.excerpt || ""), category: editorialText(storedDynamicPost.category || "Tech"), content_html: editorialHtml(storedDynamicPost.content_html || "") } : null;
 
   // Reading progress
   const [progress, setProgress] = useState(0);
@@ -635,7 +639,7 @@ const BlogPost = () => {
           <meta property="og:title" content={ogTitle} />
           <meta property="og:description" content={ogDesc} />
           <meta property="og:image" content={ogImage} />
-          <meta property="og:url" content={`https://moderntech.store/the-edit/${slug}`} />
+          <meta property="og:url" content={`https://moderntech.store/the-signal/${slug}`} />
           <meta property="og:type" content="article" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={ogTitle} />
@@ -643,22 +647,22 @@ const BlogPost = () => {
           <meta name="twitter:image" content={ogImage} />
           <meta property="pin:media" content={ogImage} />
           <meta property="pin:description" content={ogDesc} />
-          <link rel="canonical" href={`https://moderntech.store/the-edit/${slug}`} />
+          <link rel="canonical" href={`https://moderntech.store/the-signal/${slug}`} />
         </Helmet>
         <StructuredData
           title={ogTitle}
           description={ogDesc}
-          path={`/the-edit/${slug}`}
+          path={`/the-signal/${slug}`}
           includeWebSite
           breadcrumbs={[
             { name: "Home", path: "/" },
-            { name: "The Edit", path: "/the-edit" },
-            { name: dynamicPost.title, path: `/the-edit/${slug}` },
+            { name: "The Signal", path: "/the-signal" },
+            { name: dynamicPost.title, path: `/the-signal/${slug}` },
           ]}
           extraGraph={[
             {
               "@type": "BlogPosting",
-              "@id": `https://moderntech.store/the-edit/${slug}#blogposting`,
+              "@id": `https://moderntech.store/the-signal/${slug}#blogposting`,
               headline: ogTitle,
               description: ogDesc,
               image: [ogImage],
@@ -677,9 +681,9 @@ const BlogPost = () => {
               publisher: { "@id": "https://moderntech.store/#organization" },
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": `https://moderntech.store/the-edit/${slug}#webpage`,
+                "@id": `https://moderntech.store/the-signal/${slug}#webpage`,
               },
-              url: `https://moderntech.store/the-edit/${slug}`,
+              url: `https://moderntech.store/the-signal/${slug}`,
               // Explicit @graph cross-references to each Product node below
               ...(buildBlogProductCrossRefs(slug || "", dynamicPost.products as any) || {}),
             },
@@ -759,11 +763,11 @@ const BlogPost = () => {
             {/* Back to Blog footer */}
             <div className="mt-16 pt-8 border-t border-border text-center">
               <Link
-                to="/the-edit"
+                to="/the-signal"
                 className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
               >
                 <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                All editions of The Edit
+                All editions of The Signal
               </Link>
             </div>
           </article>
@@ -809,7 +813,7 @@ const BlogPost = () => {
           <h1 className="text-4xl font-bold mb-4 tracking-tight">Post Not Found</h1>
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">The blog post you're looking for doesn't exist or has been moved.</p>
           <Button asChild variant="cta" className="rounded-full px-8">
-            <Link to="/the-edit">Browse All Articles</Link>
+            <Link to="/the-signal">Browse All Articles</Link>
           </Button>
         </div>
         <AffiliateFooter />
@@ -819,54 +823,55 @@ const BlogPost = () => {
 
   // ── Static Post ──
   const SITE = "https://moderntech.store";
-  const staticOgImage = post!.imageUrl.startsWith("http") ? post!.imageUrl : `${SITE}${post!.imageUrl}`;
-  const staticOgDesc = post!.intro.slice(0, 155) + "…";
+  if (!post) return null;
+  const staticOgImage = post.imageUrl.startsWith("http") ? post.imageUrl : `${SITE}${post.imageUrl}`;
+  const staticOgDesc = post.intro.slice(0, 155) + "…";
   return (
     <div className="min-h-screen vogue-theme bg-background text-foreground">
       <Helmet>
-        <title>{post!.title} | Modern Tech LLC</title>
+        <title>{post.title} | Modern Tech LLC</title>
         <meta name="description" content={staticOgDesc} />
-        <meta property="og:title" content={post!.title} />
+        <meta property="og:title" content={post.title} />
         <meta property="og:description" content={staticOgDesc} />
         <meta property="og:image" content={staticOgImage} />
-          <meta property="og:url" content={`${SITE}/the-edit/${slug}`} />
+          <meta property="og:url" content={`${SITE}/the-signal/${slug}`} />
           <meta property="og:type" content="article" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content={post!.title} />
+          <meta name="twitter:title" content={post.title} />
           <meta name="twitter:description" content={staticOgDesc} />
           <meta name="twitter:image" content={staticOgImage} />
           <meta property="pin:media" content={staticOgImage} />
           <meta property="pin:description" content={staticOgDesc} />
-          <link rel="canonical" href={`${SITE}/the-edit/${slug}`} />
+          <link rel="canonical" href={`${SITE}/the-signal/${slug}`} />
         </Helmet>
         <StructuredData
-          title={post!.title}
+          title={post.title}
           description={staticOgDesc}
-          path={`/the-edit/${slug}`}
+          path={`/the-signal/${slug}`}
           includeWebSite
           breadcrumbs={[
             { name: "Home", path: "/" },
-            { name: "The Edit", path: "/the-edit" },
-            { name: post!.title, path: `/the-edit/${slug}` },
+            { name: "The Signal", path: "/the-signal" },
+            { name: post.title, path: `/the-signal/${slug}` },
           ]}
           extraGraph={[
             {
               "@type": "BlogPosting",
-              "@id": `${SITE}/the-edit/${slug}#blogposting`,
-              headline: post!.title,
+              "@id": `${SITE}/the-signal/${slug}#blogposting`,
+              headline: post.title,
               description: staticOgDesc,
               image: staticOgImage,
-              datePublished: new Date(post!.date).toISOString(),
-              dateModified: new Date(post!.date).toISOString(),
-              articleSection: (post as any)!.category || "Tech",
+              datePublished: new Date(post.date).toISOString(),
+              dateModified: new Date(post.date).toISOString(),
+              articleSection: post.category || "Tech",
               author: {
                 "@type": "Organization",
                 name: "Modern Tech LLC",
                 url: SITE,
               },
               publisher: { "@id": `${SITE}/#organization` },
-              mainEntityOfPage: { "@id": `${SITE}/the-edit/${slug}#webpage` },
-              url: `${SITE}/the-edit/${slug}`,
+              mainEntityOfPage: { "@id": `${SITE}/the-signal/${slug}#webpage` },
+              url: `${SITE}/the-signal/${slug}`,
           },
           ...getBlogPostExtraSchemas(slug || ""),
         ]}
@@ -888,11 +893,11 @@ const BlogPost = () => {
       {/* Centered magazine column */}
       <div className="max-w-[800px] mx-auto px-6 pt-12 pb-20">
         {/* Featured Hero Image - above title, 3:2 aspect ratio */}
-        {post!.imageUrl && <div className="rounded-lg overflow-hidden mb-10">
+        {post.imageUrl && <div className="rounded-lg overflow-hidden mb-10">
           <div className="aspect-[3/2] w-full">
             <img
-              src={post!.imageUrl}
-              alt={post!.title}
+              src={post.imageUrl}
+              alt={post.title}
               className="w-full h-full object-cover"
             />
           </div>
@@ -900,16 +905,16 @@ const BlogPost = () => {
 
         {/* Category + Meta row */}
         <div className="flex items-center justify-center gap-3 text-xs text-muted-foreground mb-6 flex-wrap">
-          <span className="font-semibold uppercase tracking-[0.15em] text-primary">{post!.category}</span>
+          <span className="font-semibold uppercase tracking-[0.15em] text-primary">{post.category}</span>
           <span className="w-1 h-1 rounded-full bg-border" />
-          <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(post!.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+          <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> {new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
           <span className="w-1 h-1 rounded-full bg-border" />
           <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> 8 min read</span>
         </div>
 
         {/* Centered Title */}
         <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight leading-[1.12] mb-6 text-foreground text-center">
-          {post!.title}
+          {post.title}
         </h1>
 
         {/* Author */}
@@ -920,7 +925,7 @@ const BlogPost = () => {
 
         {/* Intro */}
         <p className="text-lg text-muted-foreground leading-[1.85] mb-12 border-l-2 border-primary/30 pl-6 italic">
-          {post!.intro}
+          {post.intro}
         </p>
 
         <article>
@@ -953,7 +958,7 @@ const BlogPost = () => {
           )}
 
           {/* Products Section */}
-          {post!.products.length > 0 && (
+          {post.products.length > 0 && (
             <section className="mb-14">
               <div className="flex items-center gap-4 mb-10">
                 <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground whitespace-nowrap">
@@ -962,7 +967,7 @@ const BlogPost = () => {
                 <div className="h-px flex-1 bg-border" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {post!.products.map((product, index) => (
+                {post.products.map((product, index) => (
                   <ProductCard key={index} product={product} />
                 ))}
               </div>
@@ -971,7 +976,7 @@ const BlogPost = () => {
 
           {/* Article Body */}
           <div className="mb-14">
-            {post!.sections.map((section, index) => renderSection(section, index))}
+            {post.sections.map((section, index) => renderSection(section, index))}
           </div>
 
           <AffiliateDisclosure />
@@ -979,11 +984,11 @@ const BlogPost = () => {
           {/* Back to Blog footer */}
           <div className="mt-16 pt-8 border-t border-border text-center">
             <Link
-              to="/the-edit"
+              to="/the-signal"
               className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
             >
               <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-              All editions of The Edit
+              All editions of The Signal
             </Link>
           </div>
         </article>
@@ -1018,7 +1023,7 @@ const ProductCard = ({ product }: { product: BlogProduct }) => (
       {product.imageUrl ? <div className="aspect-[4/3] overflow-hidden relative">
         <img
           src={product.imageUrl}
-          alt={product.title}
+          alt={editorialText(product.title)}
           loading="lazy"
           onError={(e) => { (e.currentTarget.parentElement as HTMLElement).style.display = "none"; }}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -1030,8 +1035,8 @@ const ProductCard = ({ product }: { product: BlogProduct }) => (
         )}
       </div> : product.badge ? <div className="px-4 pt-4"><span className="inline-block bg-foreground text-background text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wide uppercase">{product.badge}</span></div> : null}
       <div className="p-4 flex flex-col flex-1">
-        <h3 className="text-sm font-bold line-clamp-2 mb-1 group-hover:text-foreground/70 transition-colors text-foreground">{product.title}</h3>
-        <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed flex-1">{product.description}</p>
+        <h3 className="text-sm font-bold line-clamp-2 mb-1 group-hover:text-foreground/70 transition-colors text-foreground">{editorialText(product.title)}</h3>
+        <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed flex-1">{editorialText(product.description)}</p>
         <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
           <span className="sr-only">Opens Amazon</span>
           <span className="inline-flex items-center gap-1 text-xs font-medium text-foreground border-b border-foreground/20 pb-0.5 group-hover:border-foreground/50 transition-all">

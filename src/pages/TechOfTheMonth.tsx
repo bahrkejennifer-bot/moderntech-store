@@ -1,3 +1,4 @@
+import { editorialText } from "@/lib/editorialPresentation";
 import { useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useParams, Navigate } from "react-router-dom";
@@ -15,7 +16,7 @@ export default function TechOfTheMonth() {
   const { month } = useParams<{ month: string }>();
   const entry = useMemo(() => (month ? getTechOfTheMonth(month) : undefined), [month]);
 
-  if (!entry) return <Navigate to="/the-edit" replace />;
+  if (!entry) return <Navigate to="/the-signal" replace />;
 
   const canonical = canonicalTechOfTheMonthUrl(entry.slug);
   const ogImage = `https://moderntech.store${entry.image.url}`;
@@ -23,11 +24,11 @@ export default function TechOfTheMonth() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>{entry.title}</title>
-        <meta name="description" content={entry.metaDescription} />
+        <title>{editorialText(entry.title)}</title>
+        <meta name="description" content={editorialText(entry.metaDescription)} />
         <link rel="canonical" href={canonical} />
-        <meta property="og:title" content={entry.ogTitle} />
-        <meta property="og:description" content={entry.ogDescription} />
+        <meta property="og:title" content={editorialText(entry.ogTitle)} />
+        <meta property="og:description" content={editorialText(entry.ogDescription)} />
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="article" />
         <meta property="og:image" content={ogImage} />
@@ -36,17 +37,17 @@ export default function TechOfTheMonth() {
         <meta property="article:section" content="Tech of the Month" />
         <meta property="article:published_time" content={entry.publishedDate} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={entry.ogTitle} />
-        <meta name="twitter:description" content={entry.ogDescription} />
+        <meta name="twitter:title" content={editorialText(entry.ogTitle)} />
+        <meta name="twitter:description" content={editorialText(entry.ogDescription)} />
         <meta name="twitter:image" content={ogImage} />
       </Helmet>
       <StructuredData
-        title={entry.ogTitle}
-        description={entry.metaDescription}
+        title={editorialText(entry.ogTitle)}
+        description={editorialText(entry.metaDescription)}
         path={`/tech-of-the-month/${entry.slug}`}
         breadcrumbs={[
           { name: "Home", path: "/" },
-          { name: "The Edit", path: "/the-edit" },
+          { name: "The Signal", path: "/the-signal" },
           { name: `Tech of the Month · ${entry.monthLabel}`, path: `/tech-of-the-month/${entry.slug}` },
         ]}
         extraGraph={[
@@ -81,10 +82,10 @@ export default function TechOfTheMonth() {
       <header className="border-b border-border">
         <div className="max-w-4xl mx-auto px-8 pt-16 pb-10">
           <Link
-            to="/the-edit"
+            to="/the-signal"
             className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors mb-8"
           >
-            <ArrowLeft className="h-3 w-3" /> The Edit
+            <ArrowLeft className="h-3 w-3" /> The Signal
           </Link>
           <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground mb-6">
             Tech of the Month · {entry.monthLabel}
@@ -93,7 +94,7 @@ export default function TechOfTheMonth() {
             className="font-serif text-4xl md:text-5xl lg:text-6xl italic tracking-tight leading-[1.08] max-w-3xl"
             style={{ fontWeight: 700, color: "#000000" }}
           >
-            {entry.tagline}
+            {editorialText(entry.tagline)}
           </h1>
           <p className="mt-6 font-mono text-xs text-muted-foreground max-w-xl leading-relaxed flex items-center gap-2">
             <Calendar className="h-3 w-3" />
@@ -107,7 +108,7 @@ export default function TechOfTheMonth() {
 
       <article className="max-w-3xl mx-auto px-8 py-16 lg:py-20">
         <p className="font-serif text-lg md:text-xl leading-relaxed text-foreground mb-14">
-          {entry.intro}
+          {editorialText(entry.intro)}
         </p>
 
         <section>
@@ -131,7 +132,7 @@ export default function TechOfTheMonth() {
                     {pick.name}
                   </h3>
                   <p className="font-mono text-xs text-muted-foreground leading-relaxed">
-                    {pick.why}
+                    {editorialText(pick.why)}
                   </p>
                 </div>
               </li>

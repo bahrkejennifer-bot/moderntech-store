@@ -19,7 +19,7 @@ import {
 const schema = z.object({ email: z.string().trim().email("Enter a valid email address.").max(255) });
 
 /**
- * The Edit's PDF download, gated behind the existing double opt-in: a visitor leaves an
+ * The Signal's PDF download, gated behind the existing double opt-in: a visitor leaves an
  * email, confirms it, and the confirmation returns them here with the download revealed.
  * The edition itself stays readable without signing up for anything.
  */
@@ -50,7 +50,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
         setBuilding(false);
       })
       .catch((err) => {
-        console.error("The Edit PDF generation error:", err);
+        console.error("The Signal PDF generation error:", err);
         if (!alive) return;
         setBuilding(false);
         setPdfError("The PDF couldn't be built in this browser. Your Print dialog can save the same page as a PDF.");
@@ -96,7 +96,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
           Your PDF is ready
         </h2>
         <p className="mt-2 text-base text-muted-foreground">
-          A clean copy of this week's edition: the same picks, notes and links you're reading now.
+          A clean copy of the October 11 archived edition: the same picks, notes and links you're reading now.
         </p>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Button
@@ -132,7 +132,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
   return (
     <section aria-labelledby="pdf-heading" className="print:hidden mt-16 rounded-2xl border border-border bg-card p-6 md:p-8">
       <h2 id="pdf-heading" className="text-xl font-semibold tracking-tight">
-        Get this week's edition as a PDF
+        Get the October 11 archived edition as a PDF
       </h2>
       <p className="mt-2 mb-5 text-base text-muted-foreground">
         Optional. Leave your email and the PDF is yours right away. Everything above stays
@@ -145,7 +145,7 @@ const SignalPdfDownload = ({ picks }: { picks: readonly WeeklyPick[] }) => {
           {status.msg}
         </p>
       ) : (
-        <form onSubmit={onSubmit} noValidate aria-label="Get The Edit as a PDF" className="w-full">
+        <form onSubmit={onSubmit} noValidate aria-label="Get The Signal as a PDF" className="w-full">
           <label htmlFor="edit-pdf-email" className="mb-2 block text-sm font-medium">
             Email address
           </label>

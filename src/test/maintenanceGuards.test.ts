@@ -30,15 +30,16 @@ describe("storefront maintenance guards", () => {
     expect(bad).toEqual([]);
   });
 
-  it("brands the newsletter as The Edit, never The Signal", () => {
-    const bad = files.filter((f) => /\bThe Signal\b|Weekly Blog/.test(read(f)));
-    expect(bad).toEqual([]);
+  it("retains the restored newsletter publication in the public landing pages", () => {
+    for (const f of ["src/pages/Blog.tsx", "src/pages/Index.tsx"]) {
+      expect(read(f)).toContain("The Signal · Weekly Newsletter");
+    }
   });
 
-  it("keeps /the-edit canonical and redirects /the-signal to it", () => {
+  it("keeps /the-signal canonical and redirects /the-edit to it", () => {
     const app = read("src/App.tsx");
-    expect(app).toMatch(/path="\/the-edit" element=\{<Blog \/>\}/);
-    expect(app).toMatch(/path="\/the-signal" element=\{<LegacySignalRedirect \/>\}/);
+    expect(app).toMatch(/path="\/the-signal" element=\{<Blog \/>\}/);
+    expect(app).toMatch(/path="\/the-edit" element=\{<LegacySignalRedirect \/>\}/);
   });
 
   it("does not show the stale Spring deals card on the newsletter landing", () => {
@@ -55,9 +56,9 @@ describe("storefront maintenance guards", () => {
     expect(index).toMatch(/src=\{heroImg\}/);
   });
 
-  it("keeps the email signup heading exactly 'Get The Edit by email'", () => {
+  it("keeps the email signup heading exactly 'Get The Signal by email'", () => {
     for (const f of ["src/pages/Index.tsx", "src/pages/Blog.tsx"]) {
-      expect(read(f)).toMatch(/>Get The Edit by email</);
+      expect(read(f)).toMatch(/>Get The Signal by email</);
       expect(read(f)).not.toMatch(/Christmas Amazon finds/);
     }
   });
@@ -77,10 +78,10 @@ describe("storefront maintenance guards", () => {
     }
   });
 
-  it("points the shopping-event note at Amazon's current Cyber Monday FAQ, not the expired October event", () => {
+  it("uses neutral official-source shopping guidance", () => {
     const edition = read("src/lib/signalWeeklyEdition.ts");
     expect(edition).not.toMatch(/amazon-prime-big-deals-day-2026-when-october-6-7/);
-    expect(edition).toMatch(/Cyber Monday is November 30\. Amazon has not announced specific offers yet\./);
-    expect(edition).toMatch(/https:\/\/www\.aboutamazon\.com\/news\/retail\/when-is-amazon-cyber-monday-faq/);
+    expect(edition).not.toMatch(/has not announced|unannounced retailer sale window/);
+    expect(edition).toContain("https://www.aboutamazon.com/news/retail/amazon-black-friday-cyber-monday-deals-2026");
   });
 });

@@ -155,7 +155,7 @@ const GiftFinder = ({ picks, renderCta, disclosure }: { picks: FinderPick[]; ren
       {state.kind === "results" && <>
         {state.budget && <p className="mt-3 max-w-2xl rounded-2xl border border-border bg-background p-4 text-sm leading-relaxed"><strong>About your budget:</strong> {budgetText(state.budgetAmount)}</p>}
         <p className="mt-4 max-w-xl text-sm text-muted-foreground">{disclosure}</p>
-        <ul className="mt-5 grid gap-4 md:grid-cols-3">
+        <ul className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
           {state.results.map(({ pick, reasons, matched }) => <li key={pick.slug} className="flex flex-col rounded-2xl bg-background p-5">
             {pick.imageUrl && <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-card p-4"><img src={pick.imageUrl} alt={pick.title} loading="lazy" className="h-full w-full object-contain" /></div>}
             <h4 className="mt-4 text-lg font-semibold leading-snug">{pick.title}</h4>

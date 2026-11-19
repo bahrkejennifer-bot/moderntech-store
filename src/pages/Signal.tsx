@@ -1,3 +1,4 @@
+import { editorialText } from "@/lib/editorialPresentation";
 import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Link } from "react-router-dom";
@@ -30,10 +31,10 @@ const Signal = () => {
   const entries = (posts ?? []).map((post, i) => ({
     log: `LOG ${String((posts?.length ?? 0) - i).padStart(3, "0")}`,
     date: formatLogDate(post.created_at),
-    title: post.title,
-    excerpt: post.excerpt ?? "",
-    category: (post.category ?? "TECH").toUpperCase(),
-    slug: `/the-edit/${post.slug}`,
+    title: editorialText(post.title),
+    excerpt: editorialText(post.excerpt ?? ""),
+    category: editorialText(post.category ?? "TECH").toUpperCase(),
+    slug: `/the-signal/${post.slug}`,
   }));
 
   return (
@@ -48,7 +49,7 @@ const Signal = () => {
               className="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tight leading-tight"
               style={{ fontWeight: 400 }}
             >
-              The Edit
+              The Signal
             </h1>
             <p
               className="font-mono mt-4 text-muted-foreground"

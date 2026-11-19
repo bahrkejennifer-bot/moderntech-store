@@ -15,6 +15,12 @@ describe("verified product images", () => {
   it("covers all seven selections in unchanged order", () => {
     expect(selections.map((s) => s.slug)).toEqual(Object.keys(expected));
   });
+  it("retains the exact official Anker C300 DC image source", () => {
+    expect(verifiedImages["anker-solix-c300-dc"]).toEqual({
+      asin: "B0D62PMB3R",
+      imageUrl: "https://cdn.shopify.com/s/files/1/0854/3820/2186/files/20240604-1523121_3765ef84-9811-4315-b372-8e82f5fcb598_1000x.png?v=1733919246",
+    });
+  });
   for (const [slug, [asin, token]] of Object.entries(expected)) {
     it(`${slug} maps to ${asin} with image token ${token}`, () => {
       expect(verifiedImages[slug].asin).toBe(asin);

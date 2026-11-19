@@ -1,3 +1,3 @@
-/** The Edit (weekly newsletter) pages stay calm: no popups, promo banners or floating widgets. */
+/** Canonical and legacy newsletter pages stay calm during redirects. */
 export const isSignalRoute = (pathname: string) =>
-  pathname === "/the-edit" || pathname.startsWith("/the-edit/");
+  ["/the-signal", "/the-edit", "/blog", "/weekly-edit"].some(path => pathname === path || pathname.startsWith(`${path}/`));

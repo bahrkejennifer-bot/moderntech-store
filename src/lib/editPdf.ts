@@ -61,7 +61,7 @@ async function loadPhoto(url: string) {
 }
 
 /**
- * Composes The Edit's weekly edition into a US Letter PDF with jsPDF's own text engine.
+ * Composes The Signal's weekly edition into a US Letter PDF with jsPDF's own text engine.
  * html2pdf.js (html2canvas) silently produces blank pages in this project, so the PDF is
  * laid out from the same model the page reads — no screenshots of the DOM.
  */
@@ -70,10 +70,10 @@ export async function buildEditPdf(model: EditPdfModel): Promise<EditPdf> {
   const doc = new jsPDF({ unit: "pt", format: "letter", orientation: "portrait", compress: true });
   doc.setProperties({
     title: `${model.publication}: ${model.title}`,
-    subject: `Week of ${model.weekOfLabel}`,
+    subject: `Archived edition: ${model.weekOfLabel}`,
     author: "Modern Tech LLC",
     creator: "Modern Tech LLC",
-    keywords: "Modern Tech, The Edit, weekly newsletter, tech picks",
+    keywords: "Modern Tech, The Signal, weekly newsletter, tech picks",
   });
 
   let y = MARGIN;
@@ -148,13 +148,13 @@ export async function buildEditPdf(model: EditPdfModel): Promise<EditPdf> {
   ink(doc, FAINT);
   doc.text("MODERN TECH LLC", MARGIN, y + 7);
   y += 13;
-  doc.text("THE EDIT  ·  WEEKLY NEWSLETTER", MARGIN, y + 7);
+  doc.text("THE SIGNAL  ·  WEEKLY NEWSLETTER", MARGIN, y + 7);
   doc.setCharSpace(0);
   y += 10;
   rule(18);
 
   para(model.title, { font: "times", style: "italic", size: 21, leading: 26, gap: 6 });
-  para(`Week of ${model.weekOfLabel}`, { font: "helvetica", size: 9, color: MUTED, leading: 13, gap: 14 });
+  para(`Archived edition: ${model.weekOfLabel}`, { font: "helvetica", size: 9, color: MUTED, leading: 13, gap: 14 });
 
   for (const p of model.intro) para(p, { size: 11, leading: 16, gap: 9 });
 
@@ -182,7 +182,7 @@ export async function buildEditPdf(model: EditPdfModel): Promise<EditPdf> {
   y += boxH + 16;
 
   heading(
-    "This week's picks",
+    "Archived edition picks",
     model.picks[0] ? Math.max(await measurePick(doc, model.picks[0]), PHOTO_BOX) + 18 : 0,
   );
   for (const pick of model.picks) {

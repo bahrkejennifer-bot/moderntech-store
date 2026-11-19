@@ -1,3 +1,4 @@
+import { editorialText } from "@/lib/editorialPresentation";
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
@@ -121,7 +122,7 @@ const Index = () => {
   };
 
   const amazonButton = ({ selection, product }: Pick) => (
-    <Button asChild size="lg" className="min-h-12 rounded-none px-7 text-xs font-medium uppercase tracking-[0.2em]">
+    <Button asChild size="lg" className="min-h-12 max-w-full whitespace-normal rounded-none px-4 text-xs font-medium uppercase tracking-[0.12em]">
       <a href={withAffiliateTag(product.affiliate_link)} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => trackClick(selection, product)}>
         View on Amazon <ExternalLink aria-hidden="true" className="ml-2 h-4 w-4" />
       </a>
@@ -135,7 +136,7 @@ const Index = () => {
     <div className="vogue-theme min-h-screen bg-background text-foreground">
       <Helmet>
         <title>Modern Tech | The Art of Modern Tech</title>
-        <meta name="description" content="Curated everyday tech and practical creator guides from Modern Tech LLC. Shop tech finds on Amazon and read The Edit, our weekly tech newsletter." />
+        <meta name="description" content="Curated everyday tech and practical creator guides from Modern Tech LLC. Shop tech finds on Amazon and read The Signal, our weekly tech newsletter." />
         <meta property="og:title" content="Modern Tech | The Art of Modern Tech" />
         <meta property="og:description" content="Curated everyday tech and practical creator guides from Modern Tech LLC." />
         <meta property="og:type" content="website" />
@@ -143,25 +144,26 @@ const Index = () => {
       </Helmet>
       <StructuredData title="Modern Tech | The Art of Modern Tech" description="Curated everyday tech and practical creator guides from Modern Tech LLC." path="/" includeWebSite />
       <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 md:h-20 md:px-10">
+        <div className="mx-auto flex min-h-16 max-w-7xl flex-wrap items-center justify-between gap-x-3 gap-y-1 py-2 sm:h-16 sm:flex-nowrap sm:py-0 px-4 sm:px-6 md:h-20 md:px-10">
           <Link to="/" className="shrink-0 text-lg text-foreground sm:text-xl md:text-2xl" style={{ ...serif, fontStyle: "italic" }}>Modern Tech</Link>
-          <nav aria-label="Main navigation" className="flex items-center gap-2.5 text-[11px] font-medium uppercase tracking-[0.12em] sm:gap-5 sm:tracking-[0.18em] md:gap-8">
+          <nav aria-label="Main navigation" className="flex w-full min-w-0 flex-wrap items-center justify-between gap-2.5 text-[11px] sm:w-auto sm:justify-start font-medium uppercase tracking-[0.12em] sm:gap-5 sm:tracking-[0.18em] md:gap-8">
             <div className="relative">
-              <button
+              <Button
+                variant="ghost"
                 type="button"
                 aria-expanded={shopOpen}
                 aria-haspopup="true"
                 onClick={() => setShopOpen((o) => !o)}
                 onBlur={(e) => { if (!e.currentTarget.parentElement?.contains(e.relatedTarget as Node)) setShopOpen(false); }}
-                className="flex min-h-11 items-center gap-1 whitespace-nowrap text-foreground/75 hover:text-foreground"
+                className="flex min-h-11 rounded-none px-0 items-center gap-1 whitespace-nowrap text-foreground/75 hover:text-foreground"
               >
                 Shop <ChevronDown aria-hidden="true" className={`h-3.5 w-3.5 transition-transform ${shopOpen ? "rotate-180" : ""}`} />
-              </button>
+              </Button>
               {shopOpen && (
-                <div className="absolute left-0 top-full z-50 mt-1 w-56 border border-border bg-background py-2 shadow-lg">
+                <div className="absolute left-0 top-full z-50 mt-1 w-56 max-w-[calc(100vw-2rem)] border border-border bg-background py-2 shadow-lg">
                   {shopCategories.map((cat) => (
                     <Link
-                      key={cat.to}
+                      key={cat.label}
                       to={cat.to}
                       onClick={() => setShopOpen(false)}
                       className="block px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.12em] text-foreground/75 hover:bg-card hover:text-foreground"
@@ -174,7 +176,7 @@ const Index = () => {
             </div>
             <a href="#gift-picks" className="hidden text-foreground/75 hover:text-foreground md:inline">Gifts</a>
             <a href="#digital-products" className="hidden text-foreground/75 hover:text-foreground sm:inline">Digital Products</a>
-            <Link to="/the-edit" className="whitespace-nowrap text-foreground/75 hover:text-foreground">The Edit</Link>
+            <Link to="/the-signal" className="whitespace-nowrap text-foreground/75 hover:text-foreground">The Signal</Link>
             <Button asChild size="lg" className="min-h-11 rounded-none px-2.5 text-[11px] uppercase tracking-[0.12em] sm:px-5 sm:tracking-[0.18em]"><a href="#selections">Shop Tech Finds</a></Button>
           </nav>
         </div>
@@ -267,7 +269,7 @@ const Index = () => {
                     {offer.slug === "creator-bundle" ? <div className="grid h-full max-w-full grid-cols-3 gap-1" aria-label="Reels, Canva and YouTube guide covers">{[coverReels, coverCanva, coverYoutube].map((cover, index) => <img key={cover} src={cover} alt={["Reels guide cover", "Canva guide cover", "YouTube guide cover"][index]} loading="lazy" className="h-full min-w-0 object-contain" />)}</div>
                       : <img src={offer.cover} alt={`${product.title} cover`} loading="lazy" className="h-full max-w-full object-contain" />}
                   </div>
-                  <div className="flex flex-1 flex-col p-6"><p className={eyebrow}>{offer.label}</p><h3 className="mt-3 text-2xl leading-tight" style={{ fontStyle: "italic" }}>{product.title}</h3><p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{offer.included}</p><Button asChild variant="outline" size="lg" className="mt-6 min-h-12 rounded-none text-xs uppercase tracking-[0.2em]"><Link to={`${offer.route}${location.search}`}>View digital guide <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" /></Link></Button></div>
+                  <div className="flex min-w-0 flex-1 flex-col p-6"><p className={eyebrow}>{offer.label}</p><h3 className="mt-3 text-2xl leading-tight" style={{ fontStyle: "italic" }}>{product.title}</h3><p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{offer.included}</p><Button asChild variant="outline" size="lg" className="mt-6 min-h-12 max-w-full whitespace-normal rounded-none px-3 text-xs uppercase tracking-[0.2em]"><Link to={`${offer.route}${location.search}`}>View digital guide <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4 shrink-0" /></Link></Button></div>
                 </article>)}
               </div>}
             <p className="mt-8 text-center text-sm text-muted-foreground">Looking for a starting point? <Link to="/creator-funnel" className="font-medium text-foreground underline underline-offset-4">Explore the free Reels guide.</Link></p>
@@ -276,12 +278,12 @@ const Index = () => {
 
         <section id="the-edit" className="scroll-mt-20 border-t border-border bg-card px-5 py-14 md:px-10 md:py-20" aria-labelledby="signal-heading">
           <div className="launch-reveal mx-auto grid max-w-5xl items-start gap-8 md:grid-cols-2 md:gap-14">
-            <div><p className={eyebrow}>04 · The Edit · Weekly Newsletter</p><h2 id="signal-heading" className="mt-3 text-3xl md:text-4xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Read this week's Edit.</h2>
+            <div><p className={eyebrow}>04 · The Signal · Weekly Newsletter</p><h2 id="signal-heading" className="mt-3 text-3xl md:text-4xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Read The Signal.</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">Our weekly newsletter: a few useful tech picks and plain-language notes. Free to read online.</p>
-              {latestPost && <p className="mt-4 text-sm text-muted-foreground">Latest article: <Link to={`/the-edit/${latestPost.slug}`} className="text-foreground underline underline-offset-4">{latestPost.title}</Link></p>}
-              <Button asChild size="lg" className="mt-6 min-h-12 rounded-none px-6 text-xs uppercase tracking-[0.2em]"><Link to="/the-edit">Read The Edit <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" /></Link></Button>
+              {latestPost && <p className="mt-4 text-sm text-muted-foreground">Latest article: <Link to={`/the-signal/${latestPost.slug}`} className="text-foreground underline underline-offset-4">{editorialText(latestPost.title)}</Link></p>}
+              <Button asChild size="lg" className="mt-6 min-h-12 rounded-none px-6 text-xs uppercase tracking-[0.2em]"><Link to="/the-signal">Read The Signal <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" /></Link></Button>
             </div>
-            <div><h3 className="mb-4 text-lg" style={{ fontStyle: "italic" }}>Get The Edit by email</h3><SignalSignup /></div>
+            <div><h3 className="mb-4 text-lg" style={{ fontStyle: "italic" }}>Get The Signal by email</h3><SignalSignup /></div>
           </div>
         </section>
       </main>
