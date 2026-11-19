@@ -1,3 +1,4 @@
+import { emailTextFromHtml, emailHtmlWithoutAmazonLinks } from "../_shared/email-content.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
 
 const corsHeaders = {
@@ -325,8 +326,8 @@ Also generate a compelling email subject line under 60 characters. Think a luxe 
         sender_domain: "notify.www.moderntech.store",
         purpose: "transactional",
         subject: `📋 Review Draft: ${subject}`,
-        html: adminEmailHtml,
-        purpose: "transactional",
+        html: emailHtmlWithoutAmazonLinks(adminEmailHtml),
+        text: emailTextFromHtml(adminEmailHtml),
         label: "tech_spec_admin_review",
         queued_at: new Date().toISOString(),
       },

@@ -1,3 +1,4 @@
+import { emailTextFromHtml, emailHtmlWithoutAmazonLinks } from "./email-content.ts";
 // Shared, dependency-free logic for digital-product signups (free + paid).
 // - Persists the signup + optional newsletter consent (service role only table).
 // - Deduplicates via a unique dedupe_key (Stripe session id for paid, product+email for free),
@@ -48,7 +49,7 @@ export function escapeHtml(v: unknown): string {
     .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
-export function buildAdminNotification(input: SignupInput): { subject: string; html: string } {
+export function buildAdminNotification(input: SignupInput): { subject: string; html: string; text: string } {
   const label = input.productLabel || input.productSlug || "Digital product";
   const what = input.kind === "paid" ? "Paid purchase confirmed" : "Free download signup";
   const amount = input.kind === "paid" && typeof input.amountCents === "number"
@@ -68,7 +69,7 @@ export function buildAdminNotification(input: SignupInput): { subject: string; h
 <table cellpadding="6" cellspacing="0" style="font-size:14px;border-collapse:collapse;">
 ${rows.map(([k, v]) => `<tr><td style="color:#8a8580;padding-right:16px;">${escapeHtml(k)}</td><td>${escapeHtml(v)}</td></tr>`).join("")}
 </table></body></html>`;
-  return { subject: `${what}: ${label}`.slice(0, 150), html };
+  return { subject: `${what}: ${label}`.slice(0, 150), html: emailHtmlWithoutAmazonLinks(html), text: emailTextFromHtml(html) };
 }
 
 export async function recordDigitalSignup(supabase: AnyClient, input: SignupInput): Promise<SignupResult> {
@@ -129,7 +130,7 @@ export async function recordDigitalSignup(supabase: AnyClient, input: SignupInpu
 
   if (!result.duplicate) {
     try {
-      const { subject, html } = buildAdminNotification({ ...input, email });
+      const { subject, html, text } = buildAdminNotification({ ...input, email });
       const messageId = `signup-admin-${dedupe_key}`;
       await supabase.from("email_send_log").insert({
         message_id: messageId, template_name: "digital_signup_admin",
@@ -143,7 +144,7 @@ export async function recordDigitalSignup(supabase: AnyClient, input: SignupInpu
           to: ADMIN_NOTIFICATION_EMAIL,
           from: `Modern Tech LLC <noreply@${SENDER_DOMAIN}>`,
           sender_domain: SENDER_DOMAIN,
-          subject, html,
+          subject, html, text,
           purpose: "transactional",
           label: "digital_signup_admin",
           queued_at: new Date().toISOString(),

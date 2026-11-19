@@ -29,7 +29,7 @@ const AMAZON_CATEGORY_URLS = [
     ],
   },
 ];
-const AFFILIATE_TAG = "moderntechs04-20";
+const AFFILIATE_TAG = "moderntech02-20";
 
 const BLOCKED_TITLE_PATTERNS = [
   /example\.com/i,
@@ -156,9 +156,10 @@ Deno.serve(async (req) => {
             }
 
             let affiliateLink = product.product_url || "";
-            if (affiliateLink && !affiliateLink.includes("tag=")) {
-              const sep = affiliateLink.includes("?") ? "&" : "?";
-              affiliateLink = `${affiliateLink}${sep}tag=${AFFILIATE_TAG}`;
+            if (affiliateLink) {
+              const destination = new URL(affiliateLink);
+              destination.searchParams.set("tag", AFFILIATE_TAG);
+              affiliateLink = destination.toString();
             } else if (!affiliateLink) {
               affiliateLink = `https://www.amazon.com/s?k=${encodeURIComponent(title)}&tag=${AFFILIATE_TAG}`;
             }

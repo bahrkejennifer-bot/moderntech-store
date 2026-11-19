@@ -46,7 +46,7 @@ Deno.serve(async (req) => {
     }
     const { products, url } = bodyResult.data;
 
-    const affiliateTag = "moderntechs04-20";
+    const affiliateTag = "moderntech02-20";
     const saved: ScrapedProductRow[] = [];
     const updated: string[] = [];
     const skipped: { title?: string; errors: unknown }[] = [];
@@ -78,9 +78,10 @@ Deno.serve(async (req) => {
 
       // Build affiliate link
       let affiliateLink = product.product_url || product.affiliate_link || "";
-      if (affiliateLink && !affiliateLink.includes("tag=")) {
-        const sep = affiliateLink.includes("?") ? "&" : "?";
-        affiliateLink = `${affiliateLink}${sep}tag=${affiliateTag}`;
+      if (affiliateLink) {
+        const destination = new URL(affiliateLink);
+        destination.searchParams.set("tag", affiliateTag);
+        affiliateLink = destination.toString();
       } else if (!affiliateLink) {
         affiliateLink = `https://www.amazon.com/s?k=${encodeURIComponent(title)}&tag=${affiliateTag}`;
       }

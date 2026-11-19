@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { withAffiliateTag } from "@/lib/curatedSelections";
 
 const ProductRedirect = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -21,7 +22,7 @@ const ProductRedirect = () => {
       if (dbError || !data) {
         // Fallback: generate an Amazon search URL from the slug
         const searchTerm = slug.replace(/-/g, " ");
-        window.location.href = `https://www.amazon.com/s?k=${encodeURIComponent(searchTerm)}&tag=moderntechs04-20`;
+        window.location.href = `https://www.amazon.com/s?k=${encodeURIComponent(searchTerm)}&tag=moderntech02-20`;
         return;
       }
 
@@ -30,9 +31,9 @@ const ProductRedirect = () => {
 
       // Use amazon_url if available, otherwise fallback to search
       const targetUrl = data.amazon_url || data.search_fallback_url || 
-        `https://www.amazon.com/s?k=${encodeURIComponent(data.product_name)}&tag=moderntechs04-20`;
+        `https://www.amazon.com/s?k=${encodeURIComponent(data.product_name)}&tag=moderntech02-20`;
       
-      window.location.href = targetUrl;
+      window.location.href = withAffiliateTag(targetUrl);
     };
 
     doRedirect();

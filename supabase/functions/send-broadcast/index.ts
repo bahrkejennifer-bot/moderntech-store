@@ -1,3 +1,4 @@
+import { emailTextFromHtml, newsletterEmailHtml } from "../_shared/email-content.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
@@ -85,7 +86,9 @@ Deno.serve(async (req) => {
           to: sub.email,
           from: "Modern Tech LLC <info@moderntech.store>",
           subject,
-          html: htmlContent,
+          html: newsletterEmailHtml(htmlContent),
+          text: emailTextFromHtml(newsletterEmailHtml(htmlContent)),
+          purpose: "marketing",
           message_id: `${messageId}-${enqueued}`,
           template_name: "broadcast",
         },

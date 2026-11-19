@@ -192,7 +192,7 @@ Deno.serve(async (req) => {
 
     console.log(`Found ${products.length} products`);
 
-    const affiliateTag = "moderntechs04-20";
+    const affiliateTag = "moderntech02-20";
     const savedProducts = [];
     const skippedDuplicates = [];
 
@@ -219,9 +219,10 @@ Deno.serve(async (req) => {
 
       // Build affiliate link
       let affiliateLink = product.product_url || "";
-      if (affiliateLink && !affiliateLink.includes("tag=")) {
-        const separator = affiliateLink.includes("?") ? "&" : "?";
-        affiliateLink = `${affiliateLink}${separator}tag=${affiliateTag}`;
+      if (affiliateLink) {
+        const destination = new URL(affiliateLink);
+        destination.searchParams.set("tag", affiliateTag);
+        affiliateLink = destination.toString();
       } else if (!affiliateLink) {
         affiliateLink = `https://www.amazon.com/s?k=${encodeURIComponent(title)}&tag=${affiliateTag}`;
       }

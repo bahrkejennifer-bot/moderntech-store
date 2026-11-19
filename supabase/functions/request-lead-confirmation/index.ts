@@ -1,3 +1,4 @@
+import { emailTextFromHtml, emailHtmlWithoutAmazonLinks } from "../_shared/email-content.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { recordDigitalSignup, NEWSLETTER_ONLY_MAGNETS } from "../_shared/digital-signup.ts";
 
@@ -162,7 +163,8 @@ Deno.serve(async (req) => {
         from: `Modern Tech LLC <noreply@${SENDER_DOMAIN}>`,
         sender_domain: SENDER_DOMAIN,
         subject: "Confirm your email to get your free guide",
-        html,
+        html: emailHtmlWithoutAmazonLinks(html),
+        text: emailTextFromHtml(html),
         purpose: "transactional",
         label: "lead_confirmation",
         queued_at: new Date().toISOString(),

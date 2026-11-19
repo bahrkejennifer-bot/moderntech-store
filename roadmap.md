@@ -34,3 +34,7 @@
 - [x] Repair narrow header, restore newsletter branding/canonical redirects, and remove volatile rendered editorial claims.
 - [x] Preserve seven campaign picks, verify images/links and dated compact archive presentation.
 - [x] Compare November 18 preview/live state, run tests and visual checks, and report pending deployment differences.
+
+# Scoped affiliate and email payload repair (preview only)
+- [x] Update active/generated affiliate IDs while retaining closed IDs only for legacy normalization.
+- [x] Add meaningful plain-text queue bodies and verify without sending emails, deploying or publishing.

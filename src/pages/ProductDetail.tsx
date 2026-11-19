@@ -1,3 +1,4 @@
+import { legacyTags, withAffiliateTag } from "@/lib/curatedSelections";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useParams } from "react-router-dom";
@@ -31,7 +32,7 @@ const ProductDetail = () => {
       const url = new URL(product.affiliate_link);
       return /(^|\.)amazon\.com$/.test(url.hostname) &&
         /\/dp\/[A-Z0-9]{10}(?:\/|$)/i.test(url.pathname) &&
-        ["moderntechs04-20", "moderntechs04-20"].includes(url.searchParams.get("tag") ?? "");
+        legacyTags.includes(url.searchParams.get("tag") ?? "");
     } catch { return false; }
   })();
 
@@ -57,7 +58,7 @@ const ProductDetail = () => {
               {product.description && <p className="mt-6 text-base leading-relaxed">{product.description}</p>}
               <p className="mt-6 border-l-2 border-primary pl-4 text-base leading-relaxed">As an Amazon Associate, Modern Tech LLC earns from qualifying purchases. This link may earn us a commission at no additional cost to you.</p>
               <Button asChild size="lg" className="mt-7 h-auto min-h-11 whitespace-normal rounded-sm py-3">
-                <a href={product.affiliate_link} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => {
+                <a href={withAffiliateTag(product.affiliate_link)} target="_blank" rel="noopener noreferrer nofollow sponsored" onClick={() => {
                   const params = new URLSearchParams(location.search);
                   const campaign = Object.fromEntries(["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]
                     .filter((key) => params.has(key)).map((key) => [key, params.get(key)?.slice(0, 150) || ""]));

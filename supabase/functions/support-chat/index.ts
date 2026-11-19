@@ -1,3 +1,4 @@
+import { emailTextFromHtml, emailHtmlWithoutAmazonLinks } from "../_shared/email-content.ts";
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
@@ -188,7 +189,8 @@ serve(async (req) => {
           from: "Modern Tech LLC <noreply@notify.www.moderntech.store>",
           sender_domain: "notify.www.moderntech.store",
           subject: `Support handoff: ${cleanEmail}`.slice(0, 150),
-          html,
+          html: emailHtmlWithoutAmazonLinks(html),
+          text: emailTextFromHtml(html),
           purpose: "transactional",
           label: "support_handoff",
           queued_at: new Date().toISOString(),

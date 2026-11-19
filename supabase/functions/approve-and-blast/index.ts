@@ -1,3 +1,4 @@
+import { emailTextFromHtml, emailHtmlWithoutAmazonLinks, newsletterEmailHtml } from "../_shared/email-content.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
@@ -71,7 +72,9 @@ Deno.serve(async (req) => {
           to: "info@moderntech.store",
           from: "Modern Tech LLC <info@moderntech.store>",
           subject: `[DRAFT] 🔥 Hot Pick: ${productTitle}`,
-          html: `<p style="font-family:Inter,sans-serif;background:#fef3c7;padding:16px;border-radius:8px;color:#92400e;font-size:14px;">⚠️ <strong>DRAFT MODE</strong> — This is a preview. ${recipientCount} subscribers will receive this once you send the final broadcast from the Email Dashboard.</p>${newsletterHtml}`,
+          html: emailHtmlWithoutAmazonLinks(`<p style="font-family:Inter,sans-serif;background:#fef3c7;padding:16px;border-radius:8px;color:#92400e;font-size:14px;">⚠️ <strong>DRAFT MODE</strong> - This is a preview. ${recipientCount} subscribers will receive this once you send the final broadcast from the Email Dashboard.</p>${newsletterHtml}`),
+          text: emailTextFromHtml(`DRAFT MODE. This is a preview. ${recipientCount} subscribers will receive this once you send the final broadcast from the Email Dashboard. ${newsletterHtml}`),
+          purpose: "transactional",
         },
       });
 
@@ -128,7 +131,9 @@ Deno.serve(async (req) => {
               to: sub.email,
               from: "Modern Tech LLC <info@moderntech.store>",
               subject: `🔥 Hot Pick: ${productTitle}`,
-              html: newsletterHtml,
+              html: newsletterEmailHtml(newsletterHtml),
+              text: emailTextFromHtml(newsletterEmailHtml(newsletterHtml)),
+              purpose: "marketing",
             },
           });
         }

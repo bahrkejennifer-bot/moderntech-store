@@ -31,12 +31,12 @@ describe("verified product images", () => {
       expect(out.image_url).toBe(verifiedImages[slug].imageUrl);
       expect(isEligible(out)).toBe(true);
       const href = new URL(withAffiliateTag(out.affiliate_link));
-      expect(href.searchParams.get("tag")).toBe("moderntechs04-20");
+      expect(href.searchParams.get("tag")).toBe("moderntech02-20");
       expect(asinOf(href.toString())).toBe(asin);
     });
   }
   it("does not override when the catalog link points at a different ASIN", () => {
-    const row = { id: "x", title: "T", image_url: "keep.jpg", affiliate_link: "https://www.amazon.com/dp/B000000000?tag=moderntechs04-20", is_active: true };
+    const row = { id: "x", title: "T", image_url: "keep.jpg", affiliate_link: "https://www.amazon.com/dp/B000000000?tag=moderntech02-20", is_active: true };
     expect(withVerifiedImage("jbl-flip-6", row).image_url).toBe("keep.jpg");
   });
 });

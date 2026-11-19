@@ -11,3 +11,4 @@
 
 - Keep the November 18 owner-supplied edition and collection additions in a shared code-level module, separate from live catalog records; scoped figures and affiliate destinations stay reversible without changing global policies or data.
 - Apply editorial brand and volatile-claim corrections through a render-only helper, never historical database edits, to keep maintenance reversible.
+- Derive queued email text from its HTML through the shared email-content helper; remove Amazon destinations from email bodies so multipart content stays aligned without changing template design.

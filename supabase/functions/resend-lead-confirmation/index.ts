@@ -1,3 +1,4 @@
+import { emailTextFromHtml, emailHtmlWithoutAmazonLinks } from "../_shared/email-content.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
 
 const corsHeaders = {
@@ -175,7 +176,8 @@ Deno.serve(async (req) => {
         from: `Modern Tech LLC <noreply@${SENDER_DOMAIN}>`,
         sender_domain: SENDER_DOMAIN,
         subject: "Your new confirmation link",
-        html,
+        html: emailHtmlWithoutAmazonLinks(html),
+        text: emailTextFromHtml(html),
         purpose: "transactional",
         label: "lead_confirmation_resend",
         queued_at: new Date().toISOString(),

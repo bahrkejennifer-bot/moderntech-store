@@ -24,9 +24,19 @@ describe("storefront maintenance guards", () => {
     }
   });
 
-  it("uses the default moderntechs04-20 tag outside the owner-supplied November 18 edition", () => {
-    const bad = files.flatMap((f) =>
-      [...read(f).matchAll(/amazon\.com[^"'`\s]*[?&]tag=([A-Za-z0-9-]+)/g)].map((m) => m[1]).filter((t) => t !== (f === "src/lib/november18Edition.ts" ? "moderntech02-20" : "moderntechs04-20")).map((t) => `${f}: ${t}`));
+  it("allows only moderntech02-20 as the default or generated Amazon tag", () => {
+    const bad = files.flatMap((f) => {
+      const source = read(f);
+      // Closed IDs are allowed only inside the catalog legacy rewrite list.
+      const active = f === "src/lib/curatedSelections.ts"
+        ? source.replace(/(?:export )?const legacyTags = \[[^\]]*\];/, "") : source;
+      const closed = ["moderntech" + "s04-20", "moderntech" + "s0c-20"];
+      const violations = closed.filter((tag) => active.includes(tag)).map((tag) => `${f}: active ${tag}`);
+      const tags = [...active.matchAll(/amazon\.com[^"'`\s]*[?&]tag=([A-Za-z0-9-]+)/g),
+        ...active.matchAll(/(?:AFFILIATE_TAG|affiliateTag)\s*=\s*["']([^"']+)["']/g),
+        ...active.matchAll(/searchParams\.set\(["']tag["'],\s*["']([^"']+)["']/g)];
+      return [...violations, ...tags.filter((m) => m[1] !== "moderntech02-20").map((m) => `${f}: ${m[1]}`)];
+    });
     expect(bad).toEqual([]);
   });
 

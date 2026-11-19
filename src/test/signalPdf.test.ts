@@ -19,7 +19,7 @@ const pick = (slug: string, dp: string): WeeklyPick => {
       id: selection.id,
       title: `${selection.slug} — exact model`,
       image_url: `https://m.media-amazon.com/images/I/${dp}.jpg`,
-      affiliate_link: `https://www.amazon.com/dp/${dp}?tag=moderntechs04-20`,
+      affiliate_link: `https://www.amazon.com/dp/${dp}?tag=moderntech02-20`,
       is_active: true,
     },
   };
@@ -40,7 +40,7 @@ describe("The Signal PDF model", () => {
     expect(model.picks[0].title).toBe("renpho-elis-1 — exact model");
     expect(model.picks[0].audience).toBe("For tracking wellness trends at home");
     expect(model.picks[0].image_url).toBe("https://m.media-amazon.com/images/I/B01N1UX8RW.jpg");
-    expect(model.picks[2].affiliate_link).toBe("https://www.amazon.com/dp/B0D62PMB3R?tag=moderntechs04-20");
+    expect(model.picks[2].affiliate_link).toBe("https://www.amazon.com/dp/B0D62PMB3R?tag=moderntech02-20");
   });
 
   it("keeps the required disclosure in the PDF and every link tagged and direct", () => {
@@ -51,7 +51,7 @@ describe("The Signal PDF model", () => {
       const url = new URL(p.affiliate_link);
       expect(url.hostname).toBe("www.amazon.com");
       expect(url.pathname).toMatch(/^\/dp\/[A-Z0-9]{10}$/);
-      expect(url.searchParams.get("tag")).toBe("moderntechs04-20");
+      expect(url.searchParams.get("tag")).toBe("moderntech02-20");
     }
   });
 

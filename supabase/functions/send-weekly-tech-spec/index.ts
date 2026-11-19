@@ -1,3 +1,4 @@
+import { emailTextFromHtml, newsletterEmailHtml } from "../_shared/email-content.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
 
 const corsHeaders = {
@@ -98,8 +99,9 @@ Deno.serve(async (req) => {
           from: `Modern Tech LLC <noreply@${SENDER_DOMAIN}>`,
           sender_domain: SENDER_DOMAIN,
           subject: spec.subject,
-          html: spec.html_content,
-          purpose: "transactional",
+          html: newsletterEmailHtml(spec.html_content),
+          text: emailTextFromHtml(newsletterEmailHtml(spec.html_content)),
+          purpose: "marketing",
           label: "weekly_tech_spec",
           queued_at: new Date().toISOString(),
         },
@@ -127,8 +129,8 @@ Deno.serve(async (req) => {
             subject: spec.subject,
             name: `The Art of Modern Tech - ${new Date().toISOString().split("T")[0]}`,
             content: {
-              html: spec.html_content,
-              plain: spec.plain_text || undefined,
+              html: newsletterEmailHtml(spec.html_content),
+              plain: emailTextFromHtml(newsletterEmailHtml(spec.html_content)),
             },
             sendSettings: {
               selectedCampaigns: ["default"],

@@ -1,3 +1,4 @@
+import { emailTextFromHtml, emailHtmlWithoutAmazonLinks } from "../_shared/email-content.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
 
 const corsHeaders = {
@@ -209,7 +210,8 @@ Deno.serve(async (req) => {
         from: `Modern Tech LLC <noreply@${SENDER_DOMAIN}>`,
         sender_domain: SENDER_DOMAIN,
         subject: "Welcome to The Art of Modern Tech — Essential curation for a modern life.",
-        html,
+        html: emailHtmlWithoutAmazonLinks(html),
+        text: emailTextFromHtml(html),
         purpose: "transactional",
         label: "welcome",
         queued_at: new Date().toISOString(),
