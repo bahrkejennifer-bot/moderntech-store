@@ -72,13 +72,13 @@ const queryClient = new QueryClient();
 // Preserve legacy confirmation queries and article fragments without changing slugs.
 const LegacySignalRedirect = () => {
   const { search, hash } = useLocation();
-  return <Navigate to={`/the-signal${search}${hash}`} replace />;
+  return <Navigate to={`/the-edit${search}${hash}`} replace />;
 };
 
 const BlogPostRedirect = () => {
   const { slug } = useParams<{ slug: string }>();
   const { search, hash } = useLocation();
-  return <Navigate to={`/the-signal/${slug || ""}${search}${hash}`} replace />;
+  return <Navigate to={`/the-edit/${slug || ""}${search}${hash}`} replace />;
 };
 
 const PinterestTracker = () => {
@@ -124,10 +124,10 @@ const App = () => (
           <Route path="/college" element={<Navigate to="/kids-stem" replace />} />
           <Route path="/productivity-family" element={<Navigate to="/kids-stem" replace />} />
 
-          <Route path="/the-signal" element={<Blog />} />
-          <Route path="/the-edit" element={<LegacySignalRedirect />} />
-          <Route path="/the-edit/:slug" element={<BlogPostRedirect />} />
-          <Route path="/the-signal/:slug" element={<BlogPost />} />
+          <Route path="/the-edit" element={<Blog />} />
+          <Route path="/the-signal" element={<LegacySignalRedirect />} />
+          <Route path="/the-signal/:slug" element={<BlogPostRedirect />} />
+          <Route path="/the-edit/:slug" element={<BlogPost />} />
           <Route path="/weekly-edit" element={<LegacySignalRedirect />} />
           <Route path="/weekly-edit/:slug" element={<BlogPostRedirect />} />
           <Route path="/tech-of-the-month" element={<LegacySignalRedirect />} />

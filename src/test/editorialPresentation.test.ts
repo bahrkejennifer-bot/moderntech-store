@@ -3,6 +3,10 @@ import { compactArchivePreview, editorialText } from "@/lib/editorialPresentatio
 import { weeklyEdition, MAX_WEEKLY_PICKS } from "@/lib/signalWeeklyEdition";
 
 describe("reversible editorial presentation", () => {
+  it("restores newsletter branding without rewriting the approved Modern Tech Edit title", () => {
+    expect(editorialText("The Signal · Weekly Newsletter")).toBe("The Edit · Weekly Newsletter");
+    expect(editorialText("The Modern Tech Edit: A Full Week of Useful Tech")).toBe("The Modern Tech Edit: A Full Week of Useful Tech");
+  });
   it("removes exact Amazon prices from historical presentation", () => {
     expect(editorialText("Phone stand $9.99")).toBe("Phone stand current Amazon pricing");
   });

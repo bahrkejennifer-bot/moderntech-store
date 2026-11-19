@@ -7,8 +7,8 @@ export default function November18CollectionPicks({ path }: { path: string }) {
   const products = november18CollectionProducts(path);
   if (!products.length) return null;
   return (
-    <section aria-label="November 18 Signal archive picks" className="max-w-6xl mx-auto px-8 pb-12">
-      <h2 className="font-serif italic text-2xl mb-6">From the November 18 Signal archive</h2>
+    <section aria-label="November 18 Edit archive picks" className="max-w-6xl mx-auto px-8 pb-12">
+      <h2 className="font-serif italic text-2xl mb-6">From the November 18 Edit archive</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-border">
         {products.map(product => (
           <div key={product.asin} data-edition-product={product.asin} className="min-w-0 border-r border-b border-border p-6">

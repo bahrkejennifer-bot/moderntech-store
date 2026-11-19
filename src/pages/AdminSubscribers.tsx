@@ -45,7 +45,7 @@ const AdminSubscribers = () => {
     <div className="mx-auto max-w-6xl px-6 py-10">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">The Signal</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">The Edit</p>
           <h1 className="mt-2 font-serif text-3xl" style={{ fontStyle: "italic", fontWeight: 400 }}>Subscribers</h1>
           {!loading && <p className="mt-1 text-sm text-muted-foreground">{rows.length} total</p>}
         </div>

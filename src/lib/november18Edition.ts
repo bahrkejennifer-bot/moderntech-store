@@ -21,6 +21,8 @@ import image18 from "@/assets/weekly-edit/B07FDXDB3W.jpg.asset.json";
 // Owner-supplied November 18 figures and destinations, scoped to this edition.
 // These are not live Amazon quotes or claims of personal testing.
 export const november18Edition = {
+  // Jennifer has not reviewed this edition yet.
+  published: false,
   slug: "weekly-edit-november-18-22-2026",
   title: "Weekly Edit: November 18-22, 2026 | Useful Tech for a More Connected Week",
   date: "2026-11-18",
@@ -58,7 +60,8 @@ export const november18Products = [
 { group: "solace", name: "BLAVOR Solar Power Bank", price: "39.99", rating: 4.2, reviews: 48000, asin: "B07FDXDB3W", imageUrl: image18.url, affiliateUrl: "https://www.amazon.com/dp/B07FDXDB3W?tag=moderntech02-20", reason: "A portable power-bank option with a solar feature; check charging guidance before planning a trip." }
 ];
 
-export function november18CollectionProducts(path: string) {
+export function november18CollectionProducts(path: string, published = november18Edition.published) {
+  if (!published) return [];
   const groups = november18Sections.filter(section => section.collection === path).map(section => section.id as string);
   return november18Products.filter(product => groups.includes(product.group));
 }

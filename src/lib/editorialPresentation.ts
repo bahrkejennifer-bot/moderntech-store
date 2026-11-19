@@ -1,7 +1,7 @@
 // Render-only corrections. Stored articles, identifiers and campaign selections remain intact.
 export function editorialText(text: string): string {
   return text
-    .replace(/The Modern Tech Edit|The Edit|Weekly Edit|Weekly Blog/gi, "The Signal")
+    .replace(/The Signal|Weekly Edit|Weekly Blog/gi, "The Edit")
     .replace(/Prices and ratings were checked[^.!?]*[.!?]/gi, "Check current product details on Amazon.")
     .replace(/this week's edit/gi, "this dated edition")
     .replace(/\b(?:price|rating|reviews?|review count)\s*:\s*(?:\$?\d[\d,.]*(?:\s*\/\s*5)?(?:\s*(?:stars?|reviews?|ratings?|out of 5))?)/gi, "")

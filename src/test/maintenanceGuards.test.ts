@@ -42,14 +42,21 @@ describe("storefront maintenance guards", () => {
 
   it("retains the restored newsletter publication in the public landing pages", () => {
     for (const f of ["src/pages/Blog.tsx", "src/pages/Index.tsx"]) {
-      expect(read(f)).toContain("The Signal · Weekly Newsletter");
+      expect(read(f)).toContain("The Edit · Weekly Newsletter");
+      expect(read(f)).not.toContain("The Signal");
     }
   });
 
-  it("keeps /the-signal canonical and redirects /the-edit to it", () => {
+  it("keeps /the-edit canonical and redirects /the-signal to it", () => {
     const app = read("src/App.tsx");
-    expect(app).toMatch(/path="\/the-signal" element=\{<Blog \/>\}/);
-    expect(app).toMatch(/path="\/the-edit" element=\{<LegacySignalRedirect \/>\}/);
+    expect(app).toMatch(/path="\/the-edit" element=\{<Blog \/>\}/);
+    expect(app).toMatch(/path="\/the-signal" element=\{<LegacySignalRedirect \/>\}/);
+    expect(app).toMatch(/path="\/the-edit\/:slug" element=\{<BlogPost \/>\}/);
+    expect(app).toMatch(/path="\/the-signal\/:slug" element=\{<BlogPostRedirect \/>\}/);
+    expect(app).toContain('to={`/the-edit${search}${hash}`}');
+    expect(app).toContain('to={`/the-edit/${slug || ""}${search}${hash}`}');
+    expect(read("src/pages/Blog.tsx")).toContain('<link rel="canonical" href="https://moderntech.store/the-edit" />');
+    expect(app).toContain('path="/podcast" element={<TheSignal />}');
   });
 
   it("does not show the stale Spring deals card on the newsletter landing", () => {
@@ -66,11 +73,11 @@ describe("storefront maintenance guards", () => {
     expect(index).toMatch(/src=\{heroImg\}/);
   });
 
-  it("keeps the email signup heading exactly 'Get The Signal by email'", () => {
+  it("keeps the approved Christmas newsletter signup heading", () => {
     for (const f of ["src/pages/Index.tsx", "src/pages/Blog.tsx"]) {
-      expect(read(f)).toMatch(/>Get The Signal by email</);
-      expect(read(f)).not.toMatch(/Christmas Amazon finds/);
+      expect(read(f)).toMatch(/>Get our weekly Christmas Amazon finds</);
     }
+    expect(read("src/components/ModernTechEditSignup.tsx")).toMatch(/Get our weekly Christmas Amazon finds\s*<\/h3>/);
   });
 
   it("keeps the homepage holiday note on the Amazon event page with a verified-offers qualifier", () => {

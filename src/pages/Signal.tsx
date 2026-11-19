@@ -34,7 +34,7 @@ const Signal = () => {
     title: editorialText(post.title),
     excerpt: editorialText(post.excerpt ?? ""),
     category: editorialText(post.category ?? "TECH").toUpperCase(),
-    slug: `/the-signal/${post.slug}`,
+    slug: `/the-edit/${post.slug}`,
   }));
 
   return (
@@ -49,7 +49,7 @@ const Signal = () => {
               className="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tight leading-tight"
               style={{ fontWeight: 400 }}
             >
-              The Signal
+              The Edit
             </h1>
             <p
               className="font-mono mt-4 text-muted-foreground"

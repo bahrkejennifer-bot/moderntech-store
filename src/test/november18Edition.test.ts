@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { november18CollectionProducts, november18Products, november18Sections } from "../lib/november18Edition";
+import { november18Edition, november18CollectionProducts, november18Products, november18Sections } from "../lib/november18Edition";
 
 describe("November 18 owner-supplied edition", () => {
   const expected = [
@@ -18,11 +18,17 @@ describe("November 18 owner-supplied edition", () => {
     expect(november18Products).toHaveLength(19);
     expect(november18Sections.map(section => november18Products.filter(p => p.group === section.id).length)).toEqual([3, 4, 4, 3, 5]);
   });
-  it("places matching products in the existing collection destinations", () => {
-    expect(november18CollectionProducts("/office-essentials").map(p => p.asin)).toEqual(["B0H1HZZD2G", "B0C7GKYR2K", "B0CMJTSVRW"]);
-    expect(november18CollectionProducts("/health-wellness-tech")).toHaveLength(4);
-    expect(november18CollectionProducts("/kids-stem")).toHaveLength(4);
-    expect(november18CollectionProducts("/smart-home-security")).toHaveLength(8);
-    expect(november18CollectionProducts("/digital-products")).toEqual([]);
+  it("keeps the unreviewed edition unpublished and collection additions hidden", () => {
+    expect(november18Edition.published).toBe(false);
+    for (const path of ["/office-essentials", "/health-wellness-tech", "/kids-stem", "/smart-home-security"]) {
+      expect(november18CollectionProducts(path)).toEqual([]);
+    }
+  });
+  it("preserves matching products for a future reviewed publication", () => {
+    expect(november18CollectionProducts("/office-essentials", true).map(p => p.asin)).toEqual(["B0H1HZZD2G", "B0C7GKYR2K", "B0CMJTSVRW"]);
+    expect(november18CollectionProducts("/health-wellness-tech", true)).toHaveLength(4);
+    expect(november18CollectionProducts("/kids-stem", true)).toHaveLength(4);
+    expect(november18CollectionProducts("/smart-home-security", true)).toHaveLength(8);
+    expect(november18CollectionProducts("/digital-products", true)).toEqual([]);
   });
 });

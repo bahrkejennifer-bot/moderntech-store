@@ -18,11 +18,11 @@ export default function November18Article() {
         <meta property="og:description" content={edition.excerpt} />
         <meta property="og:type" content="article" />
         <meta property="article:published_time" content={edition.date} />
-        <link rel="canonical" href={`https://moderntech.store/the-signal/${edition.slug}`} />
+        <link rel="canonical" href={`https://moderntech.store/the-edit/${edition.slug}`} />
       </Helmet>
       <SignalHeader />
       <main className="mx-auto max-w-3xl px-5 py-14 md:py-20">
-        <Button asChild variant="link" className="px-0 mb-8"><Link to="/the-signal"><ArrowLeft />The Signal</Link></Button>
+        <Button asChild variant="link" className="px-0 mb-8"><Link to="/the-edit"><ArrowLeft />The Edit</Link></Button>
         <article data-november18-article>
           <p className="text-sm leading-relaxed text-muted-foreground">{edition.disclosure}</p>
           <header className="border-b border-border pb-10 mt-6">

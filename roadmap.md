@@ -38,3 +38,8 @@
 # Scoped affiliate and email payload repair (preview only)
 - [x] Update active/generated affiliate IDs while retaining closed IDs only for legacy normalization.
 - [x] Add meaningful plain-text queue bodies and verify without sending emails, deploying or publishing.
+
+# Publish-readiness corrections (preview only)
+- [x] Restore The Edit public newsletter labels, canonical routes and approved signup headline.
+- [x] Gate the unreviewed November 18 article and collection additions behind a default-off published flag.
+- [x] Run the full tests and preview checks; preserve music, affiliate logic, email payloads and mobile header layout; do not publish.
