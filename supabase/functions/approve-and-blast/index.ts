@@ -75,6 +75,7 @@ Deno.serve(async (req) => {
           html: emailHtmlWithoutAmazonLinks(`<p style="font-family:Inter,sans-serif;background:#fef3c7;padding:16px;border-radius:8px;color:#92400e;font-size:14px;">⚠️ <strong>DRAFT MODE</strong> - This is a preview. ${recipientCount} subscribers will receive this once you send the final broadcast from the Email Dashboard.</p>${newsletterHtml}`),
           text: emailTextFromHtml(`DRAFT MODE. This is a preview. ${recipientCount} subscribers will receive this once you send the final broadcast from the Email Dashboard. ${newsletterHtml}`),
           purpose: "transactional",
+          idempotency_key: `blast-draft-${crypto.randomUUID()}`,
         },
       });
 
@@ -134,6 +135,7 @@ Deno.serve(async (req) => {
               html: newsletterEmailHtml(newsletterHtml),
               text: emailTextFromHtml(newsletterEmailHtml(newsletterHtml)),
               purpose: "marketing",
+              idempotency_key: `blast-${crypto.randomUUID()}`,
             },
           });
         }

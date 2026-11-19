@@ -90,6 +90,7 @@ Deno.serve(async (req) => {
           text: emailTextFromHtml(newsletterEmailHtml(htmlContent)),
           purpose: "marketing",
           message_id: `${messageId}-${enqueued}`,
+          idempotency_key: `${messageId}-${enqueued}`,
           template_name: "broadcast",
         },
       });

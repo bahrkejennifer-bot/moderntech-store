@@ -181,16 +181,6 @@ const Index = () => {
         </div>
       </header>
       <main>
-        {/* Homepage-only Prime trial strip: slim editorial row directly under the header. */}
-        <section aria-label="Amazon Prime free trial" className="border-b border-border bg-secondary/40 px-5 py-3.5 md:px-10">
-          <div className="mx-auto flex max-w-6xl flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-1">
-            <Button asChild variant="outline" size="lg" className="min-h-11 w-fit max-w-full whitespace-normal rounded-none px-4 text-xs font-medium tracking-[0.08em]">
-              <a href="https://www.amazon.com/prime?tag=moderntech02-20" target="_blank" rel="noopener noreferrer sponsored">New to Prime? Start a free trial</a>
-            </Button>
-            <p className="text-[11px] leading-relaxed text-muted-foreground">As an Amazon Associate, I earn from qualifying purchases.</p>
-          </div>
-        </section>
-
         <section className="relative py-10 md:py-16" aria-labelledby="hero-heading">
           <div className="grid grid-cols-1 items-center md:grid-cols-2">
             <div className="overflow-hidden">{holiday

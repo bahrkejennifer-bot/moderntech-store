@@ -32,6 +32,7 @@ describe("queued email content", () => {
           const names = payload.initializer.properties.map((p) => p.name?.getText(source));
           expect(names, file).toContain("html");
           expect(names, file).toContain("text");
+          if (!names.includes("run_id")) expect(names, file).toContain("idempotency_key");
         }
         ts.forEachChild(node, visit);
       };
