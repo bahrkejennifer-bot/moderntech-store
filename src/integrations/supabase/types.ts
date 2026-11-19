@@ -329,6 +329,8 @@ export type Database = {
           id: string
           lead_magnet: string
           name: string
+          newsletter_consent_at: string | null
+          newsletter_opt_in: boolean
           source_path: string | null
           token: string
         }
@@ -340,6 +342,8 @@ export type Database = {
           id?: string
           lead_magnet?: string
           name: string
+          newsletter_consent_at?: string | null
+          newsletter_opt_in?: boolean
           source_path?: string | null
           token: string
         }
@@ -351,6 +355,8 @@ export type Database = {
           id?: string
           lead_magnet?: string
           name?: string
+          newsletter_consent_at?: string | null
+          newsletter_opt_in?: boolean
           source_path?: string | null
           token?: string
         }
