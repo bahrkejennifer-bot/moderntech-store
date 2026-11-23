@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { saveSubscriber } from "@/lib/subscribers";
 import { isFreebieUnlocked, markFreebieUnlocked } from "@/lib/freebies";
+import styles from "./tabletEditorial.module.css";
 
 const SLUG = "tablet-handout";
 const PDF = "/downloads/kids-first-tablet-handout.pdf";
@@ -38,7 +39,7 @@ const KidsTabletHandout = () => {
   };
 
   return (
-    <div className="min-h-screen vogue-theme bg-background text-foreground text-lg">
+    <div className={`min-h-screen vogue-theme text-foreground text-lg ${styles.page}`}>
       <Helmet>
         <title>Kid's First Tablet Setup: Free Handout | Modern Tech LLC</title>
         <meta name="description" content="Free large-print handout: bedtime schedule, Ask to Buy, and Contacts Only for iPad and Amazon Fire Kids tablets." />
@@ -47,25 +48,25 @@ const KidsTabletHandout = () => {
         <link rel="canonical" href={URL_CANONICAL} />
       </Helmet>
       <Navigation />
-      <main className="container mx-auto px-4 py-16 md:py-24 max-w-5xl grid gap-12 lg:grid-cols-2">
+      <main className={`container mx-auto px-4 py-16 md:py-24 max-w-5xl grid gap-12 lg:grid-cols-2 ${styles.main}`}>
         <section>
           <h1 className="font-serif text-4xl md:text-6xl mb-3">Kid's First Tablet Setup</h1>
           <p className="text-2xl mb-6">Free Step-by-Step Handout</p>
           <ul className="space-y-4 mb-8">
             {bullets.map((b) => (
-              <li key={b} className="border-l-2 border-foreground pl-4 leading-relaxed">{b}</li>
+              <li key={b} className="border-l-2 border-border pl-4 leading-relaxed">{b}</li>
             ))}
           </ul>
           <p className="text-muted-foreground">From the episode of The Art of Modern Tech podcast.</p>
         </section>
-        <section className="border border-border p-6 md:p-8">
+        <section className="border border-border bg-card p-6 md:p-8">
           {unlocked ? (
             <div className="space-y-5">
               <h2 className="font-serif text-3xl">Your handout is ready</h2>
-              <Button asChild size="lg" className="w-full min-h-14 text-lg rounded-none">
+              <Button asChild size="lg" className={`w-full min-h-14 text-lg rounded-none ${styles.button}`}>
                 <a href={PDF} download="kids-first-tablet-handout.pdf">Download the PDF</a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="w-full min-h-14 text-lg rounded-none">
+              <Button asChild size="lg" variant="outline" className={`w-full min-h-14 text-lg rounded-none ${styles.button}`}>
                 <a href={PDF} target="_blank" rel="noopener noreferrer">Open &amp; Print</a>
               </Button>
             </div>
@@ -82,7 +83,7 @@ const KidsTabletHandout = () => {
               </div>
               <NewsletterConsent checked={consent} onChange={setConsent} />
               {error && <p role="alert" className="text-destructive">{error}</p>}
-              <Button type="submit" size="lg" disabled={busy} className="w-full min-h-14 text-lg rounded-none">
+              <Button type="submit" size="lg" disabled={busy} className={`w-full min-h-14 text-lg rounded-none ${styles.button}`}>
                 {busy ? "Saving..." : "Get the handout"}
               </Button>
             </form>

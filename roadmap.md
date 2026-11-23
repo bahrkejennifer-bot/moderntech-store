@@ -50,3 +50,7 @@
 
 # Free Downloads
 - [x] Add /free-downloads and email-gated Kids First Tablet handout page, footer link, sitemap.
+
+# Tablet episode pages (preview only)
+- [x] Add the four owner-supplied episode picks, local images, route and one sitemap entry.
+- [x] Apply page-local blush/ivory styling without changing handout signup or PDF behavior; run tests and mobile/desktop checks without publishing.

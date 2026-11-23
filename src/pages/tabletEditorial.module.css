@@ -1,0 +1,33 @@
+.page {
+  background: hsl(36 52% 95%);
+}
+
+.main {
+  --background: 36 52% 95%;
+  --foreground: 220 15% 14%;
+  --card: 36 55% 98%;
+  --card-foreground: 220 15% 14%;
+  --primary: 345 32% 40%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 345 32% 34%;
+  --accent-foreground: 0 0% 100%;
+  --secondary: 15 46% 91%;
+  --secondary-foreground: 220 15% 14%;
+  --muted-foreground: 220 8% 38%;
+  --border: 15 36% 82%;
+  --input: 15 36% 82%;
+  --ring: 345 32% 40%;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+.button {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: hsl(var(--primary));
+}
+
+.button:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}

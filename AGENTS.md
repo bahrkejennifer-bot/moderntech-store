@@ -12,3 +12,4 @@
 - Keep the November 18 edition and collection additions in their shared code-level module behind one default-off publication flag checked by listing, article and collection presentation; this preserves draft assets without exposing unreviewed content.
 - Render stored editorial titles, excerpts and body text directly without the editorialPresentation helper; this preserves owner-approved live content without historical database edits.
 - Derive queued email text from its HTML through the shared email-content helper; remove Amazon destinations from email bodies so multipart content stays aligned without changing template design.
+- Keep tablet episode picks in a page-specific static module and its blush/ivory tokens scoped to the two page mains via a CSS module; this preserves the catalog, signup flow, and shared navigation/footer styling.
