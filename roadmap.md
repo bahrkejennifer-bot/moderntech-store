@@ -47,3 +47,6 @@
 # Four live-parity reversions (preview only)
 - [x] Restore the supplied live holiday note, weekly intro/four notes and Anker image.
 - [x] Remove editorial helper calls from public rendering, run all tests and preserve protected work without publishing.
+
+# Free Downloads
+- [x] Add /free-downloads and email-gated Kids First Tablet handout page, footer link, sitemap.

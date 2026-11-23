@@ -41,6 +41,7 @@ const AffiliateFooter = () => {
                 { to: "/disclaimer", label: "Disclaimer" },
                 { to: "/return-policy", label: "Return & Refund Policy" },
                 { to: "/contact", label: "Contact Us" },
+                { to: "/free-downloads", label: "Free Downloads" },
               ].map((link) => (
                 <li key={link.to}>
                   <Link
