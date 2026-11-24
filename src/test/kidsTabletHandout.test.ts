@@ -1,6 +1,9 @@
 import { describe, expect, it, vi } from "vitest";
 import { readFileSync, existsSync } from "node:fs";
-import { createHandoutHandler, issueToken, validToken, signupInput, HANDOUT_CONSENT, handoutEmail } from "../../supabase/functions/get-kids-tablet-handout/handout";
+import {
+  createHandoutHandler, issueToken, validToken, signupInput, HANDOUT_CONSENT, handoutEmail,
+  HANDOUT_BUCKET, HANDOUT_STORAGE_PATH, readHandoutFromStorage,
+} from "../../supabase/functions/get-kids-tablet-handout/handout";
 import { normalizeSubscriber, SUBSCRIBE_CONSENT_LINE } from "@/lib/subscribers";
 
 const secret = "isolated-unit-test-signing-key-not-a-project-credential";
@@ -121,5 +124,22 @@ describe("protected kids tablet handout", () => {
   it("removes the static PDF while retaining the original private asset", () => {
     expect(existsSync("public/downloads/kids-first-tablet-handout.pdf")).toBe(false);
     expect(readFileSync(pdfPath).subarray(0, 5).toString()).toBe("%PDF-");
+  });
+
+  it("reads PDF bytes from the private digital-products bucket and rejects storage failures", async () => {
+    const originalBytes = new Uint8Array(readFileSync(pdfPath));
+    const download = vi.fn(async () => ({ data: new Blob([originalBytes], { type: "application/pdf" }), error: null }));
+    const from = vi.fn(() => ({ download }));
+    const bytes = await readHandoutFromStorage({ storage: { from } });
+    expect(from).toHaveBeenCalledWith(HANDOUT_BUCKET);
+    expect(download).toHaveBeenCalledWith(HANDOUT_STORAGE_PATH);
+    expect(HANDOUT_BUCKET).toBe("digital-products");
+    expect(HANDOUT_STORAGE_PATH).not.toBe("kids-first-tablet-handout.pdf");
+    expect(bytes).toEqual(originalBytes);
+
+    const failingClient = { storage: { from: () => ({ download: async () => ({ data: null, error: new Error("not found") }) }) } };
+    await expect(readHandoutFromStorage(failingClient)).rejects.toThrow("not found");
+    expect(readFileSync("supabase/functions/get-kids-tablet-handout/index.ts", "utf8")).toContain("readHandoutFromStorage(client)");
+    expect(readFileSync("supabase/functions/get-kids-tablet-handout/index.ts", "utf8")).not.toContain("Deno.readFile");
   });
 });

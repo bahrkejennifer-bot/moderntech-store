@@ -3,7 +3,17 @@ import { emailTextFromHtml } from "../_shared/email-content.ts";
 export const HANDOUT_CONSENT = "Get the free handout plus weekly finds from The Edit. Unsubscribe anytime.";
 export const HANDOUT_SOURCE = "/free-downloads/kids-tablet-handout";
 export const HANDOUT_FREEBIE = "kids-tablet-handout";
+export const HANDOUT_BUCKET = "digital-products";
+export const HANDOUT_STORAGE_PATH = "handouts/kids-first-tablet-handout-9c4f2a7e1b8d4053.pdf";
 export const LINK_TTL_SECONDS = 3600;
+
+// Read the original PDF from private storage with the server-side service-role client.
+// deno-lint-ignore no-explicit-any
+export async function readHandoutFromStorage(client: any, bucket = HANDOUT_BUCKET, path = HANDOUT_STORAGE_PATH): Promise<Uint8Array> {
+  const { data, error } = await client.storage.from(bucket).download(path);
+  if (error || !data) throw error ?? new Error("Handout PDF missing from storage");
+  return new Uint8Array(await data.arrayBuffer());
+}
 
 export function signupInput(value: unknown) {
   if (!value || typeof value !== "object") return null;
