@@ -38,7 +38,7 @@ describe("queued email content", () => {
       };
       visit(source);
     }
-    expect(producers).toHaveLength(11);
+    expect(producers).toHaveLength(12);
   });
 
   it.each(["request-lead-confirmation", "resend-lead-confirmation", "send-welcome-email"])("%s text keeps the actual confirmation or guide destination and passes queue validation", (name) => {

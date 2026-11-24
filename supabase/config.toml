@@ -1,6 +1,9 @@
 project_id = "hvjhtfyxecnuehndnyrd"
 
 [functions]
+  [functions.get-kids-tablet-handout]
+    verify_jwt = false
+    static_files = ["./functions/get-kids-tablet-handout/kids-first-tablet-handout.pdf"]
   [functions.approve-tech-spec]
     verify_jwt = false
   [functions.auth-email-hook]

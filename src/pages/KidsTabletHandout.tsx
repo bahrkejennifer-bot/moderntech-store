@@ -4,13 +4,12 @@ import Navigation from "@/components/Navigation";
 import AffiliateFooter from "@/components/AffiliateFooter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { NewsletterConsent } from "@/components/NewsletterConsent";
 import { saveSubscriber } from "@/lib/subscribers";
-import { isFreebieUnlocked, markFreebieUnlocked } from "@/lib/freebies";
+import { supabase } from "@/integrations/supabase/client";
 import styles from "./tabletEditorial.module.css";
 
-const SLUG = "tablet-handout";
-const PDF = "/downloads/kids-first-tablet-handout.pdf";
+const SLUG = "kids-tablet-handout";
+const CONSENT_LINE = "Get the free handout plus weekly finds from The Edit. Unsubscribe anytime.";
 const URL_CANONICAL = "https://moderntech.store/free-downloads/kids-tablet-handout";
 
 const bullets = [
@@ -22,20 +21,29 @@ const bullets = [
 const KidsTabletHandout = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [unlocked, setUnlocked] = useState(() => isFreebieUnlocked(SLUG));
+  const [downloadUrl, setDownloadUrl] = useState("");
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setBusy(true);
-    const res = await saveSubscriber({ email, name, freebie: SLUG, consent, sourcePage: "/free-downloads/kids-tablet-handout" });
-    setBusy(false);
-    if (!res.ok) return setError(res.error || "Please try again.");
-    markFreebieUnlocked(SLUG);
-    setUnlocked(true);
+    try {
+      const res = await saveSubscriber({ email, name, freebie: SLUG, consent: true, consentText: CONSENT_LINE, sourcePage: "/free-downloads/kids-tablet-handout" });
+      if (!res.ok) return setError(res.error || "Please try again.");
+      const { data, error: linkError } = await supabase.functions.invoke("get-kids-tablet-handout", {
+        body: { email: email.trim().toLowerCase(), name: name.trim() },
+      });
+      if (linkError || typeof data?.downloadUrl !== "string") {
+        return setError("Your email is saved, but the handout link is temporarily unavailable. Please try again.");
+      }
+      setDownloadUrl(data.downloadUrl);
+    } catch {
+      setError("Your handout is temporarily unavailable. Please try again.");
+    } finally {
+      setBusy(false);
+    }
   };
 
   return (
@@ -60,15 +68,16 @@ const KidsTabletHandout = () => {
           <p className="text-muted-foreground">From the episode of The Art of Modern Tech podcast.</p>
         </section>
         <section className="border border-border bg-card p-6 md:p-8">
-          {unlocked ? (
+          {downloadUrl ? (
             <div className="space-y-5">
               <h2 className="font-serif text-3xl">Your handout is ready</h2>
               <Button asChild size="lg" className={`w-full min-h-14 text-lg rounded-none ${styles.button}`}>
-                <a href={PDF} download="kids-first-tablet-handout.pdf">Download the PDF</a>
+                <a href={downloadUrl} download="kids-first-tablet-handout.pdf">Download the PDF</a>
               </Button>
               <Button asChild size="lg" variant="outline" className={`w-full min-h-14 text-lg rounded-none ${styles.button}`}>
-                <a href={PDF} target="_blank" rel="noopener noreferrer">Open &amp; Print</a>
+                <a href={downloadUrl} target="_blank" rel="noopener noreferrer">Open &amp; Print</a>
               </Button>
+              <p className="text-sm text-muted-foreground">This link expires in one hour. Enter your email again for a fresh link.</p>
             </div>
           ) : (
             <form onSubmit={submit} className="space-y-5">
@@ -79,9 +88,9 @@ const KidsTabletHandout = () => {
               </div>
               <div>
                 <label htmlFor="th-name" className="block mb-2">First name (optional)</label>
-                <Input id="th-name" value={name} onChange={(e) => setName(e.target.value)} className="h-14 text-lg" />
+                <Input id="th-name" maxLength={100} value={name} onChange={(e) => setName(e.target.value)} className="h-14 text-lg" />
               </div>
-              <NewsletterConsent checked={consent} onChange={setConsent} />
+              <p className="text-sm leading-relaxed text-muted-foreground">{CONSENT_LINE}</p>
               {error && <p role="alert" className="text-destructive">{error}</p>}
               <Button type="submit" size="lg" disabled={busy} className={`w-full min-h-14 text-lg rounded-none ${styles.button}`}>
                 {busy ? "Saving..." : "Get the handout"}

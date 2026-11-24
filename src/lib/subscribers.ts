@@ -9,6 +9,8 @@ export interface SaveSubscriberInput {
   /** Which freebie they took, or a short label like "newsletter". */
   freebie?: string;
   consent?: boolean;
+  /** Page-specific consent wording; existing signups keep the shared default. */
+  consentText?: string;
   /** Defaults to the current page path. */
   sourcePage?: string;
 }
@@ -26,7 +28,7 @@ export function normalizeSubscriber(input: SaveSubscriberInput) {
     freebie: input.freebie?.slice(0, 100) || null,
     source_page: source?.slice(0, 300) || null,
     consent: input.consent === true,
-    consent_text: input.consent === true ? SUBSCRIBE_CONSENT_LINE : null,
+    consent_text: input.consent === true ? (input.consentText ?? SUBSCRIBE_CONSENT_LINE).slice(0, 300) : null,
   };
 }
 

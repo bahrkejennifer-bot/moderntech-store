@@ -54,3 +54,9 @@
 # Tablet episode pages (preview only)
 - [x] Add the four owner-supplied episode picks, local images, route and one sitemap entry.
 - [x] Apply page-local blush/ivory styling without changing handout signup or PDF behavior; run tests and mobile/desktop checks without publishing.
+
+# Protected tablet handout (preview only)
+- [x] Require email and page-specific consent through the existing subscribers list, without browser-storage unlocks.
+- [x] Move the original PDF outside public assets and add expiring, server-validated downloads with background email queuing.
+- [x] Verify with isolated mocks only, without sending emails, deployment or publishing.
+- [ ] Activate protected download service - BLOCKED: deployment is explicitly prohibited in this request.

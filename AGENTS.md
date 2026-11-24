@@ -13,3 +13,4 @@
 - Render stored editorial titles, excerpts and body text directly without the editorialPresentation helper; this preserves owner-approved live content without historical database edits.
 - Derive queued email text from its HTML through the shared email-content helper; remove Amazon destinations from email bodies so multipart content stays aligned without changing template design.
 - Keep tablet episode picks in a page-specific static module and its blush/ivory tokens scoped to the two page mains via a CSS module; this preserves the catalog, signup flow, and shared navigation/footer styling.
+- Serve the original tablet handout only through its email-validating function and expiring signed tokens; keep its asset outside public and its email queue independent of on-page delivery.
